@@ -43,7 +43,7 @@ class WC_GZD_Admin_Note_Legal_News extends WC_GZD_Admin_Note {
 				'is_primary' => true,
 			),
 			array(
-				'url'        => 'https://vendidero.de/dokument/echtheit-von-bewertungen-kennzeichnen',
+				'url'        => 'https://vendidero.de/doc/woocommerce-germanized/echtheit-von-bewertungen-kennzeichnen',
 				'title'      => __( 'Learn more', 'woocommerce-germanized' ),
 				'target'     => '_blank',
 				'is_primary' => false,

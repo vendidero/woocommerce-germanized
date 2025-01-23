@@ -44,7 +44,7 @@ class WC_GZD_Admin_Note_TS_Install extends WC_GZD_Admin_Note {
 	public function get_actions() {
 		$buttons = array(
 			array(
-				'url'        => 'https://vendidero.de/dokument/trusted-shops-migration',
+				'url'        => 'https://vendidero.de/doc/woocommerce-germanized/trusted-shops-migration',
 				'title'      => __( 'Migration guide', 'woocommerce-germanized' ),
 				'target'     => '_blank',
 				'is_primary' => false,

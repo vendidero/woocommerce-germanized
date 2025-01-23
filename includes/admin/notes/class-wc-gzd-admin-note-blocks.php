@@ -39,7 +39,7 @@ class WC_GZD_Admin_Note_Blocks extends WC_GZD_Admin_Note {
 
 		if ( wc_gzd_has_checkout_block() ) {
 			$actions[] = array(
-				'url'        => 'https://vendidero.de/dokument/umsetzung-der-button-loesung-im-woocommerce-checkout#checkout-block',
+				'url'        => 'https://vendidero.de/doc/woocommerce-germanized/umsetzung-der-button-loesung-im-woocommerce-checkout#checkout-block',
 				'title'      => __( 'Adjust Checkout Block', 'woocommerce-germanized' ),
 				'target'     => '_blank',
 				'is_primary' => true,
@@ -48,7 +48,7 @@ class WC_GZD_Admin_Note_Blocks extends WC_GZD_Admin_Note {
 
 		if ( wc_gzd_current_theme_is_fse_theme() ) {
 			$actions[] = array(
-				'url'        => 'https://vendidero.de/dokument/preisauszeichnungen-anpassen#full-site-editing-mit-gutenberg',
+				'url'        => 'https://vendidero.de/doc/woocommerce-germanized/preisauszeichnungen-anpassen#full-site-editing-mit-gutenberg',
 				'title'      => __( 'Adjust Single Product template', 'woocommerce-germanized' ),
 				'target'     => '_blank',
 				'is_primary' => count( $actions ) > 0 ? false : true,

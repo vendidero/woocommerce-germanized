@@ -246,7 +246,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php if ( WC_GZD_Secret_Box_Helper::supports_auto_insert() ) : ?>
 				<a class="button button-primary" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-encryption_key_insert' => true ) ), 'wc-gzd-check-encryption_key_insert' ) ); ?>"><?php esc_html_e( 'Auto insert', 'woocommerce-germanized' ); ?></a>
 			<?php endif; ?>
-			<a class="button button-secondary" href="https://vendidero.de/dokument/verschluesselung-sensibler-daten" target="_blank"><?php esc_html_e( 'Learn more', 'woocommerce-germanized' ); ?></a>
+			<a class="button button-secondary" href="https://vendidero.de/doc/woocommerce-germanized/verschluesselung-sensibler-daten" target="_blank"><?php esc_html_e( 'Learn more', 'woocommerce-germanized' ); ?></a>
 		</td>
 	</tr>
 	<?php endif; ?>

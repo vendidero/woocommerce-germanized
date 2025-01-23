@@ -6,6 +6,32 @@ if [ $# -lt 3 ]; then
 	exit 1
 fi
 
+# Function to check if a command exists
+command_exists() {
+	command -v "$1" >/dev/null 2>&1
+}
+
+# Check if SVN is installed
+if command_exists svn; then
+	echo "SVN is already installed."
+else
+	echo "SVN is not installed. Installing SVN..."
+
+	# Update the package list
+	sudo apt-get update -y
+
+	# Install SVN
+	sudo apt-get install -y subversion
+
+	# Verify installation
+	if command_exists svn; then
+		echo "SVN was successfully installed."
+	else
+		echo "Failed to install SVN. Please check your system configuration."
+		exit 1
+	fi
+fi
+
 DB_NAME=$1
 DB_USER=$2
 DB_PASS=$3

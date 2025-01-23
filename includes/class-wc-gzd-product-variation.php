@@ -62,10 +62,10 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'food_description',
 		'is_food',
 		'mini_desc',
-		'device_watt_min',
-		'device_watt_max',
+		'device_charging_watt_min',
+		'device_charging_watt_max',
 		'wireless_electronic_device',
-		'device_supports_usb_pd',
+		'device_charging_supports_usb_pd',
 		'device_contains_power_supply',
 	);
 
@@ -79,9 +79,9 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'free_shipping',
 		'differential_taxation',
 		'is_food',
-		'wireless_electronic_device'   => '',
-		'device_supports_usb_pd'       => '',
-		'device_contains_power_supply' => '',
+		'wireless_electronic_device'      => '',
+		'device_charging_supports_usb_pd' => '',
+		'device_contains_power_supply'    => '',
 	);
 
 	public function get_gzd_parent() {

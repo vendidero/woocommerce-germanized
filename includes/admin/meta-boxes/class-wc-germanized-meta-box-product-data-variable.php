@@ -301,7 +301,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		<div class="variable_shipping_time variable_delivery_time <?php echo esc_attr( self::get_delivery_time_wrapper_classes() ); ?>">
 			<p class="wc-gzd-product-settings-subtitle">
 				<?php esc_html_e( 'Delivery Time', 'woocommerce-germanized' ); ?>
-				<a class="page-title-action" href="https://vendidero.de/dokument/lieferzeiten-verwalten"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+				<a class="page-title-action" href="https://vendidero.de/doc/woocommerce-germanized/lieferzeiten-verwalten"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
 			</p>
 
 			<p class="form-row form-row-full">
@@ -385,17 +385,17 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		<div class="variable_wireless_electronic_device show_if_wireless_electronic_device">
 			<p class="wc-gzd-product-settings-subtitle">
 				<?php esc_html_e( 'Electronic device (wireless)', 'woocommerce-germanized' ); ?>
-				<a class="page-title-action" href="https://vendidero.de/dokument/allgemeine-produktsicherheit-gpsr"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+				<a class="page-title-action" href="https://vendidero.de/doc/woocommerce-germanized/kennzeichnungspflichten-zu-netzteilen-fur-elektrogerate"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
 			</p>
 
 			<?php
 				woocommerce_wp_text_input(
 					array(
 						'wrapper_class' => 'form-row form-row-first',
-						'id'            => "variable_device_watt_min_{$loop}",
-						'name'          => "variable_device_watt_min[{$loop}]",
-						'value'         => $gzd_product->get_device_watt_min( 'edit' ),
-						'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_device_watt_min() : '',
+						'id'            => "variable_device_charging_watt_min_{$loop}",
+						'name'          => "variable_device_charging_watt_min[{$loop}]",
+						'value'         => $gzd_product->get_device_charging_watt_min( 'edit' ),
+						'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_device_charging_watt_min() : '',
 						'label'         => __( 'Minimum power (Watt)', 'woocommerce-germanized' ),
 						'type'          => 'number',
 						'desc_tip'      => true,
@@ -406,10 +406,10 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				woocommerce_wp_text_input(
 					array(
 						'wrapper_class' => 'form-row form-row-last',
-						'id'            => "variable_device_watt_max_{$loop}",
-						'name'          => "variable_device_watt_max[{$loop}]",
-						'value'         => $gzd_product->get_device_watt_max( 'edit' ),
-						'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_device_watt_max() : '',
+						'id'            => "variable_device_charging_watt_max_{$loop}",
+						'name'          => "variable_device_charging_watt_max[{$loop}]",
+						'value'         => $gzd_product->get_device_charging_watt_max( 'edit' ),
+						'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_device_charging_watt_max() : '',
 						'label'         => __( 'Maximum power (Watt)', 'woocommerce-germanized' ),
 						'type'          => 'number',
 						'desc_tip'      => true,
@@ -422,7 +422,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		<div class="variable_product_safety">
 			<p class="wc-gzd-product-settings-subtitle">
 				<?php esc_html_e( 'Product safety', 'woocommerce-germanized' ); ?>
-				<a class="page-title-action" href="https://vendidero.de/dokument/allgemeine-produktsicherheit-gpsr"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+				<a class="page-title-action" href="https://vendidero.de/doc/woocommerce-germanized/allgemeine-produktsicherheit-gpsr"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
 			</p>
 
 			<p class="form-row form-row-full">
@@ -554,7 +554,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			<?php if ( WC_germanized()->is_pro() ) : ?>
 				<p class="wc-gzd-product-settings-subtitle">
 					<?php esc_html_e( 'Deposit', 'woocommerce-germanized' ); ?>
-					<a class="page-title-action" href="https://vendidero.de/dokument/lebensmittel-auszeichnen#pfand-berechnen"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+					<a class="page-title-action" href="https://vendidero.de/doc/woocommerce-germanized/lebensmittel-auszeichnen#pfand-berechnen"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
 					<a class="wc-gzd-product-settings-action" target="_blank" href="<?php echo esc_url( admin_url( 'edit-tags.php?taxonomy=product_deposit_type&post_type=product' ) ); ?>"><?php esc_html_e( 'Manage deposit types', 'woocommerce-germanized' ); ?></a>
 				</p>
 
@@ -641,8 +641,8 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_food_distributor'                         => '',
 			'_food_place_of_origin'                     => '',
 			'_food_description'                         => '',
-			'_device_watt_min'                          => '',
-			'_device_watt_max'                          => '',
+			'_device_charging_watt_min'                 => '',
+			'_device_charging_watt_max'                 => '',
 		);
 
 		foreach ( $data as $k => $v ) {

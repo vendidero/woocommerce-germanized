@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 6.7
 WC requires at least: 3.9
-WC tested up to: 9.5
-Stable tag: 3.18.6
+WC tested up to: 9.6
+Stable tag: 3.18.7
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -76,7 +76,7 @@ In case you are using our DHL integration you might as well (automatically) crea
 
 = Post, DHL, DPD (Pro) and GLS (Pro) Integration =
 With the help of our built-in Post, DHL, DPD (Pro) and GLS (Pro) integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL preferred delivery services to your customers including shipping to Packstation or choosing a drop-off location and/or day within the checkout.
-You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/dokument/versanddienstleister-verwalten "Shipping Provider for WooCommerce") about how our shipping provider integrations work.
+You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/doc/woocommerce-germanized/versanddienstleister-verwalten "Shipping Provider for WooCommerce") about how our shipping provider integrations work.
 
 = Extended One Stop Shop compliance =
 With a little help from our [One Stop Shop compliance plugin for WooCommerce](https://wordpress.org/plugins/one-stop-shop-woocommerce/) bundled within Germanized you'll handle the new EU VAT regulations with ease. Generate new VAT reports for different time frames and let the plugin
@@ -161,7 +161,7 @@ The shortcode is useful to output the legal page attachments in custom email tem
 Inserts a text that informs the customer about the EU Online Dispute Platform - this Shortcode should be inserted within your imprint. Find more information [here](http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016).
 
 `[gzd_return_request_form]`
-Insert the guest return request form which allows guests to submit [return requests](https://vendidero.de/dokument/retouren-konfigurieren-und-verwalten).
+Insert the guest return request form which allows guests to submit [return requests](https://vendidero.de/doc/woocommerce-germanized/retouren-konfigurieren-und-verwalten).
 
 = Updating Germanized for WooCommerce =
 
@@ -171,7 +171,7 @@ You may of course Update Germanized for WooCommerce automatically through the Wo
 == Frequently Asked Questions ==
 
 = Where can I find the documentation? =
-[Germanized Documentation](https://vendidero.de/dokument/home-germanized)
+[Germanized Documentation](https://vendidero.de/doc/woocommerce-germanized/home-germanized)
 
 = Need help? =
 
@@ -185,7 +185,7 @@ issues. For testing purposes, please activate a default WordPress Theme (such as
 
 = Using a Pagebuilder? =
 
-In case you are using a Pagebuilder (e.g. Elementor, Divi-Builder) you might want to replace the default [shopmarks](https://vendidero.de/dokument/preisauszeichnungen-anpassen) placed by Germanized with our custom [shortcodes](https://vendidero.de/dokument/preisauszeichnungen-anpassen#pagebuilder).
+In case you are using a Pagebuilder (e.g. Elementor, Divi-Builder) you might want to replace the default [shopmarks](https://vendidero.de/doc/woocommerce-germanized/preisauszeichnungen-anpassen) placed by Germanized with our custom [shortcodes](https://vendidero.de/doc/woocommerce-germanized/preisauszeichnungen-anpassen#pagebuilder).
 
 = Email attachments not showing in WooCommerce order confirmation email =
 
@@ -206,6 +206,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.18.7 =
+* New: Support labelling (power supply) for wireless electronic devices
+* Improvement: Latest WC Checkout block UI compatibility
+* Improvement: By default do not treat downloadable but non-virtual items as exempts for shipping costs/delivery time
+* Improvement: WPML support for conditional checkboxes
+* Fix: Do not enforce (re-) escaping html provided via filter to price labels
+* Fix: Assume packaging weight unit as default unit when displaying reports
+
 = 3.18.6 =
 * New: DHL Kleinpaket
 * New: DHL REST prefer auth via OAuth

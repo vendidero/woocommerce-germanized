@@ -41,7 +41,7 @@ class WC_GZD_Admin_Note_Shipping_Excl_Tax extends WC_GZD_Admin_Note {
 				'is_primary' => true,
 			),
 			array(
-				'url'        => 'https://vendidero.de/dokument/steuerberechnung-fuer-versandkosten-und-gebuehren',
+				'url'        => 'https://vendidero.de/doc/woocommerce-germanized/steuerberechnung-fuer-versandkosten-und-gebuehren',
 				'title'      => __( 'Learn more', 'woocommerce-germanized' ),
 				'target'     => '_blank',
 				'is_primary' => false,

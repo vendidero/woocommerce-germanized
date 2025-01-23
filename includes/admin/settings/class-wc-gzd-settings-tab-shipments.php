@@ -70,7 +70,7 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_help_link() {
-		return 'https://vendidero.de/dokument/sendungen-zu-bestellungen-erzeugen';
+		return 'https://vendidero.de/doc/woocommerce-germanized/sendungen-zu-bestellungen-erzeugen';
 	}
 
 	public function get_sections() {

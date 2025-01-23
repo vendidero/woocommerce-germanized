@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c540c0f018327187de6a0bce0054bfd3",
+    "content-hash": "d8732c3985ba2767e8356fee2181cd7a",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -759,16 +759,16 @@
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-eu-tax-helper.git",
-                "reference": "75d53618e742125bcaa91bf429590f6091a31183"
+                "reference": "cae237ba7128b5b28029111ca7096e156d684553"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/75d53618e742125bcaa91bf429590f6091a31183",
-                "reference": "75d53618e742125bcaa91bf429590f6091a31183",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/cae237ba7128b5b28029111ca7096e156d684553",
+                "reference": "cae237ba7128b5b28029111ca7096e156d684553",
                 "shasum": ""
             },
             "require": {
@@ -805,10 +805,10 @@
             "description": "EU tax helper for WooCommerce",
             "homepage": "https://vendidero.de/",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/v2.0.5",
+                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/v2.0.6",
                 "issues": "https://github.com/vendidero/woocommerce-eu-tax-helper/issues"
             },
-            "time": "2024-09-25T09:13:19+00:00"
+            "time": "2025-01-23T10:33:57+00:00"
         },
         {
             "name": "vendidero/woocommerce-germanized-dhl",
@@ -871,16 +871,16 @@
         },
         {
             "name": "vendidero/woocommerce-germanized-shipments",
-            "version": "4.2.0",
+            "version": "4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-germanized-shipments.git",
-                "reference": "db191421aea4e0c13d219931424a388f514104d3"
+                "reference": "24793126deb90097909251d8f700a265cc2321f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/db191421aea4e0c13d219931424a388f514104d3",
-                "reference": "db191421aea4e0c13d219931424a388f514104d3",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-germanized-shipments/zipball/24793126deb90097909251d8f700a265cc2321f0",
+                "reference": "24793126deb90097909251d8f700a265cc2321f0",
                 "shasum": ""
             },
             "require": {
@@ -923,10 +923,10 @@
             "description": "The Germanized Shipments implementation.",
             "homepage": "https://github.com/vendidero/woocommerce-germanized-shipments",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v4.2.0",
+                "source": "https://github.com/vendidero/woocommerce-germanized-shipments/tree/v4.2.1",
                 "issues": "https://github.com/vendidero/woocommerce-germanized-shipments/issues"
             },
-            "time": "2024-12-30T10:54:36+00:00"
+            "time": "2025-01-23T12:28:27+00:00"
         }
     ],
     "packages-dev": [
@@ -1390,16 +1390,16 @@
         },
         {
             "name": "phpcompatibility/phpcompatibility-wp",
-            "version": "2.1.5",
+            "version": "2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCompatibility/PHPCompatibilityWP.git",
-                "reference": "01c1ff2704a58e46f0cb1ca9d06aee07b3589082"
+                "reference": "80ccb1a7640995edf1b87a4409fa584cd5869469"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibilityWP/zipball/01c1ff2704a58e46f0cb1ca9d06aee07b3589082",
-                "reference": "01c1ff2704a58e46f0cb1ca9d06aee07b3589082",
+                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibilityWP/zipball/80ccb1a7640995edf1b87a4409fa584cd5869469",
+                "reference": "80ccb1a7640995edf1b87a4409fa584cd5869469",
                 "shasum": ""
             },
             "require": {
@@ -1456,7 +1456,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-04-24T21:37:59+00:00"
+            "time": "2025-01-16T22:34:19+00:00"
         },
         {
             "name": "phpcsstandards/phpcsextra",
@@ -3246,16 +3246,16 @@
         },
         {
             "name": "yoast/phpunit-polyfills",
-            "version": "3.0.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast/PHPUnit-Polyfills.git",
-                "reference": "19e6d5fb8aad31f731f774f9646a10c64a8843d2"
+                "reference": "e6381c62c4df51677b657fbac79b79dfce7acdab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast/PHPUnit-Polyfills/zipball/19e6d5fb8aad31f731f774f9646a10c64a8843d2",
-                "reference": "19e6d5fb8aad31f731f774f9646a10c64a8843d2",
+                "url": "https://api.github.com/repos/Yoast/PHPUnit-Polyfills/zipball/e6381c62c4df51677b657fbac79b79dfce7acdab",
+                "reference": "e6381c62c4df51677b657fbac79b79dfce7acdab",
                 "shasum": ""
             },
             "require": {
@@ -3305,7 +3305,7 @@
                 "security": "https://github.com/Yoast/PHPUnit-Polyfills/security/policy",
                 "source": "https://github.com/Yoast/PHPUnit-Polyfills"
             },
-            "time": "2024-09-07T00:24:25+00:00"
+            "time": "2025-01-12T08:41:37+00:00"
         }
     ],
     "aliases": [],

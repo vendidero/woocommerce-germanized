@@ -21,7 +21,7 @@ $new_key = WC_GZD_Secret_Box_Helper::get_random_encryption_key();
 	}
 </script>
 
-<p class="headliner"><?php echo wp_kses_post( sprintf( __( 'Germanized supports <a href="%s" target="_blank">encrypting sensitive data</a>, e.g. your DHL or Deutsche Post credentials.', 'woocommerce-germanized' ), 'https://vendidero.de/dokument/verschluesselung-sensibler-daten' ) ); ?></p>
+<p class="headliner"><?php echo wp_kses_post( sprintf( __( 'Germanized supports <a href="%s" target="_blank">encrypting sensitive data</a>, e.g. your DHL or Deutsche Post credentials.', 'woocommerce-germanized' ), 'https://vendidero.de/doc/woocommerce-germanized/verschluesselung-sensibler-daten' ) ); ?></p>
 
 <div class="wc-gzd-admin-settings">
 	<?php if ( ! WC_GZD_Secret_Box_Helper::has_valid_encryption_key() ) : ?>

@@ -396,7 +396,7 @@ class WC_GZD_Admin {
 					'title'             => __( 'Germanized for WooCommerce', 'woocommerce-germanized' ),
 					'path'              => array( WC_germanized()->plugin_path() . '/templates' ),
 					'template_path'     => WC_germanized()->template_path(),
-					'outdated_help_url' => 'https://vendidero.de/dokument/veraltete-germanized-templates-aktualisieren',
+					'outdated_help_url' => 'https://vendidero.de/doc/woocommerce-germanized/veraltete-germanized-templates-aktualisieren',
 					'files'             => array(),
 					'has_outdated'      => false,
 				),
@@ -410,7 +410,7 @@ class WC_GZD_Admin {
 					'title'             => '',
 					'path'              => '',
 					'template_path'     => '',
-					'outdated_help_url' => 'https://vendidero.de/dokument/veraltete-germanized-templates-aktualisieren',
+					'outdated_help_url' => 'https://vendidero.de/doc/woocommerce-germanized/veraltete-germanized-templates-aktualisieren',
 					'files'             => array(),
 					'has_outdated'      => false,
 				)

@@ -23,3 +23,30 @@
     text-indent: -9999px;
   }
 }
+
+.wc-gzd-block-components-product-power-supply {
+  .wc-gzd-block-components-product-power-supply__value {
+    display: flex;
+    flex-wrap: wrap;
+    height: 70px;
+    margin: 1em 0;
+
+    svg {
+      display: flex;
+      align-items: center;
+      width: 70px;
+      height: 70px;
+
+      text {
+        text-anchor: middle;
+        dominant-baseline: middle;
+        font-size: 1.8rem;
+        font-weight: 600;
+
+        &.power-supply-usb-pd {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

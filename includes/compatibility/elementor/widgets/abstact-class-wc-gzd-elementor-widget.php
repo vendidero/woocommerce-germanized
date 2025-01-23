@@ -32,7 +32,7 @@ abstract class WC_GZD_Elementor_Widget extends ElementorPro\Modules\Woocommerce\
 	}
 
 	public function get_custom_help_url() {
-		return 'https://vendidero.de/dokument/preisauszeichnungen-anpassen';
+		return 'https://vendidero.de/doc/woocommerce-germanized/preisauszeichnungen-anpassen';
 	}
 
 	abstract public function get_postfix();

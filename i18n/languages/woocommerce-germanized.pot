@@ -1,15 +1,15 @@
-# Copyright (C) 2024 vendidero
+# Copyright (C) 2025 vendidero
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.18.6\n"
+"Project-Id-Version: Germanized for WooCommerce 3.18.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-30T11:13:08+00:00\n"
+"POT-Creation-Date: 2025-01-23T12:44:31+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 
@@ -8055,11 +8055,11 @@ msgstr ""
 msgid "Nutri-Score %1$s"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1420
-#: includes/abstracts/abstract-wc-gzd-product.php:1430
+#: includes/abstracts/abstract-wc-gzd-product.php:1482
+#: includes/abstracts/abstract-wc-gzd-product.php:1492
 #: includes/wc-gzd-core-functions.php:598
-#: includes/wc-gzd-template-functions.php:1163
-#: includes/wc-gzd-template-functions.php:1170
+#: includes/wc-gzd-template-functions.php:1172
+#: includes/wc-gzd-template-functions.php:1179
 #: src/Blocks/Integrations/Checkout.php:57
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:59
 #: build/mini-cart-blocks/mini-cart-notices-style.js:59
@@ -8068,7 +8068,7 @@ msgstr ""
 msgid "incl. VAT"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1420
+#: includes/abstracts/abstract-wc-gzd-product.php:1482
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:59
 #: build/mini-cart-blocks/mini-cart-notices-style.js:59
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:55
@@ -8076,12 +8076,12 @@ msgstr ""
 msgid "excl. VAT"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1422
+#: includes/abstracts/abstract-wc-gzd-product.php:1484
 #: includes/wc-gzd-core-functions.php:598
 msgid "incl. %s%% VAT"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1422
+#: includes/abstracts/abstract-wc-gzd-product.php:1484
 msgid "excl. %s%% VAT"
 msgstr ""
 
@@ -8117,11 +8117,11 @@ msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-deposit-types.php:67
 #: includes/admin/class-wc-gzd-admin-deposit-types.php:96
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:518
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:556
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:68
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:261
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:333
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:658
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:657
 msgid "Deposit"
 msgstr ""
 
@@ -8164,20 +8164,19 @@ msgid "Furthermore you have expressly agreed to start the performance of the con
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-legal-checkboxes.php:106
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:533
 msgid "Downloadable Product"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-legal-checkboxes.php:107
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:534
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:533
 msgid "Virtual Product"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-legal-checkboxes.php:108
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:178
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:455
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:535
-#: includes/class-wc-gzd-legal-checkbox-manager.php:194
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:534
+#: includes/class-wc-gzd-legal-checkbox-manager.php:195
 msgid "Service"
 msgstr ""
 
@@ -8245,20 +8244,20 @@ msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-product-categories.php:58
 #: includes/admin/class-wc-gzd-admin-product-categories.php:79
-#: includes/class-wc-gzd-legal-checkbox-manager.php:236
+#: includes/class-wc-gzd-legal-checkbox-manager.php:238
 msgid "Age Verification"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-product-categories.php:60
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:228
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:239
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:444
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:482
 msgid "Same as Parent"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-product-categories.php:82
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:544
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:751
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:543
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:750
 msgid "None"
 msgstr ""
 
@@ -8528,7 +8527,7 @@ msgid "Germanized"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin.php:811
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:788
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:851
 msgid "Remove"
 msgstr ""
 
@@ -8553,7 +8552,7 @@ msgid "Cart description"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin.php:922
-#: includes/api/class-wc-gzd-rest-products-controller.php:610
+#: includes/api/class-wc-gzd-rest-products-controller.php:648
 msgid "Defect description"
 msgstr ""
 
@@ -8562,7 +8561,7 @@ msgid "This content will be shown as short product description within checkout a
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin.php:964
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:508
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:546
 msgid "Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout."
 msgstr ""
 
@@ -8570,11 +8569,11 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:239
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:293
 #: includes/api/class-wc-gzd-rest-products-controller.php:203
-#: includes/api/class-wc-gzd-rest-products-controller.php:644
+#: includes/api/class-wc-gzd-rest-products-controller.php:682
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
-#: build/wc-gzd-blocks-product-elements.js:3784
-#: build/wc-gzd-blocks-product-elements-style.js:2911
-#: build/wc-gzd-blocks-product-elements.js:2897
+#: build/wc-gzd-blocks-product-elements.js:3986
+#: build/wc-gzd-blocks-product-elements-style.js:3059
+#: build/wc-gzd-blocks-product-elements.js:3044
 msgid "Unit Price"
 msgstr ""
 
@@ -8591,14 +8590,14 @@ msgstr ""
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:308
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:205
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:312
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:847
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:852
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:910
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:915
 #: includes/api/class-wc-gzd-rest-products-controller.php:43
-#: includes/api/class-wc-gzd-rest-products-controller.php:483
+#: includes/api/class-wc-gzd-rest-products-controller.php:511
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:10
-#: build/wc-gzd-blocks-product-elements.js:1867
-#: build/wc-gzd-blocks-product-elements-style.js:1397
-#: build/wc-gzd-blocks-product-elements.js:1397
+#: build/wc-gzd-blocks-product-elements.js:1900
+#: build/wc-gzd-blocks-product-elements-style.js:1420
+#: build/wc-gzd-blocks-product-elements.js:1420
 msgid "Delivery Time"
 msgstr ""
 
@@ -8649,42 +8648,45 @@ msgid "Product has defects."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:187
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:497
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:505
 msgid "Photovoltaic System"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:187
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:498
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:506
 msgid "Photovoltaic system for which the zero tax rate is available."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:216
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:514
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:522
 msgid "Price Labeling"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:217
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:304
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:519
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:388
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:425
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:557
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:69
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:515
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:676
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:848
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:523
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:684
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:739
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:911
 msgid "Help"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:226
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:521
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:529
 msgid "Strike Price Label"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:237
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:533
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:541
 msgid "Sale Price Label"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:252
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:555
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:563
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:246
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:301
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-units.php:10
@@ -8692,12 +8694,12 @@ msgid "Product Units"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:257
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:558
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:566
 msgid "Number of units included per default product price. Example: 1000 ml."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:266
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:579
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:587
 msgid "Calculation"
 msgstr ""
 
@@ -8706,12 +8708,12 @@ msgid "Calculate unit prices automatically"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:280
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:588
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:596
 msgid "Regular Unit Price"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:291
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:597
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:605
 msgid "Sale Unit Price"
 msgstr ""
 
@@ -8725,172 +8727,205 @@ msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:314
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:333
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:397
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:416
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:487
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:435
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:454
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:525
 msgid "Same as parent"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:328
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:928
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:991
 msgid "Delivery Time (%s)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:341
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:378
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:940
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:977
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1003
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1040
 msgid "remove"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:354
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:952
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1015
 msgid "Add country specific delivery time"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:361
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:960
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1023
 msgid "Select country"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:373
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:814
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:857
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:972
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:877
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:920
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1035
 msgid "Search for a delivery time&hellip;"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:387
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:675
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:479
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:683
+msgid "Electronic device (wireless)"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:399
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:702
+msgid "Minimum power (Watt)"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:402
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:706
+#: includes/api/class-wc-gzd-rest-products-controller.php:332
+#: includes/api/class-wc-gzd-rest-products-controller.php:609
+msgid "Minimum power for charging the device."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:413
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:716
+msgid "Maximum power (Watt)"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:416
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:720
+#: includes/api/class-wc-gzd-rest-products-controller.php:337
+#: includes/api/class-wc-gzd-rest-products-controller.php:614
+msgid "Power necessary to reach the maximum charging speed of the device."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:424
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:738
 #: includes/wc-gzd-template-functions.php:79
 #: templates/single-product/product-safety.php:22
 msgid "Product safety"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:391
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:429
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:219
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:342
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:680
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:743
 #: includes/api/class-wc-gzd-rest-products-controller.php:157
-#: includes/api/class-wc-gzd-rest-products-controller.php:558
+#: includes/api/class-wc-gzd-rest-products-controller.php:586
 #: includes/class-wc-gzd-post-types.php:159
-#: build/wc-gzd-blocks-product-elements.js:2380
-#: build/wc-gzd-blocks-product-elements-style.js:1783
-#: build/wc-gzd-blocks-product-elements.js:1769
+#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-manufacturer.php:10
+#: build/wc-gzd-blocks-product-elements.js:2413
+#: build/wc-gzd-blocks-product-elements-style.js:1807
+#: build/wc-gzd-blocks-product-elements.js:1792
 msgid "Manufacturer"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:406
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:685
-#: includes/wc-gzd-template-functions.php:869
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:444
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:748
+#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-safety-instructions.php:10
+#: includes/wc-gzd-template-functions.php:878
 #: templates/single-product/safety-instructions.php:22
-#: build/wc-gzd-blocks-product-elements.js:2893
-#: build/wc-gzd-blocks-product-elements-style.js:2155
-#: build/wc-gzd-blocks-product-elements.js:2141
+#: build/wc-gzd-blocks-product-elements.js:3094
+#: build/wc-gzd-blocks-product-elements-style.js:2302
+#: build/wc-gzd-blocks-product-elements.js:2287
 msgid "Safety instructions"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:411
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:703
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:449
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:766
+#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-safety-attachments.php:10
 msgid "Safety documents"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:430
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:468
 msgid "Additional Fields"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:440
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:622
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:478
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:630
 msgid "Minimum Age"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:443
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:624
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:481
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:632
 msgid "Adds an age verification checkbox while purchasing this product."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:456
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:634
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:494
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:642
 #: includes/api/class-wc-gzd-rest-products-controller.php:284
-#: includes/api/class-wc-gzd-rest-products-controller.php:634
+#: includes/api/class-wc-gzd-rest-products-controller.php:672
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:135
 msgid "GTIN"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:461
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:637
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:499
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:645
 msgid "Your product's Global Trade Item Number that allows your products to be identified worldwide."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:470
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:646
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:508
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:654
 #: includes/api/class-wc-gzd-rest-products-controller.php:290
-#: includes/api/class-wc-gzd-rest-products-controller.php:639
+#: includes/api/class-wc-gzd-rest-products-controller.php:677
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:144
 msgid "MPN"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:475
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:649
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:513
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:657
 msgid "Your product's Manufacturer Part Number."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:482
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:657
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:520
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:665
 msgid "Warranty (PDF)"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:492
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:666
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:530
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:674
 msgid "Select warranty file"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:501
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:539
 msgid "Optional Mini Description"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:508
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:546
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:325
 #: includes/api/class-wc-gzd-rest-products-controller.php:252
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-defect-description.php:10
-#: build/wc-gzd-blocks-product-elements.js:1699
-#: build/wc-gzd-blocks-product-elements-style.js:1274
-#: build/wc-gzd-blocks-product-elements.js:1274
+#: build/wc-gzd-blocks-product-elements.js:1732
+#: build/wc-gzd-blocks-product-elements-style.js:1297
+#: build/wc-gzd-blocks-product-elements.js:1297
 msgid "Defect Description"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:520
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:558
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:70
 msgid "Manage deposit types"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:529
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:567
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:77
-#: includes/api/class-wc-gzd-rest-products-controller.php:339
+#: includes/api/class-wc-gzd-rest-products-controller.php:367
 msgid "Deposit Type"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:530
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:568
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:78
 msgid "Select Deposit Type"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:533
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:571
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:80
 msgid "In case this product is reusable and has deposits, select the deposit type."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:542
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:580
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:87
 msgid "Deposit Quantity"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:547
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:585
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:92
 msgid "Number of units included for deposit purposes, e.g. 6 bottles."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:555
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:593
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:99
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:51
 #: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:60
@@ -8898,12 +8933,12 @@ msgstr ""
 msgid "Get Germanized Pro to unlock"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:556
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:594
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:100
 msgid "Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more with Germanized Pro."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:557
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:595
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:101
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:53
 #: includes/admin/settings/class-wc-gzd-settings-pointers.php:175
@@ -8916,14 +8951,14 @@ msgid "Upgrade now"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:121
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:488
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:496
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:40
 msgid "Food"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:233
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:371
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:544
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:552
 #: includes/api/class-wc-gzd-rest-products-controller.php:180
 #: includes/class-wc-gzd-post-types.php:108
 msgid "Unit"
@@ -8959,85 +8994,110 @@ msgstr ""
 msgid "Service products do not sell physical products."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:479
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:480
+msgid "Wireless electronic device (e.g. tablet) requiring power supply unit labeling."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:487
 msgid "Differential taxed"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:480
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:488
 msgid "Product applies to differential taxation based on §25a UStG."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:489
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:497
 msgid "This product is a food product."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:522
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:534
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:530
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:542
 msgid "Select Price Label"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:524
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:532
 msgid "If the product is on sale you may want to show a price label right before outputting the old price to inform the customer."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:536
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:544
 msgid "If the product is on sale you may want to show a price label right before outputting the new price to inform the customer."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:545
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:553
 msgid "Select unit"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:547
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:555
 msgid "Needed if selling on a per unit basis"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:566
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:574
 msgid "Unit Price Units"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:569
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:577
 msgid "Unit price units. Example unit price: 0,99 € / 100 ml. Insert 100 as unit price unit amount."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:580
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:588
 msgid "Calculate unit prices automatically."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:726
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:691
+#: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-power-supply.php:10
+#: build/wc-gzd-blocks-product-elements.js:2752
+#: build/wc-gzd-blocks-product-elements-style.js:2054
+#: build/wc-gzd-blocks-product-elements.js:2039
+msgid "Power supply"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:692
+msgid "Charger included in the scope of delivery."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:729
+#: templates/global/power-supply.php:45
+msgid "USB PD"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:730
+msgid "This device supports the fast charging protocol USB Power Delivery."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:789
 msgid "Search for a manufacturer&hellip;"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:760
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:761
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:823
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:824
 msgid "Choose file"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:762
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:825
 msgid "Select file"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:770
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:833
 msgid "Not available"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:870
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:933
 msgid "Free shipping?"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:871
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:934
 msgid "This option disables the \"plus shipping costs\" notice on product page"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:885
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:948
 msgid "EU-wide"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:889
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:952
 msgid "Non-EU-wide"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:933
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:996
 msgid "Same as default"
 msgstr ""
 
@@ -9373,7 +9433,7 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:85
 #: includes/class-wc-gzd-payment-gateways.php:137
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:73
-#: includes/wc-gzd-template-functions.php:803
+#: includes/wc-gzd-template-functions.php:810
 #: src/Blocks/Integrations/Checkout.php:118
 msgid "Buy Now"
 msgstr ""
@@ -9735,8 +9795,8 @@ msgid "Small Businesses"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:33
-#: includes/class-wc-gzd-legal-checkbox-manager.php:894
-#: src/Shopmarks.php:558
+#: includes/class-wc-gzd-legal-checkbox-manager.php:900
+#: src/Shopmarks.php:563
 msgid "Checkout"
 msgstr ""
 
@@ -9745,7 +9805,7 @@ msgid "Shop"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:39
-#: includes/class-wc-gzd-legal-checkbox-manager.php:365
+#: includes/class-wc-gzd-legal-checkbox-manager.php:370
 msgid "Photovoltaic Systems"
 msgstr ""
 
@@ -10017,9 +10077,9 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:435
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:447
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:144
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:595
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:666
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:721
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:594
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:665
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:720
 msgid "Format"
 msgstr ""
 
@@ -10353,7 +10413,7 @@ msgid "This text will be used to inform the customer about free shipping. Leave 
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:483
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:624
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:623
 msgid "Hide Notice"
 msgstr ""
 
@@ -10377,159 +10437,159 @@ msgstr ""
 msgid "Attach a global sale price notice to your footer."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:545
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:544
 msgid "Same as global fallback"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:562
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:561
 msgid "Fallback"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:563
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:562
 msgid "This delivery time will be added to every product if no delivery time has been chosen individually"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:570
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:581
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:592
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:569
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:580
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:591
 msgid "Manage Delivery Times"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:573
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:572
 msgid "Fallback EU Countries"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:574
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:573
 msgid "This delivery time will serve as a fallback for EU countries other than your base country."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:584
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:583
 msgid "Fallback Third Countries"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:585
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:584
 msgid "This delivery time will serve as a fallback for third countries other than your base country."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:596
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:595
 msgid "This text will be used to indicate delivery time for products. Use {delivery_time} as placeholder. Use {stock_status} to output the current stock status."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:600
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:599
 msgid "Delivery time: {delivery_time}"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:603
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:602
 msgid "Digital text"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:607
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:606
 msgid "Enter a text which will be shown as digital delivery time text (replacement for default digital time on digital products)."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:610
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:609
 msgid "Backorder"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:611
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:610
 msgid "Hide delivery time if a product is on backorder."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:617
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:616
 msgid "Not in Stock"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:618
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:617
 msgid "Hide delivery time if a product is not in stock."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:625
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:624
 msgid "Select product types for which you might want to disable the delivery time notice."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:667
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:666
 msgid "This text will be used to display the deposit notice. Use {amount} to insert the deposit amount. {type} for the deposit type name, {amount_per_unit} for the deposit amount per unit, {packaging_type} for the packaging type and {quantity} for the deposit quantity."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:671
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:670
 msgid "plus {amount} deposit"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:674
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:673
 msgid "Packaging Font Size"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:675
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:674
 msgid "Adjust the packaging type title font size which must <a href=\"%s\" target=\"_blank\">at least correspond to the price labeling</a> for the respective product."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:700
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:699
 msgid "Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more. %1$sUpgrade to %2$spro%3$s%4$s"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:722
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:721
 msgid "This text will be used to display the unit price. Use {price} to insert the price. If you want to specifically format unit price output use {base}, {unit} and {unit_price} as placeholders."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:726
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:725
 msgid "{price}"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:729
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:728
 msgid "Product units format"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:730
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:729
 msgid "This text will be used to display the product units. Use {product_units} to insert the amount of product units. Use {unit} to insert the unit. Optionally display the formatted unit price with {unit_price}."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:734
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:733
 msgid "Product contains: {product_units} {unit}"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:737
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:736
 msgid "Variable Unit Price"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:738
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:737
 msgid "Enable price range unit prices for variable products."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:760
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:759
 msgid "Fallback Strike Price Label"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:767
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:777
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:766
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:776
 msgid "Manage Price Labels"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:767
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:766
 msgid "Choose whether you would like to have a default strike price label to inform the customer about the regular price (e.g. Recommended Retail Price)."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:770
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:769
 msgid "Fallback Sale Price Label"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:777
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:776
 msgid "Choose whether you would like to have a default sale price label to inform the customer about the sale price (e.g. New Price)."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:781
-#: src/Shopmarks.php:552
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:780
+#: src/Shopmarks.php:557
 msgid "Single Product"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:782
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:781
 msgid "Show price labels on single product page."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:789
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:788
 msgid "Loop"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:790
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:789
 msgid "Show price labels in product loops."
 msgstr ""
 
@@ -11332,30 +11392,30 @@ msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:48
 #: includes/api/class-wc-gzd-rest-products-controller.php:80
-#: includes/api/class-wc-gzd-rest-products-controller.php:488
+#: includes/api/class-wc-gzd-rest-products-controller.php:516
 msgid "Delivery Time ID"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:53
 #: includes/api/class-wc-gzd-rest-products-controller.php:85
-#: includes/api/class-wc-gzd-rest-products-controller.php:493
+#: includes/api/class-wc-gzd-rest-products-controller.php:521
 msgid "Delivery Time Name"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:59
 #: includes/api/class-wc-gzd-rest-products-controller.php:96
-#: includes/api/class-wc-gzd-rest-products-controller.php:499
+#: includes/api/class-wc-gzd-rest-products-controller.php:527
 msgid "Delivery Time Slug"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:64
 #: includes/api/class-wc-gzd-rest-products-controller.php:101
-#: includes/api/class-wc-gzd-rest-products-controller.php:504
+#: includes/api/class-wc-gzd-rest-products-controller.php:532
 msgid "Delivery Time HTML"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:73
-#: includes/import/class-wc-gzd-product-import.php:247
+#: includes/import/class-wc-gzd-product-import.php:252
 msgid "Country specific delivery times"
 msgstr ""
 
@@ -11365,45 +11425,45 @@ msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:111
 #: includes/api/class-wc-gzd-rest-products-controller.php:134
-#: includes/api/class-wc-gzd-rest-products-controller.php:512
-#: includes/api/class-wc-gzd-rest-products-controller.php:535
+#: includes/api/class-wc-gzd-rest-products-controller.php:540
+#: includes/api/class-wc-gzd-rest-products-controller.php:563
 #: includes/class-wc-gzd-post-types.php:212
 msgid "Price Label"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:116
 #: includes/api/class-wc-gzd-rest-products-controller.php:139
-#: includes/api/class-wc-gzd-rest-products-controller.php:517
-#: includes/api/class-wc-gzd-rest-products-controller.php:540
+#: includes/api/class-wc-gzd-rest-products-controller.php:545
+#: includes/api/class-wc-gzd-rest-products-controller.php:568
 msgid "Price Label ID"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:121
 #: includes/api/class-wc-gzd-rest-products-controller.php:144
-#: includes/api/class-wc-gzd-rest-products-controller.php:522
-#: includes/api/class-wc-gzd-rest-products-controller.php:545
+#: includes/api/class-wc-gzd-rest-products-controller.php:550
+#: includes/api/class-wc-gzd-rest-products-controller.php:573
 msgid "Price Label Name"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:127
 #: includes/api/class-wc-gzd-rest-products-controller.php:150
-#: includes/api/class-wc-gzd-rest-products-controller.php:528
-#: includes/api/class-wc-gzd-rest-products-controller.php:551
+#: includes/api/class-wc-gzd-rest-products-controller.php:556
+#: includes/api/class-wc-gzd-rest-products-controller.php:579
 msgid "Price Label Slug"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:162
-#: includes/api/class-wc-gzd-rest-products-controller.php:563
+#: includes/api/class-wc-gzd-rest-products-controller.php:591
 msgid "Manufacturer ID"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:167
-#: includes/api/class-wc-gzd-rest-products-controller.php:568
+#: includes/api/class-wc-gzd-rest-products-controller.php:596
 msgid "Manufacturer Name"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:173
-#: includes/api/class-wc-gzd-rest-products-controller.php:574
+#: includes/api/class-wc-gzd-rest-products-controller.php:602
 msgid "Manufacturer Slug"
 msgstr ""
 
@@ -11420,42 +11480,42 @@ msgid "Unit Slug"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:208
-#: includes/api/class-wc-gzd-rest-products-controller.php:649
+#: includes/api/class-wc-gzd-rest-products-controller.php:687
 msgid "Unit Base"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:213
-#: includes/api/class-wc-gzd-rest-products-controller.php:654
+#: includes/api/class-wc-gzd-rest-products-controller.php:692
 msgid "Unit Product"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:218
-#: includes/api/class-wc-gzd-rest-products-controller.php:659
+#: includes/api/class-wc-gzd-rest-products-controller.php:697
 msgid "Unit Auto Calculation"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:224
-#: includes/api/class-wc-gzd-rest-products-controller.php:665
+#: includes/api/class-wc-gzd-rest-products-controller.php:703
 msgid "Current Unit Price"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:229
-#: includes/api/class-wc-gzd-rest-products-controller.php:670
+#: includes/api/class-wc-gzd-rest-products-controller.php:708
 msgid "Unit Regular Price"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:234
-#: includes/api/class-wc-gzd-rest-products-controller.php:675
+#: includes/api/class-wc-gzd-rest-products-controller.php:713
 msgid "Unit Sale Price"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:239
-#: includes/api/class-wc-gzd-rest-products-controller.php:680
+#: includes/api/class-wc-gzd-rest-products-controller.php:718
 msgid "Unit Price HTML"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:247
-#: includes/api/class-wc-gzd-rest-products-controller.php:605
+#: includes/api/class-wc-gzd-rest-products-controller.php:643
 msgid "Small Cart Product Description"
 msgstr ""
 
@@ -11464,149 +11524,161 @@ msgid "Deactivate the hint for additional shipping costs"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:263
-#: includes/api/class-wc-gzd-rest-products-controller.php:615
+#: includes/api/class-wc-gzd-rest-products-controller.php:653
 msgid "Safety attachment ids"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:271
-#: includes/api/class-wc-gzd-rest-products-controller.php:623
+#: includes/api/class-wc-gzd-rest-products-controller.php:661
 msgid "Age verification minimum age."
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:278
-#: includes/api/class-wc-gzd-rest-products-controller.php:629
+#: includes/api/class-wc-gzd-rest-products-controller.php:667
 msgid "Warranty attachment id (PDF)"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:296
-#: includes/api/class-wc-gzd-rest-products-controller.php:581
+#: includes/api/class-wc-gzd-rest-products-controller.php:619
 msgid "Whether this product is a service or not"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:302
-#: includes/api/class-wc-gzd-rest-products-controller.php:587
+#: includes/api/class-wc-gzd-rest-products-controller.php:625
 msgid "Whether this product is a used good or not"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:308
-#: includes/api/class-wc-gzd-rest-products-controller.php:593
+#: includes/api/class-wc-gzd-rest-products-controller.php:631
 msgid "Whether this product is a defective copy or not"
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:314
-#: includes/api/class-wc-gzd-rest-products-controller.php:599
-msgid "Whether this product is a photovoltaic system or not"
+msgid "Whether this product is a wireless electronic device or not."
 msgstr ""
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:320
+msgid "Whether this electronic device contains a power supply or not."
+msgstr ""
+
+#: includes/api/class-wc-gzd-rest-products-controller.php:326
+msgid "Whether this electronic device supports the fast charging protocol USB Power Delivery."
+msgstr ""
+
+#: includes/api/class-wc-gzd-rest-products-controller.php:342
+#: includes/api/class-wc-gzd-rest-products-controller.php:637
+msgid "Whether this product is a photovoltaic system or not"
+msgstr ""
+
+#: includes/api/class-wc-gzd-rest-products-controller.php:348
 msgid "Whether this product applies for differential taxation or not"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:327
+#: includes/api/class-wc-gzd-rest-products-controller.php:355
 msgid "Whether this product is a food product or not"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:334
+#: includes/api/class-wc-gzd-rest-products-controller.php:362
 msgid "Food attributes"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:344
+#: includes/api/class-wc-gzd-rest-products-controller.php:372
 msgid "Deposit type ID"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:349
+#: includes/api/class-wc-gzd-rest-products-controller.php:377
 msgid "Deposit type name"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:355
+#: includes/api/class-wc-gzd-rest-products-controller.php:383
 msgid "Deposit type slug"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:362
+#: includes/api/class-wc-gzd-rest-products-controller.php:390
 msgid "Deposit quantity"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:371
-#: build/wc-gzd-blocks-product-elements.js:2209
-#: build/wc-gzd-blocks-product-elements-style.js:1645
-#: build/wc-gzd-blocks-product-elements.js:1645
+#: includes/api/class-wc-gzd-rest-products-controller.php:399
+#: build/wc-gzd-blocks-product-elements.js:2242
+#: build/wc-gzd-blocks-product-elements-style.js:1668
+#: build/wc-gzd-blocks-product-elements.js:1668
 msgid "Deposit amount"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:377
+#: includes/api/class-wc-gzd-rest-products-controller.php:405
 msgid "Nutrient reference value"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:386
+#: includes/api/class-wc-gzd-rest-products-controller.php:414
 #: includes/class-wc-gzd-food-helper.php:48
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-nutri-score.php:10
-#: build/wc-gzd-blocks-product-elements.js:2551
-#: build/wc-gzd-blocks-product-elements-style.js:1907
-#: build/wc-gzd-blocks-product-elements.js:1893
+#: build/wc-gzd-blocks-product-elements.js:2584
+#: build/wc-gzd-blocks-product-elements-style.js:1931
+#: build/wc-gzd-blocks-product-elements.js:1916
 msgid "Nutri-Score"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:395
+#: includes/api/class-wc-gzd-rest-products-controller.php:423
 #: includes/class-wc-gzd-food-helper.php:46
 msgid "Drained weight"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:400
+#: includes/api/class-wc-gzd-rest-products-controller.php:428
 #: includes/class-wc-gzd-food-helper.php:47
 msgid "Net filling quantity"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:405
+#: includes/api/class-wc-gzd-rest-products-controller.php:433
 #: includes/class-wc-gzd-food-helper.php:45
 msgid "Alcohol content"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:410
+#: includes/api/class-wc-gzd-rest-products-controller.php:438
 #: includes/class-wc-gzd-food-helper.php:43
 msgctxt "food"
 msgid "Distributor"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:418
+#: includes/api/class-wc-gzd-rest-products-controller.php:446
 #: includes/class-wc-gzd-food-helper.php:44
 msgctxt "food"
 msgid "Place of origin"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:426
+#: includes/api/class-wc-gzd-rest-products-controller.php:454
 #: includes/class-wc-gzd-food-helper.php:42
 msgctxt "food"
 msgid "Description"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:434
+#: includes/api/class-wc-gzd-rest-products-controller.php:462
 msgid "Nutrient term ids"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:441
+#: includes/api/class-wc-gzd-rest-products-controller.php:469
 msgid "Nutrient term (slug or term_id)"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:446
+#: includes/api/class-wc-gzd-rest-products-controller.php:474
 msgid "Nutrient value"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:451
+#: includes/api/class-wc-gzd-rest-products-controller.php:479
 msgid "Nutrient reference value (for vitamins & minerals)"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:459
+#: includes/api/class-wc-gzd-rest-products-controller.php:487
 msgid "Allergen ids"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:463
+#: includes/api/class-wc-gzd-rest-products-controller.php:491
 msgid "Allergen term id"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:469
+#: includes/api/class-wc-gzd-rest-products-controller.php:497
 #: includes/class-wc-gzd-food-helper.php:39
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-ingredients.php:10
-#: includes/wc-gzd-template-functions.php:849
+#: includes/wc-gzd-template-functions.php:858
 msgid "Ingredients"
 msgstr ""
 
@@ -11835,14 +11907,14 @@ msgstr ""
 
 #: includes/class-wc-gzd-food-helper.php:40
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-nutrients.php:10
-#: includes/import/class-wc-gzd-product-import.php:248
-#: includes/wc-gzd-template-functions.php:857
+#: includes/import/class-wc-gzd-product-import.php:253
+#: includes/wc-gzd-template-functions.php:866
 msgid "Nutrients"
 msgstr ""
 
 #: includes/class-wc-gzd-food-helper.php:41
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-allergenic.php:10
-#: includes/wc-gzd-template-functions.php:853
+#: includes/wc-gzd-template-functions.php:862
 msgid "Allergenic"
 msgstr ""
 
@@ -12009,144 +12081,144 @@ msgstr ""
 msgid "Asks the customer to skip revocation period for digital products."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:187
+#: includes/class-wc-gzd-legal-checkbox-manager.php:188
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:31
 msgid "For services: I demand and acknowledge the immediate performance of the service before the expiration of the withdrawal period. I acknowledge that thereby I lose my right to cancel once the service has begun."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:188
+#: includes/class-wc-gzd-legal-checkbox-manager.php:189
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:32
 msgid "To allow the immediate performance of the services you have to agree to the loss of your right of withdrawal."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:195
+#: includes/class-wc-gzd-legal-checkbox-manager.php:196
 msgid "Asks the customer to skip revocation period for services."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:206
+#: includes/class-wc-gzd-legal-checkbox-manager.php:208
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:40
 msgid "Yes, I would like to be reminded via E-mail about parcel delivery ({shipping_method_title}). Your E-mail Address will only be transferred to our parcel service provider for that particular reason."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:211
+#: includes/class-wc-gzd-legal-checkbox-manager.php:213
 msgid "Please accept our parcel delivery agreement"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:215
+#: includes/class-wc-gzd-legal-checkbox-manager.php:216
 msgid "Parcel Delivery"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:216
+#: includes/class-wc-gzd-legal-checkbox-manager.php:217
 msgid "Asks the customer to hand over data to the parcel delivery service provider."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:228
+#: includes/class-wc-gzd-legal-checkbox-manager.php:230
 msgid "I hereby confirm that I'm at least {age} years old."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:230
+#: includes/class-wc-gzd-legal-checkbox-manager.php:232
 msgid "Please confirm your age."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:237
+#: includes/class-wc-gzd-legal-checkbox-manager.php:239
 msgid "Asks the customer to confirm a minimum age."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:249
+#: includes/class-wc-gzd-legal-checkbox-manager.php:251
 #: includes/updates/woocommerce-gzd-update-2.0.1.php:44
 msgid "Yes, I’d like create a new account and have read and understood the {data_security_link}data privacy statement{/data_security_link}."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:252
+#: includes/class-wc-gzd-legal-checkbox-manager.php:254
 msgid "Please accept our privacy policy to create a new customer account"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:256
+#: includes/class-wc-gzd-legal-checkbox-manager.php:258
 msgid "New account"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:257
+#: includes/class-wc-gzd-legal-checkbox-manager.php:259
 msgid "Let customers accept your privacy policy before creating a new account."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:293
+#: includes/class-wc-gzd-legal-checkbox-manager.php:295
 msgid "I hereby agree to the {link}direct debit mandate{/link}."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:299
+#: includes/class-wc-gzd-legal-checkbox-manager.php:301
 msgid "Please accept the direct debit mandate."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:304
+#: includes/class-wc-gzd-legal-checkbox-manager.php:306
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:247
 msgid "SEPA"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:305
+#: includes/class-wc-gzd-legal-checkbox-manager.php:307
 msgid "Asks the customer to issue the SEPA mandate."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:317
+#: includes/class-wc-gzd-legal-checkbox-manager.php:320
 msgid "For used goods: I have taken note that my warranty period is shortened to 12 months."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:318
+#: includes/class-wc-gzd-legal-checkbox-manager.php:321
 msgid "Please make sure to check our warranty note on used goods."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:324
+#: includes/class-wc-gzd-legal-checkbox-manager.php:327
 msgid "Used Goods"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:325
+#: includes/class-wc-gzd-legal-checkbox-manager.php:328
 msgid "Inform customers about shortened warranty for used goods."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:337
+#: includes/class-wc-gzd-legal-checkbox-manager.php:341
 msgid "I have taken note of the following defects: {defect_descriptions}."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:338
+#: includes/class-wc-gzd-legal-checkbox-manager.php:342
 msgid "Please make sure to check our note on defective copies."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:344
+#: includes/class-wc-gzd-legal-checkbox-manager.php:348
 msgid "Defective Copies"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:345
+#: includes/class-wc-gzd-legal-checkbox-manager.php:349
 msgid "Inform customers about product defects."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:359
+#: includes/class-wc-gzd-legal-checkbox-manager.php:364
 msgid "I hereby confirm that I am aware of the requirements for VAT exemption (based on {legal_text}) and that they are met for this order."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:366
+#: includes/class-wc-gzd-legal-checkbox-manager.php:371
 msgid "Let customers confirm that they are aware of the requirements for a VAT exemption."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:895
+#: includes/class-wc-gzd-legal-checkbox-manager.php:901
 msgid "Register form"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:896
+#: includes/class-wc-gzd-legal-checkbox-manager.php:902
 msgid "Pay for order"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:897
+#: includes/class-wc-gzd-legal-checkbox-manager.php:903
 msgid "Reviews"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:984
+#: includes/class-wc-gzd-legal-checkbox-manager.php:990
 msgid "Checkbox location %s does not exist."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1016
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1022
 msgid "Please make sure to check %s checkbox."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1021
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1027
 msgid "Checkbox with name %s does already exist."
 msgstr ""
 
@@ -12213,33 +12285,35 @@ msgid "Choose where to display your checkbox."
 msgstr ""
 
 #: includes/class-wc-gzd-manufacturer.php:93
-#: build/product-defect-description-frontend.js:558
-#: build/product-delivery-time-frontend.js:558
-#: build/product-deposit-frontend.js:558
-#: build/product-deposit-packaging-type-frontend.js:558
-#: build/product-manufacturer-frontend.js:558
-#: build/product-nutri-score-frontend.js:558
-#: build/product-safety-attachments-frontend.js:558
-#: build/product-safety-instructions-frontend.js:558
-#: build/product-shipping-costs-info-frontend.js:502
-#: build/product-tax-info-frontend.js:502
-#: build/product-unit-price-frontend.js:502
-#: build/product-unit-product-frontend.js:502
-#: build/wc-gzd-blocks-product-elements.js:3204
-#: build/product-defect-description-frontend.js:516
-#: build/product-delivery-time-frontend.js:516
-#: build/product-deposit-frontend.js:516
-#: build/product-deposit-packaging-type-frontend.js:516
-#: build/product-manufacturer-frontend.js:516
-#: build/product-nutri-score-frontend.js:516
-#: build/product-safety-attachments-frontend.js:516
-#: build/product-safety-instructions-frontend.js:516
-#: build/product-shipping-costs-info-frontend.js:490
-#: build/product-tax-info-frontend.js:490
-#: build/product-unit-price-frontend.js:490
-#: build/product-unit-product-frontend.js:490
-#: build/wc-gzd-blocks-product-elements-style.js:2446
-#: build/wc-gzd-blocks-product-elements.js:2432
+#: build/product-defect-description-frontend.js:559
+#: build/product-delivery-time-frontend.js:559
+#: build/product-deposit-frontend.js:559
+#: build/product-deposit-packaging-type-frontend.js:559
+#: build/product-manufacturer-frontend.js:559
+#: build/product-nutri-score-frontend.js:559
+#: build/product-power-supply-frontend.js:559
+#: build/product-safety-attachments-frontend.js:559
+#: build/product-safety-instructions-frontend.js:559
+#: build/product-shipping-costs-info-frontend.js:503
+#: build/product-tax-info-frontend.js:503
+#: build/product-unit-price-frontend.js:503
+#: build/product-unit-product-frontend.js:503
+#: build/wc-gzd-blocks-product-elements.js:3406
+#: build/product-defect-description-frontend.js:517
+#: build/product-delivery-time-frontend.js:517
+#: build/product-deposit-frontend.js:517
+#: build/product-deposit-packaging-type-frontend.js:517
+#: build/product-manufacturer-frontend.js:517
+#: build/product-nutri-score-frontend.js:517
+#: build/product-power-supply-frontend.js:517
+#: build/product-safety-attachments-frontend.js:517
+#: build/product-safety-instructions-frontend.js:517
+#: build/product-shipping-costs-info-frontend.js:491
+#: build/product-tax-info-frontend.js:491
+#: build/product-unit-price-frontend.js:491
+#: build/product-unit-product-frontend.js:491
+#: build/wc-gzd-blocks-product-elements-style.js:2594
+#: build/wc-gzd-blocks-product-elements.js:2579
 msgid "Person responsible for the EU"
 msgstr ""
 
@@ -12257,7 +12331,7 @@ msgstr ""
 
 #: includes/class-wc-gzd-payment-gateways.php:161
 #: includes/wc-gzd-order-functions.php:34
-#: includes/wc-gzd-template-functions.php:1095
+#: includes/wc-gzd-template-functions.php:1104
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr ""
 
@@ -12708,9 +12782,9 @@ msgid "Shipping Notice"
 msgstr ""
 
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-tax-notice.php:10
-#: build/wc-gzd-blocks-product-elements.js:3616
-#: build/wc-gzd-blocks-product-elements-style.js:2787
-#: build/wc-gzd-blocks-product-elements.js:2773
+#: build/wc-gzd-blocks-product-elements.js:3818
+#: build/wc-gzd-blocks-product-elements-style.js:2935
+#: build/wc-gzd-blocks-product-elements.js:2920
 msgid "Tax Notice"
 msgstr ""
 
@@ -12898,186 +12972,211 @@ msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:83
 msgctxt "exporter"
-msgid "Warranty attachment id (PDF)"
+msgid "Is electronic device (wireless)?"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:84
 msgctxt "exporter"
-msgid "GTIN"
+msgid "Contains power supply?"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:85
 msgctxt "exporter"
-msgid "MPN"
+msgid "Supports charging USB PD?"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:86
 msgctxt "exporter"
-msgid "Is differential taxed?"
+msgid "Minimum charging power (Watt)"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:87
 msgctxt "exporter"
-msgid "Has free shipping?"
+msgid "Maximum charging power (Watt)"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:88
 msgctxt "exporter"
-msgid "Unit price regular"
+msgid "Warranty attachment id (PDF)"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:89
 msgctxt "exporter"
-msgid "Unit price sale"
+msgid "GTIN"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:90
 msgctxt "exporter"
-msgid "Unit price calculated automatically?"
+msgid "MPN"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:91
 msgctxt "exporter"
-msgid "Unit"
+msgid "Is differential taxed?"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:92
 msgctxt "exporter"
-msgid "Manufacturer"
+msgid "Has free shipping?"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:93
 msgctxt "exporter"
-msgid "Safety attachments ids"
+msgid "Unit price regular"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:94
 msgctxt "exporter"
-msgid "Safety instructions"
+msgid "Unit price sale"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:95
 msgctxt "exporter"
-msgid "Unit base"
+msgid "Unit price calculated automatically?"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:96
 msgctxt "exporter"
-msgid "Unit product"
+msgid "Unit"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:97
 msgctxt "exporter"
-msgid "Cart description"
+msgid "Manufacturer"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:98
 msgctxt "exporter"
-msgid "Minimum age"
+msgid "Safety attachments ids"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:99
 msgctxt "exporter"
-msgid "Defect description"
+msgid "Safety instructions"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:100
 msgctxt "exporter"
-msgid "Delivery time"
+msgid "Unit base"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:101
 msgctxt "exporter"
-msgid "Strike Price label"
+msgid "Unit product"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:102
 msgctxt "exporter"
-msgid "Sale Price label"
+msgid "Cart description"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:103
 msgctxt "exporter"
-msgid "Is food?"
+msgid "Minimum age"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:104
 msgctxt "exporter"
-msgid "Nutrients"
+msgid "Defect description"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:105
 msgctxt "exporter"
-msgid "Allergenic"
+msgid "Delivery time"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:106
 msgctxt "exporter"
-msgid "Deposit Type"
+msgid "Strike Price label"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:107
 msgctxt "exporter"
-msgid "Deposit Quantity"
+msgid "Sale Price label"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:108
 msgctxt "exporter"
-msgid "Ingredients"
+msgid "Is food?"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:109
 msgctxt "exporter"
-msgid "Nutrient reference value slug"
+msgid "Nutrients"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:110
 msgctxt "exporter"
-msgid "Alcohol content"
+msgid "Allergenic"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:111
 msgctxt "exporter"
-msgid "Drained weight"
+msgid "Deposit Type"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:112
 msgctxt "exporter"
-msgid "Net filling quantity"
+msgid "Deposit Quantity"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:113
 msgctxt "exporter"
-msgid "Nutri-Score"
+msgid "Ingredients"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:114
 msgctxt "exporter"
-msgid "Food Description"
+msgid "Nutrient reference value slug"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:115
 msgctxt "exporter"
-msgid "Food Place of Origin"
+msgid "Alcohol content"
 msgstr ""
 
 #: includes/export/class-wc-gzd-product-export.php:116
 msgctxt "exporter"
+msgid "Drained weight"
+msgstr ""
+
+#: includes/export/class-wc-gzd-product-export.php:117
+msgctxt "exporter"
+msgid "Net filling quantity"
+msgstr ""
+
+#: includes/export/class-wc-gzd-product-export.php:118
+msgctxt "exporter"
+msgid "Nutri-Score"
+msgstr ""
+
+#: includes/export/class-wc-gzd-product-export.php:119
+msgctxt "exporter"
+msgid "Food Description"
+msgstr ""
+
+#: includes/export/class-wc-gzd-product-export.php:120
+msgctxt "exporter"
+msgid "Food Place of Origin"
+msgstr ""
+
+#: includes/export/class-wc-gzd-product-export.php:121
+msgctxt "exporter"
 msgid "Food Distributor"
 msgstr ""
 
-#: includes/export/class-wc-gzd-product-export.php:170
+#: includes/export/class-wc-gzd-product-export.php:175
 #: includes/import/class-wc-gzd-product-import.php:51
 msgid "Delivery Time: %s"
 msgstr ""
 
-#: includes/export/class-wc-gzd-product-export.php:198
+#: includes/export/class-wc-gzd-product-export.php:203
 #: includes/import/class-wc-gzd-product-import.php:52
 msgid "Nutrients: %s"
 msgstr ""
 
 #. translators: %s: attribute number
-#: includes/export/class-wc-gzd-product-export.php:218
+#: includes/export/class-wc-gzd-product-export.php:223
 #: includes/import/class-wc-gzd-product-import.php:53
 msgid "Attribute %d checkout visible"
 msgstr ""
@@ -13411,7 +13510,7 @@ msgstr ""
 msgid "Do only offer pay by invoice to customers who have at least completed one order."
 msgstr ""
 
-#: includes/import/class-wc-gzd-product-import.php:258
+#: includes/import/class-wc-gzd-product-import.php:263
 msgid "Attribute checkout visibility"
 msgstr ""
 
@@ -13484,26 +13583,26 @@ msgctxt "defect-descriptions"
 msgid "%1$s (%2$s)"
 msgstr ""
 
-#: includes/wc-gzd-template-functions.php:692
+#: includes/wc-gzd-template-functions.php:699
 #: templates/checkout/edit-data-notice.php:25
 msgid "Edit Order"
 msgstr ""
 
-#: includes/wc-gzd-template-functions.php:702
+#: includes/wc-gzd-template-functions.php:709
 msgid "Choose a Payment Gateway"
 msgstr ""
 
-#: includes/wc-gzd-template-functions.php:861
+#: includes/wc-gzd-template-functions.php:870
 #: templates/single-product/manufacturer.php:26
 msgid "Manufacturer information"
 msgstr ""
 
-#: includes/wc-gzd-template-functions.php:865
+#: includes/wc-gzd-template-functions.php:874
 #: templates/single-product/product-safety-attachments.php:22
 msgid "Product safety documents"
 msgstr ""
 
-#: includes/wc-gzd-template-functions.php:923
+#: includes/wc-gzd-template-functions.php:932
 msgid "Place order"
 msgstr ""
 
@@ -13525,27 +13624,27 @@ msgstr ""
 msgid "Zero rate"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1108
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1116
 msgctxt "tax-helper"
 msgid "Madeira"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1115
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1123
 msgctxt "tax-helper"
 msgid "Acores"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1151
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1159
 msgctxt "tax-helper"
 msgid "Northern Ireland"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1185
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1193
 msgctxt "tax-helper-rate-import"
 msgid "Exempt"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1270
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1278
 msgctxt "tax-helper-rate-import"
 msgid "VAT %1$s %% %2$s"
 msgstr ""
@@ -13636,108 +13735,112 @@ msgstr ""
 msgid "Whether the checkbox is required or not."
 msgstr ""
 
-#: src/Blocks/Products.php:244
+#: src/Blocks/Products.php:245
 msgid "The unit for the unit price."
 msgstr ""
 
-#: src/Blocks/Products.php:250
+#: src/Blocks/Products.php:251
 msgid "The unit base."
 msgstr ""
 
-#: src/Blocks/Products.php:256
+#: src/Blocks/Products.php:257
 msgid "The unit product."
 msgstr ""
 
-#: src/Blocks/Products.php:262
+#: src/Blocks/Products.php:263
 msgid "Unit product string formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:268
+#: src/Blocks/Products.php:269
 msgid "Unit price string formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:274
+#: src/Blocks/Products.php:275
+msgid "Power supply string formatted as HTML."
+msgstr ""
+
+#: src/Blocks/Products.php:281
 msgid "Unit price data provided using the smallest unit of the currency."
 msgstr ""
 
-#: src/Blocks/Products.php:280
+#: src/Blocks/Products.php:287
 msgid "Current product unit price."
 msgstr ""
 
-#: src/Blocks/Products.php:286
+#: src/Blocks/Products.php:293
 msgid "Regular product unit price."
 msgstr ""
 
-#: src/Blocks/Products.php:292
+#: src/Blocks/Products.php:299
 msgid "Sale product unit price, if applicable."
 msgstr ""
 
-#: src/Blocks/Products.php:298
+#: src/Blocks/Products.php:305
 msgid "Price range, if applicable."
 msgstr ""
 
-#: src/Blocks/Products.php:304
-#: src/Blocks/Products.php:310
+#: src/Blocks/Products.php:311
+#: src/Blocks/Products.php:317
 msgid "Price amount."
 msgstr ""
 
-#: src/Blocks/Products.php:320
+#: src/Blocks/Products.php:327
 msgid "Delivery time formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:326
+#: src/Blocks/Products.php:333
 msgid "Tax notice formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:332
+#: src/Blocks/Products.php:339
 msgid "Shipping costs notice formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:338
+#: src/Blocks/Products.php:345
 msgid "Defect description formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:344
+#: src/Blocks/Products.php:351
 msgid "Deposit string formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:350
+#: src/Blocks/Products.php:357
 msgid "Deposit packaging type string formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:356
+#: src/Blocks/Products.php:363
 msgid "Nutri score string formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:362
+#: src/Blocks/Products.php:369
 msgid "Manufacturer information formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:368
+#: src/Blocks/Products.php:375
 msgid "Product safety attachments list formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:374
+#: src/Blocks/Products.php:381
 msgid "Safety instructions formatted as HTML."
 msgstr ""
 
-#: src/Blocks/Products.php:380
+#: src/Blocks/Products.php:387
 msgid "Nutri score."
 msgstr ""
 
-#: src/Blocks/Products.php:386
+#: src/Blocks/Products.php:393
 msgid "Deposit price data provided using the smallest unit of the currency."
 msgstr ""
 
-#: src/Blocks/Products.php:392
+#: src/Blocks/Products.php:399
 msgid "Current product deposit per unit."
 msgstr ""
 
-#: src/Blocks/Products.php:398
+#: src/Blocks/Products.php:405
 msgid "Product total deposit amount."
 msgstr ""
 
-#: src/Blocks/Products.php:404
+#: src/Blocks/Products.php:411
 msgid "Product deposit quantity."
 msgstr ""
 
@@ -13766,10 +13869,10 @@ msgid "The requested plugin `%s` could not be installed. Upgrader install failed
 msgstr ""
 
 #: src/PluginsHelper.php:495
-#: build/wc-gzd-blocks-product-elements.js:2981
+#: build/wc-gzd-blocks-product-elements.js:3182
 #: build/wc-gzd-product-elements.js:196
-#: build/wc-gzd-blocks-product-elements-style.js:2213
-#: build/wc-gzd-blocks-product-elements.js:2199
+#: build/wc-gzd-blocks-product-elements-style.js:2360
+#: build/wc-gzd-blocks-product-elements.js:2345
 #: build/wc-gzd-product-elements.js:114
 msgid "WooCommerce"
 msgstr ""
@@ -13792,254 +13895,263 @@ msgstr ""
 msgid "Germanized for WooCommerce: Trusted Shops"
 msgstr ""
 
-#: src/Shopmarks.php:553
+#: src/Shopmarks.php:558
 msgid "Single Product (Grouped)"
 msgstr ""
 
-#: src/Shopmarks.php:554
+#: src/Shopmarks.php:559
 msgid "Product Loop"
 msgstr ""
 
-#: src/Shopmarks.php:555
+#: src/Shopmarks.php:560
 msgid "Blocks"
 msgstr ""
 
-#: src/Shopmarks.php:556
+#: src/Shopmarks.php:561
 msgid "Cart"
 msgstr ""
 
-#: src/Shopmarks.php:557
+#: src/Shopmarks.php:562
 msgid "Mini Cart"
 msgstr ""
 
-#: src/Shopmarks.php:559
+#: src/Shopmarks.php:564
 msgid "Order"
 msgstr ""
 
-#: src/Shopmarks.php:594
+#: src/Shopmarks.php:599
 msgid "Summary"
 msgstr ""
 
-#: src/Shopmarks.php:599
+#: src/Shopmarks.php:604
 msgid "Meta"
 msgstr ""
 
-#: src/Shopmarks.php:604
-#: src/Shopmarks.php:763
+#: src/Shopmarks.php:609
+#: src/Shopmarks.php:773
 msgid "After Meta"
 msgstr ""
 
-#: src/Shopmarks.php:609
+#: src/Shopmarks.php:614
 msgid "Before add to cart"
 msgstr ""
 
-#: src/Shopmarks.php:614
+#: src/Shopmarks.php:619
 msgid "After add to cart"
 msgstr ""
 
-#: src/Shopmarks.php:619
+#: src/Shopmarks.php:624
 msgid "Before add to cart quantity"
 msgstr ""
 
-#: src/Shopmarks.php:624
+#: src/Shopmarks.php:629
 msgid "After add to cart quantity"
 msgstr ""
 
-#: src/Shopmarks.php:629
+#: src/Shopmarks.php:634
 msgid "After Summary"
 msgstr ""
 
-#: src/Shopmarks.php:634
+#: src/Shopmarks.php:639
 msgid "Product safety tab"
 msgstr ""
 
-#: src/Shopmarks.php:639
+#: src/Shopmarks.php:644
 msgid "Additional information tab"
 msgstr ""
 
-#: src/Shopmarks.php:646
-msgid "Price Column"
-msgstr ""
-
-#: src/Shopmarks.php:651
-msgid "Label Column"
+#: src/Shopmarks.php:649
+msgid "After thumbnails"
 msgstr ""
 
 #: src/Shopmarks.php:656
+msgid "Price Column"
+msgstr ""
+
+#: src/Shopmarks.php:661
+msgid "Label Column"
+msgstr ""
+
+#: src/Shopmarks.php:666
 msgid "Quantity Column"
 msgstr ""
 
-#: src/Shopmarks.php:663
-#: src/Shopmarks.php:685
+#: src/Shopmarks.php:673
+#: src/Shopmarks.php:695
 msgid "After Item Title"
 msgstr ""
 
-#: src/Shopmarks.php:668
+#: src/Shopmarks.php:678
 msgid "Before Item Title"
 msgstr ""
 
-#: src/Shopmarks.php:673
+#: src/Shopmarks.php:683
 msgid "Item Title"
 msgstr ""
 
-#: src/Shopmarks.php:678
+#: src/Shopmarks.php:688
 msgid "After Item"
 msgstr ""
 
-#: src/Shopmarks.php:690
+#: src/Shopmarks.php:700
 msgid "After Item Price"
 msgstr ""
 
-#: src/Shopmarks.php:697
-#: src/Shopmarks.php:719
+#: src/Shopmarks.php:707
+#: src/Shopmarks.php:729
 msgid "Item Price"
 msgstr ""
 
-#: src/Shopmarks.php:702
-#: src/Shopmarks.php:724
-#: src/Shopmarks.php:736
-#: src/Shopmarks.php:753
+#: src/Shopmarks.php:712
+#: src/Shopmarks.php:734
+#: src/Shopmarks.php:746
+#: src/Shopmarks.php:763
 msgid "Item Name"
 msgstr ""
 
-#: src/Shopmarks.php:707
+#: src/Shopmarks.php:717
 msgid "After Item Name"
 msgstr ""
 
-#: src/Shopmarks.php:712
-#: src/Shopmarks.php:731
-#: src/Shopmarks.php:748
+#: src/Shopmarks.php:722
+#: src/Shopmarks.php:741
+#: src/Shopmarks.php:758
 msgid "Subtotal"
 msgstr ""
 
-#: src/Shopmarks.php:741
-#: src/Shopmarks.php:758
+#: src/Shopmarks.php:751
+#: src/Shopmarks.php:768
 msgid "After Item Quantity"
 msgstr ""
 
-#: src/Shopmarks.php:768
+#: src/Shopmarks.php:778
 msgid "Before Meta"
 msgstr ""
 
-#: src/Shopmarks.php:794
-#: src/Shopmarks.php:807
-#: src/Shopmarks.php:817
-#: src/Shopmarks.php:827
-#: src/Shopmarks.php:837
-#: src/Shopmarks.php:847
-#: src/Shopmarks.php:857
-#: src/Shopmarks.php:867
-msgctxt "shopmark"
-msgid "Unit Price"
-msgstr ""
-
-#: src/Shopmarks.php:795
-#: src/Shopmarks.php:808
+#: src/Shopmarks.php:804
 #: src/Shopmarks.php:818
 #: src/Shopmarks.php:828
-#: src/Shopmarks.php:839
-#: src/Shopmarks.php:849
-#: src/Shopmarks.php:859
-#: src/Shopmarks.php:869
-msgctxt "shopmark"
-msgid "Delivery Time"
-msgstr ""
-
-#: src/Shopmarks.php:796
-#: src/Shopmarks.php:809
-msgctxt "shopmark"
-msgid "General"
-msgstr ""
-
-#: src/Shopmarks.php:797
-#: src/Shopmarks.php:810
-#: src/Shopmarks.php:821
-#: src/Shopmarks.php:831
 #: src/Shopmarks.php:838
 #: src/Shopmarks.php:848
 #: src/Shopmarks.php:858
 #: src/Shopmarks.php:868
+#: src/Shopmarks.php:878
+msgctxt "shopmark"
+msgid "Unit Price"
+msgstr ""
+
+#: src/Shopmarks.php:805
+#: src/Shopmarks.php:819
+#: src/Shopmarks.php:829
+#: src/Shopmarks.php:839
+#: src/Shopmarks.php:850
+#: src/Shopmarks.php:860
+#: src/Shopmarks.php:870
+#: src/Shopmarks.php:880
+msgctxt "shopmark"
+msgid "Delivery Time"
+msgstr ""
+
+#: src/Shopmarks.php:806
+#: src/Shopmarks.php:820
+msgctxt "shopmark"
+msgid "General"
+msgstr ""
+
+#: src/Shopmarks.php:807
+#: src/Shopmarks.php:821
+#: src/Shopmarks.php:832
+#: src/Shopmarks.php:842
+#: src/Shopmarks.php:849
+#: src/Shopmarks.php:859
+#: src/Shopmarks.php:869
+#: src/Shopmarks.php:879
 msgctxt "shopmark"
 msgid "Product Units"
 msgstr ""
 
-#: src/Shopmarks.php:798
-#: src/Shopmarks.php:811
-#: src/Shopmarks.php:841
-#: src/Shopmarks.php:851
-#: src/Shopmarks.php:861
-#: src/Shopmarks.php:871
+#: src/Shopmarks.php:808
+#: src/Shopmarks.php:822
+#: src/Shopmarks.php:852
+#: src/Shopmarks.php:862
+#: src/Shopmarks.php:872
+#: src/Shopmarks.php:882
 msgctxt "shopmark"
 msgid "Defect Description"
 msgstr ""
 
-#: src/Shopmarks.php:799
-#: src/Shopmarks.php:812
-#: src/Shopmarks.php:822
-#: src/Shopmarks.php:832
-#: src/Shopmarks.php:842
-#: src/Shopmarks.php:852
-#: src/Shopmarks.php:862
-#: src/Shopmarks.php:872
-msgctxt "shopmark"
-msgid "Deposit"
-msgstr ""
-
-#: src/Shopmarks.php:800
-#: src/Shopmarks.php:813
+#: src/Shopmarks.php:809
 #: src/Shopmarks.php:823
 #: src/Shopmarks.php:833
 #: src/Shopmarks.php:843
 #: src/Shopmarks.php:853
 #: src/Shopmarks.php:863
 #: src/Shopmarks.php:873
+#: src/Shopmarks.php:883
 msgctxt "shopmark"
-msgid "Type of Packaging"
+msgid "Deposit"
 msgstr ""
 
-#: src/Shopmarks.php:801
-#: src/Shopmarks.php:814
+#: src/Shopmarks.php:810
 #: src/Shopmarks.php:824
 #: src/Shopmarks.php:834
 #: src/Shopmarks.php:844
 #: src/Shopmarks.php:854
 #: src/Shopmarks.php:864
 #: src/Shopmarks.php:874
+#: src/Shopmarks.php:884
+msgctxt "shopmark"
+msgid "Type of Packaging"
+msgstr ""
+
+#: src/Shopmarks.php:811
+#: src/Shopmarks.php:825
+#: src/Shopmarks.php:835
+#: src/Shopmarks.php:845
+#: src/Shopmarks.php:855
+#: src/Shopmarks.php:865
+#: src/Shopmarks.php:875
+#: src/Shopmarks.php:885
 msgctxt "shopmark"
 msgid "Nutri-Score"
 msgstr ""
 
-#: src/Shopmarks.php:802
+#: src/Shopmarks.php:812
 msgctxt "shopmark"
 msgid "Manufacturer"
 msgstr ""
 
-#: src/Shopmarks.php:803
+#: src/Shopmarks.php:813
 msgctxt "shopmark"
 msgid "Product safety attachments"
 msgstr ""
 
-#: src/Shopmarks.php:804
+#: src/Shopmarks.php:814
 msgctxt "shopmark"
 msgid "Safety instructions"
 msgstr ""
 
-#: src/Shopmarks.php:819
-#: src/Shopmarks.php:829
+#: src/Shopmarks.php:815
+msgctxt "shopmark"
+msgid "Power supply"
+msgstr ""
+
+#: src/Shopmarks.php:830
+#: src/Shopmarks.php:840
 msgctxt "shopmark"
 msgid "Tax"
 msgstr ""
 
-#: src/Shopmarks.php:820
-#: src/Shopmarks.php:830
+#: src/Shopmarks.php:831
+#: src/Shopmarks.php:841
 msgctxt "shopmark"
 msgid "Shipping Costs"
 msgstr ""
 
-#: src/Shopmarks.php:840
-#: src/Shopmarks.php:850
-#: src/Shopmarks.php:860
-#: src/Shopmarks.php:870
+#: src/Shopmarks.php:851
+#: src/Shopmarks.php:861
+#: src/Shopmarks.php:871
+#: src/Shopmarks.php:881
 msgctxt "shopmark"
 msgid "Cart Description"
 msgstr ""
@@ -14181,6 +14293,19 @@ msgstr ""
 msgid "Alternative Dispute Resolution in accordance with Art. 14 (1) ODR-VO and § 36 VSBG:"
 msgstr ""
 
+#: templates/global/power-supply.php:26
+msgid "Power supply included."
+msgstr ""
+
+#: templates/global/power-supply.php:26
+msgid "Power supply not included."
+msgstr ""
+
+#: templates/global/power-supply.php:43
+msgctxt "watt-abbr"
+msgid "W"
+msgstr ""
+
 #: templates/order/order-pay-now-button.php:23
 msgid "Pay now"
 msgstr ""
@@ -14220,343 +14345,317 @@ msgstr ""
 msgid "To benefit from the tax exemption, please confirm the VAT exemption according to {legal_text} by activating the checkbox."
 msgstr ""
 
-#: build/product-defect-description-frontend.js:531
-#: build/product-delivery-time-frontend.js:531
-#: build/product-deposit-frontend.js:531
-#: build/product-deposit-packaging-type-frontend.js:531
-#: build/product-manufacturer-frontend.js:531
-#: build/product-nutri-score-frontend.js:531
-#: build/product-safety-attachments-frontend.js:531
-#: build/product-safety-instructions-frontend.js:531
-#: build/product-shipping-costs-info-frontend.js:475
-#: build/product-tax-info-frontend.js:475
-#: build/product-unit-price-frontend.js:475
-#: build/product-unit-product-frontend.js:475
-#: build/wc-gzd-blocks-product-elements.js:3177
-#: build/product-defect-description-frontend.js:477
-#: build/product-delivery-time-frontend.js:477
-#: build/product-deposit-frontend.js:477
-#: build/product-deposit-packaging-type-frontend.js:477
-#: build/product-manufacturer-frontend.js:477
-#: build/product-nutri-score-frontend.js:477
-#: build/product-safety-attachments-frontend.js:477
-#: build/product-safety-instructions-frontend.js:477
-#: build/product-shipping-costs-info-frontend.js:451
-#: build/product-tax-info-frontend.js:451
-#: build/product-unit-price-frontend.js:451
-#: build/product-unit-product-frontend.js:451
-#: build/wc-gzd-blocks-product-elements-style.js:2407
-#: build/wc-gzd-blocks-product-elements.js:2393
+#: build/product-defect-description-frontend.js:532
+#: build/product-delivery-time-frontend.js:532
+#: build/product-deposit-frontend.js:532
+#: build/product-deposit-packaging-type-frontend.js:532
+#: build/product-manufacturer-frontend.js:532
+#: build/product-nutri-score-frontend.js:532
+#: build/product-power-supply-frontend.js:532
+#: build/product-safety-attachments-frontend.js:532
+#: build/product-safety-instructions-frontend.js:532
+#: build/product-shipping-costs-info-frontend.js:476
+#: build/product-tax-info-frontend.js:476
+#: build/product-unit-price-frontend.js:476
+#: build/product-unit-product-frontend.js:476
+#: build/wc-gzd-blocks-product-elements.js:3379
+#: build/product-defect-description-frontend.js:478
+#: build/product-delivery-time-frontend.js:478
+#: build/product-deposit-frontend.js:478
+#: build/product-deposit-packaging-type-frontend.js:478
+#: build/product-manufacturer-frontend.js:478
+#: build/product-nutri-score-frontend.js:478
+#: build/product-power-supply-frontend.js:478
+#: build/product-safety-attachments-frontend.js:478
+#: build/product-safety-instructions-frontend.js:478
+#: build/product-shipping-costs-info-frontend.js:452
+#: build/product-tax-info-frontend.js:452
+#: build/product-unit-price-frontend.js:452
+#: build/product-unit-product-frontend.js:452
+#: build/wc-gzd-blocks-product-elements-style.js:2555
+#: build/wc-gzd-blocks-product-elements.js:2540
 msgctxt "unit"
 msgid "kg"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:533
-#: build/product-delivery-time-frontend.js:533
-#: build/product-deposit-frontend.js:533
-#: build/product-deposit-packaging-type-frontend.js:533
-#: build/product-manufacturer-frontend.js:533
-#: build/product-nutri-score-frontend.js:533
-#: build/product-safety-attachments-frontend.js:533
-#: build/product-safety-instructions-frontend.js:533
-#: build/product-shipping-costs-info-frontend.js:477
-#: build/product-tax-info-frontend.js:477
-#: build/product-unit-price-frontend.js:477
-#: build/product-unit-product-frontend.js:477
-#: build/wc-gzd-blocks-product-elements.js:3179
-#: build/product-defect-description-frontend.js:481
-#: build/product-delivery-time-frontend.js:481
-#: build/product-deposit-frontend.js:481
-#: build/product-deposit-packaging-type-frontend.js:481
-#: build/product-manufacturer-frontend.js:481
-#: build/product-nutri-score-frontend.js:481
-#: build/product-safety-attachments-frontend.js:481
-#: build/product-safety-instructions-frontend.js:481
-#: build/product-shipping-costs-info-frontend.js:455
-#: build/product-tax-info-frontend.js:455
-#: build/product-unit-price-frontend.js:455
-#: build/product-unit-product-frontend.js:455
-#: build/wc-gzd-blocks-product-elements-style.js:2411
-#: build/wc-gzd-blocks-product-elements.js:2397
+#: build/product-defect-description-frontend.js:534
+#: build/product-delivery-time-frontend.js:534
+#: build/product-deposit-frontend.js:534
+#: build/product-deposit-packaging-type-frontend.js:534
+#: build/product-manufacturer-frontend.js:534
+#: build/product-nutri-score-frontend.js:534
+#: build/product-power-supply-frontend.js:534
+#: build/product-safety-attachments-frontend.js:534
+#: build/product-safety-instructions-frontend.js:534
+#: build/product-shipping-costs-info-frontend.js:478
+#: build/product-tax-info-frontend.js:478
+#: build/product-unit-price-frontend.js:478
+#: build/product-unit-product-frontend.js:478
+#: build/wc-gzd-blocks-product-elements.js:3381
+#: build/product-defect-description-frontend.js:482
+#: build/product-delivery-time-frontend.js:482
+#: build/product-deposit-frontend.js:482
+#: build/product-deposit-packaging-type-frontend.js:482
+#: build/product-manufacturer-frontend.js:482
+#: build/product-nutri-score-frontend.js:482
+#: build/product-power-supply-frontend.js:482
+#: build/product-safety-attachments-frontend.js:482
+#: build/product-safety-instructions-frontend.js:482
+#: build/product-shipping-costs-info-frontend.js:456
+#: build/product-tax-info-frontend.js:456
+#: build/product-unit-price-frontend.js:456
+#: build/product-unit-product-frontend.js:456
+#: build/wc-gzd-blocks-product-elements-style.js:2559
+#: build/wc-gzd-blocks-product-elements.js:2544
 msgctxt "preview"
 msgid "Delivery time: 2-3 days"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:535
-#: build/product-delivery-time-frontend.js:535
-#: build/product-deposit-frontend.js:535
-#: build/product-deposit-packaging-type-frontend.js:535
-#: build/product-manufacturer-frontend.js:535
-#: build/product-nutri-score-frontend.js:535
-#: build/product-safety-attachments-frontend.js:535
-#: build/product-safety-instructions-frontend.js:535
-#: build/product-shipping-costs-info-frontend.js:479
-#: build/product-tax-info-frontend.js:479
-#: build/product-unit-price-frontend.js:479
-#: build/product-unit-product-frontend.js:479
-#: build/wc-gzd-blocks-product-elements.js:3181
-#: build/product-defect-description-frontend.js:483
-#: build/product-delivery-time-frontend.js:483
-#: build/product-deposit-frontend.js:483
-#: build/product-deposit-packaging-type-frontend.js:483
-#: build/product-manufacturer-frontend.js:483
-#: build/product-nutri-score-frontend.js:483
-#: build/product-safety-attachments-frontend.js:483
-#: build/product-safety-instructions-frontend.js:483
-#: build/product-shipping-costs-info-frontend.js:457
-#: build/product-tax-info-frontend.js:457
-#: build/product-unit-price-frontend.js:457
-#: build/product-unit-product-frontend.js:457
-#: build/wc-gzd-blocks-product-elements-style.js:2413
-#: build/wc-gzd-blocks-product-elements.js:2399
+#: build/product-defect-description-frontend.js:536
+#: build/product-delivery-time-frontend.js:536
+#: build/product-deposit-frontend.js:536
+#: build/product-deposit-packaging-type-frontend.js:536
+#: build/product-manufacturer-frontend.js:536
+#: build/product-nutri-score-frontend.js:536
+#: build/product-power-supply-frontend.js:536
+#: build/product-safety-attachments-frontend.js:536
+#: build/product-safety-instructions-frontend.js:536
+#: build/product-shipping-costs-info-frontend.js:480
+#: build/product-tax-info-frontend.js:480
+#: build/product-unit-price-frontend.js:480
+#: build/product-unit-product-frontend.js:480
+#: build/wc-gzd-blocks-product-elements.js:3383
+#: build/product-defect-description-frontend.js:484
+#: build/product-delivery-time-frontend.js:484
+#: build/product-deposit-frontend.js:484
+#: build/product-deposit-packaging-type-frontend.js:484
+#: build/product-manufacturer-frontend.js:484
+#: build/product-nutri-score-frontend.js:484
+#: build/product-power-supply-frontend.js:484
+#: build/product-safety-attachments-frontend.js:484
+#: build/product-safety-instructions-frontend.js:484
+#: build/product-shipping-costs-info-frontend.js:458
+#: build/product-tax-info-frontend.js:458
+#: build/product-unit-price-frontend.js:458
+#: build/product-unit-product-frontend.js:458
+#: build/wc-gzd-blocks-product-elements-style.js:2561
+#: build/wc-gzd-blocks-product-elements.js:2546
 msgctxt "preview"
 msgid "incl. 19 % VAT"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:537
-#: build/product-delivery-time-frontend.js:537
-#: build/product-deposit-frontend.js:537
-#: build/product-deposit-packaging-type-frontend.js:537
-#: build/product-manufacturer-frontend.js:537
-#: build/product-nutri-score-frontend.js:537
-#: build/product-safety-attachments-frontend.js:537
-#: build/product-safety-instructions-frontend.js:537
-#: build/product-shipping-costs-info-frontend.js:481
-#: build/product-tax-info-frontend.js:481
-#: build/product-unit-price-frontend.js:481
-#: build/product-unit-product-frontend.js:481
-#: build/wc-gzd-blocks-product-elements.js:3183
-#: build/product-defect-description-frontend.js:485
-#: build/product-delivery-time-frontend.js:485
-#: build/product-deposit-frontend.js:485
-#: build/product-deposit-packaging-type-frontend.js:485
-#: build/product-manufacturer-frontend.js:485
-#: build/product-nutri-score-frontend.js:485
-#: build/product-safety-attachments-frontend.js:485
-#: build/product-safety-instructions-frontend.js:485
-#: build/product-shipping-costs-info-frontend.js:459
-#: build/product-tax-info-frontend.js:459
-#: build/product-unit-price-frontend.js:459
-#: build/product-unit-product-frontend.js:459
-#: build/wc-gzd-blocks-product-elements-style.js:2415
-#: build/wc-gzd-blocks-product-elements.js:2401
+#: build/product-defect-description-frontend.js:538
+#: build/product-delivery-time-frontend.js:538
+#: build/product-deposit-frontend.js:538
+#: build/product-deposit-packaging-type-frontend.js:538
+#: build/product-manufacturer-frontend.js:538
+#: build/product-nutri-score-frontend.js:538
+#: build/product-power-supply-frontend.js:538
+#: build/product-safety-attachments-frontend.js:538
+#: build/product-safety-instructions-frontend.js:538
+#: build/product-shipping-costs-info-frontend.js:482
+#: build/product-tax-info-frontend.js:482
+#: build/product-unit-price-frontend.js:482
+#: build/product-unit-product-frontend.js:482
+#: build/wc-gzd-blocks-product-elements.js:3385
+#: build/product-defect-description-frontend.js:486
+#: build/product-delivery-time-frontend.js:486
+#: build/product-deposit-frontend.js:486
+#: build/product-deposit-packaging-type-frontend.js:486
+#: build/product-manufacturer-frontend.js:486
+#: build/product-nutri-score-frontend.js:486
+#: build/product-power-supply-frontend.js:486
+#: build/product-safety-attachments-frontend.js:486
+#: build/product-safety-instructions-frontend.js:486
+#: build/product-shipping-costs-info-frontend.js:460
+#: build/product-tax-info-frontend.js:460
+#: build/product-unit-price-frontend.js:460
+#: build/product-unit-product-frontend.js:460
+#: build/wc-gzd-blocks-product-elements-style.js:2563
+#: build/wc-gzd-blocks-product-elements.js:2548
 msgctxt "preview"
 msgid "plus shipping costs"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:539
-#: build/product-delivery-time-frontend.js:539
-#: build/product-deposit-frontend.js:539
-#: build/product-deposit-packaging-type-frontend.js:539
-#: build/product-manufacturer-frontend.js:539
-#: build/product-nutri-score-frontend.js:539
-#: build/product-safety-attachments-frontend.js:539
-#: build/product-safety-instructions-frontend.js:539
-#: build/product-shipping-costs-info-frontend.js:483
-#: build/product-tax-info-frontend.js:483
-#: build/product-unit-price-frontend.js:483
-#: build/product-unit-product-frontend.js:483
-#: build/wc-gzd-blocks-product-elements.js:3185
-#: build/product-defect-description-frontend.js:487
-#: build/product-delivery-time-frontend.js:487
-#: build/product-deposit-frontend.js:487
-#: build/product-deposit-packaging-type-frontend.js:487
-#: build/product-manufacturer-frontend.js:487
-#: build/product-nutri-score-frontend.js:487
-#: build/product-safety-attachments-frontend.js:487
-#: build/product-safety-instructions-frontend.js:487
-#: build/product-shipping-costs-info-frontend.js:461
-#: build/product-tax-info-frontend.js:461
-#: build/product-unit-price-frontend.js:461
-#: build/product-unit-product-frontend.js:461
-#: build/wc-gzd-blocks-product-elements-style.js:2417
-#: build/wc-gzd-blocks-product-elements.js:2403
+#: build/product-defect-description-frontend.js:540
+#: build/product-delivery-time-frontend.js:540
+#: build/product-deposit-frontend.js:540
+#: build/product-deposit-packaging-type-frontend.js:540
+#: build/product-manufacturer-frontend.js:540
+#: build/product-nutri-score-frontend.js:540
+#: build/product-power-supply-frontend.js:540
+#: build/product-safety-attachments-frontend.js:540
+#: build/product-safety-instructions-frontend.js:540
+#: build/product-shipping-costs-info-frontend.js:484
+#: build/product-tax-info-frontend.js:484
+#: build/product-unit-price-frontend.js:484
+#: build/product-unit-product-frontend.js:484
+#: build/wc-gzd-blocks-product-elements.js:3387
+#: build/product-defect-description-frontend.js:488
+#: build/product-delivery-time-frontend.js:488
+#: build/product-deposit-frontend.js:488
+#: build/product-deposit-packaging-type-frontend.js:488
+#: build/product-manufacturer-frontend.js:488
+#: build/product-nutri-score-frontend.js:488
+#: build/product-power-supply-frontend.js:488
+#: build/product-safety-attachments-frontend.js:488
+#: build/product-safety-instructions-frontend.js:488
+#: build/product-shipping-costs-info-frontend.js:462
+#: build/product-tax-info-frontend.js:462
+#: build/product-unit-price-frontend.js:462
+#: build/product-unit-product-frontend.js:462
+#: build/wc-gzd-blocks-product-elements-style.js:2565
+#: build/wc-gzd-blocks-product-elements.js:2550
 msgctxt "preview"
 msgid "Product includes: %1$s kg"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:541
-#: build/product-delivery-time-frontend.js:541
-#: build/product-deposit-frontend.js:541
-#: build/product-deposit-packaging-type-frontend.js:541
-#: build/product-manufacturer-frontend.js:541
-#: build/product-nutri-score-frontend.js:541
-#: build/product-safety-attachments-frontend.js:541
-#: build/product-safety-instructions-frontend.js:541
-#: build/product-shipping-costs-info-frontend.js:485
-#: build/product-tax-info-frontend.js:485
-#: build/product-unit-price-frontend.js:485
-#: build/product-unit-product-frontend.js:485
-#: build/wc-gzd-blocks-product-elements.js:3187
-#: build/product-defect-description-frontend.js:489
-#: build/product-delivery-time-frontend.js:489
-#: build/product-deposit-frontend.js:489
-#: build/product-deposit-packaging-type-frontend.js:489
-#: build/product-manufacturer-frontend.js:489
-#: build/product-nutri-score-frontend.js:489
-#: build/product-safety-attachments-frontend.js:489
-#: build/product-safety-instructions-frontend.js:489
-#: build/product-shipping-costs-info-frontend.js:463
-#: build/product-tax-info-frontend.js:463
-#: build/product-unit-price-frontend.js:463
-#: build/product-unit-product-frontend.js:463
-#: build/wc-gzd-blocks-product-elements-style.js:2419
-#: build/wc-gzd-blocks-product-elements.js:2405
+#: build/product-defect-description-frontend.js:542
+#: build/product-delivery-time-frontend.js:542
+#: build/product-deposit-frontend.js:542
+#: build/product-deposit-packaging-type-frontend.js:542
+#: build/product-manufacturer-frontend.js:542
+#: build/product-nutri-score-frontend.js:542
+#: build/product-power-supply-frontend.js:542
+#: build/product-safety-attachments-frontend.js:542
+#: build/product-safety-instructions-frontend.js:542
+#: build/product-shipping-costs-info-frontend.js:486
+#: build/product-tax-info-frontend.js:486
+#: build/product-unit-price-frontend.js:486
+#: build/product-unit-product-frontend.js:486
+#: build/wc-gzd-blocks-product-elements.js:3389
+#: build/product-defect-description-frontend.js:490
+#: build/product-delivery-time-frontend.js:490
+#: build/product-deposit-frontend.js:490
+#: build/product-deposit-packaging-type-frontend.js:490
+#: build/product-manufacturer-frontend.js:490
+#: build/product-nutri-score-frontend.js:490
+#: build/product-power-supply-frontend.js:490
+#: build/product-safety-attachments-frontend.js:490
+#: build/product-safety-instructions-frontend.js:490
+#: build/product-shipping-costs-info-frontend.js:464
+#: build/product-tax-info-frontend.js:464
+#: build/product-unit-price-frontend.js:464
+#: build/product-unit-product-frontend.js:464
+#: build/wc-gzd-blocks-product-elements-style.js:2567
+#: build/wc-gzd-blocks-product-elements.js:2552
 msgctxt "preview"
 msgid "This product has a serious defect."
 msgstr ""
 
-#: build/product-defect-description-frontend.js:545
-#: build/product-delivery-time-frontend.js:545
-#: build/product-deposit-frontend.js:545
-#: build/product-deposit-packaging-type-frontend.js:545
-#: build/product-manufacturer-frontend.js:545
-#: build/product-nutri-score-frontend.js:545
-#: build/product-safety-attachments-frontend.js:545
-#: build/product-safety-instructions-frontend.js:545
-#: build/product-shipping-costs-info-frontend.js:489
-#: build/product-tax-info-frontend.js:489
-#: build/product-unit-price-frontend.js:489
-#: build/product-unit-product-frontend.js:489
-#: build/wc-gzd-blocks-product-elements.js:3191
-#: build/product-defect-description-frontend.js:493
-#: build/product-delivery-time-frontend.js:493
-#: build/product-deposit-frontend.js:493
-#: build/product-deposit-packaging-type-frontend.js:493
-#: build/product-manufacturer-frontend.js:493
-#: build/product-nutri-score-frontend.js:493
-#: build/product-safety-attachments-frontend.js:493
-#: build/product-safety-instructions-frontend.js:493
-#: build/product-shipping-costs-info-frontend.js:467
-#: build/product-tax-info-frontend.js:467
-#: build/product-unit-price-frontend.js:467
-#: build/product-unit-product-frontend.js:467
-#: build/wc-gzd-blocks-product-elements-style.js:2423
-#: build/wc-gzd-blocks-product-elements.js:2409
+#: build/product-defect-description-frontend.js:546
+#: build/product-delivery-time-frontend.js:546
+#: build/product-deposit-frontend.js:546
+#: build/product-deposit-packaging-type-frontend.js:546
+#: build/product-manufacturer-frontend.js:546
+#: build/product-nutri-score-frontend.js:546
+#: build/product-power-supply-frontend.js:546
+#: build/product-safety-attachments-frontend.js:546
+#: build/product-safety-instructions-frontend.js:546
+#: build/product-shipping-costs-info-frontend.js:490
+#: build/product-tax-info-frontend.js:490
+#: build/product-unit-price-frontend.js:490
+#: build/product-unit-product-frontend.js:490
+#: build/wc-gzd-blocks-product-elements.js:3393
+#: build/product-defect-description-frontend.js:494
+#: build/product-delivery-time-frontend.js:494
+#: build/product-deposit-frontend.js:494
+#: build/product-deposit-packaging-type-frontend.js:494
+#: build/product-manufacturer-frontend.js:494
+#: build/product-nutri-score-frontend.js:494
+#: build/product-power-supply-frontend.js:494
+#: build/product-safety-attachments-frontend.js:494
+#: build/product-safety-instructions-frontend.js:494
+#: build/product-shipping-costs-info-frontend.js:468
+#: build/product-tax-info-frontend.js:468
+#: build/product-unit-price-frontend.js:468
+#: build/product-unit-product-frontend.js:468
+#: build/wc-gzd-blocks-product-elements-style.js:2571
+#: build/wc-gzd-blocks-product-elements.js:2556
 msgctxt "preview"
 msgid "Plus"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:550
-#: build/product-delivery-time-frontend.js:550
-#: build/product-deposit-frontend.js:550
-#: build/product-deposit-packaging-type-frontend.js:550
-#: build/product-manufacturer-frontend.js:550
-#: build/product-nutri-score-frontend.js:550
-#: build/product-safety-attachments-frontend.js:550
-#: build/product-safety-instructions-frontend.js:550
-#: build/product-shipping-costs-info-frontend.js:494
-#: build/product-tax-info-frontend.js:494
-#: build/product-unit-price-frontend.js:494
-#: build/product-unit-product-frontend.js:494
-#: build/wc-gzd-blocks-product-elements.js:3196
-#: build/product-defect-description-frontend.js:496
-#: build/product-delivery-time-frontend.js:496
-#: build/product-deposit-frontend.js:496
-#: build/product-deposit-packaging-type-frontend.js:496
-#: build/product-manufacturer-frontend.js:496
-#: build/product-nutri-score-frontend.js:496
-#: build/product-safety-attachments-frontend.js:496
-#: build/product-safety-instructions-frontend.js:496
-#: build/product-shipping-costs-info-frontend.js:470
-#: build/product-tax-info-frontend.js:470
-#: build/product-unit-price-frontend.js:470
-#: build/product-unit-product-frontend.js:470
-#: build/wc-gzd-blocks-product-elements-style.js:2426
-#: build/wc-gzd-blocks-product-elements.js:2412
+#: build/product-defect-description-frontend.js:551
+#: build/product-delivery-time-frontend.js:551
+#: build/product-deposit-frontend.js:551
+#: build/product-deposit-packaging-type-frontend.js:551
+#: build/product-manufacturer-frontend.js:551
+#: build/product-nutri-score-frontend.js:551
+#: build/product-power-supply-frontend.js:551
+#: build/product-safety-attachments-frontend.js:551
+#: build/product-safety-instructions-frontend.js:551
+#: build/product-shipping-costs-info-frontend.js:495
+#: build/product-tax-info-frontend.js:495
+#: build/product-unit-price-frontend.js:495
+#: build/product-unit-product-frontend.js:495
+#: build/wc-gzd-blocks-product-elements.js:3398
+#: build/product-defect-description-frontend.js:497
+#: build/product-delivery-time-frontend.js:497
+#: build/product-deposit-frontend.js:497
+#: build/product-deposit-packaging-type-frontend.js:497
+#: build/product-manufacturer-frontend.js:497
+#: build/product-nutri-score-frontend.js:497
+#: build/product-power-supply-frontend.js:497
+#: build/product-safety-attachments-frontend.js:497
+#: build/product-safety-instructions-frontend.js:497
+#: build/product-shipping-costs-info-frontend.js:471
+#: build/product-tax-info-frontend.js:471
+#: build/product-unit-price-frontend.js:471
+#: build/product-unit-product-frontend.js:471
+#: build/wc-gzd-blocks-product-elements-style.js:2574
+#: build/wc-gzd-blocks-product-elements.js:2559
 msgctxt "preview"
 msgid "deposit"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:552
-#: build/product-delivery-time-frontend.js:552
-#: build/product-deposit-frontend.js:552
-#: build/product-deposit-packaging-type-frontend.js:552
-#: build/product-manufacturer-frontend.js:552
-#: build/product-nutri-score-frontend.js:552
-#: build/product-safety-attachments-frontend.js:552
-#: build/product-safety-instructions-frontend.js:552
-#: build/product-shipping-costs-info-frontend.js:496
-#: build/product-tax-info-frontend.js:496
-#: build/product-unit-price-frontend.js:496
-#: build/product-unit-product-frontend.js:496
-#: build/wc-gzd-blocks-product-elements.js:3198
-#: build/product-defect-description-frontend.js:500
-#: build/product-delivery-time-frontend.js:500
-#: build/product-deposit-frontend.js:500
-#: build/product-deposit-packaging-type-frontend.js:500
-#: build/product-manufacturer-frontend.js:500
-#: build/product-nutri-score-frontend.js:500
-#: build/product-safety-attachments-frontend.js:500
-#: build/product-safety-instructions-frontend.js:500
-#: build/product-shipping-costs-info-frontend.js:474
-#: build/product-tax-info-frontend.js:474
-#: build/product-unit-price-frontend.js:474
-#: build/product-unit-product-frontend.js:474
-#: build/wc-gzd-blocks-product-elements-style.js:2430
-#: build/wc-gzd-blocks-product-elements.js:2416
+#: build/product-defect-description-frontend.js:553
+#: build/product-delivery-time-frontend.js:553
+#: build/product-deposit-frontend.js:553
+#: build/product-deposit-packaging-type-frontend.js:553
+#: build/product-manufacturer-frontend.js:553
+#: build/product-nutri-score-frontend.js:553
+#: build/product-power-supply-frontend.js:553
+#: build/product-safety-attachments-frontend.js:553
+#: build/product-safety-instructions-frontend.js:553
+#: build/product-shipping-costs-info-frontend.js:497
+#: build/product-tax-info-frontend.js:497
+#: build/product-unit-price-frontend.js:497
+#: build/product-unit-product-frontend.js:497
+#: build/wc-gzd-blocks-product-elements.js:3400
+#: build/product-defect-description-frontend.js:501
+#: build/product-delivery-time-frontend.js:501
+#: build/product-deposit-frontend.js:501
+#: build/product-deposit-packaging-type-frontend.js:501
+#: build/product-manufacturer-frontend.js:501
+#: build/product-nutri-score-frontend.js:501
+#: build/product-power-supply-frontend.js:501
+#: build/product-safety-attachments-frontend.js:501
+#: build/product-safety-instructions-frontend.js:501
+#: build/product-shipping-costs-info-frontend.js:475
+#: build/product-tax-info-frontend.js:475
+#: build/product-unit-price-frontend.js:475
+#: build/product-unit-product-frontend.js:475
+#: build/wc-gzd-blocks-product-elements-style.js:2578
+#: build/wc-gzd-blocks-product-elements.js:2563
 msgctxt "preview"
 msgid "Disposable"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:558
-#: build/product-delivery-time-frontend.js:558
-#: build/product-deposit-frontend.js:558
-#: build/product-deposit-packaging-type-frontend.js:558
-#: build/product-manufacturer-frontend.js:558
-#: build/product-nutri-score-frontend.js:558
-#: build/product-safety-attachments-frontend.js:558
-#: build/product-safety-instructions-frontend.js:558
-#: build/product-shipping-costs-info-frontend.js:502
-#: build/product-tax-info-frontend.js:502
-#: build/product-unit-price-frontend.js:502
-#: build/product-unit-product-frontend.js:502
-#: build/wc-gzd-blocks-product-elements.js:3204
-#: build/product-defect-description-frontend.js:511
-#: build/product-defect-description-frontend.js:518
-#: build/product-delivery-time-frontend.js:511
-#: build/product-delivery-time-frontend.js:518
-#: build/product-deposit-frontend.js:511
-#: build/product-deposit-frontend.js:518
-#: build/product-deposit-packaging-type-frontend.js:511
-#: build/product-deposit-packaging-type-frontend.js:518
-#: build/product-manufacturer-frontend.js:511
-#: build/product-manufacturer-frontend.js:518
-#: build/product-nutri-score-frontend.js:511
-#: build/product-nutri-score-frontend.js:518
-#: build/product-safety-attachments-frontend.js:511
-#: build/product-safety-attachments-frontend.js:518
-#: build/product-safety-instructions-frontend.js:511
-#: build/product-safety-instructions-frontend.js:518
-#: build/product-shipping-costs-info-frontend.js:485
-#: build/product-shipping-costs-info-frontend.js:492
-#: build/product-tax-info-frontend.js:485
-#: build/product-tax-info-frontend.js:492
-#: build/product-unit-price-frontend.js:485
-#: build/product-unit-price-frontend.js:492
-#: build/product-unit-product-frontend.js:485
-#: build/product-unit-product-frontend.js:492
-#: build/wc-gzd-blocks-product-elements-style.js:2441
-#: build/wc-gzd-blocks-product-elements-style.js:2448
-#: build/wc-gzd-blocks-product-elements.js:2427
-#: build/wc-gzd-blocks-product-elements.js:2434
-msgctxt "preview"
-msgid "Sample company name"
-msgstr ""
-
-#: build/product-defect-description-frontend.js:558
-#: build/product-delivery-time-frontend.js:558
-#: build/product-deposit-frontend.js:558
-#: build/product-deposit-packaging-type-frontend.js:558
-#: build/product-manufacturer-frontend.js:558
-#: build/product-nutri-score-frontend.js:558
-#: build/product-safety-attachments-frontend.js:558
-#: build/product-safety-instructions-frontend.js:558
-#: build/product-shipping-costs-info-frontend.js:502
-#: build/product-tax-info-frontend.js:502
-#: build/product-unit-price-frontend.js:502
-#: build/product-unit-product-frontend.js:502
-#: build/wc-gzd-blocks-product-elements.js:3204
+#: build/product-defect-description-frontend.js:559
+#: build/product-delivery-time-frontend.js:559
+#: build/product-deposit-frontend.js:559
+#: build/product-deposit-packaging-type-frontend.js:559
+#: build/product-manufacturer-frontend.js:559
+#: build/product-nutri-score-frontend.js:559
+#: build/product-power-supply-frontend.js:559
+#: build/product-safety-attachments-frontend.js:559
+#: build/product-safety-instructions-frontend.js:559
+#: build/product-shipping-costs-info-frontend.js:503
+#: build/product-tax-info-frontend.js:503
+#: build/product-unit-price-frontend.js:503
+#: build/product-unit-product-frontend.js:503
+#: build/wc-gzd-blocks-product-elements.js:3406
 #: build/product-defect-description-frontend.js:512
 #: build/product-defect-description-frontend.js:519
 #: build/product-delivery-time-frontend.js:512
@@ -14569,6 +14668,8 @@ msgstr ""
 #: build/product-manufacturer-frontend.js:519
 #: build/product-nutri-score-frontend.js:512
 #: build/product-nutri-score-frontend.js:519
+#: build/product-power-supply-frontend.js:512
+#: build/product-power-supply-frontend.js:519
 #: build/product-safety-attachments-frontend.js:512
 #: build/product-safety-attachments-frontend.js:519
 #: build/product-safety-instructions-frontend.js:512
@@ -14581,27 +14682,28 @@ msgstr ""
 #: build/product-unit-price-frontend.js:493
 #: build/product-unit-product-frontend.js:486
 #: build/product-unit-product-frontend.js:493
-#: build/wc-gzd-blocks-product-elements-style.js:2442
-#: build/wc-gzd-blocks-product-elements-style.js:2449
-#: build/wc-gzd-blocks-product-elements.js:2428
-#: build/wc-gzd-blocks-product-elements.js:2435
+#: build/wc-gzd-blocks-product-elements-style.js:2589
+#: build/wc-gzd-blocks-product-elements-style.js:2596
+#: build/wc-gzd-blocks-product-elements.js:2574
+#: build/wc-gzd-blocks-product-elements.js:2581
 msgctxt "preview"
-msgid "Sample address"
+msgid "Sample company name"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:558
-#: build/product-delivery-time-frontend.js:558
-#: build/product-deposit-frontend.js:558
-#: build/product-deposit-packaging-type-frontend.js:558
-#: build/product-manufacturer-frontend.js:558
-#: build/product-nutri-score-frontend.js:558
-#: build/product-safety-attachments-frontend.js:558
-#: build/product-safety-instructions-frontend.js:558
-#: build/product-shipping-costs-info-frontend.js:502
-#: build/product-tax-info-frontend.js:502
-#: build/product-unit-price-frontend.js:502
-#: build/product-unit-product-frontend.js:502
-#: build/wc-gzd-blocks-product-elements.js:3204
+#: build/product-defect-description-frontend.js:559
+#: build/product-delivery-time-frontend.js:559
+#: build/product-deposit-frontend.js:559
+#: build/product-deposit-packaging-type-frontend.js:559
+#: build/product-manufacturer-frontend.js:559
+#: build/product-nutri-score-frontend.js:559
+#: build/product-power-supply-frontend.js:559
+#: build/product-safety-attachments-frontend.js:559
+#: build/product-safety-instructions-frontend.js:559
+#: build/product-shipping-costs-info-frontend.js:503
+#: build/product-tax-info-frontend.js:503
+#: build/product-unit-price-frontend.js:503
+#: build/product-unit-product-frontend.js:503
+#: build/wc-gzd-blocks-product-elements.js:3406
 #: build/product-defect-description-frontend.js:513
 #: build/product-defect-description-frontend.js:520
 #: build/product-delivery-time-frontend.js:513
@@ -14614,6 +14716,8 @@ msgstr ""
 #: build/product-manufacturer-frontend.js:520
 #: build/product-nutri-score-frontend.js:513
 #: build/product-nutri-score-frontend.js:520
+#: build/product-power-supply-frontend.js:513
+#: build/product-power-supply-frontend.js:520
 #: build/product-safety-attachments-frontend.js:513
 #: build/product-safety-attachments-frontend.js:520
 #: build/product-safety-instructions-frontend.js:513
@@ -14626,27 +14730,28 @@ msgstr ""
 #: build/product-unit-price-frontend.js:494
 #: build/product-unit-product-frontend.js:487
 #: build/product-unit-product-frontend.js:494
-#: build/wc-gzd-blocks-product-elements-style.js:2443
-#: build/wc-gzd-blocks-product-elements-style.js:2450
-#: build/wc-gzd-blocks-product-elements.js:2429
-#: build/wc-gzd-blocks-product-elements.js:2436
+#: build/wc-gzd-blocks-product-elements-style.js:2590
+#: build/wc-gzd-blocks-product-elements-style.js:2597
+#: build/wc-gzd-blocks-product-elements.js:2575
+#: build/wc-gzd-blocks-product-elements.js:2582
 msgctxt "preview"
-msgid "12345 Berlin"
+msgid "Sample address"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:558
-#: build/product-delivery-time-frontend.js:558
-#: build/product-deposit-frontend.js:558
-#: build/product-deposit-packaging-type-frontend.js:558
-#: build/product-manufacturer-frontend.js:558
-#: build/product-nutri-score-frontend.js:558
-#: build/product-safety-attachments-frontend.js:558
-#: build/product-safety-instructions-frontend.js:558
-#: build/product-shipping-costs-info-frontend.js:502
-#: build/product-tax-info-frontend.js:502
-#: build/product-unit-price-frontend.js:502
-#: build/product-unit-product-frontend.js:502
-#: build/wc-gzd-blocks-product-elements.js:3204
+#: build/product-defect-description-frontend.js:559
+#: build/product-delivery-time-frontend.js:559
+#: build/product-deposit-frontend.js:559
+#: build/product-deposit-packaging-type-frontend.js:559
+#: build/product-manufacturer-frontend.js:559
+#: build/product-nutri-score-frontend.js:559
+#: build/product-power-supply-frontend.js:559
+#: build/product-safety-attachments-frontend.js:559
+#: build/product-safety-instructions-frontend.js:559
+#: build/product-shipping-costs-info-frontend.js:503
+#: build/product-tax-info-frontend.js:503
+#: build/product-unit-price-frontend.js:503
+#: build/product-unit-product-frontend.js:503
+#: build/wc-gzd-blocks-product-elements.js:3406
 #: build/product-defect-description-frontend.js:514
 #: build/product-defect-description-frontend.js:521
 #: build/product-delivery-time-frontend.js:514
@@ -14659,6 +14764,8 @@ msgstr ""
 #: build/product-manufacturer-frontend.js:521
 #: build/product-nutri-score-frontend.js:514
 #: build/product-nutri-score-frontend.js:521
+#: build/product-power-supply-frontend.js:514
+#: build/product-power-supply-frontend.js:521
 #: build/product-safety-attachments-frontend.js:514
 #: build/product-safety-attachments-frontend.js:521
 #: build/product-safety-instructions-frontend.js:514
@@ -14671,169 +14778,227 @@ msgstr ""
 #: build/product-unit-price-frontend.js:495
 #: build/product-unit-product-frontend.js:488
 #: build/product-unit-product-frontend.js:495
-#: build/wc-gzd-blocks-product-elements-style.js:2444
-#: build/wc-gzd-blocks-product-elements-style.js:2451
-#: build/wc-gzd-blocks-product-elements.js:2430
-#: build/wc-gzd-blocks-product-elements.js:2437
+#: build/wc-gzd-blocks-product-elements-style.js:2591
+#: build/wc-gzd-blocks-product-elements-style.js:2598
+#: build/wc-gzd-blocks-product-elements.js:2576
+#: build/wc-gzd-blocks-product-elements.js:2583
 msgctxt "preview"
-msgid "sample@sample.com"
+msgid "12345 Berlin"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:562
-#: build/product-delivery-time-frontend.js:562
-#: build/product-deposit-frontend.js:562
-#: build/product-deposit-packaging-type-frontend.js:562
-#: build/product-manufacturer-frontend.js:562
-#: build/product-nutri-score-frontend.js:562
-#: build/product-safety-attachments-frontend.js:562
-#: build/product-safety-instructions-frontend.js:562
-#: build/product-shipping-costs-info-frontend.js:506
-#: build/product-tax-info-frontend.js:506
-#: build/product-unit-price-frontend.js:506
-#: build/product-unit-product-frontend.js:506
-#: build/wc-gzd-blocks-product-elements.js:3208
-#: build/product-defect-description-frontend.js:529
-#: build/product-delivery-time-frontend.js:529
-#: build/product-deposit-frontend.js:529
-#: build/product-deposit-packaging-type-frontend.js:529
-#: build/product-manufacturer-frontend.js:529
-#: build/product-nutri-score-frontend.js:529
-#: build/product-safety-attachments-frontend.js:529
-#: build/product-safety-instructions-frontend.js:529
+#: build/product-defect-description-frontend.js:559
+#: build/product-delivery-time-frontend.js:559
+#: build/product-deposit-frontend.js:559
+#: build/product-deposit-packaging-type-frontend.js:559
+#: build/product-manufacturer-frontend.js:559
+#: build/product-nutri-score-frontend.js:559
+#: build/product-power-supply-frontend.js:559
+#: build/product-safety-attachments-frontend.js:559
+#: build/product-safety-instructions-frontend.js:559
 #: build/product-shipping-costs-info-frontend.js:503
 #: build/product-tax-info-frontend.js:503
 #: build/product-unit-price-frontend.js:503
 #: build/product-unit-product-frontend.js:503
-#: build/wc-gzd-blocks-product-elements-style.js:2459
-#: build/wc-gzd-blocks-product-elements.js:2445
+#: build/wc-gzd-blocks-product-elements.js:3406
+#: build/product-defect-description-frontend.js:515
+#: build/product-defect-description-frontend.js:522
+#: build/product-delivery-time-frontend.js:515
+#: build/product-delivery-time-frontend.js:522
+#: build/product-deposit-frontend.js:515
+#: build/product-deposit-frontend.js:522
+#: build/product-deposit-packaging-type-frontend.js:515
+#: build/product-deposit-packaging-type-frontend.js:522
+#: build/product-manufacturer-frontend.js:515
+#: build/product-manufacturer-frontend.js:522
+#: build/product-nutri-score-frontend.js:515
+#: build/product-nutri-score-frontend.js:522
+#: build/product-power-supply-frontend.js:515
+#: build/product-power-supply-frontend.js:522
+#: build/product-safety-attachments-frontend.js:515
+#: build/product-safety-attachments-frontend.js:522
+#: build/product-safety-instructions-frontend.js:515
+#: build/product-safety-instructions-frontend.js:522
+#: build/product-shipping-costs-info-frontend.js:489
+#: build/product-shipping-costs-info-frontend.js:496
+#: build/product-tax-info-frontend.js:489
+#: build/product-tax-info-frontend.js:496
+#: build/product-unit-price-frontend.js:489
+#: build/product-unit-price-frontend.js:496
+#: build/product-unit-product-frontend.js:489
+#: build/product-unit-product-frontend.js:496
+#: build/wc-gzd-blocks-product-elements-style.js:2592
+#: build/wc-gzd-blocks-product-elements-style.js:2599
+#: build/wc-gzd-blocks-product-elements.js:2577
+#: build/wc-gzd-blocks-product-elements.js:2584
+msgctxt "preview"
+msgid "sample@sample.com"
+msgstr ""
+
+#: build/product-defect-description-frontend.js:563
+#: build/product-delivery-time-frontend.js:563
+#: build/product-deposit-frontend.js:563
+#: build/product-deposit-packaging-type-frontend.js:563
+#: build/product-manufacturer-frontend.js:563
+#: build/product-nutri-score-frontend.js:563
+#: build/product-power-supply-frontend.js:563
+#: build/product-safety-attachments-frontend.js:563
+#: build/product-safety-instructions-frontend.js:563
+#: build/product-shipping-costs-info-frontend.js:507
+#: build/product-tax-info-frontend.js:507
+#: build/product-unit-price-frontend.js:507
+#: build/product-unit-product-frontend.js:507
+#: build/wc-gzd-blocks-product-elements.js:3410
+#: build/product-defect-description-frontend.js:530
+#: build/product-delivery-time-frontend.js:530
+#: build/product-deposit-frontend.js:530
+#: build/product-deposit-packaging-type-frontend.js:530
+#: build/product-manufacturer-frontend.js:530
+#: build/product-nutri-score-frontend.js:530
+#: build/product-power-supply-frontend.js:530
+#: build/product-safety-attachments-frontend.js:530
+#: build/product-safety-instructions-frontend.js:530
+#: build/product-shipping-costs-info-frontend.js:504
+#: build/product-tax-info-frontend.js:504
+#: build/product-unit-price-frontend.js:504
+#: build/product-unit-product-frontend.js:504
+#: build/wc-gzd-blocks-product-elements-style.js:2607
+#: build/wc-gzd-blocks-product-elements.js:2592
 msgctxt "sample"
 msgid "sample-filename.pdf"
 msgstr ""
 
-#: build/product-defect-description-frontend.js:564
-#: build/product-delivery-time-frontend.js:564
-#: build/product-deposit-frontend.js:564
-#: build/product-deposit-packaging-type-frontend.js:564
-#: build/product-manufacturer-frontend.js:564
-#: build/product-nutri-score-frontend.js:564
-#: build/product-safety-attachments-frontend.js:564
-#: build/product-safety-instructions-frontend.js:564
-#: build/product-shipping-costs-info-frontend.js:508
-#: build/product-tax-info-frontend.js:508
-#: build/product-unit-price-frontend.js:508
-#: build/product-unit-product-frontend.js:508
-#: build/wc-gzd-blocks-product-elements.js:3210
-#: build/product-defect-description-frontend.js:537
-#: build/product-delivery-time-frontend.js:537
-#: build/product-deposit-frontend.js:537
-#: build/product-deposit-packaging-type-frontend.js:537
-#: build/product-manufacturer-frontend.js:537
-#: build/product-nutri-score-frontend.js:537
-#: build/product-safety-attachments-frontend.js:537
-#: build/product-safety-instructions-frontend.js:537
-#: build/product-shipping-costs-info-frontend.js:511
-#: build/product-tax-info-frontend.js:511
-#: build/product-unit-price-frontend.js:511
-#: build/product-unit-product-frontend.js:511
-#: build/wc-gzd-blocks-product-elements-style.js:2467
-#: build/wc-gzd-blocks-product-elements.js:2453
+#: build/product-defect-description-frontend.js:565
+#: build/product-delivery-time-frontend.js:565
+#: build/product-deposit-frontend.js:565
+#: build/product-deposit-packaging-type-frontend.js:565
+#: build/product-manufacturer-frontend.js:565
+#: build/product-nutri-score-frontend.js:565
+#: build/product-power-supply-frontend.js:565
+#: build/product-safety-attachments-frontend.js:565
+#: build/product-safety-instructions-frontend.js:565
+#: build/product-shipping-costs-info-frontend.js:509
+#: build/product-tax-info-frontend.js:509
+#: build/product-unit-price-frontend.js:509
+#: build/product-unit-product-frontend.js:509
+#: build/wc-gzd-blocks-product-elements.js:3412
+#: build/product-defect-description-frontend.js:538
+#: build/product-delivery-time-frontend.js:538
+#: build/product-deposit-frontend.js:538
+#: build/product-deposit-packaging-type-frontend.js:538
+#: build/product-manufacturer-frontend.js:538
+#: build/product-nutri-score-frontend.js:538
+#: build/product-power-supply-frontend.js:538
+#: build/product-safety-attachments-frontend.js:538
+#: build/product-safety-instructions-frontend.js:538
+#: build/product-shipping-costs-info-frontend.js:512
+#: build/product-tax-info-frontend.js:512
+#: build/product-unit-price-frontend.js:512
+#: build/product-unit-product-frontend.js:512
+#: build/wc-gzd-blocks-product-elements-style.js:2615
+#: build/wc-gzd-blocks-product-elements.js:2600
 msgctxt "preview"
 msgid "Sample safety instructions for a certain product."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:1700
-#: build/wc-gzd-blocks-product-elements-style.js:1275
-#: build/wc-gzd-blocks-product-elements.js:1275
+#: build/wc-gzd-blocks-product-elements.js:1733
+#: build/wc-gzd-blocks-product-elements-style.js:1298
+#: build/wc-gzd-blocks-product-elements.js:1298
 msgid "Inserts the product's defect description."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:1868
-#: build/wc-gzd-blocks-product-elements-style.js:1398
-#: build/wc-gzd-blocks-product-elements.js:1398
+#: build/wc-gzd-blocks-product-elements.js:1901
+#: build/wc-gzd-blocks-product-elements-style.js:1421
+#: build/wc-gzd-blocks-product-elements.js:1421
 msgid "Inserts the product's delivery time."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:2038
-#: build/wc-gzd-blocks-product-elements-style.js:1521
-#: build/wc-gzd-blocks-product-elements.js:1521
+#: build/wc-gzd-blocks-product-elements.js:2071
+#: build/wc-gzd-blocks-product-elements-style.js:1544
+#: build/wc-gzd-blocks-product-elements.js:1544
 msgid "Deposit packaging type"
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:2039
-#: build/wc-gzd-blocks-product-elements-style.js:1522
-#: build/wc-gzd-blocks-product-elements.js:1522
+#: build/wc-gzd-blocks-product-elements.js:2072
+#: build/wc-gzd-blocks-product-elements-style.js:1545
+#: build/wc-gzd-blocks-product-elements.js:1545
 msgid "Inserts the product's deposit packaging type."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:2210
-#: build/wc-gzd-blocks-product-elements-style.js:1646
-#: build/wc-gzd-blocks-product-elements.js:1646
+#: build/wc-gzd-blocks-product-elements.js:2243
+#: build/wc-gzd-blocks-product-elements-style.js:1669
+#: build/wc-gzd-blocks-product-elements.js:1669
 msgid "Inserts the product's deposit amount."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:2381
-#: build/wc-gzd-blocks-product-elements-style.js:1784
-#: build/wc-gzd-blocks-product-elements.js:1770
+#: build/wc-gzd-blocks-product-elements.js:2414
+#: build/wc-gzd-blocks-product-elements-style.js:1808
+#: build/wc-gzd-blocks-product-elements.js:1793
 msgid "Inserts the product's manufacturer information."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:2552
-#: build/wc-gzd-blocks-product-elements-style.js:1908
-#: build/wc-gzd-blocks-product-elements.js:1894
+#: build/wc-gzd-blocks-product-elements.js:2585
+#: build/wc-gzd-blocks-product-elements-style.js:1932
+#: build/wc-gzd-blocks-product-elements.js:1917
 msgid "Inserts the product's Nutri-Score."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:2722
-#: build/wc-gzd-blocks-product-elements-style.js:2031
-#: build/wc-gzd-blocks-product-elements.js:2017
+#: build/wc-gzd-blocks-product-elements.js:2753
+#: build/wc-gzd-blocks-product-elements-style.js:2055
+#: build/wc-gzd-blocks-product-elements.js:2040
+msgid "Inserts information on power supply for wireless electronic devices."
+msgstr ""
+
+#: build/wc-gzd-blocks-product-elements.js:2923
+#: build/wc-gzd-blocks-product-elements-style.js:2178
+#: build/wc-gzd-blocks-product-elements.js:2163
 msgid "Product safety attachments"
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:2723
-#: build/wc-gzd-blocks-product-elements-style.js:2032
-#: build/wc-gzd-blocks-product-elements.js:2018
+#: build/wc-gzd-blocks-product-elements.js:2924
+#: build/wc-gzd-blocks-product-elements-style.js:2179
+#: build/wc-gzd-blocks-product-elements.js:2164
 msgid "Inserts the product's safety attachments list."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:2894
-#: build/wc-gzd-blocks-product-elements-style.js:2156
-#: build/wc-gzd-blocks-product-elements.js:2142
+#: build/wc-gzd-blocks-product-elements.js:3095
+#: build/wc-gzd-blocks-product-elements-style.js:2303
+#: build/wc-gzd-blocks-product-elements.js:2288
 msgid "Inserts the product's safety instructions."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:3448
-#: build/wc-gzd-blocks-product-elements-style.js:2664
-#: build/wc-gzd-blocks-product-elements.js:2650
+#: build/wc-gzd-blocks-product-elements.js:3650
+#: build/wc-gzd-blocks-product-elements-style.js:2812
+#: build/wc-gzd-blocks-product-elements.js:2797
 msgid "Shipping Costs Notice"
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:3449
-#: build/wc-gzd-blocks-product-elements-style.js:2665
-#: build/wc-gzd-blocks-product-elements.js:2651
+#: build/wc-gzd-blocks-product-elements.js:3651
+#: build/wc-gzd-blocks-product-elements-style.js:2813
+#: build/wc-gzd-blocks-product-elements.js:2798
 msgid "Inserts the product's shipping costs notice."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:3617
-#: build/wc-gzd-blocks-product-elements-style.js:2788
-#: build/wc-gzd-blocks-product-elements.js:2774
+#: build/wc-gzd-blocks-product-elements.js:3819
+#: build/wc-gzd-blocks-product-elements-style.js:2936
+#: build/wc-gzd-blocks-product-elements.js:2921
 msgid "Inserts the product's tax notice."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:3785
-#: build/wc-gzd-blocks-product-elements-style.js:2912
-#: build/wc-gzd-blocks-product-elements.js:2898
+#: build/wc-gzd-blocks-product-elements.js:3987
+#: build/wc-gzd-blocks-product-elements-style.js:3060
+#: build/wc-gzd-blocks-product-elements.js:3045
 msgid "Inserts the product's price per unit."
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:3952
-#: build/wc-gzd-blocks-product-elements-style.js:3034
-#: build/wc-gzd-blocks-product-elements.js:3020
+#: build/wc-gzd-blocks-product-elements.js:4154
+#: build/wc-gzd-blocks-product-elements-style.js:3182
+#: build/wc-gzd-blocks-product-elements.js:3167
 msgid "Unit products"
 msgstr ""
 
-#: build/wc-gzd-blocks-product-elements.js:3953
-#: build/wc-gzd-blocks-product-elements-style.js:3035
-#: build/wc-gzd-blocks-product-elements.js:3021
+#: build/wc-gzd-blocks-product-elements.js:4155
+#: build/wc-gzd-blocks-product-elements-style.js:3183
+#: build/wc-gzd-blocks-product-elements.js:3168
 msgid "Inserts the product's units."
 msgstr ""
 

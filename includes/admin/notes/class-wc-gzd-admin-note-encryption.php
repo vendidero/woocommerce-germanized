@@ -46,7 +46,7 @@ class WC_GZD_Admin_Note_Encryption extends WC_GZD_Admin_Note {
 	public function get_actions() {
 		$buttons = array(
 			array(
-				'url'        => 'https://vendidero.de/dokument/verschluesselung-sensibler-daten',
+				'url'        => 'https://vendidero.de/doc/woocommerce-germanized/verschluesselung-sensibler-daten',
 				'title'      => __( 'Learn more', 'woocommerce-germanized' ),
 				'target'     => '_blank',
 				'is_primary' => false,

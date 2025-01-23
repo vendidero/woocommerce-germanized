@@ -39,10 +39,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	viewBox="0 0 150 188"
 	class="power-supply-icon power-supply-charge-icon"
 >
-	<text x="50%" y="100" class="power-supply-min-max-watt"><?php echo esc_html( wc_gzd_get_product( $product )->get_device_watt_min() ); ?> - <?php echo esc_html( wc_gzd_get_product( $product )->get_device_watt_max() ); ?></text>
+	<text x="50%" y="100" class="power-supply-min-max-watt"><?php echo esc_html( wc_gzd_get_product( $product )->get_device_charging_watt_min() ); ?> - <?php echo esc_html( wc_gzd_get_product( $product )->get_device_charging_watt_max() ); ?></text>
 	<text x="50%" y="130" class="power-supply-watt-abbr"><?php echo esc_html_x( 'W', 'watt-abbr', 'woocommerce-germanized' ); ?></text>
-	<?php if ( wc_gzd_get_product( $product )->device_supports_usb_pd() ) : ?>
-		<text x="50%" y="160" font-weight="600" font-size="x-large" class="power-supply-usb-pd"><?php echo esc_html__( 'USB PD', 'woocommerce-germanized' ); ?></text>
+	<?php if ( wc_gzd_get_product( $product )->device_charging_supports_usb_pd() ) : ?>
+		<text x="50%" y="160" class="power-supply-usb-pd"><?php echo esc_html__( 'USB PD', 'woocommerce-germanized' ); ?></text>
 	<?php endif; ?>
 	<path
 		class="power-supply-main-path"

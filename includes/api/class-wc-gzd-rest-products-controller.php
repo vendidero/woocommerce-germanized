@@ -107,7 +107,7 @@ class WC_GZD_REST_Products_Controller {
 			),
 		);
 
-		$schema_properties['sale_price_label']             = array(
+		$schema_properties['sale_price_label']                = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
 			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
@@ -130,7 +130,7 @@ class WC_GZD_REST_Products_Controller {
 				),
 			),
 		);
-		$schema_properties['sale_price_regular_label']     = array(
+		$schema_properties['sale_price_regular_label']        = array(
 			'description' => __( 'Price Label', 'woocommerce-germanized' ),
 			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
@@ -153,7 +153,7 @@ class WC_GZD_REST_Products_Controller {
 				),
 			),
 		);
-		$schema_properties['manufacturer']                 = array(
+		$schema_properties['manufacturer']                    = array(
 			'description' => __( 'Manufacturer', 'woocommerce-germanized' ),
 			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
@@ -176,7 +176,7 @@ class WC_GZD_REST_Products_Controller {
 				),
 			),
 		);
-		$schema_properties['unit']                         = array(
+		$schema_properties['unit']                            = array(
 			'description' => __( 'Unit', 'woocommerce-germanized' ),
 			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
@@ -199,7 +199,7 @@ class WC_GZD_REST_Products_Controller {
 				),
 			),
 		);
-		$schema_properties['unit_price']                   = array(
+		$schema_properties['unit_price']                      = array(
 			'description' => __( 'Unit Price', 'woocommerce-germanized' ),
 			'type'        => 'object',
 			'context'     => array( 'view', 'edit' ),
@@ -243,23 +243,23 @@ class WC_GZD_REST_Products_Controller {
 				),
 			),
 		);
-		$schema_properties['mini_desc']                    = array(
+		$schema_properties['mini_desc']                       = array(
 			'description' => __( 'Small Cart Product Description', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['defect_description']           = array(
+		$schema_properties['defect_description']              = array(
 			'description' => __( 'Defect Description', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['free_shipping']                = array(
+		$schema_properties['free_shipping']                   = array(
 			'description' => __( 'Deactivate the hint for additional shipping costs', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['safety_attachment_ids']        = array(
+		$schema_properties['safety_attachment_ids']           = array(
 			'description' => __( 'Safety attachment ids', 'woocommerce-germanized' ),
 			'type'        => 'array',
 			'context'     => array( 'view', 'edit' ),
@@ -267,84 +267,84 @@ class WC_GZD_REST_Products_Controller {
 				'type' => 'integer',
 			),
 		);
-		$schema_properties['min_age']                      = array(
+		$schema_properties['min_age']                         = array(
 			'description' => __( 'Age verification minimum age.', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'enum'        => array_merge( array( '' ), array_map( 'strval', array_keys( wc_gzd_get_age_verification_min_ages() ) ) ),
 			'default'     => '',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['warranty_attachment_id']       = array(
+		$schema_properties['warranty_attachment_id']          = array(
 			'description' => __( 'Warranty attachment id (PDF)', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'default'     => '',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['gtin']                         = array(
+		$schema_properties['gtin']                            = array(
 			'description' => __( 'GTIN', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'default'     => '',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['mpn']                          = array(
+		$schema_properties['mpn']                             = array(
 			'description' => __( 'MPN', 'woocommerce-germanized' ),
 			'type'        => 'string',
 			'default'     => '',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['service']                      = array(
+		$schema_properties['service']                         = array(
 			'description' => __( 'Whether this product is a service or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['used_good']                    = array(
+		$schema_properties['used_good']                       = array(
 			'description' => __( 'Whether this product is a used good or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['defective_copy']               = array(
+		$schema_properties['defective_copy']                  = array(
 			'description' => __( 'Whether this product is a defective copy or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['wireless_electronic_device']   = array(
+		$schema_properties['wireless_electronic_device']      = array(
 			'description' => __( 'Whether this product is a wireless electronic device or not.', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['device_contains_power_supply'] = array(
+		$schema_properties['device_contains_power_supply']    = array(
 			'description' => __( 'Whether this electronic device contains a power supply or not.', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['device_supports_usb_pd']       = array(
+		$schema_properties['device_charging_supports_usb_pd'] = array(
 			'description' => __( 'Whether this electronic device supports the fast charging protocol USB Power Delivery.', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['device_watt_min']              = array(
+		$schema_properties['device_charging_watt_min']        = array(
 			'description' => __( 'Minimum power for charging the device.', 'woocommerce-germanized' ),
 			'type'        => 'integer',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['device_watt_max']              = array(
+		$schema_properties['device_charging_watt_max']        = array(
 			'description' => __( 'Power necessary to reach the maximum charging speed of the device.', 'woocommerce-germanized' ),
 			'type'        => 'integer',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['photovoltaic_system']          = array(
+		$schema_properties['photovoltaic_system']             = array(
 			'description' => __( 'Whether this product is a photovoltaic system or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['differential_taxation']        = array(
+		$schema_properties['differential_taxation']           = array(
 			'description' => __( 'Whether this product applies for differential taxation or not', 'woocommerce-germanized' ),
 			'type'        => 'boolean',
 			'default'     => false,
@@ -605,12 +605,12 @@ class WC_GZD_REST_Products_Controller {
 				),
 			),
 		);
-		$schema_properties['variations']['items']['properties']['device_watt_min']          = array(
+		$schema_properties['variations']['items']['properties']['device_charging_watt_min'] = array(
 			'description' => __( 'Minimum power for charging the device.', 'woocommerce-germanized' ),
 			'type'        => 'integer',
 			'context'     => array( 'view', 'edit' ),
 		);
-		$schema_properties['variations']['items']['properties']['device_watt_max']          = array(
+		$schema_properties['variations']['items']['properties']['device_charging_watt_max'] = array(
 			'description' => __( 'Power necessary to reach the maximum charging speed of the device.', 'woocommerce-germanized' ),
 			'type'        => 'integer',
 			'context'     => array( 'view', 'edit' ),
@@ -893,12 +893,12 @@ class WC_GZD_REST_Products_Controller {
 			$data['_mpn'] = wc_clean( $request['mpn'] );
 		}
 
-		if ( isset( $request['device_watt_min'] ) ) {
-			$data['_device_watt_min'] = wc_clean( $request['device_watt_min'] );
+		if ( isset( $request['device_charging_watt_min'] ) ) {
+			$data['_device_charging_watt_min'] = wc_clean( $request['device_charging_watt_min'] );
 		}
 
-		if ( isset( $request['device_watt_max'] ) ) {
-			$data['_device_watt_max'] = wc_clean( $request['device_watt_max'] );
+		if ( isset( $request['device_charging_watt_max'] ) ) {
+			$data['_device_charging_watt_max'] = wc_clean( $request['device_charging_watt_max'] );
 		}
 
 		/**
@@ -937,7 +937,7 @@ class WC_GZD_REST_Products_Controller {
 			'photovoltaic_system',
 			'wireless_electronic_device',
 			'device_contains_power_supply',
-			'device_supports_usb_pd',
+			'device_charging_supports_usb_pd',
 		);
 
 		foreach ( $bool_meta_fields as $bool_meta ) {
@@ -1155,11 +1155,11 @@ class WC_GZD_REST_Products_Controller {
 		$data['free_shipping'] = $gzd_product->has_free_shipping( $context );
 
 		// Wireless electronic devices
-		$data['wireless_electronic_device']   = $gzd_product->is_wireless_electronic_device( $context );
-		$data['device_contains_power_supply'] = $gzd_product->device_contains_power_supply( $context );
-		$data['device_supports_usb_pd']       = $gzd_product->device_supports_usb_pd( $context );
-		$data['device_watt_min']              = $gzd_product->get_device_watt_min( $context );
-		$data['device_watt_max']              = $gzd_product->get_device_watt_max( $context );
+		$data['wireless_electronic_device']      = $gzd_product->is_wireless_electronic_device( $context );
+		$data['device_contains_power_supply']    = $gzd_product->device_contains_power_supply( $context );
+		$data['device_charging_supports_usb_pd'] = $gzd_product->device_charging_supports_usb_pd( $context );
+		$data['device_charging_watt_min']        = $gzd_product->get_device_charging_watt_min( $context );
+		$data['device_charging_watt_max']        = $gzd_product->get_device_charging_watt_max( $context );
 
 		// Is service?
 		$data['service'] = $gzd_product->is_service( $context );
