@@ -1,0 +1,785 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://oneclickforrefund.dpag.de" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://oneclickforrefund.dpag.de">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://oneclickforrefund.dpag.de" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" elementFormDefault="qualified" targetNamespace="http://oneclickforrefund.dpag.de">
+      
+  <xs:simpleType name="UserToken">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Benutzerkennung</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:restriction base="xs:string"/>
+      
+  </xs:simpleType>
+      
+  <xs:simpleType name="ShopOrderId">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Die Bestellnummer des Shops.</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:restriction base="xs:string">
+          
+      <xs:minLength value="1"/>
+          
+      <xs:maxLength value="18"/>
+        
+    </xs:restriction>
+      
+  </xs:simpleType>
+      
+  <xs:simpleType name="ShopRetoureId">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Die Shop Retoure ID.</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:restriction base="xs:string">
+          
+      <xs:minLength value="1"/>
+          
+      <xs:maxLength value="18"/>
+        
+    </xs:restriction>
+      
+  </xs:simpleType>
+      
+  <xs:simpleType name="AuthenticateUserErrorCodes">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Definiert eine feste Liste von ErrorCodes die fachlichen Fehlern bei der Prüfung des Warenkorbs auf den Systemen der PC-Frankierung entsprechen.</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:restriction base="xs:string">
+          
+      <xs:enumeration value="unkownUser"/>
+          
+      <xs:enumeration value="invalidUser"/>
+        
+    </xs:restriction>
+      
+  </xs:simpleType>
+      
+  <xs:simpleType name="CreateRetoureIdErrorCodes">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Definiert eine feste Liste von ErrorCodes die fachlichen Fehlern beim generieren einer RetoureId entsprechen.</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:restriction base="xs:string">
+          
+      <xs:enumeration value="unknownUserId"/>
+        
+    </xs:restriction>
+      
+  </xs:simpleType>
+      
+  <xs:simpleType name="RetoureVoucherErrorCodes">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Definiert eine feste Liste von ErrorCodes die fachlichen Fehlern beim Einstellen und Abfragen von Retouren des Frankierbackends entsprechen.</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:restriction base="xs:string">
+          
+      <xs:enumeration value="unknownShopOrderId"/>
+          
+      <xs:enumeration value="unknownVoucherNo"/>
+          
+      <xs:enumeration value="invalidShopOrderId"/>
+          
+      <xs:enumeration value="invalidShopVoucherNo"/>
+          
+      <xs:enumeration value="invalidVoucherNo"/>
+          
+      <xs:enumeration value="wrongDateFormat"/>
+          
+      <xs:enumeration value="unknownShopRetoureId"/>
+          
+      <xs:enumeration value="invalidRetoureId"/>
+          
+      <xs:enumeration value="invalidUser"/>
+          
+      <xs:enumeration value="emptyRetoure"/>
+          
+      <xs:enumeration value="unkownUser"/>
+          
+      <xs:enumeration value="retourePeriodExceeded"/>
+        
+    </xs:restriction>
+      
+  </xs:simpleType>
+      
+  <xs:complexType name="AuthenticateUserRequestType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Struktur um einen Benutzeraccount zu verifizieren</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element name="username" type="xs:string">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Benutzername (Email) des IM-Benutzers.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element name="password" type="xs:string">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Passwort, das bei der Registrierung des IM-Benutzers vergeben wurde.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="AuthenticateUserResponseType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Struktur mit Benutzer und Wallet Information</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element name="userToken" type="tns:UserToken">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Token zur Benutzer Indentifizierung</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="AuthenticateUserException">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Definiert eine einzelne Fehlermeldung bei der Benutzerauthentifizierung</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element name="id" type="tns:AuthenticateUserErrorCodes"/>
+          
+      <xs:element name="message" type="xs:string"/>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="CreateRetoureIdException">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Definiert die Fehlermeldung bei fachlichen Fehlern bei der Generierung einer RetoureId</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element name="message" type="xs:string"/>
+          
+      <xs:element maxOccurs="unbounded" name="errors" type="tns:CreateRetoureIdErrorCodes"/>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="RetrieveRetoureStateRequestType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Anfrage zur Abfrage des Status bei eingereichten Retouren</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element name="userToken" type="tns:UserToken">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Eindeutige Benutzerkennung</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element minOccurs="0" name="startDate" type="xs:string"/>
+          
+      <xs:element minOccurs="0" name="endDate" type="xs:string"/>
+          
+      <xs:element minOccurs="0" name="retoureTransactionId" type="xs:int"/>
+          
+      <xs:element minOccurs="0" name="shopRetoureId" type="tns:ShopRetoureId"/>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="RetrieveRetoureStateResponseType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Antwort der Abfrage des Status bei eingereichten Retouren</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="retoureState" type="tns:RetoureStateType"/>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="RetoureStateType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Beschreibt den Bearbeitungsstatus einer Retoure.</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element name="retoureTransactionId" type="xs:int">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Transaktionsnummer f?r die Retoure im Frankierbackend.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element name="shopRetoureId" type="tns:ShopRetoureId">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Vom Shop zu vergebende Id f?r die Retoure.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element name="totalCount" type="xs:int">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Anzahl der Frankierungen, die mit dieser Retouretransaktion bearbeitet werden.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element name="countStillOpen" type="xs:int">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Anzahl der noch nicht bearbeiteten Frankierungen. ZINS R?ckmeldung ist hier noch nicht eingetroffen.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element name="retourePrice" type="xs:int">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Gesamtwert der best?tigten Retouren.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element name="creationDate" type="xs:string">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Zeitpunkt, zu dem die Retoure eingestellt wurde.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element name="serialnumber" type="xs:string">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Seriennummer der Safebox (FrankierAccountId)</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element name="refundedVouchers" type="tns:VoucherList">
+            
+        <xs:annotation>
+              
+          <xs:documentation>FrankierIDs der erfolgreich retournierten Frankierungen</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element name="notRefundedVouchers" type="tns:VoucherList">
+            
+        <xs:annotation>
+              
+          <xs:documentation>FrankierIDs der nicht erfolgreich retournierten Frankierungen</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="VoucherList">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Liste von FrankierIds</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="voucher" type="tns:VoucherType"/>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="VoucherType">
+        
+    <xs:sequence>
+          
+      <xs:element name="voucherId" type="xs:string"/>
+          
+      <xs:element maxOccurs="1" minOccurs="0" name="trackId" type="xs:string"/>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="RetoureVouchersRequestType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Anfrage zum Einstellen von Retouren</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element name="userToken" type="tns:UserToken">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Eindeutige Benutzerkennung</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element name="shopRetoureId" type="tns:ShopRetoureId">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Vom Shop zu vergebende Id f?r die Retoure.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element name="shoppingCart" type="tns:ShoppingCartType">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Ein gesamter Warenkorb.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="ShoppingCartType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Einstellen von Retouren eines kompletten Warenkorbs.</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element minOccurs="0" name="shopOrderId" type="tns:ShopOrderId">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Bestellnummer des Shops.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+          
+      <xs:element minOccurs="0" name="voucherSet" type="tns:VoucherSetType">
+            
+        <xs:annotation>
+              
+          <xs:documentation>Zu erstattende Frankierungen.</xs:documentation>
+            
+        </xs:annotation>
+          
+      </xs:element>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="VoucherSetType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Einstellen von Retouren f?r einzelne Voucher einer Bestellung.</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element maxOccurs="unbounded" name="voucherNo" type="xs:string"/>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="RetoureVouchersResponseType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Antwort beim Einstellen von Retouren</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element name="retoureTransactionId" type="xs:int"/>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="RetoureVoucherException">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Diese Fehlermeldung signalisiert einen fachlichen Fehler im Voucher Retoure Management.</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element name="message" type="xs:string"/>
+          
+      <xs:element maxOccurs="unbounded" name="errors" type="tns:RetoureVoucherErrorInfo"/>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:complexType name="RetoureVoucherErrorInfo">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Definiert eine einzelne Fehlermeldung  beim Einstellen und Abfragen von Retouren</xs:documentation>
+        
+    </xs:annotation>
+        
+    <xs:sequence>
+          
+      <xs:element name="id" type="tns:RetoureVoucherErrorCodes"/>
+          
+      <xs:element name="message" type="xs:string"/>
+        
+    </xs:sequence>
+      
+  </xs:complexType>
+      
+  <xs:element name="AuthenticateUserRequest" type="tns:AuthenticateUserRequestType"/>
+      
+  <xs:element name="AuthenticateUserResponse" type="tns:AuthenticateUserResponseType"/>
+      
+  <xs:element name="AuthenticateUserException" type="tns:AuthenticateUserException">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Die Fehlermeldung bei der Validierung des Benutzers auftritt</xs:documentation>
+        
+    </xs:annotation>
+      
+  </xs:element>
+      
+  <xs:element name="shopRetoureId" type="tns:ShopRetoureId">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Retoure Id des Shops.</xs:documentation>
+        
+    </xs:annotation>
+      
+  </xs:element>
+      
+  <xs:element name="CreateRetoureIdException" type="tns:CreateRetoureIdException">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Die Fehlermeldung bei der Generierung einer RetoureId besteht aus einer Liste von Einzelfehlern
+					</xs:documentation>
+        
+    </xs:annotation>
+      
+  </xs:element>
+      
+  <xs:element name="CreateRetoureIdRequest">
+            </xs:element>
+      
+  <xs:element name="CreateRetoureIdResponse">
+        
+    <xs:complexType>
+          
+      <xs:sequence>
+            
+        <xs:element name="shopRetoureId" type="tns:ShopRetoureId"/>
+          
+      </xs:sequence>
+        
+    </xs:complexType>
+      
+  </xs:element>
+      
+  <xs:element name="RetrieveRetoureStateRequest" type="tns:RetrieveRetoureStateRequestType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Anfragenachricht der Serviceoperation</xs:documentation>
+        
+    </xs:annotation>
+      
+  </xs:element>
+      
+  <xs:element name="RetrieveRetoureStateResponse" type="tns:RetrieveRetoureStateResponseType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Antwortnacht der Serviceoperation</xs:documentation>
+        
+    </xs:annotation>
+      
+  </xs:element>
+      
+  <xs:element name="RetoureVouchersRequest" type="tns:RetoureVouchersRequestType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Anfragenachricht der Serviceoperation</xs:documentation>
+        
+    </xs:annotation>
+      
+  </xs:element>
+      
+  <xs:element name="RetoureVouchersResponse" type="tns:RetoureVouchersResponseType">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Antwortnacht der Serviceoperation</xs:documentation>
+        
+    </xs:annotation>
+      
+  </xs:element>
+      
+  <xs:element name="RetoureVoucherException" type="tns:RetoureVoucherException">
+        
+    <xs:annotation>
+          
+      <xs:documentation>Diese Fehlermeldung signalisiert einen fachlichen Fehler im Voucher Retoure Management.</xs:documentation>
+        
+    </xs:annotation>
+      
+  </xs:element>
+    
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="AuthenticateUserRequest">
+    <wsdl:part element="tns:AuthenticateUserRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CreateRetoureIdException">
+    <wsdl:part element="tns:CreateRetoureIdException" name="CreateRetoureIdException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createRetoureIdRequest">
+    <wsdl:part element="tns:CreateRetoureIdRequest" name="createRetoureIdRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createRetoureIdResponse">
+    <wsdl:part element="tns:CreateRetoureIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RetoureVouchersRequest">
+    <wsdl:part element="tns:RetoureVouchersRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RetoureVouchersResponse">
+    <wsdl:part element="tns:RetoureVouchersResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserFault">
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserException">
+    <wsdl:part element="tns:AuthenticateUserException" name="AuthenticateUserException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RetoureVoucherException">
+    <wsdl:part element="tns:RetoureVoucherException" name="RetoureVoucherException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RetrieveRetoureStateRequest">
+    <wsdl:part element="tns:RetrieveRetoureStateRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserResponse">
+    <wsdl:part element="tns:AuthenticateUserResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RetrieveRetoureStateResponse">
+    <wsdl:part element="tns:RetrieveRetoureStateResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="OneClickForRefundPortType">
+    <wsdl:operation name="authenticateUser">
+      <wsdl:input message="tns:AuthenticateUserRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:AuthenticateUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AuthenticateUserException" name="AuthenticateUserException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createRetoureId">
+      <wsdl:input message="tns:createRetoureIdRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:createRetoureIdResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:CreateRetoureIdException" name="CreateRetoureIdException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveRetoureState">
+      <wsdl:input message="tns:RetrieveRetoureStateRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:RetrieveRetoureStateResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RetoureVoucherException" name="RetoureVoucherException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="retoureVouchers">
+      <wsdl:input message="tns:RetoureVouchersRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:RetoureVouchersResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:RetoureVoucherException" name="RetoureVoucherException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OneClickForRefundBinding" type="tns:OneClickForRefundPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="authenticateUser">
+      <soap:operation soapAction=" " style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthenticateUserException">
+        <soap:fault name="AuthenticateUserException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createRetoureId">
+      <soap:operation soapAction=" " style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CreateRetoureIdException">
+        <soap:fault name="CreateRetoureIdException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveRetoureState">
+      <soap:operation soapAction=" " style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RetoureVoucherException">
+        <soap:fault name="RetoureVoucherException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="retoureVouchers">
+      <soap:operation soapAction=" " style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RetoureVoucherException">
+        <soap:fault name="RetoureVoucherException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OneClickForRefundService">
+    <wsdl:port binding="tns:OneClickForRefundBinding" name="OneClickForRefundPort">
+      <soap:address location="https://internetmarke.deutschepost.de/OneClickForRefund/OneClickForRefundService/OneClickForRefundEJB"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
