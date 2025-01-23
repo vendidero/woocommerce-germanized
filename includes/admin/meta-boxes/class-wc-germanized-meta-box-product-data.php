@@ -1552,12 +1552,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		if ( isset( $data['_gtin'] ) ) {
 			$gzd_product->set_gtin( wc_clean( $data['_gtin'] ) );
-
 		}
 
 		if ( isset( $data['_mpn'] ) ) {
 			$gzd_product->set_mpn( wc_clean( $data['_mpn'] ) );
-
 		}
 
 		self::save_delivery_times( $gzd_product, $data );
@@ -1585,8 +1583,14 @@ class WC_Germanized_Meta_Box_Product_Data {
 		$gzd_product->set_wireless_electronic_device( isset( $data['_wireless_electronic_device'] ) ? 'yes' : 'no' );
 		$gzd_product->set_device_contains_power_supply( isset( $data['_device_contains_power_supply'] ) ? 'yes' : 'no' );
 		$gzd_product->set_device_charging_supports_usb_pd( isset( $data['_device_charging_supports_usb_pd'] ) ? 'yes' : 'no' );
-		$gzd_product->set_device_charging_watt_min( wc_clean( $data['_device_charging_watt_min'] ) );
-		$gzd_product->set_device_charging_watt_max( wc_clean( $data['_device_charging_watt_max'] ) );
+
+		if ( isset( $data['_device_charging_watt_min'] ) ) {
+			$gzd_product->set_device_charging_watt_min( wc_clean( $data['_device_charging_watt_min'] ) );
+		}
+
+		if ( isset( $data['_device_charging_watt_max'] ) ) {
+			$gzd_product->set_device_charging_watt_max( wc_clean( $data['_device_charging_watt_max'] ) );
+		}
 
 		// Is food?
 		$gzd_product->set_is_food( isset( $data['_is_food'] ) ? 'yes' : 'no' );
