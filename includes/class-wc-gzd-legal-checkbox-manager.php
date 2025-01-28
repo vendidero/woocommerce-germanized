@@ -851,7 +851,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 			$visible = ! empty( $_POST[ $checkbox->get_html_name() . '-field' ] ) ? true : false; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 			if ( $visible && ! $checkbox->validate( $value, 'checkout' ) ) {
-				$errors->add( 'checkbox', $checkbox->get_error_message(), array( 'id' => $checkbox->get_html_id() ) );
+				$errors->add( $checkbox->get_html_name(), $checkbox->get_error_message(), array( 'id' => $checkbox->get_html_id() ) );
 			}
 		}
 	}

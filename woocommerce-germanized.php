@@ -322,6 +322,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			add_filter( 'woocommerce_product_get_global_unique_id', array( $this, 'add_gtin_fallback' ), 10, 2 );
 			add_filter( 'woocommerce_product_variation_get_global_unique_id', array( $this, 'add_gtin_fallback' ), 10, 2 );
 
+			add_action( 'change_locale', array( $this, 'on_change_locale' ) );
+
 			// Payment gateways
 			add_filter( 'woocommerce_payment_gateways', array( $this, 'register_gateways' ) );
 
@@ -336,6 +338,14 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			 * @since 1.0.0
 			 */
 			do_action( 'woocommerce_germanized_init' );
+		}
+
+		public function on_change_locale() {
+			if ( function_exists( 'WC' ) ) {
+				WC()->countries = null;
+			}
+
+			WC_GZD_Post_Types::register_taxonomies();
 		}
 
 		protected function check_corona_notice() {
@@ -918,6 +928,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			$locale = apply_filters( 'plugin_locale', $locale, 'woocommerce-germanized' );
 
+			unload_textdomain( 'woocommerce-germanized', true );
 			load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
 			load_plugin_textdomain( 'woocommerce-germanized', false, plugin_basename( __DIR__ ) . '/i18n/languages/' );
 		}
