@@ -147,10 +147,6 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	 * @return string
 	 */
 	public function get_unit_price_html( $price = '', $tax_display = '' ) {
-		if ( get_option( 'woocommerce_gzd_unit_price_enable_variable' ) === 'no' ) {
-			return '';
-		}
-
 		if ( $this->has_unit() ) {
 			/**
 			 * Before retrieving unit price HTML.
@@ -164,6 +160,7 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			 */
 			do_action( 'woocommerce_gzd_before_get_unit_price_html', $this );
 
+			$has_from_to   = false;
 			$prices        = $this->get_variation_unit_prices( true, $tax_display );
 			$min_price     = current( $prices['price'] );
 			$max_price     = end( $prices['price'] );
@@ -171,7 +168,8 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			$max_reg_price = end( $prices['regular_price'] );
 
 			if ( $min_price !== $max_price ) {
-				$price = woocommerce_gzd_format_unit_price_range( $min_price, $max_price );
+				$price       = woocommerce_gzd_format_unit_price_range( $min_price, $max_price );
+				$has_from_to = true;
 			} elseif ( $this->get_wc_product()->is_on_sale() && $min_reg_price === $max_reg_price ) {
 				$price = wc_format_sale_price( wc_price( $max_reg_price ), wc_price( $min_price ) );
 			} else {
@@ -190,6 +188,19 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			 */
 			$price = apply_filters( 'woocommerce_gzd_variable_unit_price_html', $price, $this );
 			$price = wc_gzd_format_unit_price( $price, $this->get_unit_html(), $this->get_unit_base_html(), wc_gzd_format_product_units_decimal( $this->get_unit_product() ) );
+
+			/**
+			 * Filter to adjust whether to hide from-to unit prices or not.
+			 *
+			 * @param bool $hide_unit_price Whether to hide the unit price or not.
+			 * @param string $price The price.
+			 * @param WC_GZD_Product_Variable $product The product object.
+			 *
+			 * @since 3.18.8
+			 */
+			if ( apply_filters( 'woocommerce_gzd_variable_disable_unit_price_from_to', ( get_option( 'woocommerce_gzd_unit_price_enable_variable' ) === 'no' && $has_from_to ), $price, $this ) ) {
+				$price = '';
+			}
 		}
 
 		/** This filter is documented in includes/abstract/abstract-wc-gzd-product.php */
