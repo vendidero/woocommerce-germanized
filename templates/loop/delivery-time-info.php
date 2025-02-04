@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.16.10
+ * @version 3.17.8
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,5 +22,5 @@ global $product;
 ?>
 
 <?php if ( wc_gzd_get_gzd_product( $product )->get_delivery_time_html() ) : ?>
-	<p class="wc-gzd-additional-info delivery-time-info wc-gzd-additional-info-loop <?php echo esc_attr( wc_gzd_get_product_delivery_time_classname( $product ) ); ?>"><?php echo wp_kses_post( wc_gzd_get_product( $product )->get_delivery_time_html() ); ?></p>
+	<p class="wc-gzd-additional-info delivery-time-info wc-gzd-additional-info-loop"><?php echo wp_kses_post( wc_gzd_get_product( $product )->get_delivery_time_html() ); ?></p>
 <?php endif; ?>

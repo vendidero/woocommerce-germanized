@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.0.2
+ * @version 3.18.8
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -26,5 +26,5 @@ global $product;
 <?php elseif ( wc_gzd_is_small_business() ) : ?>
 	<p class="wc-gzd-additional-info small-business-info"><?php echo wp_kses_post( wc_gzd_get_small_business_product_notice() ); ?></p>
 <?php elseif ( $product->is_type( 'variable' ) ) : ?>
-	<p class="wc-gzd-additional-info tax-info wc-gzd-additional-info-placeholder"></p>
+	<p class="wc-gzd-additional-info tax-info wc-gzd-additional-info-placeholder" aria-hidden="true"></p>
 <?php endif; ?>

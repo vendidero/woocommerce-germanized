@@ -2237,15 +2237,18 @@ class WC_GZD_Product {
 		}
 
 		if ( ! empty( $html ) ) {
-			$delivery_time_str = get_option( 'woocommerce_gzd_delivery_time_text' );
+			$delivery_time_str   = get_option( 'woocommerce_gzd_delivery_time_text' );
+			$delivery_time_class = apply_filters( 'woocommerce_gzd_product_delivery_time_classname', 'delivery-time-' . strtolower( sanitize_html_class( preg_replace( '#[ -]+#', '-', trim( $html ) ) ) ), $this );
 
 			$replacements = array(
-				'{delivery_time}' => $html,
+				'{delivery_time}' => '<span class="delivery-time-data">' . $html . '</span>',
 			);
 
 			if ( strstr( $delivery_time_str, '{stock_status}' ) ) {
 				$replacements['{stock_status}'] = str_replace( array( '<p ', '</p>' ), array( '<span ', '</span>' ), wc_get_stock_html( $this->child ) );
 			}
+
+			$delivery_time_html = '<span class="delivery-time-inner ' . esc_attr( $delivery_time_class ) . '">' . wc_gzd_replace_label_shortcodes( $delivery_time_str, $replacements ) . '</span>';
 
 			/**
 			 * Filter to adjust product delivery time HTML.
@@ -2260,7 +2263,7 @@ class WC_GZD_Product {
 			 */
 			$html = apply_filters(
 				'woocommerce_germanized_delivery_time_html',
-				wc_gzd_replace_label_shortcodes( $delivery_time_str, $replacements ),
+				$delivery_time_html,
 				$delivery_time_str,
 				$html,
 				$this

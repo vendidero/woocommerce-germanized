@@ -486,5 +486,5 @@ function wc_gzd_get_product_delivery_time_classname( $product ) {
 	$delivery_time_str = str_replace( str_replace( '{delivery_time}', '', get_option( 'woocommerce_gzd_delivery_time_text' ) ), '', $delivery_time );
 	$classname         = strtolower( sanitize_html_class( preg_replace( '#[ -]+#', '-', trim( $delivery_time_str ) ) ) );
 
-	return apply_filters( 'woocommerce_gzd_product_delivery_time_classname', $classname, $product );
+	return apply_filters( 'woocommerce_gzd_product_delivery_time_classname', "delivery-time-{$classname}", $product );
 }

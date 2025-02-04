@@ -73,6 +73,10 @@
   .wc-block-checkout.is-small {
     flex-direction: column-reverse !important;
 
+    .checkout-order-summary-block-fill-wrapper {
+      display: none;
+    }
+
     .wp-block-woocommerce-checkout-order-summary-block {
       .wc-block-components-checkout-order-summary__title {
         .wc-block-components-checkout-order-summary__title-icon {

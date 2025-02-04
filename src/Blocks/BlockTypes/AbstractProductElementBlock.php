@@ -125,19 +125,23 @@ abstract class AbstractProductElementBlock extends AbstractBlock {
 			$inner_classes                .= ' ' . $this->get_additional_classes( $attributes, $product );
 			$html                          = $this->get_label_content( $product );
 			$block_classes                 = 'wp-block-woocommerce-gzd-product-price-label wp-block-woocommerce-gzd-product-' . $this->get_label_type_class() . ' ' . ( isset( $margin_styles_and_classes['class'] ) ? $margin_styles_and_classes['class'] : '' );
+			$is_hidden                     = false;
 
 			if ( ! $html && $product->is_type( 'variable' ) ) {
+				$is_hidden      = true;
 				$inner_classes .= ' wc-gzd-additional-info-placeholder';
 			}
 
 			if ( ! $html ) {
+				$is_hidden      = true;
 				$block_classes .= ' wp-block-woocommerce-gzd-product-is-empty';
 			}
 
 			return sprintf(
-				'<div class="%1$s" style="%2$s"><div class="%3$s" style="%4$s">%5$s</div></div>',
+				'<div class="%1$s" style="%2$s" aria-hidden="%3$s"><div class="%4$s" style="%5$s">%6$s</div></div>',
 				esc_attr( trim( $block_classes ) ),
 				esc_attr( isset( $margin_styles_and_classes['style'] ) ? $margin_styles_and_classes['style'] : '' ),
+				esc_attr( $is_hidden ? 'true' : 'false' ),
 				esc_attr( trim( $inner_classes ) ),
 				esc_attr( isset( $styles_and_classes['styles'] ) ? $styles_and_classes['styles'] : '' ),
 				wc_gzd_kses_post_svg( $html )

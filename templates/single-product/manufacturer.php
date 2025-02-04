@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.18.0
+ * @version 3.18.8
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -31,8 +31,8 @@ global $product;
 	</div>
 <?php elseif ( $product->is_type( 'variable' ) ) : ?>
 	<?php if ( isset( $print_title ) && $print_title ) : ?>
-		<h3 class="wc-gzd-product-manufacturer-heading wc-gzd-additional-info-placeholder"></h3>
+		<h3 class="wc-gzd-product-manufacturer-heading wc-gzd-additional-info-placeholder" aria-hidden="true"></h3>
 	<?php endif; ?>
 
-	<div class="wc-gzd-additional-info manufacturer wc-gzd-additional-info-placeholder"></div>
+	<div class="wc-gzd-additional-info manufacturer wc-gzd-additional-info-placeholder" aria-hidden="true"></div>
 <?php endif; ?>

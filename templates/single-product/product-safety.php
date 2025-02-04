@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.18.5
+ * @version 3.18.8
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -30,7 +30,7 @@ $heading = apply_filters( 'woocommerce_gzd_product_safety_heading', __( 'Product
 	<?php do_action( 'woocommerce_gzd_single_product_safety_information' ); ?>
 <?php elseif ( $product->is_type( 'variable' ) ) : ?>
 	<?php if ( isset( $print_title ) && $print_title && $heading ) : ?>
-		<h2 class="wc-gzd-product-safety-heading wc-tab wc-gzd-additional-info-placeholder"></h2>
+		<h2 class="wc-gzd-product-safety-heading wc-tab wc-gzd-additional-info-placeholder" aria-hidden="true"></h2>
 	<?php endif; ?>
 
 	<?php do_action( 'woocommerce_gzd_single_product_safety_information' ); ?>
