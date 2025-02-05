@@ -169,7 +169,11 @@ install_deps() {
 
     WORKING_DIR="$PWD"
 
-    git clone --branch $BRANCH --depth 1 "https://github.com/woocommerce/woocommerce.git" "$TMPDIR/woocommerce-git"
+    LAST_RELEASE_TAG=$(git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' https://github.com/woocommerce/woocommerce.git [0-9].[0-9].[0-9] | tail -1)
+    LAST_TAG_NAME=$(echo $LAST_RELEASE_TAG | sed 's/.* //')
+    LAST_TAG_VERSION=$(echo $LAST_TAG_NAME | grep -o '[0-9]\.[0-9]\.[0-9]$')
+
+    git clone --branch $LAST_TAG_VERSION --depth 1 "https://github.com/woocommerce/woocommerce.git" "$TMPDIR/woocommerce-git"
     mv "$TMPDIR/woocommerce-git/plugins/woocommerce/tests" "$WP_CORE_DIR/wp-content/plugins/woocommerce"
 }
 
