@@ -262,12 +262,14 @@
     cursor: move;
   }
 
-  .forminp-radio fieldset p {
-    margin-bottom: 1em;
+  table.form-table tr {
+    th.titledesc-image {
+      padding-right: 0 !important;
+    }
   }
 
-  th.forminp-image {
-    padding-right: 0 !important;
+  .forminp-radio fieldset p {
+    margin-bottom: 1em;
   }
 
   &.wc-gzd-admin-settings-germanized-emails-attachments,
@@ -276,12 +278,12 @@
   &.wc-gzd-admin-settings-multistep_checkout,
   &.wc-gzd-admin-settings-terms_generator,
   &.wc-gzd-admin-settings-revocation_generator {
-    th.forminp-image {
+    th.titledesc-image {
       padding-top: 0;
     }
   }
 
-  .wc-gzd-premium img, .forminp-image img {
+  .wc-gzd-premium img, .titledesc-image img {
     max-width: 100%;
     height: auto;
     opacity: 0.7;
@@ -291,10 +293,6 @@
     img {
       max-width: 100%;
     }
-  }
-
-  .woocommerce table.form-table th.forminp-image {
-    padding-right: 0;
   }
 
   tr.single_select_page .description {

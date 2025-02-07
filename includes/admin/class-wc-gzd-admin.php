@@ -326,7 +326,7 @@ class WC_GZD_Admin {
 	public function image_field( $value ) {
 		?>
 		<tr valign="top">
-			<th class="forminp forminp-image" colspan="2" id="<?php echo esc_attr( $value['id'] ); ?>">
+			<th scope="row" class="titledesc titledesc-image" colspan="2" id="<?php echo esc_attr( $value['id'] ); ?>">
 				<a href="<?php echo esc_url( $value['href'] ); ?>" target="_blank"><img src="<?php echo esc_url( $value['img'] ); ?>"/></a>
 			</th>
 		</tr>
@@ -344,10 +344,10 @@ class WC_GZD_Admin {
 
 		?>
 		<tr valign="top">
-			<th class="forminp forminp-html" id="<?php echo esc_attr( $value['id'] ); ?>">
+			<th scope="row" class="titledesc titledesc-html" id="<?php echo esc_attr( $value['id'] ); ?>">
 				<label><?php echo esc_attr( $value['title'] ); ?><?php echo( isset( $value['desc_tip'] ) && ! empty( $value['desc_tip'] ) ? wc_help_tip( $value['desc_tip'] ) : '' ); ?></label>
 			</th>
-			<td class="forminp">
+			<td class="forminp forminp-html">
 				<?php echo wp_kses_post( $value['html'] ); ?>
 				<input
 					type="hidden"
@@ -369,8 +369,8 @@ class WC_GZD_Admin {
 	public function hidden_field( $value ) {
 		$option_value = WC_Admin_Settings::get_option( $value['id'], $value['default'] );
 		?>
-		<tr valign="top" style="display: none">
-			<th class="forminp forminp-image">
+		<tr valign="top" style="display: none" aria-hidden="true">
+			<th scope="row" class="titledesc titledesc-hidden">
 				<input type="hidden" id="<?php echo esc_attr( $value['id'] ); ?>" value="<?php echo esc_attr( $option_value ); ?>" name="<?php echo esc_attr( $value['id'] ); ?>"/>
 			</th>
 		</tr>
