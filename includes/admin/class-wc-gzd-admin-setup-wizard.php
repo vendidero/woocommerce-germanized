@@ -220,8 +220,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			} elseif ( 'shipping_provider' === $step ) {
 				$providers = array();
 
-				if ( class_exists( '\Vendidero\Germanized\Shipments\ShippingProvider\Helper' ) ) {
-					$helper       = \Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance();
+				if ( class_exists( '\Vendidero\Shiptastic\ShippingProvider\Helper' ) ) {
+					$helper       = \Vendidero\Shiptastic\ShippingProvider\Helper::instance();
 					$providers    = $helper->get_shipping_providers();
 					$integrations = $helper->get_available_shipping_provider_integrations( true );
 

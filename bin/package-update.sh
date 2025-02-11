@@ -29,27 +29,23 @@ output 2 "Done"
 output 3 "Updating package textdomains..."
 
 # Replace text domains within packages with woocommerce
-find ./packages/woocommerce-germanized-shipments -iname '*.php' -exec sed -i.bak -e "s/, 'woocommerce-germanized-shipments'/, 'woocommerce-germanized'/g" {} \;
-find ./packages/woocommerce-germanized-dhl -iname '*.php' -exec sed -i.bak -e "s/, 'woocommerce-germanized-dhl'/, 'woocommerce-germanized'/g" {} \;
+find ./packages/shiptastic-for-woocommerce -iname '*.php' -exec sed -i.bak -e "s/, 'shiptastic-for-woocommerce'/, 'woocommerce-germanized'/g" {} \;
 find ./packages/woocommerce-eu-tax-helper -iname '*.php' -exec sed -i.bak -e "s/, 'woocommerce-eu-tax-helper'/, 'woocommerce-germanized'/g" {} \;
 
 output 3 "Updating package JS textdomains..."
-find ./packages/woocommerce-germanized-dhl \( -iname '*.js' -o -iname '*.json' \) -exec sed -i.bak -e "s/'woocommerce-germanized-dhl'/'woocommerce-germanized'/g" -e "s/\"woocommerce-germanized-dhl\"/\"woocommerce-germanized\"/g" {} \;
-find ./packages/woocommerce-germanized-shipments \( -iname '*.js' -o -iname '*.json' \) -exec sed -i.bak -e "s/'woocommerce-germanized-shipments'/'woocommerce-germanized'/g" -e "s/\"woocommerce-germanized-shipments\"/\"woocommerce-germanized\"/g" {} \;
+find ./packages/shiptastic-for-woocommerce \( -iname '*.js' -o -iname '*.json' \) -exec sed -i.bak -e "s/'shiptastic-for-woocommerce'/'woocommerce-germanized'/g" -e "s/\"shiptastic-for-woocommerce\"/\"woocommerce-germanized\"/g" {} \;
 
 rm -rf ./i18n/languages/*.json
 
 if [ $COMPOSER_DEV_MODE -eq 0 ]; then
     output 3 "Removing POT files"
-    rm -f ./packages/woocommerce-germanized-dhl/i18n/woocommerce-germanized-dhl.pot
-    rm -f ./packages/woocommerce-germanized-shipments/i18n/woocommerce-germanized-shipments.pot
+    rm -f ./packages/shiptastic-for-woocommerce/i18n/shiptastic-for-woocommerce.pot
 fi
 
 output 3 "Patching libraries..."
 sed -i '' -e 's/get_class()/__CLASS__/g' ./vendor/baltpeter/internetmarke-php/src/baltpeter/Internetmarke/ApiResult.php
 
-rm -rf ./packages/woocommerce-germanized-shipments/vendor
-rm -rf ./packages/woocommerce-germanized-dhl/vendor
+rm -rf ./packages/shiptastic-for-woocommerce/vendor
 rm -rf ./packages/woocommerce-eu-tax-helper/vendor
 
 output 3 "Clean vendor dirs to save space..."

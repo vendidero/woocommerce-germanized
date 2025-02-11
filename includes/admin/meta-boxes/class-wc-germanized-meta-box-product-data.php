@@ -42,7 +42,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 		add_action( 'woocommerce_product_bulk_edit_end', array( __CLASS__, 'bulk_edit' ) );
 		add_action( 'woocommerce_product_bulk_edit_save', array( __CLASS__, 'bulk_save' ) );
 
-		add_action( 'woocommerce_product_quick_edit_end', array( __CLASS__, 'quick_edit' ) );
 		add_action( 'add_inline_data', array( __CLASS__, 'quick_edit_data' ), 10, 2 );
 		add_action( 'woocommerce_product_quick_edit_save', array( __CLASS__, 'quick_edit_save' ) );
 

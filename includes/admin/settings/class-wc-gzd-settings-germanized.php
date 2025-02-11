@@ -1,7 +1,5 @@
 <?php
 
-use Vendidero\Germanized\Shipments\Package;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -201,7 +199,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-revocation-generator.php';
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-trusted-shops.php';
 
-		if ( class_exists( '\Vendidero\Germanized\Shipments\Package' ) && Package::has_dependencies() ) {
+		if ( class_exists( '\Vendidero\Shiptastic\Package' ) && \Vendidero\Shiptastic\Package::has_dependencies() ) {
 			include_once __DIR__ . '/class-wc-gzd-settings-tab-shipments.php';
 		}
 

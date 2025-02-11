@@ -4,8 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-use Vendidero\Germanized\Shipments\Admin\Settings;
-
 /**
  * Adds Germanized Shipments settings.
  *
@@ -18,9 +16,9 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 	public function __construct() {
 		parent::__construct();
 
-		$this->id = 'shipments';
+		$this->id = 'shiptastic';
 
-		add_filter( 'woocommerce_gzd_shipments_settings_main_breadcrumb', array( $this, 'register_main_breadcrumb' ) );
+		add_filter( 'woocommerce_shiptastic_settings_main_breadcrumb', array( $this, 'register_main_breadcrumb' ) );
 	}
 
 	public function register_main_breadcrumb( $main_breadcrumb ) {
@@ -38,8 +36,8 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 	public function get_description() {
 		$description = __( 'Configure shipments and manage shipping providers.', 'woocommerce-germanized' );
 
-		if ( class_exists( '\Vendidero\Germanized\Shipments\ShippingProvider\Helper' ) ) {
-			$integrations  = \Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_available_shipping_provider_integrations();
+		if ( class_exists( '\Vendidero\Shiptastic\ShippingProvider\Helper' ) ) {
+			$integrations  = \Vendidero\Shiptastic\ShippingProvider\Helper::instance()->get_available_shipping_provider_integrations();
 			$provider_list = array();
 
 			foreach ( $integrations as $integration ) {
@@ -66,7 +64,7 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_name() {
-		return 'shipments';
+		return 'shiptastic';
 	}
 
 	public function get_help_link() {

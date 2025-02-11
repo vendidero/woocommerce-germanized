@@ -211,7 +211,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			 * Enable logging in packages during installation
 			 */
 			add_filter( 'woocommerce_gzd_dhl_enable_logging', '__return_true', 5 );
-			add_filter( 'woocommerce_gzd_shipments_enable_logging', '__return_true', 5 );
+			add_filter( 'woocommerce_shiptastic_enable_logging', '__return_true', 5 );
 			add_filter( 'oss_woocommerce_enable_extended_logging', '__return_true', 5 );
 
 			self::install_packages();
@@ -351,7 +351,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			if ( function_exists( 'as_unschedule_all_actions' ) ) {
 				$hooks = array(
-					'woocommerce_gzd_shipments_daily_cleanup',
+					'woocommerce_shiptastic_daily_cleanup',
 				);
 
 				foreach ( $hooks as $hook ) {

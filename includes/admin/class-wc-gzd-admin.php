@@ -212,16 +212,16 @@ class WC_GZD_Admin {
 			/**
 			 * Shipper country may be set to something different as the Woo base country
 			 */
-			if ( ! Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
-				update_option( 'woocommerce_gzd_shipments_shipper_address_country', get_option( 'woocommerce_default_country', 'DE:BE' ) );
+			if ( ! Vendidero\Shiptastic\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
+				update_option( 'woocommerce_shiptastic_shipper_address_country', get_option( 'woocommerce_default_country', 'DE:BE' ) );
 
-				if ( 'DE' === \Vendidero\Germanized\Shipments\Package::get_base_country() ) {
+				if ( 'DE' === \Vendidero\Shiptastic\Package::get_base_country() ) {
 					Vendidero\Germanized\DHL\Package::init();
-					Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->load_shipping_providers();
+					Vendidero\Shiptastic\ShippingProvider\Helper::instance()->load_shipping_providers();
 				}
 			}
 
-			if ( $shipping_provider = Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
+			if ( $shipping_provider = Vendidero\Shiptastic\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
 				$shipping_provider->activate();
 
 				deactivate_plugins( 'dhl-for-woocommerce/pr-dhl-woocommerce.php' );

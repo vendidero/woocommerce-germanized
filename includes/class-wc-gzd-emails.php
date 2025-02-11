@@ -270,7 +270,7 @@ class WC_GZD_Emails {
 				foreach ( $object_in_email->get_items( 'line_item' ) as $item ) {
 					$product_ids[] = $item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id();
 				}
-			} elseif ( is_a( $object_in_email, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
+			} elseif ( is_a( $object_in_email, '\Vendidero\Shiptastic\Shipment' ) ) {
 				foreach ( $object_in_email->get_items() as $item ) {
 					$product_ids[] = $item->get_product_id();
 				}

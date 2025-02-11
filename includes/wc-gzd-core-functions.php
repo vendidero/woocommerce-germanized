@@ -1594,7 +1594,7 @@ function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = arr
 }
 
 add_filter( 'woocommerce_gzd_dhl_enable_logging', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
-add_filter( 'woocommerce_gzd_shipments_enable_logging', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
+add_filter( 'woocommerce_shiptastic_enable_logging', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
 add_filter( 'oss_woocommerce_enable_extended_logging', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
 
 function wc_gzd_is_extended_debug_mode_enabled() {

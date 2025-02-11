@@ -113,7 +113,7 @@ class WC_GZD_Coupon_Helper {
 		/**
 		 * Legacy support for vouchers which may affect subtotal vs. total in shipment customs data.
 		 */
-		add_filter( 'woocommerce_gzd_shipments_order_has_voucher', array( $this, 'legacy_shipments_order_has_voucher' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_order_has_voucher', array( $this, 'legacy_shipments_order_has_voucher' ), 10, 2 );
 		add_action( 'wp_ajax_woocommerce_calc_line_taxes', array( $this, 'legacy_before_recalculate_totals' ), 0 );
 	}
 

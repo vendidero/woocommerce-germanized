@@ -66,7 +66,7 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 		$this->assertEquals( array( 'customer_processing_order', 'customer_new_account', 'customer_new_account_activation' ), get_option( 'woocommerce_gzd_mail_attach_terms' ) );
 
 		// Check if package settings are added too (e.g. DHL, Shipments)
-		$this->assertEquals( 'yes', get_option( 'woocommerce_gzd_shipments_auto_enable' ) );
+		$this->assertEquals( 'yes', get_option( 'woocommerce_shiptastic_auto_enable' ) );
 
 		$config_set = wc_gzd_get_shipping_provider( 'dhl' )->get_configuration_set( array( 'zone' => 'dom', 'shipment_type' => 'simple' ) );
 		$this->assertEquals( 'V01PAK', $config_set->get_product() );
@@ -75,8 +75,8 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 		global $wpdb;
 
 		// Shipments
-		$table_name = $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_gzd_shipments'" );
-		$this->assertEquals( "{$wpdb->prefix}woocommerce_gzd_shipments", $table_name );
+		$table_name = $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_stc_shipments'" );
+		$this->assertEquals( "{$wpdb->prefix}woocommerce_stc_shipments", $table_name );
 
 		// DHL
 		$table_name = $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_gzd_dhl_im_products'" );
@@ -104,7 +104,7 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 
 		remove_all_filters( 'woocommerce_gzd_shipping_provider_class_names' );
 
-		update_option( 'woocommerce_gzd_shipments_shipper_address_country', 'AT' );
+		update_option( 'woocommerce_shiptastic_shipper_address_country', 'AT' );
 		update_option( 'woocommerce_gzd_dhl_version', '1.0' );
 		update_option( 'woocommerce_default_country', 'AT' );
 
