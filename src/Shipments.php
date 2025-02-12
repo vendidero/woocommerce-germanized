@@ -22,11 +22,50 @@ class Shipments {
 		add_filter( 'woocommerce_shiptastic_get_order_shipping_provider', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
 		add_filter( 'woocommerce_shiptastic_additional_costs_include_tax', array( __CLASS__, 'legacy_filter_callback' ), 10 );
 		add_filter( 'woocommerce_shiptastic_shipment_get_shipment_number', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_is_provider_integration_active', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_is_pro', array( __CLASS__, 'legacy_filter_callback' ), 10 );
+		add_filter( 'woocommerce_shiptastic_shipments_table_actions', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_shipments_table_bulk_actions', array( __CLASS__, 'legacy_filter_callback' ), 10 );
+		add_filter( 'woocommerce_shiptastic_table_bulk_action_handlers', array( __CLASS__, 'legacy_filter_callback' ), 10 );
+		add_filter( 'woocommerce_shiptastic_shipments_table_columns', array( __CLASS__, 'legacy_filter_callback' ), 10 );
+		add_filter( 'woocommerce_shiptastic_shipping_provider_get_tracking_placeholders', array( __CLASS__, 'legacy_filter_callback' ), 10, 3 );
+		add_filter( 'woocommerce_shiptastic_order_completed_status', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_shipment_order_completed_status', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_shipment_local_pickup_shipping_methods', array( __CLASS__, 'legacy_filter_callback' ), 10 );
+		add_filter( 'woocommerce_shiptastic_find_available_packaging_for_shipment', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_shipment_label_supports_third_party_email_notification', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_shipment_return_label_supports_third_party_email_notification', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_shipment_order_needs_shipping', array( __CLASS__, 'legacy_filter_callback' ), 10, 3 );
+		add_filter( 'woocommerce_shiptastic_enable_rucksack_packaging', array( __CLASS__, 'legacy_filter_callback' ), 10 );
+		add_filter( 'woocommerce_shiptastic_embed_shipment_details_in_notification', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_shipment_order_supports_email_transmission', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_shipping_provider_dhl_get_label_default_shipment_weight', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_shipment_order_shippable_items', array( __CLASS__, 'legacy_filter_callback' ), 10, 3 );
+		add_filter( 'woocommerce_shiptastic_enable_pickup_delivery', array( __CLASS__, 'legacy_filter_callback' ), 10 );
 
 		add_action( 'woocommerce_shiptastic_init', array( __CLASS__, 'legacy_action_callback' ), 10 );
 		add_action( 'woocommerce_shiptastic_shipment_created_label', array( __CLASS__, 'legacy_action_callback' ), 10, 2 );
 		add_action( 'woocommerce_shiptastic_return_shipment_created_label', array( __CLASS__, 'legacy_action_callback' ), 10, 2 );
 		add_action( 'woocommerce_shiptastic_shipment_item_meta', array( __CLASS__, 'legacy_action_callback' ), 10, 4 );
+		add_action( 'woocommerce_shiptastic_meta_box_shipment_after_right_column', array( __CLASS__, 'legacy_action_callback' ), 10, 1 );
+		add_action( 'woocommerce_shiptastic_shipment_deleted', array( __CLASS__, 'legacy_action_callback' ), 10, 1 );
+		add_action( 'woocommerce_shiptastic_return_shipment_deleted', array( __CLASS__, 'legacy_action_callback' ), 10, 1 );
+		add_action( 'woocommerce_shiptastic_shipment_before_status_change', array( __CLASS__, 'legacy_action_callback' ), 10, 3 );
+		add_action( 'woocommerce_shiptastic_shipment_status_changed', array( __CLASS__, 'legacy_action_callback' ), 10, 4 );
+		add_action( 'woocommerce_shiptastic_shipments_table_custom_column', array( __CLASS__, 'legacy_action_callback' ), 10, 2 );
+
+		/**
+		 * Status hooks
+		 */
+		add_action(
+			'init',
+			function () {
+				foreach ( wc_stc_get_shipment_statuses() as $status_name => $title ) {
+					add_action( "woocommerce_shiptastic_shipment_status_{$status_name}", array( __CLASS__, 'legacy_action_callback' ), 10, 2 );
+					add_action( "woocommerce_shiptastic_return_shipment_status_{$status_name}", array( __CLASS__, 'legacy_action_callback' ), 10, 2 );
+				}
+			}
+		);
 
 		add_filter(
 			'woocommerce_shiptastic_shipment_statuses',
@@ -60,22 +99,36 @@ class Shipments {
 	}
 
 	public static function legacy_filter_callback( ...$args ) {
-		$filter_name        = current_filter();
-		$legacy_filter_name = str_replace( 'woocommerce_shiptastic_', 'woocommerce_gzd_', $filter_name );
+		$filter_name = self::get_legacy_hook_name( current_filter() );
 
-		return apply_filters( "{$legacy_filter_name}", ...$args );
+		return apply_filters( "{$filter_name}", ...$args );
 	}
 
 	public static function legacy_action_callback( ...$args ) {
-		$filter_name = current_filter();
+		$filter_name = self::get_legacy_hook_name( current_filter() );
 
-		if ( in_array( $filter_name, array( 'woocommerce_shiptastic_init' ), true ) ) {
-			$legacy_filter_name = str_replace( 'woocommerce_shiptastic_', 'woocommerce_gzd_shipments_', $filter_name );
+		do_action( "{$filter_name}", ...$args );
+	}
+
+	protected static function get_legacy_filters_with_prefix() {
+		return array(
+			'woocommerce_shiptastic_init',
+			'woocommerce_shiptastic_is_provider_integration_active',
+			'woocommerce_shiptastic_is_pro',
+			'woocommerce_shiptastic_meta_box_shipment_after_right_column',
+			'woocommerce_shiptastic_table_bulk_action_handlers',
+			'woocommerce_shiptastic_enable_pickup_delivery',
+		);
+	}
+
+	protected static function get_legacy_hook_name( $hook ) {
+		if ( in_array( $hook, self::get_legacy_filters_with_prefix(), true ) ) {
+			$hook = str_replace( 'woocommerce_shiptastic_', 'woocommerce_gzd_shipments_', $hook );
 		} else {
-			$legacy_filter_name = str_replace( 'woocommerce_shiptastic_', 'woocommerce_gzd_', $filter_name );
+			$hook = str_replace( 'woocommerce_shiptastic_', 'woocommerce_gzd_', $hook );
 		}
 
-		do_action( "{$legacy_filter_name}", ...$args );
+		return $hook;
 	}
 
 	protected static function setup_integration() {

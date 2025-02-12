@@ -394,6 +394,10 @@ function wc_gzd_is_shipment_status( $maybe_status ) {
 	return wc_stc_is_shipment_status( $maybe_status );
 }
 
+function wc_gzd_get_shipment_item( $the_item = false, $item_type = 'simple' ) {
+	return wc_stc_get_shipment_item( $the_item, $item_type );
+}
+
 function wc_gzd_get_shipment_item_id( $item ) {
 	return wc_stc_get_shipment_item_id( $item );
 }

@@ -75,6 +75,13 @@ class Packages {
 			}
 
 			/**
+			 * Apply legacy disable hook
+			 */
+			if ( 'shiptastic-for-woocommerce' === $package_name && false === apply_filters( 'woocommerce_gzd_shipments_enabled', true ) ) {
+				continue;
+			}
+
+			/**
 			 * Prevent calling init twice in case feature plugin is installed
 			 */
 			if ( ! has_action( 'plugins_loaded', array( $package_class, 'init' ) ) ) {
