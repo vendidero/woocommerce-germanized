@@ -465,3 +465,55 @@ function wc_gzd_get_shipment_error( $error ) {
 function wc_gzd_shipments_substring( $str, $start, $length = null ) {
 	return wc_shiptastic_substring( $str, $start, $length );
 }
+
+function wc_gzd_get_packaging( $packaging_id = false ) {
+	return wc_stc_get_packaging( $packaging_id );
+}
+
+function wc_gzd_get_packaging_types() {
+	return wc_stc_get_packaging_types();
+}
+
+function wc_gzd_get_packaging_list( $args = array() ) {
+	return wc_stc_get_packaging_list( $args );
+}
+
+function wc_gzd_get_packaging_weight_unit() {
+	return wc_stc_get_packaging_weight_unit();
+}
+
+function wc_gzd_get_packaging_dimension_unit() {
+	return wc_stc_get_packaging_dimension_unit();
+}
+
+function wc_gzd_get_packaging_select( $args = array() ) {
+	return wc_stc_get_packaging_select( $args );
+}
+
+function wc_gzd_get_shipment_labels( $args ) {
+	return wc_stc_get_shipment_labels( $args );
+}
+
+function wc_gzd_get_label_type_by_shipment( $shipment ) {
+	return wc_stc_get_label_type_by_shipment( $shipment );
+}
+
+function wc_gzd_get_shipment_label_types() {
+	return wc_stc_get_shipment_label_types();
+}
+
+function wc_gzd_get_label_by_shipment( $the_shipment, $type = '' ) {
+	return wc_stc_get_label_by_shipment( $the_shipment, $type );
+}
+
+function wc_gzd_get_shipment_label( $the_label = false, $shipping_provider = '', $type = 'simple' ) {
+	return wc_stc_get_shipment_label( $the_label, $shipping_provider, $type );
+}
+
+function wc_gzd_get_shipment_label_weight( $shipment, $net_weight = false, $unit = 'kg' ) {
+	return wc_stc_get_shipment_label_weight( $shipment, $net_weight , $unit );
+}
+
+function wc_gzd_get_shipment_label_dimensions( $shipment, $unit = 'cm' ) {
+	return wc_stc_get_shipment_label_dimensions( $shipment, $unit );
+}
