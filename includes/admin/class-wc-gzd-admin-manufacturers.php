@@ -42,8 +42,8 @@ class WC_GZD_Admin_Manufacturers {
 				'label' => __( 'Manufacturer Address', 'woocommerce-germanized' ),
 				'type'  => 'textarea',
 				'id'    => 'formatted_address',
-                'cols'  => 50,
-                'rows'  => 5,
+				'cols'  => 50,
+				'rows'  => 5,
 			),
 			'formatted_eu_address' => array(
 				'label' => __( 'EU responsible person', 'woocommerce-germanized' ),

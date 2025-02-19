@@ -1223,6 +1223,7 @@ class WC_GZD_Checkout {
 			foreach ( $rates as $key => $rate ) {
 				$original_taxes = $rate->get_taxes();
 				$original_cost  = $rate->get_cost();
+				$rate_has_tax   = $rate->get_shipping_tax() > 0;
 
 				/**
 				 * Prevent bugs in plugins like Woo Subscriptions which
@@ -1250,57 +1251,30 @@ class WC_GZD_Checkout {
 					 * Tax rounding (e.g. for subtotal) is handled by WC_Cart_Totals::get_shipping_from_cart
 					 */
 					if ( apply_filters( 'woocommerce_gzd_force_additional_costs_taxation', true ) ) {
-						if ( $rate->get_shipping_tax() > 0 ) {
-							if ( ! empty( $tax_shares ) ) {
-								$taxes           = array();
-								$taxable_amounts = array();
+						if ( ! empty( $tax_shares ) ) {
+							$taxes           = array();
+							$taxable_amounts = array();
 
-								foreach ( $tax_shares as $tax_class => $class ) {
-									$tax_rates       = WC_Tax::get_rates( $tax_class );
-									$taxable_amount  = $original_cost * $class['share'];
-									$tax_class_taxes = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
-									$net_base        = wc_gzd_additional_costs_include_tax() ? ( $taxable_amount - array_sum( $tax_class_taxes ) ) : $taxable_amount;
+							foreach ( $tax_shares as $tax_class => $class ) {
+								$tax_rates       = WC_Tax::get_rates( $tax_class );
+								$taxable_amount  = $original_cost * $class['share'];
+								$tax_class_taxes = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
+								$net_base        = wc_gzd_additional_costs_include_tax() ? ( $taxable_amount - array_sum( $tax_class_taxes ) ) : $taxable_amount;
 
-									$taxable_amounts[ $tax_class ] = array(
-										'taxable_amount' => $taxable_amount,
-										'tax_share'      => $class['share'],
-										'tax_rates'      => array_keys( $tax_rates ),
-										'net_amount'     => $net_base,
-										'includes_tax'   => wc_gzd_additional_costs_include_tax(),
-									);
+								$taxable_amounts[ $tax_class ] = array(
+									'taxable_amount' => $taxable_amount,
+									'tax_share'      => $class['share'],
+									'tax_rates'      => array_keys( $tax_rates ),
+									'net_amount'     => $net_base,
+									'includes_tax'   => wc_gzd_additional_costs_include_tax(),
+								);
 
-									$taxes = $taxes + $tax_class_taxes;
-								}
-
-								$rates[ $key ]->set_taxes( $taxes );
-								$rates[ $key ]->add_meta_data( '_split_taxes', $taxable_amounts );
-								$rates[ $key ]->add_meta_data( '_tax_shares', $tax_shares );
-							} elseif ( 0 === WC()->cart->get_total_tax() ) {
-								$rates[ $key ]->set_taxes( array() );
-							} else {
-								$original_tax_rates = array_keys( $original_taxes );
-
-								if ( ! empty( $original_tax_rates ) ) {
-									$tax_rates = WC_Tax::get_shipping_tax_rates();
-
-									if ( ! empty( $tax_rates ) ) {
-										$taxes = WC_Tax::calc_tax( $original_cost, $tax_rates, wc_gzd_additional_costs_include_tax() );
-										$rates[ $key ]->set_taxes( $taxes );
-									}
-								}
+								$taxes = $taxes + $tax_class_taxes;
 							}
-						}
-					}
-				} elseif ( wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
-					$main_tax_class = wc_gzd_get_cart_main_service_tax_class( 'shipping' );
-
-					if ( $rate->get_shipping_tax() > 0 ) {
-						if ( false !== $main_tax_class ) {
-							$tax_rates      = WC_Tax::get_rates( $main_tax_class );
-							$taxable_amount = $original_cost;
-							$taxes          = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
 
 							$rates[ $key ]->set_taxes( $taxes );
+							$rates[ $key ]->add_meta_data( '_split_taxes', $taxable_amounts );
+							$rates[ $key ]->add_meta_data( '_tax_shares', $tax_shares );
 						} elseif ( 0 === WC()->cart->get_total_tax() ) {
 							$rates[ $key ]->set_taxes( array() );
 						} else {
@@ -1316,6 +1290,29 @@ class WC_GZD_Checkout {
 							}
 						}
 					}
+				} elseif ( wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
+					$main_tax_class = wc_gzd_get_cart_main_service_tax_class( 'shipping' );
+
+					if ( false !== $main_tax_class ) {
+						$tax_rates      = WC_Tax::get_rates( $main_tax_class );
+						$taxable_amount = $original_cost;
+						$taxes          = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
+
+						$rates[ $key ]->set_taxes( $taxes );
+					} elseif ( 0 === WC()->cart->get_total_tax() ) {
+						$rates[ $key ]->set_taxes( array() );
+					} else {
+						$original_tax_rates = array_keys( $original_taxes );
+
+						if ( ! empty( $original_tax_rates ) ) {
+							$tax_rates = WC_Tax::get_shipping_tax_rates();
+
+							if ( ! empty( $tax_rates ) ) {
+								$taxes = WC_Tax::calc_tax( $original_cost, $tax_rates, wc_gzd_additional_costs_include_tax() );
+								$rates[ $key ]->set_taxes( $taxes );
+							}
+						}
+					}
 				}
 
 				/**
@@ -1325,13 +1322,21 @@ class WC_GZD_Checkout {
 					$tax_total = array_sum( $rates[ $key ]->get_taxes() );
 					$new_cost  = $original_cost - $tax_total;
 
-					if ( WC()->customer->is_vat_exempt() ) {
-						$shipping_rates = WC_Tax::get_shipping_tax_rates();
-						$shipping_taxes = WC_Tax::calc_inclusive_tax( $original_cost, $shipping_rates );
-						$new_cost       = ( $new_cost - array_sum( $shipping_taxes ) );
+					$rates[ $key ]->set_cost( $new_cost );
+				}
+
+				if ( ! $rate_has_tax ) {
+					$taxes_zero = array();
+
+					foreach ( $rates[ $key ]->get_taxes() as $tax_key => $tax ) {
+						$taxes_zero[ $tax_key ] = 0.0;
 					}
 
-					$rates[ $key ]->set_cost( $new_cost );
+					if ( WC()->customer->is_vat_exempt() ) {
+						$taxes_zero = array();
+					}
+
+					$rates[ $key ]->set_taxes( $taxes_zero );
 				}
 			}
 		}
