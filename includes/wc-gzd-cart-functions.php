@@ -1046,7 +1046,7 @@ function wc_gzd_get_cart_main_service_tax_class( $type = 'shipping' ) {
 		}
 	}
 
-	return apply_filters( 'woocommerce_gzd_cart_main_service_tax_class', $main_tax_class );
+	return apply_filters( 'woocommerce_gzd_cart_main_service_tax_class', $main_tax_class, $type );
 }
 
 function wc_gzd_cart_remove_shipping_taxes( $taxes, $cart ) {
