@@ -650,36 +650,37 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			$data[ $k ] = WC_Germanized_Meta_Box_Product_Data::get_sanitized_field_value( $k, ( isset( $_POST[ $data_k ][ $i ] ) ? $_POST[ $data_k ][ $i ] : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 		}
 
-		$product            = wc_get_product( $variation_id );
-		$product_parent     = wc_get_product( $product->get_parent_id() );
-		$gzd_product        = wc_gzd_get_product( $product );
-		$gzd_parent_product = wc_gzd_get_product( $product_parent );
+		if ( $product = wc_get_product( $variation_id ) ) {
+			$product_parent     = wc_get_product( $product->get_parent_id() );
+			$gzd_product        = wc_gzd_get_product( $product );
+			$gzd_parent_product = wc_gzd_get_product( $product_parent );
 
-		/**
-		 * Parent unit data is passed as global (non-variation-level) data.
-		 */
-		$data['_parent_unit_product'] = isset( $_POST['_unit_product'] ) ? wc_clean( wp_unslash( $_POST['_unit_product'] ) ) : ( $gzd_parent_product ? $gzd_parent_product->get_unit_product( 'edit' ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$data['_parent_unit']         = isset( $_POST['_unit'] ) ? wc_clean( wp_unslash( $_POST['_unit'] ) ) : ( $gzd_parent_product ? $gzd_parent_product->get_unit( 'edit' ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$data['_parent_unit_base']    = isset( $_POST['_unit_base'] ) ? wc_clean( wp_unslash( $_POST['_unit_base'] ) ) : ( $gzd_parent_product ? $gzd_parent_product->get_unit_base( 'edit' ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			/**
+			 * Parent unit data is passed as global (non-variation-level) data.
+			 */
+			$data['_parent_unit_product'] = isset( $_POST['_unit_product'] ) ? wc_clean( wp_unslash( $_POST['_unit_product'] ) ) : ( $gzd_parent_product ? $gzd_parent_product->get_unit_product( 'edit' ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$data['_parent_unit']         = isset( $_POST['_unit'] ) ? wc_clean( wp_unslash( $_POST['_unit'] ) ) : ( $gzd_parent_product ? $gzd_parent_product->get_unit( 'edit' ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$data['_parent_unit_base']    = isset( $_POST['_unit_base'] ) ? wc_clean( wp_unslash( $_POST['_unit_base'] ) ) : ( $gzd_parent_product ? $gzd_parent_product->get_unit_base( 'edit' ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-		// Check if parent has unit_base + unit otherwise ignore data
-		if ( empty( $data['_parent_unit'] ) || empty( $data['_parent_unit_base'] ) ) {
-			$data['_unit_price_auto']    = '';
-			$data['_unit_price_regular'] = '';
-			$data['_unit_price_sale']    = '';
+			// Check if parent has unit_base + unit otherwise ignore data
+			if ( empty( $data['_parent_unit'] ) || empty( $data['_parent_unit_base'] ) ) {
+				$data['_unit_price_auto']    = '';
+				$data['_unit_price_regular'] = '';
+				$data['_unit_price_sale']    = '';
+			}
+
+			// If parent has no unit, delete unit_product as well
+			if ( empty( $data['_parent_unit'] ) ) {
+				$data['_unit_product'] = '';
+			}
+
+			$data['product-type']           = $product_parent->get_type();
+			$data['_sale_price_dates_from'] = isset( $_POST['variable_sale_price_dates_from'][ $i ] ) ? wc_clean( wp_unslash( $_POST['variable_sale_price_dates_from'][ $i ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$data['_sale_price_dates_to']   = isset( $_POST['variable_sale_price_dates_to'][ $i ] ) ? wc_clean( wp_unslash( $_POST['variable_sale_price_dates_to'][ $i ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$data['_sale_price']            = isset( $_POST['variable_sale_price'][ $i ] ) ? wc_clean( wp_unslash( $_POST['variable_sale_price'][ $i ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+			WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data, true );
 		}
-
-		// If parent has no unit, delete unit_product as well
-		if ( empty( $data['_parent_unit'] ) ) {
-			$data['_unit_product'] = '';
-		}
-
-		$data['product-type']           = $product_parent->get_type();
-		$data['_sale_price_dates_from'] = isset( $_POST['variable_sale_price_dates_from'][ $i ] ) ? wc_clean( wp_unslash( $_POST['variable_sale_price_dates_from'][ $i ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$data['_sale_price_dates_to']   = isset( $_POST['variable_sale_price_dates_to'][ $i ] ) ? wc_clean( wp_unslash( $_POST['variable_sale_price_dates_to'][ $i ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$data['_sale_price']            = isset( $_POST['variable_sale_price'][ $i ] ) ? wc_clean( wp_unslash( $_POST['variable_sale_price'][ $i ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
-
-		WC_Germanized_Meta_Box_Product_Data::save_product_data( $product, $data, true );
 	}
 }
 
