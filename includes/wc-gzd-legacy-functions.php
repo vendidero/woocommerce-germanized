@@ -511,7 +511,7 @@ function wc_gzd_get_shipment_label( $the_label = false, $shipping_provider = '',
 }
 
 function wc_gzd_get_shipment_label_weight( $shipment, $net_weight = false, $unit = 'kg' ) {
-	return wc_stc_get_shipment_label_weight( $shipment, $net_weight , $unit );
+	return wc_stc_get_shipment_label_weight( $shipment, $net_weight, $unit );
 }
 
 function wc_gzd_get_shipment_label_dimensions( $shipment, $unit = 'cm' ) {

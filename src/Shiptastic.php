@@ -4,7 +4,7 @@ namespace Vendidero\Germanized;
 
 defined( 'ABSPATH' ) || exit;
 
-class Shipments {
+class Shiptastic {
 
 	public static function init() {
 		self::setup_integration();
@@ -53,6 +53,16 @@ class Shipments {
 		add_action( 'woocommerce_shiptastic_shipment_before_status_change', array( __CLASS__, 'legacy_action_callback' ), 10, 3 );
 		add_action( 'woocommerce_shiptastic_shipment_status_changed', array( __CLASS__, 'legacy_action_callback' ), 10, 4 );
 		add_action( 'woocommerce_shiptastic_shipments_table_custom_column', array( __CLASS__, 'legacy_action_callback' ), 10, 2 );
+
+		/**
+		 * DHL Hooks
+		 */
+		add_filter( 'woocommerce_shiptastic_dhl_label_custom_format', array( __CLASS__, 'legacy_filter_callback' ), 10, 3 );
+		add_filter( 'woocommerce_shiptastic_dhl_label_get_email_notification', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_dhl_label_get_weight', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_dhl_label_api_shipper_reference', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
+		add_filter( 'woocommerce_shiptastic_shipping_provider_dhl_get_label_default_shipment_weight', array( __CLASS__, 'legacy_filter_callback' ), 10 );
+		add_filter( 'woocommerce_shiptastic_dhl_label_api_communication_phone', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
 
 		/**
 		 * Status hooks
@@ -133,6 +143,21 @@ class Shipments {
 
 	protected static function setup_integration() {
 		add_filter(
+			'woocommerce_shiptastic_shipment_order_min_age',
+			function ( $min_age, $order ) {
+				$custom_age = wc_gzd_get_order_min_age( $order->get_id() );
+
+				if ( false !== $custom_age ) {
+					$min_age = $custom_age;
+				}
+
+				return $min_age;
+			},
+			10,
+			2
+		);
+
+		add_filter(
 			'woocommerce_shiptastic_parse_shipment_status',
 			function ( $status ) {
 				return self::remove_gzd_status_prefix( $status );
@@ -168,7 +193,7 @@ class Shipments {
 		);
 
 		add_filter(
-			'woocommerce_gzd_dhl_get_i18n_path',
+			'woocommerce_shiptastic_dhl_get_i18n_path',
 			function () {
 				return Package::get_language_path();
 			}
@@ -182,11 +207,13 @@ class Shipments {
 		);
 
 		add_filter(
-			'woocommerce_gzd_dhl_get_i18n_textdomain',
+			'woocommerce_shiptastic_dhl_get_i18n_textdomain',
 			function () {
 				return 'woocommerce-germanized';
 			}
 		);
+
+		add_filter( 'woocommerce_shiptastic_enable_logging', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
 
 		add_filter(
 			'woocommerce_shiptastic_get_i18n_textdomain',
@@ -219,6 +246,17 @@ class Shipments {
 			'woocommerce_shiptastic_encryption_key_constant',
 			function () {
 				return 'WC_GZD_ENCRYPTION_KEY';
+			}
+		);
+
+		add_filter(
+			'woocommerce_stc_dhl_germany_preferred_fields_output_hook',
+			function ( $hook_name ) {
+				if ( function_exists( 'wc_gzd_checkout_adjustments_disabled' ) && ! wc_gzd_checkout_adjustments_disabled() ) {
+					$hook_name = 'woocommerce_review_order_after_payment';
+				}
+
+				return $hook_name;
 			}
 		);
 	}

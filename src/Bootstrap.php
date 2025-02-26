@@ -42,7 +42,7 @@ class Bootstrap {
 	 * Init the package - load the blocks library and define constants.
 	 */
 	protected function init() {
-		Shipments::init();
+		Shiptastic::init();
 
 		if ( Package::load_blocks() ) {
 			$this->register_dependencies();

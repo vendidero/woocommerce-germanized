@@ -68,7 +68,7 @@ class Packages {
 	 * Each package should include an init file which loads the package so it can be used by core.
 	 */
 	protected static function load_packages() {
-        add_filter( 'woocommerce_shiptastic_is_integration', '__return_true' );
+		add_filter( 'woocommerce_shiptastic_is_integration', '__return_true' );
 
 		foreach ( self::$packages as $package_name => $package_class ) {
 			if ( ! self::package_exists( $package_name ) ) {
@@ -96,9 +96,9 @@ class Packages {
 		}
 	}
 
-    public static function load_shipping_package() {
-	    return apply_filters( 'woocommerce_gzd_shipments_enabled', true );
-    }
+	public static function load_shipping_package() {
+		return apply_filters( 'woocommerce_gzd_shipments_enabled', true );
+	}
 
 	/**
 	 * If a package is missing, add an admin notice.
