@@ -190,7 +190,7 @@
             self.stopObserver( self, priceSelector );
 
             if ( $node.length > 0 ) {
-                observer.observe( $node[0], { childList: true, subtree: true, characterData: true } );
+                observer.observe( $node[0], { attributes: true, childList: true, subtree: true, characterData: true } );
             }
 
             return true;
