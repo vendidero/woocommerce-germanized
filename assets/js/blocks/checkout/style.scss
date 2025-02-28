@@ -5,7 +5,14 @@
      .wc-block-checkout__actions {
        display: none;
      }
-   }
+  }
+
+  .wc-block-components-totals-wrapper {
+    .wc-gzd-small-business-info {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
 
   .is-large {
      /**
