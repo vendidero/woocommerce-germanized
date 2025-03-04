@@ -29,6 +29,7 @@ class Packages {
 	 */
 	protected static $packages = array(
 		'shiptastic-for-woocommerce' => '\\Vendidero\\Shiptastic\\Package',
+		'dhl-for-shiptastic'         => '\\Vendidero\\Shiptastic\\DHL\\Package',
 	);
 
 	/**

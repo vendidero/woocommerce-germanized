@@ -115,6 +115,7 @@ class WC_GZD_Admin {
 			'install_oss',
 			'install_ts',
 			'update_database',
+			'migrate_to_shiptastic',
 		);
 
 		if ( current_user_can( 'manage_woocommerce' ) ) {
@@ -140,6 +141,12 @@ class WC_GZD_Admin {
 					}
 				}
 			}
+		}
+	}
+
+	protected function check_migrate_to_shiptastic() {
+		if ( current_user_can( 'manage_options' ) ) {
+			WC_GZD_Install::migrate_shipments_to_shiptastic();
 		}
 	}
 

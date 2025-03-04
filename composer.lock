@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f16dc57e5a1ef907e9ca7af15e90804b",
+    "content-hash": "10a89422210ccd07f003e3618f762720",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -56,6 +56,46 @@
                 "source": "https://github.com/Automattic/jetpack-autoloader/tree/v2.11.18"
             },
             "time": "2023-03-29T12:51:59+00:00"
+        },
+        {
+            "name": "baltpeter/internetmarke-php",
+            "version": "v0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/baltpeter/internetmarke-php.git",
+                "reference": "7657ee5a55eb80c77a35e35ce71c465364d73ab4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/baltpeter/internetmarke-php/zipball/7657ee5a55eb80c77a35e35ce71c465364d73ab4",
+                "reference": "7657ee5a55eb80c77a35e35ce71c465364d73ab4",
+                "shasum": ""
+            },
+            "require": {
+                "myclabs/deep-copy": "^1.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "baltpeter\\Internetmarke\\": "src/baltpeter/Internetmarke"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Benjamin Altpeter",
+                    "email": "hi@bn.al"
+                }
+            ],
+            "description": "A simple PHP wrapper for the Deutsche Post Internetmarke web service",
+            "support": {
+                "issues": "https://github.com/baltpeter/internetmarke-php/issues",
+                "source": "https://github.com/baltpeter/internetmarke-php/tree/master"
+            },
+            "time": "2019-07-31T10:13:23+00:00"
         },
         {
             "name": "composer/installers",
@@ -440,6 +480,66 @@
             "time": "2024-03-25T00:37:02+00:00"
         },
         {
+            "name": "myclabs/deep-copy",
+            "version": "1.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/myclabs/DeepCopy.git",
+                "reference": "024473a478be9df5fdaca2c793f2232fe788e414"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/024473a478be9df5fdaca2c793f2232fe788e414",
+                "reference": "024473a478be9df5fdaca2c793f2232fe788e414",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 || ^8.0"
+            },
+            "conflict": {
+                "doctrine/collections": "<1.6.8",
+                "doctrine/common": "<2.13.3 || >=3 <3.2.2"
+            },
+            "require-dev": {
+                "doctrine/collections": "^1.6.8",
+                "doctrine/common": "^2.13.3 || ^3.2.2",
+                "phpspec/prophecy": "^1.10",
+                "phpunit/phpunit": "^7.5.20 || ^8.5.23 || ^9.5.13"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/DeepCopy/deep_copy.php"
+                ],
+                "psr-4": {
+                    "DeepCopy\\": "src/DeepCopy/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Create deep copies (clones) of your objects",
+            "keywords": [
+                "clone",
+                "copy",
+                "duplicate",
+                "object",
+                "object graph"
+            ],
+            "support": {
+                "issues": "https://github.com/myclabs/DeepCopy/issues",
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.0"
+            },
+            "funding": [
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/myclabs/deep-copy",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2025-02-12T12:17:51+00:00"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v9.99.100",
             "source": {
@@ -658,17 +758,75 @@
             "time": "2025-02-05T13:22:35+00:00"
         },
         {
+            "name": "vendidero/dhl-for-shiptastic",
+            "version": "3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vendidero/dhl-for-shiptastic.git",
+                "reference": "78d9d7d1e271a06431d3fb1dd47a5d72e211b0e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vendidero/dhl-for-shiptastic/zipball/78d9d7d1e271a06431d3fb1dd47a5d72e211b0e5",
+                "reference": "78d9d7d1e271a06431d3fb1dd47a5d72e211b0e5",
+                "shasum": ""
+            },
+            "require": {
+                "automattic/jetpack-autoloader": "2.11.18",
+                "baltpeter/internetmarke-php": "^0.5.0",
+                "composer/installers": "^1.9.0",
+                "php": ">=5.6|>=7.0"
+            },
+            "require-dev": {
+                "woocommerce/woocommerce-sniffs": "^1.0.0"
+            },
+            "type": "wordpress-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Vendidero\\Shiptastic\\DHL\\": "src"
+                }
+            },
+            "scripts": {
+                "post-install-cmd": [
+                    "sh ./bin/package-update.sh",
+                    "python3 ./bin/update-holidays.py"
+                ],
+                "post-update-cmd": [
+                    "sh ./bin/package-update.sh",
+                    "python3 ./bin/update-holidays.py"
+                ],
+                "phpcs": [
+                    "phpcs -s -p"
+                ],
+                "phpcs-pre-commit": [
+                    "phpcs -s -p -n"
+                ],
+                "phpcbf": [
+                    "phpcbf -p"
+                ]
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "DHL & Deutsche Post integration for Shiptastic",
+            "homepage": "https://github.com/vendidero/dhl-for-shiptastic",
+            "support": {
+                "source": "https://github.com/vendidero/dhl-for-shiptastic/tree/v3.6.0"
+            },
+            "time": "2025-03-04T10:06:40+00:00"
+        },
+        {
             "name": "vendidero/shiptastic-for-woocommerce",
             "version": "4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/shiptastic-for-woocommerce.git",
-                "reference": "351fcb1958012b0bc8eed215e782f2bdfeecacba"
+                "reference": "f76533775b11781fc32e384b9d3961eefb5bf062"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/351fcb1958012b0bc8eed215e782f2bdfeecacba",
-                "reference": "351fcb1958012b0bc8eed215e782f2bdfeecacba",
+                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/f76533775b11781fc32e384b9d3961eefb5bf062",
+                "reference": "f76533775b11781fc32e384b9d3961eefb5bf062",
                 "shasum": ""
             },
             "require": {
@@ -713,7 +871,7 @@
             "support": {
                 "source": "https://github.com/vendidero/shiptastic-for-woocommerce/tree/v4.3.0"
             },
-            "time": "2025-02-17T09:57:17+00:00"
+            "time": "2025-03-04T10:45:49+00:00"
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
@@ -917,66 +1075,6 @@
                 }
             ],
             "time": "2022-12-30T00:15:36+00:00"
-        },
-        {
-            "name": "myclabs/deep-copy",
-            "version": "1.13.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "024473a478be9df5fdaca2c793f2232fe788e414"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/024473a478be9df5fdaca2c793f2232fe788e414",
-                "reference": "024473a478be9df5fdaca2c793f2232fe788e414",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1 || ^8.0"
-            },
-            "conflict": {
-                "doctrine/collections": "<1.6.8",
-                "doctrine/common": "<2.13.3 || >=3 <3.2.2"
-            },
-            "require-dev": {
-                "doctrine/collections": "^1.6.8",
-                "doctrine/common": "^2.13.3 || ^3.2.2",
-                "phpspec/prophecy": "^1.10",
-                "phpunit/phpunit": "^7.5.20 || ^8.5.23 || ^9.5.13"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/DeepCopy/deep_copy.php"
-                ],
-                "psr-4": {
-                    "DeepCopy\\": "src/DeepCopy/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Create deep copies (clones) of your objects",
-            "keywords": [
-                "clone",
-                "copy",
-                "duplicate",
-                "object",
-                "object graph"
-            ],
-            "support": {
-                "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.0"
-            },
-            "funding": [
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/myclabs/deep-copy",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2025-02-12T12:17:51+00:00"
         },
         {
             "name": "nikic/php-parser",

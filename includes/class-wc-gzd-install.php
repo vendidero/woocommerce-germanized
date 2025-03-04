@@ -176,6 +176,9 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			$error = new WP_Error();
 			$wpdb->hide_errors();
 
+			delete_option( 'woocommerce_gzd_shiptastic_migration_has_errors' );
+			delete_option( 'woocommerce_gzd_shiptastic_migration_errors' );
+
 			/**
 			 * Migrate tables
 			 */
@@ -214,26 +217,33 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 						$wpdb->query( "DROP TABLE IF EXISTS `{$new_table_name}`" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 					}
 
-					$result = $wpdb->query( "RENAME TABLE `{$table}` TO `{$new_table_name}`" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+					$new_table_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $new_table_name ) ) );
+
+					/**
+					 * Skip table if exists
+					 */
+					if ( ! $new_table_exists || $new_table_exists !== $new_table_name ) {
+						$result = $wpdb->query( "RENAME TABLE `{$table}` TO `{$new_table_name}`" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+						if ( false === $result ) {
+							$error->add( 'table_rename_failed', sprintf( _x( 'Renaming table %1$s to %2$s failed.', 'shipments-migration', 'woocommerce-germanized' ), $table, $new_table_name ) );
+						} else {
+							foreach ( $columns as $column ) {
+								$new_column_name = str_replace( 'gzd_', 'stc_', $column );
+								$result          = $wpdb->query( "ALTER TABLE `{$new_table_name}` RENAME COLUMN `{$column}` TO `{$new_column_name}`" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+								if ( false === $result ) {
+									$error->add( 'column_rename_failed', sprintf( _x( 'Renaming column %1$s.%2$s to %3$s.%4$s failed.', 'shipments-migration', 'woocommerce-germanized' ), $table, $column, $new_table_name, $new_column_name ) );
+								}
+							}
+						}
+					}
 
 					/**
 					 * Remove gzd- prefix from status name
 					 */
 					if ( "{$wpdb->prefix}woocommerce_gzd_shipments" === $table ) {
 						$wpdb->query( $wpdb->prepare( "UPDATE {$new_table_name} SET shipment_status = REPLACE(shipment_status, %s, %s)", $wpdb->esc_like( 'gzd-' ), '' ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-					}
-
-					if ( false === $result ) {
-						$error->add( 'table_rename_failed', sprintf( _x( 'Renaming table %1$s to %2$s failed.', 'shipments-migration', 'woocommerce-germanized' ), $table, $new_table_name ) );
-					} else {
-						foreach ( $columns as $column ) {
-							$new_column_name = str_replace( 'gzd_', 'stc_', $column );
-							$result          = $wpdb->query( "ALTER TABLE `{$new_table_name}` RENAME COLUMN `{$column}` TO `{$new_column_name}`" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-
-							if ( false === $result ) {
-								$error->add( 'column_rename_failed', sprintf( _x( 'Renaming column %1$s.%2$s to %3$s.%4$s failed.', 'shipments-migration', 'woocommerce-germanized' ), $table, $column, $new_table_name, $new_column_name ) );
-							}
-						}
 					}
 				}
 			}
@@ -282,10 +292,15 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 						@rename( $new_dir['basedir'], $tmp_new_name_folder ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.WP.AlternativeFunctions.rename_rename
 					}
 
-					$rename_result = @rename( $legacy_dir['basedir'], $new_dir['basedir'] ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.WP.AlternativeFunctions.rename_rename
+					/**
+					 * Rename if new folder name does not yet exist
+					 */
+					if ( ! @is_dir( $new_dir['basedir'] ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+						$rename_result = @rename( $legacy_dir['basedir'], $new_dir['basedir'] ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.WP.AlternativeFunctions.rename_rename
 
-					if ( false === $rename_result ) {
-						$error->add( 'folder_rename_failed', sprintf( _x( 'Could not rename %1$s to %2$s.', 'shipments-migration', 'woocommerce-germanized' ), $legacy_dir['basedir'], $new_dir['basedir'] ) );
+						if ( false === $rename_result ) {
+							$error->add( 'folder_rename_failed', sprintf( _x( 'Could not rename %1$s to %2$s.', 'shipments-migration', 'woocommerce-germanized' ), $legacy_dir['basedir'], $new_dir['basedir'] ) );
+						}
 					}
 				}
 			}

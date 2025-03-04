@@ -64,6 +64,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<td class="help">&nbsp;</td>
 		<td><?php echo ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_fallback' ) ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">&ndash;</mark>' ); ?></td>
 	</tr>
+	<tr>
+		<td data-export-label="Shiptastic Migration"><?php esc_html_e( 'Migration to Shiptastic', 'woocommerce-germanized' ); ?></td>
+		<td class="help">&nbsp;</td>
+		<td>
+			<?php
+			if ( get_option( 'woocommerce_gzd_shiptastic_migration_errors' ) ) :
+				$migration_errors = array_filter( (array) get_option( 'woocommerce_gzd_shiptastic_migration_errors' ) );
+				?>
+				<p><?php wp_kses_post( sprintf( __( 'There were errors while migrating from Shipments to Shiptastic package. <a href="%s">Learn more in our docs</a>.', 'woocommerce-germanized' ), esc_url( 'https://vendidero.de/doc/woocommerce-germanized/shipments-zu-shiptastic-migration' ) ) ); ?></p>
+
+				<ul>
+					<?php foreach ( $migration_errors as $code => $messages ) : ?>
+						<?php foreach ( $messages as $message ) : ?>
+							<li data-code="<?php echo esc_html( $code ); ?>"><?php echo esc_html( $message ); ?></li>
+						<?php endforeach; ?>
+					<?php endforeach; ?>
+				</ul>
+
+				<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-migrate_to_shiptastic' => true ) ), 'wc-gzd-check-migrate_to_shiptastic' ) ); ?>" class="button button-secondary"><?php echo esc_html__( 'Start migration again', 'woocommerce-germanized' ); ?></a>
+			<?php else : ?>
+				<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>
+			<?php endif; ?>
+		</td>
+	</tr>
 	<?php
 
 	/**
@@ -151,7 +175,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php
 	foreach ( WC_germanized()->compatibilities as $c => $comp ) :
-
 		if ( ! $comp->is_activated() ) {
 			continue;
 		}

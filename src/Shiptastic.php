@@ -102,6 +102,21 @@ class Shiptastic {
 				return $statuses;
 			}
 		);
+
+		/**
+		 * Shortcodes
+		 */
+		add_action(
+			'init',
+			function () {
+				add_shortcode(
+					'gzd_return_request_form',
+					function ( $args = array() ) {
+						\Vendidero\Shiptastic\Package::return_request_form( $args );
+					}
+				);
+			}
+		);
 	}
 
 	protected static function remove_gzd_status_prefix( $status ) {

@@ -68,19 +68,19 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 		// Check if package settings are added too (e.g. DHL, Shipments)
 		$this->assertEquals( 'yes', get_option( 'woocommerce_shiptastic_auto_enable' ) );
 
-		$config_set = wc_gzd_get_shipping_provider( 'dhl' )->get_configuration_set( array( 'zone' => 'dom', 'shipment_type' => 'simple' ) );
+		$config_set = wc_stc_get_shipping_provider( 'dhl' )->get_configuration_set( array( 'zone' => 'dom', 'shipment_type' => 'simple' ) );
 		$this->assertEquals( 'V01PAK', $config_set->get_product() );
 
 		// Check if Tables are installed
 		global $wpdb;
 
-		// Shipments
+		// Shiptastic
 		$table_name = $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_stc_shipments'" );
 		$this->assertEquals( "{$wpdb->prefix}woocommerce_stc_shipments", $table_name );
 
 		// DHL
-		$table_name = $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_gzd_dhl_im_products'" );
-		$this->assertEquals( "{$wpdb->prefix}woocommerce_gzd_dhl_im_products", $table_name );
+		$table_name = $wpdb->get_var( "SHOW TABLES LIKE '{$wpdb->prefix}woocommerce_stc_dhl_im_products'" );
+		$this->assertEquals( "{$wpdb->prefix}woocommerce_stc_dhl_im_products", $table_name );
 
 		remove_filter( 'plugin_locale', array( $this, 'set_locale' ), 10 );
 	}
@@ -90,7 +90,7 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 	 */
 	public function test_install_non_built_in_providers() {
 		// Make sure the DHL Package does not load.
-		tests_add_filter( 'woocommerce_gzd_dhl_base_country', function () {
+		tests_add_filter( 'woocommerce_shiptastic_dhl_base_country', function () {
 			return 'AT';
 		} );
 
@@ -102,20 +102,20 @@ class WC_GZD_Tests_Install extends WC_GZD_Unit_Test_Case {
 
 		include( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/uninstall.php' );
 
-		remove_all_filters( 'woocommerce_gzd_shipping_provider_class_names' );
+		remove_all_filters( 'woocommerce_shiptastic_shipping_provider_class_names' );
 
 		update_option( 'woocommerce_shiptastic_shipper_address_country', 'AT' );
-		update_option( 'woocommerce_gzd_dhl_version', '1.0' );
+		update_option( 'woocommerce_shiptastic_dhl_version', '1.0' );
 		update_option( 'woocommerce_default_country', 'AT' );
 
-		foreach( \Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_shipping_providers() as $provider ) {
+		foreach( \Vendidero\Shiptastic\ShippingProvider\Helper::instance()->get_shipping_providers() as $provider ) {
 			$provider->delete( true );
 		}
 
-		Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->shipping_providers = null;
+		Vendidero\Shiptastic\ShippingProvider\Helper::instance()->shipping_providers = null;
 		WC_GZD_Install::install();
 
-		$this->assertEquals( false, wc_gzd_get_shipping_provider( 'dhl' ) );
+		$this->assertEquals( false, wc_stc_get_shipping_provider( 'dhl' ) );
 	}
 
 	public function set_locale( $locale, $textdomain ) {

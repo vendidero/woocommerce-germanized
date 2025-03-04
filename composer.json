@@ -15,7 +15,8 @@
     "defuse/php-encryption": "^2.0.0",
     "globalcitizen/php-iban": "^4.0.0",
     "vendidero/woocommerce-eu-tax-helper": "2.0.6",
-    "vendidero/shiptastic-for-woocommerce": "4.3.0"
+    "vendidero/shiptastic-for-woocommerce": "4.3.0",
+    "vendidero/dhl-for-shiptastic": "3.6.0"
   },
   "require-dev": {
     "myclabs/deep-copy": "^1.7.0",
@@ -27,6 +28,10 @@
     {
       "type": "vcs",
       "url":  "https://github.com/vendidero/shiptastic-for-woocommerce"
+    },
+    {
+      "type": "vcs",
+      "url":  "https://github.com/vendidero/dhl-for-shiptastic"
     },
     {
       "type": "vcs",
@@ -75,6 +80,7 @@
   "extra": {
     "installer-paths": {
       "packages/shiptastic-for-woocommerce": ["vendidero/shiptastic-for-woocommerce"],
+      "packages/dhl-for-shiptastic": ["vendidero/dhl-for-shiptastic"],
       "packages/woocommerce-eu-tax-helper": ["vendidero/woocommerce-eu-tax-helper"]
     },
     "scripts-description": {
