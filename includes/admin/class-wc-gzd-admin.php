@@ -1,6 +1,6 @@
 <?php
 
-use Vendidero\Germanized\DHL\Admin\Importer;
+use Vendidero\Shiptastic\DHL\Admin\Importer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -115,6 +115,7 @@ class WC_GZD_Admin {
 			'install_oss',
 			'install_ts',
 			'update_database',
+			'migrate_to_shiptastic',
 		);
 
 		if ( current_user_can( 'manage_woocommerce' ) ) {
@@ -140,6 +141,18 @@ class WC_GZD_Admin {
 					}
 				}
 			}
+		}
+	}
+
+	protected function check_migrate_to_shiptastic() {
+		if ( current_user_can( 'manage_options' ) ) {
+			$force = false;
+
+			if ( isset( $_GET['force'] ) && 'yes' === wc_clean( wp_unslash( $_GET['force'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$force = true;
+			}
+
+			WC_GZD_Install::migrate_shipments_to_shiptastic( $force );
 		}
 	}
 
@@ -192,7 +205,7 @@ class WC_GZD_Admin {
 	}
 
 	public function check_dhl_import() {
-		if ( ! class_exists( '\Vendidero\Germanized\DHL\Admin\Importer\DHL' ) ) {
+		if ( ! class_exists( '\Vendidero\Shiptastic\DHL\Admin\Importer\DHL' ) ) {
 			return;
 		}
 
@@ -212,20 +225,19 @@ class WC_GZD_Admin {
 			/**
 			 * Shipper country may be set to something different as the Woo base country
 			 */
-			if ( ! Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
-				update_option( 'woocommerce_gzd_shipments_shipper_address_country', get_option( 'woocommerce_default_country', 'DE:BE' ) );
+			if ( ! Vendidero\Shiptastic\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
+				update_option( 'woocommerce_shiptastic_shipper_address_country', get_option( 'woocommerce_default_country', 'DE:BE' ) );
 
-				if ( 'DE' === \Vendidero\Germanized\Shipments\Package::get_base_country() ) {
-					Vendidero\Germanized\DHL\Package::init();
-					Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->load_shipping_providers();
+				if ( 'DE' === \Vendidero\Shiptastic\Package::get_base_country() ) {
+					Vendidero\Shiptastic\DHL\Package::init();
 				}
 			}
 
-			if ( $shipping_provider = Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
+			if ( $shipping_provider = Vendidero\Shiptastic\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
 				$shipping_provider->activate();
 
 				deactivate_plugins( 'dhl-for-woocommerce/pr-dhl-woocommerce.php' );
-				wp_safe_redirect( esc_url_raw( add_query_arg( array( 'has-imported' => 'yes' ), wc_gzd_get_shipping_provider( 'dhl' )->get_edit_link() ) ) );
+				wp_safe_redirect( esc_url_raw( add_query_arg( array( 'has-imported' => 'yes' ), wc_stc_get_shipping_provider( 'dhl' )->get_edit_link() ) ) );
 				exit();
 			}
 		}
@@ -239,7 +251,7 @@ class WC_GZD_Admin {
 	}
 
 	public function check_internetmarke_import() {
-		if ( ! class_exists( '\Vendidero\Germanized\DHL\Admin\Importer\Internetmarke' ) ) {
+		if ( ! class_exists( '\Vendidero\Shiptastic\DHL\Admin\Importer\Internetmarke' ) ) {
 			return;
 		}
 
@@ -254,7 +266,7 @@ class WC_GZD_Admin {
 
 			$this->import_internetmarke_settings();
 
-			wp_safe_redirect( esc_url_raw( wc_gzd_get_shipping_provider( 'deutsche_post' )->get_edit_link() ) );
+			wp_safe_redirect( esc_url_raw( wc_stc_get_shipping_provider( 'deutsche_post' )->get_edit_link() ) );
 		}
 	}
 

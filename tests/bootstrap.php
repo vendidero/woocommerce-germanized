@@ -24,8 +24,8 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	public $wc_tests_dir;
 
 	public $packages = array(
-		'woocommerce-germanized-shipments/woocommerce-germanized-shipments.php' => '\Vendidero\Germanized\Shipments',
-		'woocommerce-germanized-dhl/woocommerce-germanized-dhl.php'             => '\Vendidero\Germanized\DHL',
+		'shiptastic-for-woocommerce/shiptastic-for-woocommerce.php' => '\Vendidero\Shiptastic',
+		'dhl-for-shiptastic/dhl-for-shiptastic.php'                 => '\Vendidero\Shiptastic\DHL',
 	);
 
 	/**
@@ -97,7 +97,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		tests_add_filter( 'woocommerce_gzd_is_woocommerce_activated', '__return_true' );
 
 		// Make sure the DHL Package loads - Base country should equal DE.
-		tests_add_filter( 'woocommerce_gzd_dhl_base_country', function () {
+		tests_add_filter( 'woocommerce_shiptastic_dhl_base_country', function () {
 			return 'DE';
 		} );
 

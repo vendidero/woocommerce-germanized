@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 6.7
 WC requires at least: 3.9
-WC tested up to: 9.6
-Stable tag: 3.18.7
+WC tested up to: 9.7
+Stable tag: 3.19.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html

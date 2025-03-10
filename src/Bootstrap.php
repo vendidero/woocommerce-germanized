@@ -42,7 +42,7 @@ class Bootstrap {
 	 * Init the package - load the blocks library and define constants.
 	 */
 	protected function init() {
-		$this->setup_shipments_integration();
+		Shiptastic::init();
 
 		if ( Package::load_blocks() ) {
 			$this->register_dependencies();
@@ -59,90 +59,6 @@ class Bootstrap {
 				);
 			}
 		}
-	}
-
-	private function setup_shipments_integration() {
-		add_filter(
-			'woocommerce_gzd_shipments_is_provider_integration_active',
-			function ( $is_active, $provider_name ) {
-				if ( in_array( $provider_name, array( 'dhl', 'deutsche_post' ), true ) ) {
-					$is_active = true;
-				}
-
-				return $is_active;
-			},
-			10,
-			2
-		);
-
-		add_filter(
-			'woocommerce_gzd_shipments_additional_costs_include_tax',
-			function () {
-				return wc_gzd_additional_costs_include_tax();
-			}
-		);
-
-		add_filter(
-			'woocommerce_gzd_shipments_template_path',
-			function () {
-				return Package::get_template_path();
-			}
-		);
-
-		add_filter(
-			'woocommerce_gzd_dhl_get_i18n_path',
-			function () {
-				return Package::get_language_path();
-			}
-		);
-
-		add_filter(
-			'woocommerce_gzd_shipments_get_i18n_path',
-			function () {
-				return Package::get_language_path();
-			}
-		);
-
-		add_filter(
-			'woocommerce_gzd_dhl_get_i18n_textdomain',
-			function () {
-				return 'woocommerce-germanized';
-			}
-		);
-
-		add_filter(
-			'woocommerce_gzd_shipments_get_i18n_textdomain',
-			function () {
-				return 'woocommerce-germanized';
-			}
-		);
-
-		add_filter(
-			'woocommerce_gzd_shipment_order_supports_email_transmission',
-			function ( $supports_email_transmission, $order ) {
-				if ( wc_gzd_order_supports_parcel_delivery_reminder( $order->get_id() ) ) {
-					$supports_email_transmission = true;
-				}
-
-				return $supports_email_transmission;
-			},
-			10,
-			2
-		);
-
-		add_filter(
-			'woocommerce_gzd_shipments_last_tutorial_url',
-			function () {
-				return admin_url( 'admin.php?page=wc-settings&tab=germanized-emails&tutorial=yes' );
-			}
-		);
-
-		add_filter(
-			'woocommerce_gzd_shipments_encryption_key_constant',
-			function () {
-				return 'WC_GZD_ENCRYPTION_KEY';
-			}
-		);
 	}
 
 	protected function load_blocks() {

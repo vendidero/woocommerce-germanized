@@ -11,7 +11,7 @@ class WC_GZD_Admin_Note_Base_Country extends WC_GZD_Admin_Note {
 		$is_disabled = true;
 
 		if ( ! apply_filters( 'woocommerce_gzd_afghanistan_is_valid_base_country', false ) ) {
-			if ( 'AF' === get_option( 'woocommerce_default_country' ) || 'AF' === get_option( 'woocommerce_gzd_shipments_shipper_address_country' ) || 'AF' === get_option( 'woocommerce_gzd_shipments_return_address_country' ) ) {
+			if ( 'AF' === get_option( 'woocommerce_default_country' ) || 'AF' === get_option( 'woocommerce_shiptastic_shipper_address_country' ) || 'AF' === get_option( 'woocommerce_shiptastic_return_address_country' ) ) {
 				$is_disabled = false;
 			}
 		}

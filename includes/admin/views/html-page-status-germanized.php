@@ -64,6 +64,45 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<td class="help">&nbsp;</td>
 		<td><?php echo ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_fallback' ) ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">&ndash;</mark>' ); ?></td>
 	</tr>
+	<tr>
+		<td data-export-label="Shiptastic Migration"><?php esc_html_e( 'Migration to Shiptastic', 'woocommerce-germanized' ); ?></td>
+		<td class="help">&nbsp;</td>
+		<td>
+			<?php
+			if ( get_option( 'woocommerce_gzd_shiptastic_migration_errors' ) ) :
+				$migration_errors = array_filter( (array) get_option( 'woocommerce_gzd_shiptastic_migration_errors' ) );
+				?>
+				<p><?php wp_kses_post( sprintf( __( 'There were errors while migrating from Shipments to Shiptastic package. <a href="%s">Learn more in our docs</a>.', 'woocommerce-germanized' ), esc_url( 'https://vendidero.de/doc/woocommerce-germanized/shipments-zu-shiptastic-migration' ) ) ); ?></p>
+
+				<ul>
+					<?php foreach ( $migration_errors as $code => $messages ) : ?>
+						<?php foreach ( (array) $messages as $message ) : ?>
+							<li data-code="<?php echo esc_html( $code ); ?>"><?php echo esc_html( $message ); ?></li>
+						<?php endforeach; ?>
+					<?php endforeach; ?>
+				</ul>
+
+				<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-migrate_to_shiptastic' => true ) ), 'wc-gzd-check-migrate_to_shiptastic' ) ); ?>" class="button button-secondary" style="margin-right: 1rem;"><?php echo esc_html__( 'Start migration again', 'woocommerce-germanized' ); ?></a>
+				<a href="
+				<?php
+				echo esc_url(
+					wp_nonce_url(
+						add_query_arg(
+							array(
+								'wc-gzd-check-migrate_to_shiptastic' => true,
+								'force' => 'yes',
+							)
+						),
+						'wc-gzd-check-migrate_to_shiptastic'
+					)
+				);
+				?>
+							" onclick="return confirm('<?php echo esc_html__( 'By forcing to run the migration again, shipments etc added after updating to 3.19.0 will be lost as the legacy tables will be used instead. Please backup your database before continuing.', 'woocommerce-germanized' ); ?>')" style="color: #a00; font-size: 11px"><?php echo esc_html__( 'Force migration', 'woocommerce-germanized' ); ?></a>
+			<?php else : ?>
+				<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>
+			<?php endif; ?>
+		</td>
+	</tr>
 	<?php
 
 	/**
@@ -151,7 +190,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php
 	foreach ( WC_germanized()->compatibilities as $c => $comp ) :
-
 		if ( ! $comp->is_activated() ) {
 			continue;
 		}

@@ -14,9 +14,9 @@
     "digitick/sepa-xml" : "^2.0.0",
     "defuse/php-encryption": "^2.0.0",
     "globalcitizen/php-iban": "^4.0.0",
-    "vendidero/woocommerce-germanized-dhl": "3.5.0",
-    "vendidero/woocommerce-germanized-shipments": "4.2.1",
-    "vendidero/woocommerce-eu-tax-helper": "2.0.6"
+    "vendidero/woocommerce-eu-tax-helper": "2.0.6",
+    "vendidero/shiptastic-for-woocommerce": "4.3.0",
+    "vendidero/dhl-for-shiptastic": "3.6.0"
   },
   "require-dev": {
     "myclabs/deep-copy": "^1.7.0",
@@ -27,11 +27,11 @@
   "repositories": [
     {
       "type": "vcs",
-      "url":  "https://github.com/vendidero/woocommerce-germanized-dhl"
+      "url":  "https://github.com/vendidero/shiptastic-for-woocommerce"
     },
     {
       "type": "vcs",
-      "url":  "https://github.com/vendidero/woocommerce-germanized-shipments"
+      "url":  "https://github.com/vendidero/dhl-for-shiptastic"
     },
     {
       "type": "vcs",
@@ -79,11 +79,9 @@
   },
   "extra": {
     "installer-paths": {
-      "packages/woocommerce-trusted-shops": ["vendidero/woocommerce-trusted-shops"],
-      "packages/woocommerce-germanized-dhl": ["vendidero/woocommerce-germanized-dhl"],
-      "packages/woocommerce-germanized-shipments": ["vendidero/woocommerce-germanized-shipments"],
-      "packages/woocommerce-eu-tax-helper": ["vendidero/woocommerce-eu-tax-helper"],
-      "packages/one-stop-shop-woocommerce": ["vendidero/one-stop-shop-woocommerce"]
+      "packages/shiptastic-for-woocommerce": ["vendidero/shiptastic-for-woocommerce"],
+      "packages/dhl-for-shiptastic": ["vendidero/dhl-for-shiptastic"],
+      "packages/woocommerce-eu-tax-helper": ["vendidero/woocommerce-eu-tax-helper"]
     },
     "scripts-description": {
       "test": "Run unit tests",

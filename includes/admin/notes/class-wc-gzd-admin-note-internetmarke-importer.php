@@ -10,7 +10,7 @@ class WC_GZD_Admin_Note_Internetmarke_Importer extends WC_GZD_Admin_Note {
 	public function is_disabled() {
 		$is_disabled = true;
 
-		if ( class_exists( 'Vendidero\Germanized\DHL\Admin\Importer\Internetmarke' ) && Vendidero\Germanized\DHL\Admin\Importer\Internetmarke::is_plugin_enabled() && Vendidero\Germanized\DHL\Admin\Importer\Internetmarke::is_available() ) {
+		if ( class_exists( 'Vendidero\Shiptastic\DHL\Admin\Importer\Internetmarke' ) && Vendidero\Shiptastic\DHL\Admin\Importer\Internetmarke::is_plugin_enabled() && Vendidero\Shiptastic\DHL\Admin\Importer\Internetmarke::is_available() ) {
 			$is_disabled = false;
 		}
 

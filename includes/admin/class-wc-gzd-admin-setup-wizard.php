@@ -220,8 +220,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			} elseif ( 'shipping_provider' === $step ) {
 				$providers = array();
 
-				if ( class_exists( '\Vendidero\Germanized\Shipments\ShippingProvider\Helper' ) ) {
-					$helper       = \Vendidero\Germanized\Shipments\ShippingProvider\Helper::instance();
+				if ( class_exists( '\Vendidero\Shiptastic\ShippingProvider\Helper' ) ) {
+					$helper       = \Vendidero\Shiptastic\ShippingProvider\Helper::instance();
 					$providers    = $helper->get_shipping_providers();
 					$integrations = $helper->get_available_shipping_provider_integrations( true );
 
@@ -519,7 +519,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 		public function wc_gzd_setup_provider_save() {
 			$redirect    = $this->get_step_url( $this->get_next_step() );
 			$current_url = $this->get_step_url( $this->step );
-			$providers   = wc_gzd_get_shipping_providers();
+			$providers   = wc_stc_get_shipping_providers();
 
 			foreach ( $providers as $provider ) {
 				if ( isset( $_POST[ "woocommerce_gzd_{$provider->get_name()}_activate" ] ) && 'yes' === wc_bool_to_string( wc_clean( wp_unslash( $_POST[ "woocommerce_gzd_{$provider->get_name()}_activate" ] ) ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing

@@ -28,8 +28,8 @@ class Packages {
 	 * @var array Key is the package name/directory, value is the main package class which handles init.
 	 */
 	protected static $packages = array(
-		'woocommerce-germanized-shipments' => '\\Vendidero\\Germanized\\Shipments\\Package',
-		'woocommerce-germanized-dhl'       => '\\Vendidero\\Germanized\\DHL\\Package',
+		'shiptastic-for-woocommerce' => '\\Vendidero\\Shiptastic\\Package',
+		'dhl-for-shiptastic'         => '\\Vendidero\\Shiptastic\\DHL\\Package',
 	);
 
 	/**
@@ -69,9 +69,18 @@ class Packages {
 	 * Each package should include an init file which loads the package so it can be used by core.
 	 */
 	protected static function load_packages() {
+		add_filter( 'woocommerce_shiptastic_is_integration', '__return_true' );
+
 		foreach ( self::$packages as $package_name => $package_class ) {
 			if ( ! self::package_exists( $package_name ) ) {
 				self::missing_package( $package_name );
+				continue;
+			}
+
+			/**
+			 * Apply legacy disable hook
+			 */
+			if ( 'shiptastic-for-woocommerce' === $package_name && false === self::load_shipping_package() ) {
 				continue;
 			}
 
@@ -86,6 +95,10 @@ class Packages {
 				do_action( "woocommerce_gzd_package_{$package_hook_name}_init" );
 			}
 		}
+	}
+
+	public static function load_shipping_package() {
+		return apply_filters( 'woocommerce_gzd_shipments_enabled', true );
 	}
 
 	/**

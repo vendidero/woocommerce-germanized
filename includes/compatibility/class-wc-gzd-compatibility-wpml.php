@@ -352,7 +352,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		} elseif ( $object ) {
 			if ( is_a( $object, 'WC_Order' ) ) {
 				$lang = $object->get_meta( 'wpml_language' );
-			} elseif ( is_a( $object, '\Vendidero\Germanized\Shipments\Shipment' ) ) {
+			} elseif ( is_a( $object, '\Vendidero\Shiptastic\Shipment' ) ) {
 				if ( $order = $object->get_order() ) {
 					$lang = $order->get_meta( 'wpml_language' );
 				}

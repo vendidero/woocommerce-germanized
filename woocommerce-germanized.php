@@ -3,13 +3,13 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.18.7
+ * Version: 3.19.0
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
  * Tested up to: 6.7
  * WC requires at least: 3.9
- * WC tested up to: 9.6
+ * WC tested up to: 9.7
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -69,7 +69,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.18.7';
+		public $version = '3.19.0';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -695,7 +695,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					'woocommerce-subscriptions'        => 'WC_GZD_Compatibility_WooCommerce_Subscriptions',
 					'woo-paypalplus'                   => 'WC_GZD_Compatibility_Woo_PaypalPlus',
 					'woocommerce-paypal-payments'      => 'WC_GZD_Compatibility_WooCommerce_PayPal_Payments',
-					'translatepress-multilingual'      => 'WC_GZD_Compatibility_TranslatePress_Multilingual',
 					'elementor-pro'                    => 'WC_GZD_Compatibility_Elementor_Pro',
 					'elementor'                        => 'WC_GZD_Compatibility_Elementor',
 					'klarna-checkout-for-woocommerce'  => 'WC_GZD_Compatibility_Klarna_Checkout_For_WooCommerce',

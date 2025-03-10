@@ -348,7 +348,7 @@ class WC_GZD_Product {
 			}
 		}
 
-		return $this->manufacturer;
+		return apply_filters( 'woocommerce_gzd_product_manufacturer', $this->manufacturer, $this );
 	}
 
 	public function get_manufacturer_slug( $context = 'view' ) {
