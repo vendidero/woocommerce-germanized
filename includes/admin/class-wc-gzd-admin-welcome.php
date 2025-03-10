@@ -137,6 +137,27 @@ class WC_GZD_Admin_Welcome {
 			</p>
 
 			<div class="changelog new-feature">
+				<h3>Goodbye Shipments, hello Shiptastic!</h3>
+
+				<div class="columns two-col">
+					<div class="col">
+						<p>
+							Die Sendungsintegration in Germanized haben wir in den letzten Versionen kontinuierlich erweitert und verbessert. Jetzt ist es soweit, dass aus den Sendungen ein eigenständiges Plugin wird: <a href="https://wordpress.org/plugins/shiptastic-for-woocommerce">Shiptastic für WooCommerce</a>.
+							Dabei handelt es sich um ein Refactoring der Sendungsintegration aus Germanized, d.h. funktional hat sich nicht viel verändert, technisch werden aber Präfixe, Datenbank-Tabellen und Klassen anders benannt. Aus Kompatibilitätsgründen
+							liefert Germanized die alten Klassen noch mit und wendet auch sehr viele beliebte Hooks & Filter an - wir empfehlen dennoch, insofern du individuelle Anpassungen vorgenommen hast, deine Integration zu aktualisieren.
+						</p>
+
+						<div class="wc-gzd-actions wc-gzd-actions-right">
+							<a href="https://vendidero.de/doc/woocommerce-germanized/shipments-zu-shiptastic-migration" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
+						</div>
+					</div>
+					<div class="col col-center">
+						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/shiptastic.png" style=""/>
+					</div>
+				</div>
+			</div>
+
+			<div class="changelog new-feature">
 				<h3>Produktsicherheit (GPSR)</h3>
 
 				<div class="columns two-col">

@@ -10,7 +10,7 @@ class WC_GZD_Admin_Note_DHL_Importer extends WC_GZD_Admin_Note {
 	public function is_disabled() {
 		$is_disabled = true;
 
-		if ( class_exists( 'Vendidero\Germanized\DHL\Admin\Importer\DHL' ) && Vendidero\Germanized\DHL\Admin\Importer\DHL::is_plugin_enabled() ) {
+		if ( class_exists( 'Vendidero\Shiptastic\DHL\Admin\Importer\DHL' ) && Vendidero\Shiptastic\DHL\Admin\Importer\DHL::is_plugin_enabled() ) {
 			$is_disabled = false;
 		}
 
@@ -48,7 +48,7 @@ class WC_GZD_Admin_Note_DHL_Importer extends WC_GZD_Admin_Note {
 		return array(
 			array(
 				'url'          => add_query_arg( 'wc-gzd-dhl-import', 'yes', admin_url( 'admin.php?page=wc-settings&tab=germanized-shipping_provider&provider=dhl' ) ),
-				'title'        => Vendidero\Germanized\DHL\Admin\Importer\DHL::is_available() ? _x( 'Import settings and activate', 'dhl', 'woocommerce-germanized' ) : _x( 'Use integration', 'dhl', 'woocommerce-germanized' ),
+				'title'        => Vendidero\Shiptastic\DHL\Admin\Importer\DHL::is_available() ? _x( 'Import settings and activate', 'dhl', 'woocommerce-germanized' ) : _x( 'Use integration', 'dhl', 'woocommerce-germanized' ),
 				'target'       => '_self',
 				'is_primary'   => true,
 				'nonce_action' => 'woocommerce_gzd_dhl_import_nonce',

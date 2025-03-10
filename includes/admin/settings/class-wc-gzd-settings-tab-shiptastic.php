@@ -7,11 +7,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Adds Germanized Shipments settings.
  *
- * @class        WC_GZD_Settings_Tab_Shipments
+ * @class        WC_GZD_Settings_Tab_Shiptastic
  * @version        3.0.0
  * @author        Vendidero
  */
-class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
+class WC_GZD_Settings_Tab_Shiptastic extends WC_GZD_Settings_Tab {
 
 	public function __construct() {
 		parent::__construct();
@@ -37,22 +37,15 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 		$description = __( 'Configure shipments and manage shipping providers.', 'woocommerce-germanized' );
 
 		if ( class_exists( '\Vendidero\Shiptastic\ShippingProvider\Helper' ) ) {
-			$integrations  = \Vendidero\Shiptastic\ShippingProvider\Helper::instance()->get_available_shipping_provider_integrations();
-			$provider_list = array();
+			$provider_available = \Vendidero\Shiptastic\ShippingProvider\Helper::instance()->get_available_shipping_provider_integrations();
 
-			foreach ( $integrations as $integration ) {
-				$provider_list[] = $integration->get_title();
+			foreach ( array_slice( $provider_available, 0, 3 ) as $provider ) {
+				$provider_name_list[] = $provider->get_title();
 			}
 
-			if ( ! empty( $provider_list ) ) {
-				$provider_list = implode( ', ', $provider_list );
-				$pos           = strrpos( $provider_list, ', ' );
-
-				if ( false !== $pos ) {
-					$provider_list = substr_replace( $provider_list, ' & ', $pos, strlen( ', ' ) );
-				}
-
-				$description = sprintf( __( 'Configure shipments and manage shipping providers, e.g. %s.', 'woocommerce-germanized' ), trim( $provider_list ) );
+			if ( ! empty( $provider_name_list ) ) {
+				$provider_list = implode( ', ', $provider_name_list );
+				$description   = sprintf( __( 'Configure shipments and manage shipping providers, e.g. %s & more.', 'woocommerce-germanized' ), trim( $provider_list ) );
 			}
 		}
 
@@ -60,7 +53,7 @@ class WC_GZD_Settings_Tab_Shipments extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_label() {
-		return _x( 'Shipments & more', 'shipments-settings-tab', 'woocommerce-germanized' );
+		return _x( 'Shiptastic', 'shipments-settings-tab', 'woocommerce-germanized' );
 	}
 
 	public function get_name() {

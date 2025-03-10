@@ -519,7 +519,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 		public function wc_gzd_setup_provider_save() {
 			$redirect    = $this->get_step_url( $this->get_next_step() );
 			$current_url = $this->get_step_url( $this->step );
-			$providers   = wc_gzd_get_shipping_providers();
+			$providers   = wc_stc_get_shipping_providers();
 
 			foreach ( $providers as $provider ) {
 				if ( isset( $_POST[ "woocommerce_gzd_{$provider->get_name()}_activate" ] ) && 'yes' === wc_bool_to_string( wc_clean( wp_unslash( $_POST[ "woocommerce_gzd_{$provider->get_name()}_activate" ] ) ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing

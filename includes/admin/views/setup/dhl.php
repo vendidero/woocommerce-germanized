@@ -1,6 +1,6 @@
 <?php
 
-use Vendidero\Germanized\DHL\Admin\Importer\DHL;
+use Vendidero\Shiptastic\DHL\Admin\Importer\DHL;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly

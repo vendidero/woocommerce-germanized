@@ -200,7 +200,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-trusted-shops.php';
 
 		if ( class_exists( '\Vendidero\Shiptastic\Package' ) && \Vendidero\Shiptastic\Package::has_dependencies() ) {
-			include_once __DIR__ . '/class-wc-gzd-settings-tab-shipments.php';
+			include_once __DIR__ . '/class-wc-gzd-settings-tab-shiptastic.php';
 		}
 
 		/**
@@ -221,7 +221,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'button_solution'                => 'WC_GZD_Settings_Tab_Button_Solution',
 				'multistep_checkout'             => 'WC_GZD_Settings_Tab_Multistep_Checkout',
 				'invoices'                       => 'WC_GZD_Settings_Tab_Invoices',
-				'shipments'                      => 'WC_GZD_Settings_Tab_Shipments',
+				'shiptastic'                     => 'WC_GZD_Settings_Tab_Shiptastic',
 				'shipping_provider'              => 'WC_GZD_Settings_Tab_Shipping_Provider',
 				'double_opt_in'                  => 'WC_GZD_Settings_Tab_DOI',
 				'emails'                         => 'WC_GZD_Settings_Tab_Emails',
