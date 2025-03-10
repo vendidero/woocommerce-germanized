@@ -514,7 +514,7 @@ class WC_GZD_Order_Helper {
 			}
 		}
 
-		return apply_filters( 'woocommerce_gzd_order_main_service_tax_class', $main_tax_class );
+		return apply_filters( 'woocommerce_gzd_order_main_service_tax_class', $main_tax_class, $type );
 	}
 
 	public function create_refund_with_items( $order_id ) {

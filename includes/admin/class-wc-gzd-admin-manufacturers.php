@@ -42,11 +42,15 @@ class WC_GZD_Admin_Manufacturers {
 				'label' => __( 'Manufacturer Address', 'woocommerce-germanized' ),
 				'type'  => 'textarea',
 				'id'    => 'formatted_address',
+				'cols'  => 50,
+				'rows'  => 5,
 			),
 			'formatted_eu_address' => array(
 				'label' => __( 'EU responsible person', 'woocommerce-germanized' ),
 				'type'  => 'textarea',
 				'id'    => 'formatted_eu_address',
+				'cols'  => 50,
+				'rows'  => 5,
 			),
 		);
 	}
@@ -102,7 +106,7 @@ class WC_GZD_Admin_Manufacturers {
 			$field['value'] = is_callable( array( $manufacturer, $getter ) ) ? $manufacturer->{ $getter }( 'edit' ) : '';
 			$field['label'] = '';
 			?>
-			<tr class="form-field term-deposit-wrap">
+			<tr class="form-field term-manufacturer-address-wrap">
 				<th scope="row" valign="top">
 					<label for="<?php echo esc_attr( $field['id'] ); ?>"><?php echo esc_html( $label ); ?></label>
 				</th>

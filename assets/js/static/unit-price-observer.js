@@ -91,7 +91,7 @@
                         setTimeout( function() {
                             self.stopObserver( self, priceSelector );
 
-                            var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'], isPrimary, priceArgs['quantity_selector'] );
+                            var priceData = self.getCurrentPriceData( self, $price, priceArgs['is_total_price'], isPrimary, priceArgs['quantity_selector'] );
 
                             if ( priceData ) {
                                 self.refreshUnitPrice( self, priceData, priceSelector, isPrimary );
@@ -132,22 +132,24 @@
         return textWidth;
     };
 
-    GermanizedUnitPriceObserver.prototype.getPriceNode = function( self, priceSelector, isPrimarySelector ) {
+    GermanizedUnitPriceObserver.prototype.getPriceNode = function( self, priceSelector, isPrimarySelector, visibleOnly ) {
         isPrimarySelector = ( typeof isPrimarySelector === 'undefined' ) ? false : isPrimarySelector;
+        visibleOnly = ( typeof visibleOnly === 'undefined' ) ? true : visibleOnly;
+        let visibleSelector = visibleOnly ? ':visible' : '';
 
-        var $node = self.$wrapper.find( priceSelector + ':not(.price-unit):visible' ).not( '.variations_form .single_variation .price' ).first();
+        var $node = self.$wrapper.find( priceSelector + ':not(.price-unit)' + visibleSelector ).not( '.variations_form .single_variation .price' ).first();
 
         if ( isPrimarySelector && self.isVar && ( $node.length <= 0 || ! self.replacePrice ) ) {
-            $node = self.$wrapper.find( '.woocommerce-variation-price span.price:not(.price-unit):visible:last' );
+            $node = self.$wrapper.find( '.woocommerce-variation-price span.price:not(.price-unit):last' + visibleSelector );
         } else if ( isPrimarySelector && $node.length <= 0 ) {
-            $node = self.$wrapper.find( '.price:not(.price-unit):visible:last' );
+            $node = self.$wrapper.find( '.price:not(.price-unit):last' + visibleSelector );
         }
 
         return $node;
     };
 
     GermanizedUnitPriceObserver.prototype.getObserverNode = function( self, priceSelector, isPrimarySelector ) {
-        var $node = self.getPriceNode( self, priceSelector, isPrimarySelector );
+        var $node = self.getPriceNode( self, priceSelector, isPrimarySelector, false );
 
         if ( isPrimarySelector && self.isVar && ! self.replacePrice ) {
             $node = self.$wrapper.find( '.single_variation:last' );
@@ -190,7 +192,7 @@
             self.stopObserver( self, priceSelector );
 
             if ( $node.length > 0 ) {
-                observer.observe( $node[0], { childList: true, subtree: true, characterData: true } );
+                observer.observe( $node[0], { attributes: true, childList: true, subtree: true, characterData: true, attributeFilter: ['style'] } );
             }
 
             return true;
@@ -209,10 +211,28 @@
                 $observerNode   = self.getObserverNode( self, priceSelector, isPrimary ),
                 currentObserver = false;
 
-            if ( $observerNode.length > 0 ) {
+            if ( $observerNode.length > 0 && $observerNode.is( ':visible' ) ) {
                 // Callback function to execute when mutations are observed
                 var callback = function( mutationsList, observer ) {
-                    var $node = self.getPriceNode( self, priceSelector, isPrimary );
+                    var $priceNode = self.getPriceNode( self, priceSelector, isPrimary );
+
+                    for ( let mutation of mutationsList ) {
+                        let $element = $( mutation.target );
+
+                        if ( $element.length > 0 ) {
+                            let $priceElement;
+
+                            if ( $element.is( priceSelector ) ) {
+                                $priceElement = $element;
+                            } else {
+                                $priceElement = $element.parents( priceSelector );
+                            }
+
+                            if ( $priceElement.length > 0 ) {
+                                $priceNode = $priceElement;
+                            }
+                        }
+                    }
 
                     /**
                      * Clear the timeout and abort open AJAX requests as
@@ -222,44 +242,49 @@
                         clearTimeout( self.timeout );
                     }
 
-                    if ( $node.length <= 0 ) {
+                    if ( $priceNode.length <= 0 ) {
                         return false;
                     }
 
-                    var $unitPrice   = self.getUnitPriceNode( self, $node ),
+                    var $unitPrice   = self.getUnitPriceNode( self, $priceNode ),
                         hasRefreshed = false;
 
                     self.stopObserver( self, priceSelector );
 
                     if ( $unitPrice.length > 0 ) {
                         self.setUnitPriceLoading( self, $unitPrice );
-                    }
 
-                    /**
-                     * Need to use a tweak here to make sure our variation listener
-                     * has already adjusted the variationId (in case necessary).
-                     */
-                    self.timeout = setTimeout(function() {
-                        self.stopObserver( self, priceSelector );
+                        /**
+                         * Need to use a tweak here to make sure our variation listener
+                         * has already adjusted the variationId (in case necessary).
+                         */
+                        self.timeout = setTimeout(function() {
+                            self.stopObserver( self, priceSelector );
 
-                        var priceData = self.getCurrentPriceData( self, priceSelector, priceArgs['is_total_price'], isPrimary, priceArgs['quantity_selector'] );
+                            var priceData = self.getCurrentPriceData( self, $priceNode, priceArgs['is_total_price'], isPrimary, priceArgs['quantity_selector'] );
+                            var isVisible = $priceNode.is( ':visible' );
 
-                        if ( priceData ) {
-                            /**
-                             * Do only fire AJAX requests in case no other requests (e.g. from other plugins) are currently running.
-                             */
-                            if ( $.active <= 0 ) {
-                                hasRefreshed = true;
-                                self.refreshUnitPrice( self, priceData, priceSelector, isPrimary );
+                            if ( priceData ) {
+                                /**
+                                 * Do only fire AJAX requests in case no other requests (e.g. from other plugins) are currently running.
+                                 */
+                                if ( $.active <= 0 ) {
+                                    hasRefreshed = true;
+                                    self.refreshUnitPrice( self, priceData, priceSelector, isPrimary );
+                                }
                             }
-                        }
 
-                        if ( ! hasRefreshed && $unitPrice.length > 0 ) {
-                            self.unsetUnitPriceLoading( self, $unitPrice );
-                        }
+                            if ( ! hasRefreshed && $unitPrice.length > 0 ) {
+                                self.unsetUnitPriceLoading( self, $unitPrice );
 
-                        self.startObserver( self, priceSelector, isPrimary );
-                    }, 500 );
+                                if ( ! isVisible && isPrimary ) {
+                                    $unitPrice.hide();
+                                }
+                            }
+
+                            self.startObserver( self, priceSelector, isPrimary );
+                        }, 500 );
+                    }
                 };
 
                 if ( "MutationObserver" in window ) {
@@ -316,7 +341,7 @@
 
     GermanizedUnitPriceObserver.prototype.getCurrentPriceData = function( self, priceSelector, isTotalPrice, isPrimary, quantitySelector ) {
         quantitySelector = quantitySelector && '' !== quantitySelector ? quantitySelector : self.params.qty_selector;
-        var $price       = self.getPriceNode( self, priceSelector, isPrimary );
+        var $price = ( typeof priceSelector === 'string' || priceSelector instanceof String ) ? self.getPriceNode( self, priceSelector, isPrimary ) : priceSelector;
 
         if ( $price.length > 0 ) {
             // Add a tmp hidden class to detect hidden elements in cloned obj

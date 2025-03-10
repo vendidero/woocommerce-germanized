@@ -729,3 +729,11 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
     }
   }
 }
+
+.taxonomy-product_manufacturer {
+  .term-name-wrap {
+    .description, #name-description {
+      display: none !important;
+    }
+  }
+}

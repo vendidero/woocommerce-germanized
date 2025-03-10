@@ -1223,6 +1223,7 @@ class WC_GZD_Checkout {
 			foreach ( $rates as $key => $rate ) {
 				$original_taxes = $rate->get_taxes();
 				$original_cost  = $rate->get_cost();
+				$rate_has_tax   = $rate->get_shipping_tax() > 0;
 
 				/**
 				 * Prevent bugs in plugins like Woo Subscriptions which
@@ -1321,13 +1322,21 @@ class WC_GZD_Checkout {
 					$tax_total = array_sum( $rates[ $key ]->get_taxes() );
 					$new_cost  = $original_cost - $tax_total;
 
-					if ( WC()->customer->is_vat_exempt() ) {
-						$shipping_rates = WC_Tax::get_shipping_tax_rates();
-						$shipping_taxes = WC_Tax::calc_inclusive_tax( $original_cost, $shipping_rates );
-						$new_cost       = ( $new_cost - array_sum( $shipping_taxes ) );
+					$rates[ $key ]->set_cost( $new_cost );
+				}
+
+				if ( ! $rate_has_tax ) {
+					$taxes_zero = array();
+
+					foreach ( $rates[ $key ]->get_taxes() as $tax_key => $tax ) {
+						$taxes_zero[ $tax_key ] = 0.0;
 					}
 
-					$rates[ $key ]->set_cost( $new_cost );
+					if ( WC()->customer->is_vat_exempt() ) {
+						$taxes_zero = array();
+					}
+
+					$rates[ $key ]->set_taxes( $taxes_zero );
 				}
 			}
 		}
