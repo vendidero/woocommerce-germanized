@@ -146,7 +146,13 @@ class WC_GZD_Admin {
 
 	protected function check_migrate_to_shiptastic() {
 		if ( current_user_can( 'manage_options' ) ) {
-			WC_GZD_Install::migrate_shipments_to_shiptastic();
+			$force = false;
+
+			if ( isset( $_GET['force'] ) && 'yes' === wc_clean( wp_unslash( $_GET['force'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$force = true;
+			}
+
+			WC_GZD_Install::migrate_shipments_to_shiptastic( $force );
 		}
 	}
 

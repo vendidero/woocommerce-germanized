@@ -76,13 +76,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<ul>
 					<?php foreach ( $migration_errors as $code => $messages ) : ?>
-						<?php foreach ( $messages as $message ) : ?>
+						<?php foreach ( (array) $messages as $message ) : ?>
 							<li data-code="<?php echo esc_html( $code ); ?>"><?php echo esc_html( $message ); ?></li>
 						<?php endforeach; ?>
 					<?php endforeach; ?>
 				</ul>
 
-				<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-migrate_to_shiptastic' => true ) ), 'wc-gzd-check-migrate_to_shiptastic' ) ); ?>" class="button button-secondary"><?php echo esc_html__( 'Start migration again', 'woocommerce-germanized' ); ?></a>
+				<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-migrate_to_shiptastic' => true ) ), 'wc-gzd-check-migrate_to_shiptastic' ) ); ?>" class="button button-secondary" style="margin-right: 1rem;"><?php echo esc_html__( 'Start migration again', 'woocommerce-germanized' ); ?></a>
+				<a href="
+				<?php
+				echo esc_url(
+					wp_nonce_url(
+						add_query_arg(
+							array(
+								'wc-gzd-check-migrate_to_shiptastic' => true,
+								'force' => 'yes',
+							)
+						),
+						'wc-gzd-check-migrate_to_shiptastic'
+					)
+				);
+				?>
+							" onclick="return confirm('<?php echo esc_html__( 'By forcing to run the migration again, shipments etc added after updating to 3.19.0 will be lost as the legacy tables will be used instead. Please backup your database before continuing.', 'woocommerce-germanized' ); ?>')" style="color: #a00; font-size: 11px"><?php echo esc_html__( 'Force migration', 'woocommerce-germanized' ); ?></a>
 			<?php else : ?>
 				<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>
 			<?php endif; ?>
