@@ -48,6 +48,9 @@ fi
 output 3 "Patching libraries..."
 sed -i '' -e 's/get_class()/__CLASS__/g' ./vendor/baltpeter/internetmarke-php/src/baltpeter/Internetmarke/ApiResult.php
 
+rm -rf ./packages/shiptastic-for-woocommerce/readme.txt
+rm -rf ./packages/shiptastic-for-woocommerce/composer.json
+rm -rf ./packages/shiptastic-for-woocommerce/composer.lock
 rm -rf ./packages/shiptastic-for-woocommerce/vendor
 rm -rf ./packages/dhl-for-shiptastic/vendor
 rm -rf ./packages/woocommerce-eu-tax-helper/vendor
