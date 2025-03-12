@@ -9,6 +9,8 @@ class Shiptastic {
 	public static function init() {
 		self::setup_integration();
 		self::setup_backwards_compatibility();
+
+		include_once Package::get_path() . '/includes/wc-gzd-shipments-legacy-functions.php';
 	}
 
 	protected static function setup_backwards_compatibility() {
