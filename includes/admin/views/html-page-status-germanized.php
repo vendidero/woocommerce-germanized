@@ -127,7 +127,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				if ( $legacy_dir = WC_GZD_Install::get_shipments_legacy_upload_folder() ) :
 					$new_dir = \Vendidero\Shiptastic\Package::get_upload_dir();
 					?>
-					<?php if ( ! @is_dir( $new_dir['base_path'] ) ) : // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged ?>
+					<?php if ( ! @is_dir( $new_dir['basedir'] ) ) : // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged ?>
 						<h5><?php printf( esc_html__( '%d. Rename the uploads folder', 'woocommerce-germanized' ), esc_html( ++$manual_count ) ); ?></h5>
 						<?php echo wp_kses_post( sprintf( __( 'Rename %1$s to %2$s.', 'woocommerce-germanized' ), '<code>' . esc_html( $legacy_dir['basedir'] ) . '</code>', '<code>' . esc_html( $new_dir['basedir'] ) . '</code>' ) ); ?>
 					<?php endif; ?>

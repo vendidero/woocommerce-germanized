@@ -229,7 +229,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 						}
 
 						if ( "{$wpdb->prefix}woocommerce_gzd_shipments" === $table ) {
-							$db_updates[ $table ]['additional'][] = $wpdb->prepare( "UPDATE {$new_table_name} SET shipment_status = REPLACE(shipment_status, %s, %s)", $wpdb->esc_like( 'gzd-' ), '' ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+							$db_updates[ $table ]['additional'][] = $wpdb->prepare( "UPDATE {$new_table_name} SET shipment_status = REPLACE(shipment_status, %s, %s)", 'gzd-', '' ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 						} elseif ( "{$wpdb->prefix}woocommerce_gzd_shipping_providermeta" === $table ) {
 							/**
 							 * Migrate provider status hooks
@@ -240,7 +240,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 							);
 
 							foreach ( $provider_status_meta as $meta_key ) {
-								$db_updates[ $table ]['additional'][] = $wpdb->prepare( "UPDATE {$new_table_name} SET meta_value = REPLACE(meta_value, %s, %s) WHERE meta_key = %s", $wpdb->esc_like( 'gzd-' ), '', $meta_key ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+								$db_updates[ $table ]['additional'][] = $wpdb->prepare( "UPDATE {$new_table_name} SET meta_value = REPLACE(meta_value, %s, %s) WHERE meta_key = %s", 'gzd-', '', $meta_key ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 							}
 						}
 					}
@@ -250,7 +250,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			$db_updates[ $wpdb->options ] = array(
 				'main'       => '',
 				'additional' => array(
-					$wpdb->prepare( "UPDATE {$wpdb->options} SET option_value = REPLACE(option_value, %s, %s) WHERE option_name = %s", $wpdb->esc_like( 'woocommerce_gzd_shipments_packaging_' ), 'woocommerce_shiptastic_packaging_', 'woocommerce_gzd_shipments_packaging_reports' ),
+					$wpdb->prepare( "UPDATE {$wpdb->options} SET option_value = REPLACE(option_value, %s, %s) WHERE option_name = %s", 'woocommerce_gzd_shipments_packaging_', 'woocommerce_shiptastic_packaging_', 'woocommerce_gzd_shipments_packaging_reports' ),
 					$wpdb->prepare( "UPDATE {$wpdb->options} SET option_name = REPLACE(option_name, %s, %s)", 'woocommerce_gzd_shipments_', 'woocommerce_shiptastic_' ),
 					$wpdb->prepare( "UPDATE {$wpdb->options} SET option_name = REPLACE(option_name, %s, %s)", 'woocommerce_gzd_dhl_', 'woocommerce_shiptastic_dhl_' ),
 				),
@@ -261,7 +261,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			);
 
 			foreach ( $status_options as $option ) {
-				$db_updates[ $wpdb->options ]['additional'][] = $wpdb->prepare( "UPDATE {$wpdb->options} SET option_value = REPLACE(option_value, %s, %s) WHERE option_name = %s", $wpdb->esc_like( 'gzd-' ), '', $option );
+				$db_updates[ $wpdb->options ]['additional'][] = $wpdb->prepare( "UPDATE {$wpdb->options} SET option_value = REPLACE(option_value, %s, %s) WHERE option_name = %s", 'gzd-', '', $option );
 			}
 
 			return $db_updates;
@@ -297,10 +297,23 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			delete_option( 'woocommerce_gzd_shiptastic_migration_has_errors' );
 			delete_option( 'woocommerce_gzd_shiptastic_migration_errors' );
 
-			if ( $force_override ) {
-				$legacy_options = $wpdb->query( $wpdb->prepare( "SELECT * FROM {$wpdb->options} WHERE option_name LIKE %s LIMIT 1", $wpdb->esc_like( 'woocommerce_shiptastic_' ) . '%' ) );
+			/**
+			 * Force delete the upload dir suffix which may be created
+			 * before running the check version hook.
+			 */
+			if ( get_option( 'woocommerce_gzd_shipments_upload_dir_suffix' ) ) {
+				delete_option( 'woocommerce_shiptastic_upload_dir_suffix' );
+			}
 
-				if ( ! empty( $legacy_options ) ) {
+			$wpdb->flush();
+
+			if ( $force_override ) {
+				/**
+				 * Do only delete new options in case legacy options still exist
+				 */
+				$has_legacy_options = $wpdb->query( $wpdb->prepare( "SELECT * FROM {$wpdb->options} WHERE option_name LIKE %s LIMIT 1", $wpdb->esc_like( 'woocommerce_gzd_shipments_' ) . '%' ) );
+
+				if ( ! empty( $has_legacy_options ) ) {
 					$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'woocommerce_shiptastic_' ) . '%' ) );
 				}
 			}
