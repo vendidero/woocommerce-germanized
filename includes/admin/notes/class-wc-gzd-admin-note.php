@@ -134,25 +134,15 @@ abstract class WC_GZD_Admin_Note {
 	}
 
 	protected function use_wp_notice_api() {
-		$use_wp_notice_api = false;
+		$supports_wc_notes = class_exists( 'Automattic\WooCommerce\Admin\Notes\Note' );
 
 		try {
 			$data_store = \WC_Data_Store::load( 'admin-note' );
-		} catch ( Exception $e ) {
-			$use_wp_notice_api = true;
+		} catch ( \Exception $e ) {
+			$supports_wc_notes = false;
 		}
 
-		/**
-		 * Check whether the WC Admin loader (which is bundled into Woo core since 5.9) does really
-		 * remove/replace notices and decide whether using it or not.
-		 */
-		if ( ! $use_wp_notice_api ) {
-			if ( class_exists( 'Automattic\WooCommerce\Admin\Loader' ) && method_exists( 'Automattic\WooCommerce\Admin\Loader', 'remove_notices' ) ) {
-				$use_wp_notice_api = ! has_action( 'admin_head', array( 'Automattic\WooCommerce\Admin\Loader', 'remove_notices' ) );
-			}
-		}
-
-		return $use_wp_notice_api;
+		return ! $supports_wc_notes;
 	}
 
 	/**

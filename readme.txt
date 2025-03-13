@@ -208,9 +208,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 == Changelog ==
 = 3.19.0 =
 * New: Refactored Shipments to Shiptastic. Read more at https://vendidero.de/doc/woocommerce-germanized/shipments-zu-shiptastic-migration
-* Improvement: Use inner spans to apply delivery time classes
+* Improvement: Use inner spans to apply delivery time html classes
 * Improvement: Add shipping tax rates even for shipping costs with zero taxes, e.g. free shipping
-* Improvement: Unit price observer: Watch for attribute changes too
+* Improvement: Watch for attribute changes while observing prices too
 * Improvement: Shipping method: Added tax status option to make sure Woo can retrieve the right tax status
 * Improvement: Assembled bundle handling when creating shipments
 * Fix: Hide block-fill-wrapper in block checkout

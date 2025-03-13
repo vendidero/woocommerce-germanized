@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-03-13T09:31:36+00:00\n"
+"POT-Creation-Date: 2025-03-13T10:09:59+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 
@@ -9685,7 +9685,7 @@ msgstr ""
 msgid "EU responsible person"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin-notices.php:130
+#: includes/admin/class-wc-gzd-admin-notices.php:131
 msgid "<strong>Be aware!</strong> This update is not compatible with your current Germanized Pro version. Please check for updates (%s) before updating Germanized to prevent compatibility issues."
 msgstr ""
 
@@ -10640,6 +10640,7 @@ msgstr ""
 #: includes/admin/notes/class-wc-gzd-admin-note-encryption.php:50
 #: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:47
 #: includes/admin/notes/class-wc-gzd-admin-note-shipping-excl-tax.php:45
+#: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:37
 #: includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:41
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:200
 #: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:68
@@ -10743,6 +10744,18 @@ msgstr ""
 msgid "Manage shipping methods"
 msgstr ""
 
+#: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:26
+msgid "Errors while migrating to Shiptastic"
+msgstr ""
+
+#: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:30
+msgid "There was an error while migrating your Germanized Shipments integration to Shiptastic. Please check the status page to see what went wrong."
+msgstr ""
+
+#: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:43
+msgid "View Status"
+msgstr ""
+
 #: includes/admin/notes/class-wc-gzd-admin-note-template-outdated.php:53
 msgid "Your theme contains outdated Germanized template files"
 msgstr ""
@@ -10815,11 +10828,11 @@ msgstr ""
 msgid "Manage OSS settings"
 msgstr ""
 
-#: includes/admin/notes/class-wc-gzd-admin-note.php:268
+#: includes/admin/notes/class-wc-gzd-admin-note.php:258
 msgid "Not now"
 msgstr ""
 
-#: includes/admin/notes/class-wc-gzd-admin-note.php:272
+#: includes/admin/notes/class-wc-gzd-admin-note.php:262
 msgid "Deactivate"
 msgstr ""
 
@@ -13479,7 +13492,7 @@ msgctxt "shipments-migration"
 msgid "Could not rename %1$s to %2$s."
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:449
+#: includes/class-wc-gzd-install.php:454
 msgid "Please install WooCommerce before installing WooCommerce Germanized. Thank you!"
 msgstr ""
 

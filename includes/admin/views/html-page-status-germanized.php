@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<td class="help">&nbsp;</td>
 		<td>
 			<?php
-			if ( get_option( 'woocommerce_gzd_shiptastic_migration_errors' ) && function_exists( 'wc_stc_get_shipments' ) ) :
+			if ( 'yes' === get_option( 'woocommerce_gzd_shiptastic_migration_has_errors' ) && function_exists( 'wc_stc_get_shipments' ) ) :
 				$migration_errors = array_filter( (array) get_option( 'woocommerce_gzd_shiptastic_migration_errors' ) );
 				?>
 				<p><?php wp_kses_post( sprintf( __( 'There were errors while migrating from Shipments to Shiptastic package. <a href="%s">Learn more in our docs</a>.', 'woocommerce-germanized' ), esc_url( 'https://vendidero.de/doc/woocommerce-germanized/shipments-zu-shiptastic-migration' ) ) ); ?></p>

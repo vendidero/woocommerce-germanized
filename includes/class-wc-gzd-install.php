@@ -419,6 +419,11 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				}
 			}
 
+			if ( wc_gzd_wp_error_has_errors( $error ) ) {
+				update_option( 'woocommerce_gzd_shiptastic_migration_has_errors', 'yes', true );
+				update_option( 'woocommerce_gzd_shiptastic_migration_errors', $error->errors, false );
+			}
+
 			return wc_gzd_wp_error_has_errors( $error ) ? $error : true;
 		}
 
@@ -465,12 +470,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			add_filter( 'oss_woocommerce_enable_extended_logging', '__return_true', 5 );
 
 			if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, '3.19.0', '<' ) ) {
-				$result = self::migrate_shipments_to_shiptastic();
-
-				if ( is_wp_error( $result ) ) {
-					update_option( 'woocommerce_gzd_shiptastic_migration_has_errors', 'yes', false );
-					update_option( 'woocommerce_gzd_shiptastic_migration_errors', $result->errors, false );
-				}
+				self::migrate_shipments_to_shiptastic();
 			}
 
 			self::install_packages();

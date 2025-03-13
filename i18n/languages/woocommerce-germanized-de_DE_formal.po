@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2025-03-13T09:31:36+00:00\n"
-"PO-Revision-Date: 2025-03-13 10:32+0100\n"
+"POT-Creation-Date: 2025-03-13T10:09:59+00:00\n"
+"PO-Revision-Date: 2025-03-13 11:11+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -10618,7 +10618,7 @@ msgstr "Herstelleradresse"
 msgid "EU responsible person"
 msgstr "Verantwortliche Person (EU)"
 
-#: includes/admin/class-wc-gzd-admin-notices.php:130
+#: includes/admin/class-wc-gzd-admin-notices.php:131
 msgid ""
 "<strong>Be aware!</strong> This update is not compatible with your current "
 "Germanized Pro version. Please check for updates (%s) before updating "
@@ -11795,6 +11795,7 @@ msgstr "Schlüssel zur Datenverschlüsselung fehlt"
 #: includes/admin/notes/class-wc-gzd-admin-note-encryption.php:50
 #: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:47
 #: includes/admin/notes/class-wc-gzd-admin-note-shipping-excl-tax.php:45
+#: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:37
 #: includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:41
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:200
 #: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:68
@@ -11977,6 +11978,24 @@ msgstr ""
 msgid "Manage shipping methods"
 msgstr "Versandmethoden verwalten"
 
+#: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:26
+msgid "Errors while migrating to Shiptastic"
+msgstr "Fehler bei der Migration zu Shiptastic"
+
+#: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:30
+msgid ""
+"There was an error while migrating your Germanized Shipments integration to "
+"Shiptastic. Please check the status page to see what went wrong."
+msgstr ""
+"Bei der automatischen Migration von Sendungen zu Shiptastic ist ein Fehler "
+"aufgetreten. Bitte prüfen Sie die Statusseite und lesen Sie unsere Hinweise "
+"in der Dokumentation."
+
+# @ woocommerce-germanized
+#: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:43
+msgid "View Status"
+msgstr "Status ansehen"
+
 #: includes/admin/notes/class-wc-gzd-admin-note-template-outdated.php:53
 msgid "Your theme contains outdated Germanized template files"
 msgstr "Ihr Theme enthält veraltete Germanized Templates"
@@ -12101,11 +12120,11 @@ msgstr ""
 msgid "Manage OSS settings"
 msgstr "OSS Einstellungen anpassen"
 
-#: includes/admin/notes/class-wc-gzd-admin-note.php:268
+#: includes/admin/notes/class-wc-gzd-admin-note.php:258
 msgid "Not now"
 msgstr "Nicht jetzt"
 
-#: includes/admin/notes/class-wc-gzd-admin-note.php:272
+#: includes/admin/notes/class-wc-gzd-admin-note.php:262
 msgid "Deactivate"
 msgstr "Deaktivieren"
 
@@ -15815,7 +15834,7 @@ msgid "Could not rename %1$s to %2$s."
 msgstr "Konnte %1$s nicht in %2$s umbenennen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:449
+#: includes/class-wc-gzd-install.php:454
 msgid ""
 "Please install WooCommerce before installing WooCommerce Germanized. Thank "
 "you!"
