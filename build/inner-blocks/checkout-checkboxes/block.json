@@ -1,0 +1,23 @@
+{
+	"apiVersion": 2,
+	"name": "woocommerce-germanized/checkout-checkboxes",
+	"version": "2.0.0",
+	"title": "Legal Checkboxes",
+	"category": "woocommerce",
+	"description": "Adds your checkboxes, registered via Germanized, to your checkout.",
+	"supports": {
+		"align": false,
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"lock": false
+	},
+	"parent": [ "woocommerce/checkout-fields-block", "woocommerce/checkout-totals-block" ],
+	"textdomain": "woocommerce-germanized",
+	"attributes": {
+		"className": {
+			"type": "string",
+			"default": ""
+		}
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"apiVersion": 2,
+	"name": "woocommerce-germanized/checkout-photovoltaic-system-notice",
+	"version": "2.0.0",
+	"title": "Photovoltaic system notice",
+	"category": "woocommerce",
+	"description": "Remind your customers of a possible vat exempt for a photovoltaic system contained within the current cart.",
+	"supports": {
+		"align": false,
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"lock": false
+	},
+	"parent": [ "woocommerce/checkout-totals-block", "woocommerce/checkout", "woocommerce/checkout-fields-block"],
+	"textdomain": "woocommerce-germanized",
+	"attributes": {
+		"className": {
+			"type": "string",
+			"default": ""
+		},
+		"text": {
+			"type": "string",
+			"required": false
+		},
+		"title": {
+			"type": "string",
+			"required": false
+		},
+		"lock": {
+			"type": "object",
+			"default": {
+				"remove": false,
+				"move": false
+			}
+		}
+	}
+}
