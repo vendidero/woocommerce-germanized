@@ -260,7 +260,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				$db_updates[ $wpdb->options ] = array(
 					'main'       => '',
 					'additional' => array(
-						$wpdb->prepare( "UPDATE {$wpdb->options} SET option_value = REPLACE(option_value, %s, %s) WHERE option_name = %s;", 'woocommerce_gzd_shipments_packaging_', 'woocommerce_shiptastic_packaging_', 'woocommerce_gzd_shipments_packaging_reports' ),
 						$wpdb->prepare( "UPDATE {$wpdb->options} SET option_name = REPLACE(option_name, %s, %s);", 'woocommerce_gzd_dhl_', 'woocommerce_shiptastic_dhl_' ),
 						$wpdb->prepare( "UPDATE {$wpdb->options} SET option_name = REPLACE(option_name, %s, %s);", 'woocommerce_gzd_shipments_', 'woocommerce_shiptastic_' ),
 					),
@@ -277,7 +276,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				$db_updates[ $wpdb->options ] = array(
 					'main'       => '',
 					'additional' => array(
-						$wpdb->prepare( "UPDATE {$wpdb->options} SET option_value = REPLACE(option_value, %s, %s) WHERE option_name = %s;", 'woocommerce_shiptastic_packaging_', 'woocommerce_gzd_shipments_packaging_', 'woocommerce_shiptatic_packaging_reports' ),
 						$wpdb->prepare( "UPDATE {$wpdb->options} SET option_name = REPLACE(option_name, %s, %s);", 'woocommerce_shiptastic_dhl_', 'woocommerce_gzd_dhl_' ),
 						$wpdb->prepare( "UPDATE {$wpdb->options} SET option_name = REPLACE(option_name, %s, %s);", 'woocommerce_shiptastic_', 'woocommerce_gzd_shipments_' ),
 					),
@@ -390,6 +388,24 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			$wpdb->flush();
 			wp_cache_delete( 'alloptions', 'options' );
 			wp_load_alloptions();
+
+			/**
+			 * Migrate packaging reports as this data is serialized
+			 */
+			if ( get_option( 'woocommerce_shiptastic_packaging_reports' ) ) {
+				$report_data     = (array) get_option( 'woocommerce_shiptastic_packaging_reports', array() );
+				$new_report_data = array();
+
+				foreach ( $report_data as $type => $reports ) {
+					$new_report_data[ $type ] = array();
+
+					foreach ( (array) $reports as $report_name ) {
+						$new_report_data[ $type ][] = str_replace( 'woocommerce_gzd_shipments_packaging_', 'woocommerce_shiptastic_packaging_', $report_name );
+					}
+				}
+
+				update_option( 'woocommerce_shiptastic_packaging_reports', $new_report_data, false );
+			}
 
 			/**
 			 * Migrate upload folder path
