@@ -1,0 +1,318 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://www.deutschepost.de/ProductInformation/1.1/prodws" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:pws="urn:www-deutschepost-de:Product/ProductInformation/1.1/common" xmlns:ns="urn:www-deutschepost-de:Product/ProductInformation/1.0/common" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="https://www.deutschepost.de/ProductInformation/1.1/prodws">
+  <wsdl:types>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://www.deutschepost.de/ProductInformation/1.1/prodws" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:pws="urn:www-deutschepost-de:Product/ProductInformation/1.1/common" xmlns:ns="urn:www-deutschepost-de:Product/ProductInformation/1.0/common" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">  
+            
+  <xs:import namespace="urn:www-deutschepost-de:Product/ProductInformation/1.1/common" schemaLocation="https://prodws.deutschepost.de/ProdWSProvider_1_1/prodws?xsd=common.xsd"/>  
+        
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getProductVersionsRequest">
+    <wsdl:part element="pws:getProductVersionsRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductVersionsListRequest">
+    <wsdl:part element="pws:getProductVersionsListRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerNotificationRequest">
+    <wsdl:part element="pws:registerNotificationRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductResponse">
+    <wsdl:part element="pws:getProductResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductListResponse">
+    <wsdl:part element="pws:getProductListResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCatalogChangeInformationRequest">
+    <wsdl:part element="pws:getCatalogChangeInformationRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCatalogRequest">
+    <wsdl:part element="pws:getCatalogRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getChangedProductVersionsListRequest">
+    <wsdl:part element="pws:getChangedProductVersionsListRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="seekProductRequest">
+    <wsdl:part element="pws:seekProductRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerEMailAdressRequest">
+    <wsdl:part element="pws:registerEMailAdressRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="seekProductVersionsRequest">
+    <wsdl:part element="pws:seekProductVersionsRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCatalogListResponse">
+    <wsdl:part element="pws:getCatalogListResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCatalogResponse">
+    <wsdl:part element="pws:getCatalogResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="seekProductResponse">
+    <wsdl:part element="pws:seekProductResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCatalogListRequest">
+    <wsdl:part element="pws:getCatalogListRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getChangedProductVersionsListResponse">
+    <wsdl:part element="pws:getChangedProductVersionsListResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="seekProductVersionsResponse">
+    <wsdl:part element="pws:seekProductVersionsResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCatalogChangeInformationResponse">
+    <wsdl:part element="pws:getCatalogChangeInformationResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductRequest">
+    <wsdl:part element="pws:getProductRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductListRequest">
+    <wsdl:part element="pws:getProductListRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductVersionsListResponse">
+    <wsdl:part element="pws:getProductVersionsListResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductVersionsResponse">
+    <wsdl:part element="pws:getProductVersionsResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductChangeInformationResponse">
+    <wsdl:part element="pws:getProductChangeInformationResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerEMailAdressResponse">
+    <wsdl:part element="pws:registerEMailAdressResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="registerNotificationResponse">
+    <wsdl:part element="pws:registerNotificationResponse" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductChangeInformationRequest">
+    <wsdl:part element="pws:getProductChangeInformationRequest" name="parameter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ProdWSPortType">
+    <wsdl:operation name="seekProduct">
+      <wsdl:input message="tns:seekProductRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:seekProductResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="seekProductVersions">
+      <wsdl:input message="tns:seekProductVersionsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:seekProductVersionsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProduct">
+      <wsdl:input message="tns:getProductRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getProductResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProductVersions">
+      <wsdl:input message="tns:getProductVersionsRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getProductVersionsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProductList">
+      <wsdl:input message="tns:getProductListRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getProductListResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProductVersionsList">
+      <wsdl:input message="tns:getProductVersionsListRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getProductVersionsListResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getChangedProductVersionsList">
+      <wsdl:input message="tns:getChangedProductVersionsListRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getChangedProductVersionsListResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerEMailAdress">
+      <wsdl:input message="tns:registerEMailAdressRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:registerEMailAdressResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerNotification">
+      <wsdl:input message="tns:registerNotificationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:registerNotificationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCatalog">
+      <wsdl:input message="tns:getCatalogRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getCatalogResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCatalogList">
+      <wsdl:input message="tns:getCatalogListRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getCatalogListResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProductChangeInformation">
+      <wsdl:input message="tns:getProductChangeInformationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getProductChangeInformationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCatalogChangeInformation">
+      <wsdl:input message="tns:getCatalogChangeInformationRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getCatalogChangeInformationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProdWSBinding" type="tns:ProdWSPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="seekProduct">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="seekProductVersions">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProduct">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProductVersions">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProductList">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProductVersionsList">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getChangedProductVersionsList">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerEMailAdress">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerNotification">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCatalog">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCatalogList">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProductChangeInformation">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCatalogChangeInformation">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProdWSService">
+    <wsdl:port binding="tns:ProdWSBinding" name="ProdWSPort">
+      <soap:address location="https://prodws.deutschepost.de/ProdWSProvider_1_1/prodws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
