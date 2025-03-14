@@ -250,6 +250,8 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			$args['price_to']   = wc_get_price_excluding_tax( $this->get_wc_product(), array( 'price' => $args['price_to'] ) );
 		}
 
+		$has_price_range = $args['price_from'] !== $args['price_to'];
+
 		/**
 		 * Support passing parsed from/to prices as regular/sale price, e.g. during
 		 * price observations.
@@ -271,28 +273,64 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 			$variation_id_to   = end( $variation_ids );
 
 			if ( $from_variation = wc_gzd_get_gzd_product( $variation_id_from ) ) {
+				$price_args = array(
+					'price' => $args['price_from'],
+				);
+
+				if ( ! $has_price_range ) {
+					$price_args = $args;
+				}
+
 				$new_from_price = wc_gzd_recalculate_unit_price(
-					array(
-						'price'    => $args['price_from'],
-						'base'     => $from_variation->get_unit_base(),
-						'products' => $from_variation->get_unit_product(),
+					array_merge(
+						$price_args,
+						array(
+							'base'     => $from_variation->get_unit_base(),
+							'products' => $from_variation->get_unit_product(),
+						)
 					)
 				);
 
-				$this->set_unit_prices( $variation_id_from, $new_from_price['unit'], true );
+				$this->set_unit_prices(
+					$variation_id_from,
+					array(
+						'price'         => $new_from_price['unit'],
+						'sale_price'    => $new_from_price['sale'],
+						'regular_price' => $new_from_price['regular'],
+					),
+					true
+				);
 			}
 
 			if ( $variation_id_from !== $variation_id_to ) {
 				if ( $to_variation = wc_gzd_get_gzd_product( $variation_id_to ) ) {
+					$price_args = array(
+						'price' => $args['price_to'],
+					);
+
+					if ( ! $has_price_range ) {
+						$price_args = $args;
+					}
+
 					$new_to_price = wc_gzd_recalculate_unit_price(
-						array(
-							'price'    => $args['price_to'],
-							'base'     => $to_variation->get_unit_base(),
-							'products' => $to_variation->get_unit_product(),
+						array_merge(
+							$price_args,
+							array(
+								'base'     => $to_variation->get_unit_base(),
+								'products' => $to_variation->get_unit_product(),
+							)
 						)
 					);
 
-					$this->set_unit_prices( $variation_id_to, $new_to_price['unit'], true );
+					$this->set_unit_prices(
+						$variation_id_to,
+						array(
+							'price'         => $new_to_price['unit'],
+							'sale_price'    => $new_to_price['sale'],
+							'regular_price' => $new_to_price['regular'],
+						),
+						true
+					);
 				}
 			}
 		}
@@ -731,11 +769,31 @@ class WC_GZD_Product_Variable extends WC_GZD_Product {
 	}
 
 	protected function set_unit_prices( $variation_id, $price, $display = false ) {
+		$prices = ! is_array( $price ) ? array( 'price' => $price ) : $price;
+		$prices = wp_parse_args(
+			$prices,
+			array(
+				'price'         => '',
+				'sale_price'    => '',
+				'regular_price' => '',
+			)
+		);
+
+		if ( '' === $prices['sale_price'] ) {
+			$prices['sale_price'] = $prices['price'];
+		}
+
+		if ( '' === $prices['regular_price'] ) {
+			$prices['regular_price'] = $prices['price'];
+		}
+
 		$unit_prices = $this->get_variation_unit_prices( $display );
 		$price_hash  = $this->get_current_unit_price_hash( $display );
 
 		if ( array_key_exists( $price_hash, $this->unit_prices_array ) ) {
-			$this->unit_prices_array[ $price_hash ]['price'][ $variation_id ] = $price;
+			foreach ( $prices as $price_type => $price ) {
+				$this->unit_prices_array[ $price_hash ][ $price_type ][ $variation_id ] = $price;
+			}
 		}
 	}
 }
