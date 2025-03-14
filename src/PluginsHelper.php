@@ -562,12 +562,18 @@ class PluginsHelper {
 	}
 
 	public static function filter_bundled_plugin_names( $plugins ) {
-		if ( array_key_exists( 'one-stop-shop-woocommerce/one-stop-shop-woocommerce.php', $plugins ) ) {
-			$plugins['one-stop-shop-woocommerce/one-stop-shop-woocommerce.php']['Name'] = esc_html__( 'Germanized for WooCommerce: One Stop Shop', 'woocommerce-germanized' );
-		}
+		$built_in_plugins = array(
+			'one-stop-shop-woocommerce/one-stop-shop-woocommerce.php' => esc_html__( 'One Stop Shop', 'woocommerce-germanized' ),
+			'trusted-shops-easy-integration-for-woocommerce/trusted-shops-easy-integration-for-woocommerce.php' => esc_html__( 'Trusted Shops', 'woocommerce-germanized' ),
+			'shiptastic-for-woocommerce/shiptastic-for-woocommerce.php' => esc_html__( 'Shiptastic', 'woocommerce-germanized' ),
+			'ups-for-shiptastic/ups-for-shiptastic.php' => esc_html__( 'UPS for Shiptastic', 'woocommerce-germanized' ),
+			'dhl-for-shiptastic/dhl-for-shiptastic.php' => esc_html__( 'DHL for Shiptastic', 'woocommerce-germanized' ),
+		);
 
-		if ( array_key_exists( 'trusted-shops-easy-integration-for-woocommerce/trusted-shops-easy-integration-for-woocommerce.php', $plugins ) ) {
-			$plugins['trusted-shops-easy-integration-for-woocommerce/trusted-shops-easy-integration-for-woocommerce.php']['Name'] = esc_html__( 'Germanized for WooCommerce: Trusted Shops', 'woocommerce-germanized' );
+		foreach ( $built_in_plugins as $plugin_slug => $name ) {
+			if ( array_key_exists( $plugin_slug, $plugins ) ) {
+				$plugins[ $plugin_slug ]['Name'] = sprintf( esc_html__( 'Germanized for WooCommerce: %s', 'woocommerce-germanized' ), $name );
+			}
 		}
 
 		return $plugins;

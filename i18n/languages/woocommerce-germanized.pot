@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-03-13T10:09:59+00:00\n"
+"POT-Creation-Date: 2025-03-14T09:45:09+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 
@@ -9728,6 +9728,7 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-oss.php:29
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:37
 #: src/PluginsHelper.php:496
+#: src/PluginsHelper.php:566
 msgid "One Stop Shop"
 msgstr ""
 
@@ -12297,6 +12298,7 @@ msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-trusted-shops.php:29
 #: src/PluginsHelper.php:497
+#: src/PluginsHelper.php:567
 msgid "Trusted Shops"
 msgstr ""
 
@@ -13477,94 +13479,94 @@ msgstr ""
 msgid "Other Vitamins & Minerals"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:371
+#: includes/class-wc-gzd-install.php:369
 msgctxt "shipments-migration"
 msgid "Error while updating %1$s: %2$s"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:381
+#: includes/class-wc-gzd-install.php:379
 msgctxt "shipments-migration"
 msgid "Error while running additional query on %1$s: %2$s"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:416
+#: includes/class-wc-gzd-install.php:432
 msgctxt "shipments-migration"
 msgid "Could not rename %1$s to %2$s."
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:454
+#: includes/class-wc-gzd-install.php:470
 msgid "Please install WooCommerce before installing WooCommerce Germanized. Thank you!"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:860
-#: includes/class-wc-gzd-install.php:912
+#: includes/class-wc-gzd-install.php:876
+#: includes/class-wc-gzd-install.php:928
 msgctxt "Page slug"
 msgid "data-security"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:861
-#: includes/class-wc-gzd-install.php:914
+#: includes/class-wc-gzd-install.php:877
+#: includes/class-wc-gzd-install.php:930
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:865
+#: includes/class-wc-gzd-install.php:881
 msgctxt "Page slug"
 msgid "imprint"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:866
+#: includes/class-wc-gzd-install.php:882
 msgctxt "Page title"
 msgid "Imprint"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:870
+#: includes/class-wc-gzd-install.php:886
 msgctxt "Page slug"
 msgid "terms"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:871
+#: includes/class-wc-gzd-install.php:887
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:875
+#: includes/class-wc-gzd-install.php:891
 msgctxt "Page slug"
 msgid "revocation"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:876
+#: includes/class-wc-gzd-install.php:892
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:880
+#: includes/class-wc-gzd-install.php:896
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:881
+#: includes/class-wc-gzd-install.php:897
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:885
+#: includes/class-wc-gzd-install.php:901
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:886
+#: includes/class-wc-gzd-install.php:902
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:890
+#: includes/class-wc-gzd-install.php:906
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:891
+#: includes/class-wc-gzd-install.php:907
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"
@@ -15711,12 +15713,20 @@ msgstr ""
 msgid "The requested plugin `%s` could not be activated."
 msgstr ""
 
-#: src/PluginsHelper.php:566
-msgid "Germanized for WooCommerce: One Stop Shop"
+#: src/PluginsHelper.php:568
+msgid "Shiptastic"
+msgstr ""
+
+#: src/PluginsHelper.php:569
+msgid "UPS for Shiptastic"
 msgstr ""
 
 #: src/PluginsHelper.php:570
-msgid "Germanized for WooCommerce: Trusted Shops"
+msgid "DHL for Shiptastic"
+msgstr ""
+
+#: src/PluginsHelper.php:575
+msgid "Germanized for WooCommerce: %s"
 msgstr ""
 
 #: src/Shopmarks.php:558

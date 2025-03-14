@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2025-03-13T10:09:59+00:00\n"
-"PO-Revision-Date: 2025-03-13 11:11+0100\n"
+"POT-Creation-Date: 2025-03-14T09:45:09+00:00\n"
+"PO-Revision-Date: 2025-03-14 10:46+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -10709,7 +10709,7 @@ msgstr ""
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:66
 #: includes/admin/settings/class-wc-gzd-settings-tab-oss.php:29
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:37
-#: src/PluginsHelper.php:496
+#: src/PluginsHelper.php:496 src/PluginsHelper.php:566
 msgid "One Stop Shop"
 msgstr "One Stop Shop"
 
@@ -14384,7 +14384,7 @@ msgstr "Trusted Shops Easy Integration"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-trusted-shops.php:29
-#: src/PluginsHelper.php:497
+#: src/PluginsHelper.php:497 src/PluginsHelper.php:567
 msgid "Trusted Shops"
 msgstr "Trusted Shops"
 
@@ -15845,23 +15845,23 @@ msgstr ""
 msgid "Other Vitamins & Minerals"
 msgstr "Andere Vitamine & Mineralstoffe"
 
-#: includes/class-wc-gzd-install.php:371
+#: includes/class-wc-gzd-install.php:369
 msgctxt "shipments-migration"
 msgid "Error while updating %1$s: %2$s"
 msgstr "Fehler beim update von %1$s: %2$s"
 
-#: includes/class-wc-gzd-install.php:381
+#: includes/class-wc-gzd-install.php:379
 msgctxt "shipments-migration"
 msgid "Error while running additional query on %1$s: %2$s"
 msgstr "Fehler bei einer zusätzlichen Abfrage auf %1$s: %2$s"
 
-#: includes/class-wc-gzd-install.php:416
+#: includes/class-wc-gzd-install.php:432
 msgctxt "shipments-migration"
 msgid "Could not rename %1$s to %2$s."
 msgstr "Konnte %1$s nicht in %2$s umbenennen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:454
+#: includes/class-wc-gzd-install.php:470
 msgid ""
 "Please install WooCommerce before installing WooCommerce Germanized. Thank "
 "you!"
@@ -15870,83 +15870,83 @@ msgstr ""
 "Vielen Dank!"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:860 includes/class-wc-gzd-install.php:912
+#: includes/class-wc-gzd-install.php:876 includes/class-wc-gzd-install.php:928
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
-#: includes/class-wc-gzd-install.php:861 includes/class-wc-gzd-install.php:914
+#: includes/class-wc-gzd-install.php:877 includes/class-wc-gzd-install.php:930
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:865
+#: includes/class-wc-gzd-install.php:881
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:866
+#: includes/class-wc-gzd-install.php:882
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:870
+#: includes/class-wc-gzd-install.php:886
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:871
+#: includes/class-wc-gzd-install.php:887
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:875
+#: includes/class-wc-gzd-install.php:891
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:876
+#: includes/class-wc-gzd-install.php:892
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:880
+#: includes/class-wc-gzd-install.php:896
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:881
+#: includes/class-wc-gzd-install.php:897
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:885
+#: includes/class-wc-gzd-install.php:901
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:886
+#: includes/class-wc-gzd-install.php:902
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: includes/class-wc-gzd-install.php:890
+#: includes/class-wc-gzd-install.php:906
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr "echtheit-von-bewertungen"
 
-#: includes/class-wc-gzd-install.php:891
+#: includes/class-wc-gzd-install.php:907
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"
@@ -18722,14 +18722,24 @@ msgid "The requested plugin `%s` could not be activated."
 msgstr "Das Plugin `%s` konnte nicht aktiviert werden."
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:566
-msgid "Germanized for WooCommerce: One Stop Shop"
-msgstr "Germanized für WooCommerce: One Stop Shop"
+#: src/PluginsHelper.php:568
+msgid "Shiptastic"
+msgstr "Shiptastic"
+
+# @ woocommerce-germanized
+#: src/PluginsHelper.php:569
+msgid "UPS for Shiptastic"
+msgstr "UPS für Shiptastic"
 
 # @ woocommerce-germanized
 #: src/PluginsHelper.php:570
-msgid "Germanized for WooCommerce: Trusted Shops"
-msgstr "Germanized für WooCommerce: Trusted Shops"
+msgid "DHL for Shiptastic"
+msgstr "DHL für Shiptastic"
+
+# @ woocommerce-germanized
+#: src/PluginsHelper.php:575
+msgid "Germanized for WooCommerce: %s"
+msgstr "Germanized für WooCommerce: %s"
 
 # @ woocommerce-germanized
 #: src/Shopmarks.php:558
@@ -19963,6 +19973,14 @@ msgstr "Warenkorb-Dropdown rechtl. Hinweise"
 msgctxt "block description"
 msgid "Outputs mini cart legal notices."
 msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
+
+# @ woocommerce-germanized
+#~ msgid "Germanized for WooCommerce: One Stop Shop"
+#~ msgstr "Germanized für WooCommerce: One Stop Shop"
+
+# @ woocommerce-germanized
+#~ msgid "Germanized for WooCommerce: Trusted Shops"
+#~ msgstr "Germanized für WooCommerce: Trusted Shops"
 
 # @ woocommerce-germanized
 #~ msgctxt "shipments-settings-tab"
