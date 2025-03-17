@@ -341,7 +341,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 		public function on_change_locale() {
 			if ( function_exists( 'WC' ) ) {
-				WC()->countries = null;
+				WC()->countries = new WC_Countries();
 			}
 
 			WC_GZD_Post_Types::register_taxonomies();
