@@ -333,15 +333,13 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			$wpdb->flush();
 
-			if ( $force_override ) {
-				/**
-				 * Do only delete new options in case legacy options still exist
-				 */
-				$has_legacy_options = $wpdb->query( $wpdb->prepare( "SELECT * FROM {$wpdb->options} WHERE option_name LIKE %s LIMIT 1", $wpdb->esc_like( 'woocommerce_gzd_shipments_' ) . '%' ) );
+			/**
+			 * Do only delete new options in case legacy options still exist
+			 */
+			$has_legacy_options = $wpdb->query( $wpdb->prepare( "SELECT * FROM {$wpdb->options} WHERE option_name LIKE %s LIMIT 1", $wpdb->esc_like( 'woocommerce_gzd_shipments_' ) . '%' ) );
 
-				if ( ! empty( $has_legacy_options ) ) {
-					$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'woocommerce_shiptastic_' ) . '%' ) );
-				}
+			if ( ! empty( $has_legacy_options ) ) {
+				$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'woocommerce_shiptastic_' ) . '%' ) );
 			}
 
 			foreach ( self::get_shiptastic_db_updates( $force_override ) as $table => $db_updates ) {

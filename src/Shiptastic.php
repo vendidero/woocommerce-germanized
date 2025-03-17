@@ -67,14 +67,31 @@ class Shiptastic {
 		add_filter( 'woocommerce_shiptastic_dhl_label_api_communication_phone', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
 
 		/**
-		 * Status hooks
+		 *  Status hooks
+		 *
+		 * @note: Return a legacy shipment object as PayPal Payments has a compatibility script which uses strict typing.
 		 */
 		add_action(
 			'init',
 			function () {
 				foreach ( wc_stc_get_shipment_statuses() as $status_name => $title ) {
-					add_action( "woocommerce_shiptastic_shipment_status_{$status_name}", array( __CLASS__, 'legacy_action_callback' ), 10, 2 );
-					add_action( "woocommerce_shiptastic_return_shipment_status_{$status_name}", array( __CLASS__, 'legacy_action_callback' ), 10, 2 );
+					add_action( "woocommerce_shiptastic_shipment_status_{$status_name}", function( $shipment_id, $shipment ) {
+						$args = array(
+							$shipment_id,
+							new Shipments\SimpleShipment( $shipment )
+						);
+
+						self::legacy_action_callback( $args );
+					}, 10, 2 );
+
+					add_action( "woocommerce_shiptastic_return_shipment_status_{$status_name}", function( $shipment_id, $shipment ) {
+						$args = array(
+							$shipment_id,
+							new Shipments\ReturnShipment( $shipment )
+						);
+
+						self::legacy_action_callback( $args );
+					}, 10, 2 );
 				}
 			}
 		);

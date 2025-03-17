@@ -8,6 +8,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
+<script>
+    function wc_gzd_copy_code(that){
+        var inp =document.createElement('input');
+        document.body.appendChild(inp)
+        inp.value =that.textContent
+        inp.select();
+        document.execCommand('copy',false);
+        inp.remove();
+        alert("<?php echo esc_html__( 'Copied!', 'woocommerce-germanized' ); ?>")
+    }
+</script>
 <div class="updated woocommerce-message">
 	<p><?php esc_html_e( 'Please copy and paste this information in your ticket when contacting support:', 'woocommerce-germanized' ); ?> </p>
 	<p class="submit"><a href="#" class="button-primary debug-report"><?php esc_html_e( 'Get System Report', 'woocommerce-germanized' ); ?></a>
@@ -98,18 +109,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				);
 				?>
 							" onclick="return confirm('<?php echo esc_html__( 'By forcing to run the migration again, shipments created after updating to 3.19.0 will be lost as the legacy tables will be used instead. Please backup your database before continuing.', 'woocommerce-germanized' ); ?>')" style="color: #a00; font-size: 11px"><?php echo esc_html__( 'Force migration', 'woocommerce-germanized' ); ?></a>
-
-				<script>
-					function wc_gzd_copy_code(that){
-						var inp =document.createElement('input');
-						document.body.appendChild(inp)
-						inp.value =that.textContent
-						inp.select();
-						document.execCommand('copy',false);
-						inp.remove();
-						alert("<?php echo esc_html__( 'Copied!', 'woocommerce-germanized' ); ?>")
-					}
-				</script>
 
 				<h4><?php esc_html_e( 'Manual migration', 'woocommerce-germanized' ); ?></h4>
 				<?php $manual_count = 0; ?>
