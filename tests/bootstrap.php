@@ -120,6 +120,13 @@ class WC_GZD_Unit_Tests_Bootstrap {
 					$classname::install_integration();
 				}
 			}
+
+			/**
+			 * Activate DHL after installing.
+			 */
+			if ( $dhl = wc_stc_get_shipping_provider( 'dhl' ) ) {
+				$dhl->activate();
+			}
 		} );
 
 		tests_add_filter( 'setup_theme', function () {
