@@ -138,6 +138,16 @@ class Shiptastic {
 		);
 	}
 
+	public static function legacy_shipment_item_classname( $item_class, $item_id, $item_type ) {
+		$item_class = 'Vendidero\Germanized\Shipments\ShipmentItem';
+
+		if ( 'return' === $item_type ) {
+			$item_class = 'Vendidero\Germanized\Shipments\ShipmentReturnItem';
+		}
+
+		return $item_class;
+	}
+
 	protected static function remove_gzd_status_prefix( $status ) {
 		return 'gzd-' === substr( $status, 0, 4 ) ? substr( $status, 4 ) : $status;
 	}
