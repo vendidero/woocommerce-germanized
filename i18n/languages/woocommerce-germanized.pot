@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.19.0\n"
+"Project-Id-Version: Germanized for WooCommerce 3.19.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-03-17T09:41:40+00:00\n"
+"POT-Creation-Date: 2025-03-18T13:21:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 
@@ -45,7 +45,7 @@ msgstr ""
 #: includes/wc-gzd-dhl-core-functions.php:70
 #: src/Api/Paket.php:341
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:60
-#: packages/dhl-for-shiptastic/src/Api/Paket.php:226
+#: packages/dhl-for-shiptastic/src/Api/Paket.php:230
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:70
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:341
 msgctxt "dhl day context"
@@ -871,14 +871,14 @@ msgid "%1$s %2$s"
 msgstr ""
 
 #: src/Api/LocationFinder.php:131
-#: packages/dhl-for-shiptastic/src/Api/LocationFinder.php:135
+#: packages/dhl-for-shiptastic/src/Api/LocationFinder.php:150
 #: packages/woocommerce-germanized-dhl/src/Api/LocationFinder.php:131
 msgctxt "dhl"
 msgid "At least shipping city or zip is required."
 msgstr ""
 
 #: src/Api/OAuthPaket.php:82
-#: packages/dhl-for-shiptastic/src/Api/OAuthPaket.php:86
+#: packages/dhl-for-shiptastic/src/Api/OAuthPaket.php:76
 #: packages/woocommerce-germanized-dhl/src/Api/OAuthPaket.php:82
 msgctxt "dhl"
 msgid "Error while authenticating with DHL."
@@ -920,49 +920,49 @@ msgid "Parcel API not available"
 msgstr ""
 
 #: src/Api/Paket.php:318
-#: packages/dhl-for-shiptastic/src/Api/Paket.php:203
+#: packages/dhl-for-shiptastic/src/Api/Paket.php:207
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:318
 msgctxt "dhl"
 msgid "Mon"
 msgstr ""
 
 #: src/Api/Paket.php:319
-#: packages/dhl-for-shiptastic/src/Api/Paket.php:204
+#: packages/dhl-for-shiptastic/src/Api/Paket.php:208
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:319
 msgctxt "dhl"
 msgid "Tue"
 msgstr ""
 
 #: src/Api/Paket.php:320
-#: packages/dhl-for-shiptastic/src/Api/Paket.php:205
+#: packages/dhl-for-shiptastic/src/Api/Paket.php:209
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:320
 msgctxt "dhl"
 msgid "Wed"
 msgstr ""
 
 #: src/Api/Paket.php:321
-#: packages/dhl-for-shiptastic/src/Api/Paket.php:206
+#: packages/dhl-for-shiptastic/src/Api/Paket.php:210
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:321
 msgctxt "dhl"
 msgid "Thu"
 msgstr ""
 
 #: src/Api/Paket.php:322
-#: packages/dhl-for-shiptastic/src/Api/Paket.php:207
+#: packages/dhl-for-shiptastic/src/Api/Paket.php:211
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:322
 msgctxt "dhl"
 msgid "Fri"
 msgstr ""
 
 #: src/Api/Paket.php:323
-#: packages/dhl-for-shiptastic/src/Api/Paket.php:208
+#: packages/dhl-for-shiptastic/src/Api/Paket.php:212
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:323
 msgctxt "dhl"
 msgid "Sat"
 msgstr ""
 
 #: src/Api/Paket.php:324
-#: packages/dhl-for-shiptastic/src/Api/Paket.php:209
+#: packages/dhl-for-shiptastic/src/Api/Paket.php:213
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:324
 msgctxt "dhl"
 msgid "Sun"
@@ -3150,7 +3150,7 @@ msgstr ""
 #: includes/admin/views/html-order-shipment-content.php:272
 #: src/Admin/ReturnTable.php:67
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipment-content.php:266
-#: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:67
+#: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:70
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:272
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:67
 msgctxt "shipments"
@@ -4081,7 +4081,7 @@ msgstr ""
 #: src/Admin/ReturnTable.php:51
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:174
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:335
-#: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:51
+#: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:54
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:166
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:337
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:51
@@ -4192,6 +4192,10 @@ msgstr ""
 #: packages/woocommerce-germanized-shipments/src/ReturnShipment.php:344
 #: packages/woocommerce-germanized-shipments/src/SimpleShipment.php:118
 #: packages/woocommerce-germanized-shipments/src/SimpleShipment.php:237
+#: src/Shipments/ReturnShipment.php:259
+#: src/Shipments/ReturnShipment.php:344
+#: src/Shipments/SimpleShipment.php:109
+#: src/Shipments/SimpleShipment.php:227
 msgctxt "shipments"
 msgid "Invalid shipment order"
 msgstr ""
@@ -5173,14 +5177,14 @@ msgid "Order"
 msgstr ""
 
 #: src/Admin/ReturnTable.php:59
-#: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:59
+#: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:62
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:59
 msgctxt "shipments"
 msgid "Send notification to customer"
 msgstr ""
 
 #: src/Admin/ReturnTable.php:80
-#: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:80
+#: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:83
 #: packages/woocommerce-germanized-shipments/src/Admin/ReturnTable.php:80
 msgctxt "shipments"
 msgid "Confirm open return requests"
@@ -5412,7 +5416,7 @@ msgstr ""
 #: src/ShippingProvider/Simple.php:1143
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:15
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:24
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:991
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1028
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1134
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/General.php:15
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/General.php:24
@@ -5429,7 +5433,7 @@ msgstr ""
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:25
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:72
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:486
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1020
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1057
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/General.php:25
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/General.php:72
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:486
@@ -6511,21 +6515,21 @@ msgid "The location country."
 msgstr ""
 
 #: src/Compatibility/WPML.php:123
-#: packages/shiptastic-for-woocommerce/src/Compatibility/WPML.php:125
+#: packages/shiptastic-for-woocommerce/src/Compatibility/WPML.php:147
 #: packages/woocommerce-germanized-shipments/src/Compatibility/WPML.php:123
 msgctxt "shipments"
 msgid "%s tracking description"
 msgstr ""
 
 #: src/Compatibility/WPML.php:124
-#: packages/shiptastic-for-woocommerce/src/Compatibility/WPML.php:126
+#: packages/shiptastic-for-woocommerce/src/Compatibility/WPML.php:148
 #: packages/woocommerce-germanized-shipments/src/Compatibility/WPML.php:124
 msgctxt "shipments"
 msgid "%s tracking URL"
 msgstr ""
 
 #: src/Compatibility/WPML.php:125
-#: packages/shiptastic-for-woocommerce/src/Compatibility/WPML.php:127
+#: packages/shiptastic-for-woocommerce/src/Compatibility/WPML.php:149
 #: packages/woocommerce-germanized-shipments/src/Compatibility/WPML.php:125
 msgctxt "shipments"
 msgid "%s return instructions"
@@ -8608,7 +8612,7 @@ msgstr ""
 #: src/ShippingProvider/Auto.php:443
 #: src/ShippingProvider/Auto.php:1010
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:443
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1028
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1065
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:443
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1010
 msgctxt "shipments"
@@ -8639,7 +8643,7 @@ msgstr ""
 #: src/ShippingProvider/Auto.php:498
 #: src/ShippingProvider/Auto.php:980
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:498
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:998
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1035
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:498
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:980
 msgctxt "shipments"
@@ -8696,84 +8700,84 @@ msgid "Choose a shipment status which should trigger generation of a return labe
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:773
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:791
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:828
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:773
 msgctxt "shipments"
 msgid "Adjust %1$s printed on the %2$s label. Use the following placeholders to format the reference: %3$s"
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:773
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:791
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:828
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:773
 msgctxt "shipments"
 msgid "Please keep in mind that the formatted reference cannot exceed %1$s characters."
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:789
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:807
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:844
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:789
 msgctxt "shipments"
 msgid "Label references"
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:912
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:930
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:967
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:912
 msgctxt "dhl"
 msgid "Default Service"
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:917
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:935
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:972
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:917
 msgctxt "shipments"
 msgid "Select the default service for %1$s."
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:980
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:998
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1035
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:980
 msgctxt "shipments"
 msgid "%1$s labels"
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:994
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1012
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1049
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:994
 msgctxt "shipments"
 msgid "Printing"
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:1077
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1095
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1132
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1077
 msgctxt "shipments"
 msgid "%s Product"
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:1101
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1119
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1156
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1101
 msgctxt "shipments"
 msgid "Print Format"
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:1118
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1136
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1173
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1118
 msgctxt "shipments"
 msgid "Export Reference Number"
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:1119
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1137
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1174
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1119
 msgctxt "shipments"
 msgid "In case of a shipment with an export declaration - provide the assigned Export Reference Number for customs purposes."
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:1414
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1432
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1469
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1414
 msgctxt "shipments"
 msgid "Error while creating the label."
@@ -8781,35 +8785,35 @@ msgstr ""
 
 #: src/ShippingProvider/Helper.php:106
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:106
-#: src/Shiptastic.php:169
+#: src/Shiptastic.php:196
 msgctxt "shipments"
 msgid "DHL"
 msgstr ""
 
 #: src/ShippingProvider/Helper.php:112
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:112
-#: src/Shiptastic.php:176
+#: src/Shiptastic.php:203
 msgctxt "shipments"
 msgid "Deutsche Post"
 msgstr ""
 
 #: src/ShippingProvider/Helper.php:118
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:118
-#: src/Shiptastic.php:183
+#: src/Shiptastic.php:210
 msgctxt "shipments"
 msgid "DPD"
 msgstr ""
 
 #: src/ShippingProvider/Helper.php:124
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:124
-#: src/Shiptastic.php:191
+#: src/Shiptastic.php:218
 msgctxt "shipments"
 msgid "GLS"
 msgstr ""
 
 #: src/ShippingProvider/Helper.php:130
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:130
-#: src/Shiptastic.php:199
+#: src/Shiptastic.php:226
 msgctxt "shipments"
 msgid "Hermes"
 msgstr ""
@@ -9821,7 +9825,7 @@ msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:202
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:268
-#: includes/admin/views/html-page-status-germanized.php:40
+#: includes/admin/views/html-page-status-germanized.php:51
 msgid "Small-Enterprise-Regulation"
 msgstr ""
 
@@ -9977,7 +9981,7 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-shiptastic.php:29
 #: includes/admin/settings/views/html-admin-settings-tabs.php:9
-#: includes/admin/views/html-page-status-germanized.php:25
+#: includes/admin/views/html-page-status-germanized.php:36
 msgid "Germanized"
 msgstr ""
 
@@ -10645,12 +10649,12 @@ msgstr ""
 #: includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:41
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:200
 #: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:68
-#: includes/admin/views/html-page-status-germanized.php:323
+#: includes/admin/views/html-page-status-germanized.php:322
 msgid "Learn more"
 msgstr ""
 
 #: includes/admin/notes/class-wc-gzd-admin-note-encryption.php:59
-#: includes/admin/views/html-page-status-germanized.php:321
+#: includes/admin/views/html-page-status-germanized.php:320
 msgid "Auto insert"
 msgstr ""
 
@@ -10987,7 +10991,7 @@ msgid "By default WooCommerce adds a \"taxes and shipping estimated\" text to yo
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:142
-#: includes/admin/views/html-page-status-germanized.php:63
+#: includes/admin/views/html-page-status-germanized.php:74
 msgid "Fallback Mode"
 msgstr ""
 
@@ -11249,7 +11253,7 @@ msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:30
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:587
-#: includes/admin/views/html-page-status-germanized.php:195
+#: includes/admin/views/html-page-status-germanized.php:194
 msgid "Legal Pages"
 msgstr ""
 
@@ -11758,7 +11762,7 @@ msgid "Many different information may be attached to the location selected. By a
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:131
-#: includes/admin/views/html-page-status-germanized.php:50
+#: includes/admin/views/html-page-status-germanized.php:61
 msgid "Default Delivery Time"
 msgstr ""
 
@@ -12066,7 +12070,7 @@ msgid "Adjust tax related settings e.g. Split-tax calculation for shipping costs
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:21
-#: includes/admin/views/html-page-status-germanized.php:159
+#: includes/admin/views/html-page-status-germanized.php:158
 msgid "Taxes"
 msgstr ""
 
@@ -12408,227 +12412,227 @@ msgstr ""
 msgid "<strong>Be aware!</strong> This update is not compatible with your current Germanized Pro version. Please <a href=\"%1$s\">check for updates</a> before updating Germanized to prevent <a href=\"%2$s\">compatibility issues</a>."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:12
-msgid "Please copy and paste this information in your ticket when contacting support:"
-msgstr ""
-
-#: includes/admin/views/html-page-status-germanized.php:13
-msgid "Get System Report"
-msgstr ""
-
-#: includes/admin/views/html-page-status-germanized.php:17
-#: includes/admin/views/html-page-status-germanized.php:110
+#: includes/admin/views/html-page-status-germanized.php:19
+#: includes/admin/views/html-page-status-germanized.php:28
 #: includes/admin/views/setup/encrypt.php:20
 msgid "Copied!"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:17
+#: includes/admin/views/html-page-status-germanized.php:23
+msgid "Please copy and paste this information in your ticket when contacting support:"
+msgstr ""
+
+#: includes/admin/views/html-page-status-germanized.php:24
+msgid "Get System Report"
+msgstr ""
+
+#: includes/admin/views/html-page-status-germanized.php:28
 msgid "Copy for Support"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:30
+#: includes/admin/views/html-page-status-germanized.php:41
 msgid "Version"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:35
+#: includes/admin/views/html-page-status-germanized.php:46
 msgid "Database Version"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:45
+#: includes/admin/views/html-page-status-germanized.php:56
 msgid "PHP Sodium Extension"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:60
+#: includes/admin/views/html-page-status-germanized.php:71
 msgid "Term doesn’t exist"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:68
+#: includes/admin/views/html-page-status-germanized.php:79
 msgid "Migration to Shiptastic"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:75
+#: includes/admin/views/html-page-status-germanized.php:86
 msgid "There were errors while migrating from Shipments to Shiptastic package. <a href=\"%s\">Learn more in our docs</a>."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:85
+#: includes/admin/views/html-page-status-germanized.php:96
 msgid "Start migration again"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:100
+#: includes/admin/views/html-page-status-germanized.php:111
 msgid "By forcing to run the migration again, shipments created after updating to 3.19.0 will be lost as the legacy tables will be used instead. Please backup your database before continuing."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:100
+#: includes/admin/views/html-page-status-germanized.php:111
 msgid "Force migration"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:114
+#: includes/admin/views/html-page-status-germanized.php:113
 msgid "Manual migration"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:117
+#: includes/admin/views/html-page-status-germanized.php:116
 msgid "%d. Migrate your DB by executing the following SQL statements, e.g. via PHPmyAdmin:"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:131
+#: includes/admin/views/html-page-status-germanized.php:130
 msgid "%d. Rename the uploads folder"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:132
+#: includes/admin/views/html-page-status-germanized.php:131
 msgid "Rename %1$s to %2$s."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:136
+#: includes/admin/views/html-page-status-germanized.php:135
 msgid "%d. Hit the \"start migration again\" button to check whether error still occur"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:164
+#: includes/admin/views/html-page-status-germanized.php:163
 msgid "Additional costs tax calculation mode"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:169
+#: includes/admin/views/html-page-status-germanized.php:168
 msgid "Additional costs include taxes"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:174
+#: includes/admin/views/html-page-status-germanized.php:173
 msgid "VAT Table Check"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:175
+#: includes/admin/views/html-page-status-germanized.php:174
 msgid "Checks whether all WooCommerce tax relevant tables have been added."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:176
+#: includes/admin/views/html-page-status-germanized.php:175
 msgid "Missing: %s"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:203
+#: includes/admin/views/html-page-status-germanized.php:202
 msgid "Page doesn’t exist"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:222
+#: includes/admin/views/html-page-status-germanized.php:221
 msgid "Compatibility"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:238
+#: includes/admin/views/html-page-status-germanized.php:237
 msgid "Checks whether compatibility options for %s are being applied."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:241
+#: includes/admin/views/html-page-status-germanized.php:240
 msgid "Version %1$s not supported, supporting version %2$s - %3$s"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:263
+#: includes/admin/views/html-page-status-germanized.php:262
 msgid "Tools"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:268
+#: includes/admin/views/html-page-status-germanized.php:267
 msgid "German Formal"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:269
+#: includes/admin/views/html-page-status-germanized.php:268
 msgid "This option will install and activate German formal as your WordPress and WooCommerce language."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:271
+#: includes/admin/views/html-page-status-germanized.php:270
 msgid "Install de_DE_formal"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:274
+#: includes/admin/views/html-page-status-germanized.php:273
 msgid "Text Options"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:275
+#: includes/admin/views/html-page-status-germanized.php:274
 msgid "This option removes custom Germanized text options (e.g. Pay-Button-Text) and installs default options. You may use this options to reinstall text options e.g. after a language switch."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:277
+#: includes/admin/views/html-page-status-germanized.php:276
 msgid "Delete text options"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:281
+#: includes/admin/views/html-page-status-germanized.php:280
 msgid "Renew EU VAT Rates"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:282
+#: includes/admin/views/html-page-status-germanized.php:281
 msgid "Insert VAT rates for EU countries based on your current OSS participation status. This option deletes all current rates before inserting."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:284
+#: includes/admin/views/html-page-status-germanized.php:283
 msgid "Renew VAT Rates"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:288
-#: includes/admin/views/html-page-status-germanized.php:291
+#: includes/admin/views/html-page-status-germanized.php:287
+#: includes/admin/views/html-page-status-germanized.php:290
 msgid "Disable notices"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:289
+#: includes/admin/views/html-page-status-germanized.php:288
 msgid "Germanized might ask you to leave a review or notices you of using a possibly unsupported theme. If you want to disable these notices, check this option."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:291
+#: includes/admin/views/html-page-status-germanized.php:290
 msgid "Enable notices"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:295
-#: includes/admin/views/html-page-status-germanized.php:298
+#: includes/admin/views/html-page-status-germanized.php:294
+#: includes/admin/views/html-page-status-germanized.php:297
 msgid "Update database"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:296
+#: includes/admin/views/html-page-status-germanized.php:295
 msgid "Force (re-) running database updates, necessary, e.g. in case your database version differs from the current plugin version."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:302
+#: includes/admin/views/html-page-status-germanized.php:301
 msgid "Extended debug mode"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:303
+#: includes/admin/views/html-page-status-germanized.php:302
 msgid "Enable/disable extended debug mode via log files. Check your logs via WooCommerce > Status > Logs."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:305
+#: includes/admin/views/html-page-status-germanized.php:304
 msgid "Disable debug mode"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:305
+#: includes/admin/views/html-page-status-germanized.php:304
 msgid "Enable debug mode"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:309
+#: includes/admin/views/html-page-status-germanized.php:308
 msgid "Food Options"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:310
+#: includes/admin/views/html-page-status-germanized.php:309
 msgid "Enable/disable product food options."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:312
+#: includes/admin/views/html-page-status-germanized.php:311
 msgid "Enable food options"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:312
+#: includes/admin/views/html-page-status-germanized.php:311
 msgid "Disable food options"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:317
+#: includes/admin/views/html-page-status-germanized.php:316
 msgid "Encryption Key"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:343
+#: includes/admin/views/html-page-status-germanized.php:342
 msgid "Templates"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:349
+#: includes/admin/views/html-page-status-germanized.php:348
 msgid "Overrides"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:357
+#: includes/admin/views/html-page-status-germanized.php:356
 msgid "Version %1$s is out of date. The core version %2$s is available at: %3$s"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:364
+#: includes/admin/views/html-page-status-germanized.php:363
 msgid "Learn how to update outdated templates"
 msgstr ""
 
@@ -13479,94 +13483,94 @@ msgstr ""
 msgid "Other Vitamins & Minerals"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:369
+#: includes/class-wc-gzd-install.php:367
 msgctxt "shipments-migration"
 msgid "Error while updating %1$s: %2$s"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:379
+#: includes/class-wc-gzd-install.php:377
 msgctxt "shipments-migration"
 msgid "Error while running additional query on %1$s: %2$s"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:432
+#: includes/class-wc-gzd-install.php:430
 msgctxt "shipments-migration"
 msgid "Could not rename %1$s to %2$s."
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:470
+#: includes/class-wc-gzd-install.php:468
 msgid "Please install WooCommerce before installing WooCommerce Germanized. Thank you!"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:876
-#: includes/class-wc-gzd-install.php:928
+#: includes/class-wc-gzd-install.php:874
+#: includes/class-wc-gzd-install.php:926
 msgctxt "Page slug"
 msgid "data-security"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:877
-#: includes/class-wc-gzd-install.php:930
+#: includes/class-wc-gzd-install.php:875
+#: includes/class-wc-gzd-install.php:928
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:881
+#: includes/class-wc-gzd-install.php:879
 msgctxt "Page slug"
 msgid "imprint"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:882
+#: includes/class-wc-gzd-install.php:880
 msgctxt "Page title"
 msgid "Imprint"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:886
+#: includes/class-wc-gzd-install.php:884
 msgctxt "Page slug"
 msgid "terms"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:887
+#: includes/class-wc-gzd-install.php:885
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:891
+#: includes/class-wc-gzd-install.php:889
 msgctxt "Page slug"
 msgid "revocation"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:892
+#: includes/class-wc-gzd-install.php:890
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:896
+#: includes/class-wc-gzd-install.php:894
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:897
+#: includes/class-wc-gzd-install.php:895
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:901
+#: includes/class-wc-gzd-install.php:899
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:902
+#: includes/class-wc-gzd-install.php:900
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:906
+#: includes/class-wc-gzd-install.php:904
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:907
+#: includes/class-wc-gzd-install.php:905
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"

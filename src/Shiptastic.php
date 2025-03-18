@@ -78,7 +78,7 @@ class Shiptastic {
 					add_action(
 						"woocommerce_shiptastic_shipment_status_{$status_name}",
 						function ( $shipment_id, $shipment ) {
-							self::legacy_action_callback( $shipment_id, new Shipments\SimpleShipment( $shipment ) );
+							self::legacy_action_callback( $shipment_id, \Vendidero\Germanized\Shipments\Shipment::from_shiptastic( $shipment ) );
 						},
 						10,
 						2
@@ -87,7 +87,7 @@ class Shiptastic {
 					add_action(
 						"woocommerce_shiptastic_return_shipment_status_{$status_name}",
 						function ( $shipment_id, $shipment ) {
-							self::legacy_action_callback( $shipment_id, new Shipments\ReturnShipment( $shipment ) );
+							self::legacy_action_callback( $shipment_id, \Vendidero\Germanized\Shipments\Shipment::from_shiptastic( $shipment ) );
 						},
 						10,
 						2
