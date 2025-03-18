@@ -75,23 +75,23 @@ class Shiptastic {
 			'init',
 			function () {
 				foreach ( wc_stc_get_shipment_statuses() as $status_name => $title ) {
-					add_action( "woocommerce_shiptastic_shipment_status_{$status_name}", function( $shipment_id, $shipment ) {
-						$args = array(
-							$shipment_id,
-							new Shipments\SimpleShipment( $shipment )
-						);
+					add_action(
+						"woocommerce_shiptastic_shipment_status_{$status_name}",
+						function ( $shipment_id, $shipment ) {
+							self::legacy_action_callback( $shipment_id, new Shipments\SimpleShipment( $shipment ) );
+						},
+						10,
+						2
+					);
 
-						self::legacy_action_callback( $args );
-					}, 10, 2 );
-
-					add_action( "woocommerce_shiptastic_return_shipment_status_{$status_name}", function( $shipment_id, $shipment ) {
-						$args = array(
-							$shipment_id,
-							new Shipments\ReturnShipment( $shipment )
-						);
-
-						self::legacy_action_callback( $args );
-					}, 10, 2 );
+					add_action(
+						"woocommerce_shiptastic_return_shipment_status_{$status_name}",
+						function ( $shipment_id, $shipment ) {
+							self::legacy_action_callback( $shipment_id, new Shipments\ReturnShipment( $shipment ) );
+						},
+						10,
+						2
+					);
 				}
 			}
 		);
