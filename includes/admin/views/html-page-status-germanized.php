@@ -76,7 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<td><?php echo ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_fallback' ) ? '<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>' : '<mark class="no">&ndash;</mark>' ); ?></td>
 	</tr>
 	<tr>
-		<td data-export-label="Shiptastic Migration"><?php esc_html_e( 'Migration to Shiptastic', 'woocommerce-germanized' ); ?></td>
+		<td data-export-label="Shiptastic Migration"><?php esc_html_e( 'Migration to Shiptastic', 'woocommerce-germanized' ); ?>:</td>
 		<td class="help">&nbsp;</td>
 		<td>
 			<?php
@@ -138,6 +138,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php endif; ?>
 		</td>
 	</tr>
+	<?php if ( function_exists( 'wc_stc_get_shipments' ) ) : ?>
+		<tr>
+			<td data-export-label="Upload suffix"><?php esc_html_e( 'Shiptastic upload folder', 'woocommerce-germanized' ); ?>:</td>
+			<td class="help">&nbsp;</td>
+			<td><?php echo esc_html( \Vendidero\Shiptastic\Package::get_upload_dir_name() ); ?></td>
+		</tr>
+	<?php endif; ?>
 	<?php
 
 	/**

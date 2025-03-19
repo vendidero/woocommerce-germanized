@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2025-03-18T13:21:21+00:00\n"
-"PO-Revision-Date: 2025-03-18 14:22+0100\n"
+"POT-Creation-Date: 2025-03-19T10:33:26+00:00\n"
+"PO-Revision-Date: 2025-03-19 11:33+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -5874,7 +5874,7 @@ msgstr ""
 #: src/ShippingProvider/Auto.php:973 src/ShippingProvider/Simple.php:1143
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:15
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:24
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1028
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1035
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1134
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/General.php:15
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/General.php:24
@@ -5890,7 +5890,7 @@ msgstr "Allgemein"
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:25
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:72
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:486
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1057
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1064
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/General.php:25
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/General.php:72
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:486
@@ -9340,7 +9340,7 @@ msgstr "Wie Standardformat"
 # @ woocommerce-germanized
 #: src/ShippingProvider/Auto.php:443 src/ShippingProvider/Auto.php:1010
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:443
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1065
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1072
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:443
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1010
 msgctxt "shipments"
@@ -9370,7 +9370,7 @@ msgstr "Begrenzt die Anzahl der angebotenen Abholstationen."
 
 #: src/ShippingProvider/Auto.php:498 src/ShippingProvider/Auto.php:980
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:498
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1035
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1042
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:498
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:980
 msgctxt "shipments"
@@ -9435,7 +9435,7 @@ msgstr ""
 "auslösen soll."
 
 #: src/ShippingProvider/Auto.php:773
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:828
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:835
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:773
 msgctxt "shipments"
 msgid ""
@@ -9446,7 +9446,7 @@ msgstr ""
 "Platzhalter um die Referenz anzupassen: %3$s"
 
 #: src/ShippingProvider/Auto.php:773
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:828
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:835
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:773
 msgctxt "shipments"
 msgid ""
@@ -9458,7 +9458,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: src/ShippingProvider/Auto.php:789
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:844
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:851
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:789
 msgctxt "shipments"
 msgid "Label references"
@@ -9466,28 +9466,28 @@ msgstr "Label Referenzen"
 
 # @ woocommerce-germanized
 #: src/ShippingProvider/Auto.php:912
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:967
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:974
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:912
 msgctxt "dhl"
 msgid "Default Service"
 msgstr "Standard-Service"
 
 #: src/ShippingProvider/Auto.php:917
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:972
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:979
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:917
 msgctxt "shipments"
 msgid "Select the default service for %1$s."
 msgstr "Wähle den Standard-Service für %1$s aus."
 
 #: src/ShippingProvider/Auto.php:980
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1035
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1042
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:980
 msgctxt "shipments"
 msgid "%1$s labels"
 msgstr "%1$s Labels"
 
 #: src/ShippingProvider/Auto.php:994
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1049
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1056
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:994
 msgctxt "shipments"
 msgid "Printing"
@@ -9495,7 +9495,7 @@ msgstr "Druck"
 
 # @ woocommerce-germanized
 #: src/ShippingProvider/Auto.php:1077
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1132
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1139
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1077
 msgctxt "shipments"
 msgid "%s Product"
@@ -9503,21 +9503,21 @@ msgstr "%s Produkt"
 
 # @ woocommerce-germanized
 #: src/ShippingProvider/Auto.php:1101
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1156
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1163
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1101
 msgctxt "shipments"
 msgid "Print Format"
 msgstr "Druckformat"
 
 #: src/ShippingProvider/Auto.php:1118
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1173
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1180
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1118
 msgctxt "shipments"
 msgid "Export Reference Number"
 msgstr "Registriernummer Ausfuhr"
 
 #: src/ShippingProvider/Auto.php:1119
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1174
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1181
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1119
 msgctxt "shipments"
 msgid ""
@@ -9528,7 +9528,7 @@ msgstr ""
 "angemeldet wurde, gib hier die entsprechende Nummer (z.B. MRN) an."
 
 #: src/ShippingProvider/Auto.php:1414
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1469
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1480
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Auto.php:1414
 msgctxt "shipments"
 msgid "Error while creating the label."
@@ -9609,7 +9609,7 @@ msgid "A service needs an id."
 msgstr "Der Service benötigt eine id."
 
 #: src/ShippingProvider/Service.php:394
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Service.php:394
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Service.php:398
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Service.php:394
 msgctxt "shipments"
 msgid "Please choose a valid value for the service %1$s: %2$s."
@@ -11838,12 +11838,12 @@ msgstr "Schlüssel zur Datenverschlüsselung fehlt"
 #: includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:41
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:200
 #: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:68
-#: includes/admin/views/html-page-status-germanized.php:322
+#: includes/admin/views/html-page-status-germanized.php:329
 msgid "Learn more"
 msgstr "Mehr erfahren"
 
 #: includes/admin/notes/class-wc-gzd-admin-note-encryption.php:59
-#: includes/admin/views/html-page-status-germanized.php:320
+#: includes/admin/views/html-page-status-germanized.php:327
 msgid "Auto insert"
 msgstr "Automatisch einfügen"
 
@@ -12793,7 +12793,7 @@ msgstr "Passe allgemeine Optionen z.B. deine rechtlich relevanten Seiten an."
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:30
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:587
-#: includes/admin/views/html-page-status-germanized.php:194
+#: includes/admin/views/html-page-status-germanized.php:201
 msgid "Legal Pages"
 msgstr "Rechtlich relevante Seiten"
 
@@ -14043,7 +14043,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:21
-#: includes/admin/views/html-page-status-germanized.php:158
+#: includes/admin/views/html-page-status-germanized.php:165
 msgid "Taxes"
 msgstr "Steuern"
 
@@ -14637,61 +14637,65 @@ msgstr ""
 "%d. Klicke auf den „Migration erneut starten“ Button und prüfe ob weiterhin "
 "Fehler auftreten"
 
+#: includes/admin/views/html-page-status-germanized.php:143
+msgid "Shiptastic upload folder"
+msgstr "Shiptastic Upload-Ordner"
+
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:163
+#: includes/admin/views/html-page-status-germanized.php:170
 msgid "Additional costs tax calculation mode"
 msgstr "Modus zur Besteuerung von Nebenkosten"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:168
+#: includes/admin/views/html-page-status-germanized.php:175
 msgid "Additional costs include taxes"
 msgstr "Nebenkosten beinhalten Steuern"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:173
+#: includes/admin/views/html-page-status-germanized.php:180
 msgid "VAT Table Check"
 msgstr "Steuer Tabellenprüfung"
 
-#: includes/admin/views/html-page-status-germanized.php:174
+#: includes/admin/views/html-page-status-germanized.php:181
 msgid "Checks whether all WooCommerce tax relevant tables have been added."
 msgstr ""
 "Überprüft ob alle WooCommerce Steuer-Datenbank-Tabellen angelegt wurden."
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:175
+#: includes/admin/views/html-page-status-germanized.php:182
 msgid "Missing: %s"
 msgstr "Es fehlen: %s"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:202
+#: includes/admin/views/html-page-status-germanized.php:209
 msgid "Page doesn’t exist"
 msgstr "Seite existiert nicht"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:221
+#: includes/admin/views/html-page-status-germanized.php:228
 msgid "Compatibility"
 msgstr "Kompatibilität"
 
-#: includes/admin/views/html-page-status-germanized.php:237
+#: includes/admin/views/html-page-status-germanized.php:244
 msgid "Checks whether compatibility options for %s are being applied."
 msgstr "Prüft ob die Kompatibilitätsanpassungen für %s geladen werden."
 
-#: includes/admin/views/html-page-status-germanized.php:240
+#: includes/admin/views/html-page-status-germanized.php:247
 msgid "Version %1$s not supported, supporting version %2$s - %3$s"
 msgstr ""
 "Version %1$s wird nicht unterstützt. Bitte installiere eine Version zwischen "
 "%2$s und %3$s"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:262
+#: includes/admin/views/html-page-status-germanized.php:269
 msgid "Tools"
 msgstr "Tools"
 
-#: includes/admin/views/html-page-status-germanized.php:267
+#: includes/admin/views/html-page-status-germanized.php:274
 msgid "German Formal"
 msgstr "Deutsch (Sie)"
 
-#: includes/admin/views/html-page-status-germanized.php:268
+#: includes/admin/views/html-page-status-germanized.php:275
 msgid ""
 "This option will install and activate German formal as your WordPress and "
 "WooCommerce language."
@@ -14701,16 +14705,16 @@ msgstr ""
 "Sprachdateien weitergeleitet, damit du auch WooCommerce mit der formellen "
 "Anrede erhältst."
 
-#: includes/admin/views/html-page-status-germanized.php:270
+#: includes/admin/views/html-page-status-germanized.php:277
 msgid "Install de_DE_formal"
 msgstr "de_DE_formal installieren"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:273
+#: includes/admin/views/html-page-status-germanized.php:280
 msgid "Text Options"
 msgstr "Text-Optionen"
 
-#: includes/admin/views/html-page-status-germanized.php:274
+#: includes/admin/views/html-page-status-germanized.php:281
 msgid ""
 "This option removes custom Germanized text options (e.g. Pay-Button-Text) "
 "and installs default options. You may use this options to reinstall text "
@@ -14721,16 +14725,16 @@ msgstr ""
 "kannst diese Option z.B. nach einem Sprachwechsel nutzen (z.B. nach einem "
 "Wechsel auf Deutsch (Sie))."
 
-#: includes/admin/views/html-page-status-germanized.php:276
+#: includes/admin/views/html-page-status-germanized.php:283
 msgid "Delete text options"
 msgstr "Text-Optionen löschen"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:280
+#: includes/admin/views/html-page-status-germanized.php:287
 msgid "Renew EU VAT Rates"
 msgstr "EU MwSt.-Sätze erneuern"
 
-#: includes/admin/views/html-page-status-germanized.php:281
+#: includes/admin/views/html-page-status-germanized.php:288
 msgid ""
 "Insert VAT rates for EU countries based on your current OSS participation "
 "status. This option deletes all current rates before inserting."
@@ -14739,17 +14743,17 @@ msgstr ""
 "löscht vorab alle deine MwSt.-Sätze bevor die neuen Sätze eingefügt werden."
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:283
+#: includes/admin/views/html-page-status-germanized.php:290
 msgid "Renew VAT Rates"
 msgstr "EU MwSt.-Sätze erneuern"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:287
-#: includes/admin/views/html-page-status-germanized.php:290
+#: includes/admin/views/html-page-status-germanized.php:294
+#: includes/admin/views/html-page-status-germanized.php:297
 msgid "Disable notices"
 msgstr "Meldungen deaktivieren"
 
-#: includes/admin/views/html-page-status-germanized.php:288
+#: includes/admin/views/html-page-status-germanized.php:295
 msgid ""
 "Germanized might ask you to leave a review or notices you of using a "
 "possibly unsupported theme. If you want to disable these notices, check this "
@@ -14760,18 +14764,18 @@ msgstr ""
 "deaktivieren willst, verwende diese Option."
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:290
+#: includes/admin/views/html-page-status-germanized.php:297
 msgid "Enable notices"
 msgstr "Meldungen aktivieren"
 
 # @ woocommerce-germanized
 # @ woocommerce
-#: includes/admin/views/html-page-status-germanized.php:294
-#: includes/admin/views/html-page-status-germanized.php:297
+#: includes/admin/views/html-page-status-germanized.php:301
+#: includes/admin/views/html-page-status-germanized.php:304
 msgid "Update database"
 msgstr "Datenbank aktualisieren"
 
-#: includes/admin/views/html-page-status-germanized.php:295
+#: includes/admin/views/html-page-status-germanized.php:302
 msgid ""
 "Force (re-) running database updates, necessary, e.g. in case your database "
 "version differs from the current plugin version."
@@ -14779,11 +14783,11 @@ msgstr ""
 "Führe Datenbank-Aktualisierungen (erneut) aus, z.B. dann notwendig, wenn "
 "deine Datenbank-Version von der Plugin-Version abweicht."
 
-#: includes/admin/views/html-page-status-germanized.php:301
+#: includes/admin/views/html-page-status-germanized.php:308
 msgid "Extended debug mode"
 msgstr "Erweiterter Debug-Modus"
 
-#: includes/admin/views/html-page-status-germanized.php:302
+#: includes/admin/views/html-page-status-germanized.php:309
 msgid ""
 "Enable/disable extended debug mode via log files. Check your logs via "
 "WooCommerce > Status > Logs."
@@ -14792,49 +14796,49 @@ msgstr ""
 "> Status > Log-Dateien."
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:304
+#: includes/admin/views/html-page-status-germanized.php:311
 msgid "Disable debug mode"
 msgstr "Debug Modus deaktivieren"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:304
+#: includes/admin/views/html-page-status-germanized.php:311
 msgid "Enable debug mode"
 msgstr "Debug Modus aktivieren"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:308
+#: includes/admin/views/html-page-status-germanized.php:315
 msgid "Food Options"
 msgstr "Lebensmittel-Optionen"
 
-#: includes/admin/views/html-page-status-germanized.php:309
+#: includes/admin/views/html-page-status-germanized.php:316
 msgid "Enable/disable product food options."
 msgstr "Aktiviere/Deaktiviere Lebensmittel-Optionen."
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:311
+#: includes/admin/views/html-page-status-germanized.php:318
 msgid "Enable food options"
 msgstr "Aktiviere Lebensmittel-Optionen"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:311
+#: includes/admin/views/html-page-status-germanized.php:318
 msgid "Disable food options"
 msgstr "Deaktiviere Lebensmittel-Optionen"
 
-#: includes/admin/views/html-page-status-germanized.php:316
+#: includes/admin/views/html-page-status-germanized.php:323
 msgid "Encryption Key"
 msgstr "Schlüssel zur Verschlüsselung"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:342
+#: includes/admin/views/html-page-status-germanized.php:349
 msgid "Templates"
 msgstr "Templates"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:348
+#: includes/admin/views/html-page-status-germanized.php:355
 msgid "Overrides"
 msgstr "Überschreibt"
 
-#: includes/admin/views/html-page-status-germanized.php:356
+#: includes/admin/views/html-page-status-germanized.php:363
 msgid ""
 "Version %1$s is out of date. The core version %2$s is available at: %3$s"
 msgstr ""
@@ -14842,7 +14846,7 @@ msgstr ""
 "verfügbar unter: %3$s"
 
 # @ woocommerce-germanized
-#: includes/admin/views/html-page-status-germanized.php:363
+#: includes/admin/views/html-page-status-germanized.php:370
 msgid "Learn how to update outdated templates"
 msgstr "Erfahre, wie du veraltete Templates aktualisierst"
 
