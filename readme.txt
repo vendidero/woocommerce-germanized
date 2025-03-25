@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.8
 WC requires at least: 3.9
 WC tested up to: 9.7
-Stable tag: 3.19.4
+Stable tag: 3.19.5
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -206,6 +206,15 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.19.5 =
+* Improvement: Allow sorting main shipments meta box via drag & drop
+* Improvement: Bump shipments template versions
+* Improvement: Shiptastic migration prevent duplicate option key notices
+* Improvement: Limit additional DHL API fields to max length
+* Improvement: Do not allow choosing a company name when delivering to DHL pickup location
+* Fix: Readd missing product quick edit hook
+* Fix: Legacy [gzd_return_request_form] shortcode
+
 = 3.19.4 =
 * Fix: Prevent MySQL DB schema issue with default text options
 * Fix: Prevent pickup location error in case of a cache miss and missing address data

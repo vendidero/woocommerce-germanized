@@ -80,20 +80,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<td class="help">&nbsp;</td>
 		<td>
 			<?php
-			if ( 'yes' === get_option( 'woocommerce_gzd_shiptastic_migration_has_errors' ) && function_exists( 'wc_stc_get_shipments' ) ) :
-				$migration_errors = array_filter( (array) get_option( 'woocommerce_gzd_shiptastic_migration_errors' ) );
-				?>
-				<p><?php wp_kses_post( sprintf( __( 'There were errors while migrating from Shipments to Shiptastic package. <a href="%s">Learn more in our docs</a>.', 'woocommerce-germanized' ), esc_url( 'https://vendidero.de/doc/woocommerce-germanized/shipments-zu-shiptastic-migration' ) ) ); ?></p>
+			$db_updates           = WC_GZD_Install::get_shiptastic_db_updates( true, false, false );
+			$migration_errors     = array_filter( (array) get_option( 'woocommerce_gzd_shiptastic_migration_errors' ) );
+			$migration_has_errors = ! empty( $migration_errors );
 
-				<ul>
-					<?php foreach ( $migration_errors as $code => $messages ) : ?>
-						<?php foreach ( (array) $messages as $message ) : ?>
-							<li data-code="<?php echo esc_html( $code ); ?>"><?php echo esc_html( $message ); ?></li>
+			if ( 'yes' !== get_option( 'woocommerce_gzd_shiptastic_ignore_migration_errors' ) && ( ! empty( $db_updates ) || $migration_has_errors ) && function_exists( 'wc_stc_get_shipments' ) ) :
+				if ( $migration_has_errors ) :
+					?>
+					<p><?php echo wp_kses_post( sprintf( __( 'There were errors while migrating from Shipments to Shiptastic package. <a href="%s">Learn more in our docs</a>.', 'woocommerce-germanized' ), esc_url( 'https://vendidero.de/doc/woocommerce-germanized/shipments-zu-shiptastic-migration' ) ) ); ?></p>
+
+					<ul>
+						<?php foreach ( $migration_errors as $code => $messages ) : ?>
+							<?php foreach ( (array) $messages as $message ) : ?>
+								<li data-code="<?php echo esc_html( $code ); ?>"><?php echo esc_html( $message ); ?></li>
+							<?php endforeach; ?>
 						<?php endforeach; ?>
-					<?php endforeach; ?>
-				</ul>
+					</ul>
+				<?php else : ?>
+					<p><?php echo wp_kses_post( sprintf( __( 'Your installation seems to have non-migrated data left. It may be that you are missing data/settings from before the update. You may either force running the migration again to override existing data with the data before the update or ignore the issue. <a href="%s">Learn more in our docs</a>.', 'woocommerce-germanized' ), esc_url( 'https://vendidero.de/doc/woocommerce-germanized/shipments-zu-shiptastic-migration' ) ) ); ?></p>
+				<?php endif; ?>
 
-				<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-migrate_to_shiptastic' => true ) ), 'wc-gzd-check-migrate_to_shiptastic' ) ); ?>" class="button button-secondary" style="margin-right: 1rem;"><?php echo esc_html__( 'Start migration again', 'woocommerce-germanized' ); ?></a>
+				<?php if ( $migration_has_errors ) : ?>
+					<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-migrate_to_shiptastic' => true ) ), 'wc-gzd-check-migrate_to_shiptastic' ) ); ?>" class="button button-secondary" style="margin-right: 25px;"><?php echo esc_html__( 'Start migration again', 'woocommerce-germanized' ); ?></a>
+				<?php endif; ?>
 				<a href="
 				<?php
 				echo esc_url(
@@ -108,20 +117,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 					)
 				);
 				?>
-							" onclick="return confirm('<?php echo esc_html__( 'By forcing to run the migration again, shipments created after updating to 3.19.0 will be lost as the legacy tables will be used instead. Please backup your database before continuing.', 'woocommerce-germanized' ); ?>')" style="color: #a00; font-size: 11px"><?php echo esc_html__( 'Force migration', 'woocommerce-germanized' ); ?></a>
+							" onclick="return confirm('<?php echo esc_html__( 'By forcing to run the migration again, shipments created after updating to 3.19.0 will be lost as the legacy tables will be used instead. Please backup your database before continuing.', 'woocommerce-germanized' ); ?>')" style="color: #a00; font-size: 11px; margin-right: 15px;"><?php echo esc_html__( 'Force migration', 'woocommerce-germanized' ); ?></a>
+				<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'wc-gzd-check-remove_shiptastic_migration_notices' => true ) ), 'wc-gzd-check-remove_shiptastic_migration_notices' ) ); ?>" style="font-size: 11px;"><?php echo esc_html__( 'Ignore notices', 'woocommerce-germanized' ); ?></a>
 
 				<h4><?php esc_html_e( 'Manual migration', 'woocommerce-germanized' ); ?></h4>
 				<?php $manual_count = 0; ?>
 
 				<h5><?php printf( esc_html__( '%d. Migrate your DB by executing the following SQL statements, e.g. via PHPmyAdmin:', 'woocommerce-germanized' ), esc_html( ++$manual_count ) ); ?></h5>
-				<?php foreach ( WC_GZD_Install::get_shiptastic_db_updates() as $table => $db_updates ) : ?>
-					<?php if ( ! empty( $db_updates['main'] ) ) : ?>
-						<pre style="overflow: scroll; margin-top: 0; width: 100%;"><code onclick="wc_gzd_copy_code(this)"><?php echo esc_html( $db_updates['main'] ); ?></code></pre>
-					<?php endif; ?>
-					<?php foreach ( $db_updates['additional'] as $db_query ) : ?>
-						<pre style="overflow: scroll; margin-top: 0; width: 100%;"><code onclick="wc_gzd_copy_code(this)"><?php echo esc_html( $db_query ); ?></code></pre>
+				<div style="display: table; table-layout: fixed; max-width: max-content; width: 100%;">
+					<?php foreach ( WC_GZD_Install::get_shiptastic_db_updates( $migration_has_errors ? false : true ) as $table => $db_updates ) : ?>
+						<?php foreach ( $db_updates['main'] as $db_query ) : ?>
+							<pre style="overflow: scroll; margin-top: 0; max-width: 100%;"><code onclick="wc_gzd_copy_code(this)"><?php echo esc_html( $db_query ); ?></code></pre>
+						<?php endforeach; ?>
+						<?php foreach ( $db_updates['additional'] as $db_query ) : ?>
+							<pre style="overflow: scroll; margin-top: 0; max-width: 100%;"><code onclick="wc_gzd_copy_code(this)"><?php echo esc_html( $db_query ); ?></code></pre>
+						<?php endforeach; ?>
 					<?php endforeach; ?>
-				<?php endforeach; ?>
+				</div>
 				<?php
 				if ( $legacy_dir = WC_GZD_Install::get_shipments_legacy_upload_folder() ) :
 					$new_dir = \Vendidero\Shiptastic\Package::get_upload_dir();
@@ -132,7 +144,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php endif; ?>
 				<?php endif; ?>
 
-				<h5><?php printf( esc_html__( '%d. Hit the "start migration again" button to check whether error still occur', 'woocommerce-germanized' ), esc_html( ++$manual_count ) ); ?></h5>
+				<?php if ( $migration_has_errors ) : ?>
+					<h5><?php printf( esc_html__( '%d. Hit the "start migration again" button to check whether error still occur', 'woocommerce-germanized' ), esc_html( ++$manual_count ) ); ?></h5>
+				<?php else : ?>
+				<h5><?php printf( esc_html__( '%d. Refresh this page to see whether open issues remain.', 'woocommerce-germanized' ), esc_html( ++$manual_count ) ); ?></h5>
+			<?php endif; ?>
 			<?php else : ?>
 				<mark class="yes"><span class="dashicons dashicons-yes"></span></mark>
 			<?php endif; ?>

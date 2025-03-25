@@ -116,6 +116,7 @@ class WC_GZD_Admin {
 			'install_ts',
 			'update_database',
 			'migrate_to_shiptastic',
+			'remove_shiptastic_migration_notices',
 		);
 
 		if ( current_user_can( 'manage_woocommerce' ) ) {
@@ -141,6 +142,15 @@ class WC_GZD_Admin {
 					}
 				}
 			}
+		}
+	}
+
+	protected function check_remove_shiptastic_migration_notices() {
+		if ( current_user_can( 'manage_options' ) ) {
+			delete_option( 'woocommerce_gzd_shiptastic_migration_has_errors' );
+			delete_option( 'woocommerce_gzd_shiptastic_migration_errors' );
+
+			update_option( 'woocommerce_gzd_shiptastic_ignore_migration_errors', 'yes', false );
 		}
 	}
 

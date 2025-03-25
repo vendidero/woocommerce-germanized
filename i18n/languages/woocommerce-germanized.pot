@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.19.4\n"
+"Project-Id-Version: Germanized for WooCommerce 3.19.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-03-19T10:33:26+00:00\n"
+"POT-Creation-Date: 2025-03-25T14:55:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 
@@ -1237,49 +1237,49 @@ msgid "Delivery Type"
 msgstr ""
 
 #: src/ParcelServices.php:204
-#: packages/dhl-for-shiptastic/src/ParcelServices.php:201
+#: packages/dhl-for-shiptastic/src/ParcelServices.php:203
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:204
 msgctxt "dhl"
 msgid "DHL Delivery day"
 msgstr ""
 
 #: src/ParcelServices.php:210
-#: packages/dhl-for-shiptastic/src/ParcelServices.php:207
+#: packages/dhl-for-shiptastic/src/ParcelServices.php:209
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:210
 msgctxt "dhl"
 msgid "DHL Home Delivery"
 msgstr ""
 
 #: src/ParcelServices.php:432
-#: packages/dhl-for-shiptastic/src/ParcelServices.php:429
+#: packages/dhl-for-shiptastic/src/ParcelServices.php:433
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:432
 msgctxt "dhl"
 msgid "Sorry, but the delivery day you have chosen is no longer available."
 msgstr ""
 
 #: src/ParcelServices.php:455
-#: packages/dhl-for-shiptastic/src/ParcelServices.php:452
+#: packages/dhl-for-shiptastic/src/ParcelServices.php:456
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:455
 msgctxt "dhl"
 msgid "Please choose a drop-off location."
 msgstr ""
 
 #: src/ParcelServices.php:467
-#: packages/dhl-for-shiptastic/src/ParcelServices.php:464
+#: packages/dhl-for-shiptastic/src/ParcelServices.php:468
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:467
 msgctxt "dhl"
 msgid "Please choose name and address of your preferred neighbor."
 msgstr ""
 
 #: src/ParcelServices.php:552
-#: packages/dhl-for-shiptastic/src/ParcelServices.php:549
+#: packages/dhl-for-shiptastic/src/ParcelServices.php:553
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:552
 msgctxt "dhl delivery type context"
 msgid "Shop"
 msgstr ""
 
 #: src/ParcelServices.php:553
-#: packages/dhl-for-shiptastic/src/ParcelServices.php:550
+#: packages/dhl-for-shiptastic/src/ParcelServices.php:554
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:553
 msgctxt "dhl delivery type context"
 msgid "Home"
@@ -3075,7 +3075,7 @@ msgstr ""
 #: includes/admin/views/html-order-shipments.php:52
 #: src/Admin/Admin.php:926
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipment-content.php:208
-#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:49
+#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:50
 #: packages/shiptastic-for-woocommerce/src/Admin/Admin.php:1143
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:212
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:52
@@ -3092,7 +3092,7 @@ msgstr ""
 #: templates/myaccount/add-return-shipment.php:35
 #: templates/shipment/shipment-details.php:57
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipment-content.php:209
-#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:50
+#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:51
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-preview-shipment.php:74
 #: packages/shiptastic-for-woocommerce/src/Admin/Admin.php:1148
 #: packages/shiptastic-for-woocommerce/templates/emails/email-shipment-details.php:53
@@ -3112,7 +3112,7 @@ msgstr ""
 #: includes/admin/views/html-order-shipment-content.php:227
 #: includes/admin/views/html-order-shipments.php:62
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipment-content.php:223
-#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:59
+#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:60
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipment-content.php:227
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:62
 msgctxt "shipments"
@@ -3258,7 +3258,7 @@ msgstr ""
 #: src/Admin/Admin.php:1574
 #: src/Admin/Admin.php:1642
 #: templates/myaccount/order-shipments.php:20
-#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:16
+#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:17
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:136
 #: packages/shiptastic-for-woocommerce/src/Admin/Admin.php:614
 #: packages/shiptastic-for-woocommerce/src/Admin/Admin.php:1629
@@ -3277,28 +3277,28 @@ msgid "Shipments"
 msgstr ""
 
 #: includes/admin/views/html-order-shipments.php:31
-#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:28
+#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:29
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:31
 msgctxt "shipments"
 msgid "Create shipment(s)"
 msgstr ""
 
 #: includes/admin/views/html-order-shipments.php:35
-#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:32
+#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:33
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:35
 msgctxt "shipments"
 msgid "Add return"
 msgstr ""
 
 #: includes/admin/views/html-order-shipments.php:42
-#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:39
+#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:40
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:42
 msgctxt "shipments"
 msgid "Add Return"
 msgstr ""
 
 #: includes/admin/views/html-order-shipments.php:75
-#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:72
+#: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipments.php:73
 #: packages/woocommerce-germanized-shipments/includes/admin/views/html-order-shipments.php:75
 msgctxt "shipments"
 msgid "Save"
@@ -5924,7 +5924,7 @@ msgstr ""
 #: src/Admin/Tabs/ShippingProvider.php:109
 #: src/Admin/Tabs/Tab.php:154
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:82
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:104
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:106
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/Tab.php:155
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/ShippingProvider.php:87
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/ShippingProvider.php:109
@@ -5941,28 +5941,28 @@ msgid "Not yet a customer?"
 msgstr ""
 
 #: src/Admin/Tabs/ShippingProvider.php:100
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:95
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:96
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/ShippingProvider.php:100
 msgctxt "shipments"
 msgid "Not connected"
 msgstr ""
 
 #: src/Admin/Tabs/ShippingProvider.php:102
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:97
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:98
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/ShippingProvider.php:102
 msgctxt "shipments"
 msgid "Status: Not Connected"
 msgstr ""
 
 #: src/Admin/Tabs/ShippingProvider.php:102
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:97
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:98
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/ShippingProvider.php:102
 msgctxt "shipments"
 msgid "Status: Connected"
 msgstr ""
 
 #: src/Admin/Tabs/ShippingProvider.php:106
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:101
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:103
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/ShippingProvider.php:106
 msgctxt "shipments"
 msgid "Add provider"
@@ -5975,7 +5975,7 @@ msgid "You may find all the available shipping providers as a list here. Click o
 msgstr ""
 
 #: src/Admin/Tabs/ShippingProvider.php:145
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:140
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:142
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/ShippingProvider.php:145
 msgctxt "shipments"
 msgid "Activate"
@@ -5989,7 +5989,7 @@ msgstr ""
 
 #: src/Admin/Tabs/ShippingProvider.php:158
 #: src/ShippingMethod/ShippingMethod.php:1232
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:153
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:155
 #: packages/shiptastic-for-woocommerce/src/ShippingMethod/ShippingMethod.php:1243
 #: packages/woocommerce-germanized-shipments/src/Admin/Tabs/ShippingProvider.php:158
 #: packages/woocommerce-germanized-shipments/src/ShippingMethod/ShippingMethod.php:1232
@@ -8785,35 +8785,35 @@ msgstr ""
 
 #: src/ShippingProvider/Helper.php:106
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:106
-#: src/Shiptastic.php:196
+#: src/Shiptastic.php:208
 msgctxt "shipments"
 msgid "DHL"
 msgstr ""
 
 #: src/ShippingProvider/Helper.php:112
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:112
-#: src/Shiptastic.php:203
+#: src/Shiptastic.php:215
 msgctxt "shipments"
 msgid "Deutsche Post"
 msgstr ""
 
 #: src/ShippingProvider/Helper.php:118
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:118
-#: src/Shiptastic.php:210
+#: src/Shiptastic.php:222
 msgctxt "shipments"
 msgid "DPD"
 msgstr ""
 
 #: src/ShippingProvider/Helper.php:124
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:124
-#: src/Shiptastic.php:218
+#: src/Shiptastic.php:230
 msgctxt "shipments"
 msgid "GLS"
 msgstr ""
 
 #: src/ShippingProvider/Helper.php:130
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:130
-#: src/Shiptastic.php:226
+#: src/Shiptastic.php:238
 msgctxt "shipments"
 msgid "Hermes"
 msgstr ""
@@ -9421,7 +9421,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: woocommerce-germanized.php
-#: includes/admin/class-wc-gzd-admin.php:408
+#: includes/admin/class-wc-gzd-admin.php:418
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:124
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:153
 msgid "Germanized for WooCommerce"
@@ -9544,14 +9544,14 @@ msgid "excl. %s%% VAT"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-customer.php:44
-#: includes/admin/class-wc-gzd-admin.php:550
+#: includes/admin/class-wc-gzd-admin.php:560
 #: includes/admin/settings/views/html-admin-settings-tabs.php:66
 #: includes/admin/settings/views/html-admin-settings-tabs.php:85
 msgid "Yes"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-customer.php:46
-#: includes/admin/class-wc-gzd-admin.php:550
+#: includes/admin/class-wc-gzd-admin.php:560
 #: includes/admin/settings/views/html-admin-settings-tabs.php:66
 #: includes/admin/settings/views/html-admin-settings-tabs.php:85
 msgid "No"
@@ -9576,7 +9576,7 @@ msgstr ""
 #: includes/admin/class-wc-gzd-admin-deposit-types.php:67
 #: includes/admin/class-wc-gzd-admin-deposit-types.php:96
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:556
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:67
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:68
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:261
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:333
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:657
@@ -9632,7 +9632,7 @@ msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-legal-checkboxes.php:108
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:178
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:454
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:455
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:534
 #: includes/class-wc-gzd-legal-checkbox-manager.php:195
 msgid "Service"
@@ -9944,39 +9944,39 @@ msgstr ""
 msgid "Cheating huh?"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:214
-#: includes/admin/class-wc-gzd-admin.php:260
+#: includes/admin/class-wc-gzd-admin.php:224
+#: includes/admin/class-wc-gzd-admin.php:270
 msgctxt "dhl"
 msgid "Action failed. Please refresh the page and retry."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:218
-#: includes/admin/class-wc-gzd-admin.php:264
+#: includes/admin/class-wc-gzd-admin.php:228
+#: includes/admin/class-wc-gzd-admin.php:274
 msgctxt "dhl"
 msgid "You don't have permission to do this."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:588
+#: includes/admin/class-wc-gzd-admin.php:598
 msgid "Search for a term&hellip;"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:701
+#: includes/admin/class-wc-gzd-admin.php:711
 msgid "Paid for order notification manually sent to customer."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:721
+#: includes/admin/class-wc-gzd-admin.php:731
 msgid "Order confirmation manually sent to customer."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:741
+#: includes/admin/class-wc-gzd-admin.php:751
 msgid "Resend order confirmation"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:742
+#: includes/admin/class-wc-gzd-admin.php:752
 msgid "Send paid for order notification"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:752
+#: includes/admin/class-wc-gzd-admin.php:762
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:159
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-shiptastic.php:29
@@ -9985,41 +9985,41 @@ msgstr ""
 msgid "Germanized"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:823
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:850
+#: includes/admin/class-wc-gzd-admin.php:833
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:851
 msgid "Remove"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:831
+#: includes/admin/class-wc-gzd-admin.php:841
 msgid "Insert delivery time name, slug or id."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:832
+#: includes/admin/class-wc-gzd-admin.php:842
 msgid "Insert product units amount."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:891
+#: includes/admin/class-wc-gzd-admin.php:901
 msgid "Optional Email Content"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:897
+#: includes/admin/class-wc-gzd-admin.php:907
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:921
+#: includes/admin/class-wc-gzd-admin.php:931
 msgid "Cart description"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:934
+#: includes/admin/class-wc-gzd-admin.php:944
 #: includes/api/class-wc-gzd-rest-products-controller.php:648
 msgid "Defect description"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:962
+#: includes/admin/class-wc-gzd-admin.php:972
 msgid "This content will be shown as short product description within checkout and emails."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:976
+#: includes/admin/class-wc-gzd-admin.php:986
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:546
 msgid "Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout."
 msgstr ""
@@ -10047,10 +10047,10 @@ msgstr ""
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:157
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:303
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:308
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:204
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:311
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:909
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:914
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:205
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:312
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:910
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:915
 #: includes/api/class-wc-gzd-rest-products-controller.php:43
 #: includes/api/class-wc-gzd-rest-products-controller.php:511
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:10
@@ -10087,37 +10087,37 @@ msgid "Toggle &quot;Photovoltaic System&quot;"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:181
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:462
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:463
 msgid "Used Good"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:181
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:463
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:464
 msgid "Product is a used good."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:184
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:470
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:471
 msgid "Defective Copy"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:184
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:471
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:472
 msgid "Product has defects."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:187
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:504
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:505
 msgid "Photovoltaic System"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:187
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:505
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:506
 msgid "Photovoltaic system for which the zero tax rate is available."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:216
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:521
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:522
 msgid "Price Labeling"
 msgstr ""
 
@@ -10126,26 +10126,26 @@ msgstr ""
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:388
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:425
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:557
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:68
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:522
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:683
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:738
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:910
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:69
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:523
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:684
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:739
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:911
 msgid "Help"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:226
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:528
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:529
 msgid "Strike Price Label"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:237
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:540
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:541
 msgid "Sale Price Label"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:252
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:562
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:563
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:246
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:301
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-units.php:10
@@ -10153,12 +10153,12 @@ msgid "Product Units"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:257
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:565
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:566
 msgid "Number of units included per default product price. Example: 1000 ml."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:266
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:586
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:587
 msgid "Calculation"
 msgstr ""
 
@@ -10167,12 +10167,12 @@ msgid "Calculate unit prices automatically"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:280
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:595
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:596
 msgid "Regular Unit Price"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:291
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:604
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:605
 msgid "Sale Unit Price"
 msgstr ""
 
@@ -10193,75 +10193,75 @@ msgid "Same as parent"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:328
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:990
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:991
 msgid "Delivery Time (%s)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:341
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:378
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1002
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1039
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1003
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1040
 msgid "remove"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:354
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1014
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1015
 msgid "Add country specific delivery time"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:361
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1022
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1023
 msgid "Select country"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:373
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:876
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:919
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1034
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:877
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:920
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1035
 msgid "Search for a delivery time&hellip;"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:387
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:478
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:682
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:479
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:683
 msgid "Electronic device (wireless)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:399
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:701
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:702
 msgid "Minimum power (Watt)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:402
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:705
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:706
 #: includes/api/class-wc-gzd-rest-products-controller.php:332
 #: includes/api/class-wc-gzd-rest-products-controller.php:609
 msgid "Minimum power for charging the device."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:413
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:715
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:716
 msgid "Maximum power (Watt)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:416
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:719
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:720
 #: includes/api/class-wc-gzd-rest-products-controller.php:337
 #: includes/api/class-wc-gzd-rest-products-controller.php:614
 msgid "Power necessary to reach the maximum charging speed of the device."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:424
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:737
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:738
 #: includes/wc-gzd-template-functions.php:79
 #: templates/single-product/product-safety.php:22
 msgid "Product safety"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:429
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:218
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:341
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:742
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:219
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:342
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:743
 #: includes/api/class-wc-gzd-rest-products-controller.php:157
 #: includes/api/class-wc-gzd-rest-products-controller.php:586
 #: includes/class-wc-gzd-post-types.php:159
@@ -10273,7 +10273,7 @@ msgid "Manufacturer"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:444
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:747
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:748
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-safety-instructions.php:10
 #: includes/wc-gzd-template-functions.php:878
 #: templates/single-product/safety-instructions.php:22
@@ -10284,7 +10284,7 @@ msgid "Safety instructions"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:449
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:765
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:766
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-safety-attachments.php:10
 msgid "Safety documents"
 msgstr ""
@@ -10294,17 +10294,17 @@ msgid "Additional Fields"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:478
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:629
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:630
 msgid "Minimum Age"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:481
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:631
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:632
 msgid "Adds an age verification checkbox while purchasing this product."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:494
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:641
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:642
 #: includes/api/class-wc-gzd-rest-products-controller.php:284
 #: includes/api/class-wc-gzd-rest-products-controller.php:672
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:135
@@ -10312,12 +10312,12 @@ msgid "GTIN"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:499
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:644
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:645
 msgid "Your product's Global Trade Item Number that allows your products to be identified worldwide."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:508
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:653
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:654
 #: includes/api/class-wc-gzd-rest-products-controller.php:290
 #: includes/api/class-wc-gzd-rest-products-controller.php:677
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:144
@@ -10325,17 +10325,17 @@ msgid "MPN"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:513
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:656
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:657
 msgid "Your product's Manufacturer Part Number."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:520
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:664
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:665
 msgid "Warranty (PDF)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:530
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:673
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:674
 msgid "Select warranty file"
 msgstr ""
 
@@ -10354,38 +10354,38 @@ msgid "Defect Description"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:558
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:69
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:70
 msgid "Manage deposit types"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:567
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:76
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:77
 #: includes/api/class-wc-gzd-rest-products-controller.php:367
 msgid "Deposit Type"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:568
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:77
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:78
 msgid "Select Deposit Type"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:571
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:79
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:80
 msgid "In case this product is reusable and has deposits, select the deposit type."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:580
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:86
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:87
 msgid "Deposit Quantity"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:585
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:91
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:92
 msgid "Number of units included for deposit purposes, e.g. 6 bottles."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:593
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:98
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:99
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:51
 #: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:60
 #: includes/admin/views/html-settings-pro.php:23
@@ -10393,12 +10393,12 @@ msgid "Get Germanized Pro to unlock"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:594
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:99
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:100
 msgid "Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more with Germanized Pro."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:595
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:100
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:101
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:53
 #: includes/admin/settings/class-wc-gzd-settings-pointers.php:175
 #: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:69
@@ -10409,100 +10409,100 @@ msgstr ""
 msgid "Upgrade now"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:120
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:495
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:121
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:496
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:40
 msgid "Food"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:232
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:370
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:551
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:233
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:371
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:552
 #: includes/api/class-wc-gzd-rest-products-controller.php:180
 #: includes/class-wc-gzd-post-types.php:108
 msgid "Unit"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:235
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:374
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:236
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:375
 msgid "No unit"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:316
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:332
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:346
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:362
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:373
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:317
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:333
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:347
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:363
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:374
 msgid "— No change —"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:317
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:347
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:318
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:348
 msgid "Change to:"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:318
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:319
 msgid "No delivery time"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:348
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:349
 msgid "No manufacturer"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:455
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:456
 msgid "Service products do not sell physical products."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:479
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:480
 msgid "Wireless electronic device (e.g. tablet) requiring power supply unit labeling."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:486
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:487
 msgid "Differential taxed"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:487
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:488
 msgid "Product applies to differential taxation based on §25a UStG."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:496
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:497
 msgid "This product is a food product."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:529
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:541
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:530
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:542
 msgid "Select Price Label"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:531
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:532
 msgid "If the product is on sale you may want to show a price label right before outputting the old price to inform the customer."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:543
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:544
 msgid "If the product is on sale you may want to show a price label right before outputting the new price to inform the customer."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:552
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:553
 msgid "Select unit"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:554
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:555
 msgid "Needed if selling on a per unit basis"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:573
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:574
 msgid "Unit Price Units"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:576
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:577
 msgid "Unit price units. Example unit price: 0,99 € / 100 ml. Insert 100 as unit price unit amount."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:587
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:588
 msgid "Calculate unit prices automatically."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:690
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:691
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-power-supply.php:10
 #: build/wc-gzd-blocks-product-elements.js:2752
 #: build/wc-gzd-blocks-product-elements-style.js:2054
@@ -10510,53 +10510,53 @@ msgstr ""
 msgid "Power supply"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:691
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:692
 msgid "Charger included in the scope of delivery."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:728
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:729
 #: templates/global/power-supply.php:45
 msgid "USB PD"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:729
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:730
 msgid "This device supports the fast charging protocol USB Power Delivery."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:788
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:789
 msgid "Search for a manufacturer&hellip;"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:822
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:823
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:824
 msgid "Choose file"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:824
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:825
 msgid "Select file"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:832
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:833
 msgid "Not available"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:932
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:933
 msgid "Free shipping?"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:933
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:934
 msgid "This option disables the \"plus shipping costs\" notice on product page"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:947
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:948
 msgid "EU-wide"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:951
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:952
 msgid "Non-EU-wide"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:995
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:996
 msgid "Same as default"
 msgstr ""
 
@@ -10649,12 +10649,12 @@ msgstr ""
 #: includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:41
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:200
 #: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:68
-#: includes/admin/views/html-page-status-germanized.php:329
+#: includes/admin/views/html-page-status-germanized.php:345
 msgid "Learn more"
 msgstr ""
 
 #: includes/admin/notes/class-wc-gzd-admin-note-encryption.php:59
-#: includes/admin/views/html-page-status-germanized.php:327
+#: includes/admin/views/html-page-status-germanized.php:343
 msgid "Auto insert"
 msgstr ""
 
@@ -11253,7 +11253,7 @@ msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:30
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:587
-#: includes/admin/views/html-page-status-germanized.php:201
+#: includes/admin/views/html-page-status-germanized.php:217
 msgid "Legal Pages"
 msgstr ""
 
@@ -12070,7 +12070,7 @@ msgid "Adjust tax related settings e.g. Split-tax calculation for shipping costs
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:21
-#: includes/admin/views/html-page-status-germanized.php:165
+#: includes/admin/views/html-page-status-germanized.php:181
 msgid "Taxes"
 msgstr ""
 
@@ -12450,193 +12450,205 @@ msgstr ""
 msgid "Migration to Shiptastic"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:86
+#: includes/admin/views/html-page-status-germanized.php:90
 msgid "There were errors while migrating from Shipments to Shiptastic package. <a href=\"%s\">Learn more in our docs</a>."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:96
+#: includes/admin/views/html-page-status-germanized.php:100
+msgid "Your installation seems to have non-migrated data left. It may be that you are missing data/settings from before the update. You may either force running the migration again to override existing data with the data before the update or ignore the issue. <a href=\"%s\">Learn more in our docs</a>."
+msgstr ""
+
+#: includes/admin/views/html-page-status-germanized.php:104
 msgid "Start migration again"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:111
+#: includes/admin/views/html-page-status-germanized.php:120
 msgid "By forcing to run the migration again, shipments created after updating to 3.19.0 will be lost as the legacy tables will be used instead. Please backup your database before continuing."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:111
+#: includes/admin/views/html-page-status-germanized.php:120
 msgid "Force migration"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:113
+#: includes/admin/views/html-page-status-germanized.php:121
+msgid "Ignore notices"
+msgstr ""
+
+#: includes/admin/views/html-page-status-germanized.php:123
 msgid "Manual migration"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:116
+#: includes/admin/views/html-page-status-germanized.php:126
 msgid "%d. Migrate your DB by executing the following SQL statements, e.g. via PHPmyAdmin:"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:130
+#: includes/admin/views/html-page-status-germanized.php:142
 msgid "%d. Rename the uploads folder"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:131
+#: includes/admin/views/html-page-status-germanized.php:143
 msgid "Rename %1$s to %2$s."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:135
+#: includes/admin/views/html-page-status-germanized.php:148
 msgid "%d. Hit the \"start migration again\" button to check whether error still occur"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:143
+#: includes/admin/views/html-page-status-germanized.php:150
+msgid "%d. Refresh this page to see whether open issues remain."
+msgstr ""
+
+#: includes/admin/views/html-page-status-germanized.php:159
 msgid "Shiptastic upload folder"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:170
+#: includes/admin/views/html-page-status-germanized.php:186
 msgid "Additional costs tax calculation mode"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:175
+#: includes/admin/views/html-page-status-germanized.php:191
 msgid "Additional costs include taxes"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:180
+#: includes/admin/views/html-page-status-germanized.php:196
 msgid "VAT Table Check"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:181
+#: includes/admin/views/html-page-status-germanized.php:197
 msgid "Checks whether all WooCommerce tax relevant tables have been added."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:182
+#: includes/admin/views/html-page-status-germanized.php:198
 msgid "Missing: %s"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:209
+#: includes/admin/views/html-page-status-germanized.php:225
 msgid "Page doesn’t exist"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:228
+#: includes/admin/views/html-page-status-germanized.php:244
 msgid "Compatibility"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:244
+#: includes/admin/views/html-page-status-germanized.php:260
 msgid "Checks whether compatibility options for %s are being applied."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:247
+#: includes/admin/views/html-page-status-germanized.php:263
 msgid "Version %1$s not supported, supporting version %2$s - %3$s"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:269
+#: includes/admin/views/html-page-status-germanized.php:285
 msgid "Tools"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:274
+#: includes/admin/views/html-page-status-germanized.php:290
 msgid "German Formal"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:275
+#: includes/admin/views/html-page-status-germanized.php:291
 msgid "This option will install and activate German formal as your WordPress and WooCommerce language."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:277
+#: includes/admin/views/html-page-status-germanized.php:293
 msgid "Install de_DE_formal"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:280
+#: includes/admin/views/html-page-status-germanized.php:296
 msgid "Text Options"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:281
+#: includes/admin/views/html-page-status-germanized.php:297
 msgid "This option removes custom Germanized text options (e.g. Pay-Button-Text) and installs default options. You may use this options to reinstall text options e.g. after a language switch."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:283
+#: includes/admin/views/html-page-status-germanized.php:299
 msgid "Delete text options"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:287
+#: includes/admin/views/html-page-status-germanized.php:303
 msgid "Renew EU VAT Rates"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:288
+#: includes/admin/views/html-page-status-germanized.php:304
 msgid "Insert VAT rates for EU countries based on your current OSS participation status. This option deletes all current rates before inserting."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:290
+#: includes/admin/views/html-page-status-germanized.php:306
 msgid "Renew VAT Rates"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:294
-#: includes/admin/views/html-page-status-germanized.php:297
+#: includes/admin/views/html-page-status-germanized.php:310
+#: includes/admin/views/html-page-status-germanized.php:313
 msgid "Disable notices"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:295
+#: includes/admin/views/html-page-status-germanized.php:311
 msgid "Germanized might ask you to leave a review or notices you of using a possibly unsupported theme. If you want to disable these notices, check this option."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:297
+#: includes/admin/views/html-page-status-germanized.php:313
 msgid "Enable notices"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:301
-#: includes/admin/views/html-page-status-germanized.php:304
+#: includes/admin/views/html-page-status-germanized.php:317
+#: includes/admin/views/html-page-status-germanized.php:320
 msgid "Update database"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:302
+#: includes/admin/views/html-page-status-germanized.php:318
 msgid "Force (re-) running database updates, necessary, e.g. in case your database version differs from the current plugin version."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:308
+#: includes/admin/views/html-page-status-germanized.php:324
 msgid "Extended debug mode"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:309
+#: includes/admin/views/html-page-status-germanized.php:325
 msgid "Enable/disable extended debug mode via log files. Check your logs via WooCommerce > Status > Logs."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:311
+#: includes/admin/views/html-page-status-germanized.php:327
 msgid "Disable debug mode"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:311
+#: includes/admin/views/html-page-status-germanized.php:327
 msgid "Enable debug mode"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:315
+#: includes/admin/views/html-page-status-germanized.php:331
 msgid "Food Options"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:316
+#: includes/admin/views/html-page-status-germanized.php:332
 msgid "Enable/disable product food options."
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:318
+#: includes/admin/views/html-page-status-germanized.php:334
 msgid "Enable food options"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:318
+#: includes/admin/views/html-page-status-germanized.php:334
 msgid "Disable food options"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:323
+#: includes/admin/views/html-page-status-germanized.php:339
 msgid "Encryption Key"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:349
+#: includes/admin/views/html-page-status-germanized.php:365
 msgid "Templates"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:355
+#: includes/admin/views/html-page-status-germanized.php:371
 msgid "Overrides"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:363
+#: includes/admin/views/html-page-status-germanized.php:379
 msgid "Version %1$s is out of date. The core version %2$s is available at: %3$s"
 msgstr ""
 
-#: includes/admin/views/html-page-status-germanized.php:370
+#: includes/admin/views/html-page-status-germanized.php:386
 msgid "Learn how to update outdated templates"
 msgstr ""
 
@@ -13487,94 +13499,94 @@ msgstr ""
 msgid "Other Vitamins & Minerals"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:367
+#: includes/class-wc-gzd-install.php:381
 msgctxt "shipments-migration"
-msgid "Error while updating %1$s: %2$s"
+msgid "Error while querying %1$s: %2$s"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:377
+#: includes/class-wc-gzd-install.php:407
 msgctxt "shipments-migration"
 msgid "Error while running additional query on %1$s: %2$s"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:430
+#: includes/class-wc-gzd-install.php:460
 msgctxt "shipments-migration"
 msgid "Could not rename %1$s to %2$s."
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:468
+#: includes/class-wc-gzd-install.php:498
 msgid "Please install WooCommerce before installing WooCommerce Germanized. Thank you!"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:874
-#: includes/class-wc-gzd-install.php:926
+#: includes/class-wc-gzd-install.php:904
+#: includes/class-wc-gzd-install.php:956
 msgctxt "Page slug"
 msgid "data-security"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:875
-#: includes/class-wc-gzd-install.php:928
+#: includes/class-wc-gzd-install.php:905
+#: includes/class-wc-gzd-install.php:958
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:879
+#: includes/class-wc-gzd-install.php:909
 msgctxt "Page slug"
 msgid "imprint"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:880
+#: includes/class-wc-gzd-install.php:910
 msgctxt "Page title"
 msgid "Imprint"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:884
+#: includes/class-wc-gzd-install.php:914
 msgctxt "Page slug"
 msgid "terms"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:885
+#: includes/class-wc-gzd-install.php:915
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:889
+#: includes/class-wc-gzd-install.php:919
 msgctxt "Page slug"
 msgid "revocation"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:890
+#: includes/class-wc-gzd-install.php:920
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:894
+#: includes/class-wc-gzd-install.php:924
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:895
+#: includes/class-wc-gzd-install.php:925
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:899
+#: includes/class-wc-gzd-install.php:929
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:900
+#: includes/class-wc-gzd-install.php:930
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:904
+#: includes/class-wc-gzd-install.php:934
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:905
+#: includes/class-wc-gzd-install.php:935
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"
@@ -15289,7 +15301,7 @@ msgstr ""
 
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:14
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:53
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:127
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:129
 msgctxt "shipments"
 msgid "Shipping Service Providers"
 msgstr ""
@@ -15304,22 +15316,22 @@ msgctxt "shipments"
 msgid "Manage your shipping service provider integrations, e.g. for %s & more."
 msgstr ""
 
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:127
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:129
 msgctxt "shipments"
 msgid "You may find all the available shipping service providers as a list here. Click on the link to edit the provider-specific settings."
 msgstr ""
 
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:140
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:142
 msgctxt "shipments"
 msgid "Activate or deactivate a shipping service provider by toggling this button."
 msgstr ""
 
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:153
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:155
 msgctxt "shipments"
 msgid "You may want to manually add a new shipping service provider in case a built-in integration is not available."
 msgstr ""
 
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:201
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/ShippingProvider.php:203
 msgctxt "shipments-help-url"
 msgid "https://vendidero.com/doc/shiptastic/manage-shipping-service-providers"
 msgstr ""

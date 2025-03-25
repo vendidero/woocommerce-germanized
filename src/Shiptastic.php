@@ -137,7 +137,7 @@ class Shiptastic {
 				add_shortcode(
 					'gzd_return_request_form',
 					function ( $args = array() ) {
-						\Vendidero\Shiptastic\Package::return_request_form( $args );
+						return \Vendidero\Shiptastic\Package::return_request_form( $args );
 					}
 				);
 			}
