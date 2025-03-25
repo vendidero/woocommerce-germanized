@@ -80,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<td class="help">&nbsp;</td>
 		<td>
 			<?php
-			$db_updates           = WC_GZD_Install::get_shiptastic_db_updates( true, false, false );
+			$db_updates           = WC_GZD_Install::get_shiptastic_db_updates( true );
 			$migration_errors     = array_filter( (array) get_option( 'woocommerce_gzd_shiptastic_migration_errors' ) );
 			$migration_has_errors = ! empty( $migration_errors );
 
