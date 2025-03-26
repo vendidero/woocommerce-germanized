@@ -821,12 +821,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/shiptastic-for-woocommerce.git",
-                "reference": "c090208b3128ee51bafbf7d1e8b09fbdaac3e6fd"
+                "reference": "a631f12a3e2978d638a2383241a0d45ff0360757"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/c090208b3128ee51bafbf7d1e8b09fbdaac3e6fd",
-                "reference": "c090208b3128ee51bafbf7d1e8b09fbdaac3e6fd",
+                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/a631f12a3e2978d638a2383241a0d45ff0360757",
+                "reference": "a631f12a3e2978d638a2383241a0d45ff0360757",
                 "shasum": ""
             },
             "require": {
@@ -871,7 +871,7 @@
             "support": {
                 "source": "https://github.com/vendidero/shiptastic-for-woocommerce/tree/v4.3.5"
             },
-            "time": "2025-03-25T14:48:14+00:00"
+            "time": "2025-03-26T09:42:23+00:00"
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
