@@ -270,11 +270,14 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				/**
 				 * Do only try to rename options in case legacy options do still exist
 				 */
-				$has_legacy_options = $wpdb->query( $wpdb->prepare( "SELECT * FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s LIMIT 1", $wpdb->esc_like( 'woocommerce_gzd_shipments_' ) . '%', $wpdb->esc_like( 'woocommerce_gzd_dhl_' ) . '%' ) );
+				$legacy_options      = $wpdb->get_results( $wpdb->prepare( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s", $wpdb->esc_like( 'woocommerce_gzd_shipments_' ) . '%', $wpdb->esc_like( 'woocommerce_gzd_dhl_' ) . '%' ) );
+				$legacy_option_names = self::get_legacy_option_names( $legacy_options );
 
-				if ( ! empty( $has_legacy_options ) ) {
+				if ( ! empty( $legacy_option_names ) ) {
+					$legacy_options_in = "'" . implode( "','", $legacy_option_names ) . "'";
+
 					$db_updates[ $wpdb->options ] = array(
-						'main'       => array( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'woocommerce_shiptastic_%';" ),
+						'main'       => array( "DELETE FROM {$wpdb->options} WHERE option_name IN ($legacy_options_in);" ),
 						'additional' => array(
 							$wpdb->prepare( "UPDATE {$wpdb->options} SET option_name = REPLACE(option_name, %s, %s);", 'woocommerce_gzd_dhl_', 'woocommerce_shiptastic_dhl_' ),
 							$wpdb->prepare( "UPDATE {$wpdb->options} SET option_name = REPLACE(option_name, %s, %s);", 'woocommerce_gzd_shipments_', 'woocommerce_shiptastic_' ),
@@ -286,18 +289,23 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					);
 
 					foreach ( $status_options as $option ) {
-						$db_updates[ $wpdb->options ]['additional'][] = $wpdb->prepare( "UPDATE {$wpdb->options} SET option_value = REPLACE(option_value, %s, %s) WHERE option_name = %s;", 'gzd-', '', $option );
+						if ( in_array( $option, $legacy_option_names, true ) ) {
+							$db_updates[ $wpdb->options ]['additional'][] = $wpdb->prepare( "UPDATE {$wpdb->options} SET option_value = REPLACE(option_value, %s, %s) WHERE option_name = %s;", 'gzd-', '', $option );
+						}
 					}
 				}
 			} else {
 				/**
 				 * Do only try to rename options in case legacy options do still exist
 				 */
-				$has_legacy_options = $wpdb->query( $wpdb->prepare( "SELECT * FROM {$wpdb->options} WHERE option_name LIKE %s LIMIT 1", $wpdb->esc_like( 'woocommerce_shiptastic_' ) . '%' ) );
+				$legacy_options      = $wpdb->get_results( $wpdb->prepare( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'woocommerce_shiptastic_' ) . '%' ) );
+				$legacy_option_names = self::get_legacy_option_names( $legacy_options, true );
 
-				if ( ! empty( $has_legacy_options ) ) {
+				if ( ! empty( $legacy_option_names ) ) {
+					$legacy_options_in = "'" . implode( "','", $legacy_option_names ) . "'";
+
 					$db_updates[ $wpdb->options ] = array(
-						'main'       => array( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'woocommerce_gzd_shipments_%' OR option_name LIKE 'woocommerce_gzd_dhl_%';" ),
+						'main'       => array( "DELETE FROM {$wpdb->options} WHERE option_name IN ($legacy_options_in);" ),
 						'additional' => array(
 							$wpdb->prepare( "UPDATE {$wpdb->options} SET option_name = REPLACE(option_name, %s, %s);", 'woocommerce_shiptastic_dhl_', 'woocommerce_gzd_dhl_' ),
 							$wpdb->prepare( "UPDATE {$wpdb->options} SET option_name = REPLACE(option_name, %s, %s);", 'woocommerce_shiptastic_', 'woocommerce_gzd_shipments_' ),
@@ -309,12 +317,32 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					);
 
 					foreach ( $status_options as $option ) {
-						$db_updates[ $wpdb->options ]['additional'][] = $wpdb->prepare( "UPDATE {$wpdb->options} SET option_value = CONCAT(%s, option_value) WHERE option_name = %s;", 'gzd-', $option );
+						if ( in_array( $option, $legacy_option_names, true ) ) {
+							$db_updates[ $wpdb->options ]['additional'][] = $wpdb->prepare( "UPDATE {$wpdb->options} SET option_value = CONCAT(%s, option_value) WHERE option_name = %s;", 'gzd-', $option );
+						}
 					}
 				}
 			}
 
 			return $db_updates;
+		}
+
+		protected static function get_legacy_option_names( $legacy_options, $is_downgrade = false ) {
+			$option_names = array();
+
+			foreach ( $legacy_options as $legacy_row ) {
+				if ( $is_downgrade ) {
+					$new_option_name = str_replace( 'woocommerce_shiptastic_dhl_', 'woocommerce_gzd_dhl_', $legacy_row->option_name );
+					$new_option_name = str_replace( 'woocommerce_shiptastic_', 'woocommerce_gzd_shipments_', $new_option_name );
+				} else {
+					$new_option_name = str_replace( 'woocommerce_gzd_dhl_', 'woocommerce_shiptastic_dhl_', $legacy_row->option_name );
+					$new_option_name = str_replace( 'woocommerce_gzd_shipments_', 'woocommerce_shiptastic_', $new_option_name );
+				}
+
+				$option_names[] = $new_option_name;
+			}
+
+			return $option_names;
 		}
 
 		public static function get_shipments_legacy_upload_folder() {
