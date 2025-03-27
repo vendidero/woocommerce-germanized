@@ -199,21 +199,23 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 			return false;
 		}
 
+		$is_available = true;
+
 		if ( is_checkout() ) {
 			if ( 'yes' === $this->get_option( 'customers_only' ) && ! is_user_logged_in() ) {
-				return false;
+				$is_available = false;
 			}
 
 			if ( 'yes' === $this->get_option( 'customers_completed' ) ) {
 				if ( is_user_logged_in() && WC()->customer ) {
-					return WC()->customer->get_is_paying_customer() === true;
+					$is_available = true === WC()->customer->get_is_paying_customer();
 				} else {
-					return false;
+					$is_available = false;
 				}
 			}
 		}
 
-		return true;
+		return apply_filters( 'woocommerce_gzd_invoice_gateway_is_available', $is_available, $this );
 	}
 
 	public function process_subscription_payment( $order_total, $order_id ) {
