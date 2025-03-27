@@ -267,6 +267,11 @@ class WC_GZD_REST_Products_Controller {
 				'type' => 'integer',
 			),
 		);
+		$schema_properties['safety_instructions']             = array(
+			'description' => __( 'Safety instructions', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+		);
 		$schema_properties['min_age']                         = array(
 			'description' => __( 'Age verification minimum age.', 'woocommerce-germanized' ),
 			'type'        => 'string',
@@ -657,6 +662,11 @@ class WC_GZD_REST_Products_Controller {
 			),
 			'context'     => array( 'view', 'edit' ),
 		);
+		$schema_properties['variations']['items']['properties']['safety_instructions']      = array(
+			'description' => __( 'Safety instructions', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+		);
 		$schema_properties['variations']['items']['properties']['min_age']                  = array(
 			'description' => __( 'Age verification minimum age.', 'woocommerce-germanized' ),
 			'type'        => 'string',
@@ -879,6 +889,10 @@ class WC_GZD_REST_Products_Controller {
 
 		if ( isset( $request['defect_description'] ) ) {
 			$data['_defect_description'] = wc_gzd_sanitize_html_text_field( $request['defect_description'] );
+		}
+
+		if ( isset( $request['safety_instructions'] ) ) {
+			$data['_safety_instructions'] = wc_gzd_sanitize_html_text_field( $request['safety_instructions'] );
 		}
 
 		if ( isset( $request['min_age'] ) ) {
@@ -1140,6 +1154,9 @@ class WC_GZD_REST_Products_Controller {
 
 		// Safety attachment ids
 		$data['safety_attachment_ids'] = $gzd_product->get_safety_attachment_ids( $context );
+
+		// Safety instructions
+		$data['safety_instructions'] = $gzd_product->get_safety_instructions( $context ) ? $gzd_product->get_formatted_safety_instructions( $context ) : '';
 
 		// Delivery Time
 		$data['delivery_time'] = $this->prepare_term( $gzd_product->get_default_delivery_time( $context ) );
