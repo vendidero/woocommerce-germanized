@@ -1763,7 +1763,7 @@ function wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() {
 	$base_country    = wc_gzd_get_base_country();
 	$supports_exempt = false;
 
-	if ( in_array( $base_country, array( 'DE', 'AT' ), true ) ) {
+	if ( in_array( $base_country, array( 'DE' ), true ) ) {
 		$supports_exempt = true;
 	} elseif ( \Vendidero\EUTaxHelper\Helper::is_eu_vat_country( $base_country ) && \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() ) {
 		$supports_exempt = true;
@@ -1850,7 +1850,7 @@ function wc_gzd_customer_applies_for_photovoltaic_system_vat_exemption( $args = 
  * @return boolean
  */
 function wc_gzd_shipping_country_supports_photovoltaic_system_vat_exempt( $country ) {
-	return apply_filters( 'woocommerce_gzd_shipping_country_supports_photovoltaic_system_vat_exempt', in_array( $country, array( 'DE', 'AT' ), true ) );
+	return apply_filters( 'woocommerce_gzd_shipping_country_supports_photovoltaic_system_vat_exempt', in_array( $country, array( 'DE' ), true ) );
 }
 
 function wc_gzd_remove_all_hooks( $hook, $priority = 10 ) {

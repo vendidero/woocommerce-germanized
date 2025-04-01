@@ -665,10 +665,6 @@ function wc_gzd_cart_get_photovoltaic_systems_law_details( $args = array() ) {
 			'text' => __( '§12 paragraph 3 UStG', 'woocommerce-germanized' ),
 			'url'  => 'https://www.gesetze-im-internet.de/ustg_1980/__12.html',
 		),
-		'AT' => array(
-			'text' => __( '§ 28 paragraph 62 UStG 1994', 'woocommerce-germanized' ),
-			'url'  => 'https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR40257456/NOR40257456.html',
-		),
 	);
 	$notice_data   = array_key_exists( $base_country, $legal_notices ) ? $legal_notices[ $base_country ] : array(
 		'text' => '',

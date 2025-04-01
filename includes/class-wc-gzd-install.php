@@ -184,36 +184,35 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			 */
 			$tables = array(
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_shipment_itemmeta" => array(
-					"{$existing_prefix}_shipment_item_id",
+					"{$existing_prefix}_shipment_item_id" => 'bigint(20) unsigned NOT NULL',
 				),
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_shipment_items" => array(),
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_shipments" => array(),
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_shipmentmeta" => array(
-					"{$existing_prefix}_shipment_id",
+					"{$existing_prefix}_shipment_id" => 'bigint(20) unsigned NOT NULL',
 				),
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_shipment_labels" => array(),
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_shipment_labelmeta" => array(
-					"{$existing_prefix}_shipment_label_id",
+					"{$existing_prefix}_shipment_label_id" => 'bigint(20) unsigned NOT NULL',
 				),
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_packaging" => array(),
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_packagingmeta" => array(
-					"{$existing_prefix}_packaging_id",
+					"{$existing_prefix}_packaging_id" => 'bigint(20) unsigned NOT NULL',
 				),
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_shipping_provider" => array(),
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_shipping_providermeta" => array(
-					"{$existing_prefix}_shipping_provider_id",
+					"{$existing_prefix}_shipping_provider_id" => 'bigint(20) unsigned NOT NULL',
 				),
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_dhl_im_products" => array(),
 				"{$wpdb->prefix}woocommerce_{$existing_prefix}_dhl_im_product_services" => array(),
 			);
 
 			foreach ( $tables as $table => $columns ) {
-				$exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table ) ) );
+				$exists           = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table ) ) );
+				$new_table_name   = str_replace( "woocommerce_{$existing_prefix}_", "woocommerce_{$new_prefix}_", $table );
+				$new_table_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $new_table_name ) ) );
 
 				if ( $exists && $exists === $table ) {
-					$new_table_name   = str_replace( "woocommerce_{$existing_prefix}_", "woocommerce_{$new_prefix}_", $table );
-					$new_table_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $new_table_name ) ) );
-
 					/**
 					 * Skip table if exists
 					 */
@@ -233,10 +232,10 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 							);
 						}
 
-						foreach ( $columns as $column ) {
+						foreach ( $columns as $column => $column_data_type ) {
 							$new_column_name = str_replace( "{$existing_prefix}_", "{$new_prefix}_", $column );
 
-							$db_updates[ $table ]['additional'][] = "ALTER TABLE `{$new_table_name}` RENAME COLUMN `{$column}` TO `{$new_column_name}`;";
+							$db_updates[ $table ]['additional'][] = "ALTER TABLE `{$new_table_name}` CHANGE `{$column}` `{$new_column_name}` {$column_data_type};";
 						}
 
 						if ( "{$wpdb->prefix}woocommerce_{$existing_prefix}_shipments" === $table ) {
@@ -261,6 +260,28 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 									$db_updates[ $table ]['additional'][] = $wpdb->prepare( "UPDATE {$new_table_name} SET meta_value = CONCAT(%s, meta_value) WHERE meta_key = %s;", 'gzd-', $meta_key ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 								}
 							}
+						}
+					}
+				} elseif ( $force_override && $new_table_exists && $new_table_exists === $new_table_name ) {
+					foreach ( $columns as $column => $column_data_type ) {
+						$old_column_exists = $wpdb->get_var( $wpdb->prepare( "SHOW COLUMNS FROM `{$new_table_name}` LIKE %s", $wpdb->esc_like( $column ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+						if ( $old_column_exists && $old_column_exists === $column ) {
+							$new_column_name   = str_replace( "{$existing_prefix}_", "{$new_prefix}_", $column );
+							$new_column_exists = $wpdb->get_var( $wpdb->prepare( "SHOW COLUMNS FROM `{$new_table_name}` LIKE %s", $wpdb->esc_like( $new_column_name ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+							if ( ! isset( $db_updates[ $new_table_name ] ) ) {
+								$db_updates[ $new_table_name ] = array(
+									'main'       => array(),
+									'additional' => array(),
+								);
+							}
+
+							if ( $new_column_exists && $new_column_name === $new_column_exists ) {
+								$db_updates[ $new_table_name ]['main'][] = "ALTER TABLE `{$new_table_name}` DROP COLUMN `{$new_column_name}`;";
+							}
+
+							$db_updates[ $new_table_name ]['additional'][] = "ALTER TABLE `{$new_table_name}` CHANGE `{$column}` `{$new_column_name}` {$column_data_type};";
 						}
 					}
 				}
