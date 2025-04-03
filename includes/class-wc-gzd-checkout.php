@@ -1315,10 +1315,12 @@ class WC_GZD_Checkout {
 					}
 				}
 
+				$tax_status = is_callable( array( $rate, 'get_tax_status' ) ) ? $rate->get_tax_status() : 'taxable';
+
 				/**
 				 * Convert shipping costs to gross prices in case prices include tax
 				 */
-				if ( wc_gzd_additional_costs_include_tax() && 'none' !== $rate->get_tax_status() ) {
+				if ( wc_gzd_additional_costs_include_tax() && 'none' !== $tax_status ) {
 					$tax_total = array_sum( $rates[ $key ]->get_taxes() );
 					$new_cost  = $original_cost - $tax_total;
 

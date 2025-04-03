@@ -87,8 +87,8 @@ body.theme-astra {
  * while displaying classic shortcodes. Fallback-use only.
  */
 .woocommerce-cart, .woocommerce-checkout, .woocommerce-mini-cart, .woocommerce {
-  dl.variation {
-    dt[class*="variation-gzd-"], dd[class*="variation-gzd-"] {
+  dl.variation, ul.variation {
+    dt[class*="variation-gzd-"], dd[class*="variation-gzd-"], div[class*="variation-gzd-"] {
       display: none !important;
     }
   }
