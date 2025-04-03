@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "348052d9d636cceb07287a85d0e44149",
+    "content-hash": "3b7f66f025ef1efa644c1e819135b93d",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -817,16 +817,16 @@
         },
         {
             "name": "vendidero/shiptastic-for-woocommerce",
-            "version": "4.3.6",
+            "version": "4.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/shiptastic-for-woocommerce.git",
-                "reference": "9edc6edc6dc2b325a9218572689a4b62af96089f"
+                "reference": "47ab8b75c35640d62ee4485b13c9a8954dba0211"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/9edc6edc6dc2b325a9218572689a4b62af96089f",
-                "reference": "9edc6edc6dc2b325a9218572689a4b62af96089f",
+                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/47ab8b75c35640d62ee4485b13c9a8954dba0211",
+                "reference": "47ab8b75c35640d62ee4485b13c9a8954dba0211",
                 "shasum": ""
             },
             "require": {
@@ -869,9 +869,9 @@
             "description": "Shiptastic for WooCommerce",
             "homepage": "https://vendidero.de",
             "support": {
-                "source": "https://github.com/vendidero/shiptastic-for-woocommerce/tree/v4.3.6"
+                "source": "https://github.com/vendidero/shiptastic-for-woocommerce/tree/v4.3.7"
             },
-            "time": "2025-04-01T13:49:33+00:00"
+            "time": "2025-04-03T13:57:29+00:00"
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
