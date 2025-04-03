@@ -19,7 +19,7 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         php: ['7.4', '8.0', '8.2']
-        woo: ['latest']
+        woo: ['latest', '6.4.1']
     name: PHP ${{ matrix.php }} test for Woo ${{ matrix.woo }}
     steps:
       - name: Checkout
