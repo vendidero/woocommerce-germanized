@@ -158,6 +158,7 @@ install_deps() {
     if [ "$WOO_VERSION" != "latest" ]; then
         FILE="woocommerce.$WOO_VERSION.zip"
         BRANCH=$WOO_VERSION
+        LAST_TAG_VERSION=$WOO_VERSION
     fi
 
     # make sure paths are reset/cleared
@@ -169,9 +170,11 @@ install_deps() {
 
     WORKING_DIR="$PWD"
 
-    LAST_RELEASE_TAG=$(git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' https://github.com/woocommerce/woocommerce.git [0-9].[0-9].[0-9] | tail -1)
-    LAST_TAG_NAME=$(echo $LAST_RELEASE_TAG | sed 's/.* //')
-    LAST_TAG_VERSION=$(echo $LAST_TAG_NAME | grep -o '[0-9]\.[0-9]\.[0-9]$')
+    if [ "$WOO_VERSION" == "latest" ]; then
+        LAST_RELEASE_TAG=$(git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' https://github.com/woocommerce/woocommerce.git [0-9].[0-9].[0-9] | tail -1)
+        LAST_TAG_NAME=$(echo $LAST_RELEASE_TAG | sed 's/.* //')
+        LAST_TAG_VERSION=$(echo $LAST_TAG_NAME | grep -o '[0-9]\.[0-9]\.[0-9]$')
+    fi
 
     git clone --branch $LAST_TAG_VERSION --depth 1 "https://github.com/woocommerce/woocommerce.git" "$TMPDIR/woocommerce-git"
     mv "$TMPDIR/woocommerce-git/plugins/woocommerce/tests" "$WP_CORE_DIR/wp-content/plugins/woocommerce"
