@@ -366,5 +366,18 @@ class Shiptastic {
 				return $hook_name;
 			}
 		);
+
+		add_filter(
+			'woocommerce_gzd_replace_email_title_for_textdomain',
+			function ( $replace_email_title, $textdomain ) {
+				if ( 'shiptastic-for-woocommerce' === $textdomain ) {
+					$replace_email_title = true;
+				}
+
+				return $replace_email_title;
+			},
+			10,
+			2
+		);
 	}
 }

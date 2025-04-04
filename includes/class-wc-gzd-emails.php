@@ -554,7 +554,7 @@ class WC_GZD_Emails {
 		 *
 		 * @since 3.12.3
 		 */
-		if ( apply_filters( 'woocommerce_gzd_replace_email_title_for_textdomain', ( 'woocommerce' === $domain ), $domain ) ) {
+		if ( apply_filters( 'woocommerce_gzd_replace_email_title_for_textdomain', ( 'woocommerce' === $domain || 'woocommerce-germanized' === $domain ), $domain ) ) {
 			/**
 			 * Filters which string to replace with the actual email title.
 			 *
