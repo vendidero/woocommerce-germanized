@@ -520,7 +520,9 @@ class WC_GZD_Emails {
 		 */
 		if ( strpos( $template_name, 'emails/' ) !== false && isset( $args['order'] ) && is_a( $args['order'], 'WC_Order' ) && get_option( 'woocommerce_gzd_email_title_text' ) && apply_filters( 'woocommerce_gzd_replace_email_titles', true ) ) {
 			$this->current_order_instance = $args['order'];
+
 			add_filter( 'gettext', array( $this, 'replace_title_email_text' ), 9999, 3 );
+			add_filter( 'gettext_with_context', array( $this, 'replace_title_email_text_with_context' ), 9999, 4 );
 		}
 	}
 
@@ -542,6 +544,10 @@ class WC_GZD_Emails {
 		}
 
 		return $translated;
+	}
+
+	public function replace_title_email_text_with_context( $translated, $original, $context, $domain ) {
+		return $this->replace_title_email_text( $translated, $original, $domain );
 	}
 
 	public function replace_title_email_text( $translated, $original, $domain ) {
