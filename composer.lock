@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b7f66f025ef1efa644c1e819135b93d",
+    "content-hash": "b410eb33b401c1df1ebb95234f1e6552",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -817,16 +817,16 @@
         },
         {
             "name": "vendidero/shiptastic-for-woocommerce",
-            "version": "4.3.7",
+            "version": "4.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/shiptastic-for-woocommerce.git",
-                "reference": "47ab8b75c35640d62ee4485b13c9a8954dba0211"
+                "reference": "9b9003c0f5d5961433a3bede93900aedc732fdf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/47ab8b75c35640d62ee4485b13c9a8954dba0211",
-                "reference": "47ab8b75c35640d62ee4485b13c9a8954dba0211",
+                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/9b9003c0f5d5961433a3bede93900aedc732fdf6",
+                "reference": "9b9003c0f5d5961433a3bede93900aedc732fdf6",
                 "shasum": ""
             },
             "require": {
@@ -869,9 +869,9 @@
             "description": "Shiptastic for WooCommerce",
             "homepage": "https://vendidero.de",
             "support": {
-                "source": "https://github.com/vendidero/shiptastic-for-woocommerce/tree/v4.3.7"
+                "source": "https://github.com/vendidero/shiptastic-for-woocommerce/tree/v4.3.8"
             },
-            "time": "2025-04-03T13:57:29+00:00"
+            "time": "2025-04-07T13:22:13+00:00"
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
@@ -3009,16 +3009,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.12.0",
+            "version": "3.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "2d1b63db139c3c6ea0c927698e5160f8b3b8d630"
+                "reference": "ea16a1f3719783345febd3aab41beb55c8c84bfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/2d1b63db139c3c6ea0c927698e5160f8b3b8d630",
-                "reference": "2d1b63db139c3c6ea0c927698e5160f8b3b8d630",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/ea16a1f3719783345febd3aab41beb55c8c84bfd",
+                "reference": "ea16a1f3719783345febd3aab41beb55c8c84bfd",
                 "shasum": ""
             },
             "require": {
@@ -3089,7 +3089,7 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2025-03-18T05:04:51+00:00"
+            "time": "2025-04-04T12:57:55+00:00"
         },
         {
             "name": "theseer/tokenizer",

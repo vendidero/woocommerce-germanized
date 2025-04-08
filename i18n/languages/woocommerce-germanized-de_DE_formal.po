@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2025-03-25T14:55:25+00:00\n"
-"PO-Revision-Date: 2025-03-25 16:00+0100\n"
+"POT-Creation-Date: 2025-04-08T12:44:59+00:00\n"
+"PO-Revision-Date: 2025-04-08 14:45+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -3342,7 +3342,7 @@ msgstr "Verpackung"
 #: src/Admin/Table.php:726 src/ShippingProvider/Auto.php:506
 #: src/ShippingProvider/Auto.php:539
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipment-content.php:58
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1189
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1188
 #: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:25
 #: packages/shiptastic-for-woocommerce/src/Admin/Table.php:716
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:506
@@ -3979,7 +3979,7 @@ msgstr "Erstellen"
 #: includes/wc-gzd-shipment-functions.php:1481 src/Admin/Table.php:940
 #: src/Ajax.php:386 templates/shipment/shipment-return-instructions.php:29
 #: packages/shiptastic-for-woocommerce/includes/admin/views/label/html-shipment-label.php:25
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1447
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1446
 #: packages/shiptastic-for-woocommerce/src/Admin/Table.php:923
 #: packages/shiptastic-for-woocommerce/src/Ajax.php:389
 #: packages/shiptastic-for-woocommerce/templates/shipment/shipment-return-instructions.php:28
@@ -4274,8 +4274,8 @@ msgstr "Text der unterhalb des Inhalts der E-Mail angezeigt werden soll."
 #: includes/wc-gzd-shipment-functions.php:1178
 #: templates/shipment/shipment-details-address.php:28
 #: packages/shiptastic-for-woocommerce/includes/emails/class-wc-stc-email-customer-shipment.php:384
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1126
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1154
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1125
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1153
 #: packages/shiptastic-for-woocommerce/templates/shipment/shipment-details-address.php:27
 #: packages/woocommerce-germanized-shipments/includes/emails/class-wc-gzd-email-customer-shipment.php:395
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1148
@@ -4418,7 +4418,7 @@ msgstr "Internationale Sendungen"
 #: includes/wc-gzd-shipment-functions.php:127
 #: includes/wc-gzd-shipment-functions.php:1214
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:135
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1187
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1186
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:127
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1214
 msgctxt "shipments"
@@ -4556,7 +4556,7 @@ msgstr "Diese Bestellung wurde bereits vollständig zurückgesendet."
 #: includes/wc-gzd-shipment-functions.php:405
 #: includes/wc-gzd-shipment-functions.php:448
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:401
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:444
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:443
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:405
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:448
 msgctxt "shipments"
@@ -4567,10 +4567,10 @@ msgstr "Fehler beim Erstellen der Sendungsinstanz"
 #: includes/wc-gzd-shipment-functions.php:434 src/ReturnShipment.php:259
 #: src/ReturnShipment.php:344 src/SimpleShipment.php:118
 #: src/SimpleShipment.php:237
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:426
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:430
-#: packages/shiptastic-for-woocommerce/src/ReturnShipment.php:257
-#: packages/shiptastic-for-woocommerce/src/ReturnShipment.php:340
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:425
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:429
+#: packages/shiptastic-for-woocommerce/src/ReturnShipment.php:300
+#: packages/shiptastic-for-woocommerce/src/ReturnShipment.php:383
 #: packages/shiptastic-for-woocommerce/src/SimpleShipment.php:118
 #: packages/shiptastic-for-woocommerce/src/SimpleShipment.php:235
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:430
@@ -4586,14 +4586,14 @@ msgid "Invalid shipment order"
 msgstr "Ungültige Bestellung zur Sendung"
 
 #: includes/wc-gzd-shipment-functions.php:465
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:461
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:460
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:465
 msgctxt "shipments"
 msgid "Invalid order item"
 msgstr "Ungültige Bestellposition"
 
 #: includes/wc-gzd-shipment-functions.php:587
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:581
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:580
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:587
 msgctxt "shipments"
 msgid "Invalid shipment item"
@@ -4601,21 +4601,21 @@ msgstr "Ungültige Sendungsposition"
 
 # @ woocommerce-germanized
 #: includes/wc-gzd-shipment-functions.php:689
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:681
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:680
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:689
 msgctxt "shipments"
 msgid "None"
 msgstr "Keiner"
 
 #: includes/wc-gzd-shipment-functions.php:730
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:721
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:720
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:730
 msgctxt "shipments-shipping-provider"
 msgid "Unknown"
 msgstr "Unbekannt"
 
 #: includes/wc-gzd-shipment-functions.php:779
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:770
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:769
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:779
 msgctxt "shipments"
 msgid "Error while uploading file."
@@ -4623,7 +4623,7 @@ msgstr "Fehler beim Hochladen der Datei."
 
 # @ woocommerce-germanized
 #: includes/wc-gzd-shipment-functions.php:788
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:779
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:778
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:788
 msgctxt "shipments"
 msgid "First Name"
@@ -4631,7 +4631,7 @@ msgstr "Vorname"
 
 # @ woocommerce-germanized
 #: includes/wc-gzd-shipment-functions.php:789
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:780
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:779
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:789
 msgctxt "shipments"
 msgid "Last Name"
@@ -4639,28 +4639,28 @@ msgstr "Nachname"
 
 # @ woocommerce-germanized
 #: includes/wc-gzd-shipment-functions.php:790
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:781
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:780
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:790
 msgctxt "shipments"
 msgid "Full Name"
 msgstr "Vollständiger Name"
 
 #: includes/wc-gzd-shipment-functions.php:791
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:782
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:781
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:791
 msgctxt "shipments"
 msgid "Company"
 msgstr "Firma"
 
 #: includes/wc-gzd-shipment-functions.php:792
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:783
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:782
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:792
 msgctxt "shipments"
 msgid "Address 1"
 msgstr "Adresszeile 1"
 
 #: includes/wc-gzd-shipment-functions.php:793
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:784
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:783
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:793
 msgctxt "shipments"
 msgid "Address 2"
@@ -4668,14 +4668,14 @@ msgstr "Adresszeile 2"
 
 # @ woocommerce-germanized
 #: includes/wc-gzd-shipment-functions.php:794
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:785
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:784
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:794
 msgctxt "shipments"
 msgid "Street"
 msgstr "Straße"
 
 #: includes/wc-gzd-shipment-functions.php:795
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:786
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:785
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:795
 msgctxt "shipments"
 msgid "House Number"
@@ -4684,7 +4684,7 @@ msgstr "Hausnummer"
 # @ woocommerce-germanized
 #: includes/wc-gzd-shipment-functions.php:796 src/PickupDelivery.php:273
 #: packages/woocommerce-germanized-shipments/build/checkout-pickup-location-select.js:1
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:787
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:786
 #: packages/shiptastic-for-woocommerce/src/PickupDelivery.php:288
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:796
 #: packages/woocommerce-germanized-shipments/src/PickupDelivery.php:273
@@ -4695,14 +4695,14 @@ msgstr "Postleitzahl"
 
 # @ woocommerce-germanized
 #: includes/wc-gzd-shipment-functions.php:797
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:788
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:787
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:797
 msgctxt "shipments"
 msgid "City"
 msgstr "Stadt"
 
 #: includes/wc-gzd-shipment-functions.php:798
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:789
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:788
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:798
 msgctxt "shipments"
 msgid "Country"
@@ -4710,35 +4710,35 @@ msgstr "Land"
 
 # @ woocommerce-germanized
 #: includes/wc-gzd-shipment-functions.php:799
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:790
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:789
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:799
 msgctxt "shipments"
 msgid "State"
 msgstr "Staat"
 
 #: includes/wc-gzd-shipment-functions.php:800
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:791
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:790
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:800
 msgctxt "shipments"
 msgid "Phone"
 msgstr "Telefon"
 
 #: includes/wc-gzd-shipment-functions.php:801
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:792
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:791
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:801
 msgctxt "shipments"
 msgid "Email"
 msgstr "E-Mail"
 
 #: includes/wc-gzd-shipment-functions.php:802
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:793
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:792
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:802
 msgctxt "shipments"
 msgid "Customs Reference Number"
 msgstr "Identifikationsnummer (Zoll)"
 
 #: includes/wc-gzd-shipment-functions.php:803
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:794
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:793
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:803
 msgctxt "shipments"
 msgid "UK VAT ID (HMRC)"
@@ -4746,7 +4746,7 @@ msgstr "UK USt.-ID (HMRC)"
 
 #: includes/wc-gzd-shipment-functions.php:872 src/Labels/ReturnLabel.php:141
 #: src/Shipment.php:1255 src/Shipment.php:1520
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:863
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:862
 #: packages/shiptastic-for-woocommerce/src/Labels/ReturnLabel.php:140
 #: packages/shiptastic-for-woocommerce/src/Shipment.php:1247
 #: packages/shiptastic-for-woocommerce/src/Shipment.php:1511
@@ -4761,7 +4761,7 @@ msgstr "%1$s %2$s"
 # @ woocommerce-germanized
 #: includes/wc-gzd-shipment-functions.php:1215 src/Admin/ReturnTable.php:24
 #: src/Admin/Table.php:725
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1188
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1187
 #: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:24
 #: packages/shiptastic-for-woocommerce/src/Admin/Table.php:715
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1215
@@ -4773,7 +4773,7 @@ msgstr "Datum"
 
 #: includes/wc-gzd-shipment-functions.php:1217
 #: templates/shipment/shipment-details-tracking.php:23
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1190
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1189
 #: packages/shiptastic-for-woocommerce/templates/shipment/shipment-details-tracking.php:22
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1217
 #: packages/woocommerce-germanized-shipments/templates/shipment/shipment-details-tracking.php:23
@@ -4785,7 +4785,7 @@ msgstr "Sendungsverfolgung"
 #: includes/wc-gzd-shipment-functions.php:1218 src/Admin/Admin.php:936
 #: src/Admin/Admin.php:1309 src/Admin/ReturnTable.php:31
 #: src/Admin/Table.php:733 src/ShippingMethod/ShippingMethod.php:1216
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1191
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1190
 #: packages/shiptastic-for-woocommerce/src/Admin/Admin.php:1153
 #: packages/shiptastic-for-woocommerce/src/Admin/Admin.php:1475
 #: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:31
@@ -4802,7 +4802,7 @@ msgid "Actions"
 msgstr "Aktionen"
 
 #: includes/wc-gzd-shipment-functions.php:1474
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1440
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1439
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipment-functions.php:1474
 msgctxt "shipments"
 msgid "View"
@@ -4828,7 +4828,7 @@ msgstr "Mein Konto"
 #: includes/wc-gzd-shipments-template-functions.php:129
 #: src/DataStores/Shipment.php:363
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-template-functions.php:126
-#: packages/shiptastic-for-woocommerce/src/DataStores/Shipment.php:347
+#: packages/shiptastic-for-woocommerce/src/DataStores/Shipment.php:348
 #: packages/woocommerce-germanized-shipments/includes/wc-gzd-shipments-template-functions.php:129
 #: packages/woocommerce-germanized-shipments/src/DataStores/Shipment.php:363
 msgctxt "shipments"
@@ -7133,14 +7133,14 @@ msgid "Invalid shipping provider."
 msgstr "Versanddienstleister nicht bekannt."
 
 #: src/Extensions.php:341
-#: packages/shiptastic-for-woocommerce/src/Extensions.php:341
+#: packages/shiptastic-for-woocommerce/src/Extensions.php:327
 #: packages/woocommerce-germanized-shipments/src/Extensions.php:341
 msgctxt "shipments"
 msgid "Please <a href=\"%1$s\">activate the %2$s &raquo;</a> plugin"
 msgstr "Bitte <a href=\"%1$s\">aktiviere das %2$s Plugin &raquo;</a>"
 
 #: src/Extensions.php:341
-#: packages/shiptastic-for-woocommerce/src/Extensions.php:341
+#: packages/shiptastic-for-woocommerce/src/Extensions.php:327
 #: packages/woocommerce-germanized-shipments/src/Extensions.php:341
 msgctxt "shipments"
 msgid "Please <a href=\"%1$s\">install the %2$s &raquo;</a> plugin"
@@ -7148,7 +7148,7 @@ msgstr "Bitte <a href=\"%1$s\">installiere das %2$s Plugin &raquo;</a>"
 
 #. translators: %s: plugin slug (example: woocommerce-services)
 #: src/Extensions.php:398
-#: packages/shiptastic-for-woocommerce/src/Extensions.php:398
+#: packages/shiptastic-for-woocommerce/src/Extensions.php:384
 #: packages/woocommerce-germanized-shipments/src/Extensions.php:398
 msgctxt "shipments"
 msgid ""
@@ -7159,7 +7159,7 @@ msgstr ""
 
 #. translators: %s: plugin slug (example: woocommerce-services)
 #: src/Extensions.php:418
-#: packages/shiptastic-for-woocommerce/src/Extensions.php:418
+#: packages/shiptastic-for-woocommerce/src/Extensions.php:404
 #: packages/woocommerce-germanized-shipments/src/Extensions.php:418
 msgctxt "shipments"
 msgid ""
@@ -7170,7 +7170,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: src/Extensions.php:446
-#: packages/shiptastic-for-woocommerce/src/Extensions.php:446
+#: packages/shiptastic-for-woocommerce/src/Extensions.php:432
 #: packages/woocommerce-germanized-shipments/src/Extensions.php:446
 msgctxt "shipments"
 msgid "WooCommerce"
@@ -7178,7 +7178,7 @@ msgstr "WooCommerce"
 
 #. translators: %s: plugin slug (example: woocommerce-services)
 #: src/Extensions.php:490
-#: packages/shiptastic-for-woocommerce/src/Extensions.php:490
+#: packages/shiptastic-for-woocommerce/src/Extensions.php:476
 #: packages/woocommerce-germanized-shipments/src/Extensions.php:490
 msgctxt "shipments"
 msgid "The requested plugin `%s` is not yet installed."
@@ -7186,7 +7186,7 @@ msgstr "Das Plugin `%s` ist noch nicht installiert."
 
 #. translators: %s: plugin slug (example: woocommerce-services)
 #: src/Extensions.php:502
-#: packages/shiptastic-for-woocommerce/src/Extensions.php:502
+#: packages/shiptastic-for-woocommerce/src/Extensions.php:488
 #: packages/woocommerce-germanized-shipments/src/Extensions.php:502
 msgctxt "shipments"
 msgid "The requested plugin `%s` could not be activated."
@@ -8792,7 +8792,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: src/ShippingMethod/MethodHelper.php:626
-#: packages/shiptastic-for-woocommerce/src/ShippingMethod/MethodHelper.php:625
+#: packages/shiptastic-for-woocommerce/src/ShippingMethod/MethodHelper.php:623
 #: packages/woocommerce-germanized-shipments/src/ShippingMethod/MethodHelper.php:626
 msgctxt "shipments"
 msgid "Override?"
@@ -9498,35 +9498,35 @@ msgstr "Fehler beim Erstellen der Label-Instanz."
 
 #: src/ShippingProvider/Helper.php:106
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:106
-#: src/Shiptastic.php:208
+#: src/Shiptastic.php:223
 msgctxt "shipments"
 msgid "DHL"
 msgstr "DHL"
 
 #: src/ShippingProvider/Helper.php:112
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:112
-#: src/Shiptastic.php:215
+#: src/Shiptastic.php:230
 msgctxt "shipments"
 msgid "Deutsche Post"
 msgstr "Deutsche Post"
 
 #: src/ShippingProvider/Helper.php:118
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:118
-#: src/Shiptastic.php:222
+#: src/Shiptastic.php:237
 msgctxt "shipments"
 msgid "DPD"
 msgstr "DPD"
 
 #: src/ShippingProvider/Helper.php:124
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:124
-#: src/Shiptastic.php:230
+#: src/Shiptastic.php:245
 msgctxt "shipments"
 msgid "GLS"
 msgstr "GLS"
 
 #: src/ShippingProvider/Helper.php:130
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Helper.php:130
-#: src/Shiptastic.php:238
+#: src/Shiptastic.php:253
 msgctxt "shipments"
 msgid "Hermes"
 msgstr "Hermes"
@@ -11018,7 +11018,7 @@ msgstr "Warenkorbkurzbeschreibung"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin.php:944
-#: includes/api/class-wc-gzd-rest-products-controller.php:648
+#: includes/api/class-wc-gzd-rest-products-controller.php:653
 msgid "Defect description"
 msgstr "Mängelbeschreibung"
 
@@ -11045,7 +11045,7 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:239
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:293
 #: includes/api/class-wc-gzd-rest-products-controller.php:203
-#: includes/api/class-wc-gzd-rest-products-controller.php:682
+#: includes/api/class-wc-gzd-rest-products-controller.php:692
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
 #: build/wc-gzd-blocks-product-elements.js:4019
 #: build/wc-gzd-blocks-product-elements-style.js:3081
@@ -11072,7 +11072,7 @@ msgstr "Automatische Berechnung an-/ausschalten"
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:910
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:915
 #: includes/api/class-wc-gzd-rest-products-controller.php:43
-#: includes/api/class-wc-gzd-rest-products-controller.php:511
+#: includes/api/class-wc-gzd-rest-products-controller.php:516
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:10
 #: build/wc-gzd-blocks-product-elements.js:1900
 #: build/wc-gzd-blocks-product-elements-style.js:1420
@@ -11273,8 +11273,8 @@ msgstr "Mindestleistung (Watt)"
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:402
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:706
-#: includes/api/class-wc-gzd-rest-products-controller.php:332
-#: includes/api/class-wc-gzd-rest-products-controller.php:609
+#: includes/api/class-wc-gzd-rest-products-controller.php:337
+#: includes/api/class-wc-gzd-rest-products-controller.php:614
 msgid "Minimum power for charging the device."
 msgstr "Mindestleistung zum Laden des Geräts."
 
@@ -11285,8 +11285,8 @@ msgstr "Höchstleistung (Watt)"
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:416
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:720
-#: includes/api/class-wc-gzd-rest-products-controller.php:337
-#: includes/api/class-wc-gzd-rest-products-controller.php:614
+#: includes/api/class-wc-gzd-rest-products-controller.php:342
+#: includes/api/class-wc-gzd-rest-products-controller.php:619
 msgid "Power necessary to reach the maximum charging speed of the device."
 msgstr ""
 "Leistung, die benötigt wird, um das Gerät mit maximaler Ladegeschwindigkeit "
@@ -11305,7 +11305,7 @@ msgstr "Produktsicherheit"
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:342
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:743
 #: includes/api/class-wc-gzd-rest-products-controller.php:157
-#: includes/api/class-wc-gzd-rest-products-controller.php:586
+#: includes/api/class-wc-gzd-rest-products-controller.php:591
 #: includes/class-wc-gzd-post-types.php:159
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-manufacturer.php:10
 #: build/wc-gzd-blocks-product-elements.js:2413
@@ -11317,6 +11317,8 @@ msgstr "Hersteller"
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:444
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:748
+#: includes/api/class-wc-gzd-rest-products-controller.php:271
+#: includes/api/class-wc-gzd-rest-products-controller.php:666
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-safety-instructions.php:10
 #: includes/wc-gzd-template-functions.php:878
 #: templates/single-product/safety-instructions.php:22
@@ -11349,8 +11351,8 @@ msgstr "Fügt eine Checkbox zur Altersprüfung für dieses Produkt hinzu."
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:494
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:642
-#: includes/api/class-wc-gzd-rest-products-controller.php:284
-#: includes/api/class-wc-gzd-rest-products-controller.php:672
+#: includes/api/class-wc-gzd-rest-products-controller.php:289
+#: includes/api/class-wc-gzd-rest-products-controller.php:682
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:135
 msgid "GTIN"
 msgstr "GTIN"
@@ -11366,8 +11368,8 @@ msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:508
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:654
-#: includes/api/class-wc-gzd-rest-products-controller.php:290
-#: includes/api/class-wc-gzd-rest-products-controller.php:677
+#: includes/api/class-wc-gzd-rest-products-controller.php:295
+#: includes/api/class-wc-gzd-rest-products-controller.php:687
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:144
 msgid "MPN"
 msgstr "MPN"
@@ -11412,7 +11414,7 @@ msgstr "Pfandtypen verwalten"
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:567
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:77
-#: includes/api/class-wc-gzd-rest-products-controller.php:367
+#: includes/api/class-wc-gzd-rest-products-controller.php:372
 msgid "Deposit Type"
 msgstr "Pfandtyp"
 
@@ -15174,28 +15176,28 @@ msgstr "Alternative Adresse in der EU."
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:48
 #: includes/api/class-wc-gzd-rest-products-controller.php:80
-#: includes/api/class-wc-gzd-rest-products-controller.php:516
+#: includes/api/class-wc-gzd-rest-products-controller.php:521
 msgid "Delivery Time ID"
 msgstr "Lieferzeit ID"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:53
 #: includes/api/class-wc-gzd-rest-products-controller.php:85
-#: includes/api/class-wc-gzd-rest-products-controller.php:521
+#: includes/api/class-wc-gzd-rest-products-controller.php:526
 msgid "Delivery Time Name"
 msgstr "Lieferzeit Name"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:59
 #: includes/api/class-wc-gzd-rest-products-controller.php:96
-#: includes/api/class-wc-gzd-rest-products-controller.php:527
+#: includes/api/class-wc-gzd-rest-products-controller.php:532
 msgid "Delivery Time Slug"
 msgstr "Lieferzeit Slug"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:64
 #: includes/api/class-wc-gzd-rest-products-controller.php:101
-#: includes/api/class-wc-gzd-rest-products-controller.php:532
+#: includes/api/class-wc-gzd-rest-products-controller.php:537
 msgid "Delivery Time HTML"
 msgstr "Lieferzeit HTML"
 
@@ -15211,46 +15213,46 @@ msgstr "ISO-Code des Landes."
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:111
 #: includes/api/class-wc-gzd-rest-products-controller.php:134
-#: includes/api/class-wc-gzd-rest-products-controller.php:540
-#: includes/api/class-wc-gzd-rest-products-controller.php:563
+#: includes/api/class-wc-gzd-rest-products-controller.php:545
+#: includes/api/class-wc-gzd-rest-products-controller.php:568
 #: includes/class-wc-gzd-post-types.php:212
 msgid "Price Label"
 msgstr "Preishinweis"
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:116
 #: includes/api/class-wc-gzd-rest-products-controller.php:139
-#: includes/api/class-wc-gzd-rest-products-controller.php:545
-#: includes/api/class-wc-gzd-rest-products-controller.php:568
+#: includes/api/class-wc-gzd-rest-products-controller.php:550
+#: includes/api/class-wc-gzd-rest-products-controller.php:573
 msgid "Price Label ID"
 msgstr "Preishinweis ID"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:121
 #: includes/api/class-wc-gzd-rest-products-controller.php:144
-#: includes/api/class-wc-gzd-rest-products-controller.php:550
-#: includes/api/class-wc-gzd-rest-products-controller.php:573
+#: includes/api/class-wc-gzd-rest-products-controller.php:555
+#: includes/api/class-wc-gzd-rest-products-controller.php:578
 msgid "Price Label Name"
 msgstr "Preishinweis Name"
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:127
 #: includes/api/class-wc-gzd-rest-products-controller.php:150
-#: includes/api/class-wc-gzd-rest-products-controller.php:556
-#: includes/api/class-wc-gzd-rest-products-controller.php:579
+#: includes/api/class-wc-gzd-rest-products-controller.php:561
+#: includes/api/class-wc-gzd-rest-products-controller.php:584
 msgid "Price Label Slug"
 msgstr "Preishinweis Slug"
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:162
-#: includes/api/class-wc-gzd-rest-products-controller.php:591
+#: includes/api/class-wc-gzd-rest-products-controller.php:596
 msgid "Manufacturer ID"
 msgstr "Hersteller ID"
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:167
-#: includes/api/class-wc-gzd-rest-products-controller.php:596
+#: includes/api/class-wc-gzd-rest-products-controller.php:601
 msgid "Manufacturer Name"
 msgstr "Hersteller Name"
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:173
-#: includes/api/class-wc-gzd-rest-products-controller.php:602
+#: includes/api/class-wc-gzd-rest-products-controller.php:607
 msgid "Manufacturer Slug"
 msgstr "Hersteller Slug"
 
@@ -15271,48 +15273,48 @@ msgstr "Einheit Slug"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:208
-#: includes/api/class-wc-gzd-rest-products-controller.php:687
+#: includes/api/class-wc-gzd-rest-products-controller.php:697
 msgid "Unit Base"
 msgstr "Anzahl Einheiten"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:213
-#: includes/api/class-wc-gzd-rest-products-controller.php:692
+#: includes/api/class-wc-gzd-rest-products-controller.php:702
 msgid "Unit Product"
 msgstr "Grundpreis-Produkt"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:218
-#: includes/api/class-wc-gzd-rest-products-controller.php:697
+#: includes/api/class-wc-gzd-rest-products-controller.php:707
 msgid "Unit Auto Calculation"
 msgstr "Grundpreis automatische Berechnung"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:224
-#: includes/api/class-wc-gzd-rest-products-controller.php:703
+#: includes/api/class-wc-gzd-rest-products-controller.php:713
 msgid "Current Unit Price"
 msgstr "Aktueller Grundpreis"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:229
-#: includes/api/class-wc-gzd-rest-products-controller.php:708
+#: includes/api/class-wc-gzd-rest-products-controller.php:718
 msgid "Unit Regular Price"
 msgstr "Regulärer Grundpreis"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:234
-#: includes/api/class-wc-gzd-rest-products-controller.php:713
+#: includes/api/class-wc-gzd-rest-products-controller.php:723
 msgid "Unit Sale Price"
 msgstr "Angebotsgrundpreis"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:239
-#: includes/api/class-wc-gzd-rest-products-controller.php:718
+#: includes/api/class-wc-gzd-rest-products-controller.php:728
 msgid "Unit Price HTML"
 msgstr "Grundpreis HTML"
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:247
-#: includes/api/class-wc-gzd-rest-products-controller.php:643
+#: includes/api/class-wc-gzd-rest-products-controller.php:648
 msgid "Small Cart Product Description"
 msgstr "Warenkorbkurzbeschreibung"
 
@@ -15321,44 +15323,44 @@ msgid "Deactivate the hint for additional shipping costs"
 msgstr "Deaktiviert den „zzgl. Versandkosten“ Hinweis"
 
 #: includes/api/class-wc-gzd-rest-products-controller.php:263
-#: includes/api/class-wc-gzd-rest-products-controller.php:653
+#: includes/api/class-wc-gzd-rest-products-controller.php:658
 msgid "Safety attachment ids"
 msgstr "IDs der Dokumente zur Produktsicherheit"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:271
-#: includes/api/class-wc-gzd-rest-products-controller.php:661
+#: includes/api/class-wc-gzd-rest-products-controller.php:276
+#: includes/api/class-wc-gzd-rest-products-controller.php:671
 msgid "Age verification minimum age."
 msgstr "Mindestalter der Altersprüfung."
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:278
-#: includes/api/class-wc-gzd-rest-products-controller.php:667
+#: includes/api/class-wc-gzd-rest-products-controller.php:283
+#: includes/api/class-wc-gzd-rest-products-controller.php:677
 msgid "Warranty attachment id (PDF)"
 msgstr "Medien-ID der Garantie (PDF)"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:296
-#: includes/api/class-wc-gzd-rest-products-controller.php:619
+#: includes/api/class-wc-gzd-rest-products-controller.php:301
+#: includes/api/class-wc-gzd-rest-products-controller.php:624
 msgid "Whether this product is a service or not"
 msgstr "Ob dieses Produkt eine Dienstleistung ist oder nicht"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:302
-#: includes/api/class-wc-gzd-rest-products-controller.php:625
+#: includes/api/class-wc-gzd-rest-products-controller.php:307
+#: includes/api/class-wc-gzd-rest-products-controller.php:630
 msgid "Whether this product is a used good or not"
 msgstr "Ob es sich bei diesem Produkt um Gebrauchtware handelt oder nicht"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:308
-#: includes/api/class-wc-gzd-rest-products-controller.php:631
+#: includes/api/class-wc-gzd-rest-products-controller.php:313
+#: includes/api/class-wc-gzd-rest-products-controller.php:636
 msgid "Whether this product is a defective copy or not"
 msgstr "Ob es sich bei diesem Produkt um ein Mängelexemplar handelt oder nicht"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:314
+#: includes/api/class-wc-gzd-rest-products-controller.php:319
 msgid "Whether this product is a wireless electronic device or not."
 msgstr "Ob dieses Produkt ein elektronisches Gerät (Funk) ist oder nicht."
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:320
+#: includes/api/class-wc-gzd-rest-products-controller.php:325
 msgid "Whether this electronic device contains a power supply or not."
 msgstr "Ob dieses elektronische Gerät ein Netzteil enthält oder nicht."
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:326
+#: includes/api/class-wc-gzd-rest-products-controller.php:331
 msgid ""
 "Whether this electronic device supports the fast charging protocol USB Power "
 "Delivery."
@@ -15366,41 +15368,41 @@ msgstr ""
 "Ob diese elektronische Gerät das Schnellladeprotokoll USB Power Delivery "
 "unterstützt oder nicht."
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:342
-#: includes/api/class-wc-gzd-rest-products-controller.php:637
+#: includes/api/class-wc-gzd-rest-products-controller.php:347
+#: includes/api/class-wc-gzd-rest-products-controller.php:642
 msgid "Whether this product is a photovoltaic system or not"
 msgstr "Ob dieses Produkt eine Photovoltaikanlage ist oder nicht"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:348
+#: includes/api/class-wc-gzd-rest-products-controller.php:353
 msgid "Whether this product applies for differential taxation or not"
 msgstr "Ob dieses Produkt der Differenzbesteuerung unterliegt oder nicht"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:355
+#: includes/api/class-wc-gzd-rest-products-controller.php:360
 msgid "Whether this product is a food product or not"
 msgstr "Ob es sich bei diesem Produkt um ein Lebensmittel handelt oder nicht"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:362
+#: includes/api/class-wc-gzd-rest-products-controller.php:367
 msgid "Food attributes"
 msgstr "Lebensmittel Eigenschaften"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:372
+#: includes/api/class-wc-gzd-rest-products-controller.php:377
 msgid "Deposit type ID"
 msgstr "Pfandtyp ID"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:377
+#: includes/api/class-wc-gzd-rest-products-controller.php:382
 msgid "Deposit type name"
 msgstr "Pfandtyp Bezeichnung"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:383
+#: includes/api/class-wc-gzd-rest-products-controller.php:388
 msgid "Deposit type slug"
 msgstr "Pfandtyp Titelform"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:390
+#: includes/api/class-wc-gzd-rest-products-controller.php:395
 msgid "Deposit quantity"
 msgstr "Pfand Anzahl"
 
 # @ woocommerce-germanized
-#: includes/api/class-wc-gzd-rest-products-controller.php:399
+#: includes/api/class-wc-gzd-rest-products-controller.php:404
 #: build/wc-gzd-blocks-product-elements.js:2242
 #: build/wc-gzd-blocks-product-elements-style.js:1668
 #: build/wc-gzd-blocks-product-elements.js:1668
@@ -15408,11 +15410,11 @@ msgid "Deposit amount"
 msgstr "Pfandbetrag"
 
 # @ woocommerce-germanized
-#: includes/api/class-wc-gzd-rest-products-controller.php:405
+#: includes/api/class-wc-gzd-rest-products-controller.php:410
 msgid "Nutrient reference value"
 msgstr "Nährwert Referenzmenge"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:414
+#: includes/api/class-wc-gzd-rest-products-controller.php:419
 #: includes/class-wc-gzd-food-helper.php:48
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-nutri-score.php:10
 #: build/wc-gzd-blocks-product-elements.js:2584
@@ -15421,67 +15423,67 @@ msgstr "Nährwert Referenzmenge"
 msgid "Nutri-Score"
 msgstr "Nutri-Score"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:423
+#: includes/api/class-wc-gzd-rest-products-controller.php:428
 #: includes/class-wc-gzd-food-helper.php:46
 msgid "Drained weight"
 msgstr "Abtropfgewicht"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:428
+#: includes/api/class-wc-gzd-rest-products-controller.php:433
 #: includes/class-wc-gzd-food-helper.php:47
 msgid "Net filling quantity"
 msgstr "Nettofüllmenge"
 
 # @ woocommerce-germanized
-#: includes/api/class-wc-gzd-rest-products-controller.php:433
+#: includes/api/class-wc-gzd-rest-products-controller.php:438
 #: includes/class-wc-gzd-food-helper.php:45
 msgid "Alcohol content"
 msgstr "Alkoholgehalt"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:438
+#: includes/api/class-wc-gzd-rest-products-controller.php:443
 #: includes/class-wc-gzd-food-helper.php:43
 msgctxt "food"
 msgid "Distributor"
 msgstr "Lebensmittelunternehmer"
 
 # @ woocommerce
-#: includes/api/class-wc-gzd-rest-products-controller.php:446
+#: includes/api/class-wc-gzd-rest-products-controller.php:451
 #: includes/class-wc-gzd-food-helper.php:44
 msgctxt "food"
 msgid "Place of origin"
 msgstr "Herkunftsort"
 
 # @ woocommerce-germanized
-#: includes/api/class-wc-gzd-rest-products-controller.php:454
+#: includes/api/class-wc-gzd-rest-products-controller.php:459
 #: includes/class-wc-gzd-food-helper.php:42
 msgctxt "food"
 msgid "Description"
 msgstr "Lebensmittelbezeichnung"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:462
+#: includes/api/class-wc-gzd-rest-products-controller.php:467
 msgid "Nutrient term ids"
 msgstr "Nährwerte term ids"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:469
+#: includes/api/class-wc-gzd-rest-products-controller.php:474
 msgid "Nutrient term (slug or term_id)"
 msgstr "Nährwerte (Slug oder term_id)"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:474
+#: includes/api/class-wc-gzd-rest-products-controller.php:479
 msgid "Nutrient value"
 msgstr "Nährwert"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:479
+#: includes/api/class-wc-gzd-rest-products-controller.php:484
 msgid "Nutrient reference value (for vitamins & minerals)"
 msgstr "Nährwert Referenzmenge (für Vitamine und Mineralien)"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:487
+#: includes/api/class-wc-gzd-rest-products-controller.php:492
 msgid "Allergen ids"
 msgstr "Allergene ids"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:491
+#: includes/api/class-wc-gzd-rest-products-controller.php:496
 msgid "Allergen term id"
 msgstr "Allergen term id"
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:497
+#: includes/api/class-wc-gzd-rest-products-controller.php:502
 #: includes/class-wc-gzd-food-helper.php:39
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-ingredients.php:10
 #: includes/wc-gzd-template-functions.php:858
@@ -15562,14 +15564,14 @@ msgid "A minimum age of %s years is required for this order."
 msgstr "Für diese Bestellung ist ein Mindestalter von %s Jahren vorgesehen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-checkout.php:1550
+#: includes/class-wc-gzd-checkout.php:1552
 #: includes/class-wc-gzd-revocation.php:51
 #: includes/wc-gzd-core-functions.php:763
 msgid "Mr."
 msgstr "Herr"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-checkout.php:1551
+#: includes/class-wc-gzd-checkout.php:1553
 msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr "Herrn"
@@ -15722,7 +15724,7 @@ msgstr ""
 "Dieser Text wird in die Bestellbestätigung eingefügt. Verwenden Sie "
 "{order_number}, {site_title} oder {order_date} als Platzhalter."
 
-#: includes/class-wc-gzd-emails.php:617
+#: includes/class-wc-gzd-emails.php:623
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference."
@@ -15730,16 +15732,16 @@ msgstr ""
 "Ihre Bestellung ist eingegangen und wird nun bearbeitet. Die Einzelheiten "
 "Ihrer Bestellung können Sie der nachfolgenden Tabelle entnehmen."
 
-#: includes/class-wc-gzd-emails.php:666
+#: includes/class-wc-gzd-emails.php:672
 msgid "Someone requested a password reset for your account."
 msgstr "Jemand hat das Zurücksetzen des Passworts für Ihren Account beantragt."
 
-#: includes/class-wc-gzd-emails.php:681
+#: includes/class-wc-gzd-emails.php:687
 msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass Sie ein Konto bei %s erstellt haben."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-emails.php:1540
+#: includes/class-wc-gzd-emails.php:1546
 msgctxt "revocation-form"
 msgid "Forward your withdrawal online"
 msgstr "Widerruf online erklären"
@@ -15848,23 +15850,23 @@ msgstr ""
 msgid "Other Vitamins & Minerals"
 msgstr "Andere Vitamine & Mineralien"
 
-#: includes/class-wc-gzd-install.php:381
+#: includes/class-wc-gzd-install.php:428
 msgctxt "shipments-migration"
 msgid "Error while querying %1$s: %2$s"
 msgstr "Fehler bei der Migration von %1$s: %2$s"
 
-#: includes/class-wc-gzd-install.php:407
+#: includes/class-wc-gzd-install.php:454
 msgctxt "shipments-migration"
 msgid "Error while running additional query on %1$s: %2$s"
 msgstr "Fehler bei einer zusätzlichen Abfrage auf %1$s: %2$s"
 
-#: includes/class-wc-gzd-install.php:460
+#: includes/class-wc-gzd-install.php:507
 msgctxt "shipments-migration"
 msgid "Could not rename %1$s to %2$s."
 msgstr "Konnte %1$s nicht in %2$s umbenennen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:498
+#: includes/class-wc-gzd-install.php:545
 msgid ""
 "Please install WooCommerce before installing WooCommerce Germanized. Thank "
 "you!"
@@ -15873,83 +15875,83 @@ msgstr ""
 "installieren. Vielen Dank!"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:904 includes/class-wc-gzd-install.php:956
+#: includes/class-wc-gzd-install.php:951 includes/class-wc-gzd-install.php:1003
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
-#: includes/class-wc-gzd-install.php:905 includes/class-wc-gzd-install.php:958
+#: includes/class-wc-gzd-install.php:952 includes/class-wc-gzd-install.php:1005
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:909
+#: includes/class-wc-gzd-install.php:956
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:910
+#: includes/class-wc-gzd-install.php:957
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:914
+#: includes/class-wc-gzd-install.php:961
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:915
+#: includes/class-wc-gzd-install.php:962
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:919
+#: includes/class-wc-gzd-install.php:966
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:920
+#: includes/class-wc-gzd-install.php:967
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:924
+#: includes/class-wc-gzd-install.php:971
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:925
+#: includes/class-wc-gzd-install.php:972
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:929
+#: includes/class-wc-gzd-install.php:976
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:930
+#: includes/class-wc-gzd-install.php:977
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: includes/class-wc-gzd-install.php:934
+#: includes/class-wc-gzd-install.php:981
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr "echtheit-von-bewertungen"
 
-#: includes/class-wc-gzd-install.php:935
+#: includes/class-wc-gzd-install.php:982
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"
@@ -17914,10 +17916,6 @@ msgstr ""
 msgid "§12 paragraph 3 UStG"
 msgstr "§12 Absatz 3 UStG"
 
-#: includes/wc-gzd-cart-functions.php:669
-msgid "§ 28 paragraph 62 UStG 1994"
-msgstr "§ 28 Abs. 62 UStG 1994"
-
 #: includes/wc-gzd-core-functions.php:266
 msgid ">= 12 years"
 msgstr ">= 12 Jahre"
@@ -18056,7 +18054,7 @@ msgstr ""
 
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipment-content.php:78
 #: packages/shiptastic-for-woocommerce/src/Admin/PackagingSettings.php:137
-#: packages/shiptastic-for-woocommerce/src/ShippingMethod/MethodHelper.php:449
+#: packages/shiptastic-for-woocommerce/src/ShippingMethod/MethodHelper.php:451
 msgctxt "shipments"
 msgid "Shipping Service Provider"
 msgstr "Versanddienstleister"
@@ -18331,18 +18329,18 @@ msgctxt "shipments"
 msgid "Shipping service provider."
 msgstr "Versanddienstleister."
 
-#: packages/shiptastic-for-woocommerce/src/ShippingMethod/MethodHelper.php:442
+#: packages/shiptastic-for-woocommerce/src/ShippingMethod/MethodHelper.php:444
 msgctxt "shipments"
 msgid "Service Provider Settings"
 msgstr "Versanddienstleister Einstellungen"
 
-#: packages/shiptastic-for-woocommerce/src/ShippingMethod/MethodHelper.php:446
+#: packages/shiptastic-for-woocommerce/src/ShippingMethod/MethodHelper.php:448
 msgctxt "shipments"
 msgid "Adjust shipping service provider settings used for managing shipments."
 msgstr ""
 "Passen Sie Einstellungen zu den Versanddienstleistern für Sendungen an."
 
-#: packages/shiptastic-for-woocommerce/src/ShippingMethod/MethodHelper.php:460
+#: packages/shiptastic-for-woocommerce/src/ShippingMethod/MethodHelper.php:462
 msgctxt "shipments"
 msgid ""
 "Choose a shipping service provider which will be selected by default for an "
@@ -18384,7 +18382,12 @@ msgctxt "shipments-help-url"
 msgid "https://vendidero.com/doc/shiptastic/shipping-to-pick-up-stations"
 msgstr "https://vendidero.de/doc/shiptastic/versand-an-abholstationen"
 
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:236
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:136
+msgctxt "shipments"
+msgid "UPS"
+msgstr "UPS"
+
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:248
 msgctxt "shipments"
 msgid ""
 "Loading shipping service providers should only be triggered after the "
@@ -19984,6 +19987,9 @@ msgstr "Warenkorb-Dropdown rechtl. Hinweise"
 msgctxt "block description"
 msgid "Outputs mini cart legal notices."
 msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
+
+#~ msgid "§ 28 paragraph 62 UStG 1994"
+#~ msgstr "§ 28 Abs. 62 UStG 1994"
 
 # @ woocommerce-germanized
 #~ msgid "Germanized for WooCommerce: One Stop Shop"

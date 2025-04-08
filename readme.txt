@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 6.8
 WC requires at least: 3.9
-WC tested up to: 9.7
-Stable tag: 3.19.7
+WC tested up to: 9.8
+Stable tag: 3.19.8
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -74,8 +74,8 @@ You can then manage your shipments and it's statuses independently from your ord
 Managing returns can be a time-consuming challenge. By using Germanized you might let your customers create return requests through their customer panel. All you need to do is confirm the request through your return dashboard and your customers will receive an email containing further steps on how to return their product(s).
 In case you are using our DHL integration you might as well (automatically) create a label to the return which will be attached to the email sent to the customer.
 
-= Post, DHL, DPD (Pro) and GLS (Pro) Integration =
-With the help of our built-in Post, DHL, DPD (Pro) and GLS (Pro) integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL preferred delivery services to your customers including shipping to Packstation or choosing a drop-off location and/or day within the checkout.
+= Post, DHL, UPS, DPD (Pro) and GLS (Pro) Integration =
+With the help of our Post, DHL, UPS, DPD (Pro) and GLS (Pro) integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL preferred delivery services to your customers including shipping to Packstation or choosing a drop-off location and/or day within the checkout.
 You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/doc/woocommerce-germanized/versanddienstleister-verwalten "Shipping Provider for WooCommerce") about how our shipping provider integrations work.
 
 = Extended One Stop Shop compliance =
@@ -206,6 +206,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.19.8 =
+* New: Indicate UPS Shiptastic Integration availability
+* Improvement: Email title replacement in Shiptastic emails
+
 = 3.19.7 =
 * Fix: Backwards compatibility with Woo < 9.X
 

@@ -166,7 +166,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		if ( isset( $_GET['tab'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$tab_name = wc_clean( wp_unslash( $_GET['tab'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-			if ( strstr( $tab_name, 'germanized' ) || strstr( $tab_name, 'shipments' ) ) {
+			if ( strstr( $tab_name, 'germanized' ) || strstr( $tab_name, 'shiptastic' ) ) {
 				$is_active = true;
 			}
 		}
