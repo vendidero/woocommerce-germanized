@@ -194,14 +194,16 @@ window.germanized = window.germanized || {};
                  * Do only look for visible place-order items as some plugins/themes
                  * may add additional wrappers for mobile/desktop.
                  */
-                var $all_nonces = $( '.wc-gzd-place-order:visible' ).find('#woocommerce-process-checkout-nonce, #_wpnonce' );
+                $( '.wc-gzd-place-order:visible' ).each( function() {
+                    var $all_nonces = $( this ).find('#woocommerce-process-checkout-nonce, #_wpnonce' );
 
-                /**
-                 * Keep the latest nonce only
-                 */
-                if ( $all_nonces.length > 1 ) {
-                    $all_nonces.not( ':not(:first-child):not(:last-child)' ).remove();
-                }
+                    /**
+                     * Keep the latest nonce only
+                     */
+                    if ( $all_nonces.length > 1 ) {
+                        $all_nonces.not( ':not(:first-child):not(:last-child)' ).remove();
+                    }
+                } );
             }
 
             self.maybeSetTermsCheckbox();
