@@ -973,9 +973,8 @@ function wc_gzd_get_cart_tax_share( $type = 'shipping', $cart_contents = array()
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
 				$class      = $_product->get_tax_class();
 				$line_total = ! empty( $item['line_total'] ) ? $item['line_total'] : 0.0;
-				$tax_rate   = ! empty( $item['line_tax_data'] ) ? key( $item['line_tax_data']['total'] ) : null;
-
-				$tax_rate = apply_filters( 'woocommerce_gzd_tax_share_cart_item_tax_rate', $tax_rate, $item, $type );
+				$tax_rate   = isset( $item['line_tax_data'], $item['line_tax_data']['total'] ) && is_array( $item['line_tax_data']['total'] ) ? key( $item['line_tax_data']['total'] ) : null;
+				$tax_rate   = apply_filters( 'woocommerce_gzd_tax_share_cart_item_tax_rate', $tax_rate, $item, $type );
 			}
 
 			if ( wc_gzd_item_is_tax_share_exempt( $item, $type, $key ) ) {
