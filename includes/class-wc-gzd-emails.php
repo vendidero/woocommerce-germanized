@@ -180,9 +180,60 @@ class WC_GZD_Emails {
 		add_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
 		add_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
 
+		add_filter( 'woocommerce_email_classes', array( $this, 'maybe_register_default_email_preview_fallback' ) );
+		add_action( 'woocommerce_prepare_email_for_preview', array( $this, 'preview_email' ), 10 );
+
 		if ( is_admin() ) {
 			$this->admin_hooks();
 		}
+	}
+
+	public function preview_email( $email_instance ) {
+		if ( is_a( $email_instance, 'WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate' ) ) {
+			$email_instance->gateway = new WC_GZD_Gateway_Direct_Debit();
+		} elseif ( is_a( $email_instance, 'WC_GZD_Email_Customer_Revocation' ) ) {
+			$email_instance->object = array(
+				'content'           => 'Hiermit widerrufe ich meinen Vertrag.',
+				'order_date'        => wc_format_datetime( $email_instance->object->get_date_created() ),
+				'address_firstname' => 'Max',
+				'address_lastname'  => 'Mustermann',
+				'address_street'    => 'Musterstr. 12',
+				'address_postal'    => '12345',
+				'address_city'      => 'Berlin',
+				'address_mail'      => 'max@muster.de',
+			);
+		} elseif ( is_a( $email_instance, 'WC_GZD_Email_Customer_New_Account_Activation' ) ) {
+			$email_instance->user_activation     = '12345';
+			$email_instance->user_activation_url = WC_GZD_Customer_Helper::instance()->get_customer_activation_url( $email_instance->user_activation );
+		}
+
+		return $email_instance;
+	}
+
+	/**
+	 * By default, Woo tries to preview WC_Email_Customer_Processing_Order which is overridden by Germanized.
+	 * As the email preview uses get_class to check the actual class instance (which is WC_GZD_Email_Customer_Processing_Order)
+	 * the email type is missing. Register a fallback type to prevent the initial error.
+	 *
+	 * @param $email_classes
+	 *
+	 * @return mixed
+	 */
+	public function maybe_register_default_email_preview_fallback( $email_classes ) {
+		$is_wc_admin_preview = isset( $_SERVER['REQUEST_URI'] ) ? false !== strpos( wp_unslash( $_SERVER['REQUEST_URI'] ), trailingslashit( rest_get_url_prefix() ) . 'wc-admin-email/' ) : false; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$is_preview_request  = isset( $_GET['preview_woocommerce_mail'] ) || $is_wc_admin_preview; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+		if ( $is_preview_request && isset( $_GET['type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$type = wc_clean( wp_unslash( $_GET['type'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+			if ( 'WC_Email_Customer_Processing_Order' === $type ) {
+				if ( file_exists( WC_ABSPATH . '/includes/emails/class-wc-email-customer-processing-order.php' ) ) {
+					$email_classes['Original_Processing_Order'] = include WC_ABSPATH . '/includes/emails/class-wc-email-customer-processing-order.php';
+				}
+			}
+		}
+
+		return $email_classes;
 	}
 
 	public function checkout_block_payment_context_confirmation_callback( $context, $payment_result ) {
