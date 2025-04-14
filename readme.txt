@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.8
 WC requires at least: 3.9
 WC tested up to: 9.8
-Stable tag: 3.19.8
+Stable tag: 3.19.9
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -206,6 +206,12 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.19.9 =
+* Improvement: Support previewing E-Mails
+* Fix: Prevent removing nonces in case multiple gzd submit buttons are visible (theme incompatibilities)
+* Fix: Prevent querying pickup locations in case location does not match provider
+* Fix: Defensive checks: Prevent undefined array key error in cart
+
 = 3.19.8 =
 * New: Indicate UPS Shiptastic Integration availability
 * Improvement: Email title replacement in Shiptastic emails

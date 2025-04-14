@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.19.8\n"
+"Project-Id-Version: Germanized for WooCommerce 3.19.9\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-08T12:44:59+00:00\n"
+"POT-Creation-Date: 2025-04-14T11:26:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 
@@ -46,6 +46,8 @@ msgstr ""
 #: src/Api/Paket.php:341
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:60
 #: packages/dhl-for-shiptastic/src/Api/Paket.php:230
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:60
+#: packages/shiptastic-integration-for-dhl/src/Api/Paket.php:237
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:70
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:341
 msgctxt "dhl day context"
@@ -54,6 +56,7 @@ msgstr ""
 
 #: includes/wc-gzd-dhl-core-functions.php:100
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:90
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:90
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:100
 msgctxt "dhl"
 msgid "Delivery Duty Paid"
@@ -61,6 +64,7 @@ msgstr ""
 
 #: includes/wc-gzd-dhl-core-functions.php:101
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:91
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:91
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:101
 msgctxt "dhl"
 msgid "Delivery At Place"
@@ -68,6 +72,7 @@ msgstr ""
 
 #: includes/wc-gzd-dhl-core-functions.php:102
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:92
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:92
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:102
 msgctxt "dhl"
 msgid "Delivery Duty Paid (excl. VAT )"
@@ -75,6 +80,7 @@ msgstr ""
 
 #: includes/wc-gzd-dhl-core-functions.php:103
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:93
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:93
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:103
 msgctxt "dhl"
 msgid "Delivery Duty Paid (excl. Duties, taxes and VAT)"
@@ -82,6 +88,7 @@ msgstr ""
 
 #: includes/wc-gzd-dhl-core-functions.php:131
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:121
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:121
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:131
 msgctxt "age context"
 msgid "None"
@@ -89,6 +96,7 @@ msgstr ""
 
 #: includes/wc-gzd-dhl-core-functions.php:132
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:122
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:122
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:132
 msgctxt "dhl"
 msgid "Minimum age of 16"
@@ -96,6 +104,7 @@ msgstr ""
 
 #: includes/wc-gzd-dhl-core-functions.php:133
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:123
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:123
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:133
 msgctxt "dhl"
 msgid "Minimum age of 18"
@@ -103,6 +112,7 @@ msgstr ""
 
 #: includes/wc-gzd-dhl-core-functions.php:179
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:169
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:169
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:179
 msgctxt "dhl"
 msgid "Return shipment"
@@ -110,6 +120,7 @@ msgstr ""
 
 #: includes/wc-gzd-dhl-core-functions.php:180
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:170
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:170
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:180
 msgctxt "dhl"
 msgid "Abandon shipment"
@@ -123,6 +134,10 @@ msgstr ""
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:664
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1099
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1470
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:310
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:664
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1099
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1470
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:320
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:673
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1099
@@ -135,6 +150,8 @@ msgstr ""
 #: includes/wc-gzd-dhl-core-functions.php:322
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:311
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:312
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:311
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:312
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:321
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:322
 msgctxt "dhl"
@@ -143,6 +160,7 @@ msgstr ""
 
 #: includes/wc-gzd-dhl-core-functions.php:638
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:609
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:648
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:638
 msgctxt "dhl"
 msgid "Either your customer number or the participation number for <strong>%1$s</strong> is missing. Please validate your <a href=\"%2$s\">settings</a> and try again."
@@ -150,6 +168,7 @@ msgstr ""
 
 #: includes/wc-gzd-dhl-core-functions.php:643
 #: packages/dhl-for-shiptastic/includes/wc-stc-dhl-core-functions.php:614
+#: packages/shiptastic-integration-for-dhl/includes/wc-stc-dhl-core-functions.php:653
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-core-functions.php:643
 msgctxt "dhl"
 msgid "Could not create billing number, participation number is missing."
@@ -158,6 +177,7 @@ msgstr ""
 #: includes/wc-gzd-dhl-legacy-functions.php:576
 #: src/ShippingProvider/DHL.php:111
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:111
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:111
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:576
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:111
 msgctxt "dhl"
@@ -167,6 +187,7 @@ msgstr ""
 #: includes/wc-gzd-dhl-legacy-functions.php:577
 #: src/ShippingProvider/DHL.php:120
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:120
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:120
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:577
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:120
 msgctxt "dhl"
@@ -176,6 +197,7 @@ msgstr ""
 #: includes/wc-gzd-dhl-legacy-functions.php:578
 #: src/ShippingProvider/DHL.php:129
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:129
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:129
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:578
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:129
 msgctxt "dhl"
@@ -185,6 +207,7 @@ msgstr ""
 #: includes/wc-gzd-dhl-legacy-functions.php:579
 #: src/ShippingProvider/DHL.php:138
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:138
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:138
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:579
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:138
 msgctxt "dhl"
@@ -195,6 +218,7 @@ msgstr ""
 #: includes/wc-gzd-dhl-legacy-functions.php:629
 #: src/ShippingProvider/DHL.php:180
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:180
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:180
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:601
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:629
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:180
@@ -205,6 +229,7 @@ msgstr ""
 #: includes/wc-gzd-dhl-legacy-functions.php:602
 #: src/ShippingProvider/DHL.php:172
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:172
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:172
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:602
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:172
 msgctxt "dhl"
@@ -214,6 +239,7 @@ msgstr ""
 #: includes/wc-gzd-dhl-legacy-functions.php:603
 #: src/ShippingProvider/DHL.php:164
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:164
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:164
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:603
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:164
 msgctxt "dhl"
@@ -224,6 +250,7 @@ msgstr ""
 #: includes/wc-gzd-dhl-legacy-functions.php:633
 #: src/ShippingProvider/DHL.php:156
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:156
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:156
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:607
 #: packages/woocommerce-germanized-dhl/includes/wc-gzd-dhl-legacy-functions.php:633
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:156
@@ -251,6 +278,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:58
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:49
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:49
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:58
 msgctxt "dhl"
 msgid "Preferred day: %1$s"
@@ -268,6 +296,12 @@ msgstr ""
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredDay.php:16
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredDay.php:44
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:30
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:65
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:58
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1211
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredDay.php:16
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredDay.php:44
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:30
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:74
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:61
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1211
@@ -280,6 +314,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:84
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:75
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:75
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:84
 msgctxt "dhl"
 msgid "Delivery type"
@@ -289,6 +324,8 @@ msgstr ""
 #: src/Blocks/PreferredServices.php:319
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:82
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:319
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:82
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:319
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:91
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:319
 msgctxt "dhl"
@@ -297,6 +334,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:98
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:89
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:89
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:98
 msgctxt "dhl"
 msgid "Preferred neighbor"
@@ -304,6 +342,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:105
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:96
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:96
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:105
 msgctxt "dhl"
 msgid "DHL Preferred Delivery"
@@ -311,6 +350,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:120
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:111
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:111
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:120
 msgctxt "dhl"
 msgid "Refreshed data successfully."
@@ -318,6 +358,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:120
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:111
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:111
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:120
 msgctxt "dhl"
 msgid "Error while refreshing data: %1$s"
@@ -333,6 +374,8 @@ msgstr ""
 #: src/ShippingProvider/DeutschePost.php:228
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:229
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:228
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:229
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:228
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:238
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:228
 msgctxt "dhl"
@@ -341,6 +384,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:243
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:234
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:234
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:243
 msgctxt "dhl"
 msgid "Charge Portokasse"
@@ -348,6 +392,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:245
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:236
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:236
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:245
 msgctxt "dhl"
 msgid "The minimum amount is %s"
@@ -355,6 +400,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:256
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:247
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:247
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:256
 msgctxt "dhl"
 msgid "Participation"
@@ -362,6 +408,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:262
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:253
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:253
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:262
 msgctxt "dhl"
 msgid "Product"
@@ -369,6 +416,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:263
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:254
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:254
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:263
 msgctxt "dhl"
 msgid "Participation Number"
@@ -376,6 +424,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:263
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:254
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:254
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:263
 msgctxt "dhl"
 msgid "The participation number for the chosen product. Find your participation number in your DHL business customer portal."
@@ -385,6 +434,8 @@ msgstr ""
 #: src/ShippingProvider/DHL.php:190
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:255
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:190
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:255
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:190
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:264
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:190
 msgctxt "dhl"
@@ -393,6 +444,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:264
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:255
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:255
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:264
 msgctxt "dhl"
 msgid "Optionally choose a separate participation number for GoGreen. Leave empty in case your main participation number includes GoGreen already."
@@ -400,6 +452,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:298
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:289
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:289
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:298
 msgctxt "dhl"
 msgid "Receiver Ids"
@@ -407,6 +460,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:305
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:296
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:296
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:305
 msgctxt "dhl"
 msgid "Receiver Id"
@@ -414,6 +468,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:305
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:296
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:296
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:305
 msgctxt "dhl"
 msgid "Find your Receiver Ids within your DHL contract data."
@@ -421,6 +476,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:306
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:297
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:297
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:306
 msgctxt "dhl"
 msgid "Country Code"
@@ -428,6 +484,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:306
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:297
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:297
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:306
 msgctxt "dhl"
 msgid "Leave empty to use the Receiver Id as fallback."
@@ -435,6 +492,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:325
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:316
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:316
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:325
 msgctxt "dhl"
 msgid "+ Add receiver"
@@ -442,6 +500,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:326
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:317
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:317
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:326
 msgctxt "dhl"
 msgid "Remove selected receiver(s)"
@@ -449,6 +508,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:327
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:318
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:318
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:327
 msgctxt "dhl"
 msgid "Refresh via API"
@@ -456,6 +516,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:366
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:351
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:351
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:366
 msgctxt "dhl"
 msgid "DHL Label"
@@ -463,6 +524,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:378
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:363
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:363
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:378
 msgctxt "dhl"
 msgid "This label has been generated by the DHL for WooCommerce Plugin and is shown for legacy purposes."
@@ -470,6 +532,7 @@ msgstr ""
 
 #: src/Admin/Admin.php:379
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:364
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:364
 #: packages/woocommerce-germanized-dhl/src/Admin/Admin.php:379
 msgctxt "dhl"
 msgid "Download label"
@@ -507,6 +570,7 @@ msgstr ""
 
 #: src/Api/ImProductList.php:239
 #: packages/dhl-for-shiptastic/src/Api/ImProductList.php:239
+#: packages/shiptastic-integration-for-dhl/src/Api/ImProductList.php:239
 #: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:239
 msgctxt "dhl"
 msgid "PRIO"
@@ -514,6 +578,7 @@ msgstr ""
 
 #: src/Api/ImProductList.php:240
 #: packages/dhl-for-shiptastic/src/Api/ImProductList.php:240
+#: packages/shiptastic-integration-for-dhl/src/Api/ImProductList.php:240
 #: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:240
 msgctxt "dhl"
 msgid "Einschreiben (Einwurf)"
@@ -521,6 +586,7 @@ msgstr ""
 
 #: src/Api/ImProductList.php:241
 #: packages/dhl-for-shiptastic/src/Api/ImProductList.php:241
+#: packages/shiptastic-integration-for-dhl/src/Api/ImProductList.php:241
 #: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:241
 msgctxt "dhl"
 msgid "Einschreiben"
@@ -528,6 +594,7 @@ msgstr ""
 
 #: src/Api/ImProductList.php:242
 #: packages/dhl-for-shiptastic/src/Api/ImProductList.php:242
+#: packages/shiptastic-integration-for-dhl/src/Api/ImProductList.php:242
 #: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:242
 msgctxt "dhl"
 msgid "Einschreiben (Eigenhändig)"
@@ -535,6 +602,7 @@ msgstr ""
 
 #: src/Api/ImProductList.php:243
 #: packages/dhl-for-shiptastic/src/Api/ImProductList.php:243
+#: packages/shiptastic-integration-for-dhl/src/Api/ImProductList.php:243
 #: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:243
 msgctxt "dhl"
 msgid "Alterssichtprüfung 16"
@@ -542,6 +610,7 @@ msgstr ""
 
 #: src/Api/ImProductList.php:244
 #: packages/dhl-for-shiptastic/src/Api/ImProductList.php:244
+#: packages/shiptastic-integration-for-dhl/src/Api/ImProductList.php:244
 #: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:244
 msgctxt "dhl"
 msgid "Alterssichtprüfung 18"
@@ -549,6 +618,7 @@ msgstr ""
 
 #: src/Api/ImProductList.php:245
 #: packages/dhl-for-shiptastic/src/Api/ImProductList.php:245
+#: packages/shiptastic-integration-for-dhl/src/Api/ImProductList.php:245
 #: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:245
 msgctxt "dhl"
 msgid "Zusatzentgelt MBf"
@@ -556,6 +626,7 @@ msgstr ""
 
 #: src/Api/ImProductList.php:246
 #: packages/dhl-for-shiptastic/src/Api/ImProductList.php:246
+#: packages/shiptastic-integration-for-dhl/src/Api/ImProductList.php:246
 #: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:246
 msgctxt "dhl"
 msgid "Unterschrift"
@@ -563,6 +634,7 @@ msgstr ""
 
 #: src/Api/ImProductList.php:247
 #: packages/dhl-for-shiptastic/src/Api/ImProductList.php:247
+#: packages/shiptastic-integration-for-dhl/src/Api/ImProductList.php:247
 #: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:247
 msgctxt "dhl"
 msgid "Tracked"
@@ -570,6 +642,7 @@ msgstr ""
 
 #: src/Api/ImProductList.php:248
 #: packages/dhl-for-shiptastic/src/Api/ImProductList.php:248
+#: packages/shiptastic-integration-for-dhl/src/Api/ImProductList.php:248
 #: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:248
 msgctxt "dhl"
 msgid "Rückschein"
@@ -577,6 +650,7 @@ msgstr ""
 
 #: src/Api/ImProductList.php:343
 #: packages/dhl-for-shiptastic/src/Api/ImProductList.php:343
+#: packages/shiptastic-integration-for-dhl/src/Api/ImProductList.php:343
 #: packages/woocommerce-germanized-dhl/src/Api/ImProductList.php:343
 msgctxt "dhl"
 msgid "No Internetmarke product data found."
@@ -624,6 +698,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:65
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:63
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:63
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:65
 msgctxt "dhl"
 msgid "Internetmarke is disabled. Please enable Internetmarke."
@@ -632,6 +707,7 @@ msgstr ""
 #: src/Api/Internetmarke.php:73
 #: src/Api/Soap.php:54
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:71
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:71
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:73
 #: packages/woocommerce-germanized-dhl/src/Api/Soap.php:54
 msgctxt "dhl"
@@ -640,6 +716,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:79
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:77
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:77
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:79
 msgctxt "dhl"
 msgid "Error while instantiating main Internetmarke API: %s"
@@ -647,6 +724,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:91
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:89
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:89
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:91
 msgctxt "dhl"
 msgid "Wrong username or password"
@@ -656,6 +734,7 @@ msgstr ""
 #: src/ShippingProvider/Product.php:281
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:227
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Product.php:281
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:227
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:251
 #: packages/woocommerce-germanized-shipments/src/ShippingProvider/Product.php:281
 msgctxt "dhl"
@@ -664,6 +743,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:334
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:310
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:310
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:334
 msgctxt "dhl"
 msgid "Length: %s"
@@ -671,6 +751,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:338
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:314
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:314
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:338
 msgctxt "dhl"
 msgid "Width: %s"
@@ -678,6 +759,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:342
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:318
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:318
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:342
 msgctxt "dhl"
 msgid "Height: %s"
@@ -685,6 +767,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:346
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:322
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:322
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:346
 msgctxt "dhl"
 msgid "Weight: %s"
@@ -692,6 +775,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:353
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:329
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:329
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:353
 msgctxt "dhl"
 msgid "Total"
@@ -705,6 +789,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:548
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:472
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:472
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:548
 msgctxt "dhl"
 msgid "Could not refund post label: %s"
@@ -712,6 +797,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:562
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:486
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:486
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:562
 msgctxt "dhl"
 msgid "Refund API could not be instantiated"
@@ -725,6 +811,10 @@ msgstr ""
 #: packages/dhl-for-shiptastic/src/Api/LabelRest.php:56
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:378
 #: packages/dhl-for-shiptastic/src/Api/ReturnRest.php:46
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:604
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:56
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:378
+#: packages/shiptastic-integration-for-dhl/src/Api/ReturnRest.php:46
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:690
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:44
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:375
@@ -735,6 +825,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:705
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:619
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:619
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:705
 msgctxt "dhl"
 msgid "Error while generating shop order id."
@@ -742,6 +833,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:741
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:657
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:657
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:741
 msgctxt "dhl"
 msgid "Error while trying to purchase the stamp. Please manually <a href=\"%s\">refresh</a> your product database and try again."
@@ -749,6 +841,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:779
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:695
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:695
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:779
 msgctxt "dhl"
 msgid "Error while downloading the PDF stamp."
@@ -756,6 +849,7 @@ msgstr ""
 
 #: src/Api/Internetmarke.php:786
 #: packages/dhl-for-shiptastic/src/Api/Internetmarke.php:702
+#: packages/shiptastic-integration-for-dhl/src/Api/Internetmarke.php:702
 #: packages/woocommerce-germanized-dhl/src/Api/Internetmarke.php:786
 msgctxt "dhl"
 msgid "Invalid stamp response."
@@ -765,6 +859,8 @@ msgstr ""
 #: src/Api/LabelSoap.php:607
 #: packages/dhl-for-shiptastic/src/Api/LabelRest.php:262
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:613
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:262
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:614
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:249
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:607
 msgctxt "dhl"
@@ -775,6 +871,8 @@ msgstr ""
 #: src/Api/LabelSoap.php:713
 #: packages/dhl-for-shiptastic/src/Api/LabelRest.php:384
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:719
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:374
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:720
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:364
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:713
 msgctxt "dhl"
@@ -785,6 +883,8 @@ msgstr ""
 #: src/Api/LabelSoap.php:219
 #: packages/dhl-for-shiptastic/src/Api/LabelRest.php:485
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:222
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:475
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:222
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:465
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:219
 msgctxt "dhl"
@@ -793,6 +893,7 @@ msgstr ""
 
 #: src/Api/LabelRest.php:543
 #: packages/dhl-for-shiptastic/src/Api/LabelRest.php:563
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:553
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:543
 msgctxt "dhl"
 msgid "You've explicitly booked the additional insurance service resulting in additional fees although the value of goods does not exceed EUR 500. The label has been created anyway."
@@ -804,6 +905,9 @@ msgstr ""
 #: packages/dhl-for-shiptastic/src/Api/LabelRest.php:572
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:300
 #: packages/dhl-for-shiptastic/src/Api/ReturnRest.php:189
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:562
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:300
+#: packages/shiptastic-integration-for-dhl/src/Api/ReturnRest.php:191
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:552
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:297
 #: packages/woocommerce-germanized-dhl/src/Api/ReturnRest.php:184
@@ -815,6 +919,8 @@ msgstr ""
 #: src/Api/LabelSoap.php:111
 #: packages/dhl-for-shiptastic/src/Api/LabelRest.php:708
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:114
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:698
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:114
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:687
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:111
 msgctxt "dhl"
@@ -823,6 +929,8 @@ msgstr ""
 
 #: src/Api/LabelRest.php:692
 #: packages/dhl-for-shiptastic/src/Api/LabelRest.php:713
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:703
+#: packages/shiptastic-integration-for-dhl/src/Api/MyAccount.php:40
 #: packages/woocommerce-germanized-dhl/src/Api/LabelRest.php:692
 msgctxt "dhl"
 msgid "Unknown DHL API error."
@@ -830,6 +938,7 @@ msgstr ""
 
 #: src/Api/LabelSoap.php:183
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:186
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:186
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:183
 msgctxt "dhl"
 msgid "Your DHL API credentials seem to be invalid. Please check your DHL settings."
@@ -837,6 +946,7 @@ msgstr ""
 
 #: src/Api/LabelSoap.php:186
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:189
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:189
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:186
 msgctxt "dhl"
 msgid "Your products are missing data relevant for custom declarations. Please provide missing DHL fields (country of origin, HS code) in your product data > shipping tab."
@@ -844,6 +954,7 @@ msgstr ""
 
 #: src/Api/LabelSoap.php:194
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:197
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:197
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:194
 msgctxt "dhl"
 msgid "There was an error contacting the DHL API: %s."
@@ -851,6 +962,7 @@ msgstr ""
 
 #: src/Api/LabelSoap.php:197
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:200
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:200
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:197
 msgctxt "dhl"
 msgid "An error ocurred while contacting the DHL API. Please consider enabling the sandbox mode."
@@ -858,6 +970,7 @@ msgstr ""
 
 #: src/Api/LabelSoap.php:341
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:344
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:344
 #: packages/woocommerce-germanized-dhl/src/Api/LabelSoap.php:341
 msgctxt "dhl"
 msgid "Could not delete label - %s"
@@ -865,6 +978,7 @@ msgstr ""
 
 #: src/Api/LocationFinder.php:77
 #: packages/dhl-for-shiptastic/src/Api/LocationFinder.php:81
+#: packages/shiptastic-integration-for-dhl/src/Api/LocationFinder.php:81
 #: packages/woocommerce-germanized-dhl/src/Api/LocationFinder.php:77
 msgctxt "dhl location name"
 msgid "%1$s %2$s"
@@ -872,6 +986,7 @@ msgstr ""
 
 #: src/Api/LocationFinder.php:131
 #: packages/dhl-for-shiptastic/src/Api/LocationFinder.php:150
+#: packages/shiptastic-integration-for-dhl/src/Api/LocationFinder.php:150
 #: packages/woocommerce-germanized-dhl/src/Api/LocationFinder.php:131
 msgctxt "dhl"
 msgid "At least shipping city or zip is required."
@@ -879,6 +994,7 @@ msgstr ""
 
 #: src/Api/OAuthPaket.php:82
 #: packages/dhl-for-shiptastic/src/Api/OAuthPaket.php:76
+#: packages/shiptastic-integration-for-dhl/src/Api/OAuthPaket.php:76
 #: packages/woocommerce-germanized-dhl/src/Api/OAuthPaket.php:82
 msgctxt "dhl"
 msgid "Error while authenticating with DHL."
@@ -887,6 +1003,7 @@ msgstr ""
 #: src/Api/Paket.php:70
 #: src/Api/Paket.php:97
 #: packages/dhl-for-shiptastic/src/Api/Paket.php:40
+#: packages/shiptastic-integration-for-dhl/src/Api/Paket.php:40
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:70
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:97
 msgctxt "dhl"
@@ -921,6 +1038,7 @@ msgstr ""
 
 #: src/Api/Paket.php:318
 #: packages/dhl-for-shiptastic/src/Api/Paket.php:207
+#: packages/shiptastic-integration-for-dhl/src/Api/Paket.php:214
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:318
 msgctxt "dhl"
 msgid "Mon"
@@ -928,6 +1046,7 @@ msgstr ""
 
 #: src/Api/Paket.php:319
 #: packages/dhl-for-shiptastic/src/Api/Paket.php:208
+#: packages/shiptastic-integration-for-dhl/src/Api/Paket.php:215
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:319
 msgctxt "dhl"
 msgid "Tue"
@@ -935,6 +1054,7 @@ msgstr ""
 
 #: src/Api/Paket.php:320
 #: packages/dhl-for-shiptastic/src/Api/Paket.php:209
+#: packages/shiptastic-integration-for-dhl/src/Api/Paket.php:216
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:320
 msgctxt "dhl"
 msgid "Wed"
@@ -942,6 +1062,7 @@ msgstr ""
 
 #: src/Api/Paket.php:321
 #: packages/dhl-for-shiptastic/src/Api/Paket.php:210
+#: packages/shiptastic-integration-for-dhl/src/Api/Paket.php:217
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:321
 msgctxt "dhl"
 msgid "Thu"
@@ -949,6 +1070,7 @@ msgstr ""
 
 #: src/Api/Paket.php:322
 #: packages/dhl-for-shiptastic/src/Api/Paket.php:211
+#: packages/shiptastic-integration-for-dhl/src/Api/Paket.php:218
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:322
 msgctxt "dhl"
 msgid "Fri"
@@ -956,6 +1078,7 @@ msgstr ""
 
 #: src/Api/Paket.php:323
 #: packages/dhl-for-shiptastic/src/Api/Paket.php:212
+#: packages/shiptastic-integration-for-dhl/src/Api/Paket.php:219
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:323
 msgctxt "dhl"
 msgid "Sat"
@@ -963,6 +1086,7 @@ msgstr ""
 
 #: src/Api/Paket.php:324
 #: packages/dhl-for-shiptastic/src/Api/Paket.php:213
+#: packages/shiptastic-integration-for-dhl/src/Api/Paket.php:220
 #: packages/woocommerce-germanized-dhl/src/Api/Paket.php:324
 msgctxt "dhl"
 msgid "Sun"
@@ -970,6 +1094,7 @@ msgstr ""
 
 #: src/Api/PaketRest.php:62
 #: packages/dhl-for-shiptastic/src/Api/PaketRest.php:79
+#: packages/shiptastic-integration-for-dhl/src/Api/PaketRest.php:79
 #: packages/woocommerce-germanized-dhl/src/Api/PaketRest.php:62
 msgctxt "dhl"
 msgid "POST error or timeout occurred. Please try again later."
@@ -977,6 +1102,7 @@ msgstr ""
 
 #: src/Api/ParcelRest.php:27
 #: packages/dhl-for-shiptastic/src/Api/ParcelServices.php:44
+#: packages/shiptastic-integration-for-dhl/src/Api/ParcelServices.php:44
 #: packages/woocommerce-germanized-dhl/src/Api/ParcelRest.php:27
 msgctxt "dhl"
 msgid "Please provide the receiver postnumber."
@@ -990,6 +1116,7 @@ msgstr ""
 
 #: src/Api/ParcelRest.php:35
 #: packages/dhl-for-shiptastic/src/Api/ParcelServices.php:48
+#: packages/shiptastic-integration-for-dhl/src/Api/ParcelServices.php:48
 #: packages/woocommerce-germanized-dhl/src/Api/ParcelRest.php:35
 msgctxt "dhl"
 msgid "Please provide the shipment start date."
@@ -1039,6 +1166,7 @@ msgstr ""
 
 #: src/Blocks/PreferredServices.php:163
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:163
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:163
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:163
 msgctxt "dhl"
 msgid "Preferred day enabled"
@@ -1046,6 +1174,7 @@ msgstr ""
 
 #: src/Blocks/PreferredServices.php:169
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:169
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:169
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:169
 msgctxt "dhl"
 msgid "Preferred day costs"
@@ -1055,6 +1184,8 @@ msgstr ""
 #: src/Blocks/PreferredServices.php:307
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:175
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:307
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:175
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:307
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:175
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:307
 msgctxt "dhl"
@@ -1063,6 +1194,7 @@ msgstr ""
 
 #: src/Blocks/PreferredServices.php:181
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:181
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:181
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:181
 msgctxt "dhl"
 msgid "Preferred delivery costs"
@@ -1070,6 +1202,7 @@ msgstr ""
 
 #: src/Blocks/PreferredServices.php:187
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:187
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:187
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:187
 msgctxt "dhl"
 msgid "Preferred delivery type enabled"
@@ -1079,6 +1212,8 @@ msgstr ""
 #: src/Blocks/PreferredServices.php:337
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:193
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:337
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:193
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:337
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:193
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:337
 msgctxt "dhl"
@@ -1087,6 +1222,7 @@ msgstr ""
 
 #: src/Blocks/PreferredServices.php:199
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:199
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:199
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:199
 msgctxt "dhl"
 msgid "Preferred location enabled"
@@ -1094,6 +1230,7 @@ msgstr ""
 
 #: src/Blocks/PreferredServices.php:205
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:205
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:205
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:205
 msgctxt "dhl"
 msgid "Preferred neighbor enabled"
@@ -1101,6 +1238,7 @@ msgstr ""
 
 #: src/Blocks/PreferredServices.php:211
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:211
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:211
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:211
 msgctxt "dhl"
 msgid "Available preferred days"
@@ -1108,6 +1246,7 @@ msgstr ""
 
 #: src/Blocks/PreferredServices.php:219
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:219
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:219
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:219
 msgctxt "dhl"
 msgid "The preferred day."
@@ -1115,6 +1254,7 @@ msgstr ""
 
 #: src/Blocks/PreferredServices.php:225
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:225
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:225
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:225
 msgctxt "dhl"
 msgid "The formatted week day."
@@ -1122,6 +1262,7 @@ msgstr ""
 
 #: src/Blocks/PreferredServices.php:231
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:231
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:231
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:231
 msgctxt "dhl"
 msgid "The preferred day date."
@@ -1129,6 +1270,7 @@ msgstr ""
 
 #: src/Blocks/PreferredServices.php:313
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:313
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:313
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:313
 msgctxt "dhl"
 msgid "Preferred location type"
@@ -1138,6 +1280,8 @@ msgstr ""
 #: src/Blocks/PreferredServices.php:331
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:325
 #: packages/dhl-for-shiptastic/src/Blocks/PreferredServices.php:331
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:325
+#: packages/shiptastic-integration-for-dhl/src/Blocks/PreferredServices.php:331
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:325
 #: packages/woocommerce-germanized-dhl/src/Blocks/PreferredServices.php:331
 msgctxt "dhl"
@@ -1146,6 +1290,7 @@ msgstr ""
 
 #: src/Label/DHL.php:83
 #: packages/dhl-for-shiptastic/src/Label/DHL.php:83
+#: packages/shiptastic-integration-for-dhl/src/Label/DHL.php:83
 #: packages/woocommerce-germanized-dhl/src/Label/DHL.php:83
 msgctxt "dhl full name"
 msgid "%1$s"
@@ -1155,6 +1300,8 @@ msgstr ""
 #: src/Order.php:297
 #: packages/dhl-for-shiptastic/src/Label/Label.php:62
 #: packages/dhl-for-shiptastic/src/Order.php:296
+#: packages/shiptastic-integration-for-dhl/src/Label/Label.php:62
+#: packages/shiptastic-integration-for-dhl/src/Order.php:296
 #: packages/woocommerce-germanized-dhl/src/Label/Label.php:145
 #: packages/woocommerce-germanized-dhl/src/Order.php:297
 msgctxt "dhl time-span"
@@ -1169,6 +1316,7 @@ msgstr ""
 
 #: src/Package.php:1168
 #: packages/dhl-for-shiptastic/src/Package.php:1015
+#: packages/shiptastic-integration-for-dhl/src/Package.php:970
 #: packages/woocommerce-germanized-dhl/src/Package.php:1168
 msgctxt "dhl"
 msgid "Germany"
@@ -1176,6 +1324,7 @@ msgstr ""
 
 #: src/ParcelServices.php:68
 #: packages/dhl-for-shiptastic/src/ParcelServices.php:65
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:65
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:68
 msgctxt "dhl"
 msgid "Delivery time"
@@ -1192,12 +1341,18 @@ msgstr ""
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredLocation.php:15
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredLocation.php:42
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:82
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:72
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1158
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredLocation.php:15
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredLocation.php:42
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:82
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:75
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1158
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredLocation.php:15
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredLocation.php:42
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:84
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Drop-off location"
 msgstr ""
@@ -1215,6 +1370,12 @@ msgstr ""
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredNeighbour.php:42
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:75
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:91
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:77
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1167
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:15
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:42
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:75
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:91
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:80
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1167
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:15
@@ -1222,6 +1383,7 @@ msgstr ""
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:77
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:93
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Neighbor"
 msgstr ""
@@ -1230,6 +1392,8 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:106
 #: packages/dhl-for-shiptastic/src/ParcelServices.php:84
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:104
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:84
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:104
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:87
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:106
 msgctxt "dhl"
@@ -1238,6 +1402,7 @@ msgstr ""
 
 #: src/ParcelServices.php:204
 #: packages/dhl-for-shiptastic/src/ParcelServices.php:203
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:203
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:204
 msgctxt "dhl"
 msgid "DHL Delivery day"
@@ -1245,6 +1410,7 @@ msgstr ""
 
 #: src/ParcelServices.php:210
 #: packages/dhl-for-shiptastic/src/ParcelServices.php:209
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:209
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:210
 msgctxt "dhl"
 msgid "DHL Home Delivery"
@@ -1252,6 +1418,7 @@ msgstr ""
 
 #: src/ParcelServices.php:432
 #: packages/dhl-for-shiptastic/src/ParcelServices.php:433
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:433
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:432
 msgctxt "dhl"
 msgid "Sorry, but the delivery day you have chosen is no longer available."
@@ -1259,6 +1426,7 @@ msgstr ""
 
 #: src/ParcelServices.php:455
 #: packages/dhl-for-shiptastic/src/ParcelServices.php:456
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:456
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:455
 msgctxt "dhl"
 msgid "Please choose a drop-off location."
@@ -1266,6 +1434,7 @@ msgstr ""
 
 #: src/ParcelServices.php:467
 #: packages/dhl-for-shiptastic/src/ParcelServices.php:468
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:468
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:467
 msgctxt "dhl"
 msgid "Please choose name and address of your preferred neighbor."
@@ -1273,6 +1442,7 @@ msgstr ""
 
 #: src/ParcelServices.php:552
 #: packages/dhl-for-shiptastic/src/ParcelServices.php:553
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:553
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:552
 msgctxt "dhl delivery type context"
 msgid "Shop"
@@ -1280,6 +1450,7 @@ msgstr ""
 
 #: src/ParcelServices.php:553
 #: packages/dhl-for-shiptastic/src/ParcelServices.php:554
+#: packages/shiptastic-integration-for-dhl/src/ParcelServices.php:554
 #: packages/woocommerce-germanized-dhl/src/ParcelServices.php:553
 msgctxt "dhl delivery type context"
 msgid "Home"
@@ -1287,6 +1458,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:80
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:80
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:80
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:80
 msgctxt "dhl"
 msgid "Deutsche Post"
@@ -1294,6 +1466,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:88
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:88
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:88
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:88
 msgctxt "dhl"
 msgid "Integration for products of the Deutsche Post through Internetmarke."
@@ -1301,6 +1474,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:108
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:108
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:108
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:108
 msgctxt "dhl"
 msgid "Status: %1$s"
@@ -1308,6 +1482,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:108
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:108
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:108
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:108
 msgctxt "dhl"
 msgid "Connected"
@@ -1315,6 +1490,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:118
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:118
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:118
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:118
 msgctxt "dhl"
 msgid "Printing"
@@ -1322,6 +1498,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:121
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:121
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:121
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:121
 msgctxt "dhl"
 msgid "Choose a print format which will be selected by default when creating labels. Manually <a href=\"%s\">refresh</a> available print formats to make sure the list is up-to-date."
@@ -1329,6 +1506,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:124
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:124
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:124
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:124
 msgctxt "dhl"
 msgid "Print X-axis column"
@@ -1336,6 +1514,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:126
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:126
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:126
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:126
 msgctxt "dhl"
 msgid "Adjust the print X-axis start column for the label."
@@ -1343,6 +1522,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:137
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:137
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:137
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:137
 msgctxt "dhl"
 msgid "Print Y-axis column"
@@ -1350,6 +1530,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:139
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:139
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:139
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:139
 msgctxt "dhl"
 msgid "Adjust the print Y-axis start column for the label."
@@ -1357,6 +1538,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:179
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:179
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:179
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:179
 msgctxt "dhl"
 msgid "Username"
@@ -1364,6 +1546,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:181
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:181
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:181
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:181
 msgctxt "dhl"
 msgid "Your credentials to the <a href=\"%s\" target=\"_blank\">Portokasse</a>. Please test your credentials before connecting."
@@ -1371,6 +1554,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:189
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:189
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:189
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:189
 msgctxt "dhl"
 msgid "Password"
@@ -1380,6 +1564,8 @@ msgstr ""
 #: src/ShippingProvider/DeutschePost.php:244
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:217
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:244
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:217
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:244
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:217
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:244
 msgctxt "dhl"
@@ -1388,6 +1574,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:222
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:222
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:222
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:222
 msgctxt "dhl"
 msgid "Balance"
@@ -1395,6 +1582,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:263
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:263
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:263
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:263
 msgctxt "dhl"
 msgid "Products"
@@ -1402,6 +1590,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:266
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:266
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:266
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:266
 msgctxt "dhl"
 msgid "Refresh available products"
@@ -1411,6 +1600,8 @@ msgstr ""
 #: src/ShippingProvider/DHL.php:1065
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:282
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1065
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:282
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1065
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:282
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1065
 msgctxt "dhl"
@@ -1421,6 +1612,8 @@ msgstr ""
 #: src/ShippingProvider/DeutschePost.php:619
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:459
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:610
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:459
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:610
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:465
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:619
 msgctxt "dhl"
@@ -1429,6 +1622,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:480
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:472
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:472
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:480
 msgctxt "dhl"
 msgid "Print X-Position"
@@ -1436,6 +1630,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:493
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:485
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:485
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:493
 msgctxt "dhl"
 msgid "Print Y-Position"
@@ -1443,6 +1638,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:603
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:594
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:594
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:603
 msgctxt "dhl"
 msgid "The services chosen are not available for the current product."
@@ -1450,6 +1646,7 @@ msgstr ""
 
 #: src/ShippingProvider/DeutschePost.php:645
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:636
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:636
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:645
 msgctxt "dhl"
 msgid "Deutsche Post product is missing for %s."
@@ -1459,6 +1656,8 @@ msgstr ""
 #: src/ShippingProvider/DHL.php:1100
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:665
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1100
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:665
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1100
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:674
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1100
 msgctxt "dhl"
@@ -1469,6 +1668,8 @@ msgstr ""
 #: src/ShippingProvider/DHL.php:1101
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DeutschePost.php:666
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1101
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DeutschePost.php:666
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1101
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DeutschePost.php:675
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1101
 msgctxt "dhl"
@@ -1477,6 +1678,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:35
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:35
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:35
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:35
 msgctxt "dhl"
 msgid "DHL"
@@ -1484,6 +1686,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:43
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:43
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:43
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:43
 msgctxt "dhl"
 msgid "Complete DHL integration supporting labels and preferred delivery."
@@ -1493,6 +1696,8 @@ msgstr ""
 #: src/ShippingProvider/DHL.php:87
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:74
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:87
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:74
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:87
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:74
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:87
 msgctxt "dhl"
@@ -1501,6 +1706,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:75
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:75
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:75
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:75
 msgctxt "dhl"
 msgid "#{shipment_number}, order {order_number}"
@@ -1508,6 +1714,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:79
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:79
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:79
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:79
 msgctxt "dhl"
 msgid "Inlay return reference"
@@ -1517,6 +1724,8 @@ msgstr ""
 #: src/ShippingProvider/DHL.php:88
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:80
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:88
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:80
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:88
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:80
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:88
 msgctxt "dhl"
@@ -1525,6 +1734,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:147
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:147
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:147
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:147
 msgctxt "dhl"
 msgid "DHL Kleinpaket"
@@ -1532,6 +1742,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:191
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:191
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:191
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:191
 msgctxt "dhl"
 msgid "Ship your parcels climate friendly."
@@ -1539,6 +1750,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:206
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:206
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:206
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:206
 msgctxt "dhl"
 msgid "No Neighbor"
@@ -1546,6 +1758,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:207
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:207
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:207
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:207
 msgctxt "dhl"
 msgid "Do not deliver to neighbors."
@@ -1553,6 +1766,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:217
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:217
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:217
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:217
 msgctxt "dhl"
 msgid "Recipient signature"
@@ -1560,6 +1774,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:218
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:218
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:218
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:218
 msgctxt "dhl"
 msgid "Let recipients sign delivery instead of DHL driver."
@@ -1567,6 +1782,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:228
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:228
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:228
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:228
 msgctxt "dhl"
 msgid "Named person only"
@@ -1574,6 +1790,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:229
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:229
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:229
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:229
 msgctxt "dhl"
 msgid "Do only delivery to named person."
@@ -1581,6 +1798,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:241
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:241
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:241
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:241
 msgctxt "dhl"
 msgid "Bulky Goods"
@@ -1588,6 +1806,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:242
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:242
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:242
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:242
 msgctxt "dhl"
 msgid "Deliver as bulky goods."
@@ -1595,6 +1814,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:250
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:250
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:250
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:250
 msgctxt "dhl"
 msgid "Retail Outlet Routing"
@@ -1602,6 +1822,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:251
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:251
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:251
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:251
 msgctxt "dhl"
 msgid "Send undeliverable items to nearest retail outlet instead of immediate return."
@@ -1609,6 +1830,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:261
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:261
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:261
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:261
 msgctxt "dhl"
 msgid "Premium"
@@ -1616,6 +1838,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:262
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:262
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:262
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:262
 msgctxt "dhl"
 msgid "Premium delivery for international shipments."
@@ -1623,6 +1846,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:271
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:271
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:271
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:271
 msgctxt "dhl"
 msgid "Endorsement"
@@ -1630,6 +1854,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:272
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:272
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:272
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:272
 msgctxt "dhl"
 msgid "Select how DHL should handle international shipments that could not be delivered."
@@ -1637,6 +1862,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:284
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:284
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:284
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:284
 msgctxt "dhl"
 msgid "Economy"
@@ -1644,6 +1870,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:285
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:285
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:285
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:285
 msgctxt "dhl"
 msgid "Economy delivery for international shipments."
@@ -1651,6 +1878,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:296
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:296
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:296
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:296
 msgctxt "dhl"
 msgid "Postal Delivery Duty Paid"
@@ -1658,6 +1886,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:297
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:297
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:297
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:297
 msgctxt "dhl"
 msgid "DHL takes care of customs clearance and export duties (Postal Delivered Duty Paid)."
@@ -1665,6 +1894,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:309
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:309
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:309
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:309
 msgctxt "dhl-print-format"
 msgid "Default (User configuration)"
@@ -1672,6 +1902,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:315
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:315
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:315
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:315
 msgctxt "dhl-print-format"
 msgid "A4"
@@ -1679,6 +1910,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:316
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:316
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:316
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:316
 msgctxt "dhl-print-format"
 msgid "910-300-700"
@@ -1686,6 +1918,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:317
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:317
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:317
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:317
 msgctxt "dhl-print-format"
 msgid "910-300-700-oZ"
@@ -1693,6 +1926,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:318
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:318
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:318
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:318
 msgctxt "dhl-print-format"
 msgid "910-300-710"
@@ -1700,6 +1934,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:319
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:319
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:319
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:319
 msgctxt "dhl-print-format"
 msgid "910-300-600"
@@ -1707,6 +1942,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:320
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:320
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:320
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:320
 msgctxt "dhl-print-format"
 msgid "910-300-610"
@@ -1714,6 +1950,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:321
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:321
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:321
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:321
 msgctxt "dhl-print-format"
 msgid "910-300-400"
@@ -1721,6 +1958,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:322
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:322
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:322
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:322
 msgctxt "dhl-print-format"
 msgid "910-300-410"
@@ -1728,6 +1966,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:323
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:323
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:323
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:323
 msgctxt "dhl-print-format"
 msgid "910-300-300"
@@ -1735,6 +1974,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:324
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:324
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:324
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:324
 msgctxt "dhl-print-format"
 msgid "910-300-300-oz"
@@ -1742,6 +1982,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:340
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:340
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:340
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:340
 msgctxt "dhl-print-format"
 msgid "100x70mm"
@@ -1751,6 +1992,8 @@ msgstr ""
 #: src/ShippingProvider/DHL.php:378
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:371
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:378
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:371
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:378
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:371
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:378
 msgctxt "dhl"
@@ -1759,6 +2002,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:374
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:374
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:374
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:374
 msgctxt "dhl"
 msgid "Adjust handling of return shipments through the DHL Retoure API. Make sure that your %s contains DHL Retoure Online."
@@ -1766,6 +2010,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:374
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:374
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:374
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:374
 msgctxt "dhl"
 msgid "contract"
@@ -1773,6 +2018,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:379
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:379
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:379
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:379
 msgctxt "dhl"
 msgid "Create retoure labels to return shipments."
@@ -1780,6 +2026,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:379
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:379
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:379
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:379
 msgctxt "dhl"
 msgid "By enabling this option you might generate retoure labels for return shipments and send them to your customer via email."
@@ -1787,6 +2034,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:419
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:419
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:419
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:419
 msgctxt "dhl"
 msgid "Encodable"
@@ -1794,6 +2042,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:420
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:420
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:420
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:420
 msgctxt "dhl"
 msgid "Labels will only be created if an address is encodable by DHL."
@@ -1801,6 +2050,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:425
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:425
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:425
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:425
 msgctxt "dhl"
 msgid "Choose this option if you want to make sure that by default labels are only generated for encodable addresses."
@@ -1808,6 +2058,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:429
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:429
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:429
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:429
 msgctxt "dhl"
 msgid "Sync (IdentCheck)"
@@ -1815,6 +2066,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:430
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:430
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:430
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:430
 msgctxt "dhl"
 msgid "Verify identity and age if shipment contains applicable items."
@@ -1822,6 +2074,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:430
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:430
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:430
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:430
 msgctxt "dhl"
 msgid "Germanized offers an %s to be enabled for certain products and/or product categories. By checking this option labels for shipments with applicable items will automatically have the identity check service enabled."
@@ -1831,6 +2084,8 @@ msgstr ""
 #: src/ShippingProvider/DHL.php:442
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:430
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:442
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:430
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:442
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:430
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:442
 msgctxt "dhl"
@@ -1839,6 +2094,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:441
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:441
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:441
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:441
 msgctxt "dhl"
 msgid "Sync (Visual Check)"
@@ -1846,6 +2102,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:442
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:442
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:442
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:442
 msgctxt "dhl"
 msgid "Visually verify age if shipment contains applicable items."
@@ -1853,6 +2110,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:442
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:442
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:442
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:442
 msgctxt "dhl"
 msgid "Germanized offers an %s to be enabled for certain products and/or product categories. By checking this option labels for shipments with applicable items will automatically have the visual age check service enabled."
@@ -1860,6 +2118,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:458
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:458
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:458
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:458
 msgctxt "dhl"
 msgid "Default Incoterms"
@@ -1867,6 +2126,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:463
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:463
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:463
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:463
 msgctxt "dhl"
 msgid "Please select a default incoterms option."
@@ -1874,6 +2134,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:542
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:542
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:542
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:542
 msgctxt "dhl"
 msgid "Preferred delivery"
@@ -1881,6 +2142,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:558
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:558
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:558
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:558
 msgctxt "dhl"
 msgid "Receiver"
@@ -1888,6 +2150,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:586
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:586
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:586
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:586
 msgctxt "dhl"
 msgid "Duties"
@@ -1895,6 +2158,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:600
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:600
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:600
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:600
 msgctxt "dhl"
 msgid "Valid address only"
@@ -1902,6 +2166,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:661
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:661
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:661
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:661
 msgctxt "dhl"
 msgid "Receiver is missing or does not exist."
@@ -1909,6 +2174,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:691
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:691
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:691
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:691
 msgctxt "dhl"
 msgid "%s duties element does not exist."
@@ -1916,6 +2182,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:848
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:848
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:848
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:848
 msgctxt "dhl"
 msgid "Customer Number (EKP)"
@@ -1923,6 +2190,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:850
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:850
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:850
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:850
 msgctxt "dhl"
 msgid "Your 10 digits DHL customer number, also called \"EKP\". Find your %s in the DHL business portal."
@@ -1930,6 +2198,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:850
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:850
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:850
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:850
 msgctxt "dhl"
 msgid "customer number"
@@ -1937,6 +2206,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:863
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:863
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:863
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:863
 msgctxt "dhl"
 msgid "API"
@@ -1944,6 +2214,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:877
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:877
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:877
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:877
 msgctxt "dhl"
 msgid "API Type"
@@ -1951,6 +2222,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:878
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:878
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:878
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:878
 msgctxt "dhl"
 msgid "Choose the DHL API to use. Please note: The SOAP API is currently in a legacy mode and will be replaced by the newer REST API in the future."
@@ -1958,6 +2230,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:881
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:881
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:881
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:881
 msgctxt "dhl"
 msgid "New API (REST)"
@@ -1965,6 +2238,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:882
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:882
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:882
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:882
 msgctxt "dhl"
 msgid "Old API (SOAP)"
@@ -1972,6 +2246,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:896
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:896
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:896
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:896
 msgctxt "dhl"
 msgid "Enable Sandbox"
@@ -1979,6 +2254,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:897
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:897
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:897
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:897
 msgctxt "dhl"
 msgid "Activate Sandbox mode for testing purposes."
@@ -1986,6 +2262,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:904
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:904
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:904
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:904
 msgctxt "dhl"
 msgid "Live Username"
@@ -1993,6 +2270,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:906
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:906
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:906
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:906
 msgctxt "dhl"
 msgid "Your username (<strong>not</strong> your email address) to the DHL business customer portal. Please make sure to test your access data in advance %s."
@@ -2006,6 +2284,10 @@ msgstr ""
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:919
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:931
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:943
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:906
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:919
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:931
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:943
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:906
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:919
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:931
@@ -2016,6 +2298,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:917
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:917
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:917
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:917
 msgctxt "dhl"
 msgid "Live Password"
@@ -2023,6 +2306,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:919
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:919
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:919
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:919
 msgctxt "dhl"
 msgid "Your password to the DHL business customer portal. Please note the new assignment of the password to 3 (Standard User) or 12 (System User) months and make sure to test your access data in advance %s."
@@ -2030,6 +2314,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:929
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:929
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:929
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:929
 msgctxt "dhl"
 msgid "Sandbox Username"
@@ -2037,6 +2322,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:931
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:931
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:931
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:931
 msgctxt "dhl"
 msgid "Your username (<strong>not</strong> your email address) to the DHL developer portal. Please make sure to test your access data in advance %s."
@@ -2044,6 +2330,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:941
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:941
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:941
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:941
 msgctxt "dhl"
 msgid "Sandbox Password"
@@ -2051,6 +2338,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:943
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:943
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:943
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:943
 msgctxt "dhl"
 msgid "Your password for the DHL developer portal. Please test your access data in advance %s."
@@ -2058,6 +2346,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:958
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:958
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:958
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:958
 msgctxt "dhl"
 msgid "Products and Participation Numbers"
@@ -2065,6 +2354,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:961
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:961
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:961
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:961
 msgctxt "dhl"
 msgid "Learn how to <a href=\"%1$s\" target=\"_blank\">find your participation numbers</a> in your DHL business portal."
@@ -2072,6 +2362,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:966
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:966
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:966
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:966
 msgctxt "dhl"
 msgid "Inlay Returns"
@@ -2079,6 +2370,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:991
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:991
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:991
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:991
 msgctxt "dhl"
 msgid "Participation Numbers"
@@ -2086,6 +2378,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1002
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1002
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1002
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1002
 msgctxt "dhl"
 msgid "Bank Account"
@@ -2093,6 +2386,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1005
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1005
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1005
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1005
 msgctxt "dhl"
 msgid "Enter your bank details needed for services that use COD."
@@ -2100,6 +2394,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1009
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1009
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1009
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1009
 msgctxt "dhl"
 msgid "Holder"
@@ -2107,6 +2402,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1017
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1017
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1017
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1017
 msgctxt "dhl"
 msgid "Bank Name"
@@ -2114,6 +2410,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1025
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1025
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1025
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1025
 msgctxt "dhl"
 msgid "IBAN"
@@ -2121,6 +2418,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1033
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1033
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1033
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1033
 msgctxt "dhl"
 msgid "BIC"
@@ -2128,6 +2426,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1041
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1041
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1041
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1041
 msgctxt "dhl"
 msgid "Payment Reference"
@@ -2137,6 +2436,8 @@ msgstr ""
 #: src/ShippingProvider/DHL.php:1056
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1046
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1056
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1046
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1056
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1046
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1056
 msgctxt "dhl"
@@ -2145,6 +2446,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1051
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1051
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1051
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1051
 msgctxt "dhl"
 msgid "Payment Reference 2"
@@ -2152,6 +2454,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1109
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1109
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1109
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1109
 msgctxt "dhl"
 msgid "Postoffice"
@@ -2159,6 +2462,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1110
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1110
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1110
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1110
 msgctxt "dhl"
 msgid "Enable delivery to Post Offices."
@@ -2166,6 +2470,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1111
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1111
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1111
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1111
 msgctxt "dhl"
 msgid "Let customers choose a Post Office as delivery address."
@@ -2173,6 +2478,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1119
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1119
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1119
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1119
 msgctxt "dhl"
 msgid "Parcel Shop"
@@ -2180,6 +2486,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1120
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1120
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1120
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1120
 msgctxt "dhl"
 msgid "Enable delivery to Parcel Shops."
@@ -2187,6 +2494,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1121
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1121
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1121
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1121
 msgctxt "dhl"
 msgid "Let customers choose a Parcel Shop as delivery address."
@@ -2196,6 +2504,8 @@ msgstr ""
 #: src/ShippingProvider/Services/PreferredLocation.php:16
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1159
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredLocation.php:16
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1159
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredLocation.php:16
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1159
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredLocation.php:16
 msgctxt "dhl"
@@ -2206,6 +2516,8 @@ msgstr ""
 #: src/ShippingProvider/Services/PreferredLocation.php:17
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1159
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredLocation.php:17
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1159
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredLocation.php:17
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1159
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredLocation.php:17
 msgctxt "dhl"
@@ -2216,6 +2528,8 @@ msgstr ""
 #: src/ShippingProvider/Services/PreferredNeighbour.php:16
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1168
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredNeighbour.php:16
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1168
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:16
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1168
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:16
 msgctxt "dhl"
@@ -2226,6 +2540,8 @@ msgstr ""
 #: src/ShippingProvider/Services/PreferredNeighbour.php:17
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1168
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredNeighbour.php:17
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1168
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:17
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1168
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredNeighbour.php:17
 msgctxt "dhl"
@@ -2234,6 +2550,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1176
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1176
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1176
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1176
 msgctxt "dhl"
 msgid "Delivery Type (CDP)"
@@ -2247,6 +2564,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1177
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1177
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1177
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1177
 msgctxt "dhl"
 msgid "Display options for the user to select their preferred delivery type during checkout. Currently available for <a href=\"%s\">certain countries only</a>."
@@ -2254,6 +2572,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1185
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1185
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1185
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1185
 msgctxt "dhl"
 msgid "Default Delivery Type"
@@ -2261,6 +2580,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1187
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1187
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1187
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1187
 msgctxt "dhl"
 msgid "Select the default delivery type presented to the customer during checkout."
@@ -2268,6 +2588,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1198
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1198
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1198
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1198
 msgctxt "dhl"
 msgid "Home Delivery Fee"
@@ -2275,6 +2596,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1200
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1200
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1200
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1200
 msgctxt "dhl"
 msgid "Insert gross value as surcharge for home deliveries for countries which support closest droppoint deliveries. Insert 0 to offer service for free."
@@ -2284,6 +2606,8 @@ msgstr ""
 #: src/ShippingProvider/Services/PreferredDay.php:17
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1212
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredDay.php:17
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1212
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredDay.php:17
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1212
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:17
 msgctxt "dhl"
@@ -2294,6 +2618,8 @@ msgstr ""
 #: src/ShippingProvider/Services/PreferredDay.php:18
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1212
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredDay.php:18
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1212
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredDay.php:18
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1212
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:18
 msgctxt "dhl"
@@ -2302,6 +2628,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1220
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1220
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1220
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1220
 msgctxt "dhl"
 msgid "Fee"
@@ -2309,6 +2636,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1222
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1222
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1222
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1222
 msgctxt "dhl"
 msgid "Insert gross value as surcharge for delivery day delivery. Insert 0 to offer service for free."
@@ -2316,6 +2644,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1233
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1233
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1233
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1233
 msgctxt "dhl"
 msgid "Cut-off time"
@@ -2323,6 +2652,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1237
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1237
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1237
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1237
 msgctxt "dhl"
 msgid "The cut-off time is the latest possible order time up to which the minimum delivery day (day of order + 2 working days) can be guaranteed. As soon as the time is exceeded, the earliest delivery day displayed in the frontend will be shifted to one day later (day of order + 3 working days)."
@@ -2330,6 +2660,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1243
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1243
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1243
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1243
 msgctxt "dhl"
 msgid "Preparation days"
@@ -2337,6 +2668,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1247
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1247
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1247
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1247
 msgctxt "dhl"
 msgid "If you need more time to prepare your shipments you might want to add a static preparation time to the possible starting date for delivery day delivery."
@@ -2344,6 +2676,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1258
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1258
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1258
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1258
 msgctxt "dhl"
 msgid "Exclude days of transfer"
@@ -2351,6 +2684,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1259
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1259
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1259
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1259
 msgctxt "dhl"
 msgid "Monday"
@@ -2358,6 +2692,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1260
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1260
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1260
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1260
 msgctxt "dhl"
 msgid "Exclude days from transferring shipments to DHL."
@@ -2365,6 +2700,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1270
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1270
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1270
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1270
 msgctxt "dhl"
 msgid "Tuesday"
@@ -2372,6 +2708,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1280
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1280
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1280
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1280
 msgctxt "dhl"
 msgid "Wednesday"
@@ -2379,6 +2716,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1290
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1290
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1290
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1290
 msgctxt "dhl"
 msgid "Thursday"
@@ -2386,6 +2724,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1300
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1300
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1300
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1300
 msgctxt "dhl"
 msgid "Friday"
@@ -2393,6 +2732,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1310
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1310
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1310
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1310
 msgctxt "dhl"
 msgid "Saturday"
@@ -2400,6 +2740,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1320
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1320
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1320
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1320
 msgctxt "dhl"
 msgid "Exclude gateways"
@@ -2407,6 +2748,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1322
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1322
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1322
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1322
 msgctxt "dhl"
 msgid "Select payment gateways to be excluded from showing preferred services."
@@ -2414,6 +2756,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1348
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1348
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1348
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1348
 msgctxt "dhl"
 msgid "Custom shipper"
@@ -2421,6 +2764,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1349
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1349
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1349
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1349
 msgctxt "dhl"
 msgid "Use a custom shipper address managed within your DHL business profile."
@@ -2428,6 +2772,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1349
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1349
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1349
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1349
 msgctxt "dhl"
 msgid "Choose this option if you want to use a <a href=\"%s\" target=\"_blank\">custom address</a> profile managed within your DHL business profile as shipper reference for your labels."
@@ -2435,6 +2780,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1357
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1357
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1357
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1357
 msgctxt "dhl"
 msgid "Shipper reference"
@@ -2442,6 +2788,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1358
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1358
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1358
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1358
 msgctxt "dhl"
 msgid "Insert the <a href=\"%s\" target=\"_blank\">address reference</a> you have chosen within the DHL business portal for your custom shipper address."
@@ -2449,6 +2796,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1397
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1397
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1397
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1397
 msgctxt "dhl"
 msgid "Customer Number"
@@ -2456,6 +2804,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1397
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1397
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1397
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1397
 msgctxt "dhl"
 msgid "Insert your DHL business customer number (EKP) here. If you are not yet a business customer you might want to create a new account first."
@@ -2463,6 +2812,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1410
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1410
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1410
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1410
 msgctxt "dhl"
 msgid "API Access"
@@ -2470,6 +2820,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1410
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1410
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1410
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1410
 msgctxt "dhl"
 msgid "To create labels and embed DHL services, our software needs access to the API. You will need to fill out the username and password fields accordingly."
@@ -2477,6 +2828,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1428
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1428
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1428
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1428
 msgctxt "dhl"
 msgid "Zones"
@@ -2484,6 +2836,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1428
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1428
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1428
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1428
 msgctxt "dhl"
 msgid "Configure separate service(s) based on your customer's location."
@@ -2491,6 +2844,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1446
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1446
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1446
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1446
 msgctxt "dhl"
 msgid "Automation"
@@ -2498,6 +2852,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1446
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1446
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1446
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1446
 msgctxt "dhl"
 msgid "You might want to save some time and generate labels automatically as soon as a shipment switches to a certain status."
@@ -2505,6 +2860,7 @@ msgstr ""
 
 #: src/ShippingProvider/DHL.php:1470
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1470
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1470
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/DHL.php:1470
 msgctxt "dhl"
 msgid "Allow your customers to ship to a packstation (and/or other DHL location types as configured below)."
@@ -2512,6 +2868,7 @@ msgstr ""
 
 #: src/ShippingProvider/PickupLocation.php:65
 #: packages/dhl-for-shiptastic/src/ShippingProvider/PickupLocation.php:65
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/PickupLocation.php:65
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/PickupLocation.php:65
 msgctxt "dhl"
 msgid "Customer Number (Post Number)"
@@ -2519,6 +2876,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/AdditionalInsurance.php:15
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/AdditionalInsurance.php:15
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/AdditionalInsurance.php:15
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/AdditionalInsurance.php:15
 msgctxt "dhl"
 msgid "Additional Insurance"
@@ -2526,6 +2884,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/AdditionalInsurance.php:16
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/AdditionalInsurance.php:16
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/AdditionalInsurance.php:16
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/AdditionalInsurance.php:16
 msgctxt "dhl"
 msgid "Add an additional insurance to labels."
@@ -2533,6 +2892,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/AdditionalInsurance.php:44
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/AdditionalInsurance.php:44
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/AdditionalInsurance.php:44
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/AdditionalInsurance.php:44
 msgctxt "dhl"
 msgid "Value of Goods"
@@ -2540,6 +2900,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/CashOnDelivery.php:15
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/CashOnDelivery.php:15
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/CashOnDelivery.php:15
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/CashOnDelivery.php:15
 msgctxt "dhl"
 msgid "Cash on Delivery"
@@ -2547,6 +2908,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/CashOnDelivery.php:58
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/CashOnDelivery.php:58
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/CashOnDelivery.php:58
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/CashOnDelivery.php:58
 msgctxt "dhl"
 msgid "COD Amount"
@@ -2554,6 +2916,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/ClosestDropPoint.php:15
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/ClosestDropPoint.php:15
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/ClosestDropPoint.php:15
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/ClosestDropPoint.php:15
 msgctxt "dhl"
 msgid "Closest Droppoint (CDP)"
@@ -2561,6 +2924,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/ClosestDropPoint.php:16
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/ClosestDropPoint.php:16
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/ClosestDropPoint.php:16
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/ClosestDropPoint.php:16
 msgctxt "dhl"
 msgid "Ship to a parcel shop or parcel locker in the vicinity of your customer’s home address."
@@ -2568,6 +2932,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/DHLRetoure.php:16
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:16
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:16
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:16
 msgctxt "dhl"
 msgid "Inlay Return Label"
@@ -2575,6 +2940,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/DHLRetoure.php:17
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:17
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:17
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:17
 msgctxt "dhl"
 msgid "Additionally create inlay return labels for shipments that support returns."
@@ -2582,6 +2948,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/DHLRetoure.php:67
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:67
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:67
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:67
 msgctxt "dhl"
 msgid "Name"
@@ -2589,6 +2956,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/DHLRetoure.php:76
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:76
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:76
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:76
 msgctxt "dhl"
 msgid "Company"
@@ -2598,6 +2966,8 @@ msgstr ""
 #: src/ShippingProvider/Services/DHLRetoure.php:185
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:89
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:185
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:89
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:185
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:89
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:185
 msgctxt "dhl"
@@ -2606,6 +2976,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/DHLRetoure.php:98
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:98
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:98
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:98
 msgctxt "dhl"
 msgid "Street No"
@@ -2615,6 +2986,8 @@ msgstr ""
 #: src/ShippingProvider/Services/DHLRetoure.php:186
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:115
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:186
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:115
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:186
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:115
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:186
 msgctxt "dhl"
@@ -2625,6 +2998,8 @@ msgstr ""
 #: src/ShippingProvider/Services/DHLRetoure.php:187
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:124
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:187
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:124
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:187
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:124
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:187
 msgctxt "dhl"
@@ -2633,6 +3008,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/DHLRetoure.php:141
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:141
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:141
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:141
 msgctxt "dhl"
 msgid "Phone"
@@ -2640,6 +3016,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/DHLRetoure.php:150
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:150
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:150
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:150
 msgctxt "dhl"
 msgid "Email"
@@ -2647,6 +3024,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/DHLRetoure.php:192
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:192
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:192
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:192
 msgctxt "dhl"
 msgid "%s of the return address is a mandatory field."
@@ -2654,6 +3032,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/DHLRetoure.php:197
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/DHLRetoure.php:197
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/DHLRetoure.php:197
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/DHLRetoure.php:197
 msgctxt "dhl"
 msgid "Please either add a return company or name."
@@ -2661,6 +3040,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/IdentCheck.php:16
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/IdentCheck.php:16
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/IdentCheck.php:16
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/IdentCheck.php:16
 msgctxt "dhl"
 msgid "Ident-Check"
@@ -2668,6 +3048,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/IdentCheck.php:17
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/IdentCheck.php:17
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/IdentCheck.php:17
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/IdentCheck.php:17
 msgctxt "dhl"
 msgid "Use the DHL Ident-Check service to make sure your parcels are only released to the recipient in person."
@@ -2679,6 +3060,9 @@ msgstr ""
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/IdentCheck.php:38
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/IdentCheck.php:114
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/VisualCheckOfAge.php:38
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/IdentCheck.php:38
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/IdentCheck.php:114
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:38
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/IdentCheck.php:38
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/IdentCheck.php:114
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:38
@@ -2690,6 +3074,8 @@ msgstr ""
 #: src/ShippingProvider/Services/VisualCheckOfAge.php:45
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/IdentCheck.php:45
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/VisualCheckOfAge.php:45
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/IdentCheck.php:45
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:45
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/IdentCheck.php:45
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:45
 msgctxt "dhl"
@@ -2698,6 +3084,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/IdentCheck.php:99
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/IdentCheck.php:99
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/IdentCheck.php:99
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/IdentCheck.php:99
 msgctxt "dhl"
 msgid "Date of Birth"
@@ -2705,6 +3092,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/IdentCheck.php:138
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/IdentCheck.php:138
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/IdentCheck.php:138
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/IdentCheck.php:138
 msgctxt "dhl"
 msgid "There was an error parsing the date of birth for the identity check."
@@ -2712,6 +3100,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/IdentCheck.php:142
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/IdentCheck.php:142
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/IdentCheck.php:142
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/IdentCheck.php:142
 msgctxt "dhl"
 msgid "The minimum age (IdentCheck) supplied is invalid."
@@ -2719,6 +3108,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/IdentCheck.php:146
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/IdentCheck.php:146
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/IdentCheck.php:146
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/IdentCheck.php:146
 msgctxt "dhl"
 msgid "Either a minimum age or a date of birth is need for the ident check."
@@ -2726,6 +3116,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/PreferredDay.php:92
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/PreferredDay.php:92
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/PreferredDay.php:92
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/PreferredDay.php:92
 msgctxt "dhl"
 msgid "Please choose a valid preferred delivery day."
@@ -2733,6 +3124,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/VisualCheckOfAge.php:16
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/VisualCheckOfAge.php:16
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:16
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:16
 msgctxt "dhl"
 msgid "Visual Age check"
@@ -2740,6 +3132,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/VisualCheckOfAge.php:17
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/VisualCheckOfAge.php:17
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:17
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:17
 msgctxt "dhl"
 msgid "Let DHL handle the age check for you at the point of delivery."
@@ -2747,6 +3140,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/VisualCheckOfAge.php:74
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/VisualCheckOfAge.php:74
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:74
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:74
 msgctxt "dhl"
 msgid "Minimum Age"
@@ -2754,6 +3148,7 @@ msgstr ""
 
 #: src/ShippingProvider/Services/VisualCheckOfAge.php:106
 #: packages/dhl-for-shiptastic/src/ShippingProvider/Services/VisualCheckOfAge.php:106
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:106
 #: packages/woocommerce-germanized-dhl/src/ShippingProvider/Services/VisualCheckOfAge.php:106
 msgctxt "dhl"
 msgid "The minimum age (VisualCheckOfAge) supplied is invalid."
@@ -2762,14 +3157,17 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:26
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:24
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:24
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:26
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "DHL Preferred Delivery. Delivered just as you wish."
 msgstr ""
 
 #: templates/checkout/dhl/preferred-services.php:32
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:30
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:30
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:32
 msgctxt "dhl"
 msgid "Choose one of the displayed days as your delivery day for your parcel delivery. Other days are not possible due to delivery processes."
@@ -2777,6 +3175,7 @@ msgstr ""
 
 #: templates/checkout/dhl/preferred-services.php:36
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:34
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:34
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:36
 msgctxt "dhl"
 msgid "There is a surcharge of %1$s %2$s for this service.*"
@@ -2786,6 +3185,8 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:117
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:34
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:115
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:34
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:115
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:36
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:117
 msgctxt "dhl"
@@ -2796,6 +3197,8 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:117
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:34
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:115
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:34
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:115
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:36
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:117
 msgctxt "dhl"
@@ -2804,6 +3207,7 @@ msgstr ""
 
 #: templates/checkout/dhl/preferred-services.php:60
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:58
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:58
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:60
 msgctxt "dhl"
 msgid "Drop-off location or neighbor"
@@ -2812,14 +3216,17 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:66
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:64
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:64
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:66
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl location context"
 msgid "None"
 msgstr ""
 
 #: templates/checkout/dhl/preferred-services.php:71
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:69
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:69
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:71
 msgctxt "dhl"
 msgid "Location"
@@ -2828,8 +3235,10 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:84
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:82
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:82
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:84
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Choose a weather-protected and non-visible place on your property, where we can deposit the parcel in your absence."
 msgstr ""
@@ -2837,8 +3246,10 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:86
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:84
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:84
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:86
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "e.g. Garage, Terrace"
 msgstr ""
@@ -2846,8 +3257,10 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:93
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:91
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:91
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:93
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Determine a person in your immediate neighborhood whom we can hand out your parcel in your absence. This person should live in the same building, directly opposite or next door."
 msgstr ""
@@ -2855,8 +3268,10 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:95
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:93
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:93
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:95
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "First name, last name of neighbor"
 msgstr ""
@@ -2864,8 +3279,10 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:96
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:94
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:94
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:96
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Street, number, postal code, city"
 msgstr ""
@@ -2873,14 +3290,17 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:115
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:113
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:113
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:115
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Delivery to nearby parcel store/locker or to the front door."
 msgstr ""
 
 #: templates/checkout/dhl/preferred-services.php:117
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:115
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:115
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:117
 msgctxt "dhl"
 msgid "(+%1$s %2$s)*"
@@ -2889,8 +3309,10 @@ msgstr ""
 #: templates/checkout/dhl/preferred-services.php:118
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/templates/checkout/dhl/preferred-services.php:116
+#: packages/shiptastic-integration-for-dhl/templates/checkout/dhl/preferred-services.php:116
 #: packages/woocommerce-germanized-dhl/templates/checkout/dhl/preferred-services.php:118
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Delivery usually to the front door."
 msgstr ""
@@ -2906,30 +3328,35 @@ msgstr ""
 
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Choose a delivery day"
 msgstr ""
 
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Choose a preferred location"
 msgstr ""
 
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Shop"
 msgstr ""
 
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Home Delivery"
 msgstr ""
 
 #: packages/woocommerce-germanized-dhl/build/checkout.js:1
 #: packages/dhl-for-shiptastic/build/checkout.js:1
+#: packages/shiptastic-integration-for-dhl/build/checkout.js:1
 msgctxt "dhl"
 msgid "Choose a delivery type"
 msgstr ""
@@ -13365,39 +13792,39 @@ msgctxt "deposit-packaging-type"
 msgid "Disposable"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:395
+#: includes/class-wc-gzd-emails.php:446
 msgid "BCC recipients"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:397
+#: includes/class-wc-gzd-emails.php:448
 msgid "Enter blind-copy recipients (comma separated) for this email."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:471
+#: includes/class-wc-gzd-emails.php:522
 msgid "Confirmation text"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:472
+#: includes/class-wc-gzd-emails.php:523
 msgid "Your order has been received and is now being processed. Your order details are shown below for your reference:"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:473
+#: includes/class-wc-gzd-emails.php:524
 msgid "This text will be inserted within the order confirmation email. Use {order_number}, {site_title} or {order_date} as placeholder."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:623
+#: includes/class-wc-gzd-emails.php:674
 msgid "Your order has been received and is now being processed. Your order details are shown below for your reference."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:672
+#: includes/class-wc-gzd-emails.php:723
 msgid "Someone requested a password reset for your account."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:687
+#: includes/class-wc-gzd-emails.php:738
 msgid "Thanks for creating an account on %s."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:1546
+#: includes/class-wc-gzd-emails.php:1597
 msgctxt "revocation-form"
 msgid "Forward your withdrawal online"
 msgstr ""
@@ -15150,41 +15577,49 @@ msgid "Place order"
 msgstr ""
 
 #: packages/dhl-for-shiptastic/src/Admin/Admin.php:120
+#: packages/shiptastic-integration-for-dhl/src/Admin/Admin.php:120
 msgctxt "dhl"
 msgid "New to DHL in Shiptastic? Learn how to <a href=\"%s\" target=\"_blank\">easily create DHL labels</a> to your shipments."
 msgstr ""
 
 #: packages/dhl-for-shiptastic/src/Api/LabelRest.php:20
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:20
 msgctxt "dhl"
 msgid "DHL Paket Label REST"
 msgstr ""
 
 #: packages/dhl-for-shiptastic/src/Api/LabelSoap.php:30
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:30
 msgctxt "dhl"
 msgid "DHL Label SOAP"
 msgstr ""
 
 #: packages/dhl-for-shiptastic/src/Api/LocationFinder.php:13
+#: packages/shiptastic-integration-for-dhl/src/Api/LocationFinder.php:13
 msgctxt "dhl"
 msgid "DHL LocationFinder"
 msgstr ""
 
 #: packages/dhl-for-shiptastic/src/Api/PaketRest.php:40
+#: packages/shiptastic-integration-for-dhl/src/Api/PaketRest.php:40
 msgctxt "dhl"
 msgid "Your DHL <a href=\"%s\">API credentials</a> seem to be invalid."
 msgstr ""
 
 #: packages/dhl-for-shiptastic/src/Api/ParcelServices.php:13
+#: packages/shiptastic-integration-for-dhl/src/Api/ParcelServices.php:13
 msgctxt "dhl"
 msgid "DHL Paket Parcel Services"
 msgstr ""
 
 #: packages/dhl-for-shiptastic/src/Api/ReturnRest.php:13
+#: packages/shiptastic-integration-for-dhl/src/Api/ReturnRest.php:13
 msgctxt "dhl"
 msgid "DHL Paket Return REST"
 msgstr ""
 
 #: packages/dhl-for-shiptastic/src/ShippingProvider/DHL.php:1177
+#: packages/shiptastic-integration-for-dhl/src/ShippingProvider/DHL.php:1177
 msgctxt "dhl"
 msgid "Allow your international customers to choose between home and closest droppoint delivery."
 msgstr ""
@@ -15455,6 +15890,11 @@ msgstr ""
 #: packages/shiptastic-for-woocommerce/templates/emails/plain/customer-shipment.php:23
 msgctxt "shipments"
 msgid "Hi %s,"
+msgstr ""
+
+#: packages/shiptastic-integration-for-dhl/src/Api/MyAccount.php:10
+msgctxt "dhl"
+msgid "DHL Paket MyAccount"
 msgstr ""
 
 #: packages/woocommerce-eu-tax-helper/src/Helper.php:617

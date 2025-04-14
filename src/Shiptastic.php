@@ -224,14 +224,14 @@ class Shiptastic {
 							'countries_supported' => array( 'DE' ),
 							'is_builtin'          => true,
 							'is_pro'              => false,
-							'extension_name'      => 'dhl-for-shiptastic',
+							'extension_name'      => 'shiptastic-integration-for-dhl',
 						),
 						'deutsche_post' => array(
 							'title'               => _x( 'Deutsche Post', 'shipments', 'woocommerce-germanized' ),
 							'countries_supported' => array( 'DE' ),
 							'is_builtin'          => true,
 							'is_pro'              => false,
-							'extension_name'      => 'dhl-for-shiptastic',
+							'extension_name'      => 'shiptastic-integration-for-dhl',
 						),
 						'dpd'           => array(
 							'title'               => _x( 'DPD', 'shipments', 'woocommerce-germanized' ),

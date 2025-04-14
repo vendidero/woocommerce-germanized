@@ -567,7 +567,7 @@ class PluginsHelper {
 			'trusted-shops-easy-integration-for-woocommerce/trusted-shops-easy-integration-for-woocommerce.php' => esc_html__( 'Trusted Shops', 'woocommerce-germanized' ),
 			'shiptastic-for-woocommerce/shiptastic-for-woocommerce.php' => esc_html__( 'Shiptastic', 'woocommerce-germanized' ),
 			'ups-for-shiptastic/ups-for-shiptastic.php' => esc_html__( 'UPS for Shiptastic', 'woocommerce-germanized' ),
-			'dhl-for-shiptastic/dhl-for-shiptastic.php' => esc_html__( 'DHL for Shiptastic', 'woocommerce-germanized' ),
+			'shiptastic-integration-for-dhl/shiptastic-integration-for-dhl.php' => esc_html__( 'DHL for Shiptastic', 'woocommerce-germanized' ),
 		);
 
 		foreach ( $built_in_plugins as $plugin_slug => $name ) {

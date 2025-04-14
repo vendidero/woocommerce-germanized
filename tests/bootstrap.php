@@ -24,8 +24,8 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	public $wc_tests_dir;
 
 	public $packages = array(
-		'shiptastic-for-woocommerce/shiptastic-for-woocommerce.php' => '\Vendidero\Shiptastic',
-		'dhl-for-shiptastic/dhl-for-shiptastic.php'                 => '\Vendidero\Shiptastic\DHL',
+		'shiptastic-for-woocommerce/shiptastic-for-woocommerce.php'         => '\Vendidero\Shiptastic',
+		'shiptastic-integration-for-dhl/shiptastic-integration-for-dhl.php' => '\Vendidero\Shiptastic\DHL',
 	);
 
 	/**

@@ -28,8 +28,8 @@ class Packages {
 	 * @var array Key is the package name/directory, value is the main package class which handles init.
 	 */
 	protected static $packages = array(
-		'shiptastic-for-woocommerce' => '\\Vendidero\\Shiptastic\\Package',
-		'dhl-for-shiptastic'         => '\\Vendidero\\Shiptastic\\DHL\\Package',
+		'shiptastic-for-woocommerce'     => '\\Vendidero\\Shiptastic\\Package',
+		'shiptastic-integration-for-dhl' => '\\Vendidero\\Shiptastic\\DHL\\Package',
 	);
 
 	/**
