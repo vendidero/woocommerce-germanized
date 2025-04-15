@@ -313,6 +313,7 @@ class WC_GZD_AJAX {
 			wp_send_json( array( 'result' => 'failure' ) );
 		}
 
+		$queue_id = isset( $_POST['queue_id'] ) ? absint( wp_unslash( $_POST['queue_id'] ) ) : 1;
 		$products = (array) wc_clean( wp_unslash( $_POST['products'] ) );
 		$response = array();
 
@@ -346,6 +347,7 @@ class WC_GZD_AJAX {
 
 		wp_send_json(
 			array(
+				'queue_id' => $queue_id,
 				'result'   => 'success',
 				'products' => $response,
 			)

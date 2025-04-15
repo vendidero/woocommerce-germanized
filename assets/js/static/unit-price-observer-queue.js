@@ -12,6 +12,9 @@ window.germanized = window.germanized || {};
         init: function() {
             this.params = wc_gzd_unit_price_observer_queue_params;
             this.queue = {};
+            this.queuesInExecution = {};
+            this.latestQueueInExection = '';
+            this.aborted = {};
             this.timeout = null;
             this.request = null;
         },
@@ -19,20 +22,21 @@ window.germanized = window.germanized || {};
         execute: function() {
             var self = germanized.unit_price_observer_queue,
                 data = [],
-                currentQueue = { ...self.queue };
+                currentQueueId = Date.now() + '';
 
-            self.queue   = {};
-            self.timeout = null;
+            self.queuesInExecution[ currentQueueId ] = { ...self.queue };
+            self.latestQueueInExection = currentQueueId;
+            self.queue = {};
 
             /**
              * Reverse queue
              */
-            Object.keys( currentQueue ).forEach( function( queueKey ) {
+            Object.keys( self.queuesInExecution[ currentQueueId ] ).forEach( function( queueKey ) {
                 data = data.concat( [{
-                    'product_id': currentQueue[ queueKey ].productId,
-                    'price'     : currentQueue[ queueKey ].priceData.price,
-                    'price_sale': currentQueue[ queueKey ].priceData.sale_price,
-                    'quantity'  : currentQueue[ queueKey ].priceData.quantity,
+                    'product_id': self.queuesInExecution[ currentQueueId ][ queueKey ].productId,
+                    'price'     : self.queuesInExecution[ currentQueueId ][ queueKey ].priceData.price,
+                    'price_sale': self.queuesInExecution[ currentQueueId ][ queueKey ].priceData.sale_price,
+                    'quantity'  : self.queuesInExecution[ currentQueueId ][ queueKey ].priceData.quantity,
                     'key'       : queueKey,
                 }] );
             });
@@ -43,60 +47,82 @@ window.germanized = window.germanized || {};
                 data: {
                     'security'  : self.params.refresh_unit_price_nonce,
                     'products'  : data,
+                    'queue_id'  : currentQueueId,
                 },
+                queueId: currentQueueId,
                 success: function( data ) {
+                    var xhrQueueId = this.queueId,
+                        currentQueue = self.queuesInExecution.hasOwnProperty( xhrQueueId ) ? self.queuesInExecution[ xhrQueueId ] : {},
+                        aborted = self.aborted.hasOwnProperty( xhrQueueId ) ? self.aborted[ xhrQueueId ] : {};
+
                     Object.keys( currentQueue ).forEach( function( queueId ) {
-                        var current = currentQueue[ queueId ],
-                            observer = current.observer,
-                            priceData = current.priceData,
-                            priceSelector = current.priceSelector,
-                            isPrimary = current.isPrimary,
-                            unitPrices = self.getUnitPricesFromMap( priceData.unit_price );
+                        if ( ! aborted.hasOwnProperty( queueId ) ) {
+                            var current = currentQueue[ queueId ],
+                                observer = current.observer,
+                                priceData = current.priceData,
+                                priceSelector = current.priceSelector,
+                                isPrimary = current.isPrimary,
+                                unitPrices = self.getUnitPricesFromMap( priceData.unit_price );
 
-                        if ( observer ) {
-                            if ( data.products.hasOwnProperty( queueId ) ) {
-                                var response = data.products[ queueId ];
+                            if ( observer ) {
+                                if ( data.products.hasOwnProperty( queueId ) ) {
+                                    var response = data.products[ queueId ];
 
-                                observer.stopObserver( observer, priceSelector );
+                                    observer.stopObserver( observer, priceSelector );
 
-                                /**
-                                 * Do only adjust unit price in case current product id has not changed
-                                 * in the meantime (e.g. variation change).
-                                 */
-                                if ( parseInt( response.product_id ) === observer.getCurrentProductId( observer ) ) {
-                                    if ( response.hasOwnProperty( 'unit_price_html' ) ) {
-                                        observer.unsetUnitPriceLoading( observer, unitPrices, response.unit_price_html );
+                                    /**
+                                     * Do only adjust unit price in case current product id has not changed
+                                     * in the meantime (e.g. variation change).
+                                     */
+                                    if ( parseInt( response.product_id ) === observer.getCurrentProductId( observer ) ) {
+                                        if ( response.hasOwnProperty( 'unit_price_html' ) ) {
+                                            observer.unsetUnitPriceLoading( observer, unitPrices, response.unit_price_html );
+                                        } else {
+                                            observer.unsetUnitPriceLoading( observer, unitPrices );
+                                        }
                                     } else {
                                         observer.unsetUnitPriceLoading( observer, unitPrices );
                                     }
-                                } else {
-                                    observer.unsetUnitPriceLoading( observer, unitPrices );
-                                }
 
-                                observer.startObserver( observer, priceSelector, isPrimary );
-                            } else {
+                                    observer.startObserver( observer, priceSelector, isPrimary );
+                                } else {
+                                    observer.stopObserver( observer, priceSelector );
+                                    observer.unsetUnitPriceLoading( observer, unitPrices );
+                                    observer.startObserver( observer, priceSelector, isPrimary );
+                                }
+                            }
+                        } else {
+                            delete self.aborted[ xhrQueueId ][ queueId ];
+                        }
+                    });
+
+                    delete self.queuesInExecution[ xhrQueueId ];
+                },
+                error: function() {
+                    var xhrQueueId = this.queueId,
+                        currentQueue = self.queuesInExecution.hasOwnProperty( xhrQueueId ) ? self.queuesInExecution[ xhrQueueId ] : {},
+                        aborted = self.aborted.hasOwnProperty( xhrQueueId ) ? self.aborted[ xhrQueueId ] : {};
+
+                    Object.keys( currentQueue ).forEach( function( queueId ) {
+                        if ( ! aborted.hasOwnProperty( queueId ) ) {
+                            var current = currentQueue[ queueId ],
+                                observer = current.observer,
+                                priceData = current.priceData,
+                                priceSelector = current.priceSelector,
+                                isPrimary = current.isPrimary,
+                                unitPrices = self.getUnitPricesFromMap( priceData.unit_price );
+
+                            if ( observer ) {
                                 observer.stopObserver( observer, priceSelector );
                                 observer.unsetUnitPriceLoading( observer, unitPrices );
                                 observer.startObserver( observer, priceSelector, isPrimary );
                             }
+                        } else {
+                            delete self.aborted[ xhrQueueId ][ queueId ];
                         }
                     });
-                },
-                error: function() {
-                    Object.keys( currentQueue ).forEach( function( queueId ) {
-                        var current = currentQueue[ queueId ],
-                            observer = current.observer,
-                            priceData = current.priceData,
-                            priceSelector = current.priceSelector,
-                            isPrimary = current.isPrimary,
-                            unitPrices = self.getUnitPricesFromMap( priceData.unit_price );
 
-                        if ( observer ) {
-                            observer.stopObserver( observer, priceSelector );
-                            observer.unsetUnitPriceLoading( observer, unitPrices );
-                            observer.startObserver( observer, priceSelector, isPrimary );
-                        }
-                    });
+                    delete self.queuesInExecution[ xhrQueueId ];
                 },
                 dataType: 'json'
             } );
@@ -114,6 +140,65 @@ window.germanized = window.germanized || {};
 
         getQueueKey: function( productId ) {
             return ( productId + '' ).replace( /[^a-zA-Z0-9]/g, '' );
+        },
+
+        getLatestQueueInExecution() {
+            var self = germanized.unit_price_observer_queue;
+
+            return self.queuesInExecution.hasOwnProperty( self.latestQueueInExection ) ? self.queuesInExecution[ self.latestQueueInExection ] : {};
+        },
+
+        exists: function( productId ) {
+            var self = germanized.unit_price_observer_queue,
+                queueKey = self.getQueueKey( productId );
+
+            return self.queue.hasOwnProperty( queueKey ) || self.getLatestQueueInExecution().hasOwnProperty( queueKey );
+        },
+
+        get: function( productId ) {
+            var self = germanized.unit_price_observer_queue,
+                queueKey = self.getQueueKey( productId ),
+                queueInExecution = self.getLatestQueueInExecution().hasOwnProperty( queueKey );
+
+            if ( queueInExecution.hasOwnProperty( queueKey ) ) {
+                return queueInExecution[ queueKey ];
+            } else if ( self.queue.hasOwnProperty( queueKey ) ) {
+                return self.queue[ queueKey ];
+            }
+
+            return false;
+        },
+
+        abort: function( productId ) {
+            var self = germanized.unit_price_observer_queue,
+                queueKey = self.getQueueKey( productId ),
+                latestQueueInExecutionKey = self.latestQueueInExection,
+                latestQueueInExecution = self.queuesInExecution.hasOwnProperty( latestQueueInExecutionKey ) ? self.queuesInExecution[ latestQueueInExecutionKey ] : {};
+
+            if ( latestQueueInExecution.hasOwnProperty( queueKey ) ) {
+                var current = latestQueueInExecution[ queueKey ],
+                    observer = current.observer,
+                    priceData = current.priceData,
+                    priceSelector = current.priceSelector,
+                    isPrimary = current.isPrimary,
+                    unitPrices = self.getUnitPricesFromMap( priceData.unit_price );
+
+                if ( observer ) {
+                    observer.stopObserver( observer, priceSelector );
+                    observer.unsetUnitPriceLoading( observer, unitPrices );
+                    observer.startObserver( observer, priceSelector, isPrimary );
+                }
+
+                if ( ! self.aborted.hasOwnProperty( latestQueueInExecutionKey ) ) {
+                    self.aborted[ latestQueueInExecutionKey ] = {};
+                }
+
+                self.aborted[ latestQueueInExecutionKey ][ queueKey ] = current;
+
+                return true;
+            }
+
+            return false;
         },
 
         add: function( observer, productId, priceData, priceSelector, isPrimary ) {
