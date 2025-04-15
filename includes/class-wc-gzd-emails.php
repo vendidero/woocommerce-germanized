@@ -222,9 +222,20 @@ class WC_GZD_Emails {
 	public function maybe_register_default_email_preview_fallback( $email_classes ) {
 		$is_wc_admin_preview = isset( $_SERVER['REQUEST_URI'] ) ? false !== strpos( wp_unslash( $_SERVER['REQUEST_URI'] ), trailingslashit( rest_get_url_prefix() ) . 'wc-admin-email/' ) : false; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$is_preview_request  = isset( $_GET['preview_woocommerce_mail'] ) || $is_wc_admin_preview; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$type                = isset( $_REQUEST['type'] ) ? wc_clean( wp_unslash( $_REQUEST['type'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-		if ( $is_preview_request && isset( $_GET['type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$type = wc_clean( wp_unslash( $_GET['type'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( $is_preview_request ) {
+			if ( $is_wc_admin_preview ) {
+				$request_body = file_get_contents( 'php://input' );
+
+				if ( ! empty( $request_body ) ) {
+					$request_body = json_decode( $request_body, true );
+
+					if ( ! empty( $request_body['type'] ) ) {
+						$type = wc_clean( wp_unslash( $request_body['type'] ) );
+					}
+				}
+			}
 
 			if ( 'WC_Email_Customer_Processing_Order' === $type ) {
 				if ( file_exists( WC_ABSPATH . '/includes/emails/class-wc-email-customer-processing-order.php' ) ) {
