@@ -73,6 +73,7 @@ class WC_GZD_Order_Helper {
 		add_action( 'woocommerce_checkout_create_order_fee_item', array( $this, 'set_fee_split_tax_meta' ), 10, 4 );
 
 		add_action( 'woocommerce_before_order_object_save', array( $this, 'set_order_version' ), 10 );
+		add_action( 'woocommerce_before_order_object_save', array( $this, 'maybe_patch_prices_including_tax_bug' ), 10 );
 
 		// The woocommerce_before_order_object_save hook might fail in case an order has been created manually
 		add_action( 'woocommerce_new_order', array( $this, 'on_create_order' ), 10 );
@@ -585,6 +586,19 @@ class WC_GZD_Order_Helper {
 				$order->update_meta_data( '_gzd_version', WC_germanized()->version );
 				$order->save();
 			}
+		}
+	}
+
+	/**
+	 * @param WC_Order $order
+	 *
+	 * @see https://github.com/woocommerce/woocommerce/issues/51426
+	 *
+	 * @return void
+	 */
+	public function maybe_patch_prices_including_tax_bug( $order ) {
+		if ( 'admin' === $order->get_created_via() && 'auto-draft' === $order->get_status() ) {
+			$order->set_prices_include_tax( 'yes' === get_option( 'woocommerce_prices_include_tax' ) );
 		}
 	}
 
