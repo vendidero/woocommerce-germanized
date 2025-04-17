@@ -352,11 +352,51 @@ class WC_GZD_Product {
 	}
 
 	public function get_manufacturer_slug( $context = 'view' ) {
-		return $this->get_prop( 'manufacturer_slug', $context );
+		$manufacturer_slug = $this->get_prop( 'manufacturer_slug', $context );
+
+		if ( 'view' === $context && empty( $manufacturer_slug ) && taxonomy_exists( 'product_brand' ) ) {
+			$product_id              = is_a( $this, 'WC_GZD_Product_Variation' ) ? $this->child->get_parent_id() : $this->get_id();
+			$brands                  = wp_get_post_terms( $product_id, 'product_brand', array( 'parent' => 0 ) );
+			$main_brand              = false;
+			$brand_manufacturer_slug = false;
+
+			if ( is_wp_error( $brands ) ) {
+				return $manufacturer_slug;
+			}
+
+			if ( empty( $brands ) ) {
+				$brands = wp_get_post_terms( $product_id, 'product_brand' );
+			}
+
+			if ( ! empty( $brands ) ) {
+				$main_brand = $brands[0];
+
+				if ( 0 === $main_brand->parent ) {
+					$child_brands = wp_get_post_terms( $product_id, 'product_brand', array( 'parent' => $main_brand->term_id ) );
+
+					foreach ( $child_brands as $child_brand ) {
+						if ( get_term_meta( $child_brand->term_id, 'manufacturer', true ) ) {
+							$main_brand = $child_brand;
+							break;
+						}
+					}
+				}
+			}
+
+			$main_brand = apply_filters( 'woocommerce_gzd_product_get_main_brand_for_manufacturer', $main_brand, $this );
+
+			if ( is_a( $main_brand, 'WP_Term' ) ) {
+				if ( ! $brand_manufacturer_slug && ( $m_slug = get_term_meta( $main_brand->term_id, 'manufacturer', true ) ) ) {
+					$manufacturer_slug = $m_slug;
+				}
+			}
+		}
+
+		return $manufacturer_slug;
 	}
 
 	public function has_product_safety_information() {
-		return apply_filters( 'woocommerce_gzd_product_has_safety_information', ( $this->get_safety_attachment_ids() || $this->get_manufacturer() || $this->get_safety_instructions() ) );
+		return apply_filters( 'woocommerce_gzd_product_has_safety_information', ( $this->get_safety_attachment_ids() || $this->get_manufacturer() || $this->get_safety_instructions() ), $this );
 	}
 
 	public function set_manufacturer_slug( $slug ) {

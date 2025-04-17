@@ -867,6 +867,14 @@ class WC_GZD_Admin {
 			wp_enqueue_script( 'wc-gzd-admin-product-variations' );
 		}
 
+		/**
+		 * Enqueue enhanced select within product brands screen
+		 */
+		if ( 'edit-product_brand' === $screen->id ) {
+			wp_enqueue_script( 'woocommerce_admin' );
+			wp_enqueue_script( 'wc-enhanced-select' );
+		}
+
 		if ( function_exists( 'wc_get_screen_ids' ) && in_array( $screen->id, wc_get_screen_ids(), true ) ) {
 			wp_enqueue_script( 'wc-gzd-admin' );
 		}

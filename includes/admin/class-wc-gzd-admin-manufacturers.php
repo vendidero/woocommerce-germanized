@@ -18,6 +18,9 @@ class WC_GZD_Admin_Manufacturers {
 		add_action( 'product_manufacturer_add_form_fields', array( $this, 'add_fields' ) );
 		add_action( 'product_manufacturer_edit_form_fields', array( $this, 'edit_fields' ), 10 );
 
+		add_action( 'product_brand_add_form_fields', array( $this, 'add_brand_fields' ) );
+		add_action( 'product_brand_edit_form_fields', array( $this, 'edit_brand_fields' ), 10 );
+
 		add_action( 'created_term', array( $this, 'save_fields' ), 10, 3 );
 		add_action( 'edit_term', array( $this, 'save_fields' ), 10, 3 );
 
@@ -75,7 +78,57 @@ class WC_GZD_Admin_Manufacturers {
 
 				update_term_meta( $term_id, $field['id'], $field_value );
 			}
+		} elseif ( 'product_brand' === $taxonomy ) {
+			$manufacturer_id = isset( $_POST['manufacturer'] ) ? wc_clean( wp_unslash( $_POST['manufacturer'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+			if ( ! empty( $manufacturer_id ) && ( $manufacturer = wc_gzd_get_manufacturer( $manufacturer_id ) ) ) {
+				update_term_meta( $term_id, 'manufacturer', $manufacturer->get_slug() );
+			} else {
+				delete_term_meta( $term_id, 'manufacturer' );
+			}
 		}
+	}
+
+	public function add_brand_fields() {
+		?>
+		<div class="form-field term-manufacturer-wrap" style="position: relative">
+			<label for="tag-manufacturer"><?php echo esc_html__( 'Manufacturer', 'woocommerce-germanized' ); ?></label>
+
+			<?php
+			WC_Germanized_Meta_Box_Product_Data::instance()->manufacturer_select_field(
+				array(
+					'name'  => 'manufacturer',
+					'id'    => 'tag-manufacturer',
+					'term'  => false,
+					'style' => 'width: 100%;',
+				)
+			);
+			?>
+		</div>
+		<?php
+	}
+
+	public function edit_brand_fields( $term ) {
+		$current_manufacturer_slug = get_term_meta( $term->term_id, 'manufacturer', true );
+		$term                      = ! empty( $current_manufacturer_slug ) ? wc_gzd_get_manufacturer( $current_manufacturer_slug ) : false;
+		?>
+		<tr class="form-field term-select-manufacturer-wrap">
+			<th scope="row" valign="top">
+				<label for="manufacturer"><?php echo esc_html__( 'Manufacturer', 'woocommerce-germanized' ); ?></label>
+			</th>
+			<td>
+				<?php
+				WC_Germanized_Meta_Box_Product_Data::instance()->manufacturer_select_field(
+					array(
+						'name' => 'manufacturer',
+						'id'   => 'manufacturer',
+						'term' => $term,
+					)
+				);
+				?>
+			</td>
+		</tr>
+		<?php
 	}
 
 	public function add_fields() {
