@@ -45,9 +45,6 @@ if [ $COMPOSER_DEV_MODE -eq 0 ]; then
     rm -f ./packages/shiptastic-for-woocommerce/i18n/shiptastic-for-woocommerce.pot
 fi
 
-output 3 "Patching libraries..."
-sed -i '' -e 's/get_class()/__CLASS__/g' ./vendor/baltpeter/internetmarke-php/src/baltpeter/Internetmarke/ApiResult.php
-
 rm -rf ./packages/shiptastic-for-woocommerce/readme.txt
 rm -rf ./packages/shiptastic-for-woocommerce/composer.json
 rm -rf ./packages/shiptastic-for-woocommerce/composer.lock

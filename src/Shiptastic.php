@@ -55,6 +55,7 @@ class Shiptastic {
 		add_action( 'woocommerce_shiptastic_shipment_before_status_change', array( __CLASS__, 'legacy_action_callback' ), 10, 3 );
 		add_action( 'woocommerce_shiptastic_shipment_status_changed', array( __CLASS__, 'legacy_action_callback' ), 10, 4 );
 		add_action( 'woocommerce_shiptastic_shipments_table_custom_column', array( __CLASS__, 'legacy_action_callback' ), 10, 2 );
+		add_action( 'woocommerce_shiptastic_email_shipment_details', array( __CLASS__, 'legacy_action_callback' ), 10, 4 );
 
 		/**
 		 * DHL Hooks
