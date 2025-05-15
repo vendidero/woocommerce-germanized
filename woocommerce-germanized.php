@@ -1193,7 +1193,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		public function get_variation_script_params() {
 			$price_selector = 'p.price';
 
-			if ( is_singular( 'product' ) && function_exists( 'wc_current_theme_is_fse_theme' ) && wc_current_theme_is_fse_theme() && class_exists( '\Automattic\WooCommerce\Blocks\BlockTemplatesController', false ) && class_exists( '\Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils', false ) ) {
+			if ( is_singular( 'product' ) && wc_gzd_current_theme_is_fse_theme() && class_exists( '\Automattic\WooCommerce\Blocks\BlockTemplatesController', false ) && class_exists( '\Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils', false ) ) {
 				try {
 					$instance = \Automattic\WooCommerce\Blocks\Package::container()->get( \Automattic\WooCommerce\Blocks\BlockTemplatesController::class );
 

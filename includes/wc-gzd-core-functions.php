@@ -1773,7 +1773,9 @@ function wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() {
 }
 
 function wc_gzd_current_theme_is_fse_theme() {
-	if ( function_exists( 'wc_current_theme_is_fse_theme' ) ) {
+	if ( function_exists( 'wp_is_block_theme' ) ) {
+		return wp_is_block_theme();
+	} elseif ( function_exists( 'wc_current_theme_is_fse_theme' ) ) {
 		return wc_current_theme_is_fse_theme();
 	} else {
 		return false;

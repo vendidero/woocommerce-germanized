@@ -9,7 +9,7 @@ class CartCheckout {
 	 * @return bool true if the WC cart page is using the Cart block.
 	 */
 	public static function uses_cart_block() {
-		if ( function_exists( 'wc_current_theme_is_fse_theme' ) && wc_current_theme_is_fse_theme() && is_callable( array( '\Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils', 'get_block_templates_from_db' ) ) ) {
+		if ( wc_gzd_current_theme_is_fse_theme() && is_callable( array( '\Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils', 'get_block_templates_from_db' ) ) ) {
 			$templates_from_db = \Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils::get_block_templates_from_db( array( 'cart', 'page-cart' ), 'wp_template' );
 			foreach ( $templates_from_db as $template ) {
 				if ( has_block( 'woocommerce/cart', $template->content ) ) {
@@ -28,7 +28,7 @@ class CartCheckout {
 	 * @return bool true if the WC checkout page is using the Checkout block.
 	 */
 	public static function uses_checkout_block() {
-		if ( function_exists( 'wc_current_theme_is_fse_theme' ) && wc_current_theme_is_fse_theme() && is_callable( array( '\Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils', 'get_block_templates_from_db' ) ) ) {
+		if ( wc_gzd_current_theme_is_fse_theme() && is_callable( array( '\Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils', 'get_block_templates_from_db' ) ) ) {
 			$templates_from_db = \Automattic\WooCommerce\Blocks\Utils\BlockTemplateUtils::get_block_templates_from_db( array( 'checkout', 'page-checkout' ), 'wp_template' );
 			foreach ( $templates_from_db as $template ) {
 				if ( has_block( 'woocommerce/checkout', $template->content ) ) {
