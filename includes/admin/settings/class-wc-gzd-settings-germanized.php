@@ -199,7 +199,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-revocation-generator.php';
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-trusted-shops.php';
 
-		if ( class_exists( '\Vendidero\Shiptastic\Package' ) && \Vendidero\Shiptastic\Package::has_dependencies() ) {
+		if ( class_exists( '\Vendidero\Shiptastic\Package' ) && \Vendidero\Germanized\Packages::load_shipping_package() ) {
 			include_once __DIR__ . '/class-wc-gzd-settings-tab-shiptastic.php';
 		}
 
