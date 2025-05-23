@@ -248,16 +248,16 @@ class WC_GZD_Emails {
 	}
 
 	public function checkout_block_payment_context_confirmation_callback( $context, $payment_result ) {
+		wc_gzd_remove_all_hooks( 'woocommerce_rest_checkout_process_payment_with_context', 1005 );
+
 		$order = $context->order;
 		$this->confirm_order( $order );
-
-		wc_gzd_remove_all_hooks( 'woocommerce_rest_checkout_process_payment_with_context', 1005 );
 	}
 
 	public function checkout_block_no_payment_context_confirmation_callback( $redirect, $order ) {
-		$this->confirm_order( $order );
-
 		wc_gzd_remove_all_hooks( 'woocommerce_get_checkout_order_received_url', 1005 );
+
+		$this->confirm_order( $order );
 
 		return $redirect;
 	}

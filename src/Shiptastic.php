@@ -55,7 +55,11 @@ class Shiptastic {
 		add_action( 'woocommerce_shiptastic_shipment_before_status_change', array( __CLASS__, 'legacy_action_callback' ), 10, 3 );
 		add_action( 'woocommerce_shiptastic_shipment_status_changed', array( __CLASS__, 'legacy_action_callback' ), 10, 4 );
 		add_action( 'woocommerce_shiptastic_shipments_table_custom_column', array( __CLASS__, 'legacy_action_callback' ), 10, 2 );
-		add_action( 'woocommerce_shiptastic_email_shipment_details', array( __CLASS__, 'legacy_action_callback' ), 10, 4 );
+
+		/**
+		 * E-Mail Tracking in legacy templates
+		 */
+		add_action( 'woocommerce_gzd_email_shipment_details', array( __CLASS__, 'shiptastic_action_callback' ), 10, 4 );
 
 		/**
 		 * DHL Hooks
@@ -177,6 +181,12 @@ class Shiptastic {
 		do_action( "{$filter_name}", ...$args );
 	}
 
+	public static function shiptastic_action_callback( ...$args ) {
+		$filter_name = self::get_shiptastic_hook_name( current_filter() );
+
+		do_action( "{$filter_name}", ...$args );
+	}
+
 	protected static function get_legacy_filters_with_prefix() {
 		return array(
 			'woocommerce_shiptastic_init',
@@ -194,6 +204,12 @@ class Shiptastic {
 		} else {
 			$hook = str_replace( 'woocommerce_shiptastic_', 'woocommerce_gzd_', $hook );
 		}
+
+		return $hook;
+	}
+
+	protected static function get_shiptastic_hook_name( $hook ) {
+		$hook = str_replace( 'woocommerce_gzd_', 'woocommerce_shiptastic_', $hook );
 
 		return $hook;
 	}
