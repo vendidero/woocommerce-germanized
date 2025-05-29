@@ -84,9 +84,13 @@ class WC_GZD_Admin_Manufacturers {
 			}
 		} elseif ( 'product_brand' === $taxonomy ) {
 			if ( isset( $_POST['manufacturer'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-				$manufacturer_id = isset( $_POST['manufacturer'] ) ? wc_clean( wp_unslash( $_POST['manufacturer'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$term = isset( $_POST['manufacturer'] ) ? wc_clean( wp_unslash( $_POST['manufacturer'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-				if ( ! empty( $manufacturer_id ) && ( $manufacturer = wc_gzd_get_manufacturer( $manufacturer_id ) ) ) {
+				if ( ! empty( $term ) ) {
+					$term = wc_gzd_get_or_create_product_term_slug( $term, 'product_manufacturer' );
+				}
+
+				if ( ! empty( $term ) && ( $manufacturer = wc_gzd_get_manufacturer( $term ) ) ) {
 					update_term_meta( $term_id, 'manufacturer', $manufacturer->get_slug() );
 				} else {
 					delete_term_meta( $term_id, 'manufacturer' );
