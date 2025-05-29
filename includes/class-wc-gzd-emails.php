@@ -453,13 +453,15 @@ class WC_GZD_Emails {
 		$mails = $mailer->get_emails();
 
 		foreach ( $mails as $mail ) {
-			$mail->form_fields['bcc'] = array(
-				'title'       => __( 'BCC recipients', 'woocommerce-germanized' ),
-				'type'        => 'text',
-				'description' => __( 'Enter blind-copy recipients (comma separated) for this email.', 'woocommerce-germanized' ),
-				'placeholder' => '',
-				'default'     => '',
-			);
+			if ( $mail && isset( $mail->form_fields ) ) {
+				$mail->form_fields['bcc'] = array(
+					'title'       => __( 'BCC recipients', 'woocommerce-germanized' ),
+					'type'        => 'text',
+					'description' => __( 'Enter blind-copy recipients (comma separated) for this email.', 'woocommerce-germanized' ),
+					'placeholder' => '',
+					'default'     => '',
+				);
+			}
 		}
 	}
 
