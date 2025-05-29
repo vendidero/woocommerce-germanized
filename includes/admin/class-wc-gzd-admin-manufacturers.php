@@ -68,6 +68,10 @@ class WC_GZD_Admin_Manufacturers {
 	public function save_fields( $term_id, $tt_id = '', $taxonomy = '' ) {
 		if ( 'product_manufacturer' === $taxonomy ) {
 			foreach ( self::get_fields() as $field_name => $field ) {
+				if ( ! isset( $_POST[ $field['id'] ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+					continue;
+				}
+
 				$field_value = isset( $_POST[ $field['id'] ] ) ? wp_unslash( $_POST[ $field['id'] ] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 				if ( 'textarea' === $field['type'] ) {
@@ -79,12 +83,14 @@ class WC_GZD_Admin_Manufacturers {
 				update_term_meta( $term_id, $field['id'], $field_value );
 			}
 		} elseif ( 'product_brand' === $taxonomy ) {
-			$manufacturer_id = isset( $_POST['manufacturer'] ) ? wc_clean( wp_unslash( $_POST['manufacturer'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			if ( isset( $_POST['manufacturer'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$manufacturer_id = isset( $_POST['manufacturer'] ) ? wc_clean( wp_unslash( $_POST['manufacturer'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-			if ( ! empty( $manufacturer_id ) && ( $manufacturer = wc_gzd_get_manufacturer( $manufacturer_id ) ) ) {
-				update_term_meta( $term_id, 'manufacturer', $manufacturer->get_slug() );
-			} else {
-				delete_term_meta( $term_id, 'manufacturer' );
+				if ( ! empty( $manufacturer_id ) && ( $manufacturer = wc_gzd_get_manufacturer( $manufacturer_id ) ) ) {
+					update_term_meta( $term_id, 'manufacturer', $manufacturer->get_slug() );
+				} else {
+					delete_term_meta( $term_id, 'manufacturer' );
+				}
 			}
 		}
 	}
@@ -93,7 +99,6 @@ class WC_GZD_Admin_Manufacturers {
 		?>
 		<div class="form-field term-manufacturer-wrap" style="position: relative">
 			<label for="tag-manufacturer"><?php echo esc_html__( 'Manufacturer', 'woocommerce-germanized' ); ?></label>
-
 			<?php
 			WC_Germanized_Meta_Box_Product_Data::instance()->manufacturer_select_field(
 				array(
@@ -117,6 +122,7 @@ class WC_GZD_Admin_Manufacturers {
 				<label for="manufacturer"><?php echo esc_html__( 'Manufacturer', 'woocommerce-germanized' ); ?></label>
 			</th>
 			<td>
+				<input type="hidden" name="manufacturer" value="" />
 				<?php
 				WC_Germanized_Meta_Box_Product_Data::instance()->manufacturer_select_field(
 					array(
