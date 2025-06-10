@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.19.10\n"
+"Project-Id-Version: Germanized for WooCommerce 3.19.11\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-28T10:45:03+00:00\n"
+"POT-Creation-Date: 2025-06-10T10:22:36+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 
@@ -471,11 +471,11 @@ msgctxt "dhl"
 msgid "Your Internetmarke <a href=\"%s\">API credentials</a> seem to be invalid or the API access has not yet been approved."
 msgstr ""
 
-#: src/Api/InternetmarkeRest.php:137
+#: src/Api/InternetmarkeRest.php:140
 #: src/Api/LabelRest.php:56
 #: src/Api/LabelSoap.php:378
 #: src/Api/ReturnRest.php:46
-#: packages/shiptastic-integration-for-dhl/src/Api/InternetmarkeRest.php:137
+#: packages/shiptastic-integration-for-dhl/src/Api/InternetmarkeRest.php:140
 #: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:56
 #: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:378
 #: packages/shiptastic-integration-for-dhl/src/Api/ReturnRest.php:46
@@ -483,14 +483,14 @@ msgctxt "dhl"
 msgid "Could not fetch shipment %d."
 msgstr ""
 
-#: src/Api/InternetmarkeRest.php:251
-#: packages/shiptastic-integration-for-dhl/src/Api/InternetmarkeRest.php:251
+#: src/Api/InternetmarkeRest.php:256
+#: packages/shiptastic-integration-for-dhl/src/Api/InternetmarkeRest.php:256
 msgctxt "dhl"
 msgid "Error while downloading the PDF stamp."
 msgstr ""
 
-#: src/Api/InternetmarkeRest.php:258
-#: packages/shiptastic-integration-for-dhl/src/Api/InternetmarkeRest.php:258
+#: src/Api/InternetmarkeRest.php:263
+#: packages/shiptastic-integration-for-dhl/src/Api/InternetmarkeRest.php:263
 msgctxt "dhl"
 msgid "Invalid stamp response."
 msgstr ""
@@ -533,25 +533,25 @@ msgstr ""
 
 #: src/Api/LabelRest.php:562
 #: src/Api/LabelSoap.php:300
-#: src/Api/ReturnRest.php:191
+#: src/Api/ReturnRest.php:190
 #: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:562
 #: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:300
-#: packages/shiptastic-integration-for-dhl/src/Api/ReturnRest.php:191
+#: packages/shiptastic-integration-for-dhl/src/Api/ReturnRest.php:190
 msgctxt "dhl"
 msgid "Error while creating and uploading the label"
 msgstr ""
 
-#: src/Api/LabelRest.php:698
+#: src/Api/LabelRest.php:696
 #: src/Api/LabelSoap.php:114
-#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:698
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:696
 #: packages/shiptastic-integration-for-dhl/src/Api/LabelSoap.php:114
 msgctxt "dhl"
 msgid "Your DHL API credentials seem to be invalid."
 msgstr ""
 
-#: src/Api/LabelRest.php:703
+#: src/Api/LabelRest.php:701
 #: src/Api/MyAccount.php:41
-#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:703
+#: packages/shiptastic-integration-for-dhl/src/Api/LabelRest.php:701
 #: packages/shiptastic-integration-for-dhl/src/Api/MyAccount.php:41
 msgctxt "dhl"
 msgid "Unknown DHL API error."
@@ -677,8 +677,8 @@ msgctxt "dhl"
 msgid "Your DHL <a href=\"%s\">API credentials</a> seem to be invalid."
 msgstr ""
 
-#: src/Api/PaketRest.php:79
-#: packages/shiptastic-integration-for-dhl/src/Api/PaketRest.php:79
+#: src/Api/PaketRest.php:78
+#: packages/shiptastic-integration-for-dhl/src/Api/PaketRest.php:78
 msgctxt "dhl"
 msgid "POST error or timeout occurred. Please try again later."
 msgstr ""
@@ -4281,9 +4281,9 @@ msgid "Confirm open return requests"
 msgstr ""
 
 #: src/Admin/Settings.php:27
-#: src/Admin/Tabs/Tabs.php:15
+#: src/Admin/Tabs/Tabs.php:16
 #: packages/shiptastic-for-woocommerce/src/Admin/Settings.php:27
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/Tabs.php:15
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/Tabs.php:16
 msgctxt "shipments-settings-page-title"
 msgid "Shiptastic"
 msgstr ""
@@ -4980,14 +4980,14 @@ msgctxt "shipments-help-url"
 msgid "https://vendidero.com/doc/shiptastic/manage-shipping-service-providers"
 msgstr ""
 
-#: src/Admin/Tabs/Tabs.php:49
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/Tabs.php:49
+#: src/Admin/Tabs/Tabs.php:50
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/Tabs.php:50
 msgctxt "shipments-help-url"
 msgid "https://vendidero.com/doc/shiptastic/home-shiptastic"
 msgstr ""
 
-#: src/Admin/Tabs/Tabs.php:49
-#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/Tabs.php:49
+#: src/Admin/Tabs/Tabs.php:50
+#: packages/shiptastic-for-woocommerce/src/Admin/Tabs/Tabs.php:50
 msgctxt "shipments"
 msgid "Documentation"
 msgstr ""
@@ -5239,14 +5239,14 @@ msgctxt "shipments"
 msgid "Pickup location customer number"
 msgstr ""
 
-#: src/API/REST.php:130
-#: packages/shiptastic-for-woocommerce/src/API/REST.php:130
+#: src/API/REST.php:144
+#: packages/shiptastic-for-woocommerce/src/API/REST.php:144
 msgctxt "shipments"
 msgid "Error while trying to perform REST request to %s"
 msgstr ""
 
-#: src/API/REST.php:155
-#: packages/shiptastic-for-woocommerce/src/API/REST.php:155
+#: src/API/REST.php:169
+#: packages/shiptastic-for-woocommerce/src/API/REST.php:169
 msgctxt "shipments"
 msgid "There was an unknown error calling the API."
 msgstr ""
@@ -7701,6 +7701,14 @@ msgstr ""
 #: packages/shiptastic-for-woocommerce/templates/emails/email-shipment-address.php:26
 #: packages/shiptastic-for-woocommerce/templates/emails/plain/email-shipment-address.php:18
 msgctxt "shipments"
+msgid "Return goes to:"
+msgstr ""
+
+#: templates/emails/email-shipment-address.php:26
+#: templates/emails/plain/email-shipment-address.php:18
+#: packages/shiptastic-for-woocommerce/templates/emails/email-shipment-address.php:26
+#: packages/shiptastic-for-woocommerce/templates/emails/plain/email-shipment-address.php:18
+msgctxt "shipments"
 msgid "Shipment goes to:"
 msgstr ""
 
@@ -8162,8 +8170,8 @@ msgstr ""
 msgid "EU responsible person"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin-manufacturers.php:95
-#: includes/admin/class-wc-gzd-admin-manufacturers.php:117
+#: includes/admin/class-wc-gzd-admin-manufacturers.php:105
+#: includes/admin/class-wc-gzd-admin-manufacturers.php:126
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:429
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:219
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:342
@@ -11840,39 +11848,39 @@ msgctxt "deposit-packaging-type"
 msgid "Disposable"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:457
+#: includes/class-wc-gzd-emails.php:458
 msgid "BCC recipients"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:459
+#: includes/class-wc-gzd-emails.php:460
 msgid "Enter blind-copy recipients (comma separated) for this email."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:533
+#: includes/class-wc-gzd-emails.php:535
 msgid "Confirmation text"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:534
+#: includes/class-wc-gzd-emails.php:536
 msgid "Your order has been received and is now being processed. Your order details are shown below for your reference:"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:535
+#: includes/class-wc-gzd-emails.php:537
 msgid "This text will be inserted within the order confirmation email. Use {order_number}, {site_title} or {order_date} as placeholder."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:685
+#: includes/class-wc-gzd-emails.php:707
 msgid "Your order has been received and is now being processed. Your order details are shown below for your reference."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:734
+#: includes/class-wc-gzd-emails.php:756
 msgid "Someone requested a password reset for your account."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:749
+#: includes/class-wc-gzd-emails.php:771
 msgid "Thanks for creating an account on %s."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:1608
+#: includes/class-wc-gzd-emails.php:1630
 msgctxt "revocation-form"
 msgid "Forward your withdrawal online"
 msgstr ""
@@ -13919,27 +13927,27 @@ msgstr ""
 msgid "Germanized for WooCommerce: %s"
 msgstr ""
 
-#: src/Shiptastic.php:224
+#: src/Shiptastic.php:240
 msgctxt "shipments"
 msgid "DHL"
 msgstr ""
 
-#: src/Shiptastic.php:231
+#: src/Shiptastic.php:247
 msgctxt "shipments"
 msgid "Deutsche Post"
 msgstr ""
 
-#: src/Shiptastic.php:238
+#: src/Shiptastic.php:254
 msgctxt "shipments"
 msgid "DPD"
 msgstr ""
 
-#: src/Shiptastic.php:246
+#: src/Shiptastic.php:262
 msgctxt "shipments"
 msgid "GLS"
 msgstr ""
 
-#: src/Shiptastic.php:254
+#: src/Shiptastic.php:270
 msgctxt "shipments"
 msgid "Hermes"
 msgstr ""

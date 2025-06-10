@@ -1222,7 +1222,7 @@ class WC_GZD_Checkout {
 		if ( wc_gzd_enable_additional_costs_split_tax_calculation() || wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
 			foreach ( $rates as $key => $rate ) {
 				$original_taxes = $rate->get_taxes();
-				$original_cost  = $rate->get_cost();
+				$original_cost  = (float) $rate->get_cost();
 				$rate_has_tax   = $rate->get_shipping_tax() > 0;
 
 				/**
@@ -1232,7 +1232,7 @@ class WC_GZD_Checkout {
 				 * Store the original shipping costs (before removing tax) within the object.
 				 */
 				if ( isset( $rate->original_cost ) ) {
-					$original_cost = $rate->original_cost;
+					$original_cost = (float) $rate->original_cost;
 				} else {
 					$rate->original_cost = $original_cost;
 				}

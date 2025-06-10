@@ -177,6 +177,10 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 	public function add_body_classes( $classes ) {
 		if ( $this->is_active() ) {
 			$classes = $classes . ' wc-gzd-settings';
+
+			if ( \Vendidero\Germanized\PluginsHelper::compare_versions( \Vendidero\Germanized\PluginsHelper::get_plugin_version( 'woocommerce' ), '9.9.0', '>=' ) ) {
+				$classes = $classes . ' wc-gzd-settings-modern-nav';
+			}
 		}
 
 		return $classes;

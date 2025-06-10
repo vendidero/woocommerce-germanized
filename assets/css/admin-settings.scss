@@ -9,6 +9,17 @@
     }
   }
 
+  &.wc-gzd-settings-modern-nav {
+    .nav-tab-wrapper {
+      a.nav-tab[href*="tab=germanized"] {
+        border-bottom: 2px solid var(--wp-admin-theme-color, #3858e9);
+        color: #070707;
+        background: 0 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+
   p.tab-description {
 
   }
