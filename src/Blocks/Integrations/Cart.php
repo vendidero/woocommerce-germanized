@@ -47,6 +47,13 @@ class Cart implements IntegrationInterface {
 			wp_deregister_script( $handle );
 		}
 
+		if ( wc_gzd_is_small_business() && apply_filters( 'woocommerce_gzd_small_business_show_total_vat_notice', false ) ) {
+			$translated = __( 'incl. VAT', 'woocommerce-germanized' );
+			$custom_css = '.wc-block-components-totals-footer-item .wc-block-components-totals-item__label::after { content: " (' . esc_html( $translated ) . ')"; font-size: .6em; font-weight: normal; }';
+
+			wp_add_inline_style( 'wc-gzd-blocks-cart-frontend', $custom_css );
+		}
+
 		add_action(
 			'woocommerce_blocks_enqueue_cart_block_scripts_after',
 			function () {
@@ -94,6 +101,9 @@ class Cart implements IntegrationInterface {
 	 * @return array
 	 */
 	public function get_script_data() {
+		$this->assets->register_data( 'isSmallBusiness', wc_gzd_is_small_business() );
+		$this->assets->register_data( 'smallBusinessNotice', wc_get_template_html( 'global/small-business-info.php' ) );
+
 		return array();
 	}
 }
