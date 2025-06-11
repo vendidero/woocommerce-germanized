@@ -1219,6 +1219,10 @@ class WC_GZD_Checkout {
 	 * @return mixed
 	 */
 	public function adjust_shipping_taxes( $rates, $package ) {
+		if ( ! wc_tax_enabled() ) {
+			return $rates;
+		}
+
 		if ( wc_gzd_enable_additional_costs_split_tax_calculation() || wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
 			foreach ( $rates as $key => $rate ) {
 				$original_taxes = $rate->get_taxes();
