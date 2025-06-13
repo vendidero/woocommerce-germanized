@@ -135,7 +135,8 @@ final class Checkout {
 				 */
 				if ( 'woocommerce/checkout' === $block['blockName'] ) {
 					if ( ! apply_filters( 'woocommerce_gzd_disable_checkout_block_adjustments', false ) ) {
-						$content = str_replace( 'wp-block-woocommerce-checkout ', 'wp-block-woocommerce-checkout wc-gzd-checkout ', $content );
+						$content               = str_replace( 'wp-block-woocommerce-checkout ', 'wp-block-woocommerce-checkout wc-gzd-checkout ', $content );
+						$has_custom_gzd_submit = false;
 
 						preg_match( '/<\/div>(\s*)<div[^<]*?data-block-name="woocommerce\/checkout-fields-block"/', $content, $matches );
 
@@ -143,19 +144,29 @@ final class Checkout {
 						 * Latest Woo Checkout Block version inserts the total blocks before checkout fields
 						 */
 						if ( ! empty( $matches ) ) {
-							$content     = str_replace( 'wc-gzd-checkout ', 'wc-gzd-checkout wc-gzd-checkout-v2 ', $content );
-							$replacement = '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" class="wp-block-woocommerce-checkout-actions-block"></div></div>' . $matches[0];
-							$content     = preg_replace( '/<\/div>(\s*)<div[^<]*?data-block-name="woocommerce\/checkout-fields-block"/', $replacement, $content );
+							$content               = str_replace( 'wc-gzd-checkout ', 'wc-gzd-checkout wc-gzd-checkout-v2 ', $content );
+							$replacement           = '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" class="wp-block-woocommerce-checkout-actions-block"></div></div>' . $matches[0];
+							$content               = preg_replace( '/<\/div>(\s*)<div[^<]*?data-block-name="woocommerce\/checkout-fields-block"/', $replacement, $content );
+							$has_custom_gzd_submit = true;
 						} else {
 							/**
-							 * Older Woo versions used to insert the total block as last item
+							 * Older Woo versions used to insert the total block as last item.
+							 * Allow additional, optional whitespace at the end of the block content.
 							 */
-							preg_match( '/<\/div>(\s*)<\/div>$/', $content, $matches );
+							preg_match( '/<\/div>(\s*)<\/div>(\s*)$/', $content, $matches );
 
 							if ( ! empty( $matches ) ) {
-								$replacement = '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" class="wp-block-woocommerce-checkout-actions-block"></div></div></div></div>';
-								$content     = preg_replace( '/<\/div>(\s*)<\/div>$/', $replacement, $content );
+								$replacement           = '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" class="wp-block-woocommerce-checkout-actions-block"></div></div></div></div>';
+								$content               = preg_replace( '/<\/div>(\s*)<\/div>(\s*)$/', $replacement, $content );
+								$has_custom_gzd_submit = true;
 							}
+						}
+
+						/**
+						 * Do only hide Woo submit button in case we've successfully placed the custom button.
+						 */
+						if ( $has_custom_gzd_submit ) {
+							$content = str_replace( 'wc-gzd-checkout ', 'wc-gzd-checkout wc-gzd-checkout-has-custom-submit ', $content );
 						}
 					}
 
@@ -229,17 +240,6 @@ final class Checkout {
 					$checkboxes = isset( $data['checkboxes'] ) ? (array) wc_clean( wp_unslash( $data['checkboxes'] ) ) : array();
 
 					$this->parse_checkboxes( $checkboxes );
-				},
-			)
-		);
-
-		woocommerce_store_api_register_update_callback(
-			array(
-				'namespace' => 'woocommerce-germanized-set-payment-method',
-				'callback'  => function ( $data ) {
-					$active_method = isset( $data['active_method'] ) ? wc_clean( wp_unslash( $data['active_method'] ) ) : '';
-
-					WC()->session->set( 'wc_gzd_blocks_chosen_payment_method', $active_method );
 				},
 			)
 		);

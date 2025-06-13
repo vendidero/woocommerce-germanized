@@ -294,7 +294,7 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 	protected function get_checkout_settings() {
 		$shipping_methods_options = WC_GZD_Admin::instance()->get_shipping_method_instances_options();
 
-		return array(
+		$settings = array(
 			array(
 				'title' => '',
 				'type'  => 'title',
@@ -356,12 +356,44 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				),
 				'desc'              => '<div class="wc-gzd-additional-desc">' . __( 'Optionally choose methods which should be excluded from hiding when free shipping is available (e.g. express shipping options).', 'woocommerce-germanized' ) . '</div>',
 			),
-
-			array(
-				'type' => 'sectionend',
-				'id'   => 'checkout_options',
-			),
 		);
+
+		if ( WC_GZD_Payment_Gateways::instance()->enable_legacy_cod_fee() ) {
+			$settings = array_merge(
+				$settings,
+				array(
+					array(
+						'title'   => sprintf( __( 'COD fee (%s)', 'woocommerce-germanized' ), get_woocommerce_currency_symbol() ),
+						'id'      => 'woocommerce_gzd_checkout_cod_gateway_fee',
+						'type'    => 'text',
+						'class'   => 'wc_input_decimal',
+						'css'     => 'max-width: 150px;',
+						'default' => '',
+					),
+					array(
+						'title'   => sprintf( __( 'COD forwarding fee (%s)', 'woocommerce-germanized' ), get_woocommerce_currency_symbol() ),
+						'id'      => 'woocommerce_gzd_checkout_cod_gateway_forwarding_fee',
+						'type'    => 'text',
+						'desc'    => __( 'Forwarding fee will be charged by the transport agent in addition to the cash of delivery fee e.g. DHL - tax free.', 'woocommerce-germanized' ),
+						'class'   => 'wc_input_decimal',
+						'css'     => 'max-width: 150px;',
+						'default' => '',
+					),
+				)
+			);
+		}
+
+		$settings = array_merge(
+			$settings,
+			array(
+				array(
+					'type' => 'sectionend',
+					'id'   => 'checkout_options',
+				),
+			)
+		);
+
+		return $settings;
 	}
 
 	protected function get_shop_settings() {

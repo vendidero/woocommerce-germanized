@@ -349,6 +349,8 @@ class WC_GZD_Order_Helper {
 			}
 		}
 
+		$item_has_taxes = $item->get_total_tax() > 0;
+
 		if ( $order = $item->get_order() ) {
 			$item->delete_meta_data( '_split_taxes' );
 			$item->delete_meta_data( '_tax_shares' );
@@ -394,6 +396,12 @@ class WC_GZD_Order_Helper {
 						$taxes = $taxes + $tax_class_taxes;
 					}
 
+					if ( ! $item_has_taxes ) {
+						foreach ( $taxes as $rate_id => $total ) {
+							$taxes[ $rate_id ] = 0.0;
+						}
+					}
+
 					$item->set_taxes( array( 'total' => $taxes ) );
 					$item->update_meta_data( '_split_taxes', $taxable_amounts );
 					$item->update_meta_data( '_tax_shares', $tax_share );
@@ -427,6 +435,12 @@ class WC_GZD_Order_Helper {
 					$taxable_amount  = $item_total;
 					$tax_class_taxes = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
 					$taxes           = $taxes + $tax_class_taxes;
+
+					if ( ! $item_has_taxes ) {
+						foreach ( $taxes as $rate_id => $total ) {
+							$taxes[ $rate_id ] = 0.0;
+						}
+					}
 
 					$item->set_taxes( array( 'total' => $taxes ) );
 

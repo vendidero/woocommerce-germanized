@@ -429,7 +429,6 @@ class WC_GZD_Shortcodes {
 	 * @return string
 	 */
 	public static function payment_methods_info( $atts ) {
-
 		WC_GZD_Payment_Gateways::instance()->manipulate_gateways();
 
 		ob_start();

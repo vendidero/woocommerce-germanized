@@ -26,12 +26,6 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	public function __construct() {
-		// Make sure fields are inited before being saved
-		add_action( 'woocommerce_settings_save_checkout', array( $this, 'save_fields' ), 5 );
-
-		// Init gateway fields
-		add_action( 'woocommerce_settings_checkout', array( $this, 'init_fields' ), 0 );
-
 		// Use a lower priority to prevent infinite loops with gateway plugins which use the same hook to detect availability
 		add_action( 'woocommerce_after_calculate_totals', array( $this, 'checkout' ), 5 );
 
@@ -88,13 +82,16 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	public function save_fields() {
-		$this->init_fields();
+		wc_deprecated_function( 'WC_GZD_Payment_Gateways::save_fields', '3.19.12' );
 	}
 
 	/**
 	 * Set default order button text instead of the button text defined by each payment gateway.
-	 * Can be overriden by setting force_order_button_text within payment gateway class
-	 * Manipulate payment gateway description if has a fee and init gateway title filter
+	 * Can be overridden by setting force_order_button_text within payment gateway class
+	 * Manipulate payment gateway description if has a fee and init gateway title filter.
+	 *
+	 * This doesn't work for the block-based checkout as (grrr) the plain options, e.g. woocommerce_bacs_settings are loaded
+	 * via get_option. @see Automattic\WooCommerce\Blocks\Payments\Integrations\CashOnDelivery
 	 */
 	public function checkout() {
 		if ( is_admin() ) {
@@ -105,17 +102,7 @@ class WC_GZD_Payment_Gateways {
 	}
 
 	public function gateway_supports_fees( $id ) {
-		/**
-		 * Filter to adjust gateways supporting fees.
-		 *
-		 * By default only the Cash on delivery gateway supports the Germanized payment gateway fee feature.
-		 *
-		 * @param array[string] $gateway Array of gateway ids.
-		 *
-		 * @since 2.0.0
-		 *
-		 */
-		return in_array( $id, apply_filters( 'woocommerce_gzd_fee_supporting_gateways', array( 'cod' ) ), true ) ? true : false;
+		return in_array( $id, array( 'cod' ), true ) ? true : false;
 	}
 
 	protected function maybe_force_gateway_button_text( $gateway ) {
@@ -153,12 +140,12 @@ class WC_GZD_Payment_Gateways {
 			$this->maybe_set_gateway_data( $gateway );
 			$this->maybe_force_gateway_button_text( $gateway );
 
-			if ( $this->gateway_supports_fees( $gateway->id ) && $gateway->get_option( 'fee' ) ) {
+			if ( $this->gateway_supports_fees( $gateway->id ) && $this->get_cod_fee() ) {
 				$gateway_description = $this->gateway_data[ $gateway->id ]['description'];
-				$desc                = sprintf( __( '%s payment charge', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'fee' ) ) ) . '.';
+				$desc                = sprintf( __( '%s payment charge', 'woocommerce-germanized' ), wc_price( $this->get_cod_fee() ) ) . '.';
 
-				if ( $gateway->get_option( 'forwarding_fee' ) ) {
-					$desc .= ' ' . sprintf( __( 'Plus %s forwarding fee (charged by the transport agent)', 'woocommerce-germanized' ), wc_price( $gateway->get_option( 'forwarding_fee' ) ) ) . '.';
+				if ( $this->get_cod_forwarding_fee() ) {
+					$desc .= ' ' . sprintf( __( 'Plus %s forwarding fee (charged by the transport agent)', 'woocommerce-germanized' ), wc_price( $this->get_cod_forwarding_fee() ) ) . '.';
 				}
 
 				/**
@@ -178,7 +165,6 @@ class WC_GZD_Payment_Gateways {
 
 	private function maybe_set_gateway_data( $gateway ) {
 		if ( ! isset( $this->gateway_data[ $gateway->id ] ) ) {
-
 			$this->gateway_data[ $gateway->id ] = array(
 				'title'       => $gateway->title,
 				'description' => $gateway->description,
@@ -186,95 +172,73 @@ class WC_GZD_Payment_Gateways {
 		}
 	}
 
-	/**
-	 * Dynamically set filter to show additional fields
-	 */
 	public function init_fields() {
-		$gateways = WC()->payment_gateways()->payment_gateways();
-
-		if ( ! empty( $gateways ) ) {
-			foreach ( $gateways as $key => $gateway ) {
-
-				if ( ! $this->gateway_supports_fees( $gateway->id ) ) {
-					continue;
-				}
-
-				add_filter( 'woocommerce_settings_api_form_fields_' . $gateway->id, array( $this, 'set_fields' ) );
-			}
-		}
+		wc_deprecated_function( 'WC_GZD_Payment_Gateways::save_fields', '3.19.12' );
 	}
 
 	/**
-	 * Set additional payment gateway admin fields
+	 * @note: No need to use a separate handling to retrieve the current payment gateway as
+	 * Woo block-based checkout updates the session too when changing the payment gateway (as of Woo 9.9).
 	 *
-	 * @param array $fields
+	 * @return string
 	 */
-	public function set_fields( $fields ) {
-		$gateway = isset( $_GET['section'] ) ? wc_clean( wp_unslash( $_GET['section'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-
-		$fields['fee'] = array(
-			'title'       => __( 'Fee', 'woocommerce-germanized' ),
-			'type'        => 'decimal',
-			'description' => __( 'This fee is being added if customer selects payment method within checkout.', 'woocommerce-germanized' ),
-			'default'     => 0,
-			'desc_tip'    => true,
-		);
-
-		$fields['fee_is_taxable'] = array(
-			'title'   => __( 'Fee is taxable?', 'woocommerce-germanized' ),
-			'type'    => 'checkbox',
-			'label'   => __( 'Check if fee is taxable.', 'woocommerce-germanized' ),
-			'default' => 'no',
-		);
-
-		if ( 'wc_gateway_cod' === $gateway || 'cod' === $gateway ) {
-			$fields['forwarding_fee'] = array(
-				'title'       => __( 'Forwarding Fee', 'woocommerce-germanized' ),
-				'type'        => 'decimal',
-				'desc_tip'    => true,
-				'description' => __( 'Forwarding fee will be charged by the transport agent in addition to the cash of delivery fee e.g. DHL - tax free.', 'woocommerce-germanized' ),
-				'default'     => 0,
-			);
-		}
-
-		return $fields;
-	}
-
 	public function get_current_gateway() {
-		$current_gateway    = WC()->session ? WC()->session->get( 'chosen_payment_method' ) : '';
-		$has_block_checkout = \Vendidero\Germanized\Utilities\CartCheckout::uses_checkout_block() || WC()->is_rest_api_request();
-
-		if ( $has_block_checkout ) {
-			$current_gateway = WC()->session ? WC()->session->get( 'wc_gzd_blocks_chosen_payment_method', '' ) : '';
-		}
+		$current_gateway = WC()->session ? WC()->session->get( 'chosen_payment_method' ) : '';
 
 		return $current_gateway;
 	}
 
+	public function enable_legacy_cod_fee() {
+		return apply_filters( 'woocommerce_gzd_enable_legacy_cod_fee', 'yes' === get_option( 'woocommerce_gzd_has_legacy_cod_fee', 'no' ) );
+	}
+
 	/**
-	 * Update fee for cart if feeable gateway has been selected as payment method
+	 * Update fee for cart if gateway has been selected as payment method
 	 */
 	public function init_fee() {
-		$gateways        = WC()->payment_gateways()->get_available_payment_gateways();
 		$current_gateway = $this->get_current_gateway();
 
-		if ( ! $current_gateway || ! isset( $gateways[ $current_gateway ] ) ) {
+		if ( ! $current_gateway || ! $this->enable_legacy_cod_fee() ) {
 			return;
 		}
 
-		$gateway = $gateways[ $current_gateway ];
-
-		if ( 'yes' !== $gateway->enabled ) {
+		if ( ! $this->gateway_supports_fees( $current_gateway ) ) {
 			return;
 		}
 
-		if ( ! $this->gateway_supports_fees( $gateway->id ) ) {
-			return;
+		if ( $fee = $this->get_cod_fee() ) {
+			WC()->cart->add_fee( __( 'Payment charge', 'woocommerce-germanized' ), $fee, true );
+		}
+	}
+
+	/**
+	 * @return float
+	 */
+	public function get_cod_fee() {
+		$fee = get_option( 'woocommerce_gzd_checkout_cod_gateway_fee', '' );
+
+		if ( ! empty( $fee ) ) {
+			$fee = (float) wc_format_decimal( $fee );
+		} else {
+			$fee = 0.0;
 		}
 
-		if ( $gateway->get_option( 'fee' ) ) {
-			$this->set_fee( $gateway );
+		return $fee;
+	}
+
+	/**
+	 * @return float
+	 */
+	public function get_cod_forwarding_fee() {
+		$fee = get_option( 'woocommerce_gzd_checkout_cod_gateway_forwarding_fee', '' );
+
+		if ( ! empty( $fee ) ) {
+			$fee = (float) wc_format_decimal( $fee );
+		} else {
+			$fee = 0.0;
 		}
+
+		return $fee;
 	}
 
 	/**
@@ -283,10 +247,7 @@ class WC_GZD_Payment_Gateways {
 	 * @param object $gateway
 	 */
 	public function set_fee( $gateway ) {
-		$is_taxable = ( ( 'no' === $gateway->get_option( 'fee_is_taxable', 'no' ) || get_option( 'woocommerce_calc_taxes' ) !== 'yes' ) ? false : true );
-		$fee        = $gateway->get_option( 'fee' );
-
-		WC()->cart->add_fee( __( 'Payment charge', 'woocommerce-germanized' ), $fee, $is_taxable );
+		wc_deprecated_function( 'WC_GZD_Payment_Gateways::save_fields', '3.19.12' );
 	}
 }
 

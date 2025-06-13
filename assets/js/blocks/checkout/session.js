@@ -1,1 +1,0 @@
-import './checkout-session/set-payment-method';

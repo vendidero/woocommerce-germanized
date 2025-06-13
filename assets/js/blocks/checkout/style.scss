@@ -1,10 +1,12 @@
 @import '../cart-checkout/items';
 
 .wc-gzd-checkout {
-  .wp-block-woocommerce-checkout-fields-block {
-     .wc-block-checkout__actions {
-       display: none;
-     }
+  &.wc-gzd-checkout-has-custom-submit {
+    .wp-block-woocommerce-checkout-fields-block {
+      .wc-block-checkout__actions {
+        display: none;
+      }
+    }
   }
 
   .wc-block-components-totals-wrapper {
