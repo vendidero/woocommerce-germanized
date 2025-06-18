@@ -133,6 +133,25 @@ class WC_GZD_Order_Helper {
 				2
 			);
 
+			/**
+			 * In checkout-block context Woo does only create a draft order which is
+			 * not stored after tax calculation. The issue is that the tax (re-)calculation logic
+			 * does only work if a valid order already exists, e.g. WC_Order_Item_Shipping::get_order() works.
+			 * Use this tweak to make sure the order exists before actually calculating taxes.
+			 *
+			 * @see \Automattic\WooCommerce\StoreApi\Utilities\OrderController::update_order_from_cart()
+			 */
+			add_action(
+				'woocommerce_order_before_calculate_taxes',
+				function ( $args, $order ) {
+					if ( 'checkout-draft' === $order->get_status() && ! $order->get_id() ) {
+						$order->save();
+					}
+				},
+				10,
+				2
+			);
+
 			add_action( 'woocommerce_order_item_shipping_after_calculate_taxes', array( $this, 'adjust_additional_costs_item_taxes' ), 10, 2 );
 			add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array( $this, 'adjust_additional_costs_item_taxes' ), 10, 2 );
 			add_action( 'woocommerce_order_item_after_calculate_taxes', array( $this, 'adjust_additional_costs_item_taxes' ), 10, 2 );
