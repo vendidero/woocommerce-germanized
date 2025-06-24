@@ -12,11 +12,14 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.0.0
+ * @version 3.19.12
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
+$watt_min             = wc_gzd_get_product( $product )->get_device_charging_watt_min();
+$watt_max             = wc_gzd_get_product( $product )->get_device_charging_watt_max();
+$min_max_has_decimals = strstr( $watt_min . $watt_max, wc_get_price_decimal_separator() );
 ?>
 <svg
 	xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	viewBox="0 0 150 188"
 	class="power-supply-icon power-supply-charge-icon"
 >
-	<text x="50%" y="100" class="power-supply-min-max-watt"><?php echo esc_html( wc_gzd_get_product( $product )->get_device_charging_watt_min() ); ?> - <?php echo esc_html( wc_gzd_get_product( $product )->get_device_charging_watt_max() ); ?></text>
+	<text x="50%" y="100" class="power-supply-min-max-watt <?php echo esc_attr( $min_max_has_decimals ? 'min-max-watt-has-decimals' : '' ); ?>"><?php echo esc_html( wc_gzd_get_product( $product )->get_device_charging_watt_min() ); ?> - <?php echo esc_html( wc_gzd_get_product( $product )->get_device_charging_watt_max() ); ?></text>
 	<text x="50%" y="130" class="power-supply-watt-abbr"><?php echo esc_html_x( 'W', 'watt-abbr', 'woocommerce-germanized' ); ?></text>
 	<?php if ( wc_gzd_get_product( $product )->device_charging_supports_usb_pd() ) : ?>
 		<text x="50%" y="160" class="power-supply-usb-pd"><?php echo esc_html__( 'USB PD', 'woocommerce-germanized' ); ?></text>

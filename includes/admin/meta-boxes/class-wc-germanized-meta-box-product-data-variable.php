@@ -397,7 +397,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 						'value'         => $gzd_product->get_device_charging_watt_min( 'edit' ),
 						'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_device_charging_watt_min() : '',
 						'label'         => __( 'Minimum power (Watt)', 'woocommerce-germanized' ),
-						'type'          => 'number',
+						'data_type'     => 'decimal',
 						'desc_tip'      => true,
 						'description'   => __( 'Minimum power for charging the device.', 'woocommerce-germanized' ),
 					)
@@ -411,7 +411,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 						'value'         => $gzd_product->get_device_charging_watt_max( 'edit' ),
 						'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_device_charging_watt_max() : '',
 						'label'         => __( 'Maximum power (Watt)', 'woocommerce-germanized' ),
-						'type'          => 'number',
+						'data_type'     => 'decimal',
 						'desc_tip'      => true,
 						'description'   => __( 'Power necessary to reach the maximum charging speed of the device.', 'woocommerce-germanized' ),
 					)

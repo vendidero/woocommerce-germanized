@@ -881,11 +881,23 @@ class WC_GZD_Product {
 	}
 
 	public function get_device_charging_watt_min( $context = 'view' ) {
-		return $this->get_prop( 'device_charging_watt_min', $context );
+		$watt_min = $this->get_prop( 'device_charging_watt_min', $context );
+
+		if ( 'view' === $context ) {
+			$watt_min = wc_format_localized_decimal( $watt_min );
+		}
+
+		return $watt_min;
 	}
 
 	public function get_device_charging_watt_max( $context = 'view' ) {
-		return $this->get_prop( 'device_charging_watt_max', $context );
+		$watt_max = $this->get_prop( 'device_charging_watt_max', $context );
+
+		if ( 'view' === $context ) {
+			$watt_max = wc_format_localized_decimal( $watt_max );
+		}
+
+		return $watt_max;
 	}
 
 	public function is_wireless_electronic_device( $context = 'view' ) {
@@ -1075,11 +1087,11 @@ class WC_GZD_Product {
 	}
 
 	public function set_device_charging_watt_min( $device_charging_watt_min ) {
-		$this->set_prop( 'device_charging_watt_min', absint( $device_charging_watt_min ) );
+		$this->set_prop( 'device_charging_watt_min', '' === $device_charging_watt_min ? '' : wc_format_decimal( $device_charging_watt_min ) );
 	}
 
 	public function set_device_charging_watt_max( $device_charging_watt_max ) {
-		$this->set_prop( 'device_charging_watt_max', absint( $device_charging_watt_max ) );
+		$this->set_prop( 'device_charging_watt_max', '' === $device_charging_watt_max ? '' : wc_format_decimal( $device_charging_watt_max ) );
 	}
 
 	public function set_used_good( $is_used_good ) {

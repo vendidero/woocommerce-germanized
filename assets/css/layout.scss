@@ -252,6 +252,10 @@ p.footer-info {
       font-size: 1.8rem;
       font-weight: 600;
 
+      &.min-max-watt-has-decimals {
+        font-size: 1.5rem;
+      }
+
       &.power-supply-usb-pd {
         font-size: 1.5rem;
       }

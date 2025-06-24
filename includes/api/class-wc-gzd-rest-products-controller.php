@@ -335,12 +335,12 @@ class WC_GZD_REST_Products_Controller {
 		);
 		$schema_properties['device_charging_watt_min']        = array(
 			'description' => __( 'Minimum power for charging the device.', 'woocommerce-germanized' ),
-			'type'        => 'integer',
+			'type'        => 'text',
 			'context'     => array( 'view', 'edit' ),
 		);
 		$schema_properties['device_charging_watt_max']        = array(
 			'description' => __( 'Power necessary to reach the maximum charging speed of the device.', 'woocommerce-germanized' ),
-			'type'        => 'integer',
+			'type'        => 'text',
 			'context'     => array( 'view', 'edit' ),
 		);
 		$schema_properties['photovoltaic_system']             = array(
@@ -612,12 +612,12 @@ class WC_GZD_REST_Products_Controller {
 		);
 		$schema_properties['variations']['items']['properties']['device_charging_watt_min'] = array(
 			'description' => __( 'Minimum power for charging the device.', 'woocommerce-germanized' ),
-			'type'        => 'integer',
+			'type'        => 'text',
 			'context'     => array( 'view', 'edit' ),
 		);
 		$schema_properties['variations']['items']['properties']['device_charging_watt_max'] = array(
 			'description' => __( 'Power necessary to reach the maximum charging speed of the device.', 'woocommerce-germanized' ),
-			'type'        => 'integer',
+			'type'        => 'text',
 			'context'     => array( 'view', 'edit' ),
 		);
 		$schema_properties['variations']['items']['properties']['service']                  = array(
@@ -908,11 +908,11 @@ class WC_GZD_REST_Products_Controller {
 		}
 
 		if ( isset( $request['device_charging_watt_min'] ) ) {
-			$data['_device_charging_watt_min'] = wc_clean( $request['device_charging_watt_min'] );
+			$data['_device_charging_watt_min'] = wc_format_decimal( $request['device_charging_watt_min'], '' );
 		}
 
 		if ( isset( $request['device_charging_watt_max'] ) ) {
-			$data['_device_charging_watt_max'] = wc_clean( $request['device_charging_watt_max'] );
+			$data['_device_charging_watt_max'] = wc_format_decimal( $request['device_charging_watt_max'], '' );
 		}
 
 		/**
