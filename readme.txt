@@ -206,6 +206,18 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.19.12 =
+* New: Move (legacy) COD gateway fee option to general settings screen as the (new) payment settings UI does not allow adding options
+* New: Introduce DHL GoGreen Plus service
+* Improvement: Support decimals as watt min/max values
+* Improvement: Performance improvements in shipping settings view
+* Improvement: New shipping rule options, e.g. single-use for certain packaging
+* Improvement: Install DB updates automatically by default (as Woo Core does)
+* Fix: Edge case regex handling to prevent hidden checkout block submit button
+* Fix: Split-tax shipping tax calculation in checkout block
+* Fix: Show small business notice in cart block
+* Fix: Do not calculate shipping taxes in case Woo tax calculation has been disabled
+
 = 3.19.11 =
 * New: Woo 9.9 compatibility
 * Improvement: Woo transactional email improvement support for custom processing text
