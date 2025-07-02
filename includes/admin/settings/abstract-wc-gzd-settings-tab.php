@@ -49,7 +49,7 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		?>
 		<div class="wc-gzd-premium-overlay notice notice-warning inline">
 			<h3><?php esc_html_e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
-			<p><?php esc_html_e( 'Enjoy even more professional features such as invoices, legal text generators, B2B VAT settings and premium support!', 'woocommerce-germanized' ); ?></p>
+			<p><?php esc_html_e( 'Enjoy even more professional features such as invoices, legal text generators, B2B VAT settings and professional support!', 'woocommerce-germanized' ); ?></p>
 			<p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php esc_html_e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
 		</div>
 		<?php

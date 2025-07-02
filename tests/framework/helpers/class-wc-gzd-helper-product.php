@@ -74,8 +74,8 @@ class WC_GZD_Helper_Product {
 
 		if ( ! is_a( $attachment, 'WP_Post' ) ) {
 			$upload_dir = wp_upload_dir();
-			$source     = WC()->plugin_path() . '/assets/images/placeholder-attachment.png';
-			$filename   = $upload_dir['basedir'] . '/woocommerce-placeholder.png';
+			$source     = WC()->plugin_path() . '/assets/images/placeholder-attachment.webp';
+			$filename   = $upload_dir['basedir'] . '/woocommerce-placeholder.webp';
 
 			if ( ! file_exists( $filename ) ) {
 				copy( $source, $filename ); // @codingStandardsIgnoreLine.

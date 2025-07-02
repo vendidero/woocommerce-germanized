@@ -15,7 +15,7 @@ Germanized extends WooCommerce to become a legally compliant shop for the german
 == Description ==
 
 Germanized extends WooCommerce to technically match specific german legal conditions. The objective of this plugin is to adapt WooCommerce to the special requirements of german market.
-Users of [Germanized for WooCommerce Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimized for German Market") benefit from additional features, specifically designed for Germany, such as PDF invoices, model text generators for terms and revocation pages, premium support and more!
+Users of [Germanized for WooCommerce Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimized for German Market") benefit from additional features, specifically designed for Germany, such as PDF invoices, model text generators for terms and revocation pages, professional support and more!
 
 = Legal certainty for WooCommerce =
 Germanized extends WooCommerce with typical german shop functionality: Delivery times, base prices, shipping costs and tax notices, options to attach legally relevant pages (e.g. terms, revocation page, privacy policy etc.) - even in emails, small business regulation notices and many more.
@@ -35,7 +35,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Tax Calculation for Shipping Costs and Fees* - Enable split tax calculation based on your WooCommerce cart taxes.
 * *Legal pages in Email Templates* - Attach legal pages content to certain WooCommerce e-mail templates.
 * *Trusted Shops Integration* - Integrate your Trusted Shops Products within your WooCommerce store
-* *Post, DHL, DPD (Pro) and GLS (Pro) Integration* - Generate labels for shipments and returns right from your backend. Offer preferred delivery services to your customers.
+* *Post, DHL, UPS, DPD (Pro) and GLS (Pro) Integration* - Generate labels for shipments and returns right from your backend. Offer preferred delivery services to your customers.
 * *Payment Gateway: SEPA direct debit* - Receive payments via direct debit. We've added a XML export to transfer payments to your bank.
 * *Payment Gateway: Pay by Invoice* - Allow certain customers to pay by invoice. Best integration with our PDF invoices feature (Pro).
 * *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
@@ -47,7 +47,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *REST API Support* - Data added by Germanized is adjustable via the WooCommerce REST API (v2)
 * *Product CSV Import/Export* - We've extended the WooCommerce product CSV import and export to support our custom fields (e.g. unit price, delivery time etc.)
 * *GDPR export/delete* - We do support the export/delete features of WordPress 4.6 and WooCommerce 3.4 and added new checkboxes to checkout and register form.
-* *PDF Invoices & Packing Slips (Pro)* - Easily create PDF invoices, packing slips and cancellations via your WooCommerce order screen. Optionally generate PDFs automatically based on a certain order status.
+* *Invoices, E-Invoices & Packing Slips (Pro)* - Conveniently create invoices, packing slips, cancellations and commercial invoices via your WooCommerce dashboard. Comes with full e-invoicing support and many automation settings.
 * *Legal PDF attachments (Pro)* - Attach PDFs to certain email templates instead of plain text. Optionally let Germanized generate your PDFs automatically by parsing your page content.
 * *Delayed conclusion of contract (Pro)* - By default a contract is concluded right after submitting the WooCommerce checkout. Germanized offers you to delay that contract and manually check the order before concluding the contract.
 * *VAT ID check for WooCommerce (Pro)* - Provide additional fields within checkout, customer account and registration form to automatically validate the VAT ID based on the EU API.
@@ -59,9 +59,9 @@ Germanized has been approved by Trusted Shops and therefor offers best technical
 Trusted Shops certifies Shops after selected and weighted criteria and has carefully examined our WooCommerce Plugin.
 Of course Trusted Shops customers may embed their quality seals or further Trusted Shops Products as genuine Seller and Product Reviews by adapting just a few options within Germanized for WooCommerce.
 
-= Pro: WooCommerce PDF invoices & packing slips =
-As a Pro User of Germanized you may automatically or manually create PDF Invoices and Packing Slips for your orders. Adjust your document layout by using the built-in visual document editor.
-Either export your documents (CSV, zip) for your tax consultant manually or use our integrations to transmit your documents to your lexoffice or sevdesk account.
+= Pro: WooCommerce invoices, packing slips and e-invoices =
+As a Pro User of Germanized you may automatically or manually create invoices to orders and packing slips and commercial invoices to shipments. Adjust your document layout by using the built-in visual document editor.
+Either export your documents (CSV, zip) for your tax consultant manually or use our integrations to transmit your documents to your lexware office or sevdesk account. Comes with full support for e-invoices.
 Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce-germanized/features#accounting "WooCommerce PDF Invoices")
 
 Furthermore you may attach legally relevant pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce emails instead of using plain text.
@@ -79,10 +79,10 @@ With the help of our Post, DHL, UPS, DPD (Pro) and GLS (Pro) integration you can
 You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/doc/woocommerce-germanized/versanddienstleister-verwalten "Shipping Provider for WooCommerce") about how our shipping provider integrations work.
 
 = Extended One Stop Shop compliance =
-With a little help from our [One Stop Shop compliance plugin for WooCommerce](https://wordpress.org/plugins/one-stop-shop-woocommerce/) bundled within Germanized you'll handle the new EU VAT regulations with ease. Generate new VAT reports for different time frames and let the plugin
+With a little help from our [One Stop Shop compliance plugin for WooCommerce](https://wordpress.org/plugins/one-stop-shop-woocommerce/) you'll handle the new EU VAT regulations with ease. Generate new VAT reports for different time frames and let the plugin
 observe the delivery threshold automatically to make sure you'll get notified in case you are close to reaching the threshold and need to take action.
 
-= Pro: Premium Support =
+= Pro: Professional Support =
 Customers of Germanized for WooCommerce Pro enjoy our high-quality support via tickets. Nevertheless we also seek to offer a good plugin support via our WordPress support forum.
 
 = Tested WooCommerce Plugins =

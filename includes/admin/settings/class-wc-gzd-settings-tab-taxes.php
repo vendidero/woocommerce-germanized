@@ -100,7 +100,7 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'title' => __( 'VAT ID', 'woocommerce-germanized' ),
 				'type'  => 'title',
 				'id'    => 'vat_id_options',
-				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( '%1$sUpgrade to %2$spro%3$s%4$s to unlock this feature and enjoy premium support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>',
+				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( '%1$sUpgrade to %2$spro%3$s%4$s to unlock this feature and enjoy professional support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>',
 			),
 			array(
 				'title' => '',
