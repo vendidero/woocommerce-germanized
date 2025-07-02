@@ -77,6 +77,11 @@ class WC_GZD_Helper_Product {
 			$source     = WC()->plugin_path() . '/assets/images/placeholder-attachment.webp';
 			$filename   = $upload_dir['basedir'] . '/woocommerce-placeholder.webp';
 
+			if ( ! file_exists( $source ) ) {
+				$source   = WC()->plugin_path() . '/assets/images/placeholder-attachment.png';
+				$filename = $upload_dir['basedir'] . '/woocommerce-placeholder.png';
+			}
+
 			if ( ! file_exists( $filename ) ) {
 				copy( $source, $filename ); // @codingStandardsIgnoreLine.
 			}
