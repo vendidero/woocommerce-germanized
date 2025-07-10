@@ -195,6 +195,14 @@ body.theme-astra {
   }
 }
 
+form.cart.wc-gzd-replace-price {
+  .single_variation_wrap {
+    .woocommerce-variation-price {
+      display: none;
+    }
+  }
+}
+
 .deposit-packaging-type {
   text-transform: uppercase;
   font-weight: bold;

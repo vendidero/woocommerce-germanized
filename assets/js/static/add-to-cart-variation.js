@@ -32,6 +32,10 @@
         $form.on( 'reset_data.wc-gzd-variation-form', { GermanizedvariationForm: self }, self.onReset );
         $form.on( 'show_variation.wc-gzd-variation-form', { GermanizedvariationForm: self }, self.onShowVariation );
 
+        if ( self.replacePrice ) {
+            self.$form.addClass( 'wc-gzd-replace-price' );
+        }
+
         self.$wrapper.find( '' +
             '.woocommerce-product-attributes-item--food_description, ' +
             '.woocommerce-product-attributes-item--alcohol_content, ' +

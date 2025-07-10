@@ -352,7 +352,7 @@ class Shiptastic {
 			}
 		);
 
-		add_filter( 'woocommerce_shiptastic_enable_logging', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
+		add_filter( 'woocommerce_shiptastic_is_debug_mode', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
 
 		add_filter(
 			'woocommerce_shiptastic_get_i18n_textdomain',

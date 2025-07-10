@@ -261,8 +261,8 @@ final class Checkout {
 						return $errors;
 					}
 
-					$country   = isset( $fields['country'] ) ? $fields['country'] : $fields[ "{$group}_country" ];
-					$address_1 = isset( $fields['address_1'] ) ? $fields['address_1'] : $fields[ "{$group}_address_1" ];
+					$country   = isset( $fields['country'] ) ? $fields['country'] : ( isset( $fields[ "{$group}_country" ] ) ? $fields[ "{$group}_country" ] : "" );
+					$address_1 = isset( $fields['address_1'] ) ? $fields['address_1'] : ( isset( $fields[ "{$group}_address_1" ] ) ? $fields[ "{$group}_address_1" ] : "" );
 
 					/**
 					 * Somehow Woo calls the filter differently on my account address save action
