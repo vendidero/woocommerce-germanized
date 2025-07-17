@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6a0a143c8b428dd153cb4f59303e006d",
+    "content-hash": "9f1c7bfa96dfc222568aa25becdbe429",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -659,16 +659,16 @@
         },
         {
             "name": "vendidero/shiptastic-for-woocommerce",
-            "version": "4.4.0",
+            "version": "4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/shiptastic-for-woocommerce.git",
-                "reference": "4e7034739838c7fac26145efd4f2b6554ab35545"
+                "reference": "93f15ebca78b25869eed593b42be07174350c486"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/4e7034739838c7fac26145efd4f2b6554ab35545",
-                "reference": "4e7034739838c7fac26145efd4f2b6554ab35545",
+                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/93f15ebca78b25869eed593b42be07174350c486",
+                "reference": "93f15ebca78b25869eed593b42be07174350c486",
                 "shasum": ""
             },
             "require": {
@@ -711,22 +711,22 @@
             "description": "Shiptastic for WooCommerce",
             "homepage": "https://vendidero.de",
             "support": {
-                "source": "https://github.com/vendidero/shiptastic-for-woocommerce/tree/v4.4.0"
+                "source": "https://github.com/vendidero/shiptastic-for-woocommerce/tree/v4.5.0"
             },
-            "time": "2025-06-30T08:10:04+00:00"
+            "time": "2025-07-17T09:46:00+00:00"
         },
         {
             "name": "vendidero/shiptastic-integration-for-dhl",
-            "version": "4.0.1",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/shiptastic-integration-for-dhl.git",
-                "reference": "5fe41c4f85a244e09a6ca9a4a3ff74092f69a17e"
+                "reference": "22a8cd6351678c0b5c6372430a16a30f1881f8a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/shiptastic-integration-for-dhl/zipball/5fe41c4f85a244e09a6ca9a4a3ff74092f69a17e",
-                "reference": "5fe41c4f85a244e09a6ca9a4a3ff74092f69a17e",
+                "url": "https://api.github.com/repos/vendidero/shiptastic-integration-for-dhl/zipball/22a8cd6351678c0b5c6372430a16a30f1881f8a1",
+                "reference": "22a8cd6351678c0b5c6372430a16a30f1881f8a1",
                 "shasum": ""
             },
             "require": {
@@ -768,9 +768,9 @@
             "description": "DHL & Deutsche Post integration for Shiptastic",
             "homepage": "https://github.com/vendidero/shiptastic-integration-for-dhl",
             "support": {
-                "source": "https://github.com/vendidero/shiptastic-integration-for-dhl/tree/v4.0.1"
+                "source": "https://github.com/vendidero/shiptastic-integration-for-dhl/tree/v4.1.0"
             },
-            "time": "2025-06-30T08:27:47+00:00"
+            "time": "2025-07-17T09:56:23+00:00"
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
@@ -995,16 +995,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.13.1",
+            "version": "1.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c"
+                "reference": "faed855a7b5f4d4637717c2b3863e277116beb36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/1720ddd719e16cf0db4eb1c6eca108031636d46c",
-                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/faed855a7b5f4d4637717c2b3863e277116beb36",
+                "reference": "faed855a7b5f4d4637717c2b3863e277116beb36",
                 "shasum": ""
             },
             "require": {
@@ -1043,7 +1043,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.1"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.3"
             },
             "funding": [
                 {
@@ -1051,7 +1051,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-29T12:36:36+00:00"
+            "time": "2025-07-05T12:25:42+00:00"
         },
         {
             "name": "nikic/php-parser",

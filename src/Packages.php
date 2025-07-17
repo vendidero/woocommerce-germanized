@@ -78,10 +78,20 @@ class Packages {
 			}
 
 			/**
-			 * Apply legacy disable hook
+			 * Do not load the Shiptastic package in case the separate plugin is active or the default
+			 * option after a bundled-install has not been set.
+			 *
+			 * @TODO remove after removing the package from Germanized core in 4.0.0.
 			 */
-			if ( 'shiptastic-for-woocommerce' === $package_name && false === self::load_shipping_package() ) {
-				continue;
+			if ( 'shiptastic-for-woocommerce' === $package_name ) {
+				if ( false === self::load_shipping_package() || PluginsHelper::is_shiptastic_plugin_active() || ( ! get_option( 'woocommerce_shiptastic_auto_enable' ) && ! get_option( 'woocommerce_gzd_shipments_auto_enable' ) ) ) {
+					continue;
+				} elseif ( version_compare( get_option( 'woocommerce_gzd_db_version', '1.0.0' ), '3.20.0', '>' ) && 'yes' !== get_option( 'woocommerce_gzd_is_shiptastic_standalone_update' ) ) {
+					/**
+					 * After the DB update has been completed, check the temp option which indicates the necessity to load the bundled package.
+					 */
+					continue;
+				}
 			}
 
 			/**

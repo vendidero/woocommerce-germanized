@@ -114,6 +114,7 @@ class WC_GZD_Admin {
 			'disable_food_options',
 			'install_oss',
 			'install_ts',
+			'install_shiptastic',
 			'update_database',
 			'migrate_to_shiptastic',
 			'remove_shiptastic_migration_notices',
@@ -177,6 +178,24 @@ class WC_GZD_Admin {
 		}
 
 		wp_safe_redirect( esc_url_raw( admin_url( 'plugin-install.php?s=one+stop+shop+woocommerce&tab=search&type=term' ) ) );
+		exit();
+	}
+
+	protected function check_install_shiptastic() {
+		if ( current_user_can( 'install_plugins' ) ) {
+			\Vendidero\Germanized\PluginsHelper::install_or_activate_shiptatic();
+
+			if ( 'yes' === get_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update' ) ) {
+				\Vendidero\Germanized\PluginsHelper::install_or_activate_shiptatic_dhl();
+			}
+
+			if ( \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ) {
+				wp_safe_redirect( esc_url_raw( admin_url( 'admin.php?page=wc-settings&tab=shiptastic' ) ) );
+				exit();
+			}
+		}
+
+		wp_safe_redirect( esc_url_raw( admin_url( 'plugin-install.php?s=shiptastic+for+woocommerce&tab=search&type=term' ) ) );
 		exit();
 	}
 

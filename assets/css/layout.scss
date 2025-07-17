@@ -9,12 +9,10 @@ p.wc-gzd-additional-info:empty {
   display: none;
 }
 
-.product-type-variable {
-  div.product {
-    ul.tabs {
-      li.product_safety_tab {
-        display: none;
-      }
+.product.product-type-variable {
+  ul.tabs {
+    li.product_safety_tab {
+      display: none;
     }
   }
 }

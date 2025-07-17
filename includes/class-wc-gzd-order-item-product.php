@@ -146,7 +146,7 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 	}
 
 	public function has_deposit() {
-		return ! empty( $this->get_deposit_type() ) && $this->get_deposit_amount() > 0;
+		return ! empty( $this->get_deposit_type() ) && (float) $this->get_deposit_amount() !== 0.00;
 	}
 
 	public function get_formatted_unit_base() {

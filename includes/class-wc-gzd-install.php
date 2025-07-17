@@ -1018,7 +1018,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		 */
 		public static function create_options() {
 			// Include settings so that we can run through defaults
-			include_once WC()->plugin_path() . '/includes/admin/settings/class-wc-settings-page.php';
+			include_once WC_ABSPATH . 'includes/admin/settings/class-wc-settings-page.php';
 
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/settings/abstract-wc-gzd-settings-tab.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-legal-checkboxes.php';
@@ -1027,7 +1027,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			$settings = false;
 
 			if ( is_admin() ) {
-				include_once WC()->plugin_path() . '/includes/admin/class-wc-admin-settings.php';
+				include_once WC_ABSPATH . 'includes/admin/class-wc-admin-settings.php';
 
 				foreach ( WC_Admin_Settings::get_settings_pages() as $page ) {
 					if ( is_a( $page, 'WC_GZD_Settings_Germanized' ) ) {

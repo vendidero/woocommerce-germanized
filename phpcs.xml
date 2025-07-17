@@ -40,7 +40,9 @@
 
     <rule ref="WordPress.WP.I18n">
         <properties>
-            <property name="text_domain" type="array" value="woocommerce-germanized" />
+            <property name="text_domain" type="array">
+                <element value="woocommerce-germanized" />
+            </property>
         </properties>
     </rule>
 
@@ -70,7 +72,10 @@
 
     <rule ref="WordPress.Security.EscapeOutput">
         <properties>
-            <property name="customEscapingFunctions" type="array" value="wc_gzd_kses_post_svg, wc_help_tip" />
+            <property name="customEscapingFunctions" type="array">
+                <element value="wc_gzd_kses_post_svg" />
+                <element value="wc_help_tip" />
+            </property>
         </properties>
     </rule>
 

@@ -153,6 +153,77 @@
     }
   }
 
+  .gzd-pro-install-steps {
+    font-size: 1.3em;
+    display: flex;
+    flex-wrap: wrap;
+
+    .gzd-pro-install-step {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      margin: 1.5em 0;
+
+      .pro-step {
+        width: 50px;
+        line-height: 50px;
+        height: 50px;
+        border-radius: 50%;
+        text-align: center;
+        background-color: var(--wp-admin-theme-color);
+        color: white;
+        margin-right: 1em;
+      }
+
+      .license-form-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+
+        input, button {
+          height: 50px;
+          font-size: 15px;
+        }
+
+        input {
+          min-width: 250px;
+          margin-right: 10px;
+        }
+
+        .submit {
+          padding: 0;
+          margin: 0;
+          border-radius: 0;
+        }
+
+        .error {
+          border: none;
+          background: transparent;
+          padding: 0;
+          margin: 0;
+          color: #a00;
+          box-shadow: none;
+
+          p {
+            font-size: 12px;
+            margin-top: 5px;
+          }
+        }
+      }
+
+      .pro-step-desc {
+        h4 {
+          margin-top: 0;
+          margin-bottom: 10px;
+        }
+
+        p {
+          margin-bottom: 0;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
   .wc-gzd-ajax-loading-btn {
     position: relative;
     display: inline-flex;
@@ -167,6 +238,7 @@
 
       .spinner {
         position: absolute;
+        opacity: 1;
         z-index: 5;
         background-size: 16px 16px;
         float: none;

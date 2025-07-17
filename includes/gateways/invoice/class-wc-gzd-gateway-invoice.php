@@ -95,7 +95,7 @@ class WC_GZD_Gateway_Invoice extends WC_Payment_Gateway {
 
 			<div class="wc-gzd-premium-overlay notice notice-warning inline">
 				<h3><?php esc_html_e( 'Automatically generate invoices for this gateway?', 'woocommerce-germanized' ); ?></h3>
-				<p><?php esc_html_e( 'By upgrading to the professional version you\'ll be able to automatically generate invoices. Furthermore you\'ll benefit from even more professional features such as a multistep checkout page, legal text generators, B2B VAT settings and professional support!', 'woocommerce-germanized' ); ?></p>
+				<p><?php esc_html_e( 'Enjoy access to even more professional features such as (e-)invoices, delivery notes, an interface to generate legal texts, a multi-level checkout, VAT ID verification, and, of course, professional support!', 'woocommerce-germanized' ); ?></p>
 				<p>
 					<a class="button button-primary" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php esc_html_e( 'Upgrade now', 'woocommerce-germanized' ); ?></a>
 					<a class="button button-secondary" style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized/features#accounting" target="_blank"><?php esc_html_e( 'Learn more about invoicing', 'woocommerce-germanized' ); ?></a>

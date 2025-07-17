@@ -274,6 +274,16 @@ a.page-title-action {
     }
   }
 
+  &.warning {
+    border-color: #dba617;
+    color: #ad8313;
+
+    &:hover {
+      border-color: #98730f;
+      color: #ad8313;
+    }
+  }
+
   &:hover {
     .wc-gzd-pro:not(.wc-gzd-pro-outlined) {
       background: #0a4b78;

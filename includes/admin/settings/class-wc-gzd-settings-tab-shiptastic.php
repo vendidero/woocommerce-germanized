@@ -60,8 +60,20 @@ class WC_GZD_Settings_Tab_Shiptastic extends WC_GZD_Settings_Tab {
 		return 'shiptastic';
 	}
 
+	public function needs_install() {
+		return ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active();
+	}
+
+	public function is_enabled() {
+		return \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active();
+	}
+
 	public function get_help_link() {
 		return 'https://vendidero.de/doc/woocommerce-germanized/sendungen-zu-bestellungen-erzeugen';
+	}
+
+	public function get_extension_name() {
+		return 'shiptastic-for-woocommerce';
 	}
 
 	public function get_sections() {

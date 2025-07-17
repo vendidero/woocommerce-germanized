@@ -74,6 +74,15 @@ body {
     border-bottom: none;
   }
 
+  ul.features {
+    padding-left: 0;
+
+    li {
+      font-size: 15px;
+      line-height: 1.8;
+    }
+  }
+
   .wc-gzd-admin-settings {
     .woocommerce-input-toggle:not(.woocommerce-input-toggle--disabled) {
       border-color: $primary-color;
@@ -224,6 +233,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    align-items: baseline;
   }
 
   .wc-gzd-setup-link {
@@ -237,10 +247,14 @@ body {
   }
 
   .button-primary {
-    font-size: 1.25em;
     padding: .5em 1em;
     line-height: 1em;
-    height: auto;
+    font-size: 12px;
+    font-weight: 600;
+    height: 45px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
   }
 
   .escape {

@@ -214,10 +214,41 @@ class Shiptastic {
 		return $hook;
 	}
 
+	public static function get_shipping_provider_integrations_for_pro() {
+		return array(
+			'dpd'    => array(
+				'title'               => _x( 'DPD', 'shipments', 'woocommerce-germanized' ),
+				'countries_supported' => array( 'DE', 'AT' ),
+				'is_builtin'          => false,
+				'is_pro'              => true,
+				'extension_name'      => 'dpd-for-shiptastic',
+				'help_url'            => 'https://vendidero.de/woocommerce-germanized/features#providers',
+			),
+			'gls'    => array(
+				'title'               => _x( 'GLS', 'shipments', 'woocommerce-germanized' ),
+				'countries_supported' => array( 'DE', 'AT', 'CH', 'BE', 'LU', 'FR', 'IE', 'ES' ),
+				'is_builtin'          => false,
+				'is_pro'              => true,
+				'extension_name'      => 'gls-for-shiptastic',
+				'help_url'            => 'https://vendidero.de/woocommerce-germanized/features#providers',
+			),
+			'hermes' => array(
+				'title'               => _x( 'Hermes', 'shipments', 'woocommerce-germanized' ),
+				'countries_supported' => array( 'DE' ),
+				'is_builtin'          => false,
+				'is_pro'              => true,
+				'extension_name'      => 'hermes-for-shiptastic',
+				'help_url'            => 'https://vendidero.de/woocommerce-germanized/features#providers',
+			),
+		);
+	}
+
 	protected static function setup_integration() {
 		/**
 		 * Use this tweak to allow installing extensions which rely on Shiptastic as
 		 * Shiptastic is currently bundled within the Germanized installation package.
+		 *
+		 * @TODO remove when updating to Germanized 4.0.0
 		 */
 		add_filter(
 			'wp_plugin_dependencies_slug',
@@ -235,46 +266,7 @@ class Shiptastic {
 			function ( $integrations ) {
 				$integrations = array_merge(
 					$integrations,
-					array(
-						'dhl'           => array(
-							'title'               => _x( 'DHL', 'shipments', 'woocommerce-germanized' ),
-							'countries_supported' => array( 'DE' ),
-							'is_builtin'          => true,
-							'is_pro'              => false,
-							'extension_name'      => 'shiptastic-integration-for-dhl',
-						),
-						'deutsche_post' => array(
-							'title'               => _x( 'Deutsche Post', 'shipments', 'woocommerce-germanized' ),
-							'countries_supported' => array( 'DE' ),
-							'is_builtin'          => true,
-							'is_pro'              => false,
-							'extension_name'      => 'shiptastic-integration-for-dhl',
-						),
-						'dpd'           => array(
-							'title'               => _x( 'DPD', 'shipments', 'woocommerce-germanized' ),
-							'countries_supported' => array( 'DE', 'AT' ),
-							'is_builtin'          => false,
-							'is_pro'              => true,
-							'extension_name'      => 'dpd-for-shiptastic',
-							'help_url'            => 'https://vendidero.de/woocommerce-germanized/features#providers',
-						),
-						'gls'           => array(
-							'title'               => _x( 'GLS', 'shipments', 'woocommerce-germanized' ),
-							'countries_supported' => array( 'DE', 'AT', 'CH', 'BE', 'LU', 'FR', 'IE', 'ES' ),
-							'is_builtin'          => false,
-							'is_pro'              => true,
-							'extension_name'      => 'gls-for-shiptastic',
-							'help_url'            => 'https://vendidero.de/woocommerce-germanized/features#providers',
-						),
-						'hermes'        => array(
-							'title'               => _x( 'Hermes', 'shipments', 'woocommerce-germanized' ),
-							'countries_supported' => array( 'DE' ),
-							'is_builtin'          => false,
-							'is_pro'              => true,
-							'extension_name'      => 'hermes-for-shiptastic',
-							'help_url'            => 'https://vendidero.de/woocommerce-germanized/features#providers',
-						),
-					)
+					self::get_shipping_provider_integrations_for_pro()
 				);
 
 				return $integrations;
