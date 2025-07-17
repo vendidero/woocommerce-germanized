@@ -498,7 +498,7 @@ class PluginsHelper {
 					array(
 						'id'     => $pro_product_id,
 						'key'    => md5( $license_key ),
-						'domain' => esc_url( home_url( '/' ) ),
+						'domain' => esc_url( self::get_current_domain() ),
 					),
 					self::get_vd_download_url() . "releases/{$pro_product_id}/latest"
 				);
@@ -594,18 +594,6 @@ class PluginsHelper {
 					continue;
 				}
 
-				if ( self::is_pro_plugin( $plugin ) && class_exists( '\Vendidero\VendideroHelper\Package' ) ) {
-					$pro_version = \Vendidero\VendideroHelper\Package::get_product_by_id( self::get_pro_version_product_id() );
-
-					if ( ! $pro_version ) {
-						$pro_version = \Vendidero\VendideroHelper\Package::add_product( 'woocommerce-germanized-pro/woocommerce-germanized-pro.php', self::get_pro_version_product_id(), array( 'free' => false ) );
-					}
-
-					if ( $pro_version ) {
-						$pro_version->register( $license_key );
-					}
-				}
-
 				do_action( 'woocommerce_gzd_installed_plugin', $plugin, $license_key );
 
 				$installed_plugins[] = $plugin;
@@ -637,6 +625,31 @@ class PluginsHelper {
 			'shiptastic-integration-for-dhl' => __( 'DHL for Shiptastic', 'woocommerce-germanized' ),
 			'woocommerce-germanized-pro'     => __( 'Germanized for WooCommerce Pro', 'woocommerce-germanized' ),
 		);
+	}
+
+	public static function get_current_domain( $format = false ) {
+		$domain = home_url( '/' );
+
+		if ( $format ) {
+			$domain = self::format_domain( $domain );
+		}
+
+		return $domain;
+	}
+
+	protected static function format_domain( $domain ) {
+		$domain = esc_url_raw( $domain );
+		$parsed = @wp_parse_url( $domain ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+
+		if ( empty( $parsed ) || empty( $parsed['host'] ) ) {
+			return '';
+		}
+
+		// Remove www. prefix
+		$parsed['host'] = str_replace( 'www.', '', $parsed['host'] );
+		$domain         = $parsed['host'];
+
+		return $domain;
 	}
 
 	/**

@@ -68,6 +68,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once 'notes/class-wc-gzd-admin-note-ts-install.php';
 			include_once 'notes/class-wc-gzd-admin-note-blocks.php';
 			include_once 'notes/class-wc-gzd-admin-note-shiptastic-migration.php';
+			include_once 'notes/class-wc-gzd-admin-note-shiptastic-install.php';
 		}
 
 		/**

@@ -73,6 +73,22 @@ class WC_GZD_AJAX {
 					'success' => true,
 				);
 
+				if ( 'woocommerce-germanized-pro' === $extension ) {
+					if ( class_exists( '\Vendidero\VendideroHelper\Package' ) ) {
+						$pro_product_id = \Vendidero\Germanized\PluginsHelper::get_pro_version_product_id();
+						$pro_version    = \Vendidero\VendideroHelper\Package::get_product_by_id( $pro_product_id );
+
+						if ( ! $pro_version ) {
+							\Vendidero\VendideroHelper\Package::add_product( 'woocommerce-germanized-pro/woocommerce-germanized-pro.php', $pro_product_id, array( 'free' => false ) );
+							$pro_version = \Vendidero\VendideroHelper\Package::get_product_by_id( $pro_product_id );
+						}
+
+						if ( $pro_version ) {
+							$pro_version->register( $license_key );
+						}
+					}
+				}
+
 				if ( $redirect_on_success ) {
 					$result['redirect'] = $redirect_on_success;
 				}

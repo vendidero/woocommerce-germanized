@@ -1,11 +1,9 @@
 <?php
 
-use Vendidero\VendideroHelper\Package;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-$domain_to_register = Package::sanitize_domain( home_url( '/' ) );
+$domain_to_register = \Vendidero\Germanized\PluginsHelper::get_current_domain( true );
 ?>
 <?php if ( ! WC_germanized()->is_pro() ) : ?>
 	<div class="gzd-pro-install-steps">
