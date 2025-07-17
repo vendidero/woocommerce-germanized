@@ -28,8 +28,9 @@ if ( \Vendidero\Germanized\Packages::load_shipping_package() && class_exists( '\
 
 if ( $uses_shipments && ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ) {
 	update_option( 'woocommerce_gzd_is_shiptastic_standalone_update', 'yes' );
+}
 
-	if ( $uses_dhl_or_dp ) {
-		update_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update', 'yes' );
-	}
+if ( $uses_dhl_or_dp && ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_dhl_plugin_active() ) {
+	update_option( 'woocommerce_gzd_is_shiptastic_standalone_update', 'yes' );
+	update_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update', 'yes' );
 }
