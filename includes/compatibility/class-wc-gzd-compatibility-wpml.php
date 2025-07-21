@@ -476,6 +476,8 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 				$prefix = 'wc_gzdp_email_';
 			} elseif ( $key && strpos( $key, 'TS_' ) !== false ) {
 				$prefix = 'wc_ts_email_';
+			} elseif ( $key && strpos( $key, 'STC_' ) !== false ) {
+				$prefix = 'wc_stc_email_';
 			}
 		}
 

@@ -354,6 +354,18 @@ class Shiptastic {
 		);
 
 		add_filter(
+			'woocommerce_gzd_wpml_email_ids',
+			function ( $emails_ids ) {
+				if ( is_callable( array( '\Vendidero\Shiptastic\Compatibility\WPML', 'register_emails' ) ) ) {
+					$emails_ids = \Vendidero\Shiptastic\Compatibility\WPML::register_emails( $emails_ids );
+				}
+
+				return $emails_ids;
+			},
+			10
+		);
+
+		add_filter(
 			'woocommerce_shiptastic_shipment_order_supports_email_transmission',
 			function ( $supports_email_transmission, $order ) {
 				if ( wc_gzd_order_supports_parcel_delivery_reminder( $order->get_id() ) ) {
