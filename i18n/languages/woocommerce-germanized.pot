@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.19.12\n"
+"Project-Id-Version: Germanized for WooCommerce 3.19.13\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-30T08:39:42+00:00\n"
+"POT-Creation-Date: 2025-07-21T09:18:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 
@@ -9167,7 +9167,6 @@ msgid "Encryption key is missing"
 msgstr ""
 
 #: includes/admin/notes/class-wc-gzd-admin-note-encryption.php:50
-#: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:47
 #: includes/admin/notes/class-wc-gzd-admin-note-shipping-excl-tax.php:45
 #: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:37
 #: includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:41
@@ -9202,11 +9201,11 @@ msgid "Attention: New Regulations"
 msgstr ""
 
 #: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:34
-msgid "As of 2022-05-28, a new <a href=\"%1$s\">price indication regulation</a> will apply. In addition, the <a href=\"%2$s\">Omnibus-Directive</a> goes into effect. From now on, you must provide information about the authenticity of customer reviews. Germanized added a <a href=\"%3$s\">new information page</a> for you, which you should use to provide information on the authenticity of reviews. Additionally, Germanized inserts notices when showing ratings."
+msgid "The European Online Dispute Resolution (ODR) Platform is discontinued as of 20 July 2025. We tried to remove the note from the [gzd_complaints] shortcode automatically by adjusting the <a href=\"%s\">option selected</a>. Please make sure that your current text (whether you are using the shortcode in your legal texts or a static text) does not include references to the ODR platform."
 msgstr ""
 
 #: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:41
-msgid "Manage review authenticity settings"
+msgid "Review your settings"
 msgstr ""
 
 #: includes/admin/notes/class-wc-gzd-admin-note-oss-install.php:33
@@ -9900,15 +9899,15 @@ msgid "Adapt this example text regarding alternative dispute resolution to your 
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:220
-msgid "The european commission provides a platform for online dispute resolution (OS) which is accessible at https://ec.europa.eu/consumers/odr. We are not obliged nor willing to participate in dispute settlement proceedings before a consumer arbitration board."
+msgid "We are not obliged nor willing to participate in dispute settlement proceedings before a consumer arbitration board."
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:229
-msgid "The european commission provides a platform for online dispute resolution (OS) which is accessible at https://ec.europa.eu/consumers/odr. Consumers may use this platform for the settlements of their disputes. We are in principle prepared to participate in an extrajudicial arbitration proceeding."
+msgid "We are in principle prepared to participate in an extrajudicial arbitration proceeding."
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:238
-msgid "The european commission provides a platform for online dispute resolution (OS) which is accessible at https://ec.europa.eu/consumers/odr. Consumers may contact [Name, Address, Website of arbitration board] for the settlements of their disputes. We are obliged to participate in arbitration proceeding before that board."
+msgid "Consumers may contact [Name, Address, Website of arbitration board] for the settlements of their disputes. We are obliged to participate in arbitration proceeding before that board."
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:244
@@ -12035,94 +12034,94 @@ msgstr ""
 msgid "Other Vitamins & Minerals"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:429
+#: includes/class-wc-gzd-install.php:430
 msgctxt "shipments-migration"
 msgid "Error while querying %1$s: %2$s"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:455
+#: includes/class-wc-gzd-install.php:456
 msgctxt "shipments-migration"
 msgid "Error while running additional query on %1$s: %2$s"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:508
+#: includes/class-wc-gzd-install.php:509
 msgctxt "shipments-migration"
 msgid "Could not rename %1$s to %2$s."
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:546
+#: includes/class-wc-gzd-install.php:547
 msgid "Please install WooCommerce before installing WooCommerce Germanized. Thank you!"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:952
-#: includes/class-wc-gzd-install.php:1004
+#: includes/class-wc-gzd-install.php:953
+#: includes/class-wc-gzd-install.php:1005
 msgctxt "Page slug"
 msgid "data-security"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:953
-#: includes/class-wc-gzd-install.php:1006
+#: includes/class-wc-gzd-install.php:954
+#: includes/class-wc-gzd-install.php:1007
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:957
+#: includes/class-wc-gzd-install.php:958
 msgctxt "Page slug"
 msgid "imprint"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:958
+#: includes/class-wc-gzd-install.php:959
 msgctxt "Page title"
 msgid "Imprint"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:962
+#: includes/class-wc-gzd-install.php:963
 msgctxt "Page slug"
 msgid "terms"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:963
+#: includes/class-wc-gzd-install.php:964
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:967
+#: includes/class-wc-gzd-install.php:968
 msgctxt "Page slug"
 msgid "revocation"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:968
+#: includes/class-wc-gzd-install.php:969
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:972
+#: includes/class-wc-gzd-install.php:973
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:973
+#: includes/class-wc-gzd-install.php:974
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:977
+#: includes/class-wc-gzd-install.php:978
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:978
+#: includes/class-wc-gzd-install.php:979
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:982
+#: includes/class-wc-gzd-install.php:983
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:983
+#: includes/class-wc-gzd-install.php:984
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"

@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2025-06-30T08:39:42+00:00\n"
-"PO-Revision-Date: 2025-06-30 10:45+0200\n"
+"POT-Creation-Date: 2025-07-21T09:18:00+00:00\n"
+"PO-Revision-Date: 2025-07-21 11:22+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -10339,7 +10339,6 @@ msgid "Encryption key is missing"
 msgstr "Schlüssel zur Datenverschlüsselung fehlt"
 
 #: includes/admin/notes/class-wc-gzd-admin-note-encryption.php:50
-#: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:47
 #: includes/admin/notes/class-wc-gzd-admin-note-shipping-excl-tax.php:45
 #: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:37
 #: includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:41
@@ -10390,25 +10389,24 @@ msgstr "Achtung: Neue Regulierungen"
 
 #: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:34
 msgid ""
-"As of 2022-05-28, a new <a href=\"%1$s\">price indication regulation</a> "
-"will apply. In addition, the <a href=\"%2$s\">Omnibus-Directive</a> goes "
-"into effect. From now on, you must provide information about the "
-"authenticity of customer reviews. Germanized added a <a href=\"%3$s\">new "
-"information page</a> for you, which you should use to provide information on "
-"the authenticity of reviews. Additionally, Germanized inserts notices when "
-"showing ratings."
+"The European Online Dispute Resolution (ODR) Platform is discontinued as of "
+"20 July 2025. We tried to remove the note from the [gzd_complaints] "
+"shortcode automatically by adjusting the <a href=\"%s\">option selected</a>. "
+"Please make sure that your current text (whether you are using the shortcode "
+"in your legal texts or a static text) does not include references to the ODR "
+"platform."
 msgstr ""
-"Ab dem 28.05.2022 gilt eine neue <a href=\"%1$s\">Preisangabeverordnung</a>. "
-"Zusätzlich tritt die <a href=\"%2$s\">Omnibus-Richtlinie</a> in Kraft. Sie "
-"müssen von nun an Informationen zur Authentizität von Kundenbewertungen "
-"bereitstellen. Wir haben dafür eine neue <a href=\"%3$s\">rechtliche "
-"Hinweisseite</a> angelegt, die Sie verwenden sollten um Ihre Kunden über die "
-"Echtheit der Bewertungen zu informieren. Zusätzlich platziert Germanized "
-"Hinweise bei der Anzeige von Bewertungen im Shop."
+"Die europäische Online-Streitbeilegungsplattform (ODR) wurde zum 20.07.2025 "
+"eingestellt. Wir haben versucht, den Hinweis aus dem Shortcode "
+"[gzd_complaints] automatisch zu entfernen, indem wir die <a "
+"href=\"%s\">ausgewählte Option</a> angepasst haben. Bitte stellen Sie "
+"sicher, dass der aktuelle Text (unabhängig davon, ob der Shortcode oder ein "
+"statischer Hinweis verwendet wird) keine Verweise auf die ODR-Plattform "
+"enthält."
 
 #: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:41
-msgid "Manage review authenticity settings"
-msgstr "Einstellungen anpassen"
+msgid "Review your settings"
+msgstr "Einstellungen prüfen"
 
 #: includes/admin/notes/class-wc-gzd-admin-note-oss-install.php:33
 msgid "OSS plugin is missing"
@@ -11502,39 +11500,27 @@ msgstr ""
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:220
 msgid ""
-"The european commission provides a platform for online dispute resolution "
-"(OS) which is accessible at https://ec.europa.eu/consumers/odr. We are not "
-"obliged nor willing to participate in dispute settlement proceedings before "
-"a consumer arbitration board."
+"We are not obliged nor willing to participate in dispute settlement "
+"proceedings before a consumer arbitration board."
 msgstr ""
-"Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung "
-"(OS) bereit, die Sie unter https://ec.europa.eu/consumers/odr finden. Zur "
-"Teilnahme an einem Streitbeilegungsverfahren vor einer "
+"Zur Teilnahme an einem Streitbeilegungsverfahren vor einer "
 "Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit."
 
-# @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:229
 msgid ""
-"The european commission provides a platform for online dispute resolution "
-"(OS) which is accessible at https://ec.europa.eu/consumers/odr. Consumers "
-"may use this platform for the settlements of their disputes. We are in "
-"principle prepared to participate in an extrajudicial arbitration proceeding."
+"We are in principle prepared to participate in an extrajudicial arbitration "
+"proceeding."
 msgstr ""
-"Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung "
-"(OS) bereit, die Sie unter https://ec.europa.eu/consumers/odr finden. Wir "
-"sind bereit, an einem außergerichtlichen Schlichtungsverfahren teilzunehmen."
+"Wir sind bereit, an einem außergerichtlichen Schlichtungsverfahren "
+"teilzunehmen."
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:238
 msgid ""
-"The european commission provides a platform for online dispute resolution "
-"(OS) which is accessible at https://ec.europa.eu/consumers/odr. Consumers "
-"may contact [Name, Address, Website of arbitration board] for the "
+"Consumers may contact [Name, Address, Website of arbitration board] for the "
 "settlements of their disputes. We are obliged to participate in arbitration "
 "proceeding before that board."
 msgstr ""
-"Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung "
-"(OS) bereit, die Sie unter https://ec.europa.eu/consumers/odr finden. "
 "Verbraucher haben die Möglichkeit, sich für die Beilegung ihrer "
 "Streitigkeiten an [Name, Anschrift, Webseite der Schlichtungsstelle] zu "
 "wenden. Wir sind verpflichtet, an Verfahren zur Streitbeilegung vor dieser "
@@ -14410,23 +14396,23 @@ msgstr ""
 msgid "Other Vitamins & Minerals"
 msgstr "Andere Vitamine & Mineralien"
 
-#: includes/class-wc-gzd-install.php:429
+#: includes/class-wc-gzd-install.php:430
 msgctxt "shipments-migration"
 msgid "Error while querying %1$s: %2$s"
 msgstr "Fehler bei der Migration von %1$s: %2$s"
 
-#: includes/class-wc-gzd-install.php:455
+#: includes/class-wc-gzd-install.php:456
 msgctxt "shipments-migration"
 msgid "Error while running additional query on %1$s: %2$s"
 msgstr "Fehler bei einer zusätzlichen Abfrage auf %1$s: %2$s"
 
-#: includes/class-wc-gzd-install.php:508
+#: includes/class-wc-gzd-install.php:509
 msgctxt "shipments-migration"
 msgid "Could not rename %1$s to %2$s."
 msgstr "Konnte %1$s nicht in %2$s umbenennen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:546
+#: includes/class-wc-gzd-install.php:547
 msgid ""
 "Please install WooCommerce before installing WooCommerce Germanized. Thank "
 "you!"
@@ -14435,83 +14421,83 @@ msgstr ""
 "installieren. Vielen Dank!"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:952 includes/class-wc-gzd-install.php:1004
+#: includes/class-wc-gzd-install.php:953 includes/class-wc-gzd-install.php:1005
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
-#: includes/class-wc-gzd-install.php:953 includes/class-wc-gzd-install.php:1006
+#: includes/class-wc-gzd-install.php:954 includes/class-wc-gzd-install.php:1007
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:957
+#: includes/class-wc-gzd-install.php:958
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:958
+#: includes/class-wc-gzd-install.php:959
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:962
+#: includes/class-wc-gzd-install.php:963
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:963
+#: includes/class-wc-gzd-install.php:964
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:967
+#: includes/class-wc-gzd-install.php:968
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:968
+#: includes/class-wc-gzd-install.php:969
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:972
+#: includes/class-wc-gzd-install.php:973
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:973
+#: includes/class-wc-gzd-install.php:974
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:977
+#: includes/class-wc-gzd-install.php:978
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:978
+#: includes/class-wc-gzd-install.php:979
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: includes/class-wc-gzd-install.php:982
+#: includes/class-wc-gzd-install.php:983
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr "echtheit-von-bewertungen"
 
-#: includes/class-wc-gzd-install.php:983
+#: includes/class-wc-gzd-install.php:984
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"
@@ -18118,6 +18104,97 @@ msgstr "Warenkorb-Dropdown rechtl. Hinweise"
 msgctxt "block description"
 msgid "Outputs mini cart legal notices."
 msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
+
+#, fuzzy
+#~ msgctxt "dhl"
+#~ msgid "Could not resolve remote shipment status."
+#~ msgstr "Eltern-Sendung %d konnte nicht initialisiert werden."
+
+#, fuzzy
+#~ msgctxt "dhl"
+#~ msgid "No xml element found."
+#~ msgstr "Keine Sendungen gefunden."
+
+# @ woocommerce-germanized
+#, fuzzy
+#~ msgctxt "shipments"
+#~ msgid "Ready for shipping"
+#~ msgstr "Versand kostenlos?"
+
+#, fuzzy
+#~ msgctxt "shipments"
+#~ msgid "Partially ready for shipping"
+#~ msgstr "Teilweise versandt"
+
+#, fuzzy
+#~ msgctxt "shipments"
+#~ msgid "Shiptastic debug mode"
+#~ msgstr "Shiptastic Upload-Ordner"
+
+# @ woocommerce-germanized
+#, fuzzy
+#~ msgctxt "shipments"
+#~ msgid "Disable"
+#~ msgstr "Deaktivieren"
+
+#, fuzzy
+#~ msgctxt "shipments"
+#~ msgid "Change status to ready for shipping"
+#~ msgstr "Status zu versandt ändern"
+
+#, fuzzy
+#~ msgctxt "shipments"
+#~ msgid "Remote Status (%s)"
+#~ msgstr "Inhalt (%s)"
+
+#, fuzzy
+#~ msgctxt "shipments"
+#~ msgid ""
+#~ "Enable this option to automatically refresh the shipment status based on "
+#~ "the actual status returned by the API. To learn more about remote status "
+#~ "updates, check the <a href=\"https://vendidero.com/doc/shiptastic/manage-"
+#~ "returns\">docs</a>."
+#~ msgstr ""
+#~ "Die Aktivierung dieser Option ermöglicht es Ihren Kunden Rücksendeanträge "
+#~ "zu Bestellungen über den Kundenbereich zu stellen. Rücksendeanträge "
+#~ "werden in Ihrem <a href=\"%s\">Retouren-Dashboard</a> aufgelistet. Um "
+#~ "mehr über Rücksendeanträge von Kunden und/oder Gästen zu erfahren, lesen "
+#~ "Sie bitte die <a href=\"https://vendidero.de/doc/shiptastic/retouren-"
+#~ "verwalten\">Dokumentation</a>."
+
+#~ msgid ""
+#~ "As of 2022-05-28, a new <a href=\"%1$s\">price indication regulation</a> "
+#~ "will apply. In addition, the <a href=\"%2$s\">Omnibus-Directive</a> goes "
+#~ "into effect. From now on, you must provide information about the "
+#~ "authenticity of customer reviews. Germanized added a <a href=\"%3$s\">new "
+#~ "information page</a> for you, which you should use to provide information "
+#~ "on the authenticity of reviews. Additionally, Germanized inserts notices "
+#~ "when showing ratings."
+#~ msgstr ""
+#~ "Ab dem 28.05.2022 gilt eine neue <a href=\"%1$s\">Preisangabeverordnung</"
+#~ "a>. Zusätzlich tritt die <a href=\"%2$s\">Omnibus-Richtlinie</a> in "
+#~ "Kraft. Sie müssen von nun an Informationen zur Authentizität von "
+#~ "Kundenbewertungen bereitstellen. Wir haben dafür eine neue <a "
+#~ "href=\"%3$s\">rechtliche Hinweisseite</a> angelegt, die Sie verwenden "
+#~ "sollten um Ihre Kunden über die Echtheit der Bewertungen zu informieren. "
+#~ "Zusätzlich platziert Germanized Hinweise bei der Anzeige von Bewertungen "
+#~ "im Shop."
+
+#~ msgid "Manage review authenticity settings"
+#~ msgstr "Einstellungen anpassen"
+
+# @ woocommerce-germanized
+#~ msgid ""
+#~ "The european commission provides a platform for online dispute resolution "
+#~ "(OS) which is accessible at https://ec.europa.eu/consumers/odr. Consumers "
+#~ "may use this platform for the settlements of their disputes. We are in "
+#~ "principle prepared to participate in an extrajudicial arbitration "
+#~ "proceeding."
+#~ msgstr ""
+#~ "Die Europäische Kommission stellt eine Plattform zur Online-"
+#~ "Streitbeilegung (OS) bereit, die Sie unter https://ec.europa.eu/consumers/"
+#~ "odr finden. Wir sind bereit, an einem außergerichtlichen "
+#~ "Schlichtungsverfahren teilzunehmen."
 
 # @ woocommerce-germanized
 #~ msgid "Fee"
@@ -21776,11 +21853,6 @@ msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
 #~ msgctxt "dhl"
 #~ msgid "There was an error while sending the label."
 #~ msgstr "Beim Versendes des Labels ist ein Fehler aufgetreten."
-
-#, php-format
-#~ msgctxt "dhl"
-#~ msgid "Could not fetch parent shipment %d."
-#~ msgstr "Eltern-Sendung %d konnte nicht initialisiert werden."
 
 #~ msgctxt "dhl"
 #~ msgid ""

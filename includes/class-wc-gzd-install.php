@@ -51,6 +51,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			'3.15.5'  => 'updates/woocommerce-gzd-update-3.15.5.php',
 			'3.16.3'  => 'updates/woocommerce-gzd-update-3.16.3.php',
 			'3.19.12' => 'updates/woocommerce-gzd-update-3.19.12.php',
+			'3.19.13' => 'updates/woocommerce-gzd-update-3.19.13.php',
 		);
 
 		/**
