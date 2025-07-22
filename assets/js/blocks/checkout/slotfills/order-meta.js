@@ -21,7 +21,7 @@ const DomWatcher = ({
         const extensionsData = select( CHECKOUT_STORE_KEY ).getExtensionData();
 
         if ( ! extensionsData.hasOwnProperty( 'woocommerce-germanized' ) ) {
-            dispatch( CHECKOUT_STORE_KEY ).__internalSetExtensionData( 'woocommerce-germanized', {} );
+            dispatch( CHECKOUT_STORE_KEY ).setExtensionData( 'woocommerce-germanized', {} );
         }
     }, [] );
 

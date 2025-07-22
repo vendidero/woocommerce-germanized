@@ -1500,6 +1500,14 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 */
 		public function add_emails( $mails ) {
 			foreach ( $this->get_custom_email_ids() as $class_name => $email_id ) {
+				/**
+				 * Do only register custom GZD cancelled order email in case
+                 * it does not exist within Woo Core.
+				 */
+                if ( 'customer_cancelled_order' === $email_id && array_key_exists( 'WC_Email_Customer_Cancelled_Order', $mails ) ) {
+                    continue;
+                }
+
 				$path = WC_GERMANIZED_ABSPATH . 'includes/emails/';
 				$file = 'class-' . trim( str_replace( '_', '-', strtolower( $class_name ) ) ) . '.php';
 
