@@ -212,7 +212,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Improvement: Pro license management and upgrade options
 * Fix: Unit price node updates race condition
 * Fix: Prevent add to cart variation layout shift
-* Fix:
+
+= 3.19.13 =
+* New: Remove references to EU online dispute resolution platform
 
 = 3.19.12 =
 * New: Move (legacy) COD gateway fee option to general settings screen as the (new) payment settings UI does not allow adding options
