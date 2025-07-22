@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2025-07-21T09:18:00+00:00\n"
-"PO-Revision-Date: 2025-07-21 11:22+0200\n"
+"POT-Creation-Date: 2025-07-22T10:57:52+00:00\n"
+"PO-Revision-Date: 2025-07-22 12:58+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -8090,8 +8090,8 @@ msgctxt "shipments"
 msgid ""
 "Enable this option to automatically refresh the shipment status based on the "
 "actual status returned by the API. To learn more about remote status "
-"updates, check the <a href=\"https://vendidero.com/doc/shiptastic/manage-"
-"returns\">docs</a>."
+"updates, check the <a href=\"https://vendidero.com/doc/shiptastic/sync-"
+"shipment-status\">docs</a>."
 msgstr ""
 "Aktivieren Sie diese Option um den Sendungsstatus automatisch anhand des "
 "Sendungsstatus der API zu aktualisieren. Um mehr über die Aktualisierung des "
@@ -9277,7 +9277,7 @@ msgstr "Verantwortliche Person (EU)"
 msgid "Manufacturer"
 msgstr "Hersteller"
 
-#: includes/admin/class-wc-gzd-admin-notices.php:131
+#: includes/admin/class-wc-gzd-admin-notices.php:132
 msgid ""
 "<strong>Be aware!</strong> This update is not compatible with your current "
 "Germanized Pro version. Please check for updates (%s) before updating "
@@ -9321,7 +9321,7 @@ msgstr "Germanize"
 
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:66
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:111
-#: includes/class-wc-gzd-ajax.php:83
+#: includes/class-wc-gzd-ajax.php:99
 msgid "There was an error while automatically installing %1$s. %2$s"
 msgstr ""
 "Bei der automatischen Installation des %1$s Plugins ist ein Fehler "
@@ -9330,7 +9330,7 @@ msgstr ""
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:66
 #: includes/admin/settings/class-wc-gzd-settings-tab-oss.php:29
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:37
-#: src/PluginsHelper.php:634 src/PluginsHelper.php:711
+#: src/PluginsHelper.php:622 src/PluginsHelper.php:724
 msgid "One Stop Shop"
 msgstr "One Stop Shop"
 
@@ -9373,8 +9373,8 @@ msgstr "Weiter"
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:106
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:111
-#: includes/admin/views/setup/shiptastic.php:46 src/PluginsHelper.php:636
-#: src/PluginsHelper.php:713
+#: includes/admin/views/setup/shiptastic.php:46 src/PluginsHelper.php:624
+#: src/PluginsHelper.php:726
 msgid "Shiptastic"
 msgstr "Shiptastic"
 
@@ -13074,7 +13074,7 @@ msgstr "Trusted Shops Easy Integration"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-trusted-shops.php:29
-#: src/PluginsHelper.php:635 src/PluginsHelper.php:712
+#: src/PluginsHelper.php:623 src/PluginsHelper.php:725
 msgid "Trusted Shops"
 msgstr "Trusted Shops"
 
@@ -13128,11 +13128,11 @@ msgid "Delete"
 msgstr "Löschen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/views/html-admin-settings-license.php:15
+#: includes/admin/settings/views/html-admin-settings-license.php:13
 msgid "Purchase a license"
 msgstr "Lizenz kaufen"
 
-#: includes/admin/settings/views/html-admin-settings-license.php:16
+#: includes/admin/settings/views/html-admin-settings-license.php:14
 msgid ""
 "<a href=\"https://vendidero.com/woocommerce-germanized#upgrade\" "
 "target=\"_blank\">Purchase your license</a> for Germanized Pro"
@@ -13141,11 +13141,11 @@ msgstr ""
 "target=\"_blank\">Kaufen</a> Sie Ihre Germanized Pro Lizenz"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/views/html-admin-settings-license.php:22
+#: includes/admin/settings/views/html-admin-settings-license.php:20
 msgid "Manage license"
 msgstr "Lizenz verwalten"
 
-#: includes/admin/settings/views/html-admin-settings-license.php:23
+#: includes/admin/settings/views/html-admin-settings-license.php:21
 msgid ""
 "<a href=\"https://vendidero.com/products/latest/%1$s\" "
 "target=\"_blank\">Register your domain</a> <code>%2$s</code> and retrieve "
@@ -13155,8 +13155,8 @@ msgstr ""
 "target=\"_blank\">Registrieren Sie Ihre Domain</a> <code>%2$s</code> und "
 "rufen Sie Ihren Lizenzschlüssel ab"
 
-#: includes/admin/settings/views/html-admin-settings-license.php:30
-#: includes/admin/settings/views/html-admin-settings-license.php:44
+#: includes/admin/settings/views/html-admin-settings-license.php:28
+#: includes/admin/settings/views/html-admin-settings-license.php:42
 #: includes/admin/settings/views/html-admin-settings-tabs.php:77
 #: includes/admin/settings/views/html-admin-settings-tabs.php:123
 #: includes/admin/settings/views/html-admin-settings-tabs.php:124
@@ -13164,16 +13164,16 @@ msgid "Install"
 msgstr "Installieren"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/views/html-admin-settings-license.php:34
+#: includes/admin/settings/views/html-admin-settings-license.php:32
 msgid "Insert your license key"
 msgstr "Lizenzschlüssel hinterlegen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/views/html-admin-settings-license.php:35
+#: includes/admin/settings/views/html-admin-settings-license.php:33
 msgid "Download & install pro"
 msgstr "Pro downloaden & installieren"
 
-#: includes/admin/settings/views/html-admin-settings-license.php:45
+#: includes/admin/settings/views/html-admin-settings-license.php:43
 msgid ""
 "<a href=\"https://vendidero.com/dashboard/downloads\" "
 "target=\"_blank\">Download Germanized Pro</a> and <a href=\"%s\" "
@@ -13875,8 +13875,8 @@ msgstr "Kontoinhaber"
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1040
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1170
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1296
-#: build/wc-gzd-payment-method-direct-debit.js:264
-#: build/wc-gzd-payment-method-direct-debit.js:140
+#: build/wc-gzd-payment-method-direct-debit.js:261
+#: build/wc-gzd-payment-method-direct-debit.js:138
 msgid "IBAN"
 msgstr "IBAN"
 
@@ -13889,8 +13889,8 @@ msgstr "IBAN"
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:673
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1174
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1297
-#: build/wc-gzd-payment-method-direct-debit.js:272
-#: build/wc-gzd-payment-method-direct-debit.js:149
+#: build/wc-gzd-payment-method-direct-debit.js:269
+#: build/wc-gzd-payment-method-direct-debit.js:147
 msgid "BIC/SWIFT"
 msgstr "BIC/SWIFT"
 
@@ -14289,30 +14289,30 @@ msgid "Please provide your license key."
 msgstr "Bitte geben Sie Ihren Lizenzschlüssel ein."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-ajax.php:252 includes/class-wc-gzd-ajax.php:286
+#: includes/class-wc-gzd-ajax.php:268 includes/class-wc-gzd-ajax.php:302
 msgid "%s [new]"
 msgstr "%s [neu]"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-ajax.php:548
+#: includes/class-wc-gzd-ajax.php:564
 msgctxt "revocation-form"
 msgid "is not a valid email address."
 msgstr "ist leider keine valide E-Mail Adresse."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-ajax.php:552
+#: includes/class-wc-gzd-ajax.php:568
 msgctxt "revocation-form"
 msgid "Please enter a valid postcode/ZIP"
 msgstr "Bitte geben Sie eine echte Postleitzahl ein"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-ajax.php:559
+#: includes/class-wc-gzd-ajax.php:575
 msgctxt "revocation-form"
 msgid "is not valid."
 msgstr "ist leider nicht korrekt."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-ajax.php:579
+#: includes/class-wc-gzd-ajax.php:595
 msgctxt "revocation-form"
 msgid ""
 "Thank you. We have received your Revocation Request. You will receive a "
@@ -14648,23 +14648,23 @@ msgstr ""
 msgid "Other Vitamins & Minerals"
 msgstr "Andere Vitamine & Mineralien"
 
-#: includes/class-wc-gzd-install.php:430
+#: includes/class-wc-gzd-install.php:431
 msgctxt "shipments-migration"
 msgid "Error while querying %1$s: %2$s"
 msgstr "Fehler bei der Migration von %1$s: %2$s"
 
-#: includes/class-wc-gzd-install.php:456
+#: includes/class-wc-gzd-install.php:457
 msgctxt "shipments-migration"
 msgid "Error while running additional query on %1$s: %2$s"
 msgstr "Fehler bei einer zusätzlichen Abfrage auf %1$s: %2$s"
 
-#: includes/class-wc-gzd-install.php:509
+#: includes/class-wc-gzd-install.php:510
 msgctxt "shipments-migration"
 msgid "Could not rename %1$s to %2$s."
 msgstr "Konnte %1$s nicht in %2$s umbenennen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:547
+#: includes/class-wc-gzd-install.php:548
 msgid ""
 "Please install WooCommerce before installing WooCommerce Germanized. Thank "
 "you!"
@@ -14673,83 +14673,83 @@ msgstr ""
 "installieren. Vielen Dank!"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:953 includes/class-wc-gzd-install.php:1005
+#: includes/class-wc-gzd-install.php:954 includes/class-wc-gzd-install.php:1006
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
-#: includes/class-wc-gzd-install.php:954 includes/class-wc-gzd-install.php:1007
+#: includes/class-wc-gzd-install.php:955 includes/class-wc-gzd-install.php:1008
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:958
+#: includes/class-wc-gzd-install.php:959
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:959
+#: includes/class-wc-gzd-install.php:960
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:963
+#: includes/class-wc-gzd-install.php:964
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:964
+#: includes/class-wc-gzd-install.php:965
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:968
+#: includes/class-wc-gzd-install.php:969
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:969
+#: includes/class-wc-gzd-install.php:970
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:973
+#: includes/class-wc-gzd-install.php:974
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:974
+#: includes/class-wc-gzd-install.php:975
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:978
+#: includes/class-wc-gzd-install.php:979
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:979
+#: includes/class-wc-gzd-install.php:980
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: includes/class-wc-gzd-install.php:983
+#: includes/class-wc-gzd-install.php:984
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr "echtheit-von-bewertungen"
 
-#: includes/class-wc-gzd-install.php:984
+#: includes/class-wc-gzd-install.php:985
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"
@@ -17046,39 +17046,39 @@ msgstr ""
 "einen Fehler."
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:633 build/wc-gzd-blocks-product-elements.js:3182
+#: src/PluginsHelper.php:621 build/wc-gzd-blocks-product-elements.js:3182
 #: build/wc-gzd-blocks-product-elements-style.js:2360
 #: build/wc-gzd-blocks-product-elements.js:2345
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:637 src/PluginsHelper.php:715
+#: src/PluginsHelper.php:625 src/PluginsHelper.php:728
 msgid "DHL for Shiptastic"
 msgstr "DHL für Shiptastic"
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:638
+#: src/PluginsHelper.php:626
 msgid "Germanized for WooCommerce Pro"
 msgstr "Germanized für WooCommerce Pro"
 
 #. translators: %s: plugin slug (example: woocommerce-services)
-#: src/PluginsHelper.php:674
+#: src/PluginsHelper.php:687
 msgid "The requested plugin `%s` is not yet installed."
 msgstr "Das Plugin `%s` ist noch nicht installiert."
 
 #. translators: %s: plugin slug (example: woocommerce-services)
-#: src/PluginsHelper.php:686
+#: src/PluginsHelper.php:699
 msgid "The requested plugin `%s` could not be activated."
 msgstr "Das Plugin `%s` konnte nicht aktiviert werden."
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:714
+#: src/PluginsHelper.php:727
 msgid "UPS for Shiptastic"
 msgstr "UPS für Shiptastic"
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:720
+#: src/PluginsHelper.php:733
 msgid "Germanized for WooCommerce: %s"
 msgstr "Germanized für WooCommerce: %s"
 
@@ -18282,20 +18282,20 @@ msgid "Direct debit"
 msgstr "Lastschrift"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-payment-method-direct-debit.js:256
-#: build/wc-gzd-payment-method-direct-debit.js:131
+#: build/wc-gzd-payment-method-direct-debit.js:253
+#: build/wc-gzd-payment-method-direct-debit.js:129
 msgid "Account holder"
 msgstr "Kontoinhaber"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-payment-method-direct-debit.js:320
-#: build/wc-gzd-payment-method-direct-debit.js:209
+#: build/wc-gzd-payment-method-direct-debit.js:317
+#: build/wc-gzd-payment-method-direct-debit.js:207
 msgid "Please enter a valid BIC/SWIFT"
 msgstr "Bitte prüfen Sie Ihren BIC/SWIFT"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-payment-method-direct-debit.js:413
-#: build/wc-gzd-payment-method-direct-debit.js:253
+#: build/wc-gzd-payment-method-direct-debit.js:410
+#: build/wc-gzd-payment-method-direct-debit.js:251
 msgid "Please enter a valid IBAN"
 msgstr "Bitte prüfen Sie Ihren IBAN"
 
@@ -18335,63 +18335,6 @@ msgstr "Warenkorb-Dropdown rechtl. Hinweise"
 msgctxt "block description"
 msgid "Outputs mini cart legal notices."
 msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
-
-#, fuzzy
-#~ msgctxt "dhl"
-#~ msgid "Could not resolve remote shipment status."
-#~ msgstr "Eltern-Sendung %d konnte nicht initialisiert werden."
-
-#, fuzzy
-#~ msgctxt "dhl"
-#~ msgid "No xml element found."
-#~ msgstr "Keine Sendungen gefunden."
-
-# @ woocommerce-germanized
-#, fuzzy
-#~ msgctxt "shipments"
-#~ msgid "Ready for shipping"
-#~ msgstr "Versand kostenlos?"
-
-#, fuzzy
-#~ msgctxt "shipments"
-#~ msgid "Partially ready for shipping"
-#~ msgstr "Teilweise versandt"
-
-#, fuzzy
-#~ msgctxt "shipments"
-#~ msgid "Shiptastic debug mode"
-#~ msgstr "Shiptastic Upload-Ordner"
-
-# @ woocommerce-germanized
-#, fuzzy
-#~ msgctxt "shipments"
-#~ msgid "Disable"
-#~ msgstr "Deaktivieren"
-
-#, fuzzy
-#~ msgctxt "shipments"
-#~ msgid "Change status to ready for shipping"
-#~ msgstr "Status zu versandt ändern"
-
-#, fuzzy
-#~ msgctxt "shipments"
-#~ msgid "Remote Status (%s)"
-#~ msgstr "Inhalt (%s)"
-
-#, fuzzy
-#~ msgctxt "shipments"
-#~ msgid ""
-#~ "Enable this option to automatically refresh the shipment status based on "
-#~ "the actual status returned by the API. To learn more about remote status "
-#~ "updates, check the <a href=\"https://vendidero.com/doc/shiptastic/manage-"
-#~ "returns\">docs</a>."
-#~ msgstr ""
-#~ "Die Aktivierung dieser Option ermöglicht es Ihren Kunden Rücksendeanträge "
-#~ "zu Bestellungen über den Kundenbereich zu stellen. Rücksendeanträge "
-#~ "werden in Ihrem <a href=\"%s\">Retouren-Dashboard</a> aufgelistet. Um "
-#~ "mehr über Rücksendeanträge von Kunden und/oder Gästen zu erfahren, lesen "
-#~ "Sie bitte die <a href=\"https://vendidero.de/doc/shiptastic/retouren-"
-#~ "verwalten\">Dokumentation</a>."
 
 #~ msgid ""
 #~ "As of 2022-05-28, a new <a href=\"%1$s\">price indication regulation</a> "

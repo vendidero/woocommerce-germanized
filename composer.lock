@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f1c7bfa96dfc222568aa25becdbe429",
+    "content-hash": "b0899e702cdae1ae7a23a0a6fa3baf05",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -659,16 +659,16 @@
         },
         {
             "name": "vendidero/shiptastic-for-woocommerce",
-            "version": "4.5.0",
+            "version": "4.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/shiptastic-for-woocommerce.git",
-                "reference": "93f15ebca78b25869eed593b42be07174350c486"
+                "reference": "29bbdd2fed51f816cc8a5d2590603b36a98e25f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/93f15ebca78b25869eed593b42be07174350c486",
-                "reference": "93f15ebca78b25869eed593b42be07174350c486",
+                "url": "https://api.github.com/repos/vendidero/shiptastic-for-woocommerce/zipball/29bbdd2fed51f816cc8a5d2590603b36a98e25f6",
+                "reference": "29bbdd2fed51f816cc8a5d2590603b36a98e25f6",
                 "shasum": ""
             },
             "require": {
@@ -711,9 +711,9 @@
             "description": "Shiptastic for WooCommerce",
             "homepage": "https://vendidero.de",
             "support": {
-                "source": "https://github.com/vendidero/shiptastic-for-woocommerce/tree/v4.5.0"
+                "source": "https://github.com/vendidero/shiptastic-for-woocommerce/tree/v4.5.1"
             },
-            "time": "2025-07-17T09:46:00+00:00"
+            "time": "2025-07-22T10:54:26+00:00"
         },
         {
             "name": "vendidero/shiptastic-integration-for-dhl",
