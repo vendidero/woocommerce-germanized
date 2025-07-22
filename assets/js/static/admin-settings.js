@@ -24,7 +24,7 @@ window.germanized = window.germanized || {};
                 .on( 'change', 'input[name=woocommerce_gzd_dispute_resolution_type]', this.onChangeDisputeResolutionType )
                 .on( 'change', '.wc-gzd-setting-tabs input.woocommerce-gzd-tab-status-checkbox', this.onChangeTabStatus )
                 .on( 'change', '.wc-gzd-setting-tab-enabled :input', this.preventWarning )
-                .on( 'click', 'a.wc-gzd-install-extension-btn', this.onInstallExtension )
+                .on( 'click', '.wc-gzd-install-extension-btn', this.onInstallExtension )
                 .on( 'change gzd_show_or_hide_fields', '.wc-gzd-admin-settings :input', this.onChangeInput );
 
             $( '.wc-gzd-admin-settings :input' ).trigger( 'gzd_show_or_hide_fields' );
@@ -57,16 +57,32 @@ window.germanized = window.germanized || {};
 
         onInstallExtension: function() {
             var self  = germanized.settings,
-                $this = $( this );
+                $this = $( this ),
+                $wrapper = $( '#wpbody-content' ).find( '.wrap' );
+
+            if ( $( '.wc-gzd-setting-tabs' ).length > 0 ) {
+                $wrapper = $( '.wc-gzd-setting-tabs' );
+            } else if ( $this.parents( '.forminp' ).length > 0 ) {
+                $wrapper = $this.parents( '.forminp' );
+            }
+
+            var $msg_wrapper = $wrapper.find( '.msg-wrapper' ).length > 0 ? $wrapper.find( '.msg-wrapper' ) : $wrapper;
+
+            $( 'body' ).find( '#wc-gzd-ext-error' ).remove();
 
             var data = {
                 action: 'woocommerce_gzd_install_extension',
                 security: self.params.install_extension_nonce,
-                extension: $this.data( 'extension' )
+                extension: $this.data( 'extension' ),
+                license_key: $wrapper.find( '#license_key' ).length > 0 ? $wrapper.find( '#license_key' ).val() : '',
             };
 
             $this.addClass( 'wc-gzd-is-loading' );
             $this.append( '<span class="spinner is-active"></span>' );
+
+            if ( $this.is( ':button' ) ) {
+                $this.addClass( 'disabled' ).prop( 'disabled', true );
+            }
 
             $.ajax( {
                 url: self.params.ajax_url,
@@ -77,21 +93,21 @@ window.germanized = window.germanized || {};
                     $this.find( '.spinner' ).remove();
                     $this.removeClass( 'wc-gzd-is-loading' );
 
+                    if ( $this.is( ':button' ) ) {
+                        $this.removeClass( 'disabled' ).prop( 'disabled', false );
+                    }
+
                     if ( response.success ) {
                         if ( $this.is("[href]") && '#' !== $this.attr( 'href' ) ) {
                             window.location.href = $this.attr( 'href' );
+                        } else if ( response.hasOwnProperty( 'redirect' ) ) {
+                            window.location.href = response.redirect;
                         }
                     } else if ( response.hasOwnProperty( 'message' ) ) {
-                        var $wrapper = $( '#wpbody-content' ).find( '.wrap' );
-
-                        if ( $( '.wc-gzd-setting-tabs' ).length > 0 ) {
-                            $wrapper = $( '.wc-gzd-setting-tabs' );
-                        }
-
-                        $wrapper.before( '<div class="error inline" id="message"><p>' + response.message + '</p></div>' );
+                        $msg_wrapper.before( '<div class="error inline" id="wc-gzd-ext-error"><p>' + response.message + '</p></div>' );
 
                         $( 'html, body' ).animate({
-                            scrollTop: ( $( '#message' ).offset().top - 32 )
+                            scrollTop: ( $( '#wc-gzd-ext-error' ).offset().top - 92 )
                         }, 1000 );
                     }
                 }

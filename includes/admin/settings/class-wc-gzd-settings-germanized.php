@@ -70,8 +70,8 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		}
 
 		$core_pages = wc_admin_get_core_pages_to_connect();
-		$tab        = isset( $_GET['tab'] ) ? wc_clean( wp_unslash( $_GET['tab'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$tab_clean  = str_replace( 'germanized-', '', $tab );
+		$tab        = $this->get_current_tab();
+		$tab_clean  = $this->get_current_gzd_tab();
 
 		$new_breadcrumbs = array(
 			array(
@@ -133,9 +133,24 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		return $this->get_inner_settings( $section_id );
 	}
 
+	public function get_current_tab() {
+		return isset( $_GET['tab'] ) ? wc_clean( wp_unslash( $_GET['tab'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	}
+
+	public function get_current_gzd_tab() {
+		$tab_clean = str_replace( 'germanized-', '', $this->get_current_tab() );
+		$tab_clean = str_replace( 'shiptastic-', '', $tab_clean );
+
+		return $this->is_active() && $tab_clean ? $tab_clean : false;
+	}
+
 	public function admin_styles() {
 		// Admin styles for WC pages only.
 		if ( $this->is_active() ) {
+			if ( 'license' === $this->get_current_gzd_tab() ) {
+				wp_enqueue_style( 'vd_admin' );
+			}
+
 			wp_enqueue_style( 'woocommerce-gzd-admin-settings' );
 
 			/**
@@ -202,6 +217,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-terms-generator.php';
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-revocation-generator.php';
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-trusted-shops.php';
+		include_once __DIR__ . '/class-wc-gzd-settings-tab-license.php';
 
 		if ( class_exists( '\Vendidero\Shiptastic\Package' ) && \Vendidero\Germanized\Packages::load_shipping_package() ) {
 			include_once __DIR__ . '/class-wc-gzd-settings-tab-shiptastic.php';
@@ -235,6 +251,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'revocation_generator'           => 'WC_GZD_Settings_Tab_Revocation_Generator',
 				'oss'                            => 'WC_GZD_Settings_Tab_OSS',
 				'trusted_shops_easy_integration' => 'WC_GZD_Settings_Tab_Trusted_Shops',
+				'license'                        => 'WC_GZD_Settings_Tab_License',
 			)
 		);
 

@@ -48,6 +48,10 @@ class PluginsHelper {
 	public static function observe_plugin_activation( $plugin ) {
 		if ( strstr( self::get_plugin_slug( $plugin ), 'one-stop-shop-woocommerce' ) ) {
 			delete_option( 'woocommerce_gzd_is_oss_standalone_update' );
+		} elseif ( strstr( self::get_plugin_slug( $plugin ), 'shiptastic-for-woocommerce' ) ) {
+			delete_option( 'woocommerce_gzd_is_shiptastic_standalone_update' );
+		} elseif ( strstr( self::get_plugin_slug( $plugin ), 'shiptastic-integration-for-dhl' ) ) {
+			delete_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update' );
 		}
 	}
 
@@ -197,6 +201,20 @@ class PluginsHelper {
 	/**
 	 * @return bool
 	 */
+	public static function is_shiptastic_plugin_active() {
+		return self::is_plugin_active( 'shiptastic-for-woocommerce' );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public static function is_shiptastic_dhl_plugin_active() {
+		return self::is_plugin_active( 'shiptastic-integration-for-dhl' );
+	}
+
+	/**
+	 * @return bool
+	 */
 	public static function is_oss_plugin_installed() {
 		return self::is_plugin_installed( 'one-stop-shop-woocommerce' );
 	}
@@ -220,6 +238,14 @@ class PluginsHelper {
 	 */
 	public static function is_pro_version_active() {
 		return self::is_plugin_active( 'woocommerce-germanized-pro' );
+	}
+
+	protected static function is_pro_plugin( $plugin ) {
+		return in_array( self::get_plugin_slug( $plugin ), array( 'woocommerce-germanized-pro' ), true );
+	}
+
+	public static function get_pro_version_product_id() {
+		return 148;
 	}
 
 	/**
@@ -308,52 +334,63 @@ class PluginsHelper {
 
 	/**
 	 * @param $plugin
+	 * @param string $license_key
 	 *
-	 * @return bool
+	 * @return true|\WP_Error
 	 */
-	protected static function install_and_activate_plugin( $plugin ) {
+	protected static function install_and_activate_plugin( $plugin, $license_key = '' ) {
 		self::clear_cache();
-
-		$result = array(
-			'errors' => new \WP_Error(),
-		);
 
 		if ( self::is_plugin_installed( $plugin ) ) {
 			$result = self::activate_plugins( $plugin );
-		} elseif ( ! self::is_plugin_installed( $plugin ) ) {
-			$result = self::install_plugins( $plugin );
+		} else {
+			$result = self::install_plugins( $plugin, $license_key );
 
 			if ( ! wc_gzd_wp_error_has_errors( $result['errors'] ) ) {
 				$result = self::activate_plugins( $plugin );
 			}
 		}
 
-		return ( ! wc_gzd_wp_error_has_errors( $result['errors'] ) ? true : false );
+		return ( ! wc_gzd_wp_error_has_errors( $result['errors'] ) ? true : $result['errors'] );
 	}
 
 	/**
-	 * @return bool
+	 * @return true|\WP_Error
 	 */
-	public static function install_or_activate_extension( $extension_name ) {
+	public static function install_or_activate_extension( $extension_name, $license_key = '' ) {
 		if ( self::is_plugin_whitelisted( $extension_name ) ) {
-			return self::install_and_activate_plugin( $extension_name );
+			return self::install_and_activate_plugin( $extension_name, $license_key );
 		} else {
-			return false;
+			return new \WP_Error( 'not_whitelisted', __( 'This plugin is not allowed to be installed.', 'woocommerce-germanized' ) );
 		}
 	}
 
 	/**
-	 * @return bool
+	 * @return true|\WP_Error
 	 */
 	public static function install_or_activate_oss() {
 		return self::install_or_activate_extension( 'one-stop-shop-woocommerce' );
 	}
 
 	/**
-	 * @return bool
+	 * @return true|\WP_Error
 	 */
 	public static function install_or_activate_trusted_shops() {
 		return self::install_or_activate_extension( 'trusted-shops-easy-integration-for-woocommerce' );
+	}
+
+	/**
+	 * @return true|\WP_Error
+	 */
+	public static function install_or_activate_shiptatic() {
+		return self::install_or_activate_extension( 'shiptastic-for-woocommerce' );
+	}
+
+	/**
+	 * @return true|\WP_Error
+	 */
+	public static function install_or_activate_shiptatic_dhl() {
+		return self::install_or_activate_extension( 'shiptastic-integration-for-dhl' );
 	}
 
 	public static function get_plugin_manual_install_message( $plugin ) {
@@ -390,13 +427,40 @@ class PluginsHelper {
 		return self::is_plugin_installed( $plugin ) ? sprintf( __( 'Please <a href="%1$s">activate the %2$s &raquo;</a> plugin', 'woocommerce-germanized' ), esc_url( $install_url ), $plugin_name ) : sprintf( __( 'Please <a href="%1$s">install the %2$s &raquo;</a> plugin', 'woocommerce-germanized' ), esc_url( $install_url ), $plugin_name );
 	}
 
+	public static function add_vd_signature_trusted_keys( $keys ) {
+		$keys[] = '5AJRLVJJyHHrr9FSgJIBDcKyOu2TCLY5kDO2kVhGAnU=';
+
+		return $keys;
+	}
+
+	protected static function get_vd_download_url() {
+		return 'https://download.vendidero.de/api/v1/';
+	}
+
+	public static function add_vd_signature_hosts( $hosts ) {
+		$url     = @wp_parse_url( self::get_vd_download_url() ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		$hosts[] = $url['host'];
+
+		return $hosts;
+	}
+
+	public static function adjust_vd_signature_url( $signature_url, $url ) {
+		if ( strstr( $url, self::get_vd_download_url() ) ) {
+			$signature_url = str_replace( 'latest/download', 'latest/downloadSignature', $url );
+		}
+
+		return $signature_url;
+	}
+
 	/**
 	 * Install an array of plugins.
 	 *
 	 * @param array $plugins Plugins to install.
+	 * @param string $license_key
+	 *
 	 * @return array|\WP_Error
 	 */
-	protected static function install_plugins( $plugins ) {
+	protected static function install_plugins( $plugins, $license_key = '' ) {
 		if ( ! is_array( $plugins ) ) {
 			$plugins = array( $plugins );
 		}
@@ -420,58 +484,120 @@ class PluginsHelper {
 
 			if ( isset( $existing_plugins[ $slug ] ) ) {
 				$installed_plugins[] = $plugin;
-				continue;
 			} elseif ( ! self::is_plugin_whitelisted( $plugin ) ) {
 				continue;
 			}
 
-			$start_time = microtime( true );
+			$start_time    = microtime( true );
+			$download_link = '';
 
-			$api = plugins_api(
-				'plugin_information',
-				array(
-					'slug'   => $slug,
-					'fields' => array(
-						'sections' => false,
+			if ( self::is_pro_plugin( $plugin ) ) {
+				$pro_product_id = self::get_pro_version_product_id();
+
+				$api_url = add_query_arg(
+					array(
+						'id'     => $pro_product_id,
+						'key'    => md5( $license_key ),
+						'domain' => esc_url( self::get_current_domain() ),
 					),
-				)
-			);
+					self::get_vd_download_url() . "releases/{$pro_product_id}/latest"
+				);
 
-			if ( is_wp_error( $api ) ) {
-				do_action( 'woocommerce_gzd_plugins_install_api_error', $slug, $api );
-
-				$errors->add(
-					$plugin,
-					sprintf(
-						/* translators: %s: plugin slug (example: woocommerce-services) */
-						__( 'The requested plugin `%s` could not be installed. Plugin API call failed.', 'woocommerce-germanized' ),
-						$slug
+				$response = wp_remote_get(
+					esc_url_raw( $api_url ),
+					array(
+						'redirection' => 5,
+						'headers'     => array( 'user-agent' => 'Vendidero/Germanized/' . Package::get_version() ),
 					)
 				);
 
-				continue;
-			}
+				if ( is_wp_error( $response ) ) {
+					foreach ( $response->get_error_messages() as $code => $message ) {
+						$errors->add( $plugin, $message, $response->get_error_data( $code ) );
+					}
+					continue;
+				} else {
+					$response_code = wp_remote_retrieve_response_code( $response );
+					$response_body = json_decode( wp_remote_retrieve_body( $response ), true );
 
-			$upgrader           = new \Plugin_Upgrader( new \Automatic_Upgrader_Skin() );
-			$result             = $upgrader->install( $api->download_link );
-			$results[ $plugin ] = $result;
-			$time[ $plugin ]    = round( ( microtime( true ) - $start_time ) * 1000 );
+					if ( ! in_array( $response_code, array( 200, 201, 202 ), true ) || ! isset( $response_body['payload']['package'] ) ) {
+						if ( isset( $response_body['notice'] ) ) {
+							foreach ( (array) $response_body['notice'] as $notice ) {
+								$errors->add( $plugin, $notice );
+							}
+						} elseif ( isset( $response_body['error'] ) ) {
+							$errors->add( $plugin, $response_body['error'] );
+						} else {
+							$errors->add(
+								$plugin,
+								sprintf(
+								/* translators: %s: plugin slug (example: woocommerce-services) */
+									__( 'The requested plugin %s could not be installed. Plugin API call failed.', 'woocommerce-germanized' ),
+									self::get_plugin_name( $plugin )
+								)
+							);
+						}
+					} else {
+						add_filter( 'wp_trusted_keys', array( __CLASS__, 'add_vd_signature_trusted_keys' ) );
+						add_filter( 'wp_signature_hosts', array( __CLASS__, 'add_vd_signature_hosts' ) );
+						add_filter( 'wp_signature_url', array( __CLASS__, 'adjust_vd_signature_url' ), 10, 2 );
 
-			if ( is_wp_error( $result ) || is_null( $result ) ) {
-				do_action( 'woocommerce_gzd_plugins_install_error', $slug, $api, $result, $upgrader );
-
-				$errors->add(
-					$plugin,
-					sprintf(
-						/* translators: %s: plugin slug (example: woocommerce-services) */
-						__( 'The requested plugin `%s` could not be installed. Upgrader install failed.', 'woocommerce-germanized' ),
-						$slug
+						$download_link = $response_body['payload']['package'];
+					}
+				}
+			} else {
+				$api = plugins_api(
+					'plugin_information',
+					array(
+						'slug'   => $slug,
+						'fields' => array(
+							'sections' => false,
+						),
 					)
 				);
-				continue;
+
+				if ( is_wp_error( $api ) ) {
+					do_action( 'woocommerce_gzd_plugins_install_api_error', $slug, $api );
+
+					$errors->add(
+						$plugin,
+						sprintf(
+							/* translators: %s: plugin slug (example: woocommerce-services) */
+							__( 'The requested plugin %s could not be installed. Plugin API call failed.', 'woocommerce-germanized' ),
+							self::get_plugin_name( $plugin )
+						)
+					);
+
+					continue;
+				}
+
+				$download_link = $api->download_link;
 			}
 
-			$installed_plugins[] = $plugin;
+			if ( $download_link ) {
+				$upgrader           = new \Plugin_Upgrader( new \Automatic_Upgrader_Skin() );
+				$result             = $upgrader->install( $download_link );
+				$results[ $plugin ] = $result;
+				$time[ $plugin ]    = round( ( microtime( true ) - $start_time ) * 1000 );
+
+				if ( is_wp_error( $result ) || is_null( $result ) ) {
+					do_action( 'woocommerce_gzd_plugins_install_error', $slug, $api, $result, $upgrader );
+
+					$errors->add(
+						$plugin,
+						sprintf(
+							/* translators: %s: plugin slug (example: woocommerce-services) */
+							__( 'The requested plugin %s could not be installed. Upgrader install failed.', 'woocommerce-germanized' ),
+							self::get_plugin_name( $plugin )
+						)
+					);
+					continue;
+				}
+
+				do_action( 'woocommerce_gzd_installed_plugin', $plugin, $license_key );
+
+				$installed_plugins[] = $plugin;
+			}
 		}
 
 		$data = array(
@@ -492,10 +618,38 @@ class PluginsHelper {
 
 	protected static function get_whitelisted_plugins() {
 		return array(
-			'woocommerce'               => __( 'WooCommerce', 'woocommerce-germanized' ),
-			'one-stop-shop-woocommerce' => __( 'One Stop Shop', 'woocommerce-germanized' ),
+			'woocommerce'                    => __( 'WooCommerce', 'woocommerce-germanized' ),
+			'one-stop-shop-woocommerce'      => __( 'One Stop Shop', 'woocommerce-germanized' ),
 			'trusted-shops-easy-integration-for-woocommerce' => __( 'Trusted Shops', 'woocommerce-germanized' ),
+			'shiptastic-for-woocommerce'     => __( 'Shiptastic', 'woocommerce-germanized' ),
+			'shiptastic-integration-for-dhl' => __( 'DHL for Shiptastic', 'woocommerce-germanized' ),
+			'woocommerce-germanized-pro'     => __( 'Germanized for WooCommerce Pro', 'woocommerce-germanized' ),
 		);
+	}
+
+	public static function get_current_domain( $format = false ) {
+		$domain = home_url( '/' );
+
+		if ( $format ) {
+			$domain = self::format_domain( $domain );
+		}
+
+		return $domain;
+	}
+
+	protected static function format_domain( $domain ) {
+		$domain = esc_url_raw( $domain );
+		$parsed = @wp_parse_url( $domain ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+
+		if ( empty( $parsed ) || empty( $parsed['host'] ) ) {
+			return '';
+		}
+
+		// Remove www. prefix
+		$parsed['host'] = str_replace( 'www.', '', $parsed['host'] );
+		$domain         = $parsed['host'];
+
+		return $domain;
 	}
 
 	/**
@@ -557,6 +711,10 @@ class PluginsHelper {
 		);
 
 		self::clear_cache();
+
+		if ( ! empty( $activated_plugins ) ) {
+			do_action( 'woocommerce_gzd_plugins_activated', $data );
+		}
 
 		return $data;
 	}

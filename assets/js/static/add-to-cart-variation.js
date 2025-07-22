@@ -32,6 +32,10 @@
         $form.on( 'reset_data.wc-gzd-variation-form', { GermanizedvariationForm: self }, self.onReset );
         $form.on( 'show_variation.wc-gzd-variation-form', { GermanizedvariationForm: self }, self.onShowVariation );
 
+        if ( self.replacePrice ) {
+            self.$form.addClass( 'wc-gzd-replace-price' );
+        }
+
         self.$wrapper.find( '' +
             '.woocommerce-product-attributes-item--food_description, ' +
             '.woocommerce-product-attributes-item--alcohol_content, ' +
@@ -50,7 +54,11 @@
     };
 
     GermanizedVariationForm.prototype.showOrHideTabs = function( self, has_product_safety_information = undefined ) {
-        has_product_safety_information = undefined === has_product_safety_information ? self.$product.hasClass( 'has-product-safety-information' ) : has_product_safety_information;
+        /**
+         * Block-based themes have the global post/product classes attached to body instead of the product group wrapper.
+         */
+        var $defaultWrapper = $( 'body' ).hasClass( 'type-product' ) ? $( 'body' ) : self.$product;
+        has_product_safety_information = undefined === has_product_safety_information ? $defaultWrapper.hasClass( 'has-product-safety-information' ) : has_product_safety_information;
 
         if ( has_product_safety_information ) {
             self.$product.find( '.product_safety_tab' ).show().css( 'display', 'inline-block' );

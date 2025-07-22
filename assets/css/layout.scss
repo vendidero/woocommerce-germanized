@@ -9,12 +9,10 @@ p.wc-gzd-additional-info:empty {
   display: none;
 }
 
-.product-type-variable {
-  div.product {
-    ul.tabs {
-      li.product_safety_tab {
-        display: none;
-      }
+.product.product-type-variable {
+  ul.tabs {
+    li.product_safety_tab {
+      display: none;
     }
   }
 }
@@ -192,6 +190,14 @@ body.theme-astra {
 
   p:last-child {
     margin-bottom: 0;
+  }
+}
+
+form.cart.wc-gzd-replace-price {
+  .single_variation_wrap {
+    .woocommerce-variation-price {
+      display: none;
+    }
   }
 }
 

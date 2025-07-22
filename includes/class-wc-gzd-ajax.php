@@ -47,24 +47,61 @@ class WC_GZD_AJAX {
 			wp_die( - 1 );
 		}
 
-		$extension = wc_clean( wp_unslash( $_POST['extension'] ) );
+		$extension           = wc_clean( wp_unslash( $_POST['extension'] ) );
+		$license_key         = isset( $_POST['license_key'] ) ? wc_clean( wp_unslash( $_POST['license_key'] ) ) : '';
+		$redirect_on_success = false;
 
 		if ( ! empty( $extension ) && \Vendidero\Germanized\PluginsHelper::is_plugin_whitelisted( $extension ) ) {
-			$result = \Vendidero\Germanized\PluginsHelper::install_or_activate_extension( $extension );
+			$plugin_name = \Vendidero\Germanized\PluginsHelper::get_plugin_name( $extension );
+
+			if ( 'woocommerce-germanized-pro' === $extension ) {
+				if ( empty( $license_key ) ) {
+					wp_send_json(
+						array(
+							'message' => __( 'Please provide your license key.', 'woocommerce-germanized' ),
+						)
+					);
+				}
+
+				$redirect_on_success = admin_url( 'admin.php?page=wc-gzdp-setup' );
+			}
+
+			$result = \Vendidero\Germanized\PluginsHelper::install_or_activate_extension( $extension, $license_key );
 
 			if ( \Vendidero\Germanized\PluginsHelper::is_plugin_active( $extension ) ) {
-				wp_send_json(
-					array(
-						'success' => true,
-					)
+				$result = array(
+					'success' => true,
 				);
+
+				if ( 'woocommerce-germanized-pro' === $extension ) {
+					if ( class_exists( '\Vendidero\VendideroHelper\Package' ) ) {
+						$pro_product_id = \Vendidero\Germanized\PluginsHelper::get_pro_version_product_id();
+						$pro_version    = \Vendidero\VendideroHelper\Package::get_product_by_id( $pro_product_id );
+
+						if ( ! $pro_version ) {
+							\Vendidero\VendideroHelper\Package::add_product( 'woocommerce-germanized-pro/woocommerce-germanized-pro.php', $pro_product_id, array( 'free' => false ) );
+							$pro_version = \Vendidero\VendideroHelper\Package::get_product_by_id( $pro_product_id );
+						}
+
+						if ( $pro_version ) {
+							$pro_version->register( $license_key );
+						}
+					}
+				}
+
+				if ( $redirect_on_success ) {
+					$result['redirect'] = $redirect_on_success;
+				}
+
+				wp_send_json( $result );
 			} else {
-				$plugin_name = \Vendidero\Germanized\PluginsHelper::get_plugin_name( $extension );
-				$message     = sprintf( __( 'There was an error while automatically installing %1$s. %2$s', 'woocommerce-germanized' ), esc_html( $plugin_name ), \Vendidero\Germanized\PluginsHelper::get_plugin_manual_install_message( $extension ) );
+				if ( ! is_wp_error( $result ) ) {
+					$result = new WP_Error( 'plugin_install', sprintf( __( 'There was an error while automatically installing %1$s. %2$s', 'woocommerce-germanized' ), esc_html( $plugin_name ), \Vendidero\Germanized\PluginsHelper::get_plugin_manual_install_message( $extension ) ) );
+				}
 
 				wp_send_json(
 					array(
-						'message' => $message,
+						'message' => $result->get_error_message(),
 					)
 				);
 			}

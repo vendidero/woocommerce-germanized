@@ -3,7 +3,9 @@
  */
 import { useEffect, useState, useCallback, useRef } from '@wordpress/element';
 import { extensionCartUpdate } from '@woocommerce/blocks-checkout';
+
 import _ from 'lodash';
+import classnames from "classnames";
 
 import Modal from './modal';
 import LegalCheckbox from "./checkboxes/legal-checkbox";
@@ -11,10 +13,11 @@ import PrivacyCheckbox from "./checkboxes/privacy-checkbox";
 import SepaCheckbox from "./checkboxes/sepa-checkbox";
 
 const Block = ({
-   children,
-   checkoutExtensionData,
+	children,
+	checkoutExtensionData,
 	extensions,
-   cart
+	cart,
+	className
 }) => {
 	const [ showModal, setShowModal ] = useState( false );
 	const { setExtensionData } = checkoutExtensionData;
@@ -99,7 +102,10 @@ const Block = ({
 	] );
 
 	return (
-		<div className="wc-gzd-checkboxes">
+		<div className={ classnames(
+			`wc-gzd-checkboxes`,
+			className,
+		) }>
 			<Modal
 				show={ showModal }
 				url={ modalUrl }

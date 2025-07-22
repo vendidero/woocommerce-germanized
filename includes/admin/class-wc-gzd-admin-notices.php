@@ -68,6 +68,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 			include_once 'notes/class-wc-gzd-admin-note-ts-install.php';
 			include_once 'notes/class-wc-gzd-admin-note-blocks.php';
 			include_once 'notes/class-wc-gzd-admin-note-shiptastic-migration.php';
+			include_once 'notes/class-wc-gzd-admin-note-shiptastic-install.php';
 		}
 
 		/**
@@ -192,6 +193,10 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 
 				if ( 'yes' === get_option( 'woocommerce_gzd_is_ts_standalone_update' ) ) {
 					$core_notes[] = 'WC_GZD_Admin_Note_TS_Install';
+				}
+
+				if ( 'yes' === get_option( 'woocommerce_gzd_is_shiptastic_standalone_update' ) && current_user_can( 'install_plugins' ) ) {
+					$core_notes[] = 'WC_GZD_Admin_Note_Shiptastic_Install';
 				}
 
 				$notes       = apply_filters( 'woocommerce_gzd_admin_notes', $core_notes );

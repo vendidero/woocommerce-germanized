@@ -65,8 +65,6 @@ const DirectDebitForm = ( {
         }
     );
 
-    const { __internalSetExtensionData } = useDispatch( CHECKOUT_STORE_KEY );
-
     const fields = [
         {
             key: 'direct_debit_account_holder',

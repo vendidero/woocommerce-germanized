@@ -224,7 +224,7 @@ class WC_GZD_Checkout {
 						 * get_posted_data() does only include core Woo data, no third-party data included.
 						 * Prevent calling get_posted_data() before fields were loaded to prevent infinite loops.
 						 */
-						if ( did_action( 'woocommerce_checkout_fields' ) ) {
+						if ( did_action( 'woocommerce_checkout_fields' ) || did_action( 'woocommerce_checkout_process' ) ) {
 							$this->checkout_data = WC()->checkout()->get_posted_data();
 						}
 					}

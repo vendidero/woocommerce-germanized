@@ -261,8 +261,8 @@ final class Checkout {
 						return $errors;
 					}
 
-					$country   = isset( $fields['country'] ) ? $fields['country'] : $fields[ "{$group}_country" ];
-					$address_1 = isset( $fields['address_1'] ) ? $fields['address_1'] : $fields[ "{$group}_address_1" ];
+					$country   = isset( $fields['country'] ) ? $fields['country'] : ( isset( $fields[ "{$group}_country" ] ) ? $fields[ "{$group}_country" ] : '' );
+					$address_1 = isset( $fields['address_1'] ) ? $fields['address_1'] : ( isset( $fields[ "{$group}_address_1" ] ) ? $fields[ "{$group}_address_1" ] : '' );
 
 					/**
 					 * Somehow Woo calls the filter differently on my account address save action
@@ -621,7 +621,7 @@ final class Checkout {
 	 * @return array
 	 */
 	private function get_checkout_data_from_request( $request ) {
-		$data = array_filter( (array) wc_clean( $request['extensions']['woocommerce-germanized'] ) );
+		$data = array_filter( isset( $request['extensions']['woocommerce-germanized'] ) ? (array) wc_clean( $request['extensions']['woocommerce-germanized'] ) : array() );
 
 		$data = wp_parse_args(
 			$data,

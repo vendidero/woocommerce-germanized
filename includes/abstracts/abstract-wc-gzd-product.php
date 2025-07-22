@@ -556,7 +556,7 @@ class WC_GZD_Product {
 		$amount = (float) $price * (float) $quantity;
 
 		// Calculate taxes
-		if ( 'view' === $context && $amount > 0 ) {
+		if ( 'view' === $context && 0.0 !== $amount ) {
 			$amount           = ( 'incl' === $tax_display_mode ) ? $this->get_deposit_amount_including_tax( 1, $amount ) : $this->get_deposit_amount_excluding_tax( 1, $amount );
 			$shipping_country = $this->get_current_customer_shipping_country();
 
@@ -577,7 +577,17 @@ class WC_GZD_Product {
 	 * @return string  unit price including tax
 	 */
 	public function get_deposit_amount_including_tax( $qty = 1, $price = '' ) {
-		$price = ( '' === $price ) ? $this->get_deposit_amount_per_unit( 'view', 'incl' ) : $price;
+		$price               = ( '' === $price ) ? $this->get_deposit_amount_per_unit( 'view', 'incl' ) : $price;
+		$is_negative_deposit = false;
+
+		/**
+		 * Use a tweak to support negative deposit amounts (e.g. returns)
+		 * as the wc_get_price_including_tax function does not allow negative prices.
+		 */
+		if ( (float) $price < 0 ) {
+			$is_negative_deposit = true;
+			$price               = (float) $price * -1;
+		}
 
 		/**
 		 * Filter to adjust the deposit amount including tax.
@@ -589,7 +599,7 @@ class WC_GZD_Product {
 		 *
 		 * @since 3.9.0
 		 */
-		return apply_filters(
+		$price = apply_filters(
 			'woocommerce_gzd_deposit_amount_including_tax',
 			( empty( $price ) ) ? '' : wc_get_price_including_tax(
 				$this->child,
@@ -602,6 +612,12 @@ class WC_GZD_Product {
 			$qty,
 			$this
 		);
+
+		if ( $is_negative_deposit ) {
+			$price = (float) $price * -1;
+		}
+
+		return $price;
 	}
 
 	/**
@@ -613,7 +629,17 @@ class WC_GZD_Product {
 	 * @return string deposit amount excluding tax
 	 */
 	public function get_deposit_amount_excluding_tax( $qty = 1, $price = '' ) {
-		$price = ( '' === $price ) ? $this->get_deposit_amount_per_unit( 'view', 'excl' ) : $price;
+		$price               = ( '' === $price ) ? $this->get_deposit_amount_per_unit( 'view', 'excl' ) : $price;
+		$is_negative_deposit = false;
+
+		/**
+		 * Use a tweak to support negative deposit amounts (e.g. returns)
+		 * as the wc_get_price_including_tax function does not allow negative prices.
+		 */
+		if ( (float) $price < 0 ) {
+			$is_negative_deposit = true;
+			$price               = (float) $price * -1;
+		}
 
 		/**
 		 * Filter to adjust the deposit amount excluding tax.
@@ -626,7 +652,7 @@ class WC_GZD_Product {
 		 * @since 3.9,0
 		 *
 		 */
-		return apply_filters(
+		$price = apply_filters(
 			'woocommerce_gzd_deposit_amount_excluding_tax',
 			( empty( $price ) ) ? '' : wc_get_price_excluding_tax(
 				$this->child,
@@ -639,6 +665,12 @@ class WC_GZD_Product {
 			$qty,
 			$this
 		);
+
+		if ( $is_negative_deposit ) {
+			$price = (float) $price * -1;
+		}
+
+		return $price;
 	}
 
 	public function get_deposit_amount_per_unit( $context = 'view', $tax_display = '' ) {
@@ -650,7 +682,7 @@ class WC_GZD_Product {
 
 		$tax_display_mode = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop' );
 
-		if ( 'view' === $context && $amount > 0 ) {
+		if ( 'view' === $context && 0.0 !== (float) $amount ) {
 			$amount = ( 'incl' === $tax_display_mode ) ? $this->get_deposit_amount_including_tax( 1, $amount ) : $this->get_deposit_amount_excluding_tax( 1, $amount );
 		}
 
@@ -668,7 +700,7 @@ class WC_GZD_Product {
 	}
 
 	public function has_deposit( $context = 'view' ) {
-		$has_deposit = $this->get_deposit_amount_per_unit() > 0;
+		$has_deposit = (float) $this->get_deposit_amount_per_unit() !== 0.0;
 
 		if ( 'view' === $context && ! $this->is_food() ) {
 			$has_deposit = false;

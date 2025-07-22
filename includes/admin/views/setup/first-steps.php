@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php if ( ! WC_germanized()->is_pro() ) : ?>
 		<div class="wc-gzd-setup-grid-item">
 			<h3><?php esc_html_e( 'Upgrade now', 'woocommerce-germanized' ); ?></h3>
-			<p><?php esc_html_e( 'Want more features and premium support?', 'woocommerce-germanized' ); ?></p>
+			<p><?php esc_html_e( 'Want more features and professional support?', 'woocommerce-germanized' ); ?></p>
 
 			<a class="button wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php esc_html_e( 'Discover professional version', 'woocommerce-germanized' ); ?></a>
 		</div>

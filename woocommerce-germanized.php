@@ -3,12 +3,12 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.19.13
+ * Version: 3.20.0
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
  * WC requires at least: 3.9
- * WC tested up to: 9.9
+ * WC tested up to: 10.0
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -68,7 +68,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.19.13';
+		public $version = '3.20.0';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -1500,6 +1500,14 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 */
 		public function add_emails( $mails ) {
 			foreach ( $this->get_custom_email_ids() as $class_name => $email_id ) {
+				/**
+				 * Do only register custom GZD cancelled order email in case
+                 * it does not exist within Woo Core.
+				 */
+                if ( 'customer_cancelled_order' === $email_id && array_key_exists( 'WC_Email_Customer_Cancelled_Order', $mails ) ) {
+                    continue;
+                }
+
 				$path = WC_GERMANIZED_ABSPATH . 'includes/emails/';
 				$file = 'class-' . trim( str_replace( '_', '-', strtolower( $class_name ) ) ) . '.php';
 
