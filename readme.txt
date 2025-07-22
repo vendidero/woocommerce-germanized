@@ -211,6 +211,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * New: Show Shiptastic standalone migration notice to prepare for 4.0.0
 * Improvement: Pro license management and upgrade options
 * Fix: Unit price node updates race condition
+* Fix: Do not load custom cancelled order notification email in case Woo core mail exists
 * Fix: Prevent add to cart variation layout shift
 
 = 3.19.13 =
