@@ -58,7 +58,6 @@ class WC_GZD_Admin {
 		add_action( 'admin_init', array( $this, 'check_dhl_import' ) );
 		add_action( 'admin_init', array( $this, 'check_internetmarke_import' ) );
 
-		add_filter( 'woocommerce_addons_section_data', array( $this, 'set_addon' ), 10, 2 );
 		add_filter( 'woocommerce_order_actions', array( $this, 'order_actions' ), 10, 1 );
 		add_action( 'woocommerce_order_action_order_confirmation', array( $this, 'resend_order_confirmation' ), 10, 1 );
 		add_action(
@@ -781,24 +780,6 @@ class WC_GZD_Admin {
 		$tabs['germanized'] = __( 'Germanized', 'woocommerce-germanized' );
 
 		return $tabs;
-	}
-
-	public function set_addon( $products, $section_id ) {
-		if ( 'featured' !== $section_id ) {
-			return $products;
-		}
-
-		array_unshift(
-			$products,
-			(object) array(
-				'title'   => 'Germanized für WooCommerce Pro',
-				'excerpt' => 'Upgrade jetzt auf die Pro Version von Germanized und profitiere von weiteren nützliche Funktionen speziell für den deutschen Markt sowie professionellem Support.',
-				'link'    => 'https://vendidero.de/woocommerce-germanized#upgrade',
-				'price'   => '79 €',
-			)
-		);
-
-		return $products;
 	}
 
 	public function status_page() {

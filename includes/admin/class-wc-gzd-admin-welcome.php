@@ -199,7 +199,7 @@ class WC_GZD_Admin_Welcome {
 						<div class="wc-gzd-actions wc-gzd-actions-right">
 							<a href="https://vendidero.de/doc/woocommerce-germanized/hermes-integration-einrichten" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
 							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+							<p class="price smaller wc-gzd-pro-version">ab 85 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
 						</div>
 					</div>
 				</div>
@@ -218,7 +218,7 @@ class WC_GZD_Admin_Welcome {
 
 						<div class="wc-gzd-actions wc-gzd-actions-right">
 							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+							<p class="price smaller wc-gzd-pro-version">ab 85 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
 						</div>
 					</div>
 					<div class="col col-center">
@@ -244,7 +244,7 @@ class WC_GZD_Admin_Welcome {
 
 						<div class="wc-gzd-actions wc-gzd-actions-right">
 							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+							<p class="price smaller wc-gzd-pro-version">ab 85 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
 						</div>
 					</div>
 				</div>
@@ -326,7 +326,7 @@ class WC_GZD_Admin_Welcome {
 							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
 							<a href="https://vendidero.de/doc/woocommerce-germanized/handelsrechnungen-zu-sendungen-erstellen" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
 
-							<p class="price smaller wc-gzd-pro-version">ab 79 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
+							<p class="price smaller wc-gzd-pro-version">ab 85 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
 						</div>
 					</div>
 				</div>
