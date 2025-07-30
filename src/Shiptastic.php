@@ -44,6 +44,7 @@ class Shiptastic {
 		add_filter( 'woocommerce_shiptastic_shipping_provider_dhl_get_label_default_shipment_weight', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
 		add_filter( 'woocommerce_shiptastic_shipment_order_shippable_items', array( __CLASS__, 'legacy_filter_callback' ), 10, 3 );
 		add_filter( 'woocommerce_shiptastic_enable_pickup_delivery', array( __CLASS__, 'legacy_filter_callback' ), 10 );
+		add_filter( 'woocommerce_shiptastic_shipping_provider_method_admin_settings', array( __CLASS__, 'legacy_filter_callback' ), 10, 2 );
 
 		add_action( 'woocommerce_shiptastic_init', array( __CLASS__, 'legacy_action_callback' ), 10 );
 		add_action( 'woocommerce_shiptastic_shipment_created_label', array( __CLASS__, 'legacy_action_callback' ), 10, 2 );

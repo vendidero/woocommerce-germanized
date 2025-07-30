@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $dispute_options = array(
 	'woocommerce_gzd_alternative_complaints_text_none',
 	'woocommerce_gzd_alternative_complaints_text_willing',
-	'woocommerce_gzd_alternative_complaints_text_obliged'
+	'woocommerce_gzd_alternative_complaints_text_obliged',
 );
 
 $sentences_to_remove = array(
@@ -16,7 +16,7 @@ $sentences_to_remove = array(
 	'Die Europäische Kommission stellt',
 );
 
-foreach( $dispute_options as $option_name ) {
+foreach ( $dispute_options as $option_name ) {
 	$option_value = get_option( $option_name );
 
 	if ( ! empty( $option_value ) && is_string( $option_value ) ) {
@@ -24,12 +24,12 @@ foreach( $dispute_options as $option_name ) {
 		$new_sentences = array();
 
 		if ( count( $sentences ) >= 2 ) {
-			foreach( $sentences as $sentence ) {
+			foreach ( $sentences as $sentence ) {
 				$include_sentence = true;
 
-				foreach( $sentences_to_remove as $search ) {
+				foreach ( $sentences_to_remove as $sent_search ) {
 					$haystack_clean = strtolower( preg_replace( '/\s+/', '', $sentence ) );
-					$search_clean   = strtolower( preg_replace( '/\s+/', '', $search ) );
+					$search_clean   = strtolower( preg_replace( '/\s+/', '', $sent_search ) );
 
 					if ( strstr( $haystack_clean, $search_clean ) ) {
 						$include_sentence = false;

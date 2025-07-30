@@ -44,14 +44,14 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Differential Taxation* - Insert special notices for products which a differential taxed.
 * *Used Goods and Defective Copies* - Show defect descriptions on your product page and during checkout.
 * *WPML Support* - Germanized can be used with WPML.
-* *REST API Support* - Data added by Germanized is adjustable via the WooCommerce REST API (v2)
+* *REST API Support* - Data added by Germanized is adjustable via the WooCommerce REST API
 * *Product CSV Import/Export* - We've extended the WooCommerce product CSV import and export to support our custom fields (e.g. unit price, delivery time etc.)
 * *GDPR export/delete* - We do support the export/delete features of WordPress 4.6 and WooCommerce 3.4 and added new checkboxes to checkout and register form.
 * *Invoices, E-Invoices & Packing Slips (Pro)* - Conveniently create invoices, packing slips, cancellations and commercial invoices via your WooCommerce dashboard. Comes with full e-invoicing support and many automation settings.
 * *Legal PDF attachments (Pro)* - Attach PDFs to certain email templates instead of plain text. Optionally let Germanized generate your PDFs automatically by parsing your page content.
 * *Delayed conclusion of contract (Pro)* - By default a contract is concluded right after submitting the WooCommerce checkout. Germanized offers you to delay that contract and manually check the order before concluding the contract.
 * *VAT ID check for WooCommerce (Pro)* - Provide additional fields within checkout, customer account and registration form to automatically validate the VAT ID based on the EU API.
-* *Multistep Checkout (Pro)* - Adjusts the default single-page-checkout within WooCommerce to support a multistep checkout without overriding templates for optimal theme support.
+* *Multistep Checkout (Pro)* - Transforms the single-page-checkout within WooCommerce into a multistep checkout. Support both the classic checkout and the block-based checkout.
 * *GPSR compliance* - Add manufacturer information and safety documents to your products
 
 = Germanized for WooCommerce is certified by Trusted Shops =
@@ -158,7 +158,7 @@ This shortcode outputs the legal page content attached to a specific email templ
 The shortcode is useful to output the legal page attachments in custom email templates built via a GUI (e.g. email customizer plugins).
 
 `[gzd_complaints]`
-Inserts a text that informs the customer about the EU Online Dispute Platform - this Shortcode should be inserted within your imprint. Find more information [here](http://shop.trustedshops.com/de/rechtstipps/jetzt-handeln-link-auf-eu-online-schlichtungs-plattform-ab-9.1.2016).
+Inserts the dispute resolution notice you configured within your settings - this Shortcode should be inserted within your imprint/terms.
 
 `[gzd_return_request_form]`
 Insert the guest return request form which allows guests to submit [return requests](https://vendidero.de/doc/woocommerce-germanized/retouren-konfigurieren-und-verwalten).
