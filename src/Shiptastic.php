@@ -326,33 +326,49 @@ class Shiptastic {
 
 		add_filter(
 			'woocommerce_shiptastic_dhl_get_i18n_path',
-			function () {
-				return Package::get_language_path();
+			function ( $path ) {
+				if ( ! PluginsHelper::is_shiptastic_dhl_plugin_active() ) {
+					return Package::get_language_path();
+				}
+
+				return $path;
 			}
 		);
 
 		add_filter(
 			'woocommerce_shiptastic_get_i18n_path',
-			function () {
-				return Package::get_language_path();
+			function ( $path ) {
+				if ( ! PluginsHelper::is_shiptastic_plugin_active() ) {
+					return Package::get_language_path();
+				}
+
+				return $path;
 			}
 		);
 
 		add_filter(
 			'woocommerce_shiptastic_dhl_get_i18n_textdomain',
-			function () {
-				return 'woocommerce-germanized';
+			function ( $textdomain ) {
+				if ( ! PluginsHelper::is_shiptastic_dhl_plugin_active() ) {
+					return 'woocommerce-germanized';
+				}
+
+				return $textdomain;
+			}
+		);
+
+		add_filter(
+			'woocommerce_shiptastic_get_i18n_textdomain',
+			function ( $textdomain ) {
+				if ( ! PluginsHelper::is_shiptastic_plugin_active() ) {
+					return 'woocommerce-germanized';
+				}
+
+				return $textdomain;
 			}
 		);
 
 		add_filter( 'woocommerce_shiptastic_is_debug_mode', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
-
-		add_filter(
-			'woocommerce_shiptastic_get_i18n_textdomain',
-			function () {
-				return 'woocommerce-germanized';
-			}
-		);
 
 		add_filter(
 			'woocommerce_gzd_wpml_email_ids',
