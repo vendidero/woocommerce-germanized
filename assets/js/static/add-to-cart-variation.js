@@ -25,8 +25,16 @@
 
         self.showOrHideTabs( self );
 
+        var $priceElement  = self.getPriceElement( self );
         self.isBlockLayout = self.$wrapper.find('.wp-block-woocommerce-product-price').length > 0;
         self.replacePrice  = self.$wrapper.hasClass( 'bundled_product' ) ? false : self.params.replace_price;
+
+        /**
+         * Some themes/page builders may not render the from-to price
+         */
+        if ( $priceElement.length <= 0 ) {
+            self.replacePrice = false;
+        }
 
         $form.on( 'click.wc-gzd-variation-form', '.reset_variations', { GermanizedvariationForm: self }, self.onReset );
         $form.on( 'reset_data.wc-gzd-variation-form', { GermanizedvariationForm: self }, self.onReset );
