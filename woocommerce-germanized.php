@@ -801,6 +801,14 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$gzd_original_template = apply_filters( 'woocommerce_gzd_default_plugin_template', $this->plugin_path() . '/templates/' . $template_name, $template_name );
 			$is_checkbox           = strstr( $template_name, 'checkboxes/' );
 
+			/**
+			 * Prevent using our cancelled email template in case
+			 * Woo has the cancelled order email built-in.
+			 */
+			if ( in_array( $template_name, array( 'emails/customer-cancelled-order.php', 'emails/plain/customer-cancelled-order.php' ), true ) && class_exists( 'WC_Email_Customer_Cancelled_Order' ) ) {
+				return $template;
+			}
+
 			/** This filter is documented in woocommerce-germanized.php */
 			if ( file_exists( $gzd_original_template ) || $is_checkbox ) {
 				// Check for Theme overrides

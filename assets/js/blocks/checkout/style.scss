@@ -164,3 +164,18 @@
     }
   }
 }
+
+/**
+* Hide unit price within checkout as unit price is moved to subtotal instead.
+*/
+.wc-block-components-order-summary-item {
+  .wc-block-components-product-details {
+    .wc-block-components-product-details__gzd-unit-price {
+      display: none !important;
+    }
+
+    .wc-not-gzd-summary-item-first {
+      margin-top: 1em;
+    }
+  }
+}

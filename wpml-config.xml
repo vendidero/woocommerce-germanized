@@ -25,7 +25,7 @@
         <custom-field action="copy">_tax_class_by_countries</custom-field>
         <custom-field action="copy">_manufacturer_slug</custom-field>
         <custom-field action="translate">_mini_desc</custom-field>
-        <custom-field action="translate">_defect_description</custom-field>#
+        <custom-field action="translate">_defect_description</custom-field>
         <custom-field action="translate">_safety_instructions</custom-field>
         <custom-field action="translate">_ingredients</custom-field>
         <custom-field action="translate">_food_distributor</custom-field>

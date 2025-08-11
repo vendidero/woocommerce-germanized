@@ -368,7 +368,7 @@ class WC_GZD_Order_Helper {
 			}
 		}
 
-		$item_has_taxes = $item->get_total_tax() > 0;
+		$item_has_taxes = (float) $item->get_total_tax() !== 0.0;
 
 		if ( $order = $item->get_order() ) {
 			$item->delete_meta_data( '_split_taxes' );
