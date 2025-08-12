@@ -233,7 +233,7 @@ class WC_GZD_Admin {
 	}
 
 	public function check_dhl_import() {
-		if ( ! class_exists( '\Vendidero\Shiptastic\DHL\Admin\Importer\DHL' ) ) {
+		if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_dhl_plugin_active() ) {
 			return;
 		}
 
@@ -279,7 +279,7 @@ class WC_GZD_Admin {
 	}
 
 	public function check_internetmarke_import() {
-		if ( ! class_exists( '\Vendidero\Shiptastic\DHL\Admin\Importer\Internetmarke' ) ) {
+		if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_dhl_plugin_active() ) {
 			return;
 		}
 

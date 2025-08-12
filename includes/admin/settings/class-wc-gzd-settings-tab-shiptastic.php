@@ -36,7 +36,7 @@ class WC_GZD_Settings_Tab_Shiptastic extends WC_GZD_Settings_Tab {
 	public function get_description() {
 		$description = __( 'Configure shipments and manage shipping providers.', 'woocommerce-germanized' );
 
-		if ( class_exists( '\Vendidero\Shiptastic\ShippingProvider\Helper' ) ) {
+		if ( \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_loaded() ) {
 			$provider_available = \Vendidero\Shiptastic\ShippingProvider\Helper::instance()->get_available_shipping_provider_integrations();
 
 			foreach ( array_slice( $provider_available, 0, 3 ) as $provider ) {

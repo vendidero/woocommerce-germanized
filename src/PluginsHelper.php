@@ -206,6 +206,15 @@ class PluginsHelper {
 	}
 
 	/**
+	 * Checks whether Shiptastic (either bundled or standalone) is really loaded.
+	 *
+	 * @return bool
+	 */
+	public static function is_shiptastic_plugin_loaded() {
+		return function_exists( 'wc_stc_get_shipping_provider' );
+	}
+
+	/**
 	 * @return bool
 	 */
 	public static function is_shiptastic_dhl_plugin_active() {

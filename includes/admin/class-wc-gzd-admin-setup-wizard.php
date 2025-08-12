@@ -112,7 +112,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				);
 			}
 
-			if ( \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ) {
+			if ( \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_loaded() ) {
 				$integrations = self::get_available_shipping_provider_integrations();
 
 				if ( ! empty( $integrations ) ) {
@@ -552,7 +552,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 		protected function get_available_shipping_provider_integrations() {
 			$integrations = array();
 
-			if ( class_exists( '\Vendidero\Shiptastic\ShippingProvider\Helper' ) ) {
+			if ( \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_loaded() ) {
 				$helper       = \Vendidero\Shiptastic\ShippingProvider\Helper::instance();
 				$integrations = $helper->get_available_shipping_provider_integrations();
 			}

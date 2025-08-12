@@ -78,15 +78,24 @@ class Packages {
 			}
 
 			/**
-			 * Do not load the Shiptastic package in case the separate plugin is active or the default
+			 * Do not load the Shiptastic (DHL) package in case the separate, standalone plugin is active or the default
 			 * option after a bundled-install has not been set.
 			 *
 			 * @TODO remove after removing the package from Germanized core in 4.0.0.
 			 */
 			if ( 'shiptastic-for-woocommerce' === $package_name ) {
-				if ( false === self::load_shipping_package() || PluginsHelper::is_shiptastic_plugin_active() || ( ! get_option( 'woocommerce_shiptastic_auto_enable' ) && ! get_option( 'woocommerce_gzd_shipments_auto_enable' ) ) ) {
+				if ( false === self::load_shipping_package() || ( PluginsHelper::is_shiptastic_plugin_active() && defined( 'WC_STC_IS_STANDALONE_PLUGIN' ) ) || ( ! get_option( 'woocommerce_shiptastic_auto_enable' ) && ! get_option( 'woocommerce_gzd_shipments_auto_enable' ) ) ) {
 					continue;
-				} elseif ( version_compare( get_option( 'woocommerce_gzd_db_version', '1.0.0' ), '3.20.0', '>' ) && 'yes' !== get_option( 'woocommerce_gzd_is_shiptastic_standalone_update' ) ) {
+				} elseif ( version_compare( get_option( 'woocommerce_gzd_db_version', '1.0.0' ), '3.20.0', '>=' ) && 'yes' !== get_option( 'woocommerce_gzd_is_shiptastic_standalone_update' ) ) {
+					/**
+					 * After the DB update has been completed, check the temp option which indicates the necessity to load the bundled package.
+					 */
+					continue;
+				}
+			} elseif ( 'shiptastic-integration-for-dhl' === $package_name ) {
+				if ( false === self::load_shipping_package() || ( PluginsHelper::is_shiptastic_dhl_plugin_active() && defined( 'WC_STC_INTEGRATION_FOR_DHL_IS_STANDALONE_PLUGIN' ) ) || ( ! get_option( 'woocommerce_shiptastic_auto_enable' ) && ! get_option( 'woocommerce_gzd_shipments_auto_enable' ) ) ) {
+					continue;
+				} elseif ( version_compare( get_option( 'woocommerce_gzd_db_version', '1.0.0' ), '3.20.0', '>=' ) && 'yes' !== get_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update' ) ) {
 					/**
 					 * After the DB update has been completed, check the temp option which indicates the necessity to load the bundled package.
 					 */
