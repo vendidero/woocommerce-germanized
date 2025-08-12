@@ -606,6 +606,11 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				$note->reset();
 			}
 
+			// Recheck Shiptastic install
+			if ( $note = $notices->get_note( 'shiptastic_install' ) ) {
+				$note->reset();
+			}
+
 			// Queue messages and notices
 			if ( ! is_null( $current_version ) ) {
 				$major_version     = \Vendidero\Germanized\PluginsHelper::get_major_version( $current_version );

@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 6.8
 WC requires at least: 3.9
 WC tested up to: 10.0
-Stable tag: 3.20.0
+Stable tag: 3.20.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -206,6 +206,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.20.1 =
+* Improvement: Update to latest Shiptastic and DHL for Shiptastic
+* Improvement: Do not replace variable price in case price element could not be detected
+* Fix: Do not override customer cancelled order email template
+* Fix: (Re-) calculate taxes on negative fees too
+* Fix: Unit price display in cart block
+* Fix: WPML config typo
+
 = 3.20.0 =
 * New: Shiptastic: Support syncing shipment status with API
 * New: Show Shiptastic standalone migration notice to prepare for 4.0.0
