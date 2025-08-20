@@ -119,6 +119,16 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		return apply_filters( 'woocommerce_gzd_order_item_product_deposit_packaging_type_title', $returnable_type_title, $this );
 	}
 
+	public function get_deposit_tax_status() {
+		$tax_status = 'taxable';
+
+		if ( $this->order_item->get_meta( '_deposit_tax_status', true ) ) {
+			$tax_status = $this->order_item->get_meta( '_deposit_tax_status', true );
+		}
+
+		return $tax_status;
+	}
+
 	public function get_deposit_net_amount_per_unit() {
 		$amount = $this->order_item->get_meta( '_deposit_net_amount_per_unit', true );
 
@@ -163,6 +173,10 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 
 	public function set_deposit_type( $deposit_type ) {
 		$this->order_item->update_meta_data( '_deposit_type', $deposit_type );
+	}
+
+	public function set_deposit_tax_status( $tax_status ) {
+		$this->order_item->update_meta_data( '_deposit_tax_status', $tax_status );
 	}
 
 	public function set_deposit_packaging_type( $packaging_type ) {

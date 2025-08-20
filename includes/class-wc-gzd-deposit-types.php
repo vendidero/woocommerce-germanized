@@ -48,6 +48,13 @@ class WC_GZD_Deposit_Types extends WC_GZD_Taxonomy {
 		);
 	}
 
+	public function get_tax_statuses() {
+		return array(
+			'taxable' => _x( 'Taxable', 'deposit-tax-status', 'woocommerce-germanized' ),
+			'none'    => _x( 'None', 'deposit-tax-status', 'woocommerce-germanized' ),
+		);
+	}
+
 	public function get_packaging_type( $term ) {
 		$packaging_types = $this->get_packaging_types();
 		$packaging_type  = false;
@@ -80,6 +87,24 @@ class WC_GZD_Deposit_Types extends WC_GZD_Taxonomy {
 		}
 
 		return apply_filters( 'woocommerce_gzd_deposit_packaging_type_title', $title, $type );
+	}
+
+	public function get_tax_status( $term ) {
+		$tax_status = 'taxable';
+
+		if ( ! is_a( $term, 'WP_Term' ) ) {
+			$term = $this->get_deposit_type_term( $term );
+		}
+
+		if ( $term ) {
+			$tax_status = get_term_meta( $term->term_id, 'deposit_tax_status', true );
+
+			if ( empty( $tax_status ) ) {
+				$tax_status = 'taxable';
+			}
+		}
+
+		return $tax_status;
 	}
 
 	public function get_deposit( $term ) {

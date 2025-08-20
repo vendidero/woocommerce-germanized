@@ -58,6 +58,16 @@ class WC_GZD_Admin_Deposit_Types {
 					delete_term_meta( $term_id, 'deposit_packaging_type' );
 				}
 			}
+
+			if ( isset( $_POST['deposit_tax_status'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$tax_status = wc_clean( wp_unslash( $_POST['deposit_tax_status'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+				if ( array_key_exists( $tax_status, $this->get_deposit_tax_statuses() ) ) {
+					update_term_meta( $term_id, 'deposit_tax_status', $tax_status );
+				} else {
+					update_term_meta( $term_id, 'deposit_tax_status', 'taxable' );
+				}
+			}
 		}
 	}
 
@@ -75,7 +85,19 @@ class WC_GZD_Admin_Deposit_Types {
 				<?php endforeach; ?>
 			</select>
 		</div>
+		<div class="form-field term-deposit-tax-status-wrap" style="position: relative">
+			<label for="deposit_tax_status"><?php esc_html_e( 'Tax Status', 'woocommerce-germanized' ); ?></label>
+			<select id="deposit_tax_status" name="deposit_tax_status">
+				<?php foreach ( $this->get_deposit_tax_statuses() as $type => $title ) : ?>
+					<option value="<?php echo esc_attr( $type ); ?>"><?php echo esc_html( $title ); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</div>
 		<?php
+	}
+
+	protected function get_deposit_tax_statuses() {
+		return WC_germanized()->deposit_types->get_tax_statuses();
 	}
 
 	protected function get_deposit_packaging_types() {
@@ -90,6 +112,7 @@ class WC_GZD_Admin_Deposit_Types {
 	public function edit_fields( $term ) {
 		$deposit        = wc_format_localized_price( get_term_meta( $term->term_id, 'deposit', true ) );
 		$packaging_type = get_term_meta( $term->term_id, 'deposit_packaging_type', true );
+		$tax_status     = get_term_meta( $term->term_id, 'deposit_tax_status', true );
 		?>
 		<tr class="form-field term-deposit-wrap">
 			<th scope="row" valign="top">
@@ -110,6 +133,20 @@ class WC_GZD_Admin_Deposit_Types {
 					<select id="deposit_packaging_type" name="deposit_packaging_type">
 						<?php foreach ( $this->get_deposit_packaging_types() as $type => $title ) : ?>
 							<option value="<?php echo esc_attr( $type ); ?>" <?php selected( $packaging_type, $type ); ?>><?php echo esc_html( $title ); ?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</td>
+		</tr>
+		<tr class="form-field term-deposit-packaging-type-wrap">
+			<th scope="row" valign="top">
+				<label><?php esc_html_e( 'Tax Status', 'woocommerce-germanized' ); ?></label>
+			</th>
+			<td>
+				<div style="position: relative">
+					<select id="deposit_tax_status" name="deposit_tax_status">
+						<?php foreach ( $this->get_deposit_tax_statuses() as $type => $title ) : ?>
+							<option value="<?php echo esc_attr( $type ); ?>" <?php selected( $tax_status, $type ); ?>><?php echo esc_html( $title ); ?></option>
 						<?php endforeach; ?>
 					</select>
 				</div>

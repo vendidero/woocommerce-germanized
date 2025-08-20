@@ -38,7 +38,6 @@ class WC_GZD_REST_Product_Deposit_Types_Controller extends WC_REST_Terms_Control
 	 * @return WP_REST_Response $response
 	 */
 	public function prepare_item_for_response( $item, $request ) {
-
 		$data = array(
 			'id'                   => (int) $item->term_id,
 			'name'                 => $item->name,
@@ -46,6 +45,7 @@ class WC_GZD_REST_Product_Deposit_Types_Controller extends WC_REST_Terms_Control
 			'description'          => $item->description,
 			'count'                => (int) $item->count,
 			'deposit'              => WC_germanized()->deposit_types->get_deposit( $item ),
+			'tax_status'           => WC_germanized()->deposit_types->get_tax_status( $item ),
 			'packaging_type'       => WC_germanized()->deposit_types->get_packaging_type( $item ),
 			'packaging_type_title' => WC_germanized()->deposit_types->get_packaging_type_title( $item ),
 		);
@@ -117,6 +117,15 @@ class WC_GZD_REST_Product_Deposit_Types_Controller extends WC_REST_Terms_Control
 						'sanitize_callback' => 'sanitize_title',
 					),
 				),
+				'tax_status'           => array(
+					'description' => __( 'The current deposit tax_status.', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'enum'        => array_keys( WC_germanized()->deposit_types->get_tax_statuses() ),
+					'context'     => array( 'view', 'edit' ),
+					'arg_options' => array(
+						'sanitize_callback' => 'sanitize_title',
+					),
+				),
 				'packaging_type_title' => array(
 					'description' => __( 'The current deposit packaging type title.', 'woocommerce-germanized' ),
 					'type'        => 'string',
@@ -148,6 +157,10 @@ class WC_GZD_REST_Product_Deposit_Types_Controller extends WC_REST_Terms_Control
 
 		if ( isset( $request['deposit'] ) ) {
 			update_term_meta( $term->term_id, 'deposit', wc_format_decimal( $request['deposit'], '' ) );
+		}
+
+		if ( isset( $request['tax_status'] ) ) {
+			update_term_meta( $term->term_id, 'tax_status', sanitize_title( $request['tax_status'], '' ) );
 		}
 
 		return true;

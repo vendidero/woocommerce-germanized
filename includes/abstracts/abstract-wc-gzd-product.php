@@ -689,6 +689,16 @@ class WC_GZD_Product {
 		return apply_filters( 'woocommerce_gzd_product_deposit_amount_per_unit', $amount, $this, $context, $tax_display_mode );
 	}
 
+	public function get_deposit_tax_status( $context = 'view' ) {
+		$tax_status = 'taxable';
+
+		if ( $term = $this->get_deposit_type_term( $context ) ) {
+			$tax_status = WC_germanized()->deposit_types->get_tax_status( $term );
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_deposit_tax_status', $tax_status, $context );
+	}
+
 	public function get_deposit_quantity( $context = 'view' ) {
 		$quantity = $this->get_prop( 'deposit_quantity', $context );
 
