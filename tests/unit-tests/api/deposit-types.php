@@ -48,6 +48,7 @@ class WC_GZD_Deposit_Types_API extends WC_GZD_REST_Unit_Test_Case {
 			'description'          => '',
 			'count'                => 0,
 			'deposit'              => '0.25',
+			'tax_status'           => 'taxable',
 			'packaging_type'       => 'disposable',
 			'packaging_type_title' => WC_germanized()->deposit_types->get_packaging_type_title( 'disposable' ),
 		) );
