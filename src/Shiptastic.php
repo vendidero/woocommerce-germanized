@@ -298,19 +298,6 @@ class Shiptastic {
 		);
 
 		add_filter(
-			'woocommerce_shiptastic_is_provider_integration_active',
-			function ( $is_active, $provider_name ) {
-				if ( in_array( $provider_name, array( 'dhl', 'deutsche_post' ), true ) ) {
-					$is_active = true;
-				}
-
-				return $is_active;
-			},
-			10,
-			2
-		);
-
-		add_filter(
 			'woocommerce_shiptastic_additional_costs_include_tax',
 			function () {
 				return wc_gzd_additional_costs_include_tax();
