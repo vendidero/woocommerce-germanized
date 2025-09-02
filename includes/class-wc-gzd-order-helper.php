@@ -363,6 +363,14 @@ class WC_GZD_Order_Helper {
 			$fee_props->id        = $item->get_meta( '_voucher_id' ) ? sanitize_title( $item->get_meta( '_voucher_id' ) ) : sanitize_title( $fee_props->name );
 			$fee_props->object    = $fee_props;
 
+			/**
+			 * Older voucher fees may be missing the _voucher_id meta.
+			 * Make sure that our voucher helper is able to detect the fee as a voucher.
+			 */
+			if ( 'yes' === $item->get_meta( '_is_voucher' ) ) {
+				$fee_props->id = 'voucher_' . $item->get_meta( '_code' );
+			}
+
 			if ( ! apply_filters( 'woocommerce_gzd_force_fee_tax_calculation', true, $fee_props ) ) {
 				return;
 			}

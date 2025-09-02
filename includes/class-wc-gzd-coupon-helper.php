@@ -996,6 +996,7 @@ class WC_GZD_Coupon_Helper {
 		if ( $this->fee_is_voucher( $fee ) ) {
 			$item->update_meta_data( '_is_voucher', 'yes' );
 			$item->update_meta_data( '_code', wc_clean( $fee->code ) );
+			$item->update_meta_data( '_voucher_id', 'voucher_' . wc_clean( $fee->code ) );
 			$item->update_meta_data( '_voucher_amount', wc_format_decimal( $fee->voucher_amount ) );
 			$item->update_meta_data( '_voucher_discount_type', wc_clean( $fee->voucher_discount_type ) );
 
