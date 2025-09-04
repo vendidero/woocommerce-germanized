@@ -56,6 +56,27 @@ class WC_GZD_Customer_Helper {
 			if ( $this->is_double_opt_in_login_enabled() ) {
 				// Disable login for unactivated users
 				add_filter( 'wp_authenticate_user', array( $this, 'login_restriction' ), 10, 2 );
+				add_filter( 'send_auth_cookies', array( $this, 'maybe_disable_auth_cookies' ), 10 );
+
+				add_filter( 'render_block', array( $this, 'replace_order_confirmation_account_success' ), 1000, 2 );
+
+				add_action(
+					'woocommerce_created_customer',
+					function ( $customer_id, $new_customer_data ) {
+						$new_customer_data = wp_parse_args(
+							$new_customer_data,
+							array(
+								'source' => '',
+							)
+						);
+
+						if ( 'delayed-account-creation' === $new_customer_data['source'] ) {
+							WC()->session->set( 'doi_disable_login_after_account_creation', true );
+						}
+					},
+					50,
+					2
+				);
 
 				// Disable auto login after registration
 				add_filter(
@@ -76,6 +97,7 @@ class WC_GZD_Customer_Helper {
 				 * still receive our updates to the session before the actual redirect happens.
 				 */
 				add_action( 'woocommerce_checkout_init', array( $this, 'disable_checkout' ), 1 );
+				add_action( 'woocommerce_blocks_enqueue_checkout_block_scripts_before', array( $this, 'disable_checkout' ), 1 );
 
 				// Show notices on customer account page
 				add_action( 'template_redirect', array( $this, 'show_disabled_checkout_notice' ), 20 );
@@ -84,7 +106,8 @@ class WC_GZD_Customer_Helper {
 				add_filter( 'woocommerce_login_redirect', array( $this, 'login_redirect' ), 10, 2 );
 
 				// Disable customer signup if customer has forced guest checkout
-				add_action( 'woocommerce_checkout_init', array( $this, 'disable_signup' ), 100, 1 );
+				add_action( 'woocommerce_checkout_init', array( $this, 'disable_signup_template' ), 100 );
+				add_filter( 'woocommerce_checkout_registration_enabled', array( $this, 'maybe_disable_signups' ), 100 );
 
 				// Remove the checkout signup cookie if customer logs out
 				add_action( 'wp_logout', array( $this, 'delete_checkout_signup_cookie' ) );
@@ -102,6 +125,59 @@ class WC_GZD_Customer_Helper {
 			add_action( 'wp_login', array( $this, 'delete_doi_session' ) );
 			add_action( 'wp_logout', array( $this, 'delete_doi_session' ) );
 		}
+	}
+
+	/**
+	 * Use a tweak to prevent the session cookie from actually being set when Woo logs in the user
+	 * after account creation automatically, e.g. via wc_set_customer_auth_cookie.
+	 *
+	 * @see \Automattic\WooCommerce\Blocks\BlockTypes\OrderConfirmation\CreateAccount::process_form_post()
+	 */
+	public function maybe_disable_auth_cookies( $send_auth_cookies ) {
+		if ( WC()->session && WC()->session->get( 'doi_disable_login_after_account_creation' ) ) {
+			$send_auth_cookies = false;
+			unset( WC()->session->doi_disable_login_after_account_creation );
+		}
+
+		return $send_auth_cookies;
+	}
+
+	/**
+	 *
+	 *
+	 * @param string $content
+	 * @param $block
+	 *
+	 * @return string
+	 */
+	public function replace_order_confirmation_account_success( $content, $block ) {
+		if ( 'woocommerce/order-confirmation-create-account' === $block['blockName'] ) {
+			if ( $dom = wc_gzd_get_dom_document( $content ) ) {
+				$finder       = new DomXPath( $dom );
+				$new_selector = 'wc-block-order-confirmation-create-account-success';
+				$nodes        = $finder->query( "//*[contains(concat(' ', normalize-space(@class), ' '), ' $new_selector ')]" );
+				$nodes        = is_array( $nodes ) || is_a( $nodes, 'DOMNodeList' ) ? $nodes : array( $nodes );
+
+				if ( count( $nodes ) > 0 ) {
+					$success_node = $nodes[0];
+					$fragment     = $dom->createDocumentFragment();
+					$fragment->appendXML( '<h3>' . esc_html__( 'Your account has been created and is waiting for your activation', 'woocommerce-germanized' ) . '</h3><p>' . wp_kses_post( sprintf( __( 'Please check your e-mails and activate your account. Did not receive an email? <a href="%s">Try again</a>.', 'woocommerce-germanized' ), esc_url( $this->get_resend_activation_url() ) ) ) . '</p>' );
+
+					while ( $success_node->hasChildNodes() ) {
+						$success_node->removeChild( $success_node->firstChild ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+					}
+
+					$success_node->appendChild( $fragment );
+					$new_content = wc_gzd_get_dom_document_html( $dom );
+
+					if ( false !== $new_content ) {
+						$content = $new_content;
+					}
+				}
+			}
+		}
+
+		return $content;
 	}
 
 	public function set_doi_session( $user_id ) {
@@ -278,19 +354,22 @@ class WC_GZD_Customer_Helper {
 		unset( WC()->session->login_redirect );
 	}
 
-	public function disable_signup( $checkout ) {
+	public function maybe_disable_signups( $enable_signups ) {
+		if ( WC()->session && WC()->session->get( 'disable_checkout_signup' ) ) {
+			$enable_signups = false;
+		}
+
+		return $enable_signups;
+	}
+
+	public function disable_signup_template() {
 		if ( WC()->session && WC()->session->get( 'disable_checkout_signup' ) ) {
 			remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_login_form', 10 );
-			add_filter( 'woocommerce_checkout_registration_enabled', '__return_false', 100 );
-
-			$checkout->enable_signup = false;
 		}
 	}
 
 	public function login_redirect( $redirect, $user ) {
-
 		if ( WC()->session->get( 'login_redirect' ) && 'checkout' === WC()->session->get( 'login_redirect' ) ) {
-
 			/**
 			 * Filter URL to redirect customers to after a successfull opt-in which
 			 * was related to a checkout request (e.g. customer was redirected to the register page before checkout).
@@ -307,7 +386,6 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function disable_checkout() {
-
 		/**
 		 * Prevent errors in case this is not a frontend request
 		 */
@@ -322,19 +400,18 @@ class WC_GZD_Customer_Helper {
 			unset( WC()->session->disable_checkout_signup );
 		}
 
-		if ( ( 'yes' === get_option( 'woocommerce_enable_guest_checkout' ) && isset( $_GET['force-guest'] ) ) || 'yes' !== get_option( 'woocommerce_enable_signup_and_login_from_checkout' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$guest_checkout_available            = 'yes' === get_option( 'woocommerce_enable_guest_checkout' );
+		$delayed_account_creation_available  = 'yes' === get_option( 'woocommerce_enable_delayed_account_creation' );
+		$checkout_account_creation_available = 'yes' === get_option( 'woocommerce_enable_signup_and_login_from_checkout' );
 
+		if ( ( $guest_checkout_available && ( isset( $_GET['force-guest'] ) || $delayed_account_creation_available ) ) || ! $checkout_account_creation_available ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			// Disable registration
 			WC()->session->set( 'disable_checkout_signup', true );
-
 		} elseif ( ! WC()->session->get( 'disable_checkout_signup' ) ) {
-
 			if ( is_checkout() && WC()->cart && WC()->cart->get_cart_contents_count() > 0 && ( ! is_user_logged_in() || ( $this->enable_double_opt_in_for_user() && ! wc_gzd_is_customer_activated() ) ) ) {
-
 				WC()->session->set( 'login_redirect', 'checkout' );
 				wp_safe_redirect( esc_url_raw( $this->registration_redirect() ) );
 				exit;
-
 			} elseif ( is_checkout() ) {
 				unset( WC()->session->login_redirect );
 			}

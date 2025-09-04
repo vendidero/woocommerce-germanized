@@ -219,7 +219,7 @@ class Shiptastic {
 		return array(
 			'dpd'    => array(
 				'title'               => _x( 'DPD', 'shipments', 'woocommerce-germanized' ),
-				'countries_supported' => array( 'DE', 'AT' ),
+				'countries_supported' => array( 'DE' ),
 				'is_builtin'          => false,
 				'is_pro'              => true,
 				'extension_name'      => 'dpd-for-shiptastic',

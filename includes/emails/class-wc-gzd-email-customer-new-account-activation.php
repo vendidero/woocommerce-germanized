@@ -100,8 +100,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 			$key = get_password_reset_key( $this->object );
 
 			if ( ! is_wp_error( $key ) ) {
-				$action = 'newaccount';
-				return wc_get_account_endpoint_url( 'lost-password' ) . "?action=$action&key=$key&login=" . rawurlencode( $this->object->user_login );
+				return sprintf( '%s?action=newaccount&key=%s&login=%s', wc_get_account_endpoint_url( 'lost-password' ), $key, rawurlencode( $this->object->user_login ) );
 			} else {
 				// Something went wrong while getting the key for new password URL, send customer to the generic password reset.
 				return wc_get_account_endpoint_url( 'lost-password' );

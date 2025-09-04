@@ -30,6 +30,8 @@ class WC_GZD_Settings_Tab_DOI extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_tab_settings( $current_section = '' ) {
+		$delayed_account_creation_available = 'yes' === get_option( 'woocommerce_enable_delayed_account_creation' );
+
 		return array(
 			array(
 				'title' => '',
@@ -46,8 +48,8 @@ class WC_GZD_Settings_Tab_DOI extends WC_GZD_Settings_Tab {
 			),
 			array(
 				'title'             => __( 'Disable', 'woocommerce-germanized' ),
-				'desc'              => __( 'Disable login and checkout for unactivated customers.', 'woocommerce-germanized' ),
-				'desc_tip'          => __( 'Customers that did not click on the activation link will not be able to complete checkout nor login to their account.', 'woocommerce-germanized' ),
+				'desc'              => $delayed_account_creation_available ? __( 'Disable login for unactivated customers.', 'woocommerce-germanized' ) : __( 'Disable login and checkout for unactivated customers.', 'woocommerce-germanized' ),
+				'desc_tip'          => $delayed_account_creation_available ? __( 'Customers that did not click on the activation link will not be able to login to their account.', 'woocommerce-germanized' ) : __( 'Customers that did not click on the activation link will not be able to complete checkout nor login to their account.', 'woocommerce-germanized' ),
 				'id'                => 'woocommerce_gzd_customer_activation_login_disabled',
 				'default'           => 'no',
 				'custom_attributes' => array(
