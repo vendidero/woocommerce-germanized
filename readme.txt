@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 6.8
 WC requires at least: 3.9
-WC tested up to: 10.0
-Stable tag: 3.20.1
+WC tested up to: 10.1
+Stable tag: 3.20.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -206,6 +206,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.20.2 =
+* Improvement: Update to latest Shiptastic and DHL for Shiptastic
+* Improvement: Migrate update scripts to stop using core Shiptastic methods
+* Improvement: Tax status for deposit types (Pro)
+* Improvement: Support DOI delayed account creation within block-based Checkout
+* Fix: Voucher detection in block-based checkout
+
 = 3.20.1 =
 * Improvement: Update to latest Shiptastic and DHL for Shiptastic
 * Improvement: Do not replace variable price in case price element could not be detected

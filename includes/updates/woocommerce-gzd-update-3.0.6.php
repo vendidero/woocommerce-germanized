@@ -1,13 +1,11 @@
 <?php
 
-use Vendidero\Shiptastic\DHL\Package;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 // Update shipping provider to DHL if available
-if ( Package::has_dependencies() && Package::is_enabled() ) {
+if ( \Vendidero\Germanized\Shiptastic::is_shipping_provider_active( 'dhl' ) ) {
 	// Make sure shipping zones are loaded
 	include_once WC_ABSPATH . 'includes/class-wc-shipping-zones.php';
 

@@ -377,7 +377,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				},
 				100
 			);
-			$legacy_dir = \Vendidero\Shiptastic\Package::get_upload_dir();
+			$legacy_dir = \Vendidero\Germanized\Shiptastic::get_upload_dir();
 			remove_all_filters( 'woocommerce_shiptastic_upload_dir_name' );
 
 			if ( @is_dir( $legacy_dir['basedir'] ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
@@ -485,30 +485,23 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				update_option( 'woocommerce_shiptastic_packaging_reports', $new_report_data, false );
 			}
 
-			/**
-			 * Migrate upload folder path
-			 */
-			if ( class_exists( '\Vendidero\Shiptastic\Package' ) ) {
-				\Vendidero\Shiptastic\Package::maybe_set_upload_dir();
+			$new_dir    = \Vendidero\Germanized\Shiptastic::get_upload_dir();
+			$legacy_dir = self::get_shipments_legacy_upload_folder();
 
-				$new_dir    = \Vendidero\Shiptastic\Package::get_upload_dir();
-				$legacy_dir = self::get_shipments_legacy_upload_folder();
+			if ( false !== $legacy_dir ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+				if ( @is_dir( $new_dir['basedir'] ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+					$tmp_new_name_folder = str_replace( 'wc-shiptastic', 'wc-shiptastic-' . wp_rand( 1, 1000 ), $new_dir['basedir'] );
+					@rename( $new_dir['basedir'], $tmp_new_name_folder ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.WP.AlternativeFunctions.rename_rename
+				}
 
-				if ( false !== $legacy_dir ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
-					if ( @is_dir( $new_dir['basedir'] ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
-						$tmp_new_name_folder = str_replace( 'wc-shiptastic', 'wc-shiptastic-' . wp_rand( 1, 1000 ), $new_dir['basedir'] );
-						@rename( $new_dir['basedir'], $tmp_new_name_folder ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.WP.AlternativeFunctions.rename_rename
-					}
+				/**
+				 * Rename if new folder name does not yet exist
+				 */
+				if ( ! @is_dir( $new_dir['basedir'] ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+					$rename_result = @rename( $legacy_dir['basedir'], $new_dir['basedir'] ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.WP.AlternativeFunctions.rename_rename
 
-					/**
-					 * Rename if new folder name does not yet exist
-					 */
-					if ( ! @is_dir( $new_dir['basedir'] ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
-						$rename_result = @rename( $legacy_dir['basedir'], $new_dir['basedir'] ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.WP.AlternativeFunctions.rename_rename
-
-						if ( false === $rename_result ) {
-							$error->add( 'folder_rename_failed', sprintf( _x( 'Could not rename %1$s to %2$s.', 'shipments-migration', 'woocommerce-germanized' ), $legacy_dir['basedir'], $new_dir['basedir'] ) );
-						}
+					if ( false === $rename_result ) {
+						$error->add( 'folder_rename_failed', sprintf( _x( 'Could not rename %1$s to %2$s.', 'shipments-migration', 'woocommerce-germanized' ), $legacy_dir['basedir'], $new_dir['basedir'] ) );
 					}
 				}
 			}

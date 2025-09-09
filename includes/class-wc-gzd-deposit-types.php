@@ -99,7 +99,7 @@ class WC_GZD_Deposit_Types extends WC_GZD_Taxonomy {
 		if ( $term ) {
 			$tax_status = get_term_meta( $term->term_id, 'deposit_tax_status', true );
 
-			if ( empty( $tax_status ) ) {
+			if ( empty( $tax_status ) || ! in_array( $tax_status, array_keys( $this->get_tax_statuses() ), true ) ) {
 				$tax_status = 'taxable';
 			}
 		}

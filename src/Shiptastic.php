@@ -420,4 +420,127 @@ class Shiptastic {
 			2
 		);
 	}
+
+	public static function get_upload_dir() {
+		add_filter( 'upload_dir', array( __CLASS__, 'filter_upload_dir' ), 150, 1 );
+		$upload_dir = wp_upload_dir();
+		remove_filter( 'upload_dir', array( __CLASS__, 'filter_upload_dir' ), 150 );
+
+		return apply_filters( 'woocommerce_shiptastic_upload_dir', $upload_dir );
+	}
+
+	public static function get_upload_dir_suffix() {
+		// Create a dir suffix
+		if ( ! get_option( 'woocommerce_shiptastic_upload_dir_suffix', false ) ) {
+			$key       = array( ABSPATH, time() );
+			$constants = array( 'AUTH_KEY', 'SECURE_AUTH_KEY', 'LOGGED_IN_KEY', 'NONCE_KEY', 'AUTH_SALT', 'SECURE_AUTH_SALT', 'LOGGED_IN_SALT', 'NONCE_SALT', 'SECRET_KEY' );
+
+			foreach ( $constants as $constant ) {
+				if ( defined( $constant ) ) {
+					$key[] = constant( $constant );
+				}
+			}
+
+			shuffle( $key );
+
+			$key = md5( serialize( $key ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize
+			$key = substr( $key, 0, 10 );
+
+			update_option( 'woocommerce_shiptastic_upload_dir_suffix', $key );
+		} else {
+			$key = get_option( 'woocommerce_shiptastic_upload_dir_suffix' );
+		}
+
+		return $key;
+	}
+
+	public static function filter_upload_dir( $args ) {
+		$upload_dir  = apply_filters( 'woocommerce_shiptastic_upload_dir_name', 'wc-shiptastic-' . self::get_upload_dir_suffix() );
+		$upload_base = trailingslashit( $args['basedir'] );
+		$upload_url  = trailingslashit( $args['baseurl'] );
+
+		$args['basedir'] = apply_filters( 'woocommerce_shiptastic_upload_path', $upload_base . $upload_dir );
+		$args['baseurl'] = apply_filters( 'woocommerce_shiptastic_upload_url', $upload_url . $upload_dir );
+
+		$args['path'] = $args['basedir'] . $args['subdir'];
+		$args['url']  = $args['baseurl'] . $args['subdir'];
+
+		return $args;
+	}
+
+	public static function is_shipping_provider_active( $provider_name ) {
+		if ( $provider = self::get_shipping_provider( $provider_name ) ) {
+			return wc_string_to_bool( $provider->shipping_provider_activated );
+		}
+
+		return false;
+	}
+
+	public static function get_shipping_providers( $active_only = false ) {
+		global $wpdb;
+		$wpdb->hide_errors();
+
+		$table_name         = $wpdb->prefix . 'woocommerce_stc_shipping_provider';
+		$providers          = $wpdb->get_results( "SELECT * FROM `{$table_name}`" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$shipping_providers = array();
+
+		foreach ( $providers as $provider ) {
+			try {
+				$is_active = wc_string_to_bool( $provider->shipping_provider_activated );
+
+				if ( $active_only && ! $is_active ) {
+					continue;
+				}
+
+				$shipping_providers[ $provider->shipping_provider_name ] = $provider;
+			} catch ( \Exception $e ) {
+				continue;
+			}
+		}
+
+		return $shipping_providers;
+	}
+
+	public static function get_shipping_provider( $provider_name ) {
+		global $wpdb;
+		$wpdb->hide_errors();
+
+		$table_name = $wpdb->prefix . 'woocommerce_stc_shipping_provider';
+		$provider   = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM `{$table_name}` WHERE shipping_provider_name = %s LIMIT 1", $provider_name ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+		return ! empty( $provider ) ? $provider[0] : false;
+	}
+
+	public static function define_tables() {
+		global $wpdb;
+
+		// List of tables without prefixes.
+		$tables = array(
+			'stc_shipment_itemmeta'     => 'woocommerce_stc_shipment_itemmeta',
+			'stc_shipmentmeta'          => 'woocommerce_stc_shipmentmeta',
+			'stc_shipments'             => 'woocommerce_stc_shipments',
+			'stc_shipment_labelmeta'    => 'woocommerce_stc_shipment_labelmeta',
+			'stc_shipment_labels'       => 'woocommerce_stc_shipment_labels',
+			'stc_shipment_items'        => 'woocommerce_stc_shipment_items',
+			'stc_shipping_provider'     => 'woocommerce_stc_shipping_provider',
+			'stc_shipping_providermeta' => 'woocommerce_stc_shipping_providermeta',
+			'stc_packaging'             => 'woocommerce_stc_packaging',
+			'stc_packagingmeta'         => 'woocommerce_stc_packagingmeta',
+		);
+
+		foreach ( $tables as $name => $table ) {
+			$wpdb->$name    = $wpdb->prefix . $table;
+			$wpdb->tables[] = $table;
+		}
+	}
+
+	public static function has_created_shipments() {
+		global $wpdb;
+		$wpdb->hide_errors();
+
+		$table_name = $wpdb->prefix . 'woocommerce_stc_shipments';
+		$shipment   = $wpdb->get_var( "SELECT shipment_id FROM `{$table_name}` LIMIT 1" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+		return ! empty( $shipment ) ? true : false;
+	}
 }
