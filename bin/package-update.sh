@@ -63,6 +63,9 @@ rm -rf ./vendor/dvdoug/boxpacker/.github/*
 rm -rf ./vendor/setasign/fpdf/tutorial/*
 rm -rf ./vendor/setasign/fpdf/doc/*
 
+rm -rf ./vendor/digitick/sepa-xml/doc/*
+rm -rf ./vendor/digitick/sepa-xml/.github
+
 output 2 "Done!"
 
 # Cleanup backup files
