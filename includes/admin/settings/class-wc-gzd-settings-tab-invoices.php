@@ -14,11 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_GZD_Settings_Tab_Invoices extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Create invoices, packing slips & commercial invoices conveniently.', 'woocommerce-germanized' );
+		return \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ? __( 'Create invoices, e-invoices, packing slips & commercial invoices conveniently.', 'woocommerce-germanized' ) : __( 'Create invoices and e-invoices conveniently.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {
-		return __( 'Invoices & Packing Slips', 'woocommerce-germanized' ) . ' <span class="wc-gzd-pro wc-gzd-pro-outlined">' . __( 'pro', 'woocommerce-germanized' ) . '</span>';
+		return ( \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ? __( 'Invoices & Packing Slips', 'woocommerce-germanized' ) : __( 'Invoices', 'woocommerce-germanized' ) ) . ' <span class="wc-gzd-pro wc-gzd-pro-outlined">' . __( 'pro', 'woocommerce-germanized' ) . '</span>';
 	}
 
 	public function get_name() {
