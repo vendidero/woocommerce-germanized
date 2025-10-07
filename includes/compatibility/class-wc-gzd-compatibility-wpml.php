@@ -89,6 +89,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		add_filter( 'wcml_get_order_items_language', array( $this, 'maybe_filter_wpml_order_items_language' ), 10, 2 );
 		add_action( 'woocommerce_gzd_switch_email_locale', array( $this, 'setup_email_locale' ), 10, 2 );
 		add_action( 'woocommerce_gzd_restore_email_locale', array( $this, 'restore_email_locale' ), 10, 1 );
+		add_action( 'wpml_st_force_translate_admin_options', array( $this, 'register_forced_email_translations' ), 0 );
 
 		// Add compatibility with email string translation by WPML
 		add_filter( 'wcml_emails_options_to_translate', array( $this, 'register_email_options' ), 10, 1 );
@@ -118,6 +119,37 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		 * @since 3.0.8
 		 */
 		do_action( 'woocommerce_gzd_wpml_compatibility_loaded', $this );
+	}
+
+	/**
+	 * As WCML does not provide a filter/entrypoint to detect when the plugin is translating emails
+	 * we'll need to find a tweak by checking whether WCML calls the wpml_st_force_translate_admin_options hook.
+	 * If that is the case, we'll need to register our custom strings too.
+	 *
+	 * @see WCML_Emails::force_translating_admin_options_in_backend
+	 *
+	 * @return void
+	 */
+	public function register_forced_email_translations() {
+		$stack     = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 5 ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace
+		$is_emails = false;
+
+		foreach ( $stack as $backtrace ) {
+			if ( ! isset( $backtrace['class'], $backtrace['function'] ) ) {
+				continue;
+			}
+
+			if ( 'force_translating_admin_options_in_backend' === $backtrace['function'] ) {
+				$is_emails = true;
+				break;
+			}
+		}
+
+		if ( $is_emails ) {
+			remove_action( 'wpml_st_force_translate_admin_options', array( $this, 'force_admin_option_translation' ), 0 );
+
+			$this->force_admin_option_translation();
+		}
 	}
 
 	/**

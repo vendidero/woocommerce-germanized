@@ -27,6 +27,7 @@ export const Edit = ({ attributes, setAttributes }) => {
 		'is_required': true,
 		'name': 'preview',
 		'has_checkbox': true,
+        'error_message': '',
 		'wrapper_classes': [],
 	};
 
