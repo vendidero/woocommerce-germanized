@@ -76,19 +76,6 @@ const LegalCheckbox = ({
         >
             { checkbox.has_checkbox ? (
                 <>
-                    { showInlineErrorMessage && (
-                        <div className="wc-block-components-validation-error" role="alert">
-                            <p id={ validationErrorId }>
-                                <Icon icon={ warning } />
-                                <span
-                                    dangerouslySetInnerHTML={ {
-                                        __html: error?.message,
-                                    } }>
-                                </span>
-                            </p>
-                        </div>
-                    ) }
-
                     <CheckboxControl
                         key={ `checkbox-${ checkbox.id }` }
                         { ...fieldProps }
@@ -117,6 +104,19 @@ const LegalCheckbox = ({
                             } }
                         />
                     </CheckboxControl>
+
+                    { showInlineErrorMessage && (
+                        <div className="wc-block-components-validation-error" role="alert">
+                            <p id={ validationErrorId }>
+                                <Icon icon={ warning } />
+                                <span
+                                    dangerouslySetInnerHTML={ {
+                                        __html: error?.message,
+                                    } }>
+                                </span>
+                            </p>
+                        </div>
+                    ) }
                 </>
             ) : (
                 <div className="wc-gzd-checkbox has-no-checkbox">
