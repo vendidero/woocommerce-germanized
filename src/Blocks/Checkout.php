@@ -486,7 +486,7 @@ final class Checkout {
 				'label'                    => $checkbox->get_label(),
 				'wrapper_classes'          => array_diff( $checkbox->get_html_wrapper_classes(), array( 'validate-required', 'form-row' ) ),
 				'custom_styles'            => $checkbox->get_html_style(),
-				'error_message'            => apply_filters( 'woocommerce_gzd_checkout_block_checkbox_show_inline_error_message', false, $checkbox ) ? $checkbox->get_error_message() : '',
+				'error_message'            => apply_filters( 'woocommerce_gzd_checkout_block_checkbox_show_inline_error_message', true, $checkbox ) ? $checkbox->get_error_message() : '',
 				'html_id'                  => $checkbox->get_html_id(),
 				'has_checkbox'             => ! $checkbox->hide_input(),
 				'show_for_payment_methods' => $checkbox->get_show_for_payment_methods(),
