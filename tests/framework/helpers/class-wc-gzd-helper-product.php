@@ -226,7 +226,7 @@ class WC_GZD_Helper_Product {
 			'_drained_weight' => 25.31,
 			'_net_filling_quantity' => 30.22,
 			'_alcohol_content' => 15.1,
-			'_is_non_alcoholic' => 'yes',
+			'_is_non_alcoholic' => 'no',
 			'_nutri_score' => 'b',
 			'_nutrient_ids' => array(
 				$nutrient->term_id => array(
