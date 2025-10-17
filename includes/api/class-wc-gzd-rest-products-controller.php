@@ -1056,19 +1056,6 @@ class WC_GZD_REST_Products_Controller {
 				$data['_alcohol_content'] = wc_format_decimal( $food_data['alcohol_content'], '' );
 			}
 
-			if ( isset( $food_data['is_non_alcoholic'] ) ) {
-				if ( ! empty( $food_data['is_non_alcoholic'] ) ) {
-					$data['_is_non_alcoholic'] = true;
-				}
-			} else {
-				$data['_is_non_alcoholic'] = $gzd_product->get_is_non_alcoholic( 'edit' );
-			}
-
-			// Do only add boolean values if is set so saving works (checkbox-style).
-			if ( empty( $data['_is_non_alcoholic'] ) || ! $data['_is_non_alcoholic'] ) {
-				unset( $data['_is_non_alcoholic'] );
-			}
-
 			if ( isset( $food_data['nutri_score'] ) ) {
 				$data['_nutri_score'] = wc_clean( $food_data['nutri_score'] );
 			}
@@ -1079,6 +1066,19 @@ class WC_GZD_REST_Products_Controller {
 			if ( isset( $food_data['deposit_quantity'] ) ) {
 				$data['_deposit_quantity'] = absint( $food_data['deposit_quantity'] );
 			}
+		}
+
+		if ( isset( $request['food']['is_non_alcoholic'] ) ) {
+			if ( ! empty( $request['food']['is_non_alcoholic'] ) ) {
+				$data['_is_non_alcoholic'] = true;
+			}
+		} else {
+			$data['_is_non_alcoholic'] = $gzd_product->get_is_non_alcoholic( 'edit' );
+		}
+
+		// Do only add boolean values if is set so saving works (checkbox-style).
+		if ( empty( $data['_is_non_alcoholic'] ) || ! $data['_is_non_alcoholic'] ) {
+			unset( $data['_is_non_alcoholic'] );
 		}
 
 		return $data;
