@@ -60,7 +60,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( true, $product['differential_taxation'] );
 		$this->assertEquals( true, $product['free_shipping'] );
 		$this->assertEquals( true, $product['is_food'] );
-		$this->assertEquals( true, $product['is_non_alcoholic'] );
+		$this->assertEquals( true, $product['food']['is_non_alcoholic'] );
 
 		$nutrient = get_term_by( 'slug', 'energy', 'product_nutrient' );
 		$allergen = get_term_by( 'slug', 'hazelnut', 'product_allergen' );
@@ -128,7 +128,6 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 				'sale_price_regular_label' => array( 'id' => $sale_term['term_id'] ),
 				'differential_taxation'    => false,
 				'is_food'                  => true,
-				'is_non_alcoholic'         => false,
 				'safety_attachment_ids' => array(
 					$attachment_id
 				),
@@ -143,6 +142,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 					'net_filling_quantity' => '3.2',
 					'drained_weight' => '5.4',
 					'alcohol_content' => '1.4',
+					'is_non_alcoholic'         => false,
 					'nutrient_reference_value' => '100g',
 					'nutrient_ids' => array(
 						array(
@@ -187,7 +187,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'a', $data['food']['nutri_score'] );
 		$this->assertEquals( '100g', $data['food']['nutrient_reference_value'] );
 		$this->assertEquals( 1.4, $data['food']['alcohol_content'] );
-		$this->assertEquals( false, $data['is_non_alcoholic'] );
+		$this->assertEquals( false, $data['food']['is_non_alcoholic'] );
 		$this->assertEquals( 5.4, $data['food']['drained_weight'] );
 		$this->assertEquals( 3.2, $data['food']['net_filling_quantity'] );
 		$this->assertEquals( array(
@@ -291,7 +291,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( 'c', $variation['food']['nutri_score'] );
 		$this->assertEquals( '100g', $variation['food']['nutrient_reference_value'] );
 		$this->assertEquals( '5.40', $variation['food']['alcohol_content'] );
-		$this->assertEquals( false, $variation['is_non_alcoholic'] );
+		$this->assertEquals( false, $variation['food']['is_non_alcoholic'] );
 		$this->assertEquals( 7, $variation['food']['deposit_quantity'] );
 		$this->assertEquals( '1.75', $variation['food']['deposit'] );
 	}
@@ -363,7 +363,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 		$this->assertEquals( true, $product['used_good'] );
 		$this->assertEquals( true, $product['defective_copy'] );
 		$this->assertEquals( false, $product['is_food'] );
-		$this->assertEquals( true, $product['is_non_alcoholic'] );
+		$this->assertEquals( true, $product['food']['is_non_alcoholic'] );
 		$this->assertEquals( '<p>testing it</p>', trim( $product['food']['ingredients'] ) );
 		$this->assertEquals( 1.75, $product['food']['deposit'] );
 		$this->assertEquals( array(), $product['food']['allergen_ids'] );
