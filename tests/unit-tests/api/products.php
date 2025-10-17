@@ -142,7 +142,7 @@ class WC_GZD_Products_API extends WC_GZD_REST_Unit_Test_Case {
 					'net_filling_quantity' => '3.2',
 					'drained_weight' => '5.4',
 					'alcohol_content' => '1.4',
-					'is_non_alcoholic'         => false,
+					'is_non_alcoholic' => false,
 					'nutrient_reference_value' => '100g',
 					'nutrient_ids' => array(
 						array(

@@ -1056,7 +1056,18 @@ class WC_GZD_REST_Products_Controller {
 				$data['_alcohol_content'] = wc_format_decimal( $food_data['alcohol_content'], '' );
 			}
 
-			$data['_is_non_alcoholic'] = isset( $food_data['is_non_alcoholic'] ) ? wc_string_to_bool( $food_data['is_non_alcoholic'] ) : $gzd_product->get_is_non_alcoholic();
+			if ( isset( $food_data['is_non_alcoholic'] ) ) {
+				if ( ! empty( $food_data['is_non_alcoholic'] ) ) {
+					$data['_is_non_alcoholic'] = true;
+				}
+			} else {
+				$data['_is_non_alcoholic'] = $gzd_product->get_is_non_alcoholic( 'edit' );
+			}
+
+			// Do only add boolean values if is set so saving works (checkbox-style).
+			if ( empty( $data['_is_non_alcoholic'] ) || ! $data['_is_non_alcoholic'] ) {
+				unset( $data['_is_non_alcoholic'] );
+			}
 
 			if ( isset( $food_data['nutri_score'] ) ) {
 				$data['_nutri_score'] = wc_clean( $food_data['nutri_score'] );
