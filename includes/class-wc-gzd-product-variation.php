@@ -57,6 +57,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'drained_weight',
 		'net_filling_quantity',
 		'alcohol_content',
+		'is_non_alcoholic',
 		'food_distributor',
 		'food_place_of_origin',
 		'food_description',
@@ -82,6 +83,10 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'wireless_electronic_device',
 		'device_charging_supports_usb_pd',
 		'device_contains_power_supply',
+	);
+
+	protected $gzd_variation_inherit_data_if_set = array(
+		'is_non_alcoholic',
 	);
 
 	public function get_gzd_parent() {
@@ -111,6 +116,14 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 			// Make sure forced inherited meta data (e.g. not choosable from admin view) is rejected if available
 			if ( in_array( $prop, $this->gzd_variation_forced_inherited_meta_data, true ) ) {
 				$value = '';
+			} elseif ( in_array( $prop, $this->gzd_variation_inherit_data_if_set, true ) ) {
+				if ( $parent = $this->get_gzd_parent() ) {
+					$default_value = $parent->get_wc_product()->get_meta( $meta_key, true, $context );
+
+					if ( ! empty( $default_value ) && 'no' !== $default_value ) {
+						$value = $default_value;
+					}
+				}
 			}
 
 			$variation_misses_value = ! $value || '' === $value;

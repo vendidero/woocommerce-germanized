@@ -636,6 +636,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_ingredients'                              => '',
 			'_nutri_score'                              => '',
 			'_alcohol_content'                          => '',
+			'_is_non_alcoholic'                         => '',
 			'_drained_weight'                           => '',
 			'_net_filling_quantity'                     => '',
 			'_food_distributor'                         => '',

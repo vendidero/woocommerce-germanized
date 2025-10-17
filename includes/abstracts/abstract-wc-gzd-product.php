@@ -275,8 +275,18 @@ class WC_GZD_Product {
 		return $alcohol_content;
 	}
 
+	public function get_is_non_alcoholic( $context = 'view' ) {
+		$is_non_alcoholic = wc_string_to_bool( $this->get_prop( 'is_non_alcoholic', $context ) );
+
+		return $is_non_alcoholic;
+	}
+
+	public function is_non_alcoholic( $context = 'view' ) {
+		return true === $this->get_is_non_alcoholic( $context );
+	}
+
 	public function get_formatted_alcohol_content( $context = 'view' ) {
-		return wc_gzd_format_alcohol_content( $this->get_alcohol_content( $context ) );
+		return wc_gzd_format_alcohol_content( $this->get_alcohol_content( $context ), $this->is_non_alcoholic( $context ) );
 	}
 
 	public function includes_alcohol( $context = 'view' ) {
@@ -1142,6 +1152,10 @@ class WC_GZD_Product {
 
 	public function set_is_food( $is_food ) {
 		$this->set_prop( 'is_food', wc_bool_to_string( $is_food ) );
+	}
+
+	public function set_is_non_alcoholic( $is_non_alcoholic ) {
+		$this->set_prop( 'is_non_alcoholic', wc_bool_to_string( $is_non_alcoholic ) );
 	}
 
 	public function set_free_shipping( $shipping ) {

@@ -439,6 +439,12 @@ class WC_GZD_REST_Products_Controller {
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
+				'is_non_alcoholic'         => array(
+					'description' => __( 'Is non-alcoholic', 'woocommerce-germanized' ),
+					'type'        => 'boolean',
+					'default'     => false,
+					'context'     => array( 'view', 'edit' ),
+				),
 				'distributor'              => array(
 					'description' => _x( 'Distributor', 'food', 'woocommerce-germanized' ),
 					'type'        => 'string',
@@ -1050,6 +1056,8 @@ class WC_GZD_REST_Products_Controller {
 				$data['_alcohol_content'] = wc_format_decimal( $food_data['alcohol_content'], '' );
 			}
 
+			$data['_is_non_alcoholic'] = isset( $food_data['is_non_alcoholic'] ) ? wc_string_to_bool( $food_data['is_non_alcoholic'] ) : $gzd_product->get_is_non_alcoholic();
+
 			if ( isset( $food_data['nutri_score'] ) ) {
 				$data['_nutri_score'] = wc_clean( $food_data['nutri_score'] );
 			}
@@ -1206,6 +1214,7 @@ class WC_GZD_REST_Products_Controller {
 			'nutrient_reference_value' => $gzd_product->get_nutrient_reference_value( $context ),
 			'nutri_score'              => $gzd_product->get_nutri_score( $context ),
 			'alcohol_content'          => $gzd_product->get_alcohol_content( $context ),
+			'is_non_alcoholic'         => $gzd_product->get_is_non_alcoholic( $context ),
 			'allergen_ids'             => $gzd_product->get_allergen_ids( $context ),
 			'nutrient_ids'             => $this->prepare_nutrients( $gzd_product->get_nutrient_ids( $context ) ),
 			'net_filling_quantity'     => $gzd_product->get_net_filling_quantity( $context ),

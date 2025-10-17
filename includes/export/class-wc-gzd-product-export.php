@@ -113,6 +113,7 @@ class WC_GZD_Product_Export {
 				'ingredients'                     => _x( 'Ingredients', 'exporter', 'woocommerce-germanized' ),
 				'nutrient_reference_value'        => _x( 'Nutrient reference value slug', 'exporter', 'woocommerce-germanized' ),
 				'alcohol_content'                 => _x( 'Alcohol content', 'exporter', 'woocommerce-germanized' ),
+				'is_non_alcoholic'                => _x( 'Is non-alcoholic?', 'exporter', 'woocommerce-germanized' ),
 				'drained_weight'                  => _x( 'Drained weight', 'exporter', 'woocommerce-germanized' ),
 				'net_filling_quantity'            => _x( 'Net filling quantity', 'exporter', 'woocommerce-germanized' ),
 				'nutri_score'                     => _x( 'Nutri-Score', 'exporter', 'woocommerce-germanized' ),

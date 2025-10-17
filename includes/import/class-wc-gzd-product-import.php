@@ -100,6 +100,7 @@ class WC_GZD_Product_Import {
 				'mpn'                             => 'wc_clean',
 				'is_food'                         => array( $this, 'parse_bool_str' ),
 				'alcohol_content'                 => 'wc_format_decimal',
+				'is_non_alcoholic'                => array( $this, 'parse_bool_str' ),
 				'drained_weight'                  => 'wc_format_decimal',
 				'net_filling_quantity'            => 'wc_format_decimal',
 				'deposit_quantity'                => 'absint',

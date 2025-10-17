@@ -297,8 +297,14 @@ function wc_gzd_format_tax_rate_percentage( $rate, $percent = false ) {
 	return apply_filters( 'woocommerce_gzd_formatted_tax_rate_percentage', $formatted_number . ( $percent ? ' %' : '' ), $rate, $percent );
 }
 
-function wc_gzd_format_alcohol_content( $alcohol_content ) {
-	return apply_filters( 'woocommerce_gzd_formatted_alcohol_content', sprintf( '%1$s %% vol', wc_gzd_format_food_attribute_value( $alcohol_content, array( 'attribute_type' => 'alcohol_content' ) ) ) );
+function wc_gzd_format_alcohol_content( $alcohol_content, $is_non_alcoholic = false ) {
+	if ( $is_non_alcoholic && $alcohol_content > 0 ) {
+		$formatted_content = sprintf( '< %1$s %% vol', wc_gzd_format_food_attribute_value( $alcohol_content, array( 'attribute_type' => 'alcohol_content' ) ) );
+	} else {
+		$formatted_content = sprintf( '%1$s %% vol', wc_gzd_format_food_attribute_value( $alcohol_content, array( 'attribute_type' => 'alcohol_content' ) ) );
+	}
+
+	return apply_filters( 'woocommerce_gzd_formatted_alcohol_content', $formatted_content, $is_non_alcoholic );
 }
 
 /**

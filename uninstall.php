@@ -58,6 +58,7 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 		'_allergen_ids',
 		'_ingredients',
 		'_alcohol_content',
+		'_is_non_alcoholic',
 		'_food_distributor',
 		'_food_description',
 		'_food_place_of_origin',

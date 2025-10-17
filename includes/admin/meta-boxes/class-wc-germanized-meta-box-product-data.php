@@ -1092,6 +1092,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_ingredients'                              => '',
 			'_nutri_score'                              => '',
 			'_alcohol_content'                          => '',
+			'_is_non_alcoholic'                         => '',
 			'_drained_weight'                           => '',
 			'_net_filling_quantity'                     => '',
 			'_food_distributor'                         => '',
@@ -1485,6 +1486,8 @@ class WC_Germanized_Meta_Box_Product_Data {
 		if ( isset( $data['_alcohol_content'] ) ) {
 			$gzd_product->set_alcohol_content( wc_clean( $data['_alcohol_content'] ) );
 		}
+
+		$gzd_product->set_is_non_alcoholic( isset( $data['_is_non_alcoholic'] ) ? 'yes' : 'no' );
 
 		if ( isset( $data['_drained_weight'] ) ) {
 			$gzd_product->set_drained_weight( wc_clean( $data['_drained_weight'] ) );

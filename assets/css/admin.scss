@@ -302,14 +302,16 @@ a.page-title-action {
   top: -3px;
 }
 
-p._variable_unit_price_auto_field {
+p._variable_unit_price_auto_field,
+p.variable-is-non-alcoholic {
   input.checkbox {
     float: none !important;
     margin-right: 5px !important;
   }
 }
 
-p._unit_price_auto_field {
+p._unit_price_auto_field,
+p.variable-is-non-alcoholic {
   label {
     display: block !important;
     margin-bottom: 5px;
