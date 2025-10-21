@@ -326,7 +326,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 
 				wp_register_script( 'wc-gzd-admin', $gzd->get_assets_build_url( 'static/admin.js' ), array( 'jquery' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 				wp_register_script( 'wc-gzd-admin-settings', $gzd->get_assets_build_url( 'static/admin-settings.js' ), array( 'wc-gzd-admin' ), WC_GERMANIZED_VERSION, true );
-				wp_register_script( 'wc-gzd-admin-setup', $gzd->get_assets_build_url( 'static/admin-setup.js' ), array( 'jquery', 'wc-gzd-admin-settings', 'jquery-tiptip' ), WC_GERMANIZED_VERSION, true );
+				wp_register_script( 'wc-gzd-admin-setup', $gzd->get_assets_build_url( 'static/admin-setup.js' ), array( 'jquery', 'wc-gzd-admin-settings', $gzd->get_wc_asset_dep_handle( 'jquery-tiptip' ) ), WC_GERMANIZED_VERSION, true );
 
 				wp_enqueue_script( 'wc-gzd-admin-setup' );
 			}

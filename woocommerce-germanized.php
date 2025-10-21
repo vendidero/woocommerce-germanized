@@ -3,12 +3,12 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 3.20.2
+ * Version: 3.20.3
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
  * WC requires at least: 3.9
- * WC tested up to: 10.1
+ * WC tested up to: 10.3
  *
  * Text Domain: woocommerce-germanized
  * Domain Path: /i18n/languages/
@@ -68,7 +68,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '3.20.2';
+		public $version = '3.20.3';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -922,9 +922,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *        - WP_LANG_DIR/plugins/woocommerce-germanized-LOCALE.mo
 		 */
 		public function load_plugin_textdomain() {
-			add_filter( 'plugin_locale', array( $this, 'support_german_language_variants' ), 10, 2 );
-			add_filter( 'load_translation_file', array( $this, 'force_load_german_language_variant' ), 10, 2 );
-
 			if ( function_exists( 'determine_locale' ) ) {
 				$locale = determine_locale();
 			} else {
@@ -932,50 +929,18 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				$locale = is_admin() ? get_user_locale() : get_locale();
 			}
 
-			$locale = apply_filters( 'plugin_locale', $locale, 'woocommerce-germanized' );
+			$locale                  = apply_filters( 'plugin_locale', $locale, 'woocommerce-germanized' );
+			$custom_translation_path = WP_LANG_DIR . '/woocommerce-germanized/woocommerce-germanized' . $locale . '.mo';
+			$plugin_translation_path = WP_LANG_DIR . '/plugins/woocommerce-germanized' . $locale . '.mo';
 
-			unload_textdomain( 'woocommerce-germanized', true );
-			load_textdomain( 'woocommerce-germanized', trailingslashit( WP_LANG_DIR ) . 'woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo' );
-			load_plugin_textdomain( 'woocommerce-germanized', false, plugin_basename( __DIR__ ) . '/i18n/languages/' );
-		}
-
-		/**
-		 * Use a tweak to force loading german language variants in WP 6.5
-		 * as WP does not allow using the plugin_locale filter to load a plugin-specific locale any longer.
-		 *
-		 * @param $file
-		 * @param $domain
-		 *
-		 * @return mixed
-		 */
-		public function force_load_german_language_variant( $file, $domain ) {
-			if ( 'woocommerce-germanized' === $domain && function_exists( 'determine_locale' ) && class_exists( 'WP_Translation_Controller' ) ) {
-				$locale     = determine_locale();
-				$new_locale = $this->get_german_language_variant( $locale );
-
-				if ( $new_locale !== $locale ) {
-					$i18n_controller = WP_Translation_Controller::get_instance();
-					$i18n_controller->load_file( $file, $domain, $locale ); // Force loading the determined file in the original locale.
-				}
+			// If a custom translation exists (by default it will not, as it is not a standard WordPress convention)
+			// we unload the existing translation, then essentially layer the custom translation on top of the canonical
+			// translation. Otherwise, we simply step back and let WP manage things.
+			if ( is_readable( $custom_translation_path ) ) {
+				unload_textdomain( 'woocommerce-germanized' );
+				load_textdomain( 'woocommerce-germanized', $custom_translation_path );
+				load_textdomain( 'woocommerce-germanized', $plugin_translation_path );
 			}
-
-			return $file;
-		}
-
-		protected function get_german_language_variant( $locale ) {
-			if ( apply_filters( 'woocommerce_gzd_force_de_language', in_array( $locale, array( 'de_CH', 'de_CH_informal', 'de_AT' ), true ) ) ) {
-				$locale = apply_filters( 'woocommerce_gzd_german_language_variant_locale', 'de_DE' );
-			}
-
-			return $locale;
-		}
-
-		public function support_german_language_variants( $locale, $domain ) {
-			if ( 'woocommerce-germanized' === $domain ) {
-				$locale = $this->get_german_language_variant( $locale );
-			}
-
-			return $locale;
 		}
 
 		/**
@@ -992,6 +957,18 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				),
 				$links
 			);
+		}
+
+		public function get_wc_asset_dep_handle( $handle ) {
+			if ( in_array( $handle, array( 'jquery-tiptip', 'jquery-blockui', 'select2', 'dompurify', 'accounting', 'js-cookie', 'round' ), true ) ) {
+				$wc_version = defined( 'WC_VERSION' ) ? WC_VERSION : false;
+
+				if ( ( $wc_version && version_compare( $wc_version, '10.3.0', '>=' ) ) || wp_script_is( 'wc-' . $handle, 'registered' ) ) {
+					$handle = 'wc-' . $handle;
+				}
+			}
+
+			return $handle;
 		}
 
 		public function get_assets_build_url( $script_or_style ) {
@@ -1067,7 +1044,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			if ( function_exists( 'WC' ) ) {
 				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-				wp_register_script( 'accounting', WC()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
+				wp_register_script( 'wc-accounting', WC()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
 			}
 
 			$this->register_script(
@@ -1085,7 +1062,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					is_product() ? array( 'wc-single-product' ) : array(),
 					array(
 						'wc-gzd-unit-price-observer-queue',
-						'accounting',
+						'wc-accounting',
 					)
 				)
 			);
@@ -1104,7 +1081,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				'static/force-pay-order.js',
 				array(
 					'jquery',
-					'jquery-blockui',
+					$this->get_wc_asset_dep_handle( 'jquery-blockui' ),
 				)
 			);
 
