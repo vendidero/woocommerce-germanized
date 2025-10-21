@@ -1,0 +1,41 @@
+$fontSizes: (
+        "smaller": 0.75,
+        "small": 0.875,
+        "regular": 1,
+        "large": 1.25,
+        "larger": 2,
+);
+
+// Maps a named font-size to its predefined size. Units default to em, but can
+// be changed using the multiplier parameter.
+@mixin font-size($sizeName, $multiplier: 1em) {
+  font-size: map.get($fontSizes, $sizeName) * $multiplier;
+}
+
+// Converts a px unit to em.
+@function em($size, $base: 16px) {
+  @return math.div($size, $base) * 1em;
+}
+
+@mixin reset-box() {
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+@mixin reset-color() {
+  color: inherit;
+}
+
+@mixin reset-typography() {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-decoration: inherit;
+  text-transform: inherit;
+}
