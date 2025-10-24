@@ -98,10 +98,10 @@ window.germanized = window.germanized || {};
                     }
 
                     if ( response.success ) {
-                        if ( $this.is("[href]") && '#' !== $this.attr( 'href' ) ) {
-                            window.location.href = $this.attr( 'href' );
-                        } else if ( response.hasOwnProperty( 'redirect' ) ) {
+                        if ( response.hasOwnProperty( 'redirect' ) ) {
                             window.location.href = response.redirect;
+                        } else if ( $this.is("[href]") && '#' !== $this.attr( 'href' ) ) {
+                            window.location.href = $this.attr( 'href' );
                         }
                     } else if ( response.hasOwnProperty( 'message' ) ) {
                         $msg_wrapper.before( '<div class="error inline" id="wc-gzd-ext-error"><p>' + response.message + '</p></div>' );

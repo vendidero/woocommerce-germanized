@@ -33,6 +33,8 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 	$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE 'woocommerce_gzd\_%';" );
 	// Delete options.
 	$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE 'wc_gzd\_%';" );
+	// Delete options.
+	$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_wc_gzd\_%';" );
 
 	$meta_keys = array(
 		'_unit_base',

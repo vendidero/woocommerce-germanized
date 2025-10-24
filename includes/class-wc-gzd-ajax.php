@@ -64,6 +64,8 @@ class WC_GZD_AJAX {
 				}
 
 				$redirect_on_success = admin_url( 'admin.php?page=wc-gzdp-setup' );
+			} elseif ( 'shiptastic-for-woocommerce' === $extension ) {
+				$redirect_on_success = admin_url( 'admin.php?page=wc-shiptastic-setup' );
 			}
 
 			$result = \Vendidero\Germanized\PluginsHelper::install_or_activate_extension( $extension, $license_key );

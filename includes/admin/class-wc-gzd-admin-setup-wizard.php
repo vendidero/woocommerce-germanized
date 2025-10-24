@@ -534,6 +534,8 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ) {
 					wp_safe_redirect( esc_url_raw( add_query_arg( array( 'error' => 'shiptastic_install' ), $current_url ) ) );
 					exit();
+				} else {
+					update_option( '_wc_gzd_setup_installed_shiptastic', 'yes', false );
 				}
 			}
 
@@ -587,7 +589,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 						$provider->activate();
 					}
 
-					update_option( '_wc_gzd_setup_shipping_provider_activated', 'yes' );
+					update_option( '_wc_gzd_setup_shipping_provider_activated', 'yes', false );
 				} elseif ( $provider->is_installed() ) {
 					$provider->deactivate();
 				}

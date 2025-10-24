@@ -60,6 +60,16 @@ class WC_GZD_Settings_Tab_Shiptastic extends WC_GZD_Settings_Tab {
 		return 'shiptastic';
 	}
 
+	public function get_link() {
+		$link = parent::get_link();
+
+		if ( 'yes' === get_option( '_wc_gzd_setup_installed_shiptastic' ) ) {
+			return admin_url( 'admin.php?page=wc-shiptastic-setup' );
+		}
+
+		return $link;
+	}
+
 	public function needs_install() {
 		return ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active();
 	}
