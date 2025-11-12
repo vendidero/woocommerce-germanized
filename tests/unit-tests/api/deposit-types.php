@@ -37,11 +37,11 @@ class WC_GZD_Deposit_Types_API extends WC_GZD_REST_Unit_Test_Case {
 		$request  = new WP_REST_Request( 'GET', '/wc/v3/products/deposit_types/' . $term['term_id'] );
 		$response = $this->server->dispatch( $request );
 
-		$delivery_time = $response->get_data();
+		$deposit_type = $response->get_data();
 
 		$this->assertEquals( 200, $response->get_status() );
 
-		$this->assertEquals( $delivery_time, array(
+		$this->assertEquals( $deposit_type, array(
 			'id'                   => $term['term_id'],
 			'name'                 => 'Can',
 			'slug'                 => 'can',
@@ -51,6 +51,9 @@ class WC_GZD_Deposit_Types_API extends WC_GZD_REST_Unit_Test_Case {
 			'tax_status'           => 'taxable',
 			'packaging_type'       => 'disposable',
 			'packaging_type_title' => WC_germanized()->deposit_types->get_packaging_type_title( 'disposable' ),
+			'packaging'            => '',
+			'is_packaging'         => false,
+			'packaging_number_of_contents' => 1,
 		) );
 
 		wp_delete_term( $term['term_id'], 'product_deposit_type' );
