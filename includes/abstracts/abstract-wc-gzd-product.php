@@ -1626,7 +1626,7 @@ class WC_GZD_Product {
 			$price_html_checked = ( '' === $this->child->get_price_html() );
 		}
 
-		$has_empty_price = apply_filters( 'woocommerce_gzd_product_misses_price', ( '' === $this->get_price() && $price_html_checked ), $this );
+		$has_empty_price = apply_filters( 'woocommerce_gzd_product_misses_price', ( ( '' === $this->get_price() || '' === $this->get_price_html() ) && $price_html_checked ), $this );
 
 		return apply_filters( 'woocommerce_gzd_product_hide_shopmarks_empty_price', true, $this ) && $has_empty_price;
 	}
