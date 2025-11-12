@@ -445,11 +445,11 @@ class WC_GZD_Checkout {
 	 * @return string
 	 */
 	public function format_address_1( $address_1 ) {
-		if ( function_exists( 'wc_gzd_split_shipment_street' ) ) {
+		if ( function_exists( 'wc_stc_split_shipment_street' ) ) {
 			$do_validate = get_option( 'woocommerce_gzd_checkout_validate_street_number' );
 
 			if ( apply_filters( 'woocommerce_gzd_autocorrect_address_1', in_array( $do_validate, array( 'always', 'base_only', 'eu_only' ), true ) ) ) {
-				$parts = wc_gzd_split_shipment_street( $address_1 );
+				$parts = wc_stc_split_shipment_street( $address_1 );
 
 				if ( '' !== $parts['number'] && ! empty( $parts['street'] ) ) {
 					$address_1 = trim( str_replace( $parts['street'], ' ' . $parts['street'] . ' ', $address_1 ) ); // replace the street name tailored with whitespace
@@ -478,7 +478,7 @@ class WC_GZD_Checkout {
 	 * @param WP_Error $errors
 	 */
 	public function maybe_force_street_number( $data, $errors ) {
-		if ( function_exists( 'wc_gzd_split_shipment_street' ) ) {
+		if ( function_exists( 'wc_stc_split_shipment_street' ) ) {
 			$ship_to_different  = isset( $data['ship_to_different_address'] ) ? $data['ship_to_different_address'] : false;
 			$shipping_country   = $ship_to_different && isset( $data['shipping_country'] ) ? $data['shipping_country'] : $data['billing_country'];
 			$shipping_address_1 = $ship_to_different && isset( $data['shipping_address_1'] ) ? $data['shipping_address_1'] : $data['billing_address_1'];
@@ -498,14 +498,14 @@ class WC_GZD_Checkout {
 				$field_key         = ( $ship_to_different ? 'shipping' : 'billing' ) . '_address_1';
 
 				if ( in_array( $shipping_country, $countries, true ) ) {
-					$shipping_parts    = wc_gzd_split_shipment_street( $shipping_address_1 );
+					$shipping_parts    = wc_stc_split_shipment_street( $shipping_address_1 );
 					$is_shipping_valid = '' === $shipping_parts['number'] ? false : true; // 0 may be a valid house number
 
 					/**
 					 * In case shipping to another address is chosen make sure to validate the separate billing address as well.
 					 */
 					if ( true === $ship_to_different && isset( $data['billing_address_1'] ) && apply_filters( 'woocommerce_gzd_checkout_validate_billing_street_number', true ) ) {
-						$billing_parts    = wc_gzd_split_shipment_street( $data['billing_address_1'] );
+						$billing_parts    = wc_stc_split_shipment_street( $data['billing_address_1'] );
 						$is_billing_valid = '' === $billing_parts['number'] ? false : true; // 0 may be a valid house number
 
 						if ( ! apply_filters( 'woocommerce_gzd_checkout_is_valid_billing_street_number', $is_billing_valid, $data ) ) {

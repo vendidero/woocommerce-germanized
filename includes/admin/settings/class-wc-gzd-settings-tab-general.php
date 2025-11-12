@@ -309,53 +309,67 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'type'    => 'gzd_toggle',
 				'default' => 'no',
 			),
-			array(
-				'title'   => __( 'Validate street number', 'woocommerce-germanized' ),
-				'desc'    => __( 'Force the existence of a street number within the first address field.', 'woocommerce-germanized' ),
-				'id'      => 'woocommerce_gzd_checkout_validate_street_number',
-				'type'    => 'select',
-				'default' => 'never',
-				'options' => array(
-					'never'     => __( 'Never', 'woocommerce-germanized' ),
-					'always'    => __( 'Always', 'woocommerce-germanized' ),
-					'base_only' => __( 'Base country only', 'woocommerce-germanized' ),
-					'eu_only'   => __( 'EU countries only', 'woocommerce-germanized' ),
-				),
-			),
-			array(
-				'title'   => __( 'Disallow cancellations', 'woocommerce-germanized' ),
-				'desc'    => __( 'Don\'t allow customers to manually cancel orders.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'By default payment methods like PayPal allow order cancellation by clicking the abort link. This option will stop customers from manually cancel orders.', 'woocommerce-germanized' ) . '</div>',
-				'id'      => 'woocommerce_gzd_checkout_stop_order_cancellation',
-				'type'    => 'gzd_toggle',
-				'default' => 'yes',
-			),
-			array(
-				'title'   => __( 'Disallow gateway choosing', 'woocommerce-germanized' ),
-				'desc'    => __( 'Don\'t allow customers to change the payment gateway after ordering.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'Customers paying through a gateway which allows later payment (e.g. PayPal) will find a link within their customer account which redirects them to a pay page. This page offers the possibility to choose another gateway than before which may lead to further problems e.g. additional gateway costs etc. which would require a new order submittal. This option makes sure the customer gets redirected directly to the gateways payment page, e.g. to PayPal.', 'woocommerce-germanized' ) . '</div>',
-				'id'      => 'woocommerce_gzd_checkout_disallow_belated_payment_method_selection',
-				'type'    => 'gzd_toggle',
-				'default' => 'no',
-			),
-			array(
-				'title'   => __( 'Free shipping', 'woocommerce-germanized' ),
-				'desc'    => __( 'Force free shipping method if available.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'By default WooCommerce will let customers choose other shipping methods than free shipping (if available). This option will force free shipping if available.', 'woocommerce-germanized' ) . '</div>',
-				'id'      => 'woocommerce_gzd_display_checkout_free_shipping_select',
-				'default' => 'no',
-				'type'    => 'gzd_toggle',
-			),
+		);
 
+		if ( \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ) {
+			$settings = array_merge(
+				$settings,
+				array(
+					array(
+						'title'   => __( 'Validate street number', 'woocommerce-germanized' ),
+						'desc'    => __( 'Force the existence of a street number within the first address field.', 'woocommerce-germanized' ),
+						'id'      => 'woocommerce_gzd_checkout_validate_street_number',
+						'type'    => 'select',
+						'default' => 'never',
+						'options' => array(
+							'never'     => __( 'Never', 'woocommerce-germanized' ),
+							'always'    => __( 'Always', 'woocommerce-germanized' ),
+							'base_only' => __( 'Base country only', 'woocommerce-germanized' ),
+							'eu_only'   => __( 'EU countries only', 'woocommerce-germanized' ),
+						),
+					),
+				)
+			);
+		}
+
+		$settings = array_merge(
+			$settings,
 			array(
-				'title'             => __( 'Exclude Methods', 'woocommerce-germanized' ),
-				'id'                => 'woocommerce_gzd_display_checkout_free_shipping_excluded',
-				'default'           => array(),
-				'class'             => 'wc-enhanced-select',
-				'type'              => 'multiselect',
-				'options'           => $shipping_methods_options,
-				'custom_attributes' => array(
-					'data-show_if_woocommerce_gzd_display_checkout_free_shipping_select' => '',
+				array(
+					'title'   => __( 'Disallow cancellations', 'woocommerce-germanized' ),
+					'desc'    => __( 'Don\'t allow customers to manually cancel orders.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'By default payment methods like PayPal allow order cancellation by clicking the abort link. This option will stop customers from manually cancel orders.', 'woocommerce-germanized' ) . '</div>',
+					'id'      => 'woocommerce_gzd_checkout_stop_order_cancellation',
+					'type'    => 'gzd_toggle',
+					'default' => 'yes',
 				),
-				'desc'              => '<div class="wc-gzd-additional-desc">' . __( 'Optionally choose methods which should be excluded from hiding when free shipping is available (e.g. express shipping options).', 'woocommerce-germanized' ) . '</div>',
-			),
+				array(
+					'title'   => __( 'Disallow gateway choosing', 'woocommerce-germanized' ),
+					'desc'    => __( 'Don\'t allow customers to change the payment gateway after ordering.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'Customers paying through a gateway which allows later payment (e.g. PayPal) will find a link within their customer account which redirects them to a pay page. This page offers the possibility to choose another gateway than before which may lead to further problems e.g. additional gateway costs etc. which would require a new order submittal. This option makes sure the customer gets redirected directly to the gateways payment page, e.g. to PayPal.', 'woocommerce-germanized' ) . '</div>',
+					'id'      => 'woocommerce_gzd_checkout_disallow_belated_payment_method_selection',
+					'type'    => 'gzd_toggle',
+					'default' => 'no',
+				),
+				array(
+					'title'   => __( 'Free shipping', 'woocommerce-germanized' ),
+					'desc'    => __( 'Force free shipping method if available.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'By default WooCommerce will let customers choose other shipping methods than free shipping (if available). This option will force free shipping if available.', 'woocommerce-germanized' ) . '</div>',
+					'id'      => 'woocommerce_gzd_display_checkout_free_shipping_select',
+					'default' => 'no',
+					'type'    => 'gzd_toggle',
+				),
+
+				array(
+					'title'             => __( 'Exclude Methods', 'woocommerce-germanized' ),
+					'id'                => 'woocommerce_gzd_display_checkout_free_shipping_excluded',
+					'default'           => array(),
+					'class'             => 'wc-enhanced-select',
+					'type'              => 'multiselect',
+					'options'           => $shipping_methods_options,
+					'custom_attributes' => array(
+						'data-show_if_woocommerce_gzd_display_checkout_free_shipping_select' => '',
+					),
+					'desc'              => '<div class="wc-gzd-additional-desc">' . __( 'Optionally choose methods which should be excluded from hiding when free shipping is available (e.g. express shipping options).', 'woocommerce-germanized' ) . '</div>',
+				),
+			)
 		);
 
 		if ( WC_GZD_Payment_Gateways::instance()->enable_legacy_cod_fee() ) {

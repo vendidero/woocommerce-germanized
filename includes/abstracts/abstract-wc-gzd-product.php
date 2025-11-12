@@ -547,23 +547,72 @@ class WC_GZD_Product {
 	/**
 	 * Returns the total deposit amount.
 	 *
-	 * @param string $tax_display
 	 * @param string $context
+	 * @param string $tax_display
 	 *
 	 * @return string formatted deposit amount
 	 */
 	public function get_deposit_amount( $context = 'view', $tax_display = '' ) {
 		$tax_display_mode = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop' );
-		$quantity         = 1;
+		$deposit_quantity = 1;
 
 		// Use the raw deposit amount and calculate taxes for the total deposit amount, not per unit
 		$price = $this->get_deposit_amount_per_unit( 'edit', $tax_display );
 
 		if ( $this->get_deposit_quantity() > 1 ) {
-			$quantity = $this->get_deposit_quantity();
+			$deposit_quantity = $this->get_deposit_quantity();
 		}
 
-		$amount = (float) $price * (float) $quantity;
+		$amount = ( (float) $price * (float) $deposit_quantity );
+
+		// Calculate taxes
+		if ( in_array( $context, array( 'view', 'view_exclude_packaging' ), true ) && 0.0 !== $amount ) {
+			if ( 'view' === $context ) {
+				$amount += (float) $this->get_deposit_packaging_amount( 'edit', $tax_display );
+			}
+
+			$amount           = ( 'incl' === $tax_display_mode ) ? $this->get_deposit_amount_including_tax( 1, $amount ) : $this->get_deposit_amount_excluding_tax( 1, $amount );
+			$shipping_country = $this->get_current_customer_shipping_country();
+
+			if ( apply_filters( 'woocommerce_gzd_shipping_country_skips_deposit', false, $shipping_country ) ) {
+				$amount = 0;
+			}
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_deposit_amount', $amount, $deposit_quantity, $this, $context, $tax_display );
+	}
+
+	protected function get_deposit_packaging_term( $context = 'view' ) {
+		if ( $term = $this->get_deposit_type_term( $context ) ) {
+			return WC_germanized()->deposit_types->get_packaging( $term );
+		}
+
+		return false;
+	}
+
+	/**
+	 * Returns the total deposit packaging amount.
+	 *
+	 * @param string $context
+	 * @param string $tax_display
+	 *
+	 * @return string formatted deposit amount
+	 */
+	public function get_deposit_packaging_amount( $context = 'view', $tax_display = '', $quantity = 1 ) {
+		$tax_display_mode = $tax_display ? $tax_display : get_option( 'woocommerce_tax_display_shop' );
+		$deposit_quantity = 1;
+		$amount           = 0.0;
+
+		if ( $this->get_deposit_quantity() > 1 ) {
+			$deposit_quantity = $this->get_deposit_quantity();
+		}
+
+		if ( $packaging = $this->get_deposit_packaging_term( $context ) ) {
+			$number_of_contents      = $this->get_deposit_packaging_number_of_contents( $context );
+			$packaging_deposit       = (float) WC_germanized()->deposit_types->get_deposit( $packaging );
+			$number_packaging_needed = ceil( ( (float) $deposit_quantity * (float) $quantity ) / (float) $number_of_contents );
+			$amount                  = $packaging_deposit * $number_packaging_needed;
+		}
 
 		// Calculate taxes
 		if ( 'view' === $context && 0.0 !== $amount ) {
@@ -575,7 +624,24 @@ class WC_GZD_Product {
 			}
 		}
 
-		return apply_filters( 'woocommerce_gzd_product_deposit_amount', $amount, $quantity, $this, $context, $tax_display );
+		return apply_filters( 'woocommerce_gzd_product_deposit_packaging_amount', $amount, $quantity, $this, $context, $tax_display );
+	}
+
+	/**
+	 * Returns the number of contents included within the deposit packaging.
+	 *
+	 * @param string $context
+	 *
+	 * @return integer number of contents
+	 */
+	public function get_deposit_packaging_number_of_contents( $context = 'view' ) {
+		$number_of_contents = 1;
+
+		if ( $packaging = $this->get_deposit_packaging_term( $context ) ) {
+			$number_of_contents = WC_germanized()->deposit_types->get_packaging_number_of_contents( $packaging );
+		}
+
+		return absint( $number_of_contents );
 	}
 
 	/**

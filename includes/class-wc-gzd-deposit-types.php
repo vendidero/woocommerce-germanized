@@ -35,7 +35,33 @@ class WC_GZD_Deposit_Types extends WC_GZD_Taxonomy {
 	}
 
 	public function get_deposit_types( $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'is_packaging' => '',
+				'meta_query'   => array(), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			)
+		);
+
+		if ( ! empty( $args['is_packaging'] ) ) {
+			$args['meta_query'][] = array(
+				array(
+					'key'     => 'deposit_is_packaging',
+					'value'   => wc_bool_to_string( $args['is_packaging'] ),
+					'compare' => '=',
+				),
+			);
+		}
+
+		unset( $args['is_packaging'] );
+
 		return $this->get_terms( $args );
+	}
+
+	public function get_packaging_list( $args = array() ) {
+		$args['is_packaging'] = 'yes';
+
+		return $this->get_deposit_types( $args );
 	}
 
 	public function get_packaging_types() {
@@ -125,5 +151,64 @@ class WC_GZD_Deposit_Types extends WC_GZD_Taxonomy {
 		}
 
 		return wc_format_decimal( $deposit, '' );
+	}
+
+	public function is_packaging( $term ) {
+		$is_packaging = false;
+
+		if ( ! is_a( $term, 'WP_Term' ) ) {
+			$term = $this->get_deposit_type_term( $term );
+		}
+
+		if ( ! $term ) {
+			return $is_packaging;
+		}
+
+		return wc_string_to_bool( get_term_meta( $term->term_id, 'deposit_is_packaging', true ) );
+	}
+
+	/**
+	 * @param $term
+	 *
+	 * @return false|WP_Term
+	 */
+	public function get_packaging( $term ) {
+		$packaging = false;
+
+		if ( ! is_a( $term, 'WP_Term' ) ) {
+			$term = $this->get_deposit_type_term( $term );
+		}
+
+		if ( ! $term ) {
+			return $packaging;
+		}
+
+		if ( ! $this->is_packaging( $term ) ) {
+			$packaging = get_term_meta( $term->term_id, 'deposit_packaging', true );
+
+			if ( ! empty( $packaging ) ) {
+				return $this->get_deposit_type_term( $packaging );
+			}
+		}
+
+		return $packaging;
+	}
+
+	public function get_packaging_number_of_contents( $term ) {
+		$number = 1;
+
+		if ( ! is_a( $term, 'WP_Term' ) ) {
+			$term = $this->get_deposit_type_term( $term );
+		}
+
+		if ( ! $term ) {
+			return $number;
+		}
+
+		if ( $this->is_packaging( $term ) ) {
+			$number = absint( get_term_meta( $term->term_id, 'deposit_packaging_number_contents', true ) );
+		}
+
+		return $number;
 	}
 }

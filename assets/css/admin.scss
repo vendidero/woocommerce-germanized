@@ -26,6 +26,7 @@ span.woocommerce-gzd-input-toggle {
   position: relative;
   margin-top: -1px;
   vertical-align: text-top;
+  box-sizing: content-box;
 
   &::before {
     content: "";
@@ -747,5 +748,11 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
     .description, #name-description {
       display: none !important;
     }
+  }
+}
+
+.wc-gzd-admin-settings {
+  tr.wc-gzd-setting-invisible, .wc-gzd-setting-invisible {
+    display: none;
   }
 }

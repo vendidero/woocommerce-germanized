@@ -256,7 +256,7 @@ final class Checkout {
 		add_action(
 			$hook_name,
 			function ( $errors, $fields, $group ) {
-				if ( 'never' !== get_option( 'woocommerce_gzd_checkout_validate_street_number' ) && function_exists( 'wc_gzd_split_shipment_street' ) ) {
+				if ( 'never' !== get_option( 'woocommerce_gzd_checkout_validate_street_number' ) && function_exists( 'wc_stc_split_shipment_street' ) ) {
 					if ( 'billing' === $group && ! apply_filters( 'woocommerce_gzd_checkout_validate_billing_street_number', true ) ) {
 						return $errors;
 					}
@@ -287,7 +287,7 @@ final class Checkout {
 						$is_valid = true;
 
 						if ( in_array( $country, $countries, true ) ) {
-							$address_parts = wc_gzd_split_shipment_street( $address_1 );
+							$address_parts = wc_stc_split_shipment_street( $address_1 );
 							$is_valid      = '' === $address_parts['number'] ? false : true;
 						}
 

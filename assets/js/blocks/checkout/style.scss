@@ -9,13 +9,6 @@
     }
   }
 
-  .wc-block-components-totals-wrapper {
-    .wc-gzd-small-business-info {
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-  }
-
   .is-large {
      /**
       * Somehow setting align-self: start unsets the 100 % sidebar height which disables sticky.
@@ -176,6 +169,19 @@
 
     .wc-not-gzd-summary-item-first {
       margin-top: 1em;
+    }
+  }
+}
+
+.wp-block-woocommerce-checkout {
+  .wc-block-components-totals-wrapper {
+    .wc-gzd-small-business-info {
+      padding-left: 16px;
+      padding-right: 16px;
+
+      p {
+        margin: 0;
+      }
     }
   }
 }

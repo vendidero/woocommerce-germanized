@@ -219,11 +219,11 @@ class Shiptastic {
 		return array(
 			'dpd'    => array(
 				'title'                     => _x( 'DPD', 'shipments', 'woocommerce-germanized' ),
-				'countries_supported'       => array( 'DE' ),
+				'countries_supported'       => array( 'DE', 'AT' ),
 				'is_builtin'                => false,
 				'supports_pickup_locations' => true,
 				'is_pro'                    => true,
-				'tracking_url_placeholder'  => 'https://my.dpd.de/redirect.aspx?action=1&locale=de_DE&parcelno={tracking_id}',
+				'tracking_url_placeholder'  => 'AT' === wc_gzd_get_base_country() ? 'https://www.mydpd.at/?f=parcel.load&p={tracking_id}' : 'https://my.dpd.de/redirect.aspx?action=1&locale=de_DE&parcelno={tracking_id}',
 				'extension_name'            => 'dpd-for-shiptastic',
 				'help_url'                  => 'https://vendidero.de/woocommerce-germanized/features#providers',
 			),

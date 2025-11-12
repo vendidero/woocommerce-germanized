@@ -790,6 +790,9 @@ class WC_GZD_Order_Helper {
 		array_push( $metas, '_deposit_net_amount_per_unit' );
 		array_push( $metas, '_deposit_tax_status' );
 		array_push( $metas, '_deposit_packaging_type' );
+		array_push( $metas, '_deposit_packaging_amount' );
+		array_push( $metas, '_deposit_packaging_net_amount' );
+		array_push( $metas, '_deposit_packaging_number_contents' );
 
 		return $metas;
 	}
@@ -829,8 +832,11 @@ class WC_GZD_Order_Helper {
 					$gzd_item->set_deposit_net_amount_per_unit( $gzd_product->get_deposit_amount_per_unit( 'view', 'excl' ) );
 
 					$gzd_item->set_deposit_quantity( $gzd_product->get_deposit_quantity() );
-					$gzd_item->set_deposit_amount( $gzd_product->get_deposit_amount( 'view', 'incl' ) );
-					$gzd_item->set_deposit_net_amount( $gzd_product->get_deposit_amount( 'view', 'excl' ) );
+					$gzd_item->set_deposit_amount( $gzd_product->get_deposit_amount( 'view_exclude_packaging', 'incl' ) );
+					$gzd_item->set_deposit_net_amount( $gzd_product->get_deposit_amount( 'view_exclude_packaging', 'excl' ) );
+					$gzd_item->set_deposit_packaging_amount( $gzd_product->get_deposit_packaging_amount( 'view', 'incl' ) );
+					$gzd_item->set_deposit_packaging_net_amount( $gzd_product->get_deposit_packaging_amount( 'view', 'excl' ) );
+					$gzd_item->set_deposit_packaging_number_of_contents( $gzd_product->get_deposit_packaging_number_of_contents() );
 
 					$gzd_item->set_deposit_packaging_type( $gzd_product->get_deposit_packaging_type() );
 					$gzd_item->set_deposit_tax_status( $gzd_product->get_deposit_tax_status() );
