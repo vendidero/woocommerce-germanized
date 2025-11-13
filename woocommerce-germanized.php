@@ -666,6 +666,19 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			return apply_filters( 'woocommerce_gzd_is_rest_api_request', $is_rest_api_request );
 		}
 
+		public function is_rest_api_cart_request() {
+			$is_cart_endpoint = false;
+
+			if ( $this->is_rest_api_request() ) {
+				$is_batch         = isset( $_SERVER['REQUEST_URI'] ) ? false !== strpos( wp_unslash( $_SERVER['REQUEST_URI'] ), '/batch' ) : false; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$is_cart_endpoint = isset( $_SERVER['REQUEST_URI'] ) ? false !== strpos( wp_unslash( $_SERVER['REQUEST_URI'] ), '/cart' ) : false; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+				$is_cart_endpoint = $is_batch || $is_cart_endpoint;
+			}
+
+			return $is_cart_endpoint;
+		}
+
 		public function setup_compatibility() {
 			/**
 			 * Filter compatibility classes.

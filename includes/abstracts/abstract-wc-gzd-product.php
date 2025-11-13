@@ -1615,18 +1615,38 @@ class WC_GZD_Product {
 	}
 
 	public function hide_shopmarks_due_to_missing_price() {
-		$price_html_checked = true;
+		$has_empty_price = '' === $this->child->get_price();
 
 		/**
-		 * Prevent infinite loops in case the shopmark is added via the price_html filter.
-		 * Calling get_price_html during cart/checkout may cause side-effects (e.g. subtotal calculation in Measurement Plugin)
+		 * Prevent infinite loops in case the shopmark is registered via price html filter.
+		 * Calling get_price_html() during cart/checkout may cause side effects (e.g. subtotal calculation in Measurement Plugin)
 		 * within shopmarks - prevent calls here too.
 		 */
-		if ( ! $this->is_doing_price_html_action() && ! is_cart() && ! is_checkout() && apply_filters( 'woocommerce_gzd_shopmarks_empty_price_html_check_enabled', true, $this ) ) {
-			$price_html_checked = ( '' === $this->child->get_price_html() );
+		if ( ! $has_empty_price && ! $this->is_doing_price_html_action() && apply_filters( 'woocommerce_gzd_shopmarks_empty_price_html_check_enabled', true, $this ) ) {
+			if ( is_cart() || is_checkout() || WC_Germanized()->is_rest_api_cart_request() ) {
+				if ( ! doing_action( 'woocommerce_cart_item_price' ) && WC()->cart ) {
+					$product_price = false;
+
+					/**
+					 * Use the woocommerce_cart_item_price filter to check whether some extension "hides" the price.
+					 */
+					foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+						if ( ( ! empty( $cart_item['variation_id'] ) && $cart_item['variation_id'] === $this->child->get_id() ) || $cart_item['product_id'] === $this->child->get_id() ) {
+							$product_price = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $this->child ), $cart_item, $cart_item_key );
+							break;
+						}
+					}
+
+					if ( false !== $product_price && '' === $product_price ) {
+						$has_empty_price = true;
+					}
+				}
+			} else {
+				$has_empty_price = '' === $this->child->get_price_html();
+			}
 		}
 
-		$has_empty_price = apply_filters( 'woocommerce_gzd_product_misses_price', ( '' === $this->get_price() && $price_html_checked ), $this );
+		$has_empty_price = apply_filters( 'woocommerce_gzd_product_misses_price', $has_empty_price, $this );
 
 		return apply_filters( 'woocommerce_gzd_product_hide_shopmarks_empty_price', true, $this ) && $has_empty_price;
 	}
@@ -1898,7 +1918,6 @@ class WC_GZD_Product {
 		 *
 		 */
 		if ( apply_filters( 'woocommerce_gzd_hide_deposit_amount_text', false, $this ) ) {
-
 			/**
 			 * Filter to adjust the output of a disabled product deposit text.
 			 *
@@ -1909,6 +1928,8 @@ class WC_GZD_Product {
 			 *
 			 */
 			return apply_filters( 'woocommerce_gzd_disabled_deposit_amount_text', '', $this );
+		} elseif ( $this->hide_shopmarks_due_to_missing_price() ) {
+			return '';
 		}
 
 		$html = '';
@@ -1954,7 +1975,6 @@ class WC_GZD_Product {
 		 *
 		 */
 		if ( apply_filters( 'woocommerce_gzd_hide_unit_text', false, $this ) ) {
-
 			/**
 			 * Filter to adjust the output of a disabled product unit price.
 			 *
@@ -1965,6 +1985,8 @@ class WC_GZD_Product {
 			 *
 			 */
 			return apply_filters( 'woocommerce_germanized_disabled_unit_text', '', $this );
+		} elseif ( $this->hide_shopmarks_due_to_missing_price() ) {
+			return '';
 		}
 
 		$html = '';
@@ -2027,7 +2049,6 @@ class WC_GZD_Product {
 		 * @since 1.0.0
 		 */
 		if ( apply_filters( 'woocommerce_gzd_hide_product_units_text', false, $this ) ) {
-
 			/**
 			 * Filter that allows adjusting the disabled product units output.
 			 *
@@ -2380,7 +2401,6 @@ class WC_GZD_Product {
 		 *
 		 */
 		if ( apply_filters( 'woocommerce_germanized_hide_delivery_time_text', false, $this ) ) {
-
 			/**
 			 * Filter to adjust disabled product delivery time output.
 			 *
@@ -2514,7 +2534,6 @@ class WC_GZD_Product {
 		 * @since 1.0.0
 		 */
 		if ( apply_filters( 'woocommerce_germanized_hide_shipping_costs_text', false, $this ) ) {
-
 			/**
 			 * Filter to adjust a product's disabled shipping costs notice.
 			 *
