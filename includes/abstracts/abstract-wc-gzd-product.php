@@ -1623,7 +1623,7 @@ class WC_GZD_Product {
 		 * within shopmarks - prevent calls here too.
 		 */
 		if ( ! $has_empty_price && ! $this->is_doing_price_html_action() && apply_filters( 'woocommerce_gzd_shopmarks_empty_price_html_check_enabled', true, $this ) ) {
-			if ( is_cart() || is_checkout() || WC_Germanized()->is_rest_api_cart_request() ) {
+			if ( apply_filters( 'woocommerce_gzd_shopmarks_empty_price_html_check_checkout_enabled', false ) && ( is_cart() || is_checkout() || WC_Germanized()->is_rest_api_cart_request() ) ) {
 				if ( ! doing_action( 'woocommerce_cart_item_price' ) && WC()->cart ) {
 					$product_price = false;
 

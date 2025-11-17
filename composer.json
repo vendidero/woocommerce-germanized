@@ -15,7 +15,7 @@
     "defuse/php-encryption": "^2.0.0",
     "globalcitizen/php-iban": "^4.0.0",
     "vendidero/woocommerce-eu-tax-helper": "2.0.8",
-    "vendidero/shiptastic-for-woocommerce": "4.8.1",
+    "vendidero/shiptastic-for-woocommerce": "4.8.3",
     "vendidero/shiptastic-integration-for-dhl": "4.1.6"
   },
   "require-dev": {
