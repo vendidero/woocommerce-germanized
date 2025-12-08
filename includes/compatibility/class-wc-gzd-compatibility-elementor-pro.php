@@ -80,14 +80,15 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 				}
 
 				/**
-				 * Move checkboxes right before order summary in case the current
-				 * checkout is built with Elementor Pro.
+				 * Move checkboxes right before order summary in case the current checkout is built with Elementor Pro.
 				 *
-				 * Do not move the checkboxes in case the Shopengine Elementor addon is active as this plugin
-				 * does not execute the woocommerce_checkout_order_review hook.
+				 * Do not move the checkboxes in case of Shopengine Elementor addon or Woodmart layout as these extensions
+				 * do not execute the woocommerce_checkout_order_review hook.
 				 */
 				if ( ! wc_gzd_post_content_has_shortcode( 'woocommerce_checkout' ) ) {
-					if ( ! \Vendidero\Germanized\PluginsHelper::is_plugin_active( 'shopengine' ) ) {
+					$post_type = get_post_type();
+
+					if ( apply_filters( 'woocommerce_gzd_elementor_pro_checkout_move_checkboxes', ! \Vendidero\Germanized\PluginsHelper::is_plugin_active( 'shopengine' ) && 'woodmart_layout' !== $post_type ) ) {
 						if ( has_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_render_checkout_checkboxes' ) ) {
 							$has_removed = remove_action( 'woocommerce_review_order_after_payment', 'woocommerce_gzd_template_render_checkout_checkboxes', 10 );
 
