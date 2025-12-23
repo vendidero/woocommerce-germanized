@@ -54,6 +54,23 @@
     .wc-block-components-product-details__value {
       font-size: .8rem;
       color: #757575;
+
+      .wc-gzd-cart-info {
+        display: inline;
+        font-size: .8rem;
+
+        p {
+          font-size: inherit;
+
+          &:first-child {
+            margin-top: 0;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
     }
   }
 }
