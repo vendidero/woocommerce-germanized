@@ -639,7 +639,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 
 			// Product Attribute
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-attribute.php';
-			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-attribute-helper.php';
+            include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-product-attribute-helper.php';
+            include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-deprecated-product-attribute-helper.php';
 
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-voucher-discounts.php';
 
