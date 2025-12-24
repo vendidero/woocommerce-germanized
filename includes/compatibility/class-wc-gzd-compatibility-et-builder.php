@@ -282,6 +282,13 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		return $this->post_is_et_builder( $this->get_divi_builder_post(), 'checkout' );
 	}
 
+	/**
+	 * Check if the current request is a Divi 5 WooCommerce REST request.
+	 * Divi 5 uses REST API instead of AJAX, so we need to detect WooCommerce module from REST route
+	 * by checking if the request URI contains the REST URL prefix and the Divi WooCommerce module data route.
+	 *
+	 * @return bool
+	 */
 	protected function is_divi_5_woocommerce_rest_request() {
 		$is_rest_request = defined( 'REST_REQUEST' ) && REST_REQUEST;
 
