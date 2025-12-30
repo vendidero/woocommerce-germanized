@@ -298,6 +298,27 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 		);
 	}
 
+	public function get_widgets() {
+		return array(
+			'tax_notice'             => 'WC_GZD_Elementor_Widget_Product_Tax_Notice',
+			'shipping_notice'        => 'WC_GZD_Elementor_Widget_Product_Shipping_Notice',
+			'unit_price'             => 'WC_GZD_Elementor_Widget_Product_Unit_Price',
+			'units'                  => 'WC_GZD_Elementor_Widget_Product_Units',
+			'delivery_time'          => 'WC_GZD_Elementor_Widget_Product_Delivery_Time',
+			'defect_description'     => 'WC_GZD_Elementor_Widget_Product_Defect_Description',
+			'deposit'                => 'WC_GZD_Elementor_Widget_Product_Deposit',
+			'deposit_packaging_type' => 'WC_GZD_Elementor_Widget_Product_Deposit_Packaging_Type',
+			'food_nutrients'         => 'WC_GZD_Elementor_Widget_Product_Nutrients',
+			'food_ingredients'       => 'WC_GZD_Elementor_Widget_Product_Ingredients',
+			'food_allergenic'        => 'WC_GZD_Elementor_Widget_Product_Allergenic',
+			'food_nutri_score'       => 'WC_GZD_Elementor_Widget_Product_Nutri_Score',
+			'power_supply'           => 'WC_GZD_Elementor_Widget_Product_Power_Supply',
+			'manufacturer'           => 'WC_GZD_Elementor_Widget_Product_Manufacturer',
+			'safety_attachments'     => 'WC_GZD_Elementor_Widget_Product_Safety_Attachments',
+			'safety_instructions'    => 'WC_GZD_Elementor_Widget_Product_Safety_Instructions',
+		);
+	}
+
 	public function init_widgets( $widgets_manager ) {
 		if ( ! class_exists( 'ElementorPro\Modules\Woocommerce\Widgets\Products_Base' ) ) {
 			return;
@@ -305,24 +326,7 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 
 		include_once 'elementor/widgets/abstact-class-wc-gzd-elementor-widget.php';
 
-		$widgets = array(
-			'WC_GZD_Elementor_Widget_Product_Tax_Notice',
-			'WC_GZD_Elementor_Widget_Product_Shipping_Notice',
-			'WC_GZD_Elementor_Widget_Product_Unit_Price',
-			'WC_GZD_Elementor_Widget_Product_Units',
-			'WC_GZD_Elementor_Widget_Product_Delivery_Time',
-			'WC_GZD_Elementor_Widget_Product_Defect_Description',
-			'WC_GZD_Elementor_Widget_Product_Deposit',
-			'WC_GZD_Elementor_Widget_Product_Deposit_Packaging_Type',
-			'WC_GZD_Elementor_Widget_Product_Nutrients',
-			'WC_GZD_Elementor_Widget_Product_Ingredients',
-			'WC_GZD_Elementor_Widget_Product_Allergenic',
-			'WC_GZD_Elementor_Widget_Product_Nutri_Score',
-			'WC_GZD_Elementor_Widget_Product_Power_Supply',
-			'WC_GZD_Elementor_Widget_Product_Manufacturer',
-			'WC_GZD_Elementor_Widget_Product_Safety_Attachments',
-			'WC_GZD_Elementor_Widget_Product_Safety_Instructions',
-		);
+		$widgets = array_values( $this->get_widgets() );
 
 		foreach ( $widgets as $widget ) {
 			$classname = 'class-' . str_replace( '_', '-', strtolower( $widget ) ) . '.php';
