@@ -1223,6 +1223,18 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_item_hooks' ) ) {
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_order_item_remove_hooks' ) ) {
+
+	function woocommerce_gzd_template_order_item_remove_hooks() {
+		/**
+		 * Checkout Hooks
+		 */
+		foreach ( wc_gzd_get_order_shopmarks() as $shopmark ) {
+			$shopmark->remove();
+		}
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 
 	function woocommerce_gzd_template_mini_cart_taxes() {

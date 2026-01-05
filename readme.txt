@@ -214,6 +214,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * Improvement: Update sepa xml library to latest version to support newer pain formats
 * Improvement: Update to latest Shiptastic, see separate changelogs
 * Improvement: Latest tax rate changesets for 2026
+* Fix: Price labels within thankyou/order confirmation block
 
 = 3.20.4 =
 * New: Support deposit packaging, e.g. beverage crates (Pro)

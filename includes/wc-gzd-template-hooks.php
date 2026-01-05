@@ -333,7 +333,8 @@ add_filter( 'woocommerce_thankyou_order_received_text', 'woocommerce_gzd_templat
 add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_pay_now_button', wc_gzd_get_hook_priority( 'order_pay_now_button' ), 1 );
 
 // Set Hooks before order details table
-add_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_item_hooks', 0 );
+add_action( 'woocommerce_order_details_before_order_table', 'woocommerce_gzd_template_order_item_hooks', 0 );
+add_action( 'woocommerce_order_details_after_order_table', 'woocommerce_gzd_template_order_item_remove_hooks', 99 );
 
 // Add Hooks to pay form
 add_action( 'before_woocommerce_pay', 'woocommerce_gzd_template_order_item_hooks', 10 );
