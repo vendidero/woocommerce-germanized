@@ -108,13 +108,13 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 					// First, remove hooks to ensure clean state.
 					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 10 ) );
 					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', WC_GZD_Hook_Priorities::instance()->get_priority( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 20 ) );
-					
+
 					// Also try removing at default priorities in case Germanized's priority system doesn't match.
 					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
 					remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
-					
+
 					$module_type = null;
-					
+
 					// Detect module type based on REST API route.
 					$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 
@@ -235,7 +235,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		// Handle REST API requests in Visual Builder.
 		if ( $this->is_divi_5_woocommerce_rest_request() ) {
 			$divi5_dynamic_assets_utils_class = '\ET\Builder\FrontEnd\Assets\DynamicAssetsUtils';
-			$et_post_stack_class = 'ET_Post_Stack';
+			$et_post_stack_class              = 'ET_Post_Stack';
 
 			// Try to use Divi 5's DynamicAssetsUtils if available (handles REST API requests properly).
 			if ( class_exists( $divi5_dynamic_assets_utils_class ) && method_exists( $divi5_dynamic_assets_utils_class, 'get_current_post_id' ) ) {
@@ -293,7 +293,7 @@ class WC_GZD_Compatibility_ET_Builder extends WC_GZD_Compatibility {
 		$is_rest_request = defined( 'REST_REQUEST' ) && REST_REQUEST;
 
 		if ( $is_rest_request ) {
-			$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+			$request_uri     = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 			$rest_url_prefix = rest_get_url_prefix();
 
 			return false !== strpos( $request_uri, "/$rest_url_prefix/divi/v1/module-data/woocommerce" );

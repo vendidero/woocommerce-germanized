@@ -1,15 +1,15 @@
-# Copyright (C) 2025 vendidero
+# Copyright (C) 2026 vendidero
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 3.20.3\n"
+"Project-Id-Version: Germanized for WooCommerce 3.20.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-11-17T09:42:30+00:00\n"
+"POT-Creation-Date: 2026-01-05T10:53:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
@@ -2461,17 +2461,17 @@ msgid "Packaging"
 msgstr ""
 
 #: includes/admin/views/html-order-shipment-content.php:58
-#: includes/wc-stc-shipment-functions.php:1458
+#: includes/wc-stc-shipment-functions.php:1459
 #: src/Admin/ReturnTable.php:25
 #: src/Admin/Table.php:716
-#: src/ShippingProvider/Auto.php:596
-#: src/ShippingProvider/Auto.php:629
+#: src/ShippingProvider/Auto.php:600
+#: src/ShippingProvider/Auto.php:633
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipment-content.php:58
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1458
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1459
 #: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:25
 #: packages/shiptastic-for-woocommerce/src/Admin/Table.php:716
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:596
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:629
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:600
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:633
 msgctxt "shipments"
 msgid "Status"
 msgstr ""
@@ -2487,13 +2487,13 @@ msgstr ""
 #: src/Admin/PackagingSettings.php:137
 #: src/Admin/Setup/Wizard.php:126
 #: src/ShippingMethod/MethodHelper.php:646
-#: src/ShippingProvider/Simple.php:941
+#: src/ShippingProvider/Simple.php:953
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipment-content.php:78
 #: packages/shiptastic-for-woocommerce/includes/admin/views/wizard/shipping-provider.php:71
 #: packages/shiptastic-for-woocommerce/src/Admin/PackagingSettings.php:137
 #: packages/shiptastic-for-woocommerce/src/Admin/Setup/Wizard.php:126
 #: packages/shiptastic-for-woocommerce/src/ShippingMethod/MethodHelper.php:646
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:941
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:953
 msgctxt "shipments"
 msgid "Shipping Service Provider"
 msgstr ""
@@ -2669,7 +2669,7 @@ msgstr ""
 #: src/Admin/Setup/Wizard.php:149
 #: src/Admin/Tabs/General.php:26
 #: src/Admin/Tabs/General.php:92
-#: src/ShippingProvider/Auto.php:621
+#: src/ShippingProvider/Auto.php:625
 #: templates/myaccount/order-shipments.php:41
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-order-shipment-list.php:21
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:161
@@ -2679,7 +2679,7 @@ msgstr ""
 #: packages/shiptastic-for-woocommerce/src/Admin/Setup/Wizard.php:149
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:26
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:92
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:621
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:625
 #: packages/shiptastic-for-woocommerce/templates/myaccount/order-shipments.php:41
 msgctxt "shipments"
 msgid "Returns"
@@ -2838,13 +2838,13 @@ msgstr ""
 #: src/Admin/ReturnTable.php:23
 #: src/Admin/Table.php:714
 #: src/ShippingMethod/ShippingMethod.php:197
-#: src/ShippingProvider/Simple.php:956
+#: src/ShippingProvider/Simple.php:968
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-settings-provider-list.php:14
 #: packages/shiptastic-for-woocommerce/includes/admin/views/wizard/shipping-provider.php:85
 #: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:23
 #: packages/shiptastic-for-woocommerce/src/Admin/Table.php:714
 #: packages/shiptastic-for-woocommerce/src/ShippingMethod/ShippingMethod.php:197
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:956
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:968
 msgctxt "shipments"
 msgid "Title"
 msgstr ""
@@ -2854,13 +2854,13 @@ msgstr ""
 #: src/Admin/Admin.php:1086
 #: src/Admin/Admin.php:1612
 #: src/Admin/PackagingSettings.php:122
-#: src/ShippingProvider/Simple.php:965
+#: src/ShippingProvider/Simple.php:977
 #: packages/shiptastic-for-woocommerce/includes/admin/views/html-settings-provider-list.php:15
 #: packages/shiptastic-for-woocommerce/includes/admin/views/tabs/html-admin-settings-tabs.php:15
 #: packages/shiptastic-for-woocommerce/src/Admin/Admin.php:1086
 #: packages/shiptastic-for-woocommerce/src/Admin/Admin.php:1612
 #: packages/shiptastic-for-woocommerce/src/Admin/PackagingSettings.php:122
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:965
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:977
 msgctxt "shipments"
 msgid "Description"
 msgstr ""
@@ -3015,14 +3015,14 @@ msgid "Create"
 msgstr ""
 
 #: includes/admin/views/label/html-shipment-label.php:25
-#: includes/wc-stc-shipment-functions.php:1746
+#: includes/wc-stc-shipment-functions.php:1747
 #: src/Admin/Table.php:921
-#: src/Ajax.php:427
+#: src/Ajax.php:429
 #: templates/shipment/shipment-return-instructions.php:28
 #: packages/shiptastic-for-woocommerce/includes/admin/views/label/html-shipment-label.php:25
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1746
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1747
 #: packages/shiptastic-for-woocommerce/src/Admin/Table.php:921
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:427
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:429
 #: packages/shiptastic-for-woocommerce/templates/shipment/shipment-return-instructions.php:28
 msgctxt "shipments"
 msgid "Download label"
@@ -3255,9 +3255,9 @@ msgid "Allow guests to submit return requests"
 msgstr ""
 
 #: includes/admin/views/wizard/returns.php:76
-#: src/ShippingProvider/Simple.php:1203
+#: src/ShippingProvider/Simple.php:1215
 #: packages/shiptastic-for-woocommerce/includes/admin/views/wizard/returns.php:76
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1203
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1215
 msgctxt "shipments"
 msgid "Return requests need manual confirmation."
 msgstr ""
@@ -3287,25 +3287,25 @@ msgid "Create a new shipping service provider"
 msgstr ""
 
 #: includes/admin/views/wizard/shipping-provider.php:72
-#: src/ShippingProvider/Simple.php:942
+#: src/ShippingProvider/Simple.php:954
 #: packages/shiptastic-for-woocommerce/includes/admin/views/wizard/shipping-provider.php:72
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:942
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:954
 msgctxt "shipments"
 msgid "Start from a known shipping provider or provide the settings yourself."
 msgstr ""
 
 #: includes/admin/views/wizard/shipping-provider.php:92
-#: src/ShippingProvider/Simple.php:1002
+#: src/ShippingProvider/Simple.php:1014
 #: packages/shiptastic-for-woocommerce/includes/admin/views/wizard/shipping-provider.php:92
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1002
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1014
 msgctxt "shipments"
 msgid "Tracking URL"
 msgstr ""
 
 #: includes/admin/views/wizard/shipping-provider.php:93
-#: src/ShippingProvider/Simple.php:1003
+#: src/ShippingProvider/Simple.php:1015
 #: packages/shiptastic-for-woocommerce/includes/admin/views/wizard/shipping-provider.php:93
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1003
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1015
 #, php-format
 msgctxt "shipments"
 msgid "Adjust the placeholder used to construct the tracking URL for this shipping provider. You may use on of the following placeholders to insert the tracking id or other dynamic data: %s"
@@ -3488,12 +3488,12 @@ msgid "Text to appear below the main email content."
 msgstr ""
 
 #: includes/emails/class-wc-stc-email-customer-shipment.php:367
-#: includes/wc-stc-shipment-functions.php:1395
-#: includes/wc-stc-shipment-functions.php:1423
+#: includes/wc-stc-shipment-functions.php:1396
+#: includes/wc-stc-shipment-functions.php:1424
 #: templates/shipment/shipment-details-address.php:27
 #: packages/shiptastic-for-woocommerce/includes/emails/class-wc-stc-email-customer-shipment.php:367
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1395
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1423
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1396
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1424
 #: packages/shiptastic-for-woocommerce/templates/shipment/shipment-details-address.php:27
 msgctxt "shipments"
 msgid "N/A"
@@ -3605,9 +3605,9 @@ msgid "International Shipments"
 msgstr ""
 
 #: includes/wc-stc-shipment-functions.php:153
-#: includes/wc-stc-shipment-functions.php:1456
+#: includes/wc-stc-shipment-functions.php:1457
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:153
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1456
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1457
 msgctxt "shipments"
 msgid "Shipment"
 msgstr ""
@@ -3760,16 +3760,16 @@ msgstr ""
 
 #: includes/wc-stc-shipment-functions.php:523
 #: includes/wc-stc-shipment-functions.php:527
-#: src/ReturnShipment.php:500
-#: src/ReturnShipment.php:590
+#: src/ReturnShipment.php:493
+#: src/ReturnShipment.php:583
 #: src/SimpleShipment.php:118
-#: src/SimpleShipment.php:235
+#: src/SimpleShipment.php:244
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:523
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:527
-#: packages/shiptastic-for-woocommerce/src/ReturnShipment.php:500
-#: packages/shiptastic-for-woocommerce/src/ReturnShipment.php:590
+#: packages/shiptastic-for-woocommerce/src/ReturnShipment.php:493
+#: packages/shiptastic-for-woocommerce/src/ReturnShipment.php:583
 #: packages/shiptastic-for-woocommerce/src/SimpleShipment.php:118
-#: packages/shiptastic-for-woocommerce/src/SimpleShipment.php:235
+#: packages/shiptastic-for-woocommerce/src/SimpleShipment.php:244
 #: src/Shipments/ReturnShipment.php:259
 #: src/Shipments/ReturnShipment.php:344
 #: src/Shipments/SimpleShipment.php:109
@@ -3904,49 +3904,57 @@ msgstr ""
 #: includes/wc-stc-shipment-functions.php:1055
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1055
 msgctxt "shipments"
+msgid "VAT ID (EU)"
+msgstr ""
+
+#: includes/wc-stc-shipment-functions.php:1056
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1056
+msgctxt "shipments"
 msgid "UK VAT ID (HMRC)"
 msgstr ""
 
-#: includes/wc-stc-shipment-functions.php:1124
+#: includes/wc-stc-shipment-functions.php:1125
 #: src/Labels/ReturnLabel.php:140
-#: src/Shipment.php:1398
-#: src/Shipment.php:1662
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1124
+#: src/Shipment.php:1631
+#: src/Shipment.php:1640
+#: src/Shipment.php:1976
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1125
 #: packages/shiptastic-for-woocommerce/src/Labels/ReturnLabel.php:140
-#: packages/shiptastic-for-woocommerce/src/Shipment.php:1398
-#: packages/shiptastic-for-woocommerce/src/Shipment.php:1662
+#: packages/shiptastic-for-woocommerce/src/Shipment.php:1631
+#: packages/shiptastic-for-woocommerce/src/Shipment.php:1640
+#: packages/shiptastic-for-woocommerce/src/Shipment.php:1976
 #, php-format
 msgctxt "full name"
 msgid "%1$s %2$s"
 msgstr ""
 
-#: includes/wc-stc-shipment-functions.php:1457
+#: includes/wc-stc-shipment-functions.php:1458
 #: src/Admin/ReturnTable.php:24
 #: src/Admin/Table.php:715
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1457
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1458
 #: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:24
 #: packages/shiptastic-for-woocommerce/src/Admin/Table.php:715
 msgctxt "shipments"
 msgid "Date"
 msgstr ""
 
-#: includes/wc-stc-shipment-functions.php:1459
-#: src/ShippingProvider/Auto.php:1181
+#: includes/wc-stc-shipment-functions.php:1460
+#: src/ShippingProvider/Auto.php:1206
 #: templates/shipment/shipment-details-tracking.php:22
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1459
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1181
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1460
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1206
 #: packages/shiptastic-for-woocommerce/templates/shipment/shipment-details-tracking.php:22
 msgctxt "shipments"
 msgid "Tracking"
 msgstr ""
 
-#: includes/wc-stc-shipment-functions.php:1460
+#: includes/wc-stc-shipment-functions.php:1461
 #: src/Admin/Admin.php:1295
 #: src/Admin/Admin.php:1617
 #: src/Admin/ReturnTable.php:31
 #: src/Admin/Table.php:723
 #: src/ShippingMethod/ShippingMethod.php:1347
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1460
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1461
 #: packages/shiptastic-for-woocommerce/src/Admin/Admin.php:1295
 #: packages/shiptastic-for-woocommerce/src/Admin/Admin.php:1617
 #: packages/shiptastic-for-woocommerce/src/Admin/ReturnTable.php:31
@@ -3956,8 +3964,8 @@ msgctxt "shipments"
 msgid "Actions"
 msgstr ""
 
-#: includes/wc-stc-shipment-functions.php:1739
-#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1739
+#: includes/wc-stc-shipment-functions.php:1740
+#: packages/shiptastic-for-woocommerce/includes/wc-stc-shipment-functions.php:1740
 msgctxt "shipments"
 msgid "View"
 msgstr ""
@@ -3975,9 +3983,9 @@ msgid "My account"
 msgstr ""
 
 #: includes/wc-stc-template-functions.php:126
-#: src/DataStores/Shipment.php:365
+#: src/DataStores/Shipment.php:368
 #: packages/shiptastic-for-woocommerce/includes/wc-stc-template-functions.php:126
-#: packages/shiptastic-for-woocommerce/src/DataStores/Shipment.php:365
+#: packages/shiptastic-for-woocommerce/src/DataStores/Shipment.php:368
 msgctxt "shipments"
 msgid "Invalid shipment."
 msgstr ""
@@ -4030,11 +4038,11 @@ msgstr ""
 #: src/Admin/Admin.php:117
 #: src/Admin/Tabs/General.php:282
 #: src/Admin/Tabs/Packaging.php:51
-#: src/ShippingProvider/Auto.php:494
+#: src/ShippingProvider/Auto.php:498
 #: packages/shiptastic-for-woocommerce/src/Admin/Admin.php:117
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:282
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/Packaging.php:51
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:494
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:498
 msgctxt "shipments"
 msgid "Enable"
 msgstr ""
@@ -4910,9 +4918,9 @@ msgid "Filter by shipping service provider"
 msgstr ""
 
 #: src/Admin/Table.php:692
-#: src/Ajax.php:1171
+#: src/Ajax.php:1175
 #: packages/shiptastic-for-woocommerce/src/Admin/Table.php:692
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1171
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1175
 #, php-format
 msgctxt "shipments"
 msgid "Order #%s"
@@ -5026,22 +5034,22 @@ msgstr ""
 
 #: src/Admin/Tabs/General.php:15
 #: src/Admin/Tabs/General.php:24
-#: src/ShippingProvider/Auto.php:1180
-#: src/ShippingProvider/Simple.php:1260
+#: src/ShippingProvider/Auto.php:1205
+#: src/ShippingProvider/Simple.php:1272
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:15
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:24
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1180
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1260
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1205
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1272
 msgctxt "shipments"
 msgid "General"
 msgstr ""
 
 #: src/Admin/Tabs/General.php:25
 #: src/Admin/Tabs/General.php:72
-#: src/ShippingProvider/Auto.php:1210
+#: src/ShippingProvider/Auto.php:1235
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:25
 #: packages/shiptastic-for-woocommerce/src/Admin/Tabs/General.php:72
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1210
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1235
 msgctxt "shipments"
 msgid "Automation"
 msgstr ""
@@ -5540,20 +5548,20 @@ msgctxt "shipments"
 msgid "Click on a tab to adjust the settings related to a specific section."
 msgstr ""
 
-#: src/Admin/Tutorial.php:94
-#: packages/shiptastic-for-woocommerce/src/Admin/Tutorial.php:94
+#: src/Admin/Tutorial.php:95
+#: packages/shiptastic-for-woocommerce/src/Admin/Tutorial.php:95
 msgctxt "shipments"
 msgid "Dismiss"
 msgstr ""
 
-#: src/Admin/Tutorial.php:95
-#: packages/shiptastic-for-woocommerce/src/Admin/Tutorial.php:95
+#: src/Admin/Tutorial.php:96
+#: packages/shiptastic-for-woocommerce/src/Admin/Tutorial.php:96
 msgctxt "shipments"
 msgid "Next"
 msgstr ""
 
-#: src/Admin/Tutorial.php:102
-#: packages/shiptastic-for-woocommerce/src/Admin/Tutorial.php:102
+#: src/Admin/Tutorial.php:103
+#: packages/shiptastic-for-woocommerce/src/Admin/Tutorial.php:103
 msgctxt "shipments"
 msgid "Let's go"
 msgstr ""
@@ -5583,9 +5591,9 @@ msgid "There was an error while confirming the request."
 msgstr ""
 
 #: src/Ajax.php:258
-#: src/Rest/ShipmentsController.php:1100
+#: src/Rest/ShipmentsController.php:1112
 #: packages/shiptastic-for-woocommerce/src/Ajax.php:258
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1100
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1112
 msgctxt "shipments"
 msgid "There was an error creating the label."
 msgstr ""
@@ -5602,159 +5610,159 @@ msgctxt "shipments"
 msgid "There was an error processing the label."
 msgstr ""
 
-#: src/Ajax.php:439
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:439
+#: src/Ajax.php:441
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:441
 msgctxt "shipments"
 msgid "There was an error while trying to save the shipping service provider status."
 msgstr ""
 
-#: src/Ajax.php:477
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:477
+#: src/Ajax.php:479
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:479
 msgctxt "shipments"
 msgid "There was an error while trying to delete the shipping service provider."
 msgstr ""
 
-#: src/Ajax.php:549
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:549
+#: src/Ajax.php:551
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:551
 msgctxt "shipments"
 msgid "Installed successfully"
 msgstr ""
 
-#: src/Ajax.php:553
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:553
+#: src/Ajax.php:555
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:555
 #, php-format
 msgctxt "shipments"
 msgid "There was an error while automatically installing %1$s. %2$s"
 msgstr ""
 
-#: src/Ajax.php:572
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:572
+#: src/Ajax.php:574
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:574
 msgctxt "shipments-returns-page-slug"
 msgid "returns"
 msgstr ""
 
-#: src/Ajax.php:572
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:572
+#: src/Ajax.php:574
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:574
 msgctxt "shipments-returns-page-slug"
 msgid "Returns"
 msgstr ""
 
-#: src/Ajax.php:577
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:577
+#: src/Ajax.php:579
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:579
 msgctxt "shipments"
 msgid "Page created successfully"
 msgstr ""
 
-#: src/Ajax.php:623
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:623
+#: src/Ajax.php:625
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:625
 msgctxt "shipments"
 msgid "There was an error while bulk processing shipments."
 msgstr ""
 
-#: src/Ajax.php:745
-#: src/Ajax.php:923
-#: src/Ajax.php:1000
-#: src/Ajax.php:1037
-#: src/Ajax.php:1264
-#: src/Ajax.php:1310
-#: src/Ajax.php:1386
-#: src/Ajax.php:1419
-#: src/Ajax.php:1478
-#: src/Ajax.php:1548
-#: src/Ajax.php:1588
-#: src/Ajax.php:1643
-#: src/Ajax.php:1687
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:745
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:923
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1000
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1037
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1264
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1310
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1386
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1419
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1478
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1548
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1588
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1643
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1687
+#: src/Ajax.php:747
+#: src/Ajax.php:925
+#: src/Ajax.php:1002
+#: src/Ajax.php:1041
+#: src/Ajax.php:1269
+#: src/Ajax.php:1315
+#: src/Ajax.php:1394
+#: src/Ajax.php:1427
+#: src/Ajax.php:1486
+#: src/Ajax.php:1556
+#: src/Ajax.php:1596
+#: src/Ajax.php:1651
+#: src/Ajax.php:1695
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:747
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:925
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1002
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1041
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1269
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1315
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1394
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1427
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1486
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1556
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1596
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1651
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1695
 msgctxt "shipments"
 msgid "There was an error processing the shipment"
 msgstr ""
 
-#: src/Ajax.php:798
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:798
+#: src/Ajax.php:800
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:800
 msgctxt "shipments"
 msgid "There was an error while adding the shipment"
 msgstr ""
 
-#: src/Ajax.php:819
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:819
+#: src/Ajax.php:821
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:821
 msgctxt "shipments"
 msgid "This order contains enough shipments already."
 msgstr ""
 
-#: src/Ajax.php:874
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:874
+#: src/Ajax.php:876
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:876
 msgctxt "shipments"
 msgid "There was an error processing the refund."
 msgstr ""
 
-#: src/Ajax.php:942
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:942
+#: src/Ajax.php:944
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:944
 msgctxt "shipments"
 msgid "This order contains enough returns already."
-msgstr ""
-
-#: src/Ajax.php:1221
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1221
-msgctxt "shipments"
-msgid "Status:"
 msgstr ""
 
 #: src/Ajax.php:1226
 #: packages/shiptastic-for-woocommerce/src/Ajax.php:1226
 msgctxt "shipments"
+msgid "Status:"
+msgstr ""
+
+#: src/Ajax.php:1231
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1231
+msgctxt "shipments"
 msgid "Customer payment page &rarr;"
 msgstr ""
 
-#: src/Ajax.php:1813
+#: src/Ajax.php:1821
 #: src/FormHandler.php:200
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1813
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1821
 #: packages/shiptastic-for-woocommerce/src/FormHandler.php:200
 msgctxt "shipments"
 msgid "You are not allowed to add returns to that order."
 msgstr ""
 
-#: src/Ajax.php:1819
+#: src/Ajax.php:1827
 #: src/FormHandler.php:205
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1819
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1827
 #: packages/shiptastic-for-woocommerce/src/FormHandler.php:205
 msgctxt "shipments"
 msgid "Sorry, but this order does not support returns any longer."
 msgstr ""
 
-#: src/Ajax.php:1825
+#: src/Ajax.php:1833
 #: src/FormHandler.php:210
 #: src/FormHandler.php:233
-#: src/Order.php:676
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1825
+#: src/Order.php:691
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1833
 #: packages/shiptastic-for-woocommerce/src/FormHandler.php:210
 #: packages/shiptastic-for-woocommerce/src/FormHandler.php:233
-#: packages/shiptastic-for-woocommerce/src/Order.php:676
+#: packages/shiptastic-for-woocommerce/src/Order.php:691
 msgctxt "shipments"
 msgid "Please choose one or more items from the list."
 msgstr ""
 
-#: src/Ajax.php:1851
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1851
+#: src/Ajax.php:1859
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1859
 msgctxt "shipments"
 msgid "Your return is free of charge."
 msgstr ""
 
-#: src/Ajax.php:1851
+#: src/Ajax.php:1859
 #: templates/emails/email-return-shipment-costs.php:22
 #: templates/emails/plain/email-return-shipment-costs.php:19
-#: packages/shiptastic-for-woocommerce/src/Ajax.php:1851
+#: packages/shiptastic-for-woocommerce/src/Ajax.php:1859
 #: packages/shiptastic-for-woocommerce/templates/emails/email-return-shipment-costs.php:22
 #: packages/shiptastic-for-woocommerce/templates/emails/plain/email-return-shipment-costs.php:19
 #, php-format
@@ -6093,8 +6101,8 @@ msgctxt "shipments"
 msgid "%s return instructions"
 msgstr ""
 
-#: src/DataStores/Label.php:286
-#: packages/shiptastic-for-woocommerce/src/DataStores/Label.php:286
+#: src/DataStores/Label.php:288
+#: packages/shiptastic-for-woocommerce/src/DataStores/Label.php:288
 msgctxt "shipments"
 msgid "Invalid label."
 msgstr ""
@@ -6281,37 +6289,133 @@ msgctxt "shipments"
 msgid "Letter C4"
 msgstr ""
 
-#: src/Labels/Label.php:585
-#: packages/shiptastic-for-woocommerce/src/Labels/Label.php:585
+#: src/Labels/Label.php:634
+#: packages/shiptastic-for-woocommerce/src/Labels/Label.php:634
 msgctxt "shipments"
 msgid "This label misses the API implementation"
 msgstr ""
 
-#: src/Labels/Label.php:619
-#: packages/shiptastic-for-woocommerce/src/Labels/Label.php:619
+#: src/Labels/Label.php:668
+#: packages/shiptastic-for-woocommerce/src/Labels/Label.php:668
 msgctxt "shipments"
 msgid "Error while uploading label."
 msgstr ""
 
-#: src/Labels/Label.php:641
-#: src/Labels/Label.php:648
-#: packages/shiptastic-for-woocommerce/src/Labels/Label.php:641
-#: packages/shiptastic-for-woocommerce/src/Labels/Label.php:648
+#: src/Labels/Label.php:690
+#: src/Labels/Label.php:697
+#: packages/shiptastic-for-woocommerce/src/Labels/Label.php:690
+#: packages/shiptastic-for-woocommerce/src/Labels/Label.php:697
 msgctxt "shipments"
 msgid "Error while downloading the PDF file."
 msgstr ""
 
-#: src/Order.php:882
-#: packages/shiptastic-for-woocommerce/src/Order.php:882
+#: src/Order.php:897
+#: packages/shiptastic-for-woocommerce/src/Order.php:897
 #, php-format
 msgctxt "shipments"
 msgid "Seems like none of your <a href=\"%1$s\">packaging options</a> is available for this order."
 msgstr ""
 
-#: src/Package.php:223
-#: packages/shiptastic-for-woocommerce/src/Package.php:223
+#: src/Package.php:222
+#: packages/shiptastic-for-woocommerce/src/Package.php:222
 msgctxt "shipments"
 msgid "Sorry, this order is invalid and cannot be returned."
+msgstr ""
+
+#: src/Package.php:487
+#: packages/shiptastic-for-woocommerce/src/Package.php:487
+msgctxt "shipments"
+msgid "Delivered at Place (DAP)"
+msgstr ""
+
+#: src/Package.php:488
+#: packages/shiptastic-for-woocommerce/src/Package.php:488
+msgctxt "shipments"
+msgid "Delivered at Place Unloaded (DPU)"
+msgstr ""
+
+#: src/Package.php:489
+#: packages/shiptastic-for-woocommerce/src/Package.php:489
+msgctxt "shipments"
+msgid "Delivered Duty Paid (DDP)"
+msgstr ""
+
+#: src/Package.php:490
+#: packages/shiptastic-for-woocommerce/src/Package.php:490
+msgctxt "shipments"
+msgid "Delivered Duty Unpaid (DDU)"
+msgstr ""
+
+#: src/Package.php:491
+#: packages/shiptastic-for-woocommerce/src/Package.php:491
+msgctxt "shipments"
+msgid "ExWorks (EXW)"
+msgstr ""
+
+#: src/Package.php:492
+#: packages/shiptastic-for-woocommerce/src/Package.php:492
+msgctxt "shipments"
+msgid "Free Carrier (FCA)"
+msgstr ""
+
+#: src/Package.php:493
+#: packages/shiptastic-for-woocommerce/src/Package.php:493
+msgctxt "shipments"
+msgid "Carriage Paid To (CPT)"
+msgstr ""
+
+#: src/Package.php:494
+#: packages/shiptastic-for-woocommerce/src/Package.php:494
+msgctxt "shipments"
+msgid "Carriage and Insurance Paid To (CIP)"
+msgstr ""
+
+#: src/Package.php:495
+#: packages/shiptastic-for-woocommerce/src/Package.php:495
+msgctxt "shipments"
+msgid "Free Alongside Ship (FAS)"
+msgstr ""
+
+#: src/Package.php:496
+#: packages/shiptastic-for-woocommerce/src/Package.php:496
+msgctxt "shipments"
+msgid "Free on Board (FOB)"
+msgstr ""
+
+#: src/Package.php:497
+#: packages/shiptastic-for-woocommerce/src/Package.php:497
+msgctxt "shipments"
+msgid "Cost and Freight (CFR)"
+msgstr ""
+
+#: src/Package.php:498
+#: packages/shiptastic-for-woocommerce/src/Package.php:498
+msgctxt "shipments"
+msgid "Cost, Insurance and Freight (CIF)"
+msgstr ""
+
+#: src/Package.php:499
+#: packages/shiptastic-for-woocommerce/src/Package.php:499
+msgctxt "shipments"
+msgid "Delivered at Frontier (DAF)"
+msgstr ""
+
+#: src/Package.php:500
+#: packages/shiptastic-for-woocommerce/src/Package.php:500
+msgctxt "shipments"
+msgid "Delivered at Terminal (DAT)"
+msgstr ""
+
+#: src/Package.php:501
+#: packages/shiptastic-for-woocommerce/src/Package.php:501
+msgctxt "shipments"
+msgid "Delivery ex Quay (DEQ)"
+msgstr ""
+
+#: src/Package.php:502
+#: packages/shiptastic-for-woocommerce/src/Package.php:502
+msgctxt "shipments"
+msgid "Delivered ex Ship (DES)"
 msgstr ""
 
 #: src/Packaging.php:518
@@ -6588,9 +6692,9 @@ msgid "Whether to bypass trash and force deletion."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:156
-#: src/Rest/ShipmentsController.php:984
+#: src/Rest/ShipmentsController.php:996
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:156
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:984
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:996
 msgctxt "shipments"
 msgid "Sorry, you are not allowed to view this resource."
 msgstr ""
@@ -6608,9 +6712,9 @@ msgid "Sorry, you are not allowed to edit this resource."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:310
-#: src/Rest/ShipmentsController.php:1121
+#: src/Rest/ShipmentsController.php:1133
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:310
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1121
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1133
 msgctxt "shipments"
 msgid "Sorry, you are not allowed to create resources."
 msgstr ""
@@ -6641,817 +6745,883 @@ msgctxt "shipments"
 msgid "This order does need shipping."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:542
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:542
+#: src/Rest/ShipmentsController.php:554
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:554
 msgctxt "shipments"
 msgid "This shipment does not contain any items and was deleted."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:578
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:578
+#: src/Rest/ShipmentsController.php:590
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:590
 msgctxt "shipments"
 msgid "Shipment item ID provided is not associated with shipment."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:620
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:620
+#: src/Rest/ShipmentsController.php:632
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:632
 msgctxt "shipments"
 msgid "This order item does not need shipping/returning."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:624
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:624
+#: src/Rest/ShipmentsController.php:636
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:636
 msgctxt "shipments"
 msgid "The order item is already associated with another item."
 msgstr ""
 
 #. translators: %s: post type
-#: src/Rest/ShipmentsController.php:793
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:793
+#: src/Rest/ShipmentsController.php:805
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:805
 msgctxt "shipments"
 msgid "Cannot create existing shipment."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:840
-#: src/Rest/ShipmentsController.php:929
-#: src/Rest/ShipmentsController.php:965
-#: src/Rest/ShipmentsController.php:1001
-#: src/Rest/ShipmentsController.php:1007
-#: src/Rest/ShipmentsController.php:1020
-#: src/Rest/ShipmentsController.php:1041
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:840
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:929
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:965
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1001
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1007
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1020
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1041
+#: src/Rest/ShipmentsController.php:852
+#: src/Rest/ShipmentsController.php:941
+#: src/Rest/ShipmentsController.php:977
+#: src/Rest/ShipmentsController.php:1013
+#: src/Rest/ShipmentsController.php:1019
+#: src/Rest/ShipmentsController.php:1032
+#: src/Rest/ShipmentsController.php:1053
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:852
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:941
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:977
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1013
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1019
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1032
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1053
 msgctxt "shipments"
 msgid "Invalid ID."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:947
-#: src/Rest/ShipmentsController.php:1136
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:947
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1136
+#: src/Rest/ShipmentsController.php:959
+#: src/Rest/ShipmentsController.php:1148
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:959
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1148
 msgctxt "shipments"
 msgid "Sorry, you are not allowed to delete this resource."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:969
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:969
+#: src/Rest/ShipmentsController.php:981
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:981
 msgctxt "shipments"
 msgid "The shipment cannot be deleted."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1026
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1026
+#: src/Rest/ShipmentsController.php:1038
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1038
 msgctxt "shipments"
 msgid "The label cannot be deleted."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1045
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1045
+#: src/Rest/ShipmentsController.php:1057
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1057
 msgctxt "shipments"
 msgid "Label already exists, please delete first."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1325
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1325
-msgctxt "shipments"
-msgid "Offset the result set by a specific number of items."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1332
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1332
-msgctxt "shipments"
-msgid "Order sort attribute ascending or descending."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1340
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1340
 msgctxt "shipments"
-msgid "Sort collection by object attribute."
+msgid "Offset the result set by a specific number of items."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1347
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1347
+msgctxt "shipments"
+msgid "Order sort attribute ascending or descending."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1355
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1355
 msgctxt "shipments"
+msgid "Sort collection by object attribute."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1370
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1370
+msgctxt "shipments"
 msgid "Limit result set to shipments belonging to a certain order id."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1361
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1361
+#: src/Rest/ShipmentsController.php:1376
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1376
 msgctxt "shipments"
 msgid "Limit result set to shipments having a certain status."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1368
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1368
+#: src/Rest/ShipmentsController.php:1383
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1383
 msgctxt "shipments"
 msgid "Limit result set to shipments of a certain type."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1388
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1388
+#: src/Rest/ShipmentsController.php:1403
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1403
 msgctxt "shipment"
 msgid "Single shipment."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1394
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1394
+#: src/Rest/ShipmentsController.php:1409
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1409
 msgctxt "shipments"
 msgid "Shipment ID."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1400
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1400
+#: src/Rest/ShipmentsController.php:1415
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1415
 msgctxt "shipments"
 msgid "Shipment number."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1406
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1406
+#: src/Rest/ShipmentsController.php:1421
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1421
 msgctxt "shipments"
 msgid "Shipment order id."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1411
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1411
+#: src/Rest/ShipmentsController.php:1426
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1426
 msgctxt "shipments"
 msgid "Shipment order number."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1417
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1417
+#: src/Rest/ShipmentsController.php:1432
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1432
 msgctxt "shipments"
 msgid "Shipment status."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1423
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1423
-msgctxt "shipments"
-msgid "Shipment tracking id."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1428
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1428
-msgctxt "shipments"
-msgid "Shipment tracking url."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1433
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1433
-msgctxt "shipments"
-msgid "Shipment tracking instruction."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1438
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1438
 msgctxt "shipments"
-msgid "Shipment shipping service provider."
+msgid "Shipment tracking id."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1443
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1443
 msgctxt "shipments"
-msgid "Shipment shipping service provider title."
+msgid "Shipment tracking url."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1448
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1448
 msgctxt "shipments"
+msgid "Shipment tracking instruction."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1453
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1453
+msgctxt "shipments"
+msgid "Shipment shipping service provider."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1458
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1458
+msgctxt "shipments"
+msgid "Shipment shipping service provider title."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1463
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1463
+msgctxt "shipments"
+msgid "Shipment packing slip path."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1468
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1468
+msgctxt "shipments"
+msgid "Shipment commercial invoice path."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1473
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1473
+msgctxt "shipments"
 msgid "The date the shipment was created, in the site's timezone."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1454
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1454
+#: src/Rest/ShipmentsController.php:1479
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1479
 msgctxt "shipments"
 msgid "The date the shipment was created, as GMT."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1460
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1460
+#: src/Rest/ShipmentsController.php:1485
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1485
 msgctxt "shipments"
 msgid "The date the shipment was sent, in the site's timezone."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1466
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1466
+#: src/Rest/ShipmentsController.php:1491
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1491
 msgctxt "shipments"
 msgid "The date the shipment was sent, as GMT."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1472
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1472
+#: src/Rest/ShipmentsController.php:1497
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1497
 msgctxt "shipments"
 msgid "The estimated delivery date of the shipment, in the site's timezone."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1477
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1477
+#: src/Rest/ShipmentsController.php:1502
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1502
 msgctxt "shipments"
 msgid "The estimated delivery date of the shipment, as GMT."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1482
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1482
+#: src/Rest/ShipmentsController.php:1507
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1507
 msgctxt "shipments"
 msgid "Shipment type, e.g. simple or return."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1488
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1488
+#: src/Rest/ShipmentsController.php:1513
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1513
 msgctxt "shipments"
 msgid "Return shipment is requested by customer."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1493
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1493
+#: src/Rest/ShipmentsController.php:1518
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1518
 msgctxt "shipments"
 msgid "Return sender address."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1498
-#: src/Rest/ShipmentsController.php:1687
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1498
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1687
+#: src/Rest/ShipmentsController.php:1523
+#: src/Rest/ShipmentsController.php:1727
+#: src/Rest/ShipmentsController.php:1799
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1523
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1727
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1799
 msgctxt "shipments"
 msgid "First name."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1503
-#: src/Rest/ShipmentsController.php:1692
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1503
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1692
+#: src/Rest/ShipmentsController.php:1528
+#: src/Rest/ShipmentsController.php:1732
+#: src/Rest/ShipmentsController.php:1804
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1528
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1732
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1804
 msgctxt "shipments"
 msgid "Last name."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1508
-#: src/Rest/ShipmentsController.php:1697
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1508
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1697
+#: src/Rest/ShipmentsController.php:1533
+#: src/Rest/ShipmentsController.php:1737
+#: src/Rest/ShipmentsController.php:1809
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1533
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1737
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1809
 msgctxt "shipments"
 msgid "Company name."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1513
-#: src/Rest/ShipmentsController.php:1702
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1513
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1702
+#: src/Rest/ShipmentsController.php:1538
+#: src/Rest/ShipmentsController.php:1742
+#: src/Rest/ShipmentsController.php:1814
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1538
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1742
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1814
 msgctxt "shipments"
 msgid "Address line 1"
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1518
-#: src/Rest/ShipmentsController.php:1707
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1518
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1707
+#: src/Rest/ShipmentsController.php:1543
+#: src/Rest/ShipmentsController.php:1747
+#: src/Rest/ShipmentsController.php:1819
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1543
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1747
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1819
 msgctxt "shipments"
 msgid "Address line 2"
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1523
-#: src/Rest/ShipmentsController.php:1712
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1523
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1712
+#: src/Rest/ShipmentsController.php:1548
+#: src/Rest/ShipmentsController.php:1752
+#: src/Rest/ShipmentsController.php:1824
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1548
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1752
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1824
 msgctxt "shipments"
 msgid "City name."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1528
-#: src/Rest/ShipmentsController.php:1717
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1528
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1717
+#: src/Rest/ShipmentsController.php:1553
+#: src/Rest/ShipmentsController.php:1757
+#: src/Rest/ShipmentsController.php:1829
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1553
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1757
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1829
 msgctxt "shipments"
 msgid "ISO code or name of the state, province or district."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1533
-#: src/Rest/ShipmentsController.php:1722
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1533
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1722
+#: src/Rest/ShipmentsController.php:1558
+#: src/Rest/ShipmentsController.php:1762
+#: src/Rest/ShipmentsController.php:1834
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1558
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1762
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1834
 msgctxt "shipments"
 msgid "Postal code."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1538
-#: src/Rest/ShipmentsController.php:1727
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1538
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1727
+#: src/Rest/ShipmentsController.php:1563
+#: src/Rest/ShipmentsController.php:1767
+#: src/Rest/ShipmentsController.php:1839
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1563
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1767
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1839
 msgctxt "shipments"
 msgid "Country code in ISO 3166-1 alpha-2 format."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1543
-#: src/Rest/ShipmentsController.php:1732
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1543
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1732
+#: src/Rest/ShipmentsController.php:1568
+#: src/Rest/ShipmentsController.php:1772
+#: src/Rest/ShipmentsController.php:1844
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1568
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1772
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1844
+msgctxt "shipments"
+msgid "Phone number."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1573
+#: src/Rest/ShipmentsController.php:1777
+#: src/Rest/ShipmentsController.php:1849
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1573
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1777
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1849
+msgctxt "shipments"
+msgid "E-Mail address."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1578
+#: src/Rest/ShipmentsController.php:1782
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1578
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1782
 msgctxt "shipments"
 msgid "Customs reference number."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1550
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1550
+#: src/Rest/ShipmentsController.php:1583
+#: src/Rest/ShipmentsController.php:1787
+#: src/Rest/ShipmentsController.php:1854
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1583
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1787
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1854
+msgctxt "shipments"
+msgid "VAT ID."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1590
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1590
 msgctxt "shipments"
 msgid "Shipment weight."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1555
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1555
+#: src/Rest/ShipmentsController.php:1595
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1595
 msgctxt "shipments"
 msgid "Shipment content weight."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1561
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1561
+#: src/Rest/ShipmentsController.php:1601
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1601
 msgctxt "shipments"
 msgid "Shipment content dimensions."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1567
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1567
+#: src/Rest/ShipmentsController.php:1607
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1607
 msgctxt "shipments"
 msgid "Shipment content length."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1573
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1573
-msgctxt "shipments"
-msgid "Shipment content width."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1579
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1579
-msgctxt "shipments"
-msgid "Shipment content height."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1587
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1587
-msgctxt "shipments"
-msgid "Shipment weight unit."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1593
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1593
-msgctxt "shipments"
-msgid "Shipment packaging id."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1598
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1598
-msgctxt "shipments"
-msgid "Shipment packaging weight."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1603
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1603
-msgctxt "shipments"
-msgid "Shipment total."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1608
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1608
-msgctxt "shipments"
-msgid "Shipment subtotal."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1613
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1613
 msgctxt "shipments"
-msgid "Shipment additional total."
+msgid "Shipment content width."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1618
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1618
+#: src/Rest/ShipmentsController.php:1619
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1619
 msgctxt "shipments"
-msgid "Shipment version."
+msgid "Shipment content height."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1623
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1623
+#: src/Rest/ShipmentsController.php:1627
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1627
 msgctxt "shipments"
-msgid "Shipment shipping method."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1628
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1628
-msgctxt "shipments"
-msgid "Shipment dimensions."
+msgid "Shipment weight unit."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1633
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1633
 msgctxt "shipments"
-msgid "Shipment length."
+msgid "Shipment packaging id."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1638
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1638
 msgctxt "shipments"
-msgid "Shipment width."
+msgid "Shipment packaging weight."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1643
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1643
 msgctxt "shipments"
-msgid "Shipment height."
+msgid "Shipment total."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1650
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1650
+#: src/Rest/ShipmentsController.php:1648
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1648
 msgctxt "shipments"
-msgid "Shipment package dimensions."
+msgid "Shipment subtotal."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1656
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1656
+#: src/Rest/ShipmentsController.php:1653
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1653
 msgctxt "shipments"
-msgid "Shipment package length."
+msgid "Shipment additional total."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1662
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1662
+#: src/Rest/ShipmentsController.php:1658
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1658
 msgctxt "shipments"
-msgid "Shipment package width."
+msgid "Shipment version."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1663
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1663
+msgctxt "shipments"
+msgid "Shipment shipping method."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1668
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1668
 msgctxt "shipments"
+msgid "Shipment dimensions."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1673
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1673
+msgctxt "shipments"
+msgid "Shipment length."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1678
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1678
+msgctxt "shipments"
+msgid "Shipment width."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1683
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1683
+msgctxt "shipments"
+msgid "Shipment height."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1690
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1690
+msgctxt "shipments"
+msgid "Shipment package dimensions."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1696
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1696
+msgctxt "shipments"
+msgid "Shipment package length."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1702
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1702
+msgctxt "shipments"
+msgid "Shipment package width."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1708
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1708
+msgctxt "shipments"
 msgid "Shipment package height."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1676
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1676
+#: src/Rest/ShipmentsController.php:1716
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1716
 msgctxt "shipments"
 msgid "Shipment dimension unit."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1682
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1682
+#: src/Rest/ShipmentsController.php:1722
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1722
 msgctxt "shipments"
 msgid "Shipping address."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1739
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1739
+#: src/Rest/ShipmentsController.php:1794
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1794
+msgctxt "shipments"
+msgid "Billing address."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:1861
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1861
 msgctxt "shipments"
 msgid "Meta data."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1746
-#: src/Rest/ShipmentsController.php:1904
-#: src/Rest/ShipmentsController.php:2103
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1746
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1904
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2103
+#: src/Rest/ShipmentsController.php:1868
+#: src/Rest/ShipmentsController.php:2026
+#: src/Rest/ShipmentsController.php:2225
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1868
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2026
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2225
 msgctxt "shipments"
 msgid "Meta ID."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1752
-#: src/Rest/ShipmentsController.php:1910
-#: src/Rest/ShipmentsController.php:2109
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1752
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1910
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2109
+#: src/Rest/ShipmentsController.php:1874
+#: src/Rest/ShipmentsController.php:2032
+#: src/Rest/ShipmentsController.php:2231
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1874
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2032
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2231
 msgctxt "shipments"
 msgid "Meta key."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1757
-#: src/Rest/ShipmentsController.php:1915
-#: src/Rest/ShipmentsController.php:2114
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1757
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1915
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2114
+#: src/Rest/ShipmentsController.php:1879
+#: src/Rest/ShipmentsController.php:2037
+#: src/Rest/ShipmentsController.php:2236
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1879
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2037
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2236
 msgctxt "shipments"
 msgid "Meta value."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1765
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1765
+#: src/Rest/ShipmentsController.php:1887
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1887
 msgctxt "shipments"
 msgid "Shipment items."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1772
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1772
+#: src/Rest/ShipmentsController.php:1894
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1894
 msgctxt "shipments"
 msgid "Item ID."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1778
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1778
+#: src/Rest/ShipmentsController.php:1900
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1900
 msgctxt "shipments"
 msgid "Item name."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1783
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1783
+#: src/Rest/ShipmentsController.php:1905
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1905
 msgctxt "shipments"
 msgid "Order Item ID."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1788
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1788
+#: src/Rest/ShipmentsController.php:1910
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1910
 msgctxt "shipments"
 msgid "Product ID."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1793
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1793
+#: src/Rest/ShipmentsController.php:1915
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1915
 msgctxt "shipments"
 msgid "Quantity."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1798
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1798
+#: src/Rest/ShipmentsController.php:1920
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1920
 msgctxt "shipments"
 msgid "Item weight."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1803
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1803
+#: src/Rest/ShipmentsController.php:1925
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1925
 msgctxt "shipments"
 msgid "Item SKU."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1808
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1808
+#: src/Rest/ShipmentsController.php:1930
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1930
 msgctxt "shipments"
 msgid "Item total."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1813
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1813
+#: src/Rest/ShipmentsController.php:1935
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1935
 msgctxt "shipments"
 msgid "Item subtotal."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1818
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1818
+#: src/Rest/ShipmentsController.php:1940
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1940
 msgctxt "shipments"
 msgid "Item HS Code."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1823
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1823
+#: src/Rest/ShipmentsController.php:1945
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1945
 msgctxt "shipments"
 msgid "Item MID Code."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1828
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1828
+#: src/Rest/ShipmentsController.php:1950
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1950
 msgctxt "shipments"
 msgid "Item customs description."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1833
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1833
-msgctxt "shipments"
-msgid "Item parent id, e.g. the return item's parent."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1838
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1838
-msgctxt "shipments"
-msgid "The parent item id inside the current shipment."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1843
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1843
-msgctxt "shipments"
-msgid "Item country of manufacture in ISO 3166-1 alpha-2 format."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1848
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1848
-msgctxt "shipments"
-msgid "Item dimensions."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1853
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1853
-msgctxt "shipments"
-msgid "Item length."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1858
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1858
-msgctxt "shipments"
-msgid "Item width."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1863
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1863
-msgctxt "shipments"
-msgid "Item height."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1870
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1870
-msgctxt "shipments"
-msgid "Item attributes."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1875
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1875
-msgctxt "shipments"
-msgid "Attribute key."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1880
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1880
-msgctxt "shipments"
-msgid "Attribute value."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1885
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1885
-msgctxt "shipments"
-msgid "Attribute label."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1890
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1890
-msgctxt "shipments"
-msgid "Order item meta id."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1897
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1897
-msgctxt "shipments"
-msgid "Shipment item meta data."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1931
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1931
-msgctxt "shipment"
-msgid "Shipment label."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1937
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1937
-msgctxt "shipments"
-msgid "Label ID."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1943
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1943
-msgctxt "shipments"
-msgid "The date the label was created, in the site's timezone."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:1949
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1949
-msgctxt "shipments"
-msgid "The date the label was created, as GMT."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1955
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1955
 msgctxt "shipments"
-msgid "Shipment id."
+msgid "Item parent id, e.g. the return item's parent."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1961
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1961
+#: src/Rest/ShipmentsController.php:1960
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1960
 msgctxt "shipments"
-msgid "Parent id."
+msgid "The parent item id inside the current shipment."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1966
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1966
+#: src/Rest/ShipmentsController.php:1965
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1965
 msgctxt "shipments"
-msgid "Label product id."
+msgid "Item country of manufacture in ISO 3166-1 alpha-2 format."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1971
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1971
+#: src/Rest/ShipmentsController.php:1970
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1970
 msgctxt "shipments"
-msgid "Label print format."
+msgid "Item dimensions."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1976
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1976
+#: src/Rest/ShipmentsController.php:1975
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1975
 msgctxt "shipments"
-msgid "Label number."
+msgid "Item length."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1981
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1981
+#: src/Rest/ShipmentsController.php:1980
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1980
 msgctxt "shipments"
-msgid "Shipping service provider."
+msgid "Item width."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:1987
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1987
+#: src/Rest/ShipmentsController.php:1985
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1985
 msgctxt "shipments"
-msgid "Weight."
+msgid "Item height."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1992
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1992
 msgctxt "shipments"
-msgid "Net weight."
+msgid "Item attributes."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:1997
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:1997
 msgctxt "shipments"
-msgid "Created via."
+msgid "Attribute key."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:2002
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2002
 msgctxt "shipments"
-msgid "Is trackable?"
+msgid "Attribute value."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:2008
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2008
+#: src/Rest/ShipmentsController.php:2007
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2007
 msgctxt "shipments"
-msgid "Supports third party email notification?"
+msgid "Attribute label."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:2014
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2014
+#: src/Rest/ShipmentsController.php:2012
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2012
 msgctxt "shipments"
-msgid "Additional file types"
+msgid "Order item meta id."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:2023
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2023
+#: src/Rest/ShipmentsController.php:2019
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2019
 msgctxt "shipments"
-msgid "Label file data."
+msgid "Shipment item meta data."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:2033
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2033
-msgctxt "shipments"
-msgid "File path."
+#: src/Rest/ShipmentsController.php:2053
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2053
+msgctxt "shipment"
+msgid "Shipment label."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:2039
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2039
+#: src/Rest/ShipmentsController.php:2059
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2059
 msgctxt "shipments"
-msgid "File name."
+msgid "Label ID."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:2045
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2045
+#: src/Rest/ShipmentsController.php:2065
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2065
 msgctxt "shipments"
-msgid "The file data (base64 encoded)."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:2051
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2051
-msgctxt "shipments"
-msgid "File type."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:2060
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2060
-msgctxt "shipments"
-msgid "Label type, e.g. simple or return."
-msgstr ""
-
-#: src/Rest/ShipmentsController.php:2066
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2066
-msgctxt "shipments"
-msgid "Label dimensions."
+msgid "The date the label was created, in the site's timezone."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:2071
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2071
 msgctxt "shipments"
-msgid "Label length."
+msgid "The date the label was created, as GMT."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:2076
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2076
+#: src/Rest/ShipmentsController.php:2077
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2077
 msgctxt "shipments"
-msgid "Label width."
+msgid "Shipment id."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:2081
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2081
+#: src/Rest/ShipmentsController.php:2083
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2083
 msgctxt "shipments"
-msgid "Label height."
+msgid "Parent id."
 msgstr ""
 
 #: src/Rest/ShipmentsController.php:2088
 #: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2088
 msgctxt "shipments"
+msgid "Label product id."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2093
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2093
+msgctxt "shipments"
+msgid "Label print format."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2098
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2098
+msgctxt "shipments"
+msgid "Label number."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2103
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2103
+msgctxt "shipments"
+msgid "Shipping service provider."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2109
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2109
+msgctxt "shipments"
+msgid "Weight."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2114
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2114
+msgctxt "shipments"
+msgid "Net weight."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2119
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2119
+msgctxt "shipments"
+msgid "Created via."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2124
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2124
+msgctxt "shipments"
+msgid "Is trackable?"
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2130
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2130
+msgctxt "shipments"
+msgid "Supports third party email notification?"
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2136
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2136
+msgctxt "shipments"
+msgid "Additional file types"
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2145
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2145
+msgctxt "shipments"
+msgid "Label file data."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2155
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2155
+msgctxt "shipments"
+msgid "File path."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2161
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2161
+msgctxt "shipments"
+msgid "File name."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2167
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2167
+msgctxt "shipments"
+msgid "The file data (base64 encoded)."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2173
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2173
+msgctxt "shipments"
+msgid "File type."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2182
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2182
+msgctxt "shipments"
+msgid "Label type, e.g. simple or return."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2188
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2188
+msgctxt "shipments"
+msgid "Label dimensions."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2193
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2193
+msgctxt "shipments"
+msgid "Label length."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2198
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2198
+msgctxt "shipments"
+msgid "Label width."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2203
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2203
+msgctxt "shipments"
+msgid "Label height."
+msgstr ""
+
+#: src/Rest/ShipmentsController.php:2210
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2210
+msgctxt "shipments"
 msgid "Label services."
 msgstr ""
 
-#: src/Rest/ShipmentsController.php:2096
-#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2096
+#: src/Rest/ShipmentsController.php:2218
+#: packages/shiptastic-for-woocommerce/src/Rest/ShipmentsController.php:2218
 msgctxt "shipments"
 msgid "Label meta data."
 msgstr ""
@@ -7496,8 +7666,8 @@ msgctxt "shipments"
 msgid "Encryption of type %s"
 msgstr ""
 
-#: src/Shipment.php:1102
-#: packages/shiptastic-for-woocommerce/src/Shipment.php:1102
+#: src/Shipment.php:1151
+#: packages/shiptastic-for-woocommerce/src/Shipment.php:1151
 #, php-format
 msgctxt "shipments-tracking-instruction"
 msgid "Shipping via %s."
@@ -7935,271 +8105,295 @@ msgctxt "shipments"
 msgid "When"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:225
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:225
+#: src/ShippingProvider/Auto.php:229
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:229
 msgctxt "shipments"
 msgid "Shipment number, e.g. 5"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:226
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:226
+#: src/ShippingProvider/Auto.php:230
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:230
 msgctxt "shipments"
 msgid "Order number, e.g. 1234"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:227
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:227
+#: src/ShippingProvider/Auto.php:231
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:231
 msgctxt "shipments"
 msgid "Number of items included in the shipment, e.g. 5"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:424
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:424
+#: src/ShippingProvider/Auto.php:428
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:428
 msgctxt "shipments-help-url"
 msgid "https://vendidero.com/doc/shiptastic/shipping-to-pick-up-stations"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:433
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:433
+#: src/ShippingProvider/Auto.php:437
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:437
 msgctxt "shipments"
 msgid "Label Format"
-msgstr ""
-
-#: src/ShippingProvider/Auto.php:443
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:443
-msgctxt "shipments"
-msgid "Default Format"
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:447
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:447
 msgctxt "shipments"
+msgid "Default Format"
+msgstr ""
+
+#: src/ShippingProvider/Auto.php:451
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:451
+msgctxt "shipments"
 msgid "Set the default print format for a label."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:464
-#: src/ShippingProvider/Auto.php:465
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:464
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:465
+#: src/ShippingProvider/Auto.php:468
+#: src/ShippingProvider/Auto.php:469
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:468
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:469
 msgctxt "shipments"
 msgid "Same as default format"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:489
-#: src/ShippingProvider/Auto.php:1218
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:489
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1218
+#: src/ShippingProvider/Auto.php:493
+#: src/ShippingProvider/Auto.php:1243
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:493
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1243
 msgctxt "shipments"
 msgid "Pickup Locations"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:495
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:495
+#: src/ShippingProvider/Auto.php:499
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:499
 msgctxt "shipments"
 msgid "Allow customers to choose a pickup location within checkout."
-msgstr ""
-
-#: src/ShippingProvider/Auto.php:502
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:502
-msgctxt "shipments"
-msgid "Limit results"
 msgstr ""
 
 #: src/ShippingProvider/Auto.php:506
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:506
 msgctxt "shipments"
+msgid "Limit results"
+msgstr ""
+
+#: src/ShippingProvider/Auto.php:510
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:510
+msgctxt "shipments"
 msgid "Limit the number of pickup locations presented to the customer."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:536
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:536
+#: src/ShippingProvider/Auto.php:540
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:540
 #, php-format
 msgctxt "shipments"
 msgid "Remote Status (%s)"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:537
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:537
+#: src/ShippingProvider/Auto.php:541
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:541
 #, php-format
 msgctxt "shipments"
 msgid "Refresh shipment status via API (%s)."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:537
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:537
+#: src/ShippingProvider/Auto.php:541
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:541
 msgctxt "shipments"
 msgid "Enable this option to automatically refresh the shipment status based on the actual status returned by the API. To learn more about remote status updates, check the <a href=\"https://vendidero.com/doc/shiptastic/sync-shipment-status\">docs</a>."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:588
-#: src/ShippingProvider/Auto.php:1188
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:588
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1188
+#: src/ShippingProvider/Auto.php:592
+#: src/ShippingProvider/Auto.php:1213
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:592
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1213
 msgctxt "shipments"
 msgid "Labels"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:589
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:589
+#: src/ShippingProvider/Auto.php:593
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:593
 msgctxt "shipments"
 msgid "Automatically create labels for shipments."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:599
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:599
+#: src/ShippingProvider/Auto.php:603
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:603
 msgctxt "shipments"
 msgid "Choose a shipment status which should trigger generation of a label."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:599
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:599
+#: src/ShippingProvider/Auto.php:603
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:603
 #, php-format
 msgctxt "shipments"
 msgid "Your current default shipment status is: <em>%s</em>."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:607
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:607
+#: src/ShippingProvider/Auto.php:611
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:611
 msgctxt "shipments"
 msgid "Shipment Status"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:608
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:608
+#: src/ShippingProvider/Auto.php:612
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:612
 msgctxt "shipments"
 msgid "Mark shipment as shipped after label has been created successfully."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:622
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:622
+#: src/ShippingProvider/Auto.php:626
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:626
 msgctxt "shipments"
 msgid "Automatically create labels for returns."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:632
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:632
+#: src/ShippingProvider/Auto.php:636
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:636
 msgctxt "shipments"
 msgid "Choose a shipment status which should trigger generation of a return label."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:975
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:975
+#: src/ShippingProvider/Auto.php:979
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:979
 #, php-format
 msgctxt "shipments"
 msgid "Adjust %1$s printed on the %2$s label. Use the following placeholders to format the reference: %3$s"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:975
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:975
+#: src/ShippingProvider/Auto.php:979
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:979
 #, php-format
 msgctxt "shipments"
 msgid "Please keep in mind that the formatted reference cannot exceed %1$s characters."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:991
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:991
+#: src/ShippingProvider/Auto.php:995
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:995
 msgctxt "shipments"
 msgid "Label references"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:1114
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1114
+#: src/ShippingProvider/Auto.php:1118
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1118
 msgctxt "dhl"
 msgid "Default Service"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:1119
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1119
+#: src/ShippingProvider/Auto.php:1123
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1123
 #, php-format
 msgctxt "shipments"
 msgid "Select the default service for %1$s."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:1188
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1188
+#: src/ShippingProvider/Auto.php:1176
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1176
+msgctxt "shipments"
+msgid "Default Incoterms"
+msgstr ""
+
+#: src/ShippingProvider/Auto.php:1181
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1181
+msgctxt "shipments"
+msgid "Please select a default incoterms option."
+msgstr ""
+
+#: src/ShippingProvider/Auto.php:1213
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1213
 #, php-format
 msgctxt "shipments"
 msgid "%1$s labels"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:1202
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1202
+#: src/ShippingProvider/Auto.php:1227
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1227
 msgctxt "shipments"
 msgid "Printing"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:1285
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1285
+#: src/ShippingProvider/Auto.php:1310
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1310
 #, php-format
 msgctxt "shipments"
 msgid "%s Product"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:1309
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1309
+#: src/ShippingProvider/Auto.php:1334
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1334
 msgctxt "shipments"
 msgid "Print Format"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:1326
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1326
+#: src/ShippingProvider/Auto.php:1351
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1351
 msgctxt "shipments"
 msgid "Export Reference Number"
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:1327
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1327
+#: src/ShippingProvider/Auto.php:1352
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1352
 msgctxt "shipments"
 msgid "In case of a shipment with an export declaration - provide the assigned Export Reference Number for customs purposes."
 msgstr ""
 
-#: src/ShippingProvider/Auto.php:1626
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1626
+#: src/ShippingProvider/Auto.php:1370
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1370
+msgctxt "shipments"
+msgid "Incoterms"
+msgstr ""
+
+#: src/ShippingProvider/Auto.php:1665
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Auto.php:1665
 msgctxt "shipments"
 msgid "Error while creating the label."
 msgstr ""
 
-#: src/ShippingProvider/Helper.php:210
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:210
+#: src/ShippingProvider/Helper.php:170
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:170
+msgctxt "shipments"
+msgid "DHL Express"
+msgstr ""
+
+#: src/ShippingProvider/Helper.php:218
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:218
 msgctxt "shipments-provider-feature"
 msgid "Tracking"
 msgstr ""
 
-#: src/ShippingProvider/Helper.php:211
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:211
+#: src/ShippingProvider/Helper.php:219
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:219
 msgctxt "shipments-provider-feature"
 msgid "Remote status updates"
 msgstr ""
 
-#: src/ShippingProvider/Helper.php:212
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:212
+#: src/ShippingProvider/Helper.php:220
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:220
 msgctxt "shipments-provider-feature"
 msgid "Pickup locations"
 msgstr ""
 
-#: src/ShippingProvider/Helper.php:232
+#: src/ShippingProvider/Helper.php:240
 #: includes/admin/views/setup/shiptastic.php:24
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:232
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:240
 msgctxt "shipments"
 msgid "UPS"
 msgstr ""
 
-#: src/ShippingProvider/Helper.php:242
+#: src/ShippingProvider/Helper.php:250
 #: includes/admin/views/setup/shiptastic.php:10
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:242
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:250
 msgctxt "shipments"
 msgid "DHL"
 msgstr ""
 
-#: src/ShippingProvider/Helper.php:253
+#: src/ShippingProvider/Helper.php:261
 #: includes/admin/views/setup/shiptastic.php:17
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:253
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:261
 msgctxt "shipments"
 msgid "Deutsche Post"
 msgstr ""
 
-#: src/ShippingProvider/Helper.php:369
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:369
+#: src/ShippingProvider/Helper.php:377
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Helper.php:377
 msgctxt "shipments"
 msgid "Loading shipping service providers should only be triggered after the plugins_loaded action has fully been executed"
 msgstr ""
@@ -8223,139 +8417,139 @@ msgctxt "shipments"
 msgid "A product needs an id."
 msgstr ""
 
-#: src/ShippingProvider/Service.php:80
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Service.php:80
+#: src/ShippingProvider/Service.php:86
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Service.php:86
 msgctxt "shipments"
 msgid "A service needs an id."
 msgstr ""
 
-#: src/ShippingProvider/Service.php:398
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Service.php:398
+#: src/ShippingProvider/Service.php:461
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Service.php:461
 #, php-format
 msgctxt "shipments"
 msgid "Please choose a valid value for the service %1$s: %2$s."
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:401
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:401
+#: src/ShippingProvider/Simple.php:405
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:405
 msgctxt "shipments"
 msgid "Your shipment is being processed by {shipping_provider}. If you want to track the shipment, please use the following tracking number: {tracking_id}. Depending on the chosen shipping method it is possible that the tracking data does not reflect the current status when receiving this email."
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:957
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:957
+#: src/ShippingProvider/Simple.php:969
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:969
 msgctxt "shipments"
 msgid "Choose a title for the shipping provider."
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:966
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:966
+#: src/ShippingProvider/Simple.php:978
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:978
 msgctxt "shipments"
 msgid "Choose a description for the shipping provider."
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1013
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1013
+#: src/ShippingProvider/Simple.php:1025
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1025
 msgctxt "shipments"
 msgid "Tracking description"
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1014
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1014
+#: src/ShippingProvider/Simple.php:1026
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1026
 #, php-format
 msgctxt "shipments"
 msgid "Adjust the placeholder used to construct the tracking description for this shipping provider (e.g. used within notification emails). You may use on of the following placeholders to insert the tracking id or other dynamic data: %s"
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1166
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1166
+#: src/ShippingProvider/Simple.php:1178
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1178
 msgctxt "shipments"
 msgid "Customer returns"
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1167
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1167
+#: src/ShippingProvider/Simple.php:1179
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1179
 msgctxt "shipments"
 msgid "Allow customers to submit return requests to shipments."
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1167
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1167
+#: src/ShippingProvider/Simple.php:1179
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1179
 #, php-format
 msgctxt "shipments"
 msgid "This option will allow your customers to submit return requests to orders. Return requests will be visible within your <a href=\"%s\">return dashboard</a>. To learn more about return requests by customers and/or guests, please check the <a href=\"https://vendidero.com/doc/shiptastic/manage-returns\">docs</a>."
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1176
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1176
+#: src/ShippingProvider/Simple.php:1188
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1188
 msgctxt "shipments"
 msgid "Guest returns"
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1177
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1177
+#: src/ShippingProvider/Simple.php:1189
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1189
 msgctxt "shipments"
 msgid "Allow guests to submit return requests to shipments."
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1177
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1177
+#: src/ShippingProvider/Simple.php:1189
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1189
 #, php-format
 msgctxt "shipments"
 msgid "Guests will need to provide their email address and the order id to receive a one-time link to submit a return request. The placeholder %s might be used to place the request form on your site."
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1188
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1188
+#: src/ShippingProvider/Simple.php:1200
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1200
 #, php-format
 msgctxt "shipments"
 msgid "Costs (%s)"
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1189
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1189
+#: src/ShippingProvider/Simple.php:1201
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1201
 msgctxt "shipments"
 msgid "Choose whether returns are subject to a fee for your customers."
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1189
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1189
+#: src/ShippingProvider/Simple.php:1201
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1201
 msgctxt "shipments"
 msgid "Costs are automatically deducted from the refund created to the return shipment."
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1202
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1202
+#: src/ShippingProvider/Simple.php:1214
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1214
 msgctxt "shipments"
 msgid "Manual confirmation"
-msgstr ""
-
-#: src/ShippingProvider/Simple.php:1203
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1203
-msgctxt "shipments"
-msgid "By default return request need manual confirmation e.g. a shop manager needs to review return requests which by default are added with the status \"requested\" after a customer submitted a return request. If you choose to disable this option, customer return requests will be added as \"processing\" and an email confirmation including instructions will be sent immediately to the customer."
 msgstr ""
 
 #: src/ShippingProvider/Simple.php:1215
 #: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1215
 msgctxt "shipments"
+msgid "By default return request need manual confirmation e.g. a shop manager needs to review return requests which by default are added with the status \"requested\" after a customer submitted a return request. If you choose to disable this option, customer return requests will be added as \"processing\" and an email confirmation including instructions will be sent immediately to the customer."
+msgstr ""
+
+#: src/ShippingProvider/Simple.php:1227
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1227
+msgctxt "shipments"
 msgid "Return instructions"
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1216
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1216
+#: src/ShippingProvider/Simple.php:1228
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1228
 msgctxt "shipments"
 msgid "Provide your customer with instructions on how to return the shipment after a return request has been confirmed e.g. explain how to prepare the return for shipment. In case a label cannot be generated automatically, make sure to provide your customer with information on how to obain a return label."
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1264
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1264
+#: src/ShippingProvider/Simple.php:1276
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1276
 msgctxt "shipments"
 msgid "Return Requests"
 msgstr ""
 
-#: src/ShippingProvider/Simple.php:1291
-#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1291
+#: src/ShippingProvider/Simple.php:1303
+#: packages/shiptastic-for-woocommerce/src/ShippingProvider/Simple.php:1303
 msgctxt "shipments"
 msgid "This shipping provider does not support creating labels."
 msgstr ""
@@ -9768,7 +9962,7 @@ msgstr ""
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:595
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:101
 #: includes/admin/settings/abstract-wc-gzd-settings-tab.php:53
-#: includes/admin/settings/class-wc-gzd-settings-pointers.php:175
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:176
 #: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:70
 #: includes/admin/views/html-settings-pro.php:25
 #: includes/admin/views/setup/first-steps.php:30
@@ -10238,15 +10432,15 @@ msgstr ""
 msgid "Some features can be switched on or off explicitly by toggling the input."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-pointers.php:142
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:143
 msgid "Dismiss"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-pointers.php:143
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:144
 msgid "Next"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-pointers.php:150
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:151
 msgid "Let's go"
 msgstr ""
 
@@ -14749,27 +14943,27 @@ msgstr ""
 msgid "Zero rate"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1144
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1158
 msgctxt "tax-helper"
 msgid "Madeira"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1151
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1165
 msgctxt "tax-helper"
 msgid "Acores"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1187
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1201
 msgctxt "tax-helper"
 msgid "Northern Ireland"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1221
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1235
 msgctxt "tax-helper-rate-import"
 msgid "Exempt"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1306
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1320
 #, php-format
 msgctxt "tax-helper-rate-import"
 msgid "VAT %1$s %% %2$s"
