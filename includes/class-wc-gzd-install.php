@@ -602,6 +602,19 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			// Recheck Shiptastic install
 			if ( $note = $notices->get_note( 'shiptastic_install' ) ) {
 				$note->reset();
+
+				if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() && \Vendidero\Germanized\Shiptastic::needs_shiptastic_standalone() ) {
+					update_option( 'woocommerce_gzd_is_shiptastic_standalone_update', 'yes' );
+				} else {
+					delete_option( 'woocommerce_gzd_is_shiptastic_standalone_update' );
+				}
+
+				if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_dhl_plugin_active() && \Vendidero\Germanized\Shiptastic::needs_shiptastic_dhl_standalone() ) {
+					update_option( 'woocommerce_gzd_is_shiptastic_standalone_update', 'yes' );
+					update_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update', 'yes' );
+				} else {
+					delete_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update' );
+				}
 			}
 
 			// Queue messages and notices

@@ -491,6 +491,33 @@ class Shiptastic {
 		return false;
 	}
 
+	public static function needs_shiptastic_standalone() {
+		$uses_shipments       = false;
+		$uses_dhl_or_dp       = false;
+		$is_shipping_disabled = 'disabled' === get_option( 'woocommerce_ship_to_countries' );
+
+		if ( \Vendidero\Germanized\Packages::load_shipping_package() && ! $is_shipping_disabled ) {
+			$available_providers = self::get_shipping_providers( true );
+			$uses_shipments      = ! empty( $available_providers );
+
+			if ( ! $uses_shipments ) {
+				$uses_shipments = self::has_created_shipments();
+			}
+		}
+
+		return $uses_shipments;
+	}
+
+	public static function needs_shiptastic_dhl_standalone() {
+		$uses_dhl_or_dp = false;
+
+		if ( self::needs_shiptastic_standalone() ) {
+			$uses_dhl_or_dp = self::is_shipping_provider_active( 'dhl' ) || self::is_shipping_provider_active( 'deutsche_post' );
+		}
+
+		return $uses_dhl_or_dp;
+	}
+
 	public static function get_shipping_providers( $active_only = false ) {
 		global $wpdb;
 		$wpdb->hide_errors();
