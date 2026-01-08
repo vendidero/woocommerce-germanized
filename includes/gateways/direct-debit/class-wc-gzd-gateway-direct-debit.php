@@ -374,6 +374,31 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		return $args;
 	}
 
+	protected function get_street_parts( $street ) {
+		if ( function_exists( 'wc_stc_split_shipment_street' ) ) {
+			return wc_stc_split_shipment_street( $street );
+		}
+
+		/**
+		 * Simple street number extraction regex based on https://gist.github.com/benvds/350404
+		 * that covers EU format, e.g. Street name 123.
+		 */
+		$match        = array();
+		$pattern      = '#^([\w\ß[:punct:] ]+) ([0-9]{1,5})([\w[:punct:]\-/]*)$#';
+		$match_result = preg_match( $pattern, $street, $match );
+
+		$street   = ( isset( $match[1] ) ) ? $match[1] : '';
+		$number   = ( isset( $match[2] ) ) ? $match[2] : '';
+		$addition = ( isset( $match[3] ) ) ? $match[3] : '';
+
+		return array(
+			'street'     => $street,
+			'number'     => $number,
+			'addition'   => $addition,
+			'addition_2' => '',
+		);
+	}
+
 	public function export( $args = array() ) {
 		if ( 'sepa' !== $args['content'] ) {
 			return;
@@ -529,7 +554,8 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 						continue;
 					}
 
-					$amount_in_cents = round( ( $order->get_total() - $order->get_total_refunded() ) * 100 );
+					$amount_in_cents    = round( ( $order->get_total() - $order->get_total_refunded() ) * 100 );
+					$order_street_parts = $this->get_street_parts( $order->get_billing_address_1() );
 
 					/**
 					 * Filter that allows adjusting direct debit SEPA XML Export transfer data per order.
@@ -552,6 +578,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 								'debtorName'            => $order->get_meta( '_direct_debit_holder' ),
 								'debtorCountry'         => $order->get_billing_country(),
 								'debtorAdrLine'         => array_filter( array( trim( $order->get_billing_address_1() . ' ' . $order->get_billing_address_2() ), trim( $order->get_billing_postcode() . ' ' . $order->get_billing_city() ) ) ),
+								'postCode'              => $order->get_billing_postcode(),
+								'townName'              => $order->get_billing_city(),
+								'streetName'            => $order_street_parts['street'],
+								'buildingNumber'        => $order_street_parts['number'],
+								'floorNumber'           => '',
 								'debtorMandate'         => $this->get_mandate_id( $order ),
 								'debtorMandateSignDate' => date_i18n( 'Y-m-d', $this->get_mandate_sign_date( $order ) ),
 								/**

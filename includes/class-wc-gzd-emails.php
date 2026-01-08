@@ -592,6 +592,11 @@ class WC_GZD_Emails {
 
 	public function print_processing_email_text( $order ) {
 		$email_improvements_enabled = false;
+		$processing_text            = $this->get_processing_email_text( $order );
+
+		if ( ! $processing_text ) {
+			return;
+		}
 
 		if ( class_exists( 'Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
 			$email_improvements_enabled = Automattic\WooCommerce\Utilities\FeaturesUtil::feature_is_enabled( 'email_improvements' );
@@ -605,7 +610,7 @@ class WC_GZD_Emails {
 			echo '<div style="margin-top: -32px;">';
 		}
 
-		echo wp_kses_post( wpautop( wptexturize( $this->get_processing_email_text( $order ) ) ) );
+		echo wp_kses_post( wpautop( wptexturize( $processing_text ) ) );
 
 		if ( $email_improvements_enabled ) {
 			echo '</div>';
@@ -1437,7 +1442,7 @@ class WC_GZD_Emails {
 			$shopmark->remove();
 		}
 
-		remove_action( 'woocommerce_thankyou', 'woocommerce_gzd_template_order_item_hooks', 0 );
+		remove_action( 'woocommerce_order_details_before_order_table', 'woocommerce_gzd_template_order_item_hooks', 0 );
 		remove_action( 'before_woocommerce_pay', 'woocommerce_gzd_template_order_item_hooks', 10 );
 
 		// Remove order email filters
