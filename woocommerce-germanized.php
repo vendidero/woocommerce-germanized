@@ -528,6 +528,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-cart-functions.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-order-functions.php';
 			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-legacy-functions.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-shipments-legacy-functions.php';
 
 			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-install.php';
 

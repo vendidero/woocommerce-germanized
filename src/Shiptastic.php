@@ -9,8 +9,6 @@ class Shiptastic {
 	public static function init() {
 		self::setup_integration();
 		self::setup_backwards_compatibility();
-
-		include_once Package::get_path() . '/includes/wc-gzd-shipments-legacy-functions.php';
 	}
 
 	protected static function setup_backwards_compatibility() {
@@ -496,7 +494,7 @@ class Shiptastic {
 		$uses_dhl_or_dp       = false;
 		$is_shipping_disabled = 'disabled' === get_option( 'woocommerce_ship_to_countries' );
 
-		if ( \Vendidero\Germanized\Packages::load_shipping_package() && ! $is_shipping_disabled ) {
+		if ( \Vendidero\Germanized\Packages::load_shipping_package() && ! $is_shipping_disabled && self::has_shiptastic_tables() ) {
 			$available_providers = self::get_shipping_providers( true );
 			$uses_shipments      = ! empty( $available_providers );
 
@@ -518,9 +516,29 @@ class Shiptastic {
 		return $uses_dhl_or_dp;
 	}
 
+	public static function has_shiptastic_tables() {
+		global $wpdb;
+		$wpdb->hide_errors();
+
+		self::define_tables();
+
+		$shipments_table_name = $wpdb->prefix . 'woocommerce_stc_shipments';
+		$exists               = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $shipments_table_name ) ) );
+
+		if ( $exists && $exists === $shipments_table_name ) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public static function get_shipping_providers( $active_only = false ) {
 		global $wpdb;
 		$wpdb->hide_errors();
+
+		if ( ! self::has_shiptastic_tables() ) {
+			return array();
+		}
 
 		$table_name         = $wpdb->prefix . 'woocommerce_stc_shipping_provider';
 		$providers          = $wpdb->get_results( "SELECT * FROM `{$table_name}`" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
@@ -546,6 +564,10 @@ class Shiptastic {
 	public static function get_shipping_provider( $provider_name ) {
 		global $wpdb;
 		$wpdb->hide_errors();
+
+		if ( ! self::has_shiptastic_tables() ) {
+			return false;
+		}
 
 		$table_name = $wpdb->prefix . 'woocommerce_stc_shipping_provider';
 		$provider   = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM `{$table_name}` WHERE shipping_provider_name = %s LIMIT 1", $provider_name ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
