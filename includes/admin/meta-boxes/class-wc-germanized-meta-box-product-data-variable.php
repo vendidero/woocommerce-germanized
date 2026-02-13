@@ -486,19 +486,23 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			</div>
 
 			<?php
-			woocommerce_wp_text_input(
-				array(
-					'wrapper_class' => 'form-row form-row-first',
-					'id'            => "variable_gtin_{$loop}",
-					'name'          => "variable_gtin[{$loop}]",
-					'label'         => __( 'GTIN', 'woocommerce-germanized' ),
-					'data_type'     => 'text',
-					'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_gtin( 'edit' ) : '',
-					'value'         => $gzd_product->get_gtin( 'edit' ),
-					'desc_tip'      => true,
-					'description'   => __( 'Your product\'s Global Trade Item Number that allows your products to be identified worldwide.', 'woocommerce-germanized' ),
-				)
-			);
+			$gtin = $gzd_product->get_gtin( 'edit' );
+
+			if ( ! empty( $gtin ) || ! is_callable( array( $gzd_product->get_wc_product(), 'get_global_unique_id' ) ) ) :
+				woocommerce_wp_text_input(
+					array(
+						'wrapper_class' => 'form-row form-row-first',
+						'id'            => "variable_gtin_{$loop}",
+						'name'          => "variable_gtin[{$loop}]",
+						'label'         => __( 'GTIN', 'woocommerce-germanized' ),
+						'data_type'     => 'text',
+						'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_gtin( 'edit' ) : '',
+						'value'         => $gzd_product->get_gtin( 'edit' ),
+						'desc_tip'      => true,
+						'description'   => __( 'Your product\'s Global Trade Item Number that allows your products to be identified worldwide.', 'woocommerce-germanized' ),
+					)
+				);
+			endif;
 
 			woocommerce_wp_text_input(
 				array(

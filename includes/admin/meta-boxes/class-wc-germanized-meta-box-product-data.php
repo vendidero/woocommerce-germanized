@@ -635,16 +635,20 @@ class WC_Germanized_Meta_Box_Product_Data {
 			);
 			?>
 			<?php
-			woocommerce_wp_text_input(
-				array(
-					'id'          => '_gtin',
-					'value'       => $_gzd_product->get_gtin( 'edit' ),
-					'label'       => __( 'GTIN', 'woocommerce-germanized' ),
-					'data_type'   => 'text',
-					'desc_tip'    => true,
-					'description' => __( 'Your product\'s Global Trade Item Number that allows your products to be identified worldwide.', 'woocommerce-germanized' ),
-				)
-			);
+			$gtin = $_gzd_product->get_gtin( 'edit' );
+
+			if ( ! empty( $gtin ) || ! is_callable( array( $_gzd_product->get_wc_product(), 'get_global_unique_id' ) ) ) :
+				woocommerce_wp_text_input(
+					array(
+						'id'          => '_gtin',
+						'value'       => $_gzd_product->get_gtin( 'edit' ),
+						'label'       => __( 'GTIN', 'woocommerce-germanized' ),
+						'data_type'   => 'text',
+						'desc_tip'    => true,
+						'description' => __( 'Your product\'s Global Trade Item Number that allows your products to be identified worldwide.', 'woocommerce-germanized' ),
+					)
+				);
+			endif;
 			?>
 			<?php
 			woocommerce_wp_text_input(
