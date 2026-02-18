@@ -486,9 +486,10 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			</div>
 
 			<?php
-			$gtin = $gzd_product->get_gtin( 'edit' );
+			$gtin            = $gzd_product->get_gtin( 'edit' );
+			$gtin_is_visible = ! empty( $gtin ) || ! is_callable( array( $gzd_product->get_wc_product(), 'get_global_unique_id' ) );
 
-			if ( ! empty( $gtin ) || ! is_callable( array( $gzd_product->get_wc_product(), 'get_global_unique_id' ) ) ) :
+			if ( $gtin_is_visible ) :
 				woocommerce_wp_text_input(
 					array(
 						'wrapper_class' => 'form-row form-row-first',
@@ -506,7 +507,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 
 			woocommerce_wp_text_input(
 				array(
-					'wrapper_class' => 'form-row form-row-last',
+					'wrapper_class' => 'form-row ' . ( $gtin_is_visible ? 'form-row-last' : 'form-row-full' ),
 					'id'            => "variable_mpn_{$loop}",
 					'name'          => "variable_mpn[{$loop}]",
 					'label'         => __( 'MPN', 'woocommerce-germanized' ),

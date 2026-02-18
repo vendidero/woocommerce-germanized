@@ -559,7 +559,7 @@ class WC_GZD_Customer_Helper {
 	public function customer_account_activation_check() {
 		if ( is_account_page() ) {
 			if ( isset( $_GET['activate'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				$activation_code = urldecode( wc_clean( wp_unslash( $_GET['activate'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				$activation_code = wc_clean( urldecode( wp_unslash( $_GET['activate'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 				if ( ! empty( $activation_code ) ) {
 					$result = $this->customer_account_activate( $activation_code, true );

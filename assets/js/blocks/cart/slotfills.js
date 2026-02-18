@@ -28,8 +28,8 @@ const DomWatcher = ({
 const render = () => {
     return (
         <ExperimentalOrderMeta>
-            <DomWatcher />
             <SmallBusinessInfo />
+            <DomWatcher />
         </ExperimentalOrderMeta>
     );
 };
