@@ -1,0 +1,79 @@
+.wp-block-woocommerce-checkout-shipping-address-block {
+  .wc-block-components-title {
+    .managed-by-pickup-location-notice {
+      display: inline-flex;
+      transform-origin: center right;
+      transform: translateX(0px) scale(.75);
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .wc-block-components-address-form-wrapper {
+    .managed-by-pickup-location {
+      input, select {
+        background-color: rgba(0,0,0,.05) !important;
+        border-color: rgba(0,0,0,.2) !important;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+.has-dark-controls {
+  .wp-block-woocommerce-checkout-shipping-address-block {
+    .wc-block-components-address-form-wrapper {
+      .managed-by-pickup-location {
+        input, select {
+          background-color: rgba(255,255,255,.1) !important;
+          border-color: rgba(255,255,255,.2) !important;
+        }
+      }
+    }
+  }
+}
+
+.wc-shiptastic-pickup-location-delivery {
+  h4 {
+    font-size: 1em;
+    margin: $gap 0;
+  }
+
+  .pickup-location-search-fields {
+    display: flex;
+    margin-bottom: $gap;
+    flex-wrap: wrap;
+    gap: 0 $gap;
+
+    .wc-block-components-text-input {
+      margin-top: 0;
+
+      &:first-child {
+        flex-grow: 3;
+      }
+    }
+  }
+
+  .current-pickup-location {
+    .pickup-location-remove {
+      vertical-align: middle;
+    }
+  }
+
+  .pickup-location-search-results {
+    position: relative;
+
+    &.is-searching {
+      pointer-events: none;
+
+      .wc-block-components-spinner {
+        z-index: 99;
+
+        &::after {
+          right: 10px;
+          left: auto;
+        }
+      }
+    }
+  }
+}
