@@ -556,7 +556,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			add_filter( 'woocommerce_shiptastic_enable_logging', '__return_true', 5 );
 			add_filter( 'oss_woocommerce_enable_extended_logging', '__return_true', 5 );
 
-			if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, '3.19.0', '<' ) ) {
+			if ( get_option( 'woocommerce_gzd_shipments_upload_dir_suffix' ) && ! is_null( $current_db_version ) && version_compare( $current_db_version, '3.19.0', '<' ) ) {
 				self::migrate_shipments_to_shiptastic( false, true );
 			}
 
@@ -586,16 +586,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 			// Recheck outdated templates
 			if ( $note = $notices->get_note( 'template_outdated' ) ) {
-				$note->reset();
-			}
-
-			// Show the importer
-			if ( $note = $notices->get_note( 'dhl_importer' ) ) {
-				$note->reset();
-			}
-
-			// Show the importer
-			if ( $note = $notices->get_note( 'internetmarke_importer' ) ) {
 				$note->reset();
 			}
 
@@ -629,6 +619,14 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					}
 
 					if ( $note = $notices->get_note( 'theme_supported' ) ) {
+						$note->reset();
+					}
+
+					if ( $note = $notices->get_note( 'dhl_importer' ) ) {
+						$note->reset();
+					}
+
+					if ( $note = $notices->get_note( 'internetmarke_importer' ) ) {
 						$note->reset();
 					}
 				}
@@ -712,16 +710,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			}
 
 			wp_clear_scheduled_hook( 'woocommerce_gzd_customer_cleanup' );
-
-			if ( function_exists( 'as_unschedule_all_actions' ) ) {
-				$hooks = array(
-					'woocommerce_shiptastic_daily_cleanup',
-				);
-
-				foreach ( $hooks as $hook ) {
-					as_unschedule_all_actions( $hook );
-				}
-			}
 		}
 
 		/**
@@ -956,7 +944,6 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			 * @param array $pages Array containing page data.
 			 *
 			 * @since 1.0.0
-			 *
 			 */
 			$pages = apply_filters(
 				'woocommerce_gzd_create_pages',

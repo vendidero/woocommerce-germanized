@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 6.9
 WC requires at least: 3.9
-WC tested up to: 10.4
-Stable tag: 3.20.5
+WC tested up to: 10.5
+Stable tag: 4.0.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -29,6 +29,7 @@ Furthermore we customized the WooCommerce checkout to make your store meet the b
 * *Terms, Revocation, Privacy Policy* - Display checkboxes within your checkout to make sure customers agree to your conditions.
 * *Legal Checkboxes UI* - Adjust your legal WooCommerce checkboxes (e.g. terms & conditions) through a fluent user interface.
 * *Button Solution* - We adjust your checkout and submit button to comply with german button solution.
+* *Withdrawal Button* - Add a withdrawal button (EU directive 2023/2673) to your store which contains a form to let your customers conveniently place withdrawal requests.
 * *Sell Food (Pro)* - Label your food (nutrients, ingredients, allergenic), sell deposit bottles, show the Nutri-Score.
 * *OSS compliance* - Germanized helps your WooCommerce shop to be compliant with the new One Stop Shop procedure
 * *Double opt-in (DOI) for Customers* - Make sure customers opted in while registering within your shop. Optionally disable checkout until the customer opted in.
@@ -66,17 +67,17 @@ Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce
 
 Furthermore you may attach legally relevant pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce emails instead of using plain text.
 
-= Add shipments to WooCommerce orders =
-Germanized adds a new abstraction layer to WooCommerce to make it easier for you to send your parcels to your customers. With Germanized you'll be able to generate (multiple) shipments to an order.
-You can then manage your shipments and it's statuses independently from your orders. Let your customers receive a notification email as soon as a shipment has been marked as shipped including tracking information from a built-in or manually added shipping provider. Learn more about our [Shipments for WooCommerce](https://vendidero.de/woocommerce-germanized/features#shipments "Shipments for WooCommerce") integration and find out how to automate your shipping process.
+= Professional shipping, returns and fulfillment solution for WooCommerce =
+Install our plugin [Shiptastic for WooCommerce](https://wordpress.org/plugins/shiptastic-for-woocommerce/) to improve shipping, returns and fulfillments in WooCommerce.
+Manage your shipments and it's statuses independently of your orders. Let your customers receive a notification email as soon as a shipment has been marked as shipped including tracking information from a built-in or manually added shipping provider.
 
 = Handle returns with ease =
-Managing returns can be a time-consuming challenge. By using Germanized you might let your customers create return requests through their customer panel. All you need to do is confirm the request through your return dashboard and your customers will receive an email containing further steps on how to return their product(s).
-In case you are using our DHL integration you might as well (automatically) create a label to the return which will be attached to the email sent to the customer.
+Managing returns can be a time-consuming challenge. By using Shiptastic for WooCommerce you might let your customers create return requests through their customer panel. All you need to do is confirm the request through your return dashboard and your customers will receive an email containing further steps on how to return their product(s).
+In case you are using one of our built-in carrier integration you might as well (automatically) create a label to the return which will be attached to the email sent to the customer. Perfectly integrated with the new withdrawal button in Germanized.
 
-= Post, DHL, UPS, DPD (Pro) and GLS (Pro) Integration =
-With the help of our Post, DHL, UPS, DPD (Pro) and GLS (Pro) integration you can easily create labels for your shipments and add tracking information to the notification emails. Furthermore you can offer DHL preferred delivery services to your customers including shipping to Packstation or choosing a drop-off location and/or day within the checkout.
-You can even let your shipments and labels be generated automatically by Germanized to avoid further manual work. [Learn more](https://vendidero.de/doc/woocommerce-germanized/versanddienstleister-verwalten "Shipping Provider for WooCommerce") about how our shipping provider integrations work.
+= Deutsche Post, DHL, UPS, DPD (Pro) and GLS (Pro) Integration =
+With the help of our Deutsche Post, DHL, UPS, DPD (Pro) and GLS (Pro) integration you can easily create labels to shipments and add tracking information to notification emails. Offer preferred delivery services to your customers including shipping to Packstation and/or pickup locations or choosing a drop-off location within the checkout.
+You can even automate the whole label process to avoid further manual work. [Learn more](https://vendidero.de/doc/woocommerce-germanized/versanddienstleister-verwalten "Shipping Provider for WooCommerce") about the way our shipping provider integrations work.
 
 = Extended One Stop Shop compliance =
 With a little help from our [One Stop Shop compliance plugin for WooCommerce](https://wordpress.org/plugins/one-stop-shop-woocommerce/) you'll handle the new EU VAT regulations with ease. Generate new VAT reports for different time frames and let the plugin
@@ -147,8 +148,8 @@ Outputs mini cart description for a product.
 
 = General Shortcodes =
 
-`[revocation_form]`
-Inserts online revocation form within your WooCommerce store. Customer and shop manager receive a confirmation by email.
+`[order_withdrawal_request_form]`
+Place a withdrawal request form to allow your customers to conveniently submit order withdrawal requests.
 
 `[payment_methods_info]`
 Very useful as page to inform the user of your WooCommerce payment gateways - Inserts an overview of all enabled payment gateways plus their descriptions.
@@ -170,7 +171,7 @@ You may of course Update Germanized for WooCommerce automatically through the Wo
 
 == Frequently Asked Questions ==
 
-= Where can I find the documentation? =
+= Where to find documentation? =
 [Germanized Documentation](https://vendidero.de/doc/woocommerce-germanized/home-germanized)
 
 = Need help? =
@@ -183,9 +184,9 @@ Professional help desk support is being offered to [Professional Users](https://
 Unfortunately not every Theme does implement WooCommerce in the way it's meant to be or differs from the original structure which leads to layout and/or compatibility
 issues. For testing purposes, please activate a default WordPress Theme (such as TwentyX) and see whether the issues persist.
 
-= Using a Pagebuilder? =
+= Using a page builder? =
 
-In case you are using a Pagebuilder (e.g. Elementor, Divi-Builder) you might want to replace the default [shopmarks](https://vendidero.de/doc/woocommerce-germanized/preisauszeichnungen-anpassen) placed by Germanized with our custom [shortcodes](https://vendidero.de/doc/woocommerce-germanized/preisauszeichnungen-anpassen#pagebuilder).
+In case you are using a page builder (e.g. Elementor, Divi-Builder) you might want to replace the default [shopmarks](https://vendidero.de/doc/woocommerce-germanized/preisauszeichnungen-anpassen) placed by Germanized with our custom [shortcodes](https://vendidero.de/doc/woocommerce-germanized/preisauszeichnungen-anpassen#pagebuilder).
 
 = Email attachments not showing in WooCommerce order confirmation email =
 
@@ -206,6 +207,10 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.0.0 =
+* New: Withdrawal button in compliance with EU directive 2023/2673
+* New: Removed Shiptastic, DHL for Shiptastic packages from core
+
 = 3.20.5 =
 * Improvement: Cart/Checkout block price label HTML styling
 * Improvement: Divi 5 Gutenberg checkout blocks

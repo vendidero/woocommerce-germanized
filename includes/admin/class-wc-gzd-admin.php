@@ -55,8 +55,6 @@ class WC_GZD_Admin {
 
 		add_action( 'admin_init', array( $this, 'tool_actions' ) );
 		add_action( 'admin_init', array( $this, 'check_resend_activation_email' ) );
-		add_action( 'admin_init', array( $this, 'check_dhl_import' ) );
-		add_action( 'admin_init', array( $this, 'check_internetmarke_import' ) );
 
 		add_filter( 'woocommerce_order_actions', array( $this, 'order_actions' ), 10, 1 );
 		add_action( 'woocommerce_order_action_order_confirmation', array( $this, 'resend_order_confirmation' ), 10, 1 );
@@ -182,10 +180,21 @@ class WC_GZD_Admin {
 
 	protected function check_install_shiptastic() {
 		if ( current_user_can( 'install_plugins' ) ) {
-			\Vendidero\Germanized\PluginsHelper::install_or_activate_shiptatic();
+			\Vendidero\Germanized\PluginsHelper::install_or_activate_shiptastic();
 
-			if ( 'yes' === get_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update' ) ) {
-				\Vendidero\Germanized\PluginsHelper::install_or_activate_shiptatic_dhl();
+			if ( 'yes' === get_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update' ) || isset( $_GET['install-dhl'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				if ( isset( $_GET['install-dhl'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+					/**
+					 * Make sure that the shiptastic country reflects the current WC country to actually load DHL.
+					 */
+					$current_wc_country = WC()->countries->get_base_country();
+
+					if ( 'DE' === $current_wc_country ) {
+						update_option( 'woocommerce_shiptastic_shipper_address_country', get_option( 'woocommerce_default_country', 'DE:BE' ) );
+					}
+				}
+
+				\Vendidero\Germanized\PluginsHelper::install_or_activate_shiptastic_dhl();
 			}
 
 			if ( \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ) {
@@ -230,81 +239,6 @@ class WC_GZD_Admin {
 
 	public function oss_enable_hide_tax_percentage() {
 		update_option( 'woocommerce_gzd_hide_tax_rate_shop', 'yes' );
-	}
-
-	public function check_dhl_import() {
-		if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_dhl_plugin_active() ) {
-			return;
-		}
-
-		if ( isset( $_GET['wc-gzd-dhl-import'] ) && isset( $_GET['_wpnonce'] ) && Importer\DHL::is_plugin_enabled() ) {
-			if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'woocommerce_gzd_dhl_import_nonce' ) ) {
-				wp_die( esc_html_x( 'Action failed. Please refresh the page and retry.', 'dhl', 'woocommerce-germanized' ) );
-			}
-
-			if ( ! current_user_can( 'manage_woocommerce' ) ) {
-				wp_die( esc_html_x( 'You don\'t have permission to do this.', 'dhl', 'woocommerce-germanized' ) );
-			}
-
-			if ( Importer\DHL::is_available() ) {
-				$this->import_dhl_settings();
-			}
-
-			/**
-			 * Shipper country may be set to something different as the Woo base country
-			 */
-			if ( ! Vendidero\Shiptastic\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
-				update_option( 'woocommerce_shiptastic_shipper_address_country', get_option( 'woocommerce_default_country', 'DE:BE' ) );
-
-				if ( 'DE' === \Vendidero\Shiptastic\Package::get_base_country() ) {
-					Vendidero\Shiptastic\DHL\Package::init();
-				}
-			}
-
-			if ( $shipping_provider = Vendidero\Shiptastic\ShippingProvider\Helper::instance()->get_shipping_provider( 'dhl' ) ) {
-				$shipping_provider->activate();
-
-				deactivate_plugins( 'dhl-for-woocommerce/pr-dhl-woocommerce.php' );
-				wp_safe_redirect( esc_url_raw( add_query_arg( array( 'has-imported' => 'yes' ), wc_stc_get_shipping_provider( 'dhl' )->get_edit_link() ) ) );
-				exit();
-			}
-		}
-	}
-
-	public function import_dhl_settings() {
-		Importer\DHL::import_order_data( 50 );
-		Importer\DHL::import_settings();
-
-		update_option( 'woocommerc_gzd_dhl_import_finished', 'yes' );
-	}
-
-	public function check_internetmarke_import() {
-		if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_dhl_plugin_active() ) {
-			return;
-		}
-
-		if ( isset( $_GET['wc-gzd-internetmarke-import'] ) && isset( $_GET['_wpnonce'] ) && Importer\Internetmarke::is_available() ) {
-			if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['_wpnonce'] ) ), 'woocommerce_gzd_internetmarke_import_nonce' ) ) {
-				wp_die( esc_html_x( 'Action failed. Please refresh the page and retry.', 'dhl', 'woocommerce-germanized' ) );
-			}
-
-			if ( ! current_user_can( 'manage_woocommerce' ) ) {
-				wp_die( esc_html_x( 'You don\'t have permission to do this.', 'dhl', 'woocommerce-germanized' ) );
-			}
-
-			$this->import_internetmarke_settings();
-
-			wp_safe_redirect( esc_url_raw( wc_stc_get_shipping_provider( 'deutsche_post' )->get_edit_link() ) );
-		}
-	}
-
-	public function import_internetmarke_settings() {
-		Importer\DHL::import_settings();
-
-		deactivate_plugins( 'woo-dp-internetmarke/woo-dp-internetmarke.php' );
-
-		update_option( 'woocommerce_gzd_dhl_internetmarke_enable', 'yes' );
-		update_option( 'woocommerce_gzd_internetmarke_import_finished', 'yes' );
 	}
 
 	public function save_fields( $value, $option, $raw_value ) {

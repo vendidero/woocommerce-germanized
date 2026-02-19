@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 
 	public function get_description() {
-		return __( 'Adjust general options e.g. legal pages.', 'woocommerce-germanized' );
+		return __( 'Adjust general options e.g. legal pages, withdrawal button, small business regulation.', 'woocommerce-germanized' );
 	}
 
 	public function get_label() {
@@ -37,6 +37,12 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 		if ( wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() ) {
 			$sections = $sections + array(
 				'photovoltaic_systems' => __( 'Photovoltaic Systems', 'woocommerce-germanized' ),
+			);
+		}
+
+		if ( class_exists( '\Vendidero\OrderWithdrawalButton\Settings' ) ) {
+			$sections = $sections + array(
+				'withdrawal_button' => __( 'Withdrawal Button', 'woocommerce-germanized' ),
 			);
 		}
 
@@ -171,12 +177,30 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 				'css'      => 'min-width:300px;',
 				'desc_tip' => true,
 			),
+			array(
+				'title'    => _x( 'Withdrawal page', 'owb', 'woocommerce-germanized' ),
+				'id'       => 'woocommerce_withdraw_from_contract_page_id',
+				'type'     => $page_type,
+				'class'    => $class,
+				'desc'     => _x( 'This page should contain your withdrawal form shortcode.', 'owb', 'woocommerce-germanized' ),
+				'args'     => array(
+					'exclude' => array(),
+				),
+				'default'  => '',
+				'css'      => 'min-width:300px;',
+				'autoload' => false,
+				'desc_tip' => true,
+			),
 
 			array(
 				'type' => 'sectionend',
 				'id'   => 'legal_page_options',
 			),
 		);
+	}
+
+	protected function get_withdrawal_button_settings() {
+		return class_exists( '\Vendidero\OrderWithdrawalButton\Settings' ) ? \Vendidero\OrderWithdrawalButton\Settings::get_settings() : array();
 	}
 
 	protected function get_dispute_resolution_settings() {
@@ -659,6 +683,8 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 			$settings = $this->get_shop_settings();
 		} elseif ( 'photovoltaic_systems' === $current_section ) {
 			$settings = $this->get_photovoltaic_systems_settings();
+		} elseif ( 'withdrawal_button' === $current_section ) {
+			$settings = $this->get_withdrawal_button_settings();
 		}
 
 		return $settings;

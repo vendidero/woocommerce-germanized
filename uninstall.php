@@ -15,7 +15,6 @@ global $wpdb, $wp_version;
 wp_clear_scheduled_hook( 'woocommerce_gzd_customer_cleanup' );
 
 if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
-
 	include_once 'includes/class-wc-gzd-install.php';
 
 	// Delete digital rates
@@ -28,6 +27,8 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 	wp_trash_post( get_option( 'woocommerce_terms_page_id' ) );
 	wp_trash_post( get_option( 'woocommerce_shipping_costs_page_id' ) );
 	wp_trash_post( get_option( 'woocommerce_payment_methods_page_id' ) );
+	wp_trash_post( get_option( 'woocommerce_review_authenticity_page_id' ) );
+	wp_trash_post( get_option( 'woocommerce_withdraw_from_contract_page_id' ) );
 
 	// Delete options.
 	$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE 'woocommerce_gzd\_%';" );
@@ -113,7 +114,7 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 		}
 	}
 
-	// Remove Tables
+	// Remove legacy shipment tables
 	$custom_tables = array(
 		"{$wpdb->prefix}woocommerce_gzd_dhl_labels",
 		"{$wpdb->prefix}woocommerce_gzd_dhl_labelmeta",

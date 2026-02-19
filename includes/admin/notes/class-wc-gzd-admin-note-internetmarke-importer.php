@@ -7,10 +7,14 @@ defined( 'ABSPATH' ) || exit;
  */
 class WC_GZD_Admin_Note_Internetmarke_Importer extends WC_GZD_Admin_Note {
 
+	protected function is_im_plugin_installed() {
+		return defined( 'WCDPI_PLUGIN_FILE' ) ? true : false;
+	}
+
 	public function is_disabled() {
 		$is_disabled = true;
 
-		if ( class_exists( 'Vendidero\Shiptastic\DHL\Admin\Importer\Internetmarke' ) && Vendidero\Shiptastic\DHL\Admin\Importer\Internetmarke::is_plugin_enabled() && Vendidero\Shiptastic\DHL\Admin\Importer\Internetmarke::is_available() ) {
+		if ( $this->is_im_plugin_installed() ) {
 			$is_disabled = false;
 		}
 
@@ -30,11 +34,10 @@ class WC_GZD_Admin_Note_Internetmarke_Importer extends WC_GZD_Admin_Note {
 	}
 
 	public function get_content() {
-		$content = '<p>' . _x( 'It seems like you are currently using the Deutsche Post Internetmarke plugin. Germanized does now fully integrate Internetmarke and switching is as simple as can be. Check your advantages by using the Internetmarke integration in Germanized and let Germanized import your current settings for you.', 'dhl', 'woocommerce-germanized' ) . '</p>
+		$content = '<p>' . _x( 'It seems like you are currently using the Deutsche Post Internetmarke plugin. Our plugin Shiptastic for WooCommerce does now fully integrate Internetmarke and switching is as simple as can be. Check your advantages by using the Internetmarke integration in Shiptastic and let Shiptastic import your current settings for you.', 'dhl', 'woocommerce-germanized' ) . '</p>
 		    <ul>
-		        <li>' . _x( 'No need to use an external plugin which might lead to incompatibilities', 'dhl', 'woocommerce-germanized' ) . '</li>
+		        <li>' . _x( 'Perfectly integrated with Germanized any many other plugins', 'dhl', 'woocommerce-germanized' ) . '</li>
 		        <li>' . sprintf( _x( 'Many improved features such as automation, services per shipping method and %s', 'dhl', 'woocommerce-germanized' ), '<a href="https://vendidero.de/doc/woocommerce-germanized/internetmarke-integration-einrichten" target="_blank">' . _x( 'many more', 'dhl', 'woocommerce-germanized' ) . '</a>' ) . '</li>
-		        <li>' . _x( 'Perfectly integrated in Germanized &ndash; easily create stamps for shipments', 'dhl', 'woocommerce-germanized' ) . '</li>
 		    </ul>';
 
 		return $content;
@@ -47,11 +50,17 @@ class WC_GZD_Admin_Note_Internetmarke_Importer extends WC_GZD_Admin_Note {
 	public function get_actions() {
 		return array(
 			array(
-				'url'          => add_query_arg( 'wc-gzd-internetmarke-import', 'yes', admin_url( 'admin.php?page=wc-settings&tab=germanized-shipping_provider&provider=deutsche_post' ) ),
-				'title'        => _x( 'Import settings and activate', 'dhl', 'woocommerce-germanized' ),
+				'url'          => add_query_arg(
+					array(
+						'wc-gzd-check-install_shiptastic' => true,
+						'install-dhl'                     => true,
+					),
+					admin_url( 'admin.php?page=wc-settings&tab=germanized' )
+				),
+				'title'        => __( 'Install Shiptastic & Internetmarke Integration now', 'woocommerce-germanized' ),
 				'target'       => '_self',
 				'is_primary'   => true,
-				'nonce_action' => 'woocommerce_gzd_internetmarke_import_nonce',
+				'nonce_action' => 'wc-gzd-check-install_shiptastic',
 			),
 			array(
 				'url'        => 'https://vendidero.de/doc/woocommerce-germanized/internetmarke-integration-einrichten',
