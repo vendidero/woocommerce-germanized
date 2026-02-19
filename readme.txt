@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 6.9
 WC requires at least: 3.9
-WC tested up to: 10.4
-Stable tag: 3.20.5
+WC tested up to: 10.5
+Stable tag: 3.20.6
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -206,6 +206,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 3.20.6 =
+* Security: Fix direct debit gateway shortcode execution. Thanks to Chiao-Lin Yu (Steven Meow)
+
 = 3.20.5 =
 * Improvement: Cart/Checkout block price label HTML styling
 * Improvement: Divi 5 Gutenberg checkout blocks

@@ -986,10 +986,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function generate_mandate_text( $args = array() ) {
-		// temporarily reset global $post variable if available to ensure Pagebuilder compatibility
-		$tmp_post        = isset( $GLOBALS['post'] ) ? $GLOBALS['post'] : false;
-		$GLOBALS['post'] = false; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-
 		$args = apply_filters(
 			'woocommerce_gzd_direct_debit_mandate_text_placeholders',
 			wp_parse_args(
@@ -1007,13 +1003,11 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		$text = $this->mandate_text;
 
 		foreach ( $args as $key => $val ) {
-			$text = str_replace( '[' . $key . ']', $val, $text );
+			$text = str_replace( '[' . $key . ']', strip_shortcodes( $val ), $text );
 		}
 
-		$content = apply_filters( 'the_content', $text );
-
-		// Enable $post again
-		$GLOBALS['post'] = $tmp_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		$content = wptexturize( $text );
+		$content = wpautop( $content );
 
 		return apply_filters( 'woocommerce_gzd_direct_debit_mandate_text', $content, $args );
 	}
