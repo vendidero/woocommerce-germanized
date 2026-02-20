@@ -376,40 +376,83 @@ class WC_GZD_AJAX {
 			 * Check whether the current product actually supports unit price display.
 			 */
 			if ( $has_unit_price ) {
-				$regular_price      = (float) wc_clean( wp_unslash( $product_data['price'] ) );
-				$sale_price         = isset( $product_data['price_sale'] ) && '' !== wc_clean( wp_unslash( $product_data['price_sale'] ) ) ? (float) wc_clean( wp_unslash( $product_data['price_sale'] ) ) : '';
-				$price              = '' !== $sale_price ? $sale_price : $regular_price;
-				$has_sale_indicator = isset( $product_data['has_sale_indicator'] ) ? wc_string_to_bool( wc_clean( wp_unslash( $product_data['has_sale_indicator'] ) ) ) : false;
+				$regular_price = (float) wc_clean( wp_unslash( $product_data['price'] ) );
+				$sale_price    = isset( $product_data['price_sale'] ) && '' !== wc_clean( wp_unslash( $product_data['price_sale'] ) ) ? (float) wc_clean( wp_unslash( $product_data['price_sale'] ) ) : '';
+				$is_range      = isset( $product_data['is_range'] ) ? wc_string_to_bool( wc_clean( wp_unslash( $product_data['is_range'] ) ) ) : false;
+				$price         = '' !== $sale_price ? $sale_price : $regular_price;
+				$price_html    = '';
 
-				$prices = wc_gzd_recalculate_unit_price(
-					array(
-						'regular_price' => $regular_price,
-						'sale_price'    => $sale_price,
-						'price'         => $price,
-						'base'          => $product->get_unit_base(),
-						'products'      => $product->get_unit_product(),
-					)
-				);
+				if ( is_a( $product, 'WC_GZD_Product_Variable' ) ) {
+					if ( $product->has_unit() ) {
+						$prices            = $product->get_variation_unit_prices( true );
+						$variation_ids     = array_keys( $prices['price'] );
+						$variation_id_from = current( $variation_ids );
+						$variation_id_to   = end( $variation_ids );
 
-				/**
-				 * Variable and grouped products may have pricing ranges which will be transferred as sale price (= to).
-				 */
-				if ( $product->get_wc_product()->is_type( 'variable' ) || $product->get_wc_product()->is_type( 'grouped' ) ) {
-					/**
-					 * Check if a sale price indicator was found within the original price.
-					 */
-					if ( $has_sale_indicator ) {
-						$price_html = wc_format_sale_price( wc_price( $prices['regular'] ), wc_price( $prices['sale'] ) );
-					} elseif ( $prices['regular'] !== $prices['sale'] ) {
-						$price_html = woocommerce_gzd_format_unit_price_range( $prices['regular'], $prices['sale'] );
-					} else {
-						$price_html = wc_price( $prices['regular'] );
+						if ( $from_variation = wc_gzd_get_gzd_product( $variation_id_from ) ) {
+							$price_args = array(
+								'price'    => $regular_price,
+								'base'     => $from_variation->get_unit_base(),
+								'products' => $from_variation->get_unit_product(),
+							);
+
+							$from_prices = wc_gzd_recalculate_unit_price( $price_args );
+							$to_prices   = $from_prices;
+
+							if ( $sale_price && $variation_id_from !== $variation_id_to ) {
+								if ( $to_variation = wc_gzd_get_gzd_product( $variation_id_to ) ) {
+									$price_args = array(
+										'price'    => $sale_price,
+										'base'     => $to_variation->get_unit_base(),
+										'products' => $to_variation->get_unit_product(),
+									);
+
+									$to_prices = wc_gzd_recalculate_unit_price( $price_args );
+									$to_prices = wp_parse_args(
+										$to_prices,
+										array(
+											'unit' => 0.0,
+										)
+									);
+
+									if ( $to_variation->get_unit_base() !== $from_variation->get_unit_base() || $to_variation->get_unit_product() !== $from_variation->get_unit_product() ) {
+										$is_range = true;
+									}
+								}
+							}
+
+							if ( ! empty( $from_prices ) ) {
+								if ( $from_prices['unit'] !== $to_prices['unit'] && ! $is_range ) {
+									$price_html = wc_format_sale_price( wc_price( $from_prices['unit'] ), wc_price( $to_prices['unit'] ) );
+								} elseif ( $from_prices['unit'] !== $to_prices['unit'] ) {
+									$price_html = woocommerce_gzd_format_unit_price_range( $from_prices['unit'], $to_prices['unit'] );
+								} else {
+									$price_html = wc_price( $from_prices['unit'] );
+								}
+							}
+						}
 					}
+				} elseif ( is_a( $product, 'WC_GZD_Product_Grouped' ) ) { // Do not recalculate unit prices for grouped products
+					$unit_price = '';
 				} else {
-					$price_html = ! empty( $sale_price ) ? $product->get_price_html_from_to( $prices['regular'], $prices['sale'], false ) : wc_price( $prices['unit'] );
+					$prices = wc_gzd_recalculate_unit_price(
+						array(
+							'regular_price' => $regular_price,
+							'sale_price'    => $sale_price,
+							'price'         => $price,
+							'base'          => $product->get_unit_base(),
+							'products'      => $product->get_unit_product(),
+						)
+					);
+
+					if ( ! empty( $prices ) ) {
+						$price_html = ! empty( $sale_price ) ? $product->get_price_html_from_to( $prices['regular'], $prices['sale'], false ) : wc_price( $prices['unit'] );
+					}
 				}
 
-				$unit_price = wc_gzd_format_unit_price( $price_html, $product->get_unit_html(), $product->get_unit_base_html(), wc_gzd_format_product_units_decimal( $product->get_unit_product() ) );
+				if ( ! empty( $price_html ) ) {
+					$unit_price = wc_gzd_format_unit_price( $price_html, $product->get_unit_html(), $product->get_unit_base_html(), wc_gzd_format_product_units_decimal( $product->get_unit_product() ) );
+				}
 			}
 
 			$response[ $key ] = array(

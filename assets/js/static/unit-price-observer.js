@@ -375,12 +375,11 @@
             $priceCloned.find( '.woocommerce-price-suffix' ).remove();
             $priceCloned.find( '.wc-gzd-is-hidden' ).remove();
 
-            var has_sale_indicator = $priceCloned.find( 'del' ).length > 0;
-
             var sale_price  = '',
                 $priceInner = $priceCloned.find( '.amount:first' ),
                 $qty        = $( self.params.wrapper + ' ' + quantitySelector + ':first' ),
-                qty         = 1;
+                qty         = 1,
+                is_range= false;
 
             if ( $qty.length > 0 ) {
                 qty = parseFloat( $qty.val() );
@@ -410,6 +409,13 @@
                 sale_price = self.getRawPrice( $sale_price, self.params.price_decimal_sep );
             }
 
+            /**
+             * Is price range, e.g. variable products
+             */
+            if ( sale_price && $priceCloned.find( 'del' ).length <= 0 ) {
+                is_range = true;
+            }
+
             $price.find( '.wc-gzd-is-hidden' ).removeClass( 'wc-gzd-is-hidden' );
 
             if ( $unit_price.length > 0 && price ) {
@@ -426,7 +432,7 @@
                     'unit_price': $unit_price,
                     'sale_price': sale_price,
                     'quantity'  : qty,
-                    'has_sale_indicator': has_sale_indicator
+                    'is_range'  : is_range,
                 };
             }
         }

@@ -208,6 +208,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 == Changelog ==
 = 3.20.7 =
 * Fix: Unit price observer/recalculation for variable price ranges
+* Improvement: Support product collection block unit price observation
 
 = 3.20.6 =
 * Security: Fix direct debit gateway shortcode execution. Thanks to Chiao-Lin Yu (Steven Meow)
