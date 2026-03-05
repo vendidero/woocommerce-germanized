@@ -12,25 +12,26 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 3.18.8
+ * @version 4.0.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
 global $product;
+$heading = apply_filters( 'woocommerce_gzd_product_manufacturer_heading', __( 'Manufacturer information', 'woocommerce-germanized' ) );
 ?>
 
 <?php if ( wc_gzd_get_product( $product )->get_manufacturer_html() ) : ?>
-	<?php if ( isset( $print_title ) && $print_title ) : ?>
-		<h3 class="wc-gzd-product-manufacturer-heading"><?php echo esc_html( apply_filters( 'woocommerce_gzd_product_manufacturer_heading', __( 'Manufacturer information', 'woocommerce-germanized' ) ) ); ?></h3>
+	<?php if ( isset( $print_title ) && $print_title && $heading ) : ?>
+		<h3 class="wc-gzd-product-manufacturer-heading"><?php echo esc_html( $heading ); ?></h3>
 	<?php endif; ?>
 
 	<div class="manufacturer wc-gzd-additional-info">
 		<?php echo wp_kses_post( wc_gzd_get_product( $product )->get_manufacturer_html() ); ?>
 	</div>
 <?php elseif ( $product->is_type( 'variable' ) ) : ?>
-	<?php if ( isset( $print_title ) && $print_title ) : ?>
+	<?php if ( isset( $print_title ) && $print_title && $heading ) : ?>
 		<h3 class="wc-gzd-product-manufacturer-heading wc-gzd-additional-info-placeholder" aria-hidden="true"></h3>
 	<?php endif; ?>
 
