@@ -45,6 +45,25 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 		return 'https://vendidero.de/doc/woocommerce-germanized/steuerberechnung-fuer-versandkosten-und-gebuehren';
 	}
 
+	protected function get_additional_costs_fee_settings_url() {
+		if ( \Vendidero\Germanized\PluginsHelper::is_plugin_active( 'checkout-fees-for-woocommerce-pro' ) || \Vendidero\Germanized\PluginsHelper::is_plugin_active( 'checkout-fees-for-woocommerce' ) ) {
+			return admin_url( 'admin.php?page=wc-settings&tab=alg_checkout_fees' );
+		}
+
+		return false;
+	}
+
+	protected function get_additional_costs_non_taxable_fee_notice() {
+		$fee_settings_url = $this->get_additional_costs_fee_settings_url();
+		$notice_text      = __( 'When using a Germanized tax mode for additional costs, make sure that payment surcharges and similar fees use the correct tax status. Fees stored as non-taxable may otherwise lead to mixed tax data and document creation issues.', 'woocommerce-germanized' );
+
+		if ( $fee_settings_url ) {
+			$notice_text .= ' ' . sprintf( __( 'If you are using payment gateway based fees, please review the tax settings within your <a href="%s">fee configuration</a>.', 'woocommerce-germanized' ), esc_url( $fee_settings_url ) );
+		}
+
+		return '<div class="notice inline notice-warning"><p>' . wp_kses_post( $notice_text ) . '</p></div>';
+	}
+
 	protected function get_vat_settings() {
 		$virtual_vat = 'yes' !== get_option( 'woocommerce_gzd_enable_virtual_vat' ) ? array() : array(
 			'title'   => __( 'Virtual VAT', 'woocommerce-germanized' ),
@@ -141,6 +160,12 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 					'split_tax'    => __( 'Proportionate', 'woocommerce-germanized' ),
 					'main_service' => __( 'Based on main service', 'woocommerce-germanized' ),
 				),
+			),
+			array(
+				'title' => '',
+				'id'    => 'woocommerce_gzd_tax_mode_additional_costs_non_taxable_fee_notice',
+				'type'  => 'html',
+				'html'  => $this->get_additional_costs_non_taxable_fee_notice(),
 			),
 
 			array(
