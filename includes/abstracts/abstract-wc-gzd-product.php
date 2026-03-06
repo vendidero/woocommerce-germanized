@@ -1415,9 +1415,17 @@ class WC_GZD_Product {
 		return false;
 	}
 
-	protected function attribute_is_checkout_visible( $attribute ) {
-		return ( $attribute && ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_product_attributes' ) || $attribute->is_checkout_visible() ) );
-	}
+    protected function attribute_is_checkout_visible( $attribute ) {
+        if ( ! $attribute ) {
+            return false;
+        }
+
+        if  ( 'yes' === get_option( 'woocommerce_gzd_display_checkout_product_attributes' ) ) {
+            return true;
+        }
+
+        return is_a( $attribute, 'WC_GZD_Product_Attribute' ) ? $attribute->is_checkout_visible() : $attribute->get_extra_data( 'checkout_visible' );
+    }
 
 	public function get_checkout_attributes( $item_data = array(), $cart_variation_data = array() ) {
 		$item_data = ! empty( $item_data ) ? $item_data : array();
@@ -1461,8 +1469,6 @@ class WC_GZD_Product {
 		$attributes = $product->get_attributes();
 
 		foreach ( $attributes as $attribute ) {
-			$attribute = WC_GZD_Product_Attribute_Helper::instance()->get_attribute( $attribute, $product );
-
 			if ( $this->attribute_is_checkout_visible( $attribute ) ) {
 				$values = array();
 
