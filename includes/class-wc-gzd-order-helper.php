@@ -337,13 +337,44 @@ class WC_GZD_Order_Helper {
 		$item->delete_meta_data( '_tax_shares' );
 
 		if ( $order = $item->get_order() ) {
-			$order->delete_meta_data( '_has_split_tax' );
 			$order->delete_meta_data( '_additional_costs_include_tax' );
 			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service' );
 			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class' );
 			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_by' );
+			$this->sync_order_split_tax_meta( $order );
 
 			$order->save();
+		}
+	}
+
+	/**
+	 * @param WC_Order_Item $item
+	 *
+	 * @return bool
+	 */
+	protected function item_supports_split_tax_meta( $item ) {
+		return ! is_a( $item, 'WC_Order_Item_Fee' ) || 'taxable' === $item->get_tax_status();
+	}
+
+	/**
+	 * @param WC_Order $order
+	 *
+	 * @return void
+	 */
+	protected function sync_order_split_tax_meta( $order ) {
+		$has_split_tax = false;
+
+		foreach ( $order->get_items( array( 'shipping', 'fee' ) ) as $additional_cost ) {
+			if ( ! empty( $additional_cost->get_meta( '_split_taxes', true ) ) ) {
+				$has_split_tax = true;
+				break;
+			}
+		}
+
+		if ( $has_split_tax ) {
+			$order->update_meta_data( '_has_split_tax', 'yes' );
+		} else {
+			$order->delete_meta_data( '_has_split_tax' );
 		}
 	}
 
@@ -396,10 +427,14 @@ class WC_GZD_Order_Helper {
 			$item->delete_meta_data( '_split_taxes' );
 			$item->delete_meta_data( '_tax_shares' );
 
-			$order->delete_meta_data( '_has_split_tax' );
 			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service' );
 			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class' );
 			$order->delete_meta_data( '_additional_costs_taxed_based_on_main_service_by' );
+			$this->sync_order_split_tax_meta( $order );
+
+			if ( ! $this->item_supports_split_tax_meta( $item ) ) {
+				return;
+			}
 
 			$calculate_tax_for = empty( $calculate_tax_for ) ? $this->get_order_taxable_location( $order ) : $calculate_tax_for;
 			$tax_type          = 'shipping' === $item->get_type() ? 'shipping' : 'fee';
@@ -451,14 +486,11 @@ class WC_GZD_Order_Helper {
 					if ( wc_gzd_additional_costs_include_tax() ) {
 						$item->set_total( $item_total - $item->get_total_tax() );
 					}
-
-					$order->update_meta_data( '_has_split_tax', 'yes' );
 				} else {
 					$item->delete_meta_data( '_split_taxes' );
 					$item->delete_meta_data( '_tax_shares' );
-
-					$order->delete_meta_data( '_has_split_tax' );
 				}
+				$this->sync_order_split_tax_meta( $order );
 			} elseif ( wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
 				$taxes          = array();
 				$main_tax_class = self::instance()->get_order_main_service_tax_class( $order, $tax_type );
@@ -693,6 +725,10 @@ class WC_GZD_Order_Helper {
 	 * @param WC_Order $order
 	 */
 	public function set_fee_split_tax_meta( $item, $fee_key, $fee, $order ) {
+		if ( ! $this->item_supports_split_tax_meta( $item ) ) {
+			return;
+		}
+
 		if ( isset( $fee->split_taxes ) && ! empty( $fee->split_taxes ) ) {
 			$item->update_meta_data( '_split_taxes', $fee->split_taxes );
 		}
