@@ -318,10 +318,14 @@ class Shiptastic {
 		);
 
 		add_filter(
-			'woocommerce_shiptastic_template_path',
-			function () {
-				return Package::get_template_path();
-			}
+			'woocommerce_shiptastic_locate_theme_template_locations',
+			function ( $locations, $template_name ) {
+				$locations[] = trailingslashit( WC_germanized()->template_path() ) . $template_name;
+
+				return $locations;
+			},
+			10,
+			2
 		);
 
 		add_filter(
@@ -369,18 +373,6 @@ class Shiptastic {
 		);
 
 		add_filter( 'woocommerce_shiptastic_is_debug_mode', 'wc_gzd_is_extended_debug_mode_enabled', 5 );
-
-		add_filter(
-			'woocommerce_gzd_wpml_email_ids',
-			function ( $emails_ids ) {
-				if ( is_callable( array( '\Vendidero\Shiptastic\Compatibility\WPML', 'register_emails' ) ) ) {
-					$emails_ids = \Vendidero\Shiptastic\Compatibility\WPML::register_emails( $emails_ids );
-				}
-
-				return $emails_ids;
-			},
-			10
-		);
 
 		add_filter(
 			'woocommerce_shiptastic_shipment_order_supports_email_transmission',
