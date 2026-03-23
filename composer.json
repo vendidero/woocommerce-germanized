@@ -15,8 +15,7 @@
     "defuse/php-encryption": "^2.0.0",
     "globalcitizen/php-iban": "^4.0.0",
     "vendidero/woocommerce-eu-tax-helper": "2.0.9",
-    "vendidero/shiptastic-for-woocommerce": "4.8.6",
-    "vendidero/shiptastic-integration-for-dhl": "4.1.7"
+    "vendidero/eu-order-withdrawal-button-for-woocommerce": "1.0.0"
   },
   "require-dev": {
     "myclabs/deep-copy": "^1.7.0",
@@ -27,11 +26,8 @@
   "repositories": [
     {
       "type": "vcs",
-      "url":  "https://github.com/vendidero/shiptastic-for-woocommerce"
-    },
-    {
-      "type": "vcs",
-      "url":  "https://github.com/vendidero/shiptastic-integration-for-dhl"
+      "url":  "git@github.com:vendidero/eu-order-withdrawal-button-for-woocommerce.git",
+      "name": "vendidero/eu-order-withdrawal-button-for-woocommerce"
     },
     {
       "type": "vcs",
@@ -79,8 +75,7 @@
   },
   "extra": {
     "installer-paths": {
-      "packages/shiptastic-for-woocommerce": ["vendidero/shiptastic-for-woocommerce"],
-      "packages/shiptastic-integration-for-dhl": ["vendidero/shiptastic-integration-for-dhl"],
+      "packages/eu-order-withdrawal-button-for-woocommerce": ["vendidero/eu-order-withdrawal-button-for-woocommerce"],
       "packages/woocommerce-eu-tax-helper": ["vendidero/woocommerce-eu-tax-helper"]
     },
     "scripts-description": {

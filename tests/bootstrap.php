@@ -24,8 +24,7 @@ class WC_GZD_Unit_Tests_Bootstrap {
 	public $wc_tests_dir;
 
 	public $packages = array(
-		'shiptastic-for-woocommerce/shiptastic-for-woocommerce.php'         => '\Vendidero\Shiptastic',
-		'shiptastic-integration-for-dhl/shiptastic-integration-for-dhl.php' => '\Vendidero\Shiptastic\DHL',
+		'eu-order-withdrawal-button-for-woocommerce/eu-order-withdrawal-button-for-woocommerce.php' => '\Vendidero\OrderWithdrawalButton',
 	);
 
 	/**
@@ -96,11 +95,6 @@ class WC_GZD_Unit_Tests_Bootstrap {
 		tests_add_filter( 'woocommerce_gzd_is_loadable', '__return_true' );
 		tests_add_filter( 'woocommerce_gzd_is_woocommerce_activated', '__return_true' );
 
-		// Make sure the DHL Package loads - Base country should equal DE.
-		tests_add_filter( 'woocommerce_shiptastic_dhl_base_country', function () {
-			return 'DE';
-		} );
-
 		tests_add_filter( 'muplugins_loaded', function () {
 			require_once $this->get_woo_dir()  . '/woocommerce.php';
 			require_once $this->plugin_dir . '/woocommerce-germanized.php';
@@ -120,17 +114,9 @@ class WC_GZD_Unit_Tests_Bootstrap {
 					$classname::install_integration();
 				}
 			}
-
-			/**
-			 * Activate DHL after installing.
-			 */
-			if ( $dhl = wc_stc_get_shipping_provider( 'dhl' ) ) {
-				$dhl->activate();
-			}
 		} );
 
 		tests_add_filter( 'setup_theme', function () {
-
 			echo esc_html( 'Installing WooCommerce...' . PHP_EOL );
 
 			define( 'WP_UNINSTALL_PLUGIN', true );

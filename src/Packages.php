@@ -28,8 +28,7 @@ class Packages {
 	 * @var array Key is the package name/directory, value is the main package class which handles init.
 	 */
 	protected static $packages = array(
-		'shiptastic-for-woocommerce'     => '\\Vendidero\\Shiptastic\\Package',
-		'shiptastic-integration-for-dhl' => '\\Vendidero\\Shiptastic\\DHL\\Package',
+		'eu-order-withdrawal-button-for-woocommerce' => '\\Vendidero\\OrderWithdrawalButton\\Package',
 	);
 
 	/**
@@ -69,38 +68,10 @@ class Packages {
 	 * Each package should include an init file which loads the package so it can be used by core.
 	 */
 	protected static function load_packages() {
-		add_filter( 'woocommerce_shiptastic_is_integration', '__return_true' );
-
 		foreach ( self::$packages as $package_name => $package_class ) {
 			if ( ! self::package_exists( $package_name ) ) {
 				self::missing_package( $package_name );
 				continue;
-			}
-
-			/**
-			 * Do not load the Shiptastic (DHL) package in case the separate, standalone plugin is active or the default
-			 * option after a bundled-install has not been set.
-			 *
-			 * @TODO remove after removing the package from Germanized core in 4.0.0.
-			 */
-			if ( 'shiptastic-for-woocommerce' === $package_name ) {
-				if ( false === self::load_shipping_package() || ( PluginsHelper::is_shiptastic_plugin_active() && defined( 'WC_STC_IS_STANDALONE_PLUGIN' ) ) || ( ! get_option( 'woocommerce_shiptastic_auto_enable' ) && ! get_option( 'woocommerce_gzd_shipments_auto_enable' ) ) ) {
-					continue;
-				} elseif ( version_compare( get_option( 'woocommerce_gzd_db_version', '1.0.0' ), '3.20.0', '>=' ) && 'yes' !== get_option( 'woocommerce_gzd_is_shiptastic_standalone_update' ) ) {
-					/**
-					 * After the DB update has been completed, check the temp option which indicates the necessity to load the bundled package.
-					 */
-					continue;
-				}
-			} elseif ( 'shiptastic-integration-for-dhl' === $package_name ) {
-				if ( false === self::load_shipping_package() || ( PluginsHelper::is_shiptastic_dhl_plugin_active() && defined( 'WC_STC_INTEGRATION_FOR_DHL_IS_STANDALONE_PLUGIN' ) ) || ( ! get_option( 'woocommerce_shiptastic_auto_enable' ) && ! get_option( 'woocommerce_gzd_shipments_auto_enable' ) ) ) {
-					continue;
-				} elseif ( version_compare( get_option( 'woocommerce_gzd_db_version', '1.0.0' ), '3.20.0', '>=' ) && 'yes' !== get_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update' ) ) {
-					/**
-					 * After the DB update has been completed, check the temp option which indicates the necessity to load the bundled package.
-					 */
-					continue;
-				}
 			}
 
 			/**

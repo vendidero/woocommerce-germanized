@@ -391,14 +391,14 @@ class PluginsHelper {
 	/**
 	 * @return true|\WP_Error
 	 */
-	public static function install_or_activate_shiptatic() {
+	public static function install_or_activate_shiptastic() {
 		return self::install_or_activate_extension( 'shiptastic-for-woocommerce' );
 	}
 
 	/**
 	 * @return true|\WP_Error
 	 */
-	public static function install_or_activate_shiptatic_dhl() {
+	public static function install_or_activate_shiptastic_dhl() {
 		return self::install_or_activate_extension( 'shiptastic-integration-for-dhl' );
 	}
 

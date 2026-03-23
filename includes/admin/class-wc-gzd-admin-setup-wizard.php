@@ -529,7 +529,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			$current_url = $this->get_step_url( $this->step );
 
 			if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() && current_user_can( 'install_plugins' ) ) {
-				$result = \Vendidero\Germanized\PluginsHelper::install_or_activate_shiptatic();
+				$result = \Vendidero\Germanized\PluginsHelper::install_or_activate_shiptastic();
 
 				if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ) {
 					wp_safe_redirect( esc_url_raw( add_query_arg( array( 'error' => 'shiptastic_install' ), $current_url ) ) );

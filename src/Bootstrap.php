@@ -42,6 +42,9 @@ class Bootstrap {
 	 * Init the package - load the blocks library and define constants.
 	 */
 	protected function init() {
+		add_filter( 'woocommerce_shiptastic_is_integration', '__return_true' );
+		add_filter( 'eu_owb_woocommerce_is_integration', '__return_true' );
+
 		if ( ! did_action( 'woocommerce_shiptastic_init' ) ) {
 			add_action( 'woocommerce_shiptastic_init', array( Shiptastic::class, 'init' ), 0 );
 		} else {
