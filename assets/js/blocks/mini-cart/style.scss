@@ -10,4 +10,11 @@
       display: block !important;
     }
   }
+
+  .wc-block-components-product-metadata {
+    *[class*="wc-block-components-product-details__gzd-"] {
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
 }

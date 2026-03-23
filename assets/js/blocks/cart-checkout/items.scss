@@ -48,6 +48,9 @@
 
 .wc-block-components-product-details {
   *[class*="wc-block-components-product-details__gzd-"] {
+    margin-bottom: 5px;
+    display: block;
+
     span[aria-hidden] {
       display: none !important;
     }
