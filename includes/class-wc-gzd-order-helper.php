@@ -390,7 +390,7 @@ class WC_GZD_Order_Helper {
 			}
 		}
 
-		$item_has_taxes = (float) $item->get_total_tax() !== 0.0;
+		$item_has_taxes = apply_filters( 'woocommerce_gzd_order_item_supports_tax_adjustments', (float) $item->get_total_tax() !== 0.0, $item );
 
 		if ( $order = $item->get_order() ) {
 			$item->delete_meta_data( '_split_taxes' );
@@ -426,11 +426,15 @@ class WC_GZD_Order_Helper {
 						$tax_class_taxes = WC_Tax::calc_tax( $taxable_amount, $tax_rates, wc_gzd_additional_costs_include_tax() );
 						$net_base        = wc_gzd_additional_costs_include_tax() ? ( $taxable_amount - array_sum( $tax_class_taxes ) ) : $taxable_amount;
 
+						if ( ! $item_has_taxes ) {
+							$net_base = $taxable_amount;
+						}
+
 						$taxable_amounts[ $tax_class ] = array(
-							'taxable_amount' => $taxable_amount,
+							'taxable_amount' => wc_format_decimal( $taxable_amount ),
 							'tax_share'      => $class['share'],
 							'tax_rates'      => array_keys( $tax_rates ),
-							'net_amount'     => $net_base,
+							'net_amount'     => wc_format_decimal( $net_base ),
 							'includes_tax'   => wc_gzd_additional_costs_include_tax(),
 						);
 
@@ -444,19 +448,20 @@ class WC_GZD_Order_Helper {
 					}
 
 					$item->set_taxes( array( 'total' => $taxes ) );
-					$item->update_meta_data( '_split_taxes', $taxable_amounts );
-					$item->update_meta_data( '_tax_shares', $tax_share );
+
+					if ( $item_has_taxes ) {
+						$item->update_meta_data( '_split_taxes', $taxable_amounts );
+						$item->update_meta_data( '_tax_shares', $tax_share );
+						$order->update_meta_data( '_has_split_tax', 'yes' );
+					}
 
 					// The new net total equals old gross total minus new tax totals
 					if ( wc_gzd_additional_costs_include_tax() ) {
 						$item->set_total( $item_total - $item->get_total_tax() );
 					}
-
-					$order->update_meta_data( '_has_split_tax', 'yes' );
 				} else {
 					$item->delete_meta_data( '_split_taxes' );
 					$item->delete_meta_data( '_tax_shares' );
-
 					$order->delete_meta_data( '_has_split_tax' );
 				}
 			} elseif ( wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
@@ -494,9 +499,11 @@ class WC_GZD_Order_Helper {
 						$item->set_total( $item_total - $item->get_total_tax() );
 					}
 
-					$order->update_meta_data( '_additional_costs_taxed_based_on_main_service', 'yes' );
-					$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_by', wc_gzd_additional_costs_taxes_detect_main_service_by() );
-					$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class', $main_tax_class );
+					if ( $item_has_taxes ) {
+						$order->update_meta_data( '_additional_costs_taxed_based_on_main_service', 'yes' );
+						$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_by', wc_gzd_additional_costs_taxes_detect_main_service_by() );
+						$order->update_meta_data( '_additional_costs_taxed_based_on_main_service_tax_class', $main_tax_class );
+					}
 				}
 			}
 

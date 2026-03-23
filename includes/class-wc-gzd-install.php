@@ -85,11 +85,19 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 					$note->dismiss();
 				}
 
+				$do_redirect = true;
+
+				if ( isset( $_GET['page'] ) && 'wc-gzd-about' === wc_clean( wp_unslash( $_GET['page'] ) ) ) {
+					$do_redirect = false;
+				}
+
 				delete_transient( '_wc_gzd_activation_redirect' );
 
-				// What's new redirect
-				wp_safe_redirect( esc_url_raw( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) ) );
-				exit;
+				if ( $do_redirect ) {
+					// What's new redirect
+					wp_safe_redirect( esc_url_raw( admin_url( 'index.php?page=wc-gzd-about&wc-gzd-updated=true' ) ) );
+					exit;
+				}
 			}
 
 			if ( get_transient( '_wc_gzd_setup_wizard_redirect' ) ) {
@@ -579,10 +587,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-notices.php';
 			$notices = WC_GZD_Admin_Notices::instance();
 
-			// Refresh notes
-			foreach ( $notices->get_notes() as $note ) {
-				$note->delete_note();
-			}
+			self::force_delete_notes();
 
 			// Recheck outdated templates
 			if ( $note = $notices->get_note( 'template_outdated' ) ) {
@@ -693,6 +698,28 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			}
 		}
 
+		/**
+		 * Use direct DB queries to delete WC admin notes as there may be invalid/duplicate notes stored within the DB.
+		 *
+		 * @return void
+		 */
+		public static function force_delete_notes() {
+			global $wpdb;
+			$wpdb->hide_errors();
+
+			$notes_table  = $wpdb->prefix . 'wc_admin_notes';
+			$table_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $notes_table ) ) );
+
+			if ( $table_exists && $table_exists === $notes_table ) {
+				$notes = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}wc_admin_notes WHERE name LIKE '%-gzd%';" );
+
+				foreach ( $notes as $note ) {
+					$wpdb->delete( $wpdb->prefix . 'wc_admin_note_actions', array( 'note_id' => $note->note_id ) );
+					$wpdb->delete( $wpdb->prefix . 'wc_admin_notes', array( 'note_id' => $note->note_id ) );
+				}
+			}
+		}
+
 		public static function deactivate() {
 			// Clear Woo sessions to remove WC_GZD_Shipping_Rate instance
 			if ( class_exists( 'WC_REST_System_Status_Tools_Controller' ) ) {
@@ -700,14 +727,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				$tools_controller->execute_tool( 'clear_sessions' );
 			}
 
-			/**
-			 * Remove notices.
-			 */
-			$notices = WC_GZD_Admin_Notices::instance();
-
-			foreach ( $notices->get_notes() as $note ) {
-				$note->delete_note();
-			}
+			self::force_delete_notes();
 
 			wp_clear_scheduled_hook( 'woocommerce_gzd_customer_cleanup' );
 		}

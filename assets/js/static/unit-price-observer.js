@@ -145,6 +145,10 @@
             $node = self.$wrapper.find( '.price:not(.price-unit):last' + visibleSelector );
         }
 
+        if ( $node.length <= 0 && self.$wrapper.hasClass( 'wc-block-product' ) ) {
+            $node = self.$wrapper.find( '.wc-block-grid__product-price' );
+        }
+
         return $node;
     };
 
@@ -163,17 +167,32 @@
             return [];
         }
 
+        var $element = [];
         var isSingleProductBlock = $price.parents( '.wp-block-woocommerce-product-price[data-is-descendent-of-single-product-template]' ).length > 0;
+        var isProductGridBlock = self.$wrapper.hasClass( 'wc-block-product' );
 
         if ( 'SPAN' === $price[0].tagName ) {
-            return self.$wrapper.find( '.price-unit' );
+            $element = self.$wrapper.find( '.price-unit' );
         } else {
             if ( isSingleProductBlock ) {
-                return self.$wrapper.find( '.wp-block-woocommerce-gzd-product-unit-price[data-is-descendent-of-single-product-template] .price-unit' );
+                $element = self.$wrapper.find( '.wp-block-woocommerce-gzd-product-unit-price[data-is-descendent-of-single-product-template] .price-unit' );
+            } else if ( isProductGridBlock ) {
+                $element = self.$wrapper.find( '.price-unit:not(.wc-gzd-additional-info-placeholder)' );
             } else {
-                return self.$wrapper.find( '.price-unit:not(.wc-gzd-additional-info-placeholder, .wc-gzd-additional-info-loop)' );
+                $element = self.$wrapper.find( '.price-unit:not(.wc-gzd-additional-info-placeholder, .wc-gzd-additional-info-loop)' );
             }
         }
+
+        /**
+         * Check whether the unit price is empty - prevent refreshing empty prices.
+         */
+        if ( $element.length > 0 ) {
+            if ( $element.is( ':empty' ) || $element.find( '.wc-gzd-additional-info-placeholder' ).is( ':empty' ) ) {
+                $element = [];
+            }
+        }
+
+        return $element;
     };
 
     GermanizedUnitPriceObserver.prototype.stopObserver = function( self, priceSelector ) {
@@ -359,7 +378,8 @@
             var sale_price  = '',
                 $priceInner = $priceCloned.find( '.amount:first' ),
                 $qty        = $( self.params.wrapper + ' ' + quantitySelector + ':first' ),
-                qty         = 1;
+                qty         = 1,
+                is_range= false;
 
             if ( $qty.length > 0 ) {
                 qty = parseFloat( $qty.val() );
@@ -389,6 +409,13 @@
                 sale_price = self.getRawPrice( $sale_price, self.params.price_decimal_sep );
             }
 
+            /**
+             * Is price range, e.g. variable products
+             */
+            if ( sale_price && $priceCloned.find( 'del' ).length <= 0 ) {
+                is_range = true;
+            }
+
             $price.find( '.wc-gzd-is-hidden' ).removeClass( 'wc-gzd-is-hidden' );
 
             if ( $unit_price.length > 0 && price ) {
@@ -405,6 +432,7 @@
                     'unit_price': $unit_price,
                     'sale_price': sale_price,
                     'quantity'  : qty,
+                    'is_range'  : is_range,
                 };
             }
         }

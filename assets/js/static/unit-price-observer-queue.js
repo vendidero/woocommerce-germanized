@@ -33,11 +33,12 @@ window.germanized = window.germanized || {};
              */
             Object.keys( self.queuesInExecution[ currentQueueId ] ).forEach( function( queueKey ) {
                 data = data.concat( [{
-                    'product_id': self.queuesInExecution[ currentQueueId ][ queueKey ].productId,
-                    'price'     : self.queuesInExecution[ currentQueueId ][ queueKey ].priceData.price,
-                    'price_sale': self.queuesInExecution[ currentQueueId ][ queueKey ].priceData.sale_price,
-                    'quantity'  : self.queuesInExecution[ currentQueueId ][ queueKey ].priceData.quantity,
-                    'key'       : queueKey,
+                    'product_id' : self.queuesInExecution[ currentQueueId ][ queueKey ].productId,
+                    'price'      : self.queuesInExecution[ currentQueueId ][ queueKey ].priceData.price,
+                    'price_sale' : self.queuesInExecution[ currentQueueId ][ queueKey ].priceData.sale_price,
+                    'quantity'   : self.queuesInExecution[ currentQueueId ][ queueKey ].priceData.quantity,
+                    'is_range'   : self.queuesInExecution[ currentQueueId ][ queueKey ].priceData.hasOwnProperty( 'is_range' ) ? self.queuesInExecution[ currentQueueId ][ queueKey ].priceData.is_range : false,
+                    'key'        : queueKey,
                 }] );
             });
 
@@ -225,7 +226,7 @@ window.germanized = window.germanized || {};
                     'observer'     : observer,
                     'priceData'    : priceData,
                     'priceSelector': priceSelector,
-                    'isPrimary'    : isPrimary
+                    'isPrimary'    : isPrimary,
                 };
             }
 

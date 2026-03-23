@@ -211,6 +211,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * New: Withdrawal button in compliance with EU directive 2023/2673
 * New: Removed Shiptastic, DHL for Shiptastic packages from core
 
+= 3.20.7 =
+* Fix: Unit price observer/recalculation for variable price ranges
+* Improvement: Support product collection block unit price observation
+
+= 3.20.6 =
+* Security: Fix direct debit gateway shortcode execution. Thanks to Chiao-Lin Yu (Steven Meow)
+
 = 3.20.5 =
 * Improvement: Cart/Checkout block price label HTML styling
 * Improvement: Divi 5 Gutenberg checkout blocks
