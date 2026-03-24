@@ -51,6 +51,12 @@ class Bootstrap {
 			Shiptastic::init();
 		}
 
+		if ( ! did_action( 'eu_owb_woocommerce_init' ) ) {
+			add_action( 'eu_owb_woocommerce_init', array( OrderWithdrawalButton::class, 'init' ), 0 );
+		} else {
+			OrderWithdrawalButton::init();
+		}
+
 		if ( Package::load_blocks() ) {
 			$this->register_dependencies();
 			$this->register_payment_methods();

@@ -2,9 +2,9 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
-Tested up to: 6.9
+Tested up to: 7.0
 WC requires at least: 3.9
-WC tested up to: 10.5
+WC tested up to: 10.6
 Stable tag: 4.0.0
 Requires PHP: 5.6
 License: GPLv3
@@ -210,6 +210,7 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 = 4.0.0 =
 * New: Withdrawal button in compliance with EU directive 2023/2673
 * New: Removed Shiptastic, DHL for Shiptastic packages from core
+* New: WP 7.0 compatibility
 
 = 3.20.7 =
 * Fix: Unit price observer/recalculation for variable price ranges

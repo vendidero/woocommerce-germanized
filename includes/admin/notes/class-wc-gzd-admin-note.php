@@ -88,7 +88,6 @@ abstract class WC_GZD_Admin_Note {
 
 		if ( $this->is_pro() && WC_germanized()->is_pro() ) {
 			$this->dismiss();
-
 			return true;
 		}
 
@@ -233,6 +232,11 @@ abstract class WC_GZD_Admin_Note {
 		$note->set_name( $this->get_name_prefixed() );
 		$note->set_content_data( (object) array() );
 		$note->set_source( 'woocommerce-germanized' );
+
+		try {
+			$note->set_status( ! $this->is_disabled() ? 'unactioned' : 'pending' );
+		} catch ( \Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+		}
 
 		if ( is_callable( array( $note, 'set_layout' ) ) ) {
 			try {
