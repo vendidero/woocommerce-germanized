@@ -16,7 +16,7 @@ const { ancestor, ...configuration } = sharedConfig;
 
 const blockConfig = {
     ...configuration,
-    apiVersion: 2,
+    apiVersion: 3,
     title: __( 'Nutri-Score', 'woocommerce-germanized' ) + ( ! getSetting( 'isPro' ) ? ' (Pro)' : '' ),
     description: __( 'Inserts the product\'s Nutri-Score.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],

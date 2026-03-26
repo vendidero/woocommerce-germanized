@@ -18,6 +18,10 @@ class WC_GZD_Admin_Note_Shiptastic_Install extends WC_GZD_Admin_Note {
 			$is_disabled = false;
 		}
 
+		if ( ! current_user_can( 'install_plugins' ) ) {
+			$is_disabled = true;
+		}
+
 		if ( ! $is_disabled ) {
 			return parent::is_disabled();
 		} else {

@@ -180,6 +180,10 @@ class WC_GZD_Admin {
 
 	protected function check_install_shiptastic() {
 		if ( current_user_can( 'install_plugins' ) ) {
+			if ( $note = WC_GZD_Admin_Notices::instance()->get_note( 'shiptastic_install' ) ) {
+				$note->dismiss();
+			}
+
 			\Vendidero\Germanized\PluginsHelper::install_or_activate_shiptastic();
 
 			if ( 'yes' === get_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update' ) || isset( $_GET['install-dhl'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended

@@ -4,31 +4,28 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1c637be27be77c65656896e1797c526",
+    "content-hash": "ebdebaccce96947d05bdc01bdfd01a2f",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
-            "version": "v5.0.16",
+            "version": "v2.11.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Automattic/jetpack-autoloader.git",
-                "reference": "d8ae822a35e7431137e860ee60eceedaa745e4d1"
+                "reference": "53cbf0528fa6931c4fa6465bccd37514f9eda720"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Automattic/jetpack-autoloader/zipball/d8ae822a35e7431137e860ee60eceedaa745e4d1",
-                "reference": "d8ae822a35e7431137e860ee60eceedaa745e4d1",
+                "url": "https://api.github.com/repos/Automattic/jetpack-autoloader/zipball/53cbf0528fa6931c4fa6465bccd37514f9eda720",
+                "reference": "53cbf0528fa6931c4fa6465bccd37514f9eda720",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^2.2",
-                "php": ">=7.2"
+                "composer-plugin-api": "^1.1 || ^2.0"
             },
             "require-dev": {
-                "automattic/jetpack-changelogger": "^6.0.14",
-                "automattic/phpunit-select-config": "^1.0.3",
-                "composer/composer": "^2.2",
-                "yoast/phpunit-polyfills": "^4.0.0"
+                "automattic/jetpack-changelogger": "^3.3.2",
+                "yoast/phpunit-polyfills": "1.0.4"
             },
             "type": "composer-plugin",
             "extra": {
@@ -36,13 +33,10 @@
                 "autotagger": true,
                 "mirror-repo": "Automattic/jetpack-autoloader",
                 "branch-alias": {
-                    "dev-trunk": "5.0.x-dev"
+                    "dev-trunk": "2.11.x-dev"
                 },
                 "changelogger": {
                     "link-template": "https://github.com/Automattic/jetpack-autoloader/compare/v${old}...v${new}"
-                },
-                "version-constants": {
-                    "::VERSION": "src/AutoloadGenerator.php"
                 }
             },
             "autoload": {
@@ -58,18 +52,10 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Creates a custom autoloader for a plugin or theme.",
-            "keywords": [
-                "autoload",
-                "autoloader",
-                "composer",
-                "jetpack",
-                "plugin",
-                "wordpress"
-            ],
             "support": {
-                "source": "https://github.com/Automattic/jetpack-autoloader/tree/v5.0.16"
+                "source": "https://github.com/Automattic/jetpack-autoloader/tree/v2.11.18"
             },
-            "time": "2026-02-16T10:33:15+00:00"
+            "time": "2023-03-29T12:51:59+00:00"
         },
         {
             "name": "brick/math",
@@ -940,16 +926,16 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:vendidero/eu-order-withdrawal-button-for-woocommerce.git",
-                "reference": "71c903e6248a4758a7adf69c5f688d7a0d05bb18"
+                "reference": "60298c452bc397c24230e1d62a86c5d2744fa790"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/eu-order-withdrawal-button-for-woocommerce/zipball/71c903e6248a4758a7adf69c5f688d7a0d05bb18",
-                "reference": "71c903e6248a4758a7adf69c5f688d7a0d05bb18",
+                "url": "https://api.github.com/repos/vendidero/eu-order-withdrawal-button-for-woocommerce/zipball/60298c452bc397c24230e1d62a86c5d2744fa790",
+                "reference": "60298c452bc397c24230e1d62a86c5d2744fa790",
                 "shasum": ""
             },
             "require": {
-                "automattic/jetpack-autoloader": "^5.0.0"
+                "automattic/jetpack-autoloader": "2.11.18"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.0.0",
@@ -982,24 +968,24 @@
                 "source": "https://github.com/vendidero/eu-order-withdrawal-button-for-woocommerce/tree/v1.0.0",
                 "issues": "https://github.com/vendidero/eu-order-withdrawal-button-for-woocommerce/issues"
             },
-            "time": "2026-03-24T09:06:42+00:00"
+            "time": "2026-03-26T07:42:19+00:00"
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
-            "version": "2.1.0",
+            "version": "2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-eu-tax-helper.git",
-                "reference": "7851baad0b729189e0d3bd143690640ee2f9ffad"
+                "reference": "02a24d598aedf138da1e1b73d80bbfd4b28eb0ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/7851baad0b729189e0d3bd143690640ee2f9ffad",
-                "reference": "7851baad0b729189e0d3bd143690640ee2f9ffad",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/02a24d598aedf138da1e1b73d80bbfd4b28eb0ca",
+                "reference": "02a24d598aedf138da1e1b73d80bbfd4b28eb0ca",
                 "shasum": ""
             },
             "require": {
-                "automattic/jetpack-autoloader": "^5.0.0",
+                "automattic/jetpack-autoloader": "2.11.18",
                 "composer/installers": "^1.9.0"
             },
             "require-dev": {
@@ -1032,10 +1018,10 @@
             "description": "EU tax helper for WooCommerce",
             "homepage": "https://vendidero.de/",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/v2.1.0",
+                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/v2.0.9",
                 "issues": "https://github.com/vendidero/woocommerce-eu-tax-helper/issues"
             },
-            "time": "2026-03-24T09:16:15+00:00"
+            "time": "2026-01-05T10:43:35+00:00"
         }
     ],
     "packages-dev": [

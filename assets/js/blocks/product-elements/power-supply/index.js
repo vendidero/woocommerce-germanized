@@ -15,7 +15,7 @@ const { ancestor, ...configuration } = sharedConfig;
 
 const blockConfig = {
     ...configuration,
-    apiVersion: 2,
+    apiVersion: 3,
     title: __( 'Power supply', 'woocommerce-germanized' ),
     description: __( 'Inserts information on power supply for wireless electronic devices.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],

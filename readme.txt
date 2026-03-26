@@ -211,6 +211,8 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 * New: Withdrawal button in compliance with EU directive 2023/2673
 * New: Removed Shiptastic, DHL for Shiptastic packages from core
 * New: WP 7.0 compatibility
+* Improvement: Prevent setting custom tax meta for items without taxes
+* Improvement: WooCommerce checkout/cart block attribute styling
 
 = 3.20.7 =
 * Fix: Unit price observer/recalculation for variable price ranges

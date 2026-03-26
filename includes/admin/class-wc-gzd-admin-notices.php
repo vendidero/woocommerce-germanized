@@ -193,7 +193,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Notices' ) ) :
 					$core_notes[] = 'WC_GZD_Admin_Note_TS_Install';
 				}
 
-				if ( 'yes' === get_option( 'woocommerce_gzd_is_shiptastic_standalone_update' ) && current_user_can( 'install_plugins' ) ) {
+				if ( 'yes' === get_option( 'woocommerce_gzd_is_shiptastic_standalone_update' ) ) {
 					$core_notes[] = 'WC_GZD_Admin_Note_Shiptastic_Install';
 				}
 

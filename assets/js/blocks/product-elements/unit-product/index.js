@@ -15,7 +15,7 @@ const { ancestor, ...configuration } = sharedConfig;
 
 const blockConfig = {
     ...configuration,
-    apiVersion: 2,
+    apiVersion: 3,
     title: __( 'Unit products', 'woocommerce-germanized' ),
     description: __( 'Inserts the product\'s units.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],

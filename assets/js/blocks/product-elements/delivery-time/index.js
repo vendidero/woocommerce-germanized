@@ -15,7 +15,7 @@ const { ancestor, ...configuration } = sharedConfig;
 
 const blockConfig = {
     ...configuration,
-    apiVersion: 2,
+    apiVersion: 3,
     title: __( 'Delivery Time', 'woocommerce-germanized' ),
     description: __( 'Inserts the product\'s delivery time.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],

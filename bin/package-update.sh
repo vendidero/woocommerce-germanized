@@ -48,6 +48,11 @@ rm -rf ./packages/eu-order-withdrawal-button-for-woocommerce/composer.lock
 rm -rf ./packages/eu-order-withdrawal-button-for-woocommerce/vendor
 rm -rf ./packages/woocommerce-eu-tax-helper/vendor
 
+output 3 "Clean vendor dirs to save space..."
+
+rm -rf ./vendor/digitick/sepa-xml/doc/*
+rm -rf ./vendor/digitick/sepa-xml/.github
+
 output 2 "Done!"
 
 # Cleanup backup files

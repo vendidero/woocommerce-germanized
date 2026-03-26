@@ -16,7 +16,7 @@ const { ancestor, ...configuration } = sharedConfig;
 
 const blockConfig = {
     ...configuration,
-    apiVersion: 2,
+    apiVersion: 3,
     title: __( 'Product safety attachments', 'woocommerce-germanized' ) + ( ! getSetting( 'isPro' ) ? ' (Pro)' : '' ),
     description: __( 'Inserts the product\'s safety attachments list.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],

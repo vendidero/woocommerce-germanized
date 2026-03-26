@@ -16,7 +16,7 @@ const { ancestor, ...configuration } = sharedConfig;
 
 const blockConfig = {
     ...configuration,
-    apiVersion: 2,
+    apiVersion: 3,
     title: __( 'Deposit packaging type', 'woocommerce-germanized' ) + ( ! getSetting( 'isPro' ) ? ' (Pro)' : '' ),
     description: __( 'Inserts the product\'s deposit packaging type.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],
