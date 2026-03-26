@@ -1,0 +1,134 @@
+.eu-owb-order-withdrawal-request {
+  display: block;
+  clear: both;
+  margin-top: 1.33em;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .eu-owb-order-withdrawal-request-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+
+    .eu-owb-reject-withdrawal-request-start {
+      color: #a00;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .eu-owb-reject-withdrawal-request-form {
+      p.form-field:first-child {
+        margin-top: 0 !important;
+      }
+
+      #eu-owb-reject-withdrawal-request-submit {
+        margin-top: 12px;
+      }
+
+      &.hidden {
+        display: none !important;
+      }
+    }
+  }
+}
+
+.withdrawal-quantity {
+  background: #eba3a3;
+  border: none;
+  padding: 4px;
+  color: #a00;
+  border-radius: 4px;
+  font-size: .92em !important;
+
+  &.withdrawal-requested {
+    background: #f8dda7;
+    color: #573b00;
+  }
+}
+
+.order-status {
+  &.status-withdrawn, &.status-full-withdrawal {
+    background: #eba3a3;
+    color: #570000;
+  }
+  &.status-pending-wdraw, &.status-partial-withdrawal {
+    background: #f8dda7;
+    color: #573b00;
+  }
+}
+
+#eu-owb-order-withdrawals {
+  display: none;
+}
+
+#eu-owb-order-withdrawals:has(.withdrawals) {
+  display: block;
+}
+
+#eu-owb-order-withdrawals {
+  .inside {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.withdrawals {
+    li {
+      padding: 0 10px;
+
+      p.meta {
+        padding: 10px;
+        color: #999;
+        margin: 0;
+        font-size: 11px;
+
+        a.delete_withdrawal {
+          color: #a00;
+        }
+      }
+
+      .withdrawal-content {
+        padding: 10px;
+        position: relative;
+        background: #d7cad2;
+
+        p {
+          margin-top: 0;
+          padding: 0;
+          word-wrap: break-word;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          &.withdrawal-items {
+            font-size: 12px;
+          }
+        }
+
+        &::after {
+          border-color: #d7cad2 transparent;
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: -10px;
+          left: 20px;
+          width: 0;
+          height: 0;
+          border-width: 10px 10px 0 0;
+          border-style: solid;
+        }
+      }
+
+      &.withdrawal-confirmed .withdrawal-content {
+        background: #cdd7ca;
+
+        &::after {
+          border-color: #cdd7ca transparent;
+        }
+      }
+    }
+  }
+}
