@@ -16,6 +16,8 @@ class WC_GZD_Admin_Note_Shiptastic_Install extends WC_GZD_Admin_Note {
 
 		if ( 'yes' === get_option( 'woocommerce_gzd_is_shiptastic_standalone_update' ) && ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ) {
 			$is_disabled = false;
+		} elseif ( 'yes' === get_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update' ) && ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_dhl_plugin_active() ) {
+			$is_disabled = false;
 		}
 
 		if ( ! current_user_can( 'install_plugins' ) ) {
