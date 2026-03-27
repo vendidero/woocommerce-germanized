@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WooCommerce Germanized\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2026-03-27T08:40:18+00:00\n"
-"PO-Revision-Date: 2026-03-27 09:41+0100\n"
+"POT-Creation-Date: 2026-03-27T10:49:55+00:00\n"
+"PO-Revision-Date: 2026-03-27 11:51+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de_DE@formal\n"
@@ -69,9 +69,9 @@ msgid "Withdrawal request confirmed"
 msgstr "Widerruf bestätigt"
 
 #: includes/emails/class-eu-owb-email-customer-withdrawal-request-confirmed.php:40
-#: src/Package.php:566
+#: src/Package.php:569
 #: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-customer-withdrawal-request-confirmed.php:40
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:566
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:569
 msgctxt "owb"
 msgid "Confirms the withdrawal request to the customer."
 msgstr "Bestätigt den Widerruf an den Kunden."
@@ -293,33 +293,33 @@ msgctxt "wbo"
 msgid "A new partial withdrawal request has been submitted to this order"
 msgstr "Ein neuer Teilwiderruf wurde zu dieser Bestellung angelegt"
 
-#: includes/eu-owb-core-functions.php:827
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:827
+#: includes/eu-owb-core-functions.php:832
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:832
 msgctxt "wbo"
 msgid "A withdrawal request has been confirmed."
 msgstr "Ein Widerruf wurde bestätigt."
 
-#: includes/eu-owb-core-functions.php:887
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:887
+#: includes/eu-owb-core-functions.php:892
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:892
 #, php-format
 msgctxt "wbo"
 msgid "A withdrawal request has been rejected: %1$s"
 msgstr "Ein Widerruf wurde abgelehnt: %1$s"
 
-#: src/Ajax.php:127
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:127
+#: src/Ajax.php:129
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:129
 msgctxt "owb"
 msgid "Sorry, no permission to view that order."
 msgstr "Sorry, diese Ressource können Sie nicht abrufen."
 
-#: src/Ajax.php:175
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:175
+#: src/Ajax.php:200
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:200
 msgctxt "owb"
 msgid "Please select one or more items to withdraw."
 msgstr "Bitte wählen Sie ein oder mehrere Positionen für den Widerruf aus."
 
-#: src/Ajax.php:188
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:188
+#: src/Ajax.php:213
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:213
 msgctxt "owb"
 msgid ""
 "One ore more of the item(s) you've selected cannot be withdrawn. Please try "
@@ -329,23 +329,23 @@ msgstr ""
 "zurückgegeben werden. Bitte versuchen Sie es erneut."
 
 # @ woocommerce-germanized
-#: src/Ajax.php:213
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:213
+#: src/Ajax.php:239
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:239
 msgctxt "owb"
 msgid "Please check your email address."
 msgstr "Bitte überprüfen Sie Ihre E-Mail-Adresse."
 
 # @ woocommerce-germanized
-#: src/Ajax.php:215
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:215
+#: src/Ajax.php:241
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:241
 msgctxt "owb"
 msgid "Please fill out all required fields."
 msgstr "Bitte füllen Sie alle Pflichtfelder aus."
 
-#: src/Ajax.php:225 src/Ajax.php:232 src/Ajax.php:246
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:225
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:232
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:246
+#: src/Ajax.php:251 src/Ajax.php:258 src/Ajax.php:274
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:251
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:258
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:274
 #, php-format
 msgctxt "owb"
 msgid ""
@@ -357,8 +357,8 @@ msgstr ""
 "finden. Bitte versuchen Sie es erneut. Falls Sie weiterhin Probleme haben, "
 "<a href=\"%s\">kontaktieren</a> Sie bitte unseren Support."
 
-#: src/Ajax.php:251
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:251
+#: src/Ajax.php:279
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:279
 #, php-format
 msgctxt "owb"
 msgid ""
@@ -369,8 +369,8 @@ msgstr ""
 "href=\"%s\">Kontaktieren</a> Sie unseren Support, falls Sie Fragen haben."
 
 # @ woocommerce-germanized
-#: src/Ajax.php:261
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:261
+#: src/Ajax.php:289
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:289
 msgctxt "owb"
 msgid ""
 "Thank you. We've received your withdrawal request. You'll receive a "
@@ -481,91 +481,91 @@ msgid "Withdrawals"
 msgstr "Widerrufsbutton"
 
 # @ woocommerce-germanized
-#: src/Package.php:488
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:488
+#: src/Package.php:491
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:491
 msgctxt "owb"
 msgid "Confirm withdrawal requests"
 msgstr "Widerrufsanträge bestätigen"
 
 # @ woocommerce-germanized
-#: src/Package.php:543 src/Package.php:566
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:543
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:566
+#: src/Package.php:546 src/Package.php:569
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:546
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:569
 msgctxt "owb"
 msgid "Confirm withdrawal request"
 msgstr "Widerruf bestätigen"
 
-#: src/Package.php:561
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:561
+#: src/Package.php:564
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:564
 msgctxt "owb"
 msgid "Partial withdrawal request"
 msgstr "Teilwiderruf"
 
-#: src/Package.php:561
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:561
+#: src/Package.php:564
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:564
 msgctxt "owb"
 msgid "Full withdrawal request"
 msgstr "Vollständiger Widerruf"
 
-#: src/Package.php:563
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:563
+#: src/Package.php:566
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:566
 #, php-format
 msgctxt "owb"
 msgid "Received on %1$s @ %2$s by <a href=\"mailto:%3$s\">%3$s</a>"
 msgstr "Eingegangen am %1$s @ %2$s von <a href=\"mailto:%3$s\">%3$s</a>"
 
-#: src/Package.php:566
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:566
+#: src/Package.php:569
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:569
 msgctxt "owb"
 msgid "Are you sure to confirm the withdrawal request?"
 msgstr "Sind Sie sicher, dass Sie den Widerruf bestätigen möchten?"
 
-#: src/Package.php:567
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:567
+#: src/Package.php:570
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:570
 msgctxt "owb"
 msgid "Reject the withdrawal request by providing a reason for the rejection."
 msgstr "Lehne den Widerruf unter Angabe eines Grundes ab."
 
-#: src/Package.php:567
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:567
+#: src/Package.php:570
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:570
 msgctxt "owb"
 msgid "Reject request"
 msgstr "Antrag ablehnen"
 
 # @ woocommerce-germanized
-#: src/Package.php:571
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:571
+#: src/Package.php:574
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:574
 msgctxt "owb"
 msgid "Reason"
 msgstr "Grund"
 
-#: src/Package.php:572
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:572
+#: src/Package.php:575
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:575
 msgctxt "owb"
 msgid "Describe why you've rejected the withdrawal request."
 msgstr "Erläutern Sie warum Sie den Widerruf ablehnen."
 
-#: src/Package.php:579
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:579
+#: src/Package.php:582
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:582
 msgctxt "owb"
 msgid "Are you sure to reject the withdrawal request?"
 msgstr "Sind Sie sicher, dass Sie den Widerruf ablehnen möchten?"
 
-#: src/Package.php:579
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:579
+#: src/Package.php:582
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:582
 msgctxt "owb"
 msgid "Reject withdrawal request"
 msgstr "Widerruf ablehnen"
 
-#: src/Package.php:594 src/Package.php:616
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:594
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:616
+#: src/Package.php:597 src/Package.php:619
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:597
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:619
 msgctxt "owb"
 msgid "Pending withdrawal"
 msgstr "Widerruf ausstehend"
 
-#: src/Package.php:597
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:597
+#: src/Package.php:600
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:600
 #, php-format
 msgctxt "owb"
 msgid "Pending withdrawal (%s)"
@@ -573,15 +573,15 @@ msgid_plural "Pending withdrawals (%s)"
 msgstr[0] "Widerruf ausstehend (%s)"
 msgstr[1] "Widerruf ausstehend (%s)"
 
-#: src/Package.php:604 src/Package.php:617
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:604
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:617
+#: src/Package.php:607 src/Package.php:620
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:607
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:620
 msgctxt "owb"
 msgid "Withdrawn"
 msgstr "Widerrufen"
 
-#: src/Package.php:607
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:607
+#: src/Package.php:610
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:610
 #, php-format
 msgctxt "owb"
 msgid "Withdrawn (%s)"
@@ -790,10 +790,10 @@ msgstr "Widerruf Übersicht"
 # @ woocommerce-germanized
 #: templates/emails/email-withdrawal-details.php:40
 #: templates/emails/plain/email-withdrawal-details.php:29
-#: templates/forms/order-withdrawal-request.php:43
+#: templates/forms/order-withdrawal-request.php:56
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:40
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:29
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:43
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:56
 msgctxt "owb"
 msgid "Order"
 msgstr "Bestellung"
@@ -881,7 +881,9 @@ msgid "Order #%1$s was placed on %2$s."
 msgstr "Bestellung #%1$s wurde am %2$s abgeschickt."
 
 #: templates/forms/order-withdrawal-request-item-select.php:43
+#: templates/forms/order-withdrawal-request.php:45
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request-item-select.php:43
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:45
 msgctxt "owb"
 msgid "I want to select the items to cancel manually."
 msgstr "Ich möchte bestimmte Positionen für den Widerruf auswählen."
@@ -893,34 +895,46 @@ msgctxt "owb"
 msgid "Select all"
 msgstr "Alle auswählen"
 
-#: templates/forms/order-withdrawal-request.php:28
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:28
+#: templates/forms/order-withdrawal-request.php:29
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:29
 msgctxt "owb"
 msgid "Order number"
 msgstr "Bestellnummer"
 
-#: templates/forms/order-withdrawal-request.php:33
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:33
+#: templates/forms/order-withdrawal-request.php:34
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:34
 msgctxt "owb"
 msgid "Email"
 msgstr "E-Mail"
 
-#: templates/forms/order-withdrawal-request.php:45
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:45
+#: templates/forms/order-withdrawal-request.php:46
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:46
+msgctxt "owb"
+msgid ""
+"You will receive an email confirming receipt of your withdrawal request. In "
+"the email, you will find a link that allows you to select the items you wish "
+"to return."
+msgstr ""
+"Sie erhalten eine E-Mail-Bestätigung über den Eingang des Widerrufs. In "
+"dieser E-Mail finden Sie einen Link, über den Sie die Artikel für den "
+"Widerruf auswählen können."
+
+#: templates/forms/order-withdrawal-request.php:58
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:58
 msgctxt "owb"
 msgid "Please select an order"
 msgstr "Bitte wählen Sie eine Bestellung aus"
 
 # @ woocommerce-germanized
-#: templates/forms/order-withdrawal-request.php:47
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:47
+#: templates/forms/order-withdrawal-request.php:60
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:60
 #, php-format
 msgctxt "owb"
 msgid "Order %1$s"
 msgstr "Bestellung %1$s"
 
-#: templates/forms/order-withdrawal-request.php:78
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:78
+#: templates/forms/order-withdrawal-request.php:91
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:91
 msgctxt "owb"
 msgid "Confirm withdrawal"
 msgstr "Widerruf bestätigen"
