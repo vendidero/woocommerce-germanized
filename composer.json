@@ -15,19 +15,18 @@
     "defuse/php-encryption": "^2.0.0",
     "globalcitizen/php-iban": "^4.0.0",
     "vendidero/woocommerce-eu-tax-helper": "2.0.9",
-    "vendidero/eu-order-withdrawal-button-for-woocommerce": "1.0.0"
+    "vendidero/eu-order-withdrawal-button-for-woocommerce": "1.0.1"
   },
   "require-dev": {
     "myclabs/deep-copy": "^1.7.0",
     "phpunit/phpunit": "^9.0.0",
     "yoast/phpunit-polyfills": "^3.0",
-    "woocommerce/woocommerce-sniffs": "^1.0.0"
+    "woocommerce/woocommerce-sniffs": "^1.0.1"
   },
   "repositories": [
     {
       "type": "vcs",
-      "url":  "git@github.com:vendidero/eu-order-withdrawal-button-for-woocommerce.git",
-      "name": "vendidero/eu-order-withdrawal-button-for-woocommerce"
+      "url":  "https://github.com/vendidero/eu-order-withdrawal-button-for-woocommerce"
     },
     {
       "type": "vcs",

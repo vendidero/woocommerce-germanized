@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 7.0
 WC requires at least: 3.9
 WC tested up to: 10.6
-Stable tag: 4.0.0
+Stable tag: 4.0.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -207,6 +207,14 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.0.1 =
+* New: Withdrawal button in compliance with EU directive 2023/2673
+* New: Removed Shiptastic, DHL for Shiptastic packages from core
+* New: WP 7.0 compatibility
+* Improvement: Prevent setting custom tax meta for items without taxes
+* Improvement: WooCommerce checkout/cart block attribute styling
+* Fix: Partial withdrawal option
+
 = 4.0.0 =
 * New: Withdrawal button in compliance with EU directive 2023/2673
 * New: Removed Shiptastic, DHL for Shiptastic packages from core
