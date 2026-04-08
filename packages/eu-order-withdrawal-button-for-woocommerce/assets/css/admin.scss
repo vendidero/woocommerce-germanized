@@ -1,0 +1,175 @@
+.eu-owb-order-withdrawal-request {
+  display: block;
+  clear: both;
+  margin-top: 1.33em;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .eu-owb-order-withdrawal-request-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+
+    .eu-owb-reject-withdrawal-request-start {
+      color: #a00;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .eu-owb-reject-withdrawal-request-form {
+      p.form-field:first-child {
+        margin-top: 0 !important;
+      }
+
+      #eu-owb-reject-withdrawal-request-submit {
+        margin-top: 12px;
+      }
+
+      &.hidden {
+        display: none !important;
+      }
+    }
+  }
+}
+
+.withdrawal-quantity {
+  background: #eba3a3;
+  border: none;
+  padding: 4px;
+  color: #a00;
+  border-radius: 4px;
+  font-size: .92em !important;
+
+  &.withdrawal-requested {
+    background: #f8dda7;
+    color: #573b00;
+  }
+}
+
+.eu-owb-settings-additional-desc {
+  margin-top: 1em;
+  line-height: 1.5em;
+  background: #fff;
+  padding: .5em;
+  font-style: normal;
+  font-size: 14px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.post-type-shop_order .wp-list-table .column-withdrawal_request .description,
+.woocommerce_page_wc-orders .wp-list-table .column-withdrawal_request .description {
+  display: block;
+  color: #999;
+  margin-top: 5px;
+
+  a {
+    color: #999;
+    text-decoration: underline;
+  }
+}
+
+tr.wc-settings-row-withdrawal-period td.forminp-number .description {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.order-status {
+  &.status-withdrawn,
+  &.status-full-withdrawal,
+  &.withdrawal-request-status-unverified {
+    background: #eba3a3;
+    color: #570000;
+  }
+  &.status-pending-wdraw, &.status-partial-withdrawal {
+    background: #f8dda7;
+    color: #573b00;
+  }
+  &.withdrawal-request-status-verified {
+    background-color: #C6E1C6;
+    color: #13550F;
+  }
+}
+
+a.wc-action-button.wc-action-button-reject:after {
+  content: "\f158";
+}
+
+a.wc-action-button.wc-action-button-delete:after {
+  content: "\f182";
+}
+
+#eu-owb-order-withdrawals {
+  display: none;
+}
+
+#eu-owb-order-withdrawals:has(.withdrawals) {
+  display: block;
+}
+
+#eu-owb-order-withdrawals {
+  .inside {
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.withdrawals {
+    li {
+      padding: 0 10px;
+
+      p.meta {
+        padding: 10px;
+        color: #999;
+        margin: 0;
+        font-size: 11px;
+
+        a.delete_withdrawal {
+          color: #a00;
+        }
+      }
+
+      .withdrawal-content {
+        padding: 10px;
+        position: relative;
+        background: #d7cad2;
+
+        p {
+          margin-top: 0;
+          padding: 0;
+          word-wrap: break-word;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          &.withdrawal-items {
+            font-size: 12px;
+          }
+        }
+
+        &::after {
+          border-color: #d7cad2 transparent;
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: -10px;
+          left: 20px;
+          width: 0;
+          height: 0;
+          border-width: 10px 10px 0 0;
+          border-style: solid;
+        }
+      }
+
+      &.withdrawal-confirmed .withdrawal-content {
+        background: #cdd7ca;
+
+        &::after {
+          border-color: #cdd7ca transparent;
+        }
+      }
+    }
+  }
+}

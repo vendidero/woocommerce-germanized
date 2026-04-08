@@ -1,0 +1,18 @@
+.order-withdrawal-request-items-table,
+.order-supports-partial-withdrawal,
+.order-withdrawal-delete-original-request-checkbox {
+  &.hidden {
+    display: none !important;
+  }
+
+  .eu-owb-woocommerce-select-certain-items-desc {
+    display: block;
+    font-size: .9em;
+  }
+}
+
+form.order-withdrawal-request {
+  .form-row-submit {
+    margin-top: 10px;
+  }
+}
