@@ -186,6 +186,8 @@ function wc_gzd_product_matches_extended_type( $types, $product ) {
 				$matches_type = wc_gzd_get_product( $product )->is_defective_copy();
 			} elseif ( 'photovoltaic_system' === $type ) {
 				$matches_type = wc_gzd_get_product( $product )->is_photovoltaic_system();
+			} elseif ( 'is_food' === $type ) {
+				$matches_type = wc_gzd_get_product( $product )->is_food();
 			} else {
 				$getter = 'is_' . $type;
 				try {

@@ -612,6 +612,8 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				$note->reset();
 			}
 
+			$add_redirect_transient = is_null( $current_version ) ? true : false;
+
 			// Queue messages and notices
 			if ( ! is_null( $current_version ) ) {
 				$major_version     = \Vendidero\Germanized\PluginsHelper::get_major_version( $current_version );
@@ -619,6 +621,8 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 				// Only on major update
 				if ( version_compare( $new_major_version, $major_version, '>' ) ) {
+					$add_redirect_transient = true;
+
 					if ( $note = $notices->get_note( 'pro' ) ) {
 						$note->reset();
 					}
@@ -638,6 +642,23 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 
 				if ( version_compare( $current_version, '3.14.0', '<' ) && ( wc_gzd_current_theme_is_fse_theme() || wc_gzd_has_checkout_block() ) ) {
 					$notices->activate_blocks_note();
+				}
+			}
+
+			/**
+			 * Clear old shiptastic actions
+			 */
+			if ( version_compare( $current_version, '4.0.2', '<' ) && ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ) {
+				if ( function_exists( 'as_unschedule_all_actions' ) ) {
+					$hooks = array(
+						'woocommerce_gzd_shipments_daily_cleanup',
+						'woocommerce_shiptastic_daily_cleanup',
+						'woocommerce_shiptastic_shipments_tracking',
+					);
+
+					foreach ( $hooks as $hook ) {
+						as_unschedule_all_actions( $hook );
+					}
 				}
 			}
 
@@ -675,7 +696,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			// Check if pages are needed - start setup
 			if ( wc_get_page_id( 'revocation' ) < 1 ) {
 				set_transient( '_wc_gzd_setup_wizard_redirect', 1, 60 * 60 );
-			} elseif ( ! defined( 'DOING_AJAX' ) ) {
+			} elseif ( ! defined( 'DOING_AJAX' ) && $add_redirect_transient ) {
 				// Redirect to welcome screen
 				set_transient( '_wc_gzd_activation_redirect', 1, 60 * 60 );
 			}
