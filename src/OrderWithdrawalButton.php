@@ -30,12 +30,15 @@ class OrderWithdrawalButton {
 	}
 
 	public static function matches_product_matches_type( $matches_type, $product, $types ) {
-		$intersect = array_intersect( (array) $types, array(
-			'service',
-			'is_food',
-			'defective_copy',
-			'used_good',
-		) );
+		$intersect = array_intersect(
+			(array) $types,
+			array(
+				'service',
+				'is_food',
+				'defective_copy',
+				'used_good',
+			)
+		);
 
 		if ( ! empty( $intersect ) ) {
 			$matches_type = wc_gzd_product_matches_extended_type( $types, $product );
