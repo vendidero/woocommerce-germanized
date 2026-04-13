@@ -255,9 +255,7 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 		if ( $product = $org_product->get_product() ) {
 			$add_suffixes = true;
 
-			if ( $product->is_type( 'variable' ) && self::$variable_has_filtered ) {
-				$add_suffixes = false;
-			} elseif ( strstr( $price, 'wc-gzd-legal-price-info' ) ) {
+			if ( $product->is_type( 'variable' ) || strstr( $price, 'wc-gzd-legal-price-info' ) ) {
 				$add_suffixes = false;
 			}
 
@@ -277,31 +275,23 @@ class WC_GZD_Compatibility_WooCommerce_Product_Bundles extends WC_GZD_Compatibil
 			}
 
 			if ( $add_suffixes ) {
-				ob_start();
-				woocommerce_gzd_template_single_tax_info();
-				$legal = ob_get_clean();
+				$legal = '';
+				$unit  = '';
 
-				/**
-				 * Do not show the unit price for variable products which might contain (dynamically calculated) price ranges.
-				 */
-				if ( ! $product->is_type( 'variable' ) ) {
-					ob_start();
-					woocommerce_gzd_template_single_price_unit();
-					$unit = ob_get_clean();
-				} else {
-					$unit = '';
-					// Make sure the tax-info class is not being replaced by variation data.
-					$legal = str_replace( 'tax-info', 'tax-info-static', $legal );
+				if ( $tax_info = \Vendidero\Germanized\Shopmarks::get( 'single_product', 'legal' ) ) {
+					if ( $tax_info->is_enabled() ) {
+						$legal = $tax_info->get_html();
+					}
 				}
 
-				$price = $price . '<span class="wc-gzd-legal-price-info">' . $this->replace_p_tags( $unit ) . $this->replace_p_tags( $legal ) . '</span>';
+				if ( $unit_price = \Vendidero\Germanized\Shopmarks::get( 'single_product', 'unit_price' ) ) {
+					if ( $unit_price->is_enabled() ) {
+						$unit = $unit_price->get_html();
+					}
+				}
 
-				/**
-				 * Do only add these suffixes to the variable parent product and not to every single variation which
-				 * retrieves shopmarks via JS.
-				 */
-				if ( $product->is_type( 'variable' ) ) {
-					self::$variable_has_filtered = true;
+				if ( ! empty( $legal ) || ! empty( $unit ) ) {
+					$price = $price . '<span class="wc-gzd-legal-price-info">' . $this->replace_p_tags( $unit ) . $this->replace_p_tags( $legal ) . '</span>';
 				}
 			}
 		}

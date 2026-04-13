@@ -224,6 +224,22 @@ class Shopmark {
 		}
 	}
 
+	public function get_html( $params = array() ) {
+		if ( is_null( $this->get_callback() ) || ! $this->is_enabled() ) {
+			return '';
+		}
+
+		try {
+			ob_start();
+			call_user_func_array( $this->get_callback(), $params );
+			$html = ob_get_clean();
+		} catch ( \Exception $e ) {
+			$html = '';
+		}
+
+		return $html;
+	}
+
 	public function remove() {
 		if ( is_null( $this->get_callback() ) ) {
 			return;

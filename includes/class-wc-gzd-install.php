@@ -584,17 +584,19 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			// Delete plugin header data for dependency check
 			delete_option( 'woocommerce_gzd_plugin_header_data' );
 
-			if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() && \Vendidero\Germanized\Shiptastic::needs_shiptastic_standalone() ) {
-				update_option( 'woocommerce_gzd_is_shiptastic_standalone_update', 'yes' );
-			} else {
-				delete_option( 'woocommerce_gzd_is_shiptastic_standalone_update' );
-			}
+			if ( ! is_null( $current_version ) && version_compare( $current_version, '4.0.0', '<' ) ) {
+				if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() && \Vendidero\Germanized\Shiptastic::needs_shiptastic_standalone() ) {
+					update_option( 'woocommerce_gzd_is_shiptastic_standalone_update', 'yes' );
+				} else {
+					delete_option( 'woocommerce_gzd_is_shiptastic_standalone_update' );
+				}
 
-			if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_dhl_plugin_active() && \Vendidero\Germanized\Shiptastic::needs_shiptastic_dhl_standalone() ) {
-				update_option( 'woocommerce_gzd_is_shiptastic_standalone_update', 'yes' );
-				update_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update', 'yes' );
-			} else {
-				delete_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update' );
+				if ( ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_dhl_plugin_active() && \Vendidero\Germanized\Shiptastic::needs_shiptastic_dhl_standalone() ) {
+					update_option( 'woocommerce_gzd_is_shiptastic_standalone_update', 'yes' );
+					update_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update', 'yes' );
+				} else {
+					delete_option( 'woocommerce_gzd_is_shiptastic_dhl_standalone_update' );
+				}
 			}
 
 			include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-notices.php';
@@ -607,9 +609,13 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 				$note->reset();
 			}
 
-			// Recheck Shiptastic install
-			if ( $note = $notices->get_note( 'shiptastic_install' ) ) {
-				$note->reset();
+			/**
+			 * Recheck Shiptastic install when updating to 4.0.
+			 */
+			if ( ! is_null( $current_version ) && version_compare( $current_version, '4.0.0', '<' ) ) {
+				if ( $note = $notices->get_note( 'shiptastic_install' ) ) {
+					$note->reset();
+				}
 			}
 
 			$add_redirect_transient = is_null( $current_version ) ? true : false;

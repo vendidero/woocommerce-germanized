@@ -946,9 +946,9 @@ class Shopmarks {
 	}
 
 	/**
-	 * @return Shopmark[]
+	 * @return Shopmark[]|Shopmark|false
 	 */
-	public static function get( $location = '' ) {
+	public static function get( $location = '', $type = '' ) {
 		if ( ! empty( $location ) ) {
 			$data = array();
 
@@ -958,6 +958,19 @@ class Shopmarks {
 				}
 
 				$data = isset( self::$shopmarks[ $location ] ) ? self::$shopmarks[ $location ] : array();
+
+				if ( ! empty( $type ) ) {
+					$result = false;
+
+					foreach ( $data as $shopmark ) {
+						if ( $type === $shopmark->get_type() ) {
+							$result = $shopmark;
+							break;
+						}
+					}
+
+					return $result;
+				}
 			}
 		} else {
 			$data = self::$shopmarks;

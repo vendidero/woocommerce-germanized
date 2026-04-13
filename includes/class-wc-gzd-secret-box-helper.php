@@ -63,7 +63,12 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 				$result['key'] = sodium_hex2bin( constant( self::get_encryption_key_constant( $encryption_type ) ) );
 			} else {
 				try {
-					$pw            = LOGGED_IN_KEY;
+					if ( ! defined( 'LOGGED_IN_KEY' ) && ! defined( 'DB_PASSWORD' ) ) {
+						$pw = 'insecure-default-pw';
+					} else {
+						$pw = defined( 'LOGGED_IN_KEY' ) ? LOGGED_IN_KEY : DB_PASSWORD;
+					}
+
 					$result['key'] = sodium_crypto_pwhash(
 						SODIUM_CRYPTO_SECRETBOX_KEYBYTES,
 						$pw,
