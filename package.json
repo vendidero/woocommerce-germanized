@@ -32,17 +32,19 @@
     "@woocommerce/dependency-extraction-webpack-plugin": "^2.2.0",
     "@woocommerce/eslint-plugin": "^2.2.0",
     "@wordpress/prettier-config": "^2.25.5",
-    "@wordpress/scripts": "27.2.0",
+    "@wordpress/scripts": "30.13.0",
     "copy-webpack-plugin": "6.4.1",
-    "css-loader": "^6.8.1",
+    "css-loader": "^6.11.X",
     "css-minimizer-webpack-plugin": "^5.0.1",
     "mini-css-extract-plugin": "2.7.6",
     "sass-loader": "^13.3.2",
     "spectre.css": "*",
     "terser-webpack-plugin": "^2.3.8",
-    "webpack": "5.88.2",
-    "webpack-bundle-analyzer": "4.7.0",
-    "webpack-cli": "5.1.4"
+    "webpack": "5.97.X",
+    "webpack-bundle-analyzer": "4.9.X",
+    "webpack-cli": "5.1.X",
+    "@types/react": "18.3.x",
+    "@types/react-dom": "18.3.x"
   },
   "dependencies": {
     "@wordpress/autop": "3.16.0",
@@ -64,8 +66,12 @@
     "use-debounce": "9.0.4",
     "wordpress-components": "npm:@wordpress/components@14.2.0"
   },
+  "peerDependencies": {
+    "@wordpress/data": "^10.0.2",
+    "react": "18.3.x",
+    "react-dom": "18.3.x"
+  },
   "engines": {
-    "node": "^16.13.0",
-    "npm": "^8.0.0"
+    "node": "^20.11.1"
   }
 }

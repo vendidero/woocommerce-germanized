@@ -302,6 +302,8 @@ add_action( 'woocommerce_before_checkout_form_cart_notices', 'wc_gzd_maybe_disab
 add_action( 'woocommerce_checkout_update_order_review', 'wc_gzd_maybe_disable_checkout_adjustments', 20 );
 // Use a fallback for plugins/themes that circumvent WC_Shortcode_Checkout::checkout() with custom logic
 add_action( 'woocommerce_before_checkout_form', 'wc_gzd_maybe_disable_checkout_adjustments', -999 );
+// Last resort for custom theme elementor layouts, e.g. xstore
+add_action( 'woocommerce_before_checkout_billing_form', 'wc_gzd_maybe_disable_checkout_adjustments', -999 );
 
 function woocommerce_gzd_checkout_load_ajax_relevant_hooks() {
 	add_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit', wc_gzd_get_hook_priority( 'checkout_order_submit' ) );
