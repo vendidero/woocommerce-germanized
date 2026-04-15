@@ -40,7 +40,7 @@
     "sass-loader": "^13.3.2",
     "spectre.css": "*",
     "terser-webpack-plugin": "^2.3.8",
-    "webpack": "5.97.X",
+    "webpack": "5.106.1",
     "webpack-bundle-analyzer": "4.9.X",
     "webpack-cli": "5.1.X",
     "@types/react": "18.3.x",
