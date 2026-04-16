@@ -199,6 +199,35 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				return;
 			}
 
+			$this->core_includes();
+
+			if ( did_action( 'woocommerce_loaded' ) ) {
+				$this->load();
+			} else {
+				add_action(
+					'woocommerce_loaded',
+					function () {
+						$this->load();
+					}
+				);
+			}
+
+			// Hooks
+			register_activation_hook( __FILE__, array( 'WC_GZD_Install', 'install' ) );
+			register_deactivation_hook( __FILE__, array( 'WC_GZD_Install', 'deactivate' ) );
+		}
+
+		protected function core_includes() {
+			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-core-functions.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-cart-functions.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-order-functions.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-legacy-functions.php';
+			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-shipments-legacy-functions.php';
+
+			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-install.php';
+		}
+
+		protected function load() {
 			/**
 			 * Before startup.
 			 *
@@ -209,10 +238,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			do_action( 'woocommerce_germanized_before_load' );
 
 			$this->includes();
-
-			// Hooks
-			register_activation_hook( __FILE__, array( 'WC_GZD_Install', 'install' ) );
-			register_deactivation_hook( __FILE__, array( 'WC_GZD_Install', 'deactivate' ) );
 
 			/**
 			 * Make sure the note hooks are available on install and during REST calls.
@@ -247,6 +272,10 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			$this->allergenic      = new WC_GZD_Allergenic();
 			$this->product_factory = new WC_GZD_Product_Factory();
 
+			$this->woocommerce_loaded_includes();
+
+			\Vendidero\Germanized\PluginsHelper::init();
+
 			/**
 			 * After startup.
 			 *
@@ -255,14 +284,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			 * @since 1.0.0
 			 */
 			do_action( 'woocommerce_germanized_loaded' );
-
-			if ( did_action( 'woocommerce_loaded' ) ) {
-				$this->woocommerce_loaded_includes();
-			} else {
-				add_action( 'woocommerce_loaded', array( $this, 'woocommerce_loaded_includes' ) );
-			}
-
-			\Vendidero\Germanized\PluginsHelper::init();
 		}
 
 		public function declare_feature_compatibility() {
@@ -524,14 +545,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 * Include required core files used in admin and on the frontend.
 		 */
 		private function includes() {
-			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-core-functions.php';
-			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-cart-functions.php';
-			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-order-functions.php';
-			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-legacy-functions.php';
-			include_once WC_GERMANIZED_ABSPATH . 'includes/wc-gzd-shipments-legacy-functions.php';
-
-			include_once WC_GERMANIZED_ABSPATH . 'includes/class-wc-gzd-install.php';
-
 			if ( is_admin() ) {
 				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin.php';
 				include_once WC_GERMANIZED_ABSPATH . 'includes/admin/class-wc-gzd-admin-welcome.php';
@@ -561,32 +574,14 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				 * If Pro version is enabled: Make sure we are not including frontend hooks before pro has been loaded.
 				 * This is necessary to enable filters for hook priorities to work while adjusting theme-specific elements.
 				 */
-				if ( did_action( 'woocommerce_loaded' ) ) {
-					if ( $this->is_pro() ) {
-						if ( ! did_action( 'woocommerce_gzdp_loaded' ) ) {
-							add_action( 'woocommerce_gzdp_loaded', array( $this, 'frontend_includes' ), 5 );
-						} else {
-							$this->frontend_includes();
-						}
+				if ( $this->is_pro() ) {
+					if ( ! did_action( 'woocommerce_gzdp_loaded' ) ) {
+						add_action( 'woocommerce_gzdp_loaded', array( $this, 'frontend_includes' ), 5 );
 					} else {
 						$this->frontend_includes();
 					}
 				} else {
-					add_action(
-						'woocommerce_loaded',
-						function () {
-							if ( $this->is_pro() ) {
-								if ( ! did_action( 'woocommerce_gzdp_loaded' ) ) {
-									add_action( 'woocommerce_gzdp_loaded', array( $this, 'frontend_includes' ), 5 );
-								} else {
-									$this->frontend_includes();
-								}
-							} else {
-								$this->frontend_includes();
-							}
-						},
-						5
-					);
+					$this->frontend_includes();
 				}
 			}
 
