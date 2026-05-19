@@ -399,10 +399,10 @@ class WC_GZD_AJAX {
 							$from_prices = wc_gzd_recalculate_unit_price( $price_args );
 							$to_prices   = $from_prices;
 
-							if ( $sale_price && $variation_id_from !== $variation_id_to ) {
+							if ( $variation_id_from !== $variation_id_to ) {
 								if ( $to_variation = wc_gzd_get_gzd_product( $variation_id_to ) ) {
 									$price_args = array(
-										'price'    => $sale_price,
+										'price'    => $sale_price ? $sale_price : $regular_price,
 										'base'     => $to_variation->get_unit_base(),
 										'products' => $to_variation->get_unit_product(),
 									);

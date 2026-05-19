@@ -365,21 +365,30 @@ class WC_GZD_Admin {
 		 * @param array $template_data Template data in key => value pairs.
 		 *
 		 * @since 3.0.0
-		 *
 		 */
-		$template_data = apply_filters(
-			'woocommerce_gzd_template_check',
-			array(
-				'germanized' => array(
-					'title'             => __( 'Germanized for WooCommerce', 'woocommerce-germanized' ),
-					'path'              => array( WC_germanized()->plugin_path() . '/templates' ),
-					'template_path'     => WC_germanized()->template_path(),
-					'outdated_help_url' => 'https://vendidero.de/doc/woocommerce-germanized/veraltete-germanized-templates-aktualisieren',
-					'files'             => array(),
-					'has_outdated'      => false,
-				),
-			)
+		$template_data = array(
+			'germanized' => array(
+				'title'             => __( 'Germanized for WooCommerce', 'woocommerce-germanized' ),
+				'path'              => array( WC_germanized()->plugin_path() . '/templates' ),
+				'template_path'     => WC_germanized()->template_path(),
+				'outdated_help_url' => 'https://vendidero.de/doc/woocommerce-germanized/veraltete-germanized-templates-aktualisieren',
+				'files'             => array(),
+				'has_outdated'      => false,
+			),
 		);
+
+		if ( class_exists( '\Vendidero\OrderWithdrawalButton\Package' ) ) {
+			$template_data['order_withdrawal_button'] = array(
+				'title'             => __( 'EU Order Withdrawal Button for WooCommerce', 'woocommerce-germanized' ),
+				'path'              => array( \Vendidero\OrderWithdrawalButton\Package::get_path( 'templates' ) ),
+				'template_path'     => \Vendidero\OrderWithdrawalButton\Package::get_template_path(),
+				'outdated_help_url' => 'https://vendidero.de/doc/woocommerce-germanized/veraltete-germanized-templates-aktualisieren',
+				'files'             => array(),
+				'has_outdated'      => false,
+			);
+		}
+
+		$template_data = apply_filters( 'woocommerce_gzd_template_check', $template_data );
 
 		foreach ( $template_data as $plugin => $path_data ) {
 			$path_data = wp_parse_args(

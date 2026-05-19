@@ -175,7 +175,7 @@
         form.getElementOrBlock( form, 'unit-price', '.price-unit' ).wc_gzd_set_content( hasDisplayPrice ? variation.unit_price : '' );
         form.getElementOrBlock( form, 'unit-product', '.product-units' ).wc_gzd_set_content( hasDisplayPrice ? variation.product_units : '' );
 
-        form.showOrHideTabs( form, variation.has_product_safety_information )
+        form.showOrHideTabs( form, variation.has_product_safety_information );
 
         form.$form.trigger( 'germanized_variation_data', variation, $wrapper );
     };

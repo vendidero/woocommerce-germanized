@@ -252,6 +252,7 @@ abstract class WC_GZD_Admin_Note {
 
 	protected function convert_content( $content ) {
 		// Convert list tags to <br/> to enable at least some kind of formatting.
+		$content = str_replace( array( '<ol>', '<ul>' ), '<br/><br/>', $content );
 		$content = str_replace( '</li>', '<br/>', $content );
 		$content = str_replace( '<li>', '✓ &nbsp;', $content );
 

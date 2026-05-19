@@ -49,6 +49,19 @@ class WC_GZD_Settings_Tab_General extends WC_GZD_Settings_Tab {
 		return $sections;
 	}
 
+	protected function get_breadcrumb_label( $label ) {
+		$label   = parent::get_breadcrumb_label( $label );
+		$section = $this->get_current_section();
+
+		if ( class_exists( '\Vendidero\OrderWithdrawalButton\Package' ) ) {
+			if ( ! empty( $section ) && 'withdrawal_button' === $section ) {
+				$label = $label . ' <a class="page-title-action" href="' . esc_url( \Vendidero\OrderWithdrawalButton\Package::get_withdrawals_url() ) . '">' . _x( 'Withdrawals', 'owb', 'woocommerce-germanized' ) . '</a>';
+			}
+		}
+
+		return $label;
+	}
+
 	public function get_section_description( $section ) {
 		if ( 'disputes' === $section ) {
 			return sprintf( __( 'Since Feb. 1 2017 regulations regarding alternative dispute resolution take effect. Further information regarding your duty to supply information can be found <a href="%s" target="_blank">here</a>.', 'woocommerce-germanized' ), 'http://shopbetreiber-blog.de/2017/01/05/streitschlichtung-neue-infopflichten-fuer-alle-online-haendler-ab-1-februar/' );
