@@ -132,8 +132,8 @@
     GermanizedVariationForm.prototype.onShowVariation = function( event, variation, purchasable ) {
         var form            = event.data.GermanizedvariationForm,
             $wrapper        = form.$wrapper,
-            hasCustomPrice  = variation.hasOwnProperty( 'price_html' ) && variation.price_html !== '',
-            hasDisplayPrice = variation.hasOwnProperty( 'display_price' ) && variation.display_price !== '';
+            hasCustomPrice  = ( variation.price_html && variation.price_html !== '' ) ? true : false,
+            hasDisplayPrice = ( variation.display_price && variation.display_price !== '' ) ? true : false;
 
         if ( hasCustomPrice && form.replacePrice ) {
             var $priceElement = form.getPriceElement( form );
