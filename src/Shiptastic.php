@@ -248,23 +248,6 @@ class Shiptastic {
 	}
 
 	protected static function setup_integration() {
-		/**
-		 * Use this tweak to allow installing extensions which rely on Shiptastic as
-		 * Shiptastic is currently bundled within the Germanized installation package.
-		 *
-		 * @TODO remove when updating to Germanized 4.0.0
-		 */
-		add_filter(
-			'wp_plugin_dependencies_slug',
-			function ( $slug ) {
-				if ( 'shiptastic-for-woocommerce' === $slug ) {
-					$slug = '';
-				}
-
-				return $slug;
-			}
-		);
-
 		/*
 		 * Prevent redirecting to setup wizard when accessing Shiptastic settings.
 		 */

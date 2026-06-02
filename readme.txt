@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 7.0
 WC requires at least: 3.9
-WC tested up to: 10.7
-Stable tag: 4.0.5
+WC tested up to: 10.8
+Stable tag: 4.0.6
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -207,6 +207,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.0.6 =
+* Fix: Transactional email queue support for Woo >= 10.8.1
+
 = 4.0.5 =
 * Improvement: [Withdrawal button] Basic spam protection via honeypot field + direct post check
 * Improvement: [Withdrawal button] Prevent guests from submitting

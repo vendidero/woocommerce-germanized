@@ -130,7 +130,7 @@ class WC_GZD_Emails {
 				'trigger_order_confirmation_emails',
 			),
 			10,
-			1
+			2
 		);
 
 		// Disable paid order email for certain gateways (e.g. COD or invoice)
@@ -1136,9 +1136,8 @@ class WC_GZD_Emails {
 		 * @param WC_Order $order The order object.
 		 *
 		 * @since 1.9.10
-		 *
 		 */
-		do_action( 'woocommerce_gzd_order_confirmation', $order );
+		do_action( 'woocommerce_gzd_order_confirmation', $order, $order->get_id() );
 
 		if ( get_option( 'woocommerce_gzd_checkout_stop_order_cancellation' ) === 'yes' && WC()->cart ) {
 
@@ -1170,8 +1169,14 @@ class WC_GZD_Emails {
 		return $result;
 	}
 
-	public function trigger_order_confirmation_emails( $order ) {
-		$order_id = $order->get_id();
+	public function trigger_order_confirmation_emails( $order, $order_id ) {
+		/**
+		 * Woo >= 10.8.1 uses the Woo Action Scheduler to schedule transactional emails (if feature is enabled).
+		 * The action scheduler does not support passing Objects, e.g. WC_Order to the notification.
+		 */
+		if ( is_a( $order, 'WC_Order' ) ) {
+			$order_id = $order->get_id();
+		}
 
 		/**
 		 * Before order confirmation emails.
