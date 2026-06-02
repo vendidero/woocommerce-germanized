@@ -1,0 +1,40 @@
+<?php
+/**
+ * Admin deleted withdrawal request email
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/emails/admin-deleted-withdrawal-request.php.
+ *
+ * HOWEVER, on occasion EU OWB will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @package Vendidero/OrderWithdrawalButton/Templates
+ * @version 2.0.0
+ */
+defined( 'ABSPATH' ) || exit;
+
+$email_improvements_enabled = \Vendidero\OrderWithdrawalButton\Package::has_email_improvements_enabled();
+
+echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
+echo esc_html( wp_strip_all_tags( $email_heading ) );
+echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
+
+echo sprintf( esc_html_x( 'A withdrawal request to order #%s has been deleted:', 'owb', 'woocommerce-germanized' ), esc_html( $order->get_order_number() ) ) . "\n\n";
+
+do_action( 'eu_owb_woocommerce_withdrawal_request_details', $order, $sent_to_admin, $plain_text, $email, $withdrawal );
+
+do_action( 'eu_owb_woocommerce_withdrawal_request_meta', $order, $sent_to_admin, $plain_text, $email, $withdrawal );
+
+echo "\n\n----------------------------------------\n\n";
+
+/**
+ * Show user-defined additional content - this is set in each email's settings.
+ */
+if ( $additional_content ) {
+	echo esc_html( wp_strip_all_tags( wptexturize( $additional_content ) ) );
+	echo "\n\n----------------------------------------\n\n";
+}
+
+echo wp_kses_post( apply_filters( 'woocommerce_email_footer_text', get_option( 'woocommerce_email_footer_text' ) ) );
