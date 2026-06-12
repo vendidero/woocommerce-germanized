@@ -1213,16 +1213,29 @@ class WC_GZD_Legal_Checkbox_Manager {
 	 * @return mixed
 	 */
 	protected function get_logged_value( $checkbox_id, $instance_object ) {
-		$meta_key = "_checkbox_{$checkbox_id}";
+		return apply_filters( 'woocommerce_gzd_checkbox_value', $this->get_checkbox_meta_value( $checkbox_id, $instance_object ), $checkbox_id, $instance_object );
+	}
+
+	/**
+	 * @param string $checkbox_id
+	 * @param WC_Data|WP_User|WP_Comment $instance_object
+	 * @param string $meta_suffix
+	 *
+	 * @return mixed
+	 */
+	protected function get_checkbox_meta_value( $checkbox_id, $instance_object, $meta_suffix = '' ) {
+		$meta_key = "_checkbox_{$checkbox_id}" . ( ! empty( $meta_suffix ) ? '_' . $meta_suffix : '' );
 		$cb_value = '';
 
 		if ( is_a( $instance_object, 'WC_Order' ) ) {
-			if ( 'parcel_delivery' === $checkbox_id ) {
-				$cb_value = $instance_object->get_meta( '_parcel_delivery_opted_in' );
-			} elseif ( 'photovoltaic_systems' === $checkbox_id ) {
-				$cb_value = $instance_object->get_meta( '_photovoltaic_systems_opted_in' );
-			} else {
-				$cb_value = $instance_object->get_meta( $meta_key );
+			$cb_value = $instance_object->get_meta( $meta_key );
+
+			if ( '' === $meta_suffix ) {
+				if ( 'parcel_delivery' === $checkbox_id ) {
+					$cb_value = $instance_object->get_meta( '_parcel_delivery_opted_in' );
+				} elseif ( 'photovoltaic_systems' === $checkbox_id ) {
+					$cb_value = $instance_object->get_meta( '_photovoltaic_systems_opted_in' );
+				}
 			}
 		} elseif ( is_a( $instance_object, 'WP_User' ) ) {
 			$cb_value = get_user_meta( $instance_object->ID, $meta_key, true );
@@ -1232,7 +1245,51 @@ class WC_GZD_Legal_Checkbox_Manager {
 			$cb_value = $instance_object->get_meta( $meta_key );
 		}
 
-		return apply_filters( 'woocommerce_gzd_checkbox_value', $cb_value, $checkbox_id, $instance_object );
+		return apply_filters( 'woocommerce_gzd_checkbox_meta_value', $cb_value, $checkbox_id, $instance_object, $meta_suffix );
+	}
+
+	/**
+	 * @param string $checkbox_id
+	 * @param WC_Data|WP_User|WP_Comment $instance_object
+	 *
+	 * @return mixed
+	 */
+	protected function get_opted_in_at( $checkbox_id, $instance_object ) {
+		$timestamp = $this->get_checkbox_meta_value( $checkbox_id, $instance_object, 'opted_in_at' );
+		$date      = null;
+
+		if ( $timestamp && ! empty( $timestamp ) ) {
+			try {
+				$date = new WC_DateTime( "@{$timestamp}" );
+
+				// Set local timezone or offset.
+				if ( get_option( 'timezone_string' ) ) {
+					$date->setTimezone( new DateTimeZone( wc_timezone_string() ) );
+				} else {
+					$date->set_utc_offset( wc_timezone_offset() );
+				}
+			} catch ( Exception $e ) {
+				$date = null;
+			}
+		}
+
+		return apply_filters( 'woocommerce_gzd_checkbox_opted_in_at', $date, $checkbox_id, $instance_object );
+	}
+
+	/**
+	 * @param string $checkbox_id
+	 * @param WC_Data|WP_User|WP_Comment $instance_object
+	 *
+	 * @return mixed
+	 */
+	protected function get_opted_in_ip( $checkbox_id, $instance_object ) {
+		$ip_address = $this->get_checkbox_meta_value( $checkbox_id, $instance_object, 'opted_in_ip' );
+
+		if ( empty( $ip_address ) ) {
+			$ip_address = '';
+		}
+
+		return apply_filters( 'woocommerce_gzd_checkbox_opted_in_ip', $ip_address, $checkbox_id, $instance_object );
 	}
 
 	/**
@@ -1314,7 +1371,16 @@ class WC_GZD_Legal_Checkbox_Manager {
 					}
 					?>
 					<div class="wc-gzd-log-checkbox">
-						<p class="checkbox-title"><?php echo esc_html( $checkbox->get_admin_name() ); ?> <?php echo ( ! empty( $checkbox->get_admin_desc() ) ? wc_help_tip( $checkbox->get_admin_desc() ) : '' ); ?></p>
+						<p class="checkbox-title">
+							<?php echo esc_html( $checkbox->get_admin_name() ); ?> <?php echo ( ! empty( $checkbox->get_admin_desc() ) ? wc_help_tip( $checkbox->get_admin_desc() ) : '' ); ?>
+
+							<?php
+							if ( $opted_in_at = $this->get_opted_in_at( $checkbox_id, $instance_object ) ) :
+								$opted_in_ip = $this->get_opted_in_ip( $checkbox_id, $instance_object ) ? wc_gzd_maybe_mask_ip_address( $this->get_opted_in_ip( $checkbox_id, $instance_object ) ) : '?';
+								?>
+								<span class="checkbox-meta"><?php echo wp_kses_post( sprintf( esc_html__( 'Opted in on %1$s @ %2$s from %3$s', 'woocommerce-germanized' ), wc_format_datetime( $opted_in_at ), wc_format_datetime( $opted_in_at, get_option( 'time_format' ) ), $opted_in_ip ) ); ?></span>
+							<?php endif; ?>
+						</p>
 						<p class="checkbox-status">
 							<?php if ( in_array( $checkbox_id, $editable, true ) ) : ?>
 								<?php

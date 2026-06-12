@@ -737,6 +737,12 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
       margin: 0;
     }
 
+    .checkbox-meta {
+      display: block;
+      font-size: .9em;
+      color: #646970;
+    }
+
     &:last-child {
       margin-bottom: 0;
     }

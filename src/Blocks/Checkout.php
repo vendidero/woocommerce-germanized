@@ -548,14 +548,22 @@ final class Checkout {
 		);
 
 		$checkbox_manager = \WC_GZD_Legal_Checkbox_Manager::instance();
-
-		return $checkbox_manager->get_checkboxes(
+		$checkboxes       = $checkbox_manager->get_checkboxes(
 			array(
 				'locations' => 'checkout',
 				'sort'      => true,
 			),
 			'render'
 		);
+		/**
+		 * Reset checkbox show/hide logic to prevent side effects within hydration requests.
+		 * The cart hydration logic calls the cart endpoint server-side within a lot of requests, e.g.
+		 * from within the registration form. Without resetting the checkboxes the registration checkbox may be
+		 * in a hidden status.
+		 */
+		$checkbox_manager->do_register_action();
+
+		return $checkboxes;
 	}
 
 	private function parse_checkboxes( $checkboxes ) {

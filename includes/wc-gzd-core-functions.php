@@ -360,6 +360,10 @@ function wc_gzd_format_food_attribute_value( $decimal, $args = array() ) {
 	return $decimal;
 }
 
+function wc_gzd_maybe_mask_ip_address( $ip ) {
+	return current_user_can( 'manage_options' ) ? $ip : preg_replace( '/(?!\d{1,3}\.\d{1,3}\.)\d/', '*', $ip );
+}
+
 function wc_gzd_is_customer_activated( $user_id = '' ) {
 	if ( is_user_logged_in() && empty( $user_id ) ) {
 		$user_id = get_current_user_id();
