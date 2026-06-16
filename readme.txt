@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 7.0
 WC requires at least: 3.9
 WC tested up to: 10.8
-Stable tag: 4.0.6
+Stable tag: 4.0.7
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -204,6 +204,19 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.0.7 =
+* Improvement: [Withdrawal button] Use additional content within withdrawal confirmation email to allow for a more customized message
+* Improvement: [Withdrawal button] Backwards compatibility with Woo < 8.7
+* Improvement: [Withdrawal button] Use woocommerce_form_field to output form fields within withdrawal form
+* Improvement: [Withdrawal button] Prevent rejected unverified withdrawal requests from reducing the quantity available to withdraw
+* Improvement: [Withdrawal button] Introduce sane first name, order number and last name maxlength
+* Improvement: [Withdrawal button] Check whether a new withdrawal request actually has any updates
+* Improvement: [Withdrawal button] Show withdrawal page valid/invalid status in settings
+* Improvement: [Withdrawal button] Use a more consistent HTML markup for checkboxes
+* Improvement: [Withdrawal button] Do not pass (parent) order object in case existent to emails for consistency
+* Fix: [Withdrawal button] Allow (guest) withdrawal requests to be overridden (in case verified) – thanks to Ilyess Ghalem from fraudless.tech
+* Fix: [Withdrawal button] Plaintext email template usage
+
 = 4.0.6 =
 * Fix: Transactional email queue support for Woo >= 10.8.1
 

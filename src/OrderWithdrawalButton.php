@@ -27,6 +27,21 @@ class OrderWithdrawalButton {
 		);
 
 		add_filter( 'eu_owb_woocommerce_product_matches_type', array( __CLASS__, 'matches_product_matches_type' ), 10, 3 );
+
+		add_filter(
+			'woocommerce_gzd_replace_email_titles',
+			function ( $replace_titles, $args ) {
+				if ( isset( $args['withdrawal'] ) && is_a( $args['withdrawal'], '\Vendidero\OrderWithdrawalButton\WithdrawalOrder' ) ) {
+					if ( ! $args['withdrawal']->has_verified_email() ) {
+						$replace_titles = false;
+					}
+				}
+
+				return $replace_titles;
+			},
+			99,
+			2
+		);
 	}
 
 	public static function matches_product_matches_type( $matches_type, $product, $types ) {
