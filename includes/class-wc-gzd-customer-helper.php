@@ -476,8 +476,12 @@ class WC_GZD_Customer_Helper {
 
 		// Has not been activated yet
 		if ( $this->enable_double_opt_in_for_user( $user_id ) && ! wc_gzd_is_customer_activated( $user_id ) ) {
-			wp_redirect( esc_url_raw( wp_validate_redirect( $this->registration_redirect( array( 'account' => 'activate' ) ) ) ) ); //phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
-			exit;
+			if ( wp_doing_ajax() ) {
+				return false;
+			} else {
+				wp_redirect( esc_url_raw( wp_validate_redirect( $this->registration_redirect( array( 'account' => 'activate' ) ) ) ) ); //phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
+				exit;
+			}
 		}
 
 		return true;
