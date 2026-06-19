@@ -42,6 +42,15 @@ class OrderWithdrawalButton {
 			99,
 			2
 		);
+
+		add_filter(
+			'eu_owb_woocommerce_wpml_email_locales_to_translate',
+			function ( $locales ) {
+				$locales[] = 'woocommerce-germanized';
+
+				return $locales;
+			}
+		);
 	}
 
 	public static function matches_product_matches_type( $matches_type, $product, $types ) {
