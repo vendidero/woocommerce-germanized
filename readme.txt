@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 7.0
 WC requires at least: 3.9
 WC tested up to: 10.8
-Stable tag: 4.0.7
+Stable tag: 4.0.8
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -38,7 +38,6 @@ Germanized extends WooCommerce with typical german shop functionality: Delivery 
 * *Post, DHL, UPS, DPD (Pro), GLS (Pro) and Hermes (Pro) Integration* - Generate labels for shipments and returns right from your backend. Offer preferred delivery services to your customers.
 * *Payment Gateway: SEPA direct debit* - Receive payments via direct debit. We've added a XML export to transfer payments to your bank.
 * *Payment Gateway: Pay by Invoice* - Allow certain customers to pay by invoice. Best integration with our PDF invoices feature (Pro).
-* *Online Revocation Form* - Allow customers to submit revocations by filling out a form on your revocation page.
 * *Sale Price Labels* - Prepend your WooCommerce sale prices by certain tags e.g. old price and new price.
 * *Photovoltaic Systems* - Sell photovoltaic systems by applying the zero tax rate for customers who meet the legal requirements
 * *Differential Taxation* - Insert special notices for products which a differential taxed.
@@ -204,6 +203,9 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.0.8 =
+* Remove legacy internal revocation form + email. Output a general notice when using the legacy [revocation_form] shortcode linking to the new withdrawal form instead.
+
 = 4.0.7 =
 * Improvement: [Withdrawal button] Use additional content within withdrawal confirmation email to allow for a more customized message
 * Improvement: [Withdrawal button] Backwards compatibility with Woo < 8.7

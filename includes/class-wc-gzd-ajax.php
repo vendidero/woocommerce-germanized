@@ -18,7 +18,6 @@ class WC_GZD_AJAX {
 	 */
 	public static function init() {
 		$ajax_events = array(
-			'gzd_revocation'                    => true,
 			'gzd_refresh_unit_price'            => true,
 			'gzd_refresh_cart_vouchers'         => true,
 			'gzd_json_search_delivery_time'     => false,
@@ -492,83 +491,6 @@ class WC_GZD_AJAX {
 		wc_deprecated_function( __CLASS__ . '::' . __FUNCTION__, '4.0' );
 
 		return $taxes;
-	}
-
-	/**
-	 * Checks revocation form and sends Email to customer and Admin
-	 */
-	public static function gzd_revocation() {
-		check_ajax_referer( 'woocommerce-revocation', 'security' );
-
-		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_POST['_wpnonce'] ), 'woocommerce-revocation' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-			wp_send_json( array( 'result' => 'failure' ) );
-		}
-
-		$data   = array();
-		$fields = WC_GZD_Revocation::get_fields();
-
-		if ( ! empty( $fields ) ) {
-			foreach ( $fields as $key => $field ) {
-				if ( 'sep' !== $key ) {
-					if ( isset( $field['required'] ) && true === $field['required'] ) {
-						if ( 'address_mail' === $key ) {
-							if ( ! isset( $_POST[ $key ] ) || ! is_email( wp_unslash( $_POST[ $key ] ) ) ) {
-								wc_add_notice( '<strong>' . $field['label'] . '</strong> ' . _x( 'is not a valid email address.', 'revocation-form', 'woocommerce-germanized' ), 'error' );
-							}
-						} elseif ( 'address_postal' === $key ) {
-							if ( ! isset( $_POST['address_country'] ) || ! isset( $_POST[ $key ] ) || ! WC_Validation::is_postcode( wc_clean( wp_unslash( $_POST[ $key ] ) ), wc_clean( wp_unslash( $_POST['address_country'] ) ) ) || empty( $_POST[ $key ] ) ) {
-								wc_add_notice( _x( 'Please enter a valid postcode/ZIP', 'revocation-form', 'woocommerce-germanized' ), 'error' );
-							}
-						} elseif ( 'privacy_checkbox' === $key ) {
-							if ( isset( $field['required'] ) && empty( $_POST[ $key ] ) ) {
-								wc_add_notice( '<strong>' . $field['label'] . '</strong>', 'error' );
-							}
-						} elseif ( isset( $field['required'] ) && empty( $_POST[ $key ] ) ) {
-								wc_add_notice( '<strong>' . $field['label'] . '</strong> ' . _x( 'is not valid.', 'revocation-form', 'woocommerce-germanized' ), 'error' );
-						}
-					}
-
-					if ( isset( $_POST[ $key ] ) && ! empty( $_POST[ $key ] ) ) {
-						if ( 'country' === $field['type'] ) {
-							$countries    = WC()->countries->get_countries();
-							$country      = wc_clean( wp_unslash( $_POST[ $key ] ) );
-							$data[ $key ] = ( isset( $countries[ $country ] ) ? $countries[ $country ] : '' );
-						} else {
-							$data[ $key ] = wc_clean( wp_unslash( $_POST[ $key ] ) );
-						}
-					}
-				}
-			}
-		}
-
-		$error = false;
-
-		if ( 0 === wc_notice_count( 'error' ) ) {
-			wc_add_notice( _x( 'Thank you. We have received your Revocation Request. You will receive a conformation email within a few minutes.', 'revocation-form', 'woocommerce-germanized' ), 'success' );
-
-			// Send Mail
-			if ( $mail = WC_germanized()->emails->get_email_instance_by_id( 'customer_revocation' ) ) {
-				// Send to customer
-				$mail->trigger( $data );
-
-				// Send to Admin
-				$data['send_to_admin'] = true;
-				$mail->trigger( $data );
-			}
-		} else {
-			$error = true;
-		}
-
-		ob_start();
-		wc_print_notices();
-		$messages = ob_get_clean();
-
-		$data = array(
-			'messages' => isset( $messages ) ? $messages : '',
-			'result'   => ( $error ? 'failure' : 'success' ),
-		);
-
-		wp_send_json( $data );
 	}
 }
 

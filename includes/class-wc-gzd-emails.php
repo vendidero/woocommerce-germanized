@@ -191,17 +191,6 @@ class WC_GZD_Emails {
 	public function preview_email( $email_instance ) {
 		if ( is_a( $email_instance, 'WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate' ) ) {
 			$email_instance->gateway = new WC_GZD_Gateway_Direct_Debit();
-		} elseif ( is_a( $email_instance, 'WC_GZD_Email_Customer_Revocation' ) ) {
-			$email_instance->object = array(
-				'content'           => 'Hiermit widerrufe ich meinen Vertrag.',
-				'order_date'        => wc_format_datetime( $email_instance->object->get_date_created() ),
-				'address_firstname' => 'Max',
-				'address_lastname'  => 'Mustermann',
-				'address_street'    => 'Musterstr. 12',
-				'address_postal'    => '12345',
-				'address_city'      => 'Berlin',
-				'address_mail'      => 'max@muster.de',
-			);
 		} elseif ( is_a( $email_instance, 'WC_GZD_Email_Customer_New_Account_Activation' ) ) {
 			$email_instance->user_activation     = '12345';
 			$email_instance->user_activation_url = WC_GZD_Customer_Helper::instance()->get_customer_activation_url( $email_instance->user_activation );
@@ -278,9 +267,6 @@ class WC_GZD_Emails {
 		$post               = is_numeric( $content_post ) ? get_post( $content_post ) : $content_post;
 
 		if ( is_a( $post, 'WP_Post' ) ) {
-			remove_shortcode( 'revocation_form' );
-			add_shortcode( 'revocation_form', array( $this, 'revocation_form_replacement' ) );
-
 			if ( ! get_post_meta( $post->ID, '_legal_text', true ) ) {
 				$content = wc_gzd_get_post_plain_content( $post, $shortcodes_allowed );
 			} else {
@@ -315,8 +301,6 @@ class WC_GZD_Emails {
 				 */
 				do_action( 'woocommerce_gzd_before_get_email_meta_plain_content', $post );
 			}
-
-			add_shortcode( 'revocation_form', 'WC_GZD_Shortcodes::revocation_form' );
 		}
 
 		return apply_filters( 'woocommerce_gzd_email_plain_content', $content );
@@ -1627,16 +1611,5 @@ class WC_GZD_Emails {
 				setup_postdata( $reset_post );
 			}
 		}
-	}
-
-	/**
-	 * Replaces revocation_form shortcut with a link to the revocation form
-	 *
-	 * @param array $atts
-	 *
-	 * @return string
-	 */
-	public function revocation_form_replacement( $atts ) {
-		return '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '">' . _x( 'Forward your withdrawal online', 'revocation-form', 'woocommerce-germanized' ) . '</a>';
 	}
 }

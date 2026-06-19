@@ -1027,17 +1027,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			global $post;
 
 			$this->register_script(
-				'wc-gzd-revocation',
-				'static/revocation.js',
-				array(
-					'jquery',
-					'woocommerce',
-					'wc-country-select',
-					'wc-address-i18n',
-				)
-			);
-
-			$this->register_script(
 				'wc-gzd-checkout',
 				'static/checkout.js',
 				array(
@@ -1098,10 +1087,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 					$this->get_wc_asset_dep_handle( 'jquery-blockui' ),
 				)
 			);
-
-			if ( is_page() && is_object( $post ) && has_shortcode( $post->post_content, 'revocation_form' ) ) {
-				wp_enqueue_script( 'wc-gzd-revocation' );
-			}
 
 			if ( is_checkout() ) {
 				wp_enqueue_script( 'wc-gzd-checkout' );
@@ -1226,31 +1211,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 */
 		public function localize_scripts() {
 			global $wp;
-
-			if ( wp_script_is( 'wc-gzd-revocation' ) && ! in_array( 'wc-gzd-revocation', $this->localized_scripts, true ) && function_exists( 'WC' ) ) {
-				$this->localized_scripts[] = 'wc-gzd-revocation';
-				$wc_assets_path            = str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/';
-
-				/**
-				 * Filters script localization paramaters for the `wc-gzd-revocation` script.
-				 *
-				 * @param array $params Key => value array containing parameter name and value.
-				 *
-				 * @since 1.0.0
-				 */
-				wp_localize_script(
-					'wc-gzd-revocation',
-					'wc_gzd_revocation_params',
-					apply_filters(
-						'wc_gzd_revocation_params',
-						array(
-							'ajax_url'        => WC()->ajax_url(),
-							'wc_ajax_url'     => WC_AJAX::get_endpoint( '%%endpoint%%' ),
-							'ajax_loader_url' => apply_filters( 'woocommerce_ajax_loader_url', $wc_assets_path . 'images/wpspin-2x.gif' ),
-						)
-					)
-				);
-			}
 
 			if ( wp_script_is( 'wc-gzd-add-to-cart-variation' ) && ! in_array( 'wc-gzd-add-to-cart-variation', $this->localized_scripts, true ) ) {
 				$this->localized_scripts[] = 'wc-gzd-add-to-cart-variation';
@@ -1484,7 +1444,6 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			return array(
 				'WC_GZD_Email_Customer_Paid_For_Order'  => 'customer_paid_for_order',
 				'WC_GZD_Email_Customer_New_Account_Activation' => 'customer_new_account_activation',
-				'WC_GZD_Email_Customer_Revocation'      => 'customer_revocation',
 				'WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate' => 'customer_sepa_direct_debit_mandate',
 				'WC_GZD_Email_Customer_Cancelled_Order' => 'customer_cancelled_order',
 			);
