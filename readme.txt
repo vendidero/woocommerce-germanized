@@ -204,7 +204,19 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 
 == Changelog ==
 = 4.0.8 =
-* Remove legacy internal revocation form + email. Output a general notice when using the legacy [revocation_form] shortcode linking to the new withdrawal form instead.
+* New: [Withdrawal button] WPML compatibility
+* New: [Withdrawal button] Privacy additions (export, erase, policy suggestions)
+* New: [Withdrawal button] Setting to select which fields to be mandatory
+* New: [Withdrawal button] Setting to add an "additional information" textarea
+* New: [Withdrawal button] Added sha256 verification code which reflects the data contained within the withdrawal request
+* Improvement: [Withdrawal button] Allow setting days to withdraw to 0 to keep order withdrawable indefinitely
+* Improvement: [Withdrawal button] Renamed order number field to "Contract identification" and make it mandatory by default
+* Improvement: [Withdrawal button] Explicitly exclude checkout-draft status
+* Improvement: [Withdrawal button] Add order notes to withdrawals, e.g. on status updates
+* Fix: [Withdrawal button] Woo < 10.X backwards compatibility
+* Improvement: Remove legacy internal revocation form + email. Output a general notice when using the legacy [revocation_form] shortcode linking to the new withdrawal form instead.
+* Improvement: Check if in ajax context before redirecting customer during DOI
+* Improvement: Hide checkbox admin log meta box in case none exists
 
 = 4.0.7 =
 * Improvement: [Withdrawal button] Use additional content within withdrawal confirmation email to allow for a more customized message

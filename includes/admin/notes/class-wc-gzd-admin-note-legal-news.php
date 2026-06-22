@@ -31,13 +31,13 @@ class WC_GZD_Admin_Note_Legal_News extends WC_GZD_Admin_Note {
 	}
 
 	public function get_content() {
-		return sprintf( __( 'The European Online Dispute Resolution (ODR) Platform is discontinued as of 20 July 2025. We tried to remove the note from the [gzd_complaints] shortcode automatically by adjusting the <a href="%s">option selected</a>. Please make sure that your current text (whether you are using the shortcode in your legal texts or a static text) does not include references to the ODR platform.', 'woocommerce-germanized' ), admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=disputes' ) );
+		return __( 'You\'ve probably heard about the new requirement to provide a withdrawal button. Germanized is, of course, already prepared for this. Please check your settings and test the process.', 'woocommerce-germanized' );
 	}
 
 	public function get_actions() {
 		return array(
 			array(
-				'url'        => admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=disputes' ),
+				'url'        => admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=withdrawal_button' ),
 				'title'      => __( 'Review your settings', 'woocommerce-germanized' ),
 				'target'     => '_self',
 				'is_primary' => true,
