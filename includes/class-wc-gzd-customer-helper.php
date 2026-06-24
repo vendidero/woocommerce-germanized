@@ -98,6 +98,7 @@ class WC_GZD_Customer_Helper {
 				 */
 				add_action( 'woocommerce_checkout_init', array( $this, 'disable_checkout' ), 1 );
 				add_action( 'woocommerce_blocks_enqueue_checkout_block_scripts_before', array( $this, 'disable_checkout' ), 1 );
+				add_action( 'woocommerce_before_cart', array( $this, 'reset_disable_checkout_session' ), 1 );
 
 				// Show notices on customer account page
 				add_action( 'template_redirect', array( $this, 'show_disabled_checkout_notice' ), 20 );
@@ -383,6 +384,18 @@ class WC_GZD_Customer_Helper {
 		}
 
 		return $redirect;
+	}
+
+	public function reset_disable_checkout_session() {
+		/**
+		 * Prevent errors in case this is not a frontend request
+		 */
+		if ( ! WC()->session ) {
+			return;
+		}
+
+		// On accessing cart - reset disable checkout signup so that the customer is rechecked before redirecting him to the checkout.
+		unset( WC()->session->disable_checkout_signup );
 	}
 
 	public function disable_checkout() {
