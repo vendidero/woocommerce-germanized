@@ -1,0 +1,1467 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: EU Order Withdrawal Button for WooCommerce\n"
+"POT-Creation-Date: 2026-06-24 13:03+0200\n"
+"PO-Revision-Date: 2021-05-10 09:48+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: eu-order-withdrawal-button-for-woocommerce.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: vendor\n"
+"X-Poedit-SearchPathExcluded-1: .git\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+"X-Poedit-SearchPathExcluded-3: assets\n"
+"X-Poedit-SearchPathExcluded-4: release\n"
+
+#: includes/admin/views/html-privacy-policy.php:7
+msgctxt "owb"
+msgid ""
+"When you submit a withdrawal request through our withdraw from contract "
+"form, we collect and store the following personal data for the sole "
+"purpose of fulfilling the legal traceability of consumer rights under EU "
+"Directive 2023/2673:"
+msgstr ""
+
+#: includes/admin/views/html-privacy-policy.php:10
+msgctxt "owb"
+msgid "Customer name and email address."
+msgstr ""
+
+#: includes/admin/views/html-privacy-policy.php:11
+msgctxt "owb"
+msgid "Order reference."
+msgstr ""
+
+#: includes/admin/views/html-privacy-policy.php:12
+msgctxt "owb"
+msgid "IP address and browser User-Agent string used to submit the request."
+msgstr ""
+
+#: includes/admin/views/html-privacy-policy.php:13
+msgctxt "owb"
+msgid "Date and time of the submission."
+msgstr ""
+
+#: includes/admin/views/html-privacy-policy.php:15
+msgctxt "owb"
+msgid "Additional information in case provided."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-confirmed.php:44
+msgctxt "owb"
+msgid "Withdrawal request confirmed"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-confirmed.php:45
+#: src/Admin/Admin.php:673
+msgctxt "owb"
+msgid "Confirms the withdrawal request to the customer."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-confirmed.php:68
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-confirmed.php:77
+msgctxt "owb"
+msgid "Your withdrawal request has been confirmed."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:51
+msgctxt "owb"
+msgid "Withdrawal request received"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:52
+msgctxt "owb"
+msgid "Confirm that the withdrawal request has been received."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:78
+msgctxt "owb"
+msgid "Your partial withdrawal request has been received."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:80
+msgctxt "owb"
+msgid "Your withdrawal request has been received."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:92
+msgctxt "owb"
+msgid "We received your partial withdrawal request"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:94
+msgctxt "owb"
+msgid "We received your withdrawal request"
+msgstr ""
+
+#. translators: %s: list of placeholders
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:250
+#, php-format
+msgctxt "owb"
+msgid "Available placeholders: %s"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:254
+msgctxt "owb"
+msgid "Enable/Disable"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:256
+msgctxt "owb"
+msgid "Enable this email notification"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:260
+msgctxt "owb"
+msgid "Full withdrawal subject"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:268
+msgctxt "owb"
+msgid "Partial withdrawal subject"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:276
+msgctxt "owb"
+msgid "Full withdrawal email heading"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:284
+msgctxt "owb"
+msgid "Partial withdrawal email heading"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:292
+msgctxt "owb"
+msgid "Additional content"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:293
+msgctxt "owb"
+msgid "Text to appear below the main email content."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:295
+msgctxt "owb"
+msgid "N/A"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:301
+msgctxt "owb"
+msgid "Email type"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:303
+msgctxt "owb"
+msgid "Choose which format of email to send."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-rejected.php:44
+msgctxt "owb"
+msgid "Withdrawal request rejected"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-rejected.php:45
+msgctxt "owb"
+msgid "Informs the customer that their withdrawal request has been rejected."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-rejected.php:69
+#: includes/emails/class-eu-owb-email-customer-withdrawal-request-rejected.php:78
+msgctxt "owb"
+msgid "Your withdrawal request has been rejected."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-deleted-withdrawal-request.php:38
+msgctxt "owb"
+msgid "Withdrawal request deleted"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-deleted-withdrawal-request.php:39
+msgctxt "owb"
+msgid ""
+"Withdrawal request deleted emails are sent to chosen recipient(s) when a "
+"customer deletes a withdrawal request."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-deleted-withdrawal-request.php:67
+msgctxt "owb"
+msgid "[{site_title}]: Withdrawal request to {order_number} deleted"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-deleted-withdrawal-request.php:76
+msgctxt "owb"
+msgid "Withdrawal request deleted: {order_number}"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-deleted-withdrawal-request.php:202
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:200
+msgctxt "owb"
+msgid "Recipient(s)"
+msgstr ""
+
+#. translators: %s: WP admin email
+#: includes/emails/class-eu-owb-email-deleted-withdrawal-request.php:205
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:203
+#, php-format
+msgctxt "owb"
+msgid "Enter recipients (comma separated) for this email. Defaults to %s."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:37
+msgctxt "owb"
+msgid "New withdrawal request"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:38
+msgctxt "owb"
+msgid ""
+"New withdrawal request emails are sent to chosen recipient(s) when a "
+"customer submits a withdrawal request."
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:66
+msgctxt "owb"
+msgid "[{site_title}]: New withdrawal request to {order_number}"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:75
+msgctxt "owb"
+msgid "New withdrawal request: {order_number}"
+msgstr ""
+
+#: includes/eu-owb-core-functions.php:188
+msgctxt "owb"
+msgid "Withdraw from contract"
+msgstr ""
+
+#: includes/eu-owb-core-functions.php:914
+#, php-format
+msgctxt "owb"
+msgid "Customer requested an update to the original withdrawal: %1$s"
+msgstr ""
+
+#: includes/eu-owb-core-functions.php:959
+msgctxt "owb"
+msgid "Error while saving the withdrawal request."
+msgstr ""
+
+#: includes/eu-owb-core-functions.php:969
+#, php-format
+msgctxt "owb"
+msgid "A new %1$s has been submitted to this order"
+msgstr ""
+
+#: includes/eu-owb-core-functions.php:969 src/Admin/Admin.php:668
+msgctxt "owb"
+msgid "Partial withdrawal request"
+msgstr ""
+
+#: includes/eu-owb-core-functions.php:969 src/Admin/Admin.php:668
+msgctxt "owb"
+msgid "Full withdrawal request"
+msgstr ""
+
+#: includes/eu-owb-core-functions.php:1021
+msgctxt "owb"
+msgid "A withdrawal request has been confirmed."
+msgstr ""
+
+#: includes/eu-owb-core-functions.php:1077
+msgctxt "owb"
+msgid "A withdrawal request has been deleted."
+msgstr ""
+
+#: includes/eu-owb-core-functions.php:1080
+msgctxt "owb"
+msgid "A withdrawal request has been deleted by the customer."
+msgstr ""
+
+#: includes/eu-owb-core-functions.php:1126
+#, php-format
+msgctxt "owb"
+msgid "A withdrawal request has been rejected: %1$s"
+msgstr ""
+
+#: src/Admin/Admin.php:66
+msgctxt "owb"
+msgid "Invisible to visitors"
+msgstr ""
+
+#: src/Admin/Admin.php:68
+msgctxt "owb"
+msgid "Shortcode is missing"
+msgstr ""
+
+#: src/Admin/Admin.php:71
+msgctxt "owb"
+msgid "Page is missing"
+msgstr ""
+
+#: src/Admin/Admin.php:96 src/Admin/Privacy.php:19 src/Admin/Privacy.php:28
+#: src/Admin/Privacy.php:193
+msgctxt "owb"
+msgid "EU Order Withdrawal Button for WooCommerce"
+msgstr ""
+
+#: src/Admin/Admin.php:101
+msgctxt "owb"
+msgid "Database Version"
+msgstr ""
+
+#: src/Admin/Admin.php:106
+msgctxt "owb"
+msgid "Overrides"
+msgstr ""
+
+#: src/Admin/Admin.php:113
+#, php-format
+msgctxt "owb"
+msgid ""
+"Version %1$s is out of date. The core version %2$s is available at: %3$s"
+msgstr ""
+
+#: src/Admin/Admin.php:124
+msgctxt "owb"
+msgid "Outdated templates"
+msgstr ""
+
+#: src/Admin/Admin.php:197 src/Admin/Admin.php:678
+#: src/Admin/WithdrawalTable.php:944
+msgctxt "owb"
+msgid "Reason"
+msgstr ""
+
+#: src/Admin/Admin.php:378 src/Admin/Admin.php:744 src/Admin/Privacy.php:168
+#: src/Package.php:584 src/Package.php:719 src/Settings.php:21
+msgctxt "owb"
+msgid "Withdrawals"
+msgstr ""
+
+#: src/Admin/Admin.php:407
+#, php-format
+msgctxt "owb-item-quantity"
+msgid "%1$s x %2$s"
+msgstr ""
+
+#: src/Admin/Admin.php:412
+#, php-format
+msgctxt "owb"
+msgid "%1$s received on %2$s @ %3$s by <a href=\"mailto:%4$s\">%5$s</a> %6$s"
+msgstr ""
+
+#: src/Admin/Admin.php:412
+msgctxt "owb"
+msgid "Partial withdrawal"
+msgstr ""
+
+#: src/Admin/Admin.php:412
+msgctxt "owb"
+msgid "Full withdrawal"
+msgstr ""
+
+#: src/Admin/Admin.php:422
+#, php-format
+msgctxt "owb"
+msgid "Confirmed %1$s at %2$s"
+msgstr ""
+
+#: src/Admin/Admin.php:424
+#, php-format
+msgctxt "owb"
+msgid "Rejected %1$s at %2$s"
+msgstr ""
+
+#: src/Admin/Admin.php:427
+msgctxt "owb"
+msgid "Delete withdrawal"
+msgstr ""
+
+#: src/Admin/Admin.php:529
+#, php-format
+msgctxt "owb"
+msgid "Withdrawn %1$sx"
+msgstr ""
+
+#: src/Admin/Admin.php:535
+#, php-format
+msgctxt "owb"
+msgid "Requested %1$sx"
+msgstr ""
+
+#: src/Admin/Admin.php:560
+msgctxt "owb"
+msgid "Email address matches"
+msgstr ""
+
+#: src/Admin/Admin.php:560
+msgctxt "owb"
+msgid "E-mail address unknown"
+msgstr ""
+
+#: src/Admin/Admin.php:564
+msgctxt "owb"
+msgid "Confirm withdrawal requests"
+msgstr ""
+
+#: src/Admin/Admin.php:565
+msgctxt "owb"
+msgid "Reject withdrawal requests"
+msgstr ""
+
+#: src/Admin/Admin.php:566
+msgctxt "owb"
+msgid "Delete withdrawal requests"
+msgstr ""
+
+#: src/Admin/Admin.php:634 src/Admin/Admin.php:673
+#: src/Admin/WithdrawalTable.php:916
+msgctxt "owb"
+msgid "Confirm withdrawal request"
+msgstr ""
+
+#: src/Admin/Admin.php:640 src/Admin/Admin.php:686
+#: src/Admin/WithdrawalTable.php:923
+msgctxt "owb"
+msgid "Reject withdrawal request"
+msgstr ""
+
+#: src/Admin/Admin.php:646 src/Admin/WithdrawalTable.php:929
+msgctxt "owb"
+msgid "Delete withdrawal request"
+msgstr ""
+
+#: src/Admin/Admin.php:670
+#, php-format
+msgctxt "owb"
+msgid "Received on %1$s @ %2$s by <a href=\"mailto:%3$s\">%4$s</a> %5$s"
+msgstr ""
+
+#: src/Admin/Admin.php:673
+msgctxt "owb"
+msgid "Are you sure to confirm the withdrawal request?"
+msgstr ""
+
+#: src/Admin/Admin.php:674
+msgctxt "owb"
+msgid ""
+"Reject the withdrawal request by providing a reason for the rejection."
+msgstr ""
+
+#: src/Admin/Admin.php:674
+msgctxt "owb"
+msgid "Reject request"
+msgstr ""
+
+#: src/Admin/Admin.php:679
+msgctxt "owb"
+msgid "Describe why you've rejected the withdrawal request."
+msgstr ""
+
+#: src/Admin/Admin.php:686
+msgctxt "owb"
+msgid "Are you sure to reject the withdrawal request?"
+msgstr ""
+
+#: src/Admin/Admin.php:703
+msgctxt "owb-setting-section"
+msgid "Withdrawals"
+msgstr ""
+
+#: src/Admin/Privacy.php:76
+msgctxt "owb"
+msgid "Personal data removed."
+msgstr ""
+
+#: src/Admin/Privacy.php:79
+#, php-format
+msgctxt "owb"
+msgid "Removed personal data from withdrawal %s."
+msgstr ""
+
+#: src/Admin/Privacy.php:83
+#, php-format
+msgctxt "owb"
+msgid "Personal data within withdrawal %s has been retained."
+msgstr ""
+
+#: src/Admin/Privacy.php:121
+msgctxt "owb"
+msgid "Order number"
+msgstr ""
+
+#: src/Admin/Privacy.php:122 src/Settings.php:98
+#: templates/forms/order-withdrawal-request.php:87
+#: templates/forms/order-withdrawal-request.php:277
+msgctxt "owb"
+msgid "First name"
+msgstr ""
+
+#: src/Admin/Privacy.php:123 src/Settings.php:99
+#: templates/forms/order-withdrawal-request.php:107
+#: templates/forms/order-withdrawal-request.php:297
+msgctxt "owb"
+msgid "Last name"
+msgstr ""
+
+#: src/Admin/Privacy.php:124 src/Admin/WithdrawalTable.php:1012
+#: templates/emails/email-withdrawal-details.php:44
+#: templates/emails/plain/email-withdrawal-details.php:32
+#: templates/forms/order-withdrawal-request.php:56
+#: templates/forms/order-withdrawal-request.php:246
+msgctxt "owb"
+msgid "Email"
+msgstr ""
+
+#: src/Admin/Privacy.php:125
+msgctxt "owb"
+msgid "Date received"
+msgstr ""
+
+#: src/Admin/Privacy.php:126 src/Settings.php:101 src/Settings.php:112
+#: templates/forms/order-withdrawal-request.php:130
+msgctxt "owb"
+msgid "Additional information"
+msgstr ""
+
+#: src/Admin/Privacy.php:127
+msgctxt "owb"
+msgid "IP Address"
+msgstr ""
+
+#: src/Admin/Privacy.php:128
+msgctxt "owb"
+msgid "User Agent"
+msgstr ""
+
+#: src/Admin/Privacy.php:129
+msgctxt "owb"
+msgid "Items"
+msgstr ""
+
+#: src/Admin/Privacy.php:130 src/Admin/WithdrawalTable.php:329
+msgctxt "owb"
+msgid "Status"
+msgstr ""
+
+#: src/Admin/Privacy.php:169
+msgctxt "owb"
+msgid "User&#8217;s withdrawals data."
+msgstr ""
+
+#. translators: %s: orders count
+#: src/Admin/WithdrawalTable.php:96
+#, php-format
+msgctxt "owb"
+msgid "%s withdrawal status changed."
+msgid_plural "%s withdrawal statuses changed."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: orders count
+#: src/Admin/WithdrawalTable.php:104
+#, php-format
+msgctxt "owb"
+msgid "%s withdrawal moved to the Trash."
+msgid_plural "%s withdrawals moved to the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: orders count
+#: src/Admin/WithdrawalTable.php:108
+#, php-format
+msgctxt "owb"
+msgid "%s withdrawal restored from the Trash."
+msgid_plural "%s withdrawals restored from the Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: orders count
+#: src/Admin/WithdrawalTable.php:112
+#, php-format
+msgctxt "owb"
+msgid "%s withdrawal permanently deleted."
+msgid_plural "%s withdrawals permanently deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: Search query.
+#: src/Admin/WithdrawalTable.php:242
+#, php-format
+msgctxt "owb"
+msgid "Search results for: %s"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:280
+msgctxt "owb"
+msgid "Search withdrawals"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:295
+msgctxt "owb"
+msgid "When you receive a new withdrawal, it will appear here."
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:325
+msgctxt "owb"
+msgid "Withdrawal"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:326
+msgctxt "owb"
+msgid "Order/Contract"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:327
+msgctxt "owb"
+msgid "Date"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:328
+msgctxt "owb"
+msgid "Address"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:330
+msgctxt "owb"
+msgid "Customer note"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:331
+msgctxt "owb"
+msgid "Actions"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:566
+msgctxt "owb"
+msgid "Restore"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:567
+msgctxt "owb"
+msgid "Delete permanently"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:571
+msgctxt "owb"
+msgid "Confirm"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:572
+msgctxt "owb"
+msgid "Reject"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:573
+msgctxt "owb"
+msgid "Move to Trash"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:708
+msgctxt "owb"
+msgid "All"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:799
+msgctxt "owb"
+msgid "Preview"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:814
+msgctxt "owb"
+msgid "Search for an order"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:818 src/Ajax.php:182
+#: src/WithdrawalOrder.php:115
+#, php-format
+msgctxt "owb"
+msgid "Order #%s"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:862
+#, php-format
+msgctxt "owb"
+msgid "Partial %s"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:862
+#, php-format
+msgctxt "owb"
+msgid "Full %s"
+msgstr ""
+
+#. translators: %s: human-readable time difference
+#: src/Admin/WithdrawalTable.php:970
+#, php-format
+msgctxt "owb-human-readable-time-diff"
+msgid "%s ago"
+msgstr ""
+
+#. translators: %s: withdrawal ID
+#: src/Admin/WithdrawalTable.php:994
+#, php-format
+msgctxt "owb"
+msgid "Withdrawal %s"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:996
+msgctxt "owb"
+msgid "Close modal panel"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:1004
+msgctxt "owb"
+msgid "Contact Details"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:1007
+msgctxt "owb"
+msgid "Name"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:1017
+msgctxt "owb"
+msgid "Withdrawal Details"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:1020 src/Settings.php:100
+#: templates/emails/email-withdrawal-details.php:42
+#: templates/emails/plain/email-withdrawal-details.php:30
+msgctxt "owb"
+msgid "Contract Identification"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:1025
+#: templates/emails/email-withdrawal-details.php:46
+#: templates/emails/plain/email-withdrawal-details.php:34
+msgctxt "owb"
+msgid "Verification code"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:1030
+#: templates/emails/email-withdrawal-details.php:56
+#: templates/emails/plain/email-withdrawal-details.php:38
+#: templates/emails/plain/email-withdrawal-details.php:40
+msgctxt "owb"
+msgid "Additional Information"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:1039
+msgctxt "owb"
+msgid "Logs"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:1073
+#, php-format
+msgctxt "owb"
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:1111
+#: templates/emails/email-withdrawal-details.php:72
+#: templates/forms/order-withdrawal-request-item-select.php:66
+msgctxt "owb"
+msgid "Product"
+msgstr ""
+
+#: src/Admin/WithdrawalTable.php:1112
+#: templates/emails/email-withdrawal-details.php:73
+#: templates/forms/order-withdrawal-request-item-select.php:67
+msgctxt "owb"
+msgid "Quantity"
+msgstr ""
+
+#: src/Ajax.php:283
+msgctxt "owb"
+msgid "Sorry, no permission to view that order."
+msgstr ""
+
+#: src/Ajax.php:372 src/Ajax.php:622
+msgctxt "owb"
+msgid ""
+"Thank you. We've received your withdrawal request. You'll receive a "
+"confirmation of your request by email."
+msgstr ""
+
+#: src/Ajax.php:379
+msgctxt "owb"
+msgid ""
+"Please wait a little longer before submitting. We’re running a quick "
+"security check."
+msgstr ""
+
+#: src/Ajax.php:384
+msgctxt "owb"
+msgid "Please enter your first name."
+msgstr ""
+
+#: src/Ajax.php:388
+msgctxt "owb"
+msgid "Please enter your last name."
+msgstr ""
+
+#: src/Ajax.php:392
+msgctxt "owb"
+msgid "Please check your email address."
+msgstr ""
+
+#: src/Ajax.php:419
+msgctxt "owb"
+msgid "Please select one or more items to withdraw."
+msgstr ""
+
+#: src/Ajax.php:432
+msgctxt "owb"
+msgid ""
+"One ore more of the item(s) you've selected cannot be withdrawn. Please "
+"try again."
+msgstr ""
+
+#: src/Ajax.php:465
+msgctxt "owb"
+msgid "Please provide information to identify the contract."
+msgstr ""
+
+#: src/Ajax.php:469
+msgctxt "owb"
+msgid "Please enter additional information."
+msgstr ""
+
+#: src/Ajax.php:495 src/Ajax.php:511 src/Ajax.php:549
+#, php-format
+msgctxt "owb"
+msgid ""
+"Sorry, we were unable to find an order based on the information you "
+"provided. Please try again - if the issue persists, please <a "
+"href=\"%s\">contact support</a> for help."
+msgstr ""
+
+#: src/Ajax.php:554
+#, php-format
+msgctxt "owb"
+msgid ""
+"Sorry, but this order cannot be withdrawn. <a href=\"%s\">Contact support</"
+"a> for help."
+msgstr ""
+
+#: src/Ajax.php:579
+msgctxt "owb"
+msgid ""
+"You've already submitted an identical withdrawal request for this order."
+msgstr ""
+
+#: src/Ajax.php:604
+#, php-format
+msgctxt "owb"
+msgid ""
+"You've submitted too many different unverified withdrawal requests. <a "
+"href=\"%s\">Contact support</a> for help."
+msgstr ""
+
+#: src/DataStores/WithdrawalOrder.php:142
+#: src/DataStores/WithdrawalOrderCPT.php:95 src/WithdrawalOrder.php:999
+#, php-format
+msgctxt "owb"
+msgid "Withdrawal status changed from %1$s to %2$s."
+msgstr ""
+
+#. translators: %s: Order date
+#: src/DataStores/WithdrawalOrder.php:327
+#: src/DataStores/WithdrawalOrderCPT.php:292
+#, php-format
+msgctxt "owb"
+msgid "Withdrawal &ndash; %s"
+msgstr ""
+
+#: src/DataStores/WithdrawalOrder.php:328
+#: src/DataStores/WithdrawalOrderCPT.php:293
+msgctxt "owb-order-date-format"
+msgid "M d, Y @ h:i A"
+msgstr ""
+
+#: src/Install.php:164
+msgctxt "owb-page-slug"
+msgid "withdraw-from-contract"
+msgstr ""
+
+#: src/Install.php:165
+msgctxt "owb-page-title"
+msgid "Withdraw from contract"
+msgstr ""
+
+#: src/Package.php:481
+msgctxt "owb-email-preview"
+msgid "John"
+msgstr ""
+
+#: src/Package.php:482
+msgctxt "owb-email-preview"
+msgid "Doe"
+msgstr ""
+
+#: src/Package.php:485
+msgctxt "owb-email-preview"
+msgid "An example rejection reason."
+msgstr ""
+
+#: src/Package.php:513 src/Package.php:938
+msgctxt "owb"
+msgid "Requested"
+msgstr ""
+
+#: src/Package.php:514 src/Package.php:950
+msgctxt "owb"
+msgid "Confirmed"
+msgstr ""
+
+#: src/Package.php:515 src/Package.php:962
+msgctxt "owb"
+msgid "Rejected"
+msgstr ""
+
+#: src/Package.php:718
+msgctxt "owb"
+msgid "Settings"
+msgstr ""
+
+#: src/Package.php:914 src/Package.php:976
+msgctxt "owb"
+msgid "Pending withdrawal"
+msgstr ""
+
+#: src/Package.php:919
+#, php-format
+msgctxt "owb"
+msgid "Pending withdrawal (%s)"
+msgid_plural "Pending withdrawals (%s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Package.php:926 src/Package.php:977
+msgctxt "owb"
+msgid "Withdrawn"
+msgstr ""
+
+#: src/Package.php:931
+#, php-format
+msgctxt "owb"
+msgid "Withdrawn (%s)"
+msgid_plural "Withdrawn (%s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Package.php:943
+#, php-format
+msgctxt "owb"
+msgid "Requested (%s)"
+msgid_plural "Requested (%s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Package.php:955
+#, php-format
+msgctxt "owb"
+msgid "Confirmed (%s)"
+msgid_plural "Confirmed (%s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Package.php:967
+#, php-format
+msgctxt "owb"
+msgid "Rejected (%s)"
+msgid_plural "Rejected (%s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Settings.php:16
+msgctxt "owb"
+msgid "General"
+msgstr ""
+
+#: src/Settings.php:21
+msgctxt "owb"
+msgid ""
+"Configure your EU-compliant order withdrawal button. <a target=\"_blank\" "
+"href=\"https://vendidero.com/implementing-legally-compliant-eu-order-"
+"withdrawal-button-in-woocommerce\">Learn more</a>"
+msgstr ""
+
+#: src/Settings.php:46
+msgctxt "owb"
+msgid "Withdrawal page"
+msgstr ""
+
+#: src/Settings.php:50
+msgctxt "owb"
+msgid "This page should contain your withdrawal form shortcode."
+msgstr ""
+
+#: src/Settings.php:57
+msgctxt "owb"
+msgid "Valid"
+msgstr ""
+
+#: src/Settings.php:57
+#, php-format
+msgctxt "owb"
+msgid "Invalid: %1$s"
+msgstr ""
+
+#: src/Settings.php:61
+msgctxt "owb"
+msgid "Embed in footer"
+msgstr ""
+
+#: src/Settings.php:62
+msgctxt "owb"
+msgid ""
+"Embed the withdrawal button directly in the footer. Disable this option if "
+"you plan to embed the page manually."
+msgstr ""
+
+#: src/Settings.php:70
+msgctxt "owb"
+msgid "Display everywhere"
+msgstr ""
+
+#: src/Settings.php:71
+msgctxt "owb"
+msgid "Display the button on every page, not just on shop-related pages."
+msgstr ""
+
+#: src/Settings.php:82
+msgctxt "owb"
+msgid "Partial withdrawals"
+msgstr ""
+
+#: src/Settings.php:83
+msgctxt "owb"
+msgid ""
+"Allow customers and verified guests to select which order items to "
+"withdraw."
+msgstr ""
+
+#: src/Settings.php:91
+msgctxt "owb"
+msgid "Mandatory fields"
+msgstr ""
+
+#: src/Settings.php:93
+msgctxt "owb"
+msgid ""
+"Select fields that should be mandatory while submitting a new withdrawal"
+msgstr ""
+
+#: src/Settings.php:113
+msgctxt "owb"
+msgid ""
+"Allow guests to enter additional information in a separate text field."
+msgstr ""
+
+#: src/Settings.php:121
+msgctxt "owb"
+msgid "Non-refundable"
+msgstr ""
+
+#: src/Settings.php:122
+msgctxt "owb"
+msgid "Choose certain product types to exclude from being withdrawn."
+msgstr ""
+
+#: src/Settings.php:133
+msgctxt "owb"
+msgid "Withdrawal period"
+msgstr ""
+
+#: src/Settings.php:134
+msgctxt "owb"
+msgid ""
+"Choose the number of days, starting with the orders' completed date, to "
+"accept withdrawals for orders."
+msgstr ""
+
+#: src/Settings.php:135
+msgctxt "owb"
+msgid "Days"
+msgstr ""
+
+#: src/Settings.php:135
+msgctxt "owb"
+msgid ""
+"Keep in mind that the withdrawal period does not begin until the customer "
+"receives the order. If necessary add a buffer period depending on your "
+"shipping process. Use 0 to make withdrawals available at any time."
+msgstr ""
+
+#: src/Settings.php:145
+msgctxt "owb"
+msgid "Unverified requests"
+msgstr ""
+
+#: src/Settings.php:146
+msgctxt "owb"
+msgid "Do not adjust order status for unverified requests."
+msgstr ""
+
+#: src/Settings.php:146
+msgctxt "owb"
+msgid ""
+"For some requests, the email address differs from the original stored "
+"within the order. Make sure these requests do not automatically set the "
+"pending withdrawal order status."
+msgstr ""
+
+#: src/Settings.php:154
+msgctxt "owb"
+msgid "Contact email"
+msgstr ""
+
+#: src/Settings.php:155
+msgctxt "owb"
+msgid ""
+"Please provide an email address where customers can contact you if they "
+"have any issues."
+msgstr ""
+
+#: src/Settings.php:177
+msgctxt "owb"
+msgid "Virtual Product"
+msgstr ""
+
+#: src/Settings.php:178
+msgctxt "owb"
+msgid "Downloadable Product"
+msgstr ""
+
+#: src/WithdrawalItem.php:181
+#, php-format
+msgctxt "owb"
+msgid "Deleted item %1$s."
+msgstr ""
+
+#: src/WithdrawalItem.php:196
+#, php-format
+msgctxt "owb"
+msgid "Updated item from %1$s to %2$s."
+msgstr ""
+
+#: src/WithdrawalItem.php:198
+#, php-format
+msgctxt "owb"
+msgid "Added item %s."
+msgstr ""
+
+#: src/WithdrawalOrder.php:290
+msgctxt "owb-full-name-placeholder"
+msgid "Not specified"
+msgstr ""
+
+#. translators: 1: first name
+#: src/WithdrawalOrder.php:296
+#, php-format
+msgctxt "owb-first-name"
+msgid "%1$s"
+msgstr ""
+
+#. translators: 1: last name
+#: src/WithdrawalOrder.php:299
+#, php-format
+msgctxt "owb-last-name"
+msgid "%1$s"
+msgstr ""
+
+#. translators: 1: last name 2: last name
+#: src/WithdrawalOrder.php:302
+#, php-format
+msgctxt "owb-full-name"
+msgid "%1$s %2$s"
+msgstr ""
+
+#: src/WithdrawalOrder.php:419
+msgctxt "owb-order-number"
+msgid "Not specified"
+msgstr ""
+
+#: src/WithdrawalOrder.php:793 src/WithdrawalOrder.php:794
+msgctxt "owb"
+msgid "WooCommerce"
+msgstr ""
+
+#: src/WithdrawalOrder.php:970
+#, php-format
+msgctxt "owb"
+msgid "Parent order changed from %1$s to %2$s."
+msgstr ""
+
+#. translators: %s: new order status
+#: src/WithdrawalOrder.php:1002
+#, php-format
+msgctxt "owb"
+msgid "Withdrawal status set to %s."
+msgstr ""
+
+#: templates/emails/admin-deleted-withdrawal-request.php:26
+#: templates/emails/plain/admin-deleted-withdrawal-request.php:24
+msgctxt "owb"
+msgid "A withdrawal request has been deleted:"
+msgstr ""
+
+#: templates/emails/admin-new-withdrawal-request.php:26
+#: templates/emails/plain/admin-new-withdrawal-request.php:24
+msgctxt "owb"
+msgid "You’ve received a new withdrawal request:"
+msgstr ""
+
+#. translators: %s: Customer full name
+#: templates/emails/customer-withdrawal-request-confirmed.php:33
+#: templates/emails/customer-withdrawal-request-received.php:34
+#: templates/emails/customer-withdrawal-request-rejected.php:33
+#: templates/emails/plain/customer-withdrawal-request-confirmed.php:29
+#: templates/emails/plain/customer-withdrawal-request-received.php:30
+#: templates/emails/plain/customer-withdrawal-request-rejected.php:29
+#, php-format
+msgctxt "owb"
+msgid "Hi %s,"
+msgstr ""
+
+#: templates/emails/customer-withdrawal-request-confirmed.php:35
+#: templates/emails/customer-withdrawal-request-received.php:36
+#: templates/emails/customer-withdrawal-request-rejected.php:35
+#: templates/emails/plain/customer-withdrawal-request-confirmed.php:31
+#: templates/emails/plain/customer-withdrawal-request-received.php:32
+#: templates/emails/plain/customer-withdrawal-request-rejected.php:31
+msgctxt "owb"
+msgid "Hi,"
+msgstr ""
+
+#: templates/emails/customer-withdrawal-request-confirmed.php:40
+#: templates/emails/plain/customer-withdrawal-request-confirmed.php:34
+msgctxt "owb"
+msgid ""
+"We’ve wanted to let you know that your withdrawal request has been "
+"reviewed and is hereby confirmed."
+msgstr ""
+
+#: templates/emails/customer-withdrawal-request-received.php:41
+#: templates/emails/plain/customer-withdrawal-request-received.php:35
+#, php-format
+msgctxt "owb"
+msgid ""
+"We’ve received your withdrawal request on %1$s at %2$s and it is now being "
+"processed."
+msgstr ""
+
+#: templates/emails/customer-withdrawal-request-rejected.php:40
+#: templates/emails/plain/customer-withdrawal-request-rejected.php:34
+msgctxt "owb"
+msgid ""
+"We regret to inform you that your withdrawal request has been rejected."
+msgstr ""
+
+#: templates/emails/email-withdrawal-details.php:27
+#: templates/emails/plain/email-withdrawal-details.php:21
+msgctxt "owb"
+msgid "verified"
+msgstr ""
+
+#: templates/emails/email-withdrawal-details.php:27
+#: templates/emails/plain/email-withdrawal-details.php:21
+msgctxt "owb"
+msgid "unknown"
+msgstr ""
+
+#: templates/emails/email-withdrawal-details.php:38
+#: templates/emails/plain/email-withdrawal-details.php:26
+msgctxt "owb"
+msgid "Withdrawal summary"
+msgstr ""
+
+#: templates/emails/email-withdrawal-details.php:43
+#: templates/emails/plain/email-withdrawal-details.php:31
+msgctxt "owb"
+msgid "Received on"
+msgstr ""
+
+#: templates/emails/email-withdrawal-details.php:43
+#: templates/emails/plain/email-withdrawal-details.php:31
+#, php-format
+msgctxt "owb-datetime"
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: templates/emails/email-withdrawal-details.php:45
+#: templates/emails/plain/email-withdrawal-details.php:33
+msgctxt "owb"
+msgid "Full name"
+msgstr ""
+
+#: templates/emails/email-withdrawal-details.php:64
+#: templates/emails/plain/email-withdrawal-details.php:45
+#, php-format
+msgctxt "owb"
+msgid ""
+"As you requested, we have deleted your original withdrawal request for "
+"order %1$s."
+msgstr ""
+
+#: templates/emails/email-withdrawal-edit-link.php:25
+#: templates/emails/plain/email-withdrawal-edit-link.php:21
+msgctxt "owb"
+msgid "More than one matching order found"
+msgstr ""
+
+#: templates/emails/email-withdrawal-edit-link.php:27
+#: templates/emails/plain/email-withdrawal-edit-link.php:23
+msgctxt "owb"
+msgid "Want to withdraw certain items only?"
+msgstr ""
+
+#: templates/emails/email-withdrawal-edit-link.php:33
+#: templates/emails/plain/email-withdrawal-edit-link.php:27
+msgctxt "owb"
+msgid ""
+"We found more than one order matching your criteria—please use the link "
+"below to edit your withdrawal or select a different order."
+msgstr ""
+
+#: templates/emails/email-withdrawal-edit-link.php:36
+msgctxt "owb"
+msgid "Edit withdrawal request"
+msgstr ""
+
+#: templates/emails/email-withdrawal-edit-link.php:36
+msgctxt "owb"
+msgid "Choose items"
+msgstr ""
+
+#. translators: %s: Order link.
+#: templates/emails/plain/email-withdrawal-details.php:68
+#, php-format
+msgctxt "owb"
+msgid "View order: %s"
+msgstr ""
+
+#: templates/emails/plain/email-withdrawal-edit-link.php:31
+#, php-format
+msgctxt "owb"
+msgid "Edit withdrawal request: %s"
+msgstr ""
+
+#: templates/emails/plain/email-withdrawal-edit-link.php:33
+#, php-format
+msgctxt "owb"
+msgid "Choose items to withdraw now: %s"
+msgstr ""
+
+#. translators: 1: order number 2: order date
+#: templates/forms/order-withdrawal-request-item-select.php:30
+#, php-format
+msgctxt "owb"
+msgid "Order #%1$s was placed on %2$s."
+msgstr ""
+
+#: templates/forms/order-withdrawal-request-item-select.php:46
+#: templates/forms/order-withdrawal-request.php:155
+msgctxt "owb"
+msgid "I want to select the items to cancel manually."
+msgstr ""
+
+#: templates/forms/order-withdrawal-request-item-select.php:63
+msgctxt "owb"
+msgid "Select all"
+msgstr ""
+
+#: templates/forms/order-withdrawal-request-item.php:38
+msgctxt "owb"
+msgid "Non-withdrawable"
+msgstr ""
+
+#: templates/forms/order-withdrawal-request.php:36
+msgctxt "owb"
+msgid "Contract Identification, e.g. order number"
+msgstr ""
+
+#: templates/forms/order-withdrawal-request.php:71
+#: templates/forms/order-withdrawal-request.php:261
+msgctxt "owb"
+msgid "Email (repeat)"
+msgstr ""
+
+#: templates/forms/order-withdrawal-request.php:166
+msgctxt "owb"
+msgid ""
+"You will receive an email confirming receipt of your withdrawal request. "
+"In the email, you will find a link that allows you to select the items you "
+"wish to return."
+msgstr ""
+
+#: templates/forms/order-withdrawal-request.php:192
+msgctxt "owb"
+msgid "Please select an order"
+msgstr ""
+
+#: templates/forms/order-withdrawal-request.php:196
+#: templates/forms/order-withdrawal-request.php:203
+#, php-format
+msgctxt "owb"
+msgid "Order #%1$s"
+msgstr ""
+
+#: templates/forms/order-withdrawal-request.php:212
+msgctxt "owb"
+msgid "Order"
+msgstr ""
+
+#: templates/forms/order-withdrawal-request.php:321
+#, php-format
+msgctxt "owb"
+msgid "Please delete my original withdrawal request to order %1$s."
+msgstr ""
+
+#: templates/forms/order-withdrawal-request.php:343
+#, php-format
+msgctxt "owb"
+msgid ""
+"Sorry, there are currently no orders available to withdraw. If you have "
+"questions regarding one of your orders, please <a href=\"%s\">contact "
+"support</a> for help."
+msgstr ""
+
+#: templates/forms/order-withdrawal-request.php:355
+msgctxt "owb"
+msgid "Confirm withdrawal"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "EU Order Withdrawal Button for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://vendidero.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "EU-compliant order withdrawal button and form for WooCommerce."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "vendidero"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://vendidero.com"
+msgstr ""
