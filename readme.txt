@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 7.0
 WC requires at least: 3.9
-WC tested up to: 10.8
-Stable tag: 4.0.8
+WC tested up to: 10.9
+Stable tag: 4.0.9
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -203,6 +203,13 @@ Bug reports may be filed via our [GitHub repository](https://github.com/vendider
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.0.9 =
+* Improvement: WooCommerce PayPal Payments shipping costs compatibility with Pay Now enabled
+* Improvement: Use the same required HTML markup for checkboxes as current Woo core, bump checkbox template version
+* New: [Withdrawal button] Withdrawal preview modal
+* Improvement: [Withdrawal button] Link withdrawal items with refunds to prevent reducing withdrawable quantity twice
+* Fix: [Withdrawal button] Edge-case where edit withdrawal guest links where missing the current order
+
 = 4.0.8 =
 * New: [Withdrawal button] WPML compatibility
 * New: [Withdrawal button] Privacy additions (export, erase, policy suggestions)

@@ -60,6 +60,29 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 			10,
 			1
 		);
+
+		/**
+		 * When PayPal > Settings > Pay Now Experience is enabled (skip order review page), PayPal Payments
+		 * manually creates a WC_Order (withount setting created_via) via ppc-approve-order endpoint.
+		 * This order will include shipping net prices - make sure Germanized does not handle those prices as gross instead.
+		 */
+		add_filter(
+			'woocommerce_paypal_payments_approve_order_request_started',
+			function () {
+				add_filter(
+					'woocommerce_gzd_order_item_additional_cost_is_net',
+					function ( $cost_is_net, $old_item, $item ) {
+						$item_total     = wc_format_decimal( floatval( $old_item->get_total() ) );
+						$new_item_total = wc_format_decimal( floatval( $item->get_total() ) );
+						$item_tax_total = floatval( $old_item->get_total_tax() );
+
+						return 0.0 === $item_tax_total && $item_total === $new_item_total;
+					},
+					10,
+					3
+				);
+			}
+		);
 	}
 
 	public function after_plugins_loaded() {

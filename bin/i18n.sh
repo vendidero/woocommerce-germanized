@@ -28,6 +28,10 @@ wp i18n make-pot ./ ./i18n/languages/woocommerce-germanized.pot --ignore-domain 
 # Run composer update to make sure POT file paths are being updated
 composer update
 
+# Cat/Merge 2 .po files
+# msgcat --use-first --output-file ./i18n/languages/woocommerce-germanized-de_DE.po /Users/dennis/Desktop/wp-plugins-eu-order-withdrawal-button-for-woocommerce-dev-de.po ./i18n/languages/woocommerce-germanized-de_DE.po
+# msgcat --use-first --output-file ./i18n/languages/woocommerce-germanized-de_DE_formal.po /Users/dennis/Desktop/wp-plugins-eu-order-withdrawal-button-for-woocommerce-dev-de.po ./i18n/languages/woocommerce-germanized-de_DE_formal.po
+
 # Refresh po from pot
 msgmerge -U --suffix=off --backup=none ./i18n/languages/woocommerce-germanized-de_DE.po ./i18n/languages/woocommerce-germanized.pot
 msgmerge -U --suffix=off --backup=none ./i18n/languages/woocommerce-germanized-de_DE_formal.po ./i18n/languages/woocommerce-germanized.pot

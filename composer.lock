@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "417d7cb9713dca5077cb81927e644b45",
+    "content-hash": "ccfc8181fcc3fc12758459780415d0f3",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -922,16 +922,16 @@
         },
         {
             "name": "vendidero/eu-order-withdrawal-button-for-woocommerce",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/eu-order-withdrawal-button-for-woocommerce.git",
-                "reference": "9ed6b9702d8d490d7bff88ff87d6fc5c871bb1cc"
+                "reference": "31546a962fa3228b2b032b78ec1debd31a8aa5d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/eu-order-withdrawal-button-for-woocommerce/zipball/9ed6b9702d8d490d7bff88ff87d6fc5c871bb1cc",
-                "reference": "9ed6b9702d8d490d7bff88ff87d6fc5c871bb1cc",
+                "url": "https://api.github.com/repos/vendidero/eu-order-withdrawal-button-for-woocommerce/zipball/31546a962fa3228b2b032b78ec1debd31a8aa5d5",
+                "reference": "31546a962fa3228b2b032b78ec1debd31a8aa5d5",
                 "shasum": ""
             },
             "require": {
@@ -965,10 +965,10 @@
             "description": "EU Order Withdrawal Button for WooCommerce",
             "homepage": "https://vendidero.de",
             "support": {
-                "source": "https://github.com/vendidero/eu-order-withdrawal-button-for-woocommerce/tree/v2.3.0",
+                "source": "https://github.com/vendidero/eu-order-withdrawal-button-for-woocommerce/tree/v2.3.1",
                 "issues": "https://github.com/vendidero/eu-order-withdrawal-button-for-woocommerce/issues"
             },
-            "time": "2026-06-22T09:26:13+00:00"
+            "time": "2026-06-24T11:17:18+00:00"
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
