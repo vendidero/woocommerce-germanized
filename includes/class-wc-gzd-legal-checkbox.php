@@ -18,6 +18,7 @@ class WC_GZD_Legal_Checkbox {
 		'is_mandatory'             => 'no',
 		'is_shown'                 => 'yes',
 		'is_enabled'               => 'yes',
+		'has_confirmation'         => 'no',
 		'is_core'                  => 'no',
 		'refresh_fragments'        => 'no',
 		'value'                    => '1',
@@ -26,6 +27,7 @@ class WC_GZD_Legal_Checkbox {
 		'template_name'            => 'checkboxes/default.php',
 		'template_args'            => array(),
 		'error_message'            => '',
+		'confirmation'             => '',
 		'priority'                 => 10,
 		'locations'                => array(),
 		'supporting_locations'     => array(),
@@ -55,7 +57,6 @@ class WC_GZD_Legal_Checkbox {
 	 * @param array $args
 	 */
 	public function update( $args = array() ) {
-
 		// Merge html classes to avoid core classes being overriden by empty option
 		$merge = array( 'html_classes', 'html_wrapper_classes', 'label_args' );
 
@@ -380,6 +381,28 @@ class WC_GZD_Legal_Checkbox {
 		$this->settings['error_message'] = $error_message;
 	}
 
+	public function get_confirmation( $plain = false ) {
+		$confirmation = $this->settings['confirmation'];
+
+		if ( ! $plain ) {
+			$confirmation = wc_gzd_replace_label_shortcodes( $confirmation, $this->get_label_args() );
+			$id           = $this->get_id();
+
+			/**
+			 * Filter the email confirmation text for a legal checkbox.
+			 * `$id` equals the checkbox id.
+			 *
+			 * @param string $confirmation The confirmation.
+			 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+			 *
+			 * @since 2.0.0
+			 */
+			$confirmation = apply_filters( "woocommerce_gzd_legal_checkbox_{$id}_confirmation", $confirmation, $this );
+		}
+
+		return $confirmation;
+	}
+
 	/**
 	 * The printing order (from low to high)
 	 *
@@ -638,6 +661,31 @@ class WC_GZD_Legal_Checkbox {
 	}
 
 	/**
+	 * Whether the checkbox supports confirmations or not.
+	 *
+	 * @return string yes or no
+	 */
+	public function get_has_confirmation() {
+		return $this->settings['has_confirmation'];
+	}
+
+	/**
+	 * Whether the checkbox supports email confirmations or not.
+	 *
+	 * @return bool.
+	 */
+	public function has_confirmation() {
+		return $this->get_has_confirmation() === 'yes';
+	}
+
+	/**
+	 * @param bool $has_confirmation
+	 */
+	public function set_has_confirmation( $has_confirmation ) {
+		$this->settings['has_confirmation'] = wc_bool_to_string( $has_confirmation );
+	}
+
+	/**
 	 * The name being shown within the admin UI.
 	 *
 	 * @return string
@@ -820,6 +868,7 @@ class WC_GZD_Legal_Checkbox {
 	public function get_form_fields() {
 		$label_args   = array_keys( $this->get_label_args() );
 		$placeholders = '';
+		$id           = $this->get_id();
 
 		if ( ! empty( $label_args ) ) {
 			$placeholders = implode( ', ', $label_args );
@@ -833,16 +882,15 @@ class WC_GZD_Legal_Checkbox {
 		}
 
 		/**
-		 * Filters legal checkbox settings before titles.
+		 * Filters legal checkbox core settings.
 		 *
 		 * @param array $settings Array containing settings.
 		 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
 		 *
-		 * @since 2.0.0
-		 *
+		 * @since 4.1.0
 		 */
 		$options = apply_filters(
-			'woocommerce_gzd_legal_checkbox_fields_before_titles',
+			"woocommerce_gzd_legal_checkbox_{$id}_settings",
 			array(
 				array(
 					'title'   => __( 'Status', 'woocommerce-germanized' ),
@@ -921,6 +969,33 @@ class WC_GZD_Legal_Checkbox {
 			$this
 		);
 
+		if ( $this->has_confirmation() ) {
+			$options = array_merge(
+				$options,
+				array(
+					array(
+						'title'    => __( 'Email confirmation', 'woocommerce-germanized' ),
+						'type'     => 'textarea',
+						'id'       => $this->get_form_field_id( 'confirmation' ),
+						'css'      => 'width:100%; height: 65px;',
+						'desc_tip' => __( 'Optionally, include a note within the email notification if the customer has given their consent.', 'woocommerce-germanized' ),
+						'desc'     => ! empty( $placeholders ) ? sprintf( __( 'You may use one of the following placeholders within the text: %s', 'woocommerce-germanized' ), '<code>' . $placeholders . '</code>' ) : '',
+						'default'  => $this->get_confirmation( true ),
+					),
+				)
+			);
+		}
+
+		/**
+		 * Filters legal checkbox settings before titles.
+		 *
+		 * @param array $settings Array containing settings.
+		 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+		 *
+		 * @since 2.0.0
+		 */
+		$options = apply_filters( 'woocommerce_gzd_legal_checkbox_fields_before_titles', $options, $this );
+
 		if ( ! WC_germanized()->is_pro() ) {
 			$options = array_merge(
 				$options,
@@ -935,8 +1010,6 @@ class WC_GZD_Legal_Checkbox {
 				)
 			);
 		}
-
-		$id = $this->get_id();
 
 		/**
 		 * Filters legal checkbox settings for `$id` before titles.

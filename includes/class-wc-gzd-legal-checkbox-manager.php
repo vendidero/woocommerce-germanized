@@ -80,6 +80,48 @@ class WC_GZD_Legal_Checkbox_Manager {
 		);
 
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_fragments_checkout' ), 10, 1 );
+
+		/**
+		 * Review reminder checkbox
+		 */
+		add_action( 'template_redirect', array( $this, 'cancel_review_reminder_check' ) );
+		add_filter( 'woocommerce_should_send_review_request', array( $this, 'send_review_reminder' ), 10, 2 );
+	}
+
+	/**
+	 * @param boolean $send
+	 * @param WC_Order $order
+	 *
+	 * @return boolean
+	 */
+	public function send_review_reminder( $send, $order ) {
+		if ( $checkbox = wc_gzd_get_legal_checkbox( 'review_reminder' ) ) {
+			if ( $checkbox->is_enabled() ) {
+				$send = $this->is_checked( $checkbox->get_id(), $order );
+			}
+		}
+
+		return $send;
+	}
+
+	public function cancel_review_reminder_check() {
+		if ( isset( $_GET['cancel_review_reminder'] ) && isset( $_GET['order_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$order_id = absint( $_GET['order_id'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$code     = wp_unslash( $_GET['cancel_review_reminder'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+			if ( ! empty( $code ) && ! empty( $order_id ) ) {
+				if ( $order = wc_get_order( $order_id ) ) {
+					if ( $order->get_id() === $order_id && ! empty( $order->get_order_key() ) && hash_equals( $order->get_order_key(), $code ) ) {
+						$order->update_meta_data( '_review_reminder_opted_in', 'no' );
+						$order->save();
+
+						if ( function_exists( 'wc_add_notice' ) ) {
+							wc_add_notice( __( 'You have successfully unsubscribed from receiving review reminders.', 'woocommerce-germanized' ) );
+						}
+					}
+				}
+			}
+		}
 	}
 
 	public function maybe_hide_terms_checkbox() {
@@ -170,7 +212,13 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'priority'             => 1,
 				'is_enabled'           => true,
 				'is_core'              => true,
+				'has_confirmation'     => true,
 				'is_shown'             => false,
+				'label_args'           => array(
+					'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
+					'{/link}' => '</a>',
+				),
+				'confirmation'         => __( 'Furthermore you have expressly agreed to start the performance of the contract for digital items (e.g. downloads) before expiry of the withdrawal period. I have noted to lose my {link}right of withdrawal{/link} with the beginning of the performance of the contract.', 'woocommerce-germanized' ),
 				'admin_name'           => __( 'Digital', 'woocommerce-germanized' ),
 				'admin_desc'           => __( 'Asks the customer to skip revocation period for digital products.', 'woocommerce-germanized' ),
 				'locations'            => array( 'checkout', 'pay_for_order' ),
@@ -190,7 +238,13 @@ class WC_GZD_Legal_Checkbox_Manager {
 				'is_mandatory'         => true,
 				'priority'             => 2,
 				'is_enabled'           => true,
+				'has_confirmation'     => true,
+				'confirmation'         => __( 'Furthermore you have expressly agreed to start the performance of the contract for services before expiry of the withdrawal period. I have noted to lose my {link}right of withdrawal{/link} with the beginning of the performance of the contract.', 'woocommerce-germanized' ),
 				'is_core'              => true,
+				'label_args'           => array(
+					'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
+					'{/link}' => '</a>',
+				),
 				'is_shown'             => false,
 				'admin_name'           => __( 'Service', 'woocommerce-germanized' ),
 				'admin_desc'           => __( 'Asks the customer to skip revocation period for services.', 'woocommerce-germanized' ),
@@ -374,6 +428,37 @@ class WC_GZD_Legal_Checkbox_Manager {
 				)
 			);
 		}
+
+		$review_reminder_enabled = false;
+
+		if ( class_exists( 'Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+			$review_reminder_enabled = Automattic\WooCommerce\Utilities\FeaturesUtil::feature_is_enabled( 'customer_review_request' );
+		}
+
+		wc_gzd_register_legal_checkbox(
+			'review_reminder',
+			array(
+				'html_id'              => 'data-review-reminder',
+				'html_name'            => 'review_reminder',
+				'html_wrapper_classes' => array( 'legal' ),
+				'label'                => __( 'I would like to rate this purchase later and receive a one-time email reminder to submit a review. I can withdraw my consent at any time.', 'woocommerce-germanized' ),
+				'error_message'        => '',
+				'is_mandatory'         => false,
+				'is_enabled'           => $review_reminder_enabled,
+				'priority'             => 9,
+				'has_confirmation'     => true,
+				'label_args'           => array(
+					'{email_opt_out_link}'  => '',
+					'{/email_opt_out_link}' => '',
+				),
+				'confirmation'         => __( 'You have also agreed to receive a one-time email reminder to submit a review. You can {email_opt_out_link}withdraw{/email_opt_out_link} your consent at any time.', 'woocommerce-germanized' ),
+				'is_core'              => true,
+				'admin_name'           => __( 'Review Reminder', 'woocommerce-germanized' ),
+				'admin_desc'           => __( 'Obtain customers\' consent to receive a review invitation.', 'woocommerce-germanized' ),
+				'locations'            => array( 'checkout', 'pay_for_order' ),
+				'supporting_locations' => array( 'checkout', 'pay_for_order' ),
+			)
+		);
 
 		/**
 		 * After core checkbox registration.
@@ -716,6 +801,21 @@ class WC_GZD_Legal_Checkbox_Manager {
 				$law_details                 = wc_gzd_cart_get_photovoltaic_systems_law_details();
 				$checkbox_args['is_shown']   = true;
 				$checkbox_args['label_args'] = array( '{legal_text}' => $law_details['text'] );
+			}
+
+			if ( 'review_reminder' === $checkbox_id && 'order' === $context ) {
+				$cancel_review_reminder_link = add_query_arg(
+					array(
+						'cancel_review_reminder' => $args['order']->get_order_key(),
+						'order_id'               => $args['order']->get_id(),
+					),
+					get_site_url()
+				);
+
+				$checkbox_args['label_args'] = array(
+					'{email_opt_out_link}' => '<a href="' . esc_url( $cancel_review_reminder_link ) . '">',
+					'{/email_opt_in_link}' => '</a>',
+				);
 			}
 
 			/**
@@ -1230,12 +1330,11 @@ class WC_GZD_Legal_Checkbox_Manager {
 		if ( is_a( $instance_object, 'WC_Order' ) ) {
 			$cb_value = $instance_object->get_meta( $meta_key );
 
-			if ( '' === $meta_suffix ) {
-				if ( 'parcel_delivery' === $checkbox_id ) {
-					$cb_value = $instance_object->get_meta( '_parcel_delivery_opted_in' );
-				} elseif ( 'photovoltaic_systems' === $checkbox_id ) {
-					$cb_value = $instance_object->get_meta( '_photovoltaic_systems_opted_in' );
-				}
+			/**
+			 * Germanized stores opt-in data without "_checkbox" prefix.
+			 */
+			if ( '' === $meta_suffix && empty( $cb_value ) ) {
+				$cb_value = $instance_object->get_meta( "_{$checkbox_id}_opted_in" );
 			}
 		} elseif ( is_a( $instance_object, 'WP_User' ) ) {
 			$cb_value = get_user_meta( $instance_object->ID, $meta_key, true );
@@ -1321,7 +1420,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	 * @return string[]
 	 */
 	public function get_loggable_checkboxes( $location ) {
-		$checkboxes = apply_filters( 'woocommerce_gzd_loggable_checkboxes', array( 'parcel_delivery', 'photovoltaic_systems' ), $location );
+		$checkboxes = apply_filters( 'woocommerce_gzd_loggable_checkboxes', array( 'parcel_delivery', 'photovoltaic_systems', 'review_reminder' ), $location );
 
 		return $checkboxes;
 	}

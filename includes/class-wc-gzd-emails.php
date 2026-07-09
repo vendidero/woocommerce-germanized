@@ -1219,7 +1219,8 @@ class WC_GZD_Emails {
 		$type = $this->get_current_email_object();
 
 		if ( $type ) {
-			WC_GZD_Legal_Checkbox_Manager::instance()->show_conditionally_order( $order, 'checkout' );
+			$checkbox_manager = WC_GZD_Legal_Checkbox_Manager::instance();
+			$checkbox_manager->show_conditionally_order( $order, 'checkout' );
 
 			// Check if order contains digital products
 			$items = $order->get_items();
@@ -1252,14 +1253,12 @@ class WC_GZD_Emails {
 
 			if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' && $is_differential_taxed && apply_filters( 'woocommerce_gzd_show_differential_taxation_in_emails', true, $type ) ) {
 				$mark = wc_gzd_get_differential_taxation_mark();
-
 				/**
 				 * Filters the differential taxation notice text for emails.
 				 *
 				 * @param string $html The notice output.
 				 *
 				 * @since 1.5.0
-				 *
 				 */
 				$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_email', $mark . wc_gzd_get_differential_taxation_notice_text() );
 
@@ -1268,7 +1267,6 @@ class WC_GZD_Emails {
 
 			if ( $this->is_order_confirmation_email( $type->id ) ) {
 				if ( $is_downloadable && ( ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) && $checkbox->is_shown() ) && $text = wc_gzd_get_legal_text_digital_email_notice() ) {
-
 					/**
 					 * Filters the order confirmation digital notice text.
 					 *
@@ -1276,7 +1274,6 @@ class WC_GZD_Emails {
 					 * @param WC_Order $order The order object.
 					 *
 					 * @since 1.0.0
-					 *
 					 */
 					echo wp_kses_post( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . wpautop( $text ) . '</div>', $order ) );
 				}
@@ -1289,9 +1286,35 @@ class WC_GZD_Emails {
 					 * @param WC_Order $order The order object.
 					 *
 					 * @since 1.0.0
-					 *
 					 */
 					echo wp_kses_post( apply_filters( 'woocommerce_gzd_order_confirmation_service_notice', '<div class="gzd-service-notice-text">' . wpautop( $text ) . '</div>', $order ) );
+				}
+			}
+
+			foreach ( $checkbox_manager->get_checkboxes( array( 'has_confirmation' => true ) ) as $checkbox ) {
+				/**
+				 * Digital + service checkbox have separate treatments, see above.
+				 */
+				if ( in_array( $checkbox->get_id(), array( 'download', 'service' ), true ) ) {
+					continue;
+				}
+
+				if ( $checkbox->is_enabled() && $checkbox_manager->is_checked( $checkbox->get_id(), $order ) ) {
+					$confirmation_text = $checkbox->get_confirmation();
+					$attach_to_email   = apply_filters( "woocommerce_gzd_checkbox_{$checkbox->get_id()}_email_confirmation_enable", $this->is_order_confirmation_email( $type->id ), $type, $checkbox );
+
+					if ( ! empty( $confirmation_text ) && $attach_to_email ) {
+						/**
+						 * Filters the checkbox email confirmation text.
+						 *
+						 * @param string $html The notice HTML.
+						 * @param WC_Order $order The order object.
+						 * @param WC_GZD_Legal_Checkbox $checkbox The legal checkbox object.
+						 *
+						 * @since 4.1.0
+						 */
+						echo wp_kses_post( apply_filters( "woocommerce_gzd_checkbox_{$checkbox->get_id()}_email_confirmation_notice", '<div class="gzd-checkbox-email-confirmation gzd-' . esc_attr( $checkbox->get_id() ) . '-notice-text">' . wpautop( $confirmation_text ) . '</div>', $order, $checkbox ) );
+					}
 				}
 			}
 		}

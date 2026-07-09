@@ -23,7 +23,7 @@ class WC_GZD_Admin_Legal_Checkboxes {
 
 	public function __construct() {
 		add_filter(
-			'woocommerce_gzd_legal_checkbox_age_verification_fields_before_titles',
+			'woocommerce_gzd_legal_checkbox_age_verification_settings',
 			array(
 				$this,
 				'additional_age_verification_fields',
@@ -32,16 +32,7 @@ class WC_GZD_Admin_Legal_Checkboxes {
 			2
 		);
 		add_filter(
-			'woocommerce_gzd_legal_checkbox_service_fields_before_titles',
-			array(
-				$this,
-				'additional_service_fields',
-			),
-			10,
-			2
-		);
-		add_filter(
-			'woocommerce_gzd_legal_checkbox_download_fields_before_titles',
+			'woocommerce_gzd_legal_checkbox_download_settings',
 			array(
 				$this,
 				'additional_download_fields',
@@ -50,7 +41,7 @@ class WC_GZD_Admin_Legal_Checkboxes {
 			2
 		);
 		add_filter(
-			'woocommerce_gzd_legal_checkbox_parcel_delivery_fields_before_titles',
+			'woocommerce_gzd_legal_checkbox_parcel_delivery_settings',
 			array(
 				$this,
 				'additional_parcel_delivery_fields',
@@ -78,27 +69,7 @@ class WC_GZD_Admin_Legal_Checkboxes {
 		return $fields;
 	}
 
-	public function additional_service_fields( $fields, $checkbox ) {
-		$fields = array_merge(
-			$fields,
-			array(
-				array(
-					'title'    => __( 'Confirmation', 'woocommerce-germanized' ),
-					'type'     => 'textarea',
-					'id'       => $checkbox->get_form_field_id( 'confirmation' ),
-					'css'      => 'width:100%; height: 65px;',
-					'desc_tip' => __( 'This text will be appended to your order processing email if the order contains service products.', 'woocommerce-germanized' ),
-					'desc'     => sprintf( __( 'To insert a link to your cancellation policy use the following placeholder: %s', 'woocommerce-germanized' ), '<code>{link}, {/link}</code>' ),
-					'default'  => __( 'Furthermore you have expressly agreed to start the performance of the contract for services before expiry of the withdrawal period. I have noted to lose my {link}right of withdrawal{/link} with the beginning of the performance of the contract.', 'woocommerce-germanized' ),
-				),
-			)
-		);
-
-		return $fields;
-	}
-
 	public function additional_download_fields( $fields, $checkbox ) {
-
 		$product_types = wc_get_product_types();
 
 		$digital_type_options = array_merge(
@@ -113,15 +84,6 @@ class WC_GZD_Admin_Legal_Checkboxes {
 		$fields = array_merge(
 			$fields,
 			array(
-				array(
-					'title'    => __( 'Confirmation', 'woocommerce-germanized' ),
-					'type'     => 'textarea',
-					'id'       => $checkbox->get_form_field_id( 'confirmation' ),
-					'css'      => 'width:100%; height: 65px;',
-					'desc_tip' => __( 'This text will be appended to your order processing email if the order contains digital products.', 'woocommerce-germanized' ),
-					'desc'     => sprintf( __( 'To insert a link to your cancellation policy use the following placeholder: %s', 'woocommerce-germanized' ), '<code>{link}, {/link}</code>' ),
-					'default'  => __( 'Furthermore you have expressly agreed to start the performance of the contract for digital items (e.g. downloads) before expiry of the withdrawal period. I have noted to lose my {link}right of withdrawal{/link} with the beginning of the performance of the contract.', 'woocommerce-germanized' ),
-				),
 				array(
 					'title'    => __( 'Digital Product types', 'woocommerce-germanized' ),
 					'desc'     => __( 'Select product types for which the loss of the right of withdrawal notice is shown. Product types like "simple product" may be redundant because they include virtual and downloadable products.', 'woocommerce-germanized' ),
@@ -139,7 +101,6 @@ class WC_GZD_Admin_Legal_Checkboxes {
 	}
 
 	public function additional_parcel_delivery_fields( $fields, $checkbox ) {
-
 		$shipping_methods_options = WC_GZD_Admin::instance()->get_shipping_method_instances_options();
 
 		$fields = array_merge(

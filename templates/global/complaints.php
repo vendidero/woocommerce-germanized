@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.0.3
+ * @version 4.1.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<h3><?php esc_html_e( 'Information pursuant to § 19 (3) AStG', 'woocommerce-germanized' ); ?></h3>
 		<p><?php esc_html_e( 'Alternative Dispute Resolution Act - Online stores', 'woocommerce-germanized' ); ?></p>
 	<?php else : ?>
-		<h3><?php esc_html_e( 'Alternative Dispute Resolution in accordance with Art. 14 (1) ODR-VO and § 36 VSBG:', 'woocommerce-germanized' ); ?></h3>
+		<h3><?php esc_html_e( 'Dispute Resolution in accordance with § 36 VSBG:', 'woocommerce-germanized' ); ?></h3>
 	<?php endif; ?>
 <?php endif; ?>
 

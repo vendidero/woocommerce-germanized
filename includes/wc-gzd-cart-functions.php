@@ -1189,16 +1189,7 @@ function wc_gzd_get_legal_text_digital_email_notice() {
 	$text = '';
 
 	if ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) {
-		$text = $checkbox->confirmation;
-
-		if ( $text ) {
-			$replacements = array(
-				'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
-				'{/link}' => '</a>',
-			);
-
-			$text = wc_gzd_replace_label_shortcodes( $text, $replacements );
-		}
+		$text = $checkbox->get_confirmation();
 	}
 
 	/**
@@ -1223,16 +1214,7 @@ function wc_gzd_get_legal_text_service_email_notice() {
 	$text = '';
 
 	if ( $checkbox = wc_gzd_get_legal_checkbox( 'service' ) ) {
-		$text = $checkbox->confirmation;
-
-		if ( $text ) {
-			$replacements = array(
-				'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
-				'{/link}' => '</a>',
-			);
-
-			$text = wc_gzd_replace_label_shortcodes( $text, $replacements );
-		}
+		$text = $checkbox->get_confirmation();
 	}
 
 	/**
@@ -1244,6 +1226,33 @@ function wc_gzd_get_legal_text_service_email_notice() {
 	 *
 	 */
 	return apply_filters( 'woocommerce_gzd_legal_service_email_text', $text );
+}
+
+function wc_gzd_get_legal_text_review_reminder_email_notice() {
+	$text = '';
+
+	if ( $checkbox = wc_gzd_get_legal_checkbox( 'review_reminder' ) ) {
+		$text = $checkbox->get_confirmation();
+
+		if ( $text ) {
+			$replacements = array(
+				'{privacy_policy_link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'data_security' ) ) . '" target="_blank">',
+				'{/privacy_policy_link}' => '</a>',
+			);
+
+			$text = wc_gzd_replace_label_shortcodes( $text, $replacements );
+		}
+	}
+
+	/**
+	 * Filter to adjust the legal email text for customers that agreed to receive a review reminder email.
+	 *
+	 * @param string $text The HTML output.
+	 *
+	 * @since 2.0.2
+	 *
+	 */
+	return apply_filters( 'woocommerce_gzd_legal_review_reminder_email_text', $text );
 }
 
 function wc_gzd_get_chosen_shipping_rates( $args = array() ) {
