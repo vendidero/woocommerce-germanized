@@ -193,6 +193,10 @@ sent to the Administrator which serves as a notification only - so make sure you
 
 Bug reports may be filed via our [GitHub repository](https://github.com/vendidero/woocommerce-germanized).
 
+= Where do I report security bugs found in this plugin? =
+
+Please report security bugs found in the source code of the Germanized for WooCommerce plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/4ebb0254-1bf0-407c-adf3-f510e6d03081). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
+
 == Screenshots ==
 
 1. Some of the checkout adjustments to comply with the button solution
