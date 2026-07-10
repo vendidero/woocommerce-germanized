@@ -35,6 +35,18 @@ final class DirectDebit extends AbstractPaymentMethodType {
 		$this->settings = get_option( 'woocommerce_direct-debit_settings', array() );
 
 		add_action( 'woocommerce_rest_checkout_process_payment_with_context', array( $this, 'validate' ), 8, 2 );
+		add_filter( 'woocommerce_gzd_checkout_block_cart_api_data', array( $this, 'direct_debit_api' ) );
+	}
+
+	public function direct_debit_api( $response ) {
+		$customer           = WC()->customer;
+		$available_gateways = WC()->payment_gateways->get_available_payment_gateways();
+
+		if ( isset( $available_gateways['direct-debit'] ) && $customer && $customer->get_id() > 0 ) {
+			$response['direct_debit'] = $available_gateways['direct-debit']->get_user_account_data( $customer->get_id() );
+		}
+
+		return $response;
 	}
 
 	/**

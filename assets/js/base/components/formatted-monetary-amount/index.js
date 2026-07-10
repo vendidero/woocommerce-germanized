@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import NumberFormat from 'react-number-format';
+import { NumericFormat as NumberFormat } from 'react-number-format';
 import classNames from 'classnames';
 
 /**
@@ -13,8 +13,7 @@ const currencyToNumberFormat = ( currency ) => {
         decimalSeparator: currency?.decimalSeparator,
         fixedDecimalScale: true,
         prefix: currency?.prefix,
-        suffix: currency?.suffix,
-        isNumericString: true,
+        suffix: currency?.suffix
     };
 };
 

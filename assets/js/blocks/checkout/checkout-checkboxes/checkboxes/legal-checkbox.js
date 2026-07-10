@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { useSelect, useDispatch } from '@wordpress/data';
 import { VALIDATION_STORE_KEY } from '@woocommerce/block-data';
 import { CheckboxControl } from '@woocommerce/blocks-checkout';
-import { Icon, warning } from '@wordpress/icons';
+import { Icon, error as errorIcon } from '@wordpress/icons';
 
 const LegalCheckbox = ({
    checkbox,
@@ -108,7 +108,7 @@ const LegalCheckbox = ({
                     { showInlineErrorMessage && (
                         <div className="wc-block-components-validation-error" role="alert">
                             <p id={ validationErrorId }>
-                                <Icon icon={ warning } />
+                                <Icon icon={ errorIcon } />
                                 <span
                                     dangerouslySetInnerHTML={ {
                                         __html: error?.message,
