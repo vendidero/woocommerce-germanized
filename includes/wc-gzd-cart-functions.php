@@ -1360,3 +1360,25 @@ function woocommerce_gzd_checkout_custom_submit_button_is_shown() {
 
 	return $gzd_submit_button_shown && ! wc_gzd_checkout_adjustments_disabled();
 }
+
+function woocommerce_gzd_mini_cart_show_shipping_costs_notice() {
+	$hidden_for_types = get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array() );
+	$show_shipping    = empty( $hidden_for_types ) ? true : false;
+
+	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+		if ( $_product = $cart_item['data'] ) {
+			if ( ! wc_gzd_product_matches_extended_type( $hidden_for_types, $_product ) ) {
+				$show_shipping = true;
+			}
+		}
+	}
+
+	// Do only show shipping notice if shipping costs are > 0
+	if ( is_callable( array( WC()->cart, 'get_shipping_total' ) ) ) {
+		if ( WC()->cart->get_shipping_total() <= 0 ) {
+			$show_shipping = false;
+		}
+	}
+
+	return apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', $show_shipping );
+}

@@ -1238,24 +1238,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_order_item_remove_hooks' ) ) {
 if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 
 	function woocommerce_gzd_template_mini_cart_taxes() {
-		$hidden_for_types           = get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array() );
-		$show_shipping              = empty( $hidden_for_types ) ? true : false;
 		$show_differential_taxation = ( 'yes' === get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) ? wc_gzd_cart_contains_differential_taxed_product() : false );
-
-		foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-			if ( $_product = $cart_item['data'] ) {
-				if ( ! wc_gzd_product_matches_extended_type( $hidden_for_types, $_product ) ) {
-					$show_shipping = true;
-				}
-			}
-		}
-
-		// Do only show shipping notice if shipping costs are > 0
-		if ( is_callable( array( WC()->cart, 'get_shipping_total' ) ) ) {
-			if ( WC()->cart->get_shipping_total() <= 0 ) {
-				$show_shipping = false;
-			}
-		}
 
 		wc_get_template(
 			'cart/mini-cart-totals.php',
@@ -1278,7 +1261,7 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_taxes' ) ) {
 				 * @since 2.0.2
 				 *
 				 */
-				'shipping_costs_info'        => ( apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', $show_shipping ) ) ? wc_gzd_get_shipping_costs_text() : '',
+				'shipping_costs_info'        => woocommerce_gzd_mini_cart_show_shipping_costs_notice() ? wc_gzd_get_shipping_costs_text() : '',
 
 				/**
 				 * Filter that allows disabling differential taxation notice within mini cart.
