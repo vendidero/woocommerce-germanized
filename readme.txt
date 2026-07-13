@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 7.0
 WC requires at least: 3.9
 WC tested up to: 10.9
-Stable tag: 4.0.9
+Stable tag: 4.0.10
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -207,6 +207,15 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.0.10 =
+* Fix: Improve support for new WC 10.9 iapi mini cart
+* Improvement: Added review reminder checkbox including opt-out link to support new WooCommerce (beta) feature to send review reminder emails
+* New: [Withdrawal button] Introduce setting to place a withdrawal link (in case available) within customer account order actions
+* Improvement: [Withdrawal button] Override additional abstract order method to prevent compatibility issues
+* Improvement: [Withdrawal button] Add a generic error message in case no valid XHR response is received
+* Improvement: [Withdrawal button] Show withdrawn/requested labels for order items within view order endpoint
+* Improvement: [Withdrawal button] Introduce eu_order_woocommerce_withdrawal_email_show_verification_code filter which allows to hide the verification code from emails
+
 = 4.0.9 =
 * Improvement: WooCommerce PayPal Payments shipping costs compatibility with Pay Now enabled
 * Improvement: Use the same required HTML markup for checkboxes as current Woo core, bump checkbox template version

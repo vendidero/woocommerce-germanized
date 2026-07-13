@@ -924,48 +924,56 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 		 * Updates WooCommerce Options if user chooses to automatically adapt german options
 		 */
 		public static function set_default_settings() {
-			global $wpdb;
-
 			$base_country = wc_gzd_get_base_country();
+			$base_is_eu   = wc_gzd_base_country_is_eu();
 			$eu_countries = ( isset( WC()->countries ) ) ? WC()->countries->get_european_union_countries() : array( $base_country );
 
-			/**
-			 * Woo introduced state field for DE
-			 */
-			if ( version_compare( WC()->version, '6.3.1', '>=' ) ) {
-				if ( 'DE' === $base_country ) {
-					$base_country = 'DE:DE-BE';
-				}
-			}
+			$ship_to_countries = get_option( 'woocommerce_specific_ship_to_countries', array() );
+			$allowed_countries = get_option( 'woocommerce_specific_allowed_countries', array() );
 
 			$options = array(
-				'woocommerce_default_country'            => $base_country,
-				'woocommerce_currency'                   => 'EUR',
-				'woocommerce_currency_pos'               => 'right_space',
-				'woocommerce_price_thousand_sep'         => '.',
-				'woocommerce_price_decimal_sep'          => ',',
-				'woocommerce_price_num_decimals'         => 2,
-				'woocommerce_weight_unit'                => 'kg',
-				'woocommerce_dimension_unit'             => 'cm',
-				'woocommerce_calc_taxes'                 => 'yes',
-				'woocommerce_prices_include_tax'         => 'yes',
-				'woocommerce_tax_round_at_subtotal'      => 'yes',
-				'woocommerce_tax_display_cart'           => 'incl',
-				'woocommerce_tax_display_shop'           => 'incl',
-				'woocommerce_tax_total_display'          => 'itemized',
-				'woocommerce_tax_based_on'               => 'shipping',
-				'woocommerce_ship_to_countries'          => 'specific',
-				'woocommerce_specific_ship_to_countries' => $eu_countries,
-				'woocommerce_allowed_countries'          => 'specific',
-				'woocommerce_specific_allowed_countries' => array_merge( $eu_countries, array( 'NO', 'LI', 'IS' ) ), // EWR Geoblocking https://de.wikipedia.org/wiki/Verordnung_(EU)_2018/302_(Geoblocking)
-				'woocommerce_default_customer_address'   => 'base',
-				'woocommerce_gzd_hide_tax_rate_shop'     => \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() ? 'yes' : 'no',
+				'woocommerce_weight_unit'              => 'kg',
+				'woocommerce_dimension_unit'           => 'cm',
+				'woocommerce_calc_taxes'               => 'yes',
+				'woocommerce_prices_include_tax'       => 'yes',
+				'woocommerce_tax_round_at_subtotal'    => 'yes',
+				'woocommerce_tax_display_cart'         => 'incl',
+				'woocommerce_tax_display_shop'         => 'incl',
+				'woocommerce_tax_total_display'        => 'itemized',
+				'woocommerce_tax_based_on'             => 'shipping',
+				'woocommerce_ship_to_countries'        => 'specific',
+				'woocommerce_allowed_countries'        => 'specific',
+				'woocommerce_default_customer_address' => 'base',
+				'woocommerce_gzd_hide_tax_rate_shop'   => \Vendidero\EUTaxHelper\Helper::oss_procedure_is_enabled() ? 'yes' : 'no',
 			);
+
+			if ( empty( $ship_to_countries ) ) {
+				$options['woocommerce_specific_ship_to_countries'] = $eu_countries;
+			}
+
+			if ( empty( $allowed_countries ) ) {
+				$options['woocommerce_specific_allowed_countries'] = array_merge( $eu_countries, array( 'NO', 'LI', 'IS' ) ); // EWR Geoblocking https://de.wikipedia.org/wiki/Verordnung_(EU)_2018/302_(Geoblocking)
+			}
+
+			if ( $base_is_eu ) {
+				$options = array_merge(
+					$options,
+					array(
+						'woocommerce_currency'           => 'EUR',
+						'woocommerce_currency_pos'       => 'right_space',
+						'woocommerce_price_thousand_sep' => '.',
+						'woocommerce_price_decimal_sep'  => ',',
+						'woocommerce_price_num_decimals' => 2,
+					)
+				);
+			}
 
 			if ( ! empty( $options ) ) {
 				foreach ( $options as $key => $option ) {
 					update_option( $key, $option );
 				}
+
+				update_option( 'woocommerce_gzd_updated_default_settings', 'yes', false );
 			}
 		}
 
