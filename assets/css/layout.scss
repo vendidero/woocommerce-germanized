@@ -9,15 +9,15 @@ p.wc-gzd-additional-info:empty {
   display: none;
 }
 
-.product.product-type-variable ul.tabs li.product_safety_tab,
-.woocommerce #content .product.product-type-variable .woocommerce-tabs ul.tabs li.product_safety_tab {
+.product.product-type-variable:not(.has-product-safety-information) ul.tabs li.product_safety_tab,
+.woocommerce #content .product.product-type-variable:not(.has-product-safety-information) .woocommerce-tabs ul.tabs li.product_safety_tab {
   display: none;
 }
 
 /**
  * Product block support
  */
-.product.product-type-variable div.product .woocommerce-tabs ul.tabs li.product_safety_tab {
+.product.product-type-variable:not(.has-product-safety-information) div.product .woocommerce-tabs ul.tabs li.product_safety_tab {
   display: none;
 }
 
