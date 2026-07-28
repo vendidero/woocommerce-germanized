@@ -361,6 +361,10 @@ function wc_gzd_format_food_attribute_value( $decimal, $args = array() ) {
 }
 
 function wc_gzd_is_customer_activated( $user_id = '' ) {
+	if ( is_a( $user_id, 'WP_User' ) ) {
+		$user_id = $user_id->ID;
+	}
+
 	if ( is_user_logged_in() && empty( $user_id ) ) {
 		$user_id = get_current_user_id();
 	}
@@ -370,6 +374,28 @@ function wc_gzd_is_customer_activated( $user_id = '' ) {
 	}
 
 	return ( get_user_meta( $user_id, '_woocommerce_activation', true ) ? false : true );
+}
+
+function wc_gzd_customer_has_pending_email_change( $user_id = '' ) {
+	if ( is_a( $user_id, 'WP_User' ) ) {
+		$user_id = $user_id->ID;
+	}
+
+	if ( is_user_logged_in() && empty( $user_id ) ) {
+		$user_id = get_current_user_id();
+	}
+
+	if ( empty( $user_id ) || ! $user_id ) {
+		return false;
+	}
+
+	if ( wc_gzd_is_customer_activated( $user_id ) ) {
+		return false;
+	}
+
+	$new_email = get_user_meta( $user_id, '_woocommerce_gzd_pending_email_change', true );
+
+	return ( ! empty( $new_email ) ? true : false );
 }
 
 function wc_gzd_get_hook_priority( $hook ) {

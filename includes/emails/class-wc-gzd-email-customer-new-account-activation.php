@@ -30,22 +30,27 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		public $helper = null;
 
 		/**
+		 * Has the email address been updated?
+		 *
+		 * @var bool
+		 */
+		public $is_email_change;
+
+		/**
 		 * Constructor
 		 *
 		 * @access public
 		 * @return void
 		 */
 		public function __construct() {
-
 			$this->id          = 'customer_new_account_activation';
 			$this->title       = __( 'New account activation', 'woocommerce-germanized' );
-			$this->description = __( 'Customer "new account activation" emails are sent to the customer when a customer signs up via checkout or account pages. This mail is being used as double opt in for new customer accounts.', 'woocommerce-germanized' );
+			$this->description = __( 'Sent to customers with a link to confirm their new account or email address change.', 'woocommerce-germanized' );
 
 			$this->template_html  = 'emails/customer-new-account-activation.php';
 			$this->template_plain = 'emails/plain/customer-new-account-activation.php';
 			$this->helper         = wc_gzd_get_email_helper( $this );
 
-			// Call parent constuctor
 			parent::__construct();
 
 			$this->customer_email = true;
@@ -57,8 +62,12 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		 * @return string
 		 * @since  3.1.0
 		 */
-		public function get_default_subject() {
-			return __( 'Activate your account on {site_title}', 'woocommerce-germanized' );
+		public function get_default_subject( $is_email_change = false ) {
+			if ( $is_email_change ) {
+				return __( 'Confirm your new email address on {site_title}', 'woocommerce-germanized' );
+			} else {
+				return __( 'Activate your account on {site_title}', 'woocommerce-germanized' );
+			}
 		}
 
 		/**
@@ -67,8 +76,54 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		 * @return string
 		 * @since  3.1.0
 		 */
-		public function get_default_heading() {
-			return __( 'Account activation {site_title}', 'woocommerce-germanized' );
+		public function get_default_heading( $is_email_change = false ) {
+			if ( $is_email_change ) {
+				return __( 'Confirm your new email address', 'woocommerce-germanized' );
+			} else {
+				return __( 'Activate your account', 'woocommerce-germanized' );
+			}
+		}
+
+		/**
+		 * Get email subject.
+		 *
+		 * @return string
+		 */
+		public function get_subject() {
+			if ( $this->is_email_change ) {
+				$subject = $this->get_option( 'subject_email_change', $this->get_default_subject( true ) );
+			} else {
+				$subject = $this->get_option( 'subject', $this->get_default_subject() );
+			}
+
+			/**
+			 * Filter to adjust the email subject for a customer account activation email.
+			 *
+			 * @param string                         $subject The subject.
+			 * @param WC_GZD_Email_Customer_New_Account_Activation $email The email instance.
+			 */
+			return apply_filters( 'woocommerce_email_subject_customer_new_account_activation', $this->format_string( $subject ), $this->object, $this );
+		}
+
+		/**
+		 * Get email heading.
+		 *
+		 * @return string
+		 */
+		public function get_heading() {
+			if ( $this->is_email_change ) {
+				$heading = $this->get_option( 'heading_email_change', $this->get_default_heading( true ) );
+			} else {
+				$heading = $this->get_option( 'heading', $this->get_default_heading() );
+			}
+
+			/**
+			 * Filter to adjust the email heading for a customer account activation email.
+			 *
+			 * @param string                         $heading The heading.
+			 * @param WC_GZD_Email_Customer_New_Account_Activation $email The email instance.
+			 */
+			return apply_filters( 'woocommerce_email_heading_customer_new_account_activation', $this->format_string( $heading ), $this->object, $this );
 		}
 
 		/**
@@ -113,8 +168,9 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 		 * @access public
 		 * @return void
 		 */
-		public function trigger( $user_id, $user_activation, $user_activation_url, $user_pass = '', $password_generated = false ) {
+		public function trigger( $user_id, $user_activation, $user_activation_url, $user_pass = '', $password_generated = false, $is_email_change = null ) {
 			$this->helper->setup_locale();
+			$this->is_email_change = is_null( $is_email_change ) ? wc_gzd_customer_has_pending_email_change( $user_id ) : $is_email_change;
 
 			if ( $user_id ) {
 				$this->object              = new WP_User( $user_id );
@@ -127,17 +183,19 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 				$this->password_generated  = $password_generated;
 				$this->set_password_url    = '';
 
-				/**
-				 * Newer versions of Woo send (and are force-generating) a reset password link.
-				 * Do not include a reset password link within the activation mail as this link would get
-				 * invalidated after sending the new customer mail notification.
-				 *
-				 * @see WC_Email_Customer_New_Account::trigger()
-				 */
-				if ( WC_GZD_Customer_Helper::instance()->send_password_reset_link_instead_of_passwords() ) {
-					$this->password_generated = false;
-				} else {
-					$this->set_password_url = $this->generate_set_password_url();
+				if ( ! $this->is_email_change ) {
+					/**
+					 * Newer versions of Woo send (and are force-generating) a reset password link.
+					 * Do not include a reset password link within the activation mail as this link would get
+					 * invalidated after sending the new customer mail notification.
+					 *
+					 * @see WC_Email_Customer_New_Account::trigger()
+					 */
+					if ( WC_GZD_Customer_Helper::instance()->send_password_reset_link_instead_of_passwords() ) {
+						$this->password_generated = false;
+					} else {
+						$this->set_password_url = $this->generate_set_password_url();
+					}
 				}
 			}
 
@@ -165,6 +223,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 				array(
 					'email_heading'       => $this->get_heading(),
 					'user_login'          => $this->user_login,
+					'is_email_change'     => $this->is_email_change,
 					'user_activation'     => $this->user_activation,
 					'user_activation_url' => $this->user_activation_url,
 					'user_pass'           => $this->user_pass,
@@ -191,6 +250,7 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 				array(
 					'email_heading'       => $this->get_heading(),
 					'user_login'          => $this->user_login,
+					'is_email_change'     => $this->is_email_change,
 					'user_activation'     => $this->user_activation,
 					'user_activation_url' => $this->user_activation_url,
 					'user_pass'           => $this->user_pass,
@@ -201,6 +261,57 @@ if ( ! class_exists( 'WC_GZD_Email_Customer_New_Account_Activation' ) ) :
 					'sent_to_admin'       => false,
 					'plain_text'          => true,
 					'email'               => $this,
+				)
+			);
+		}
+
+		/**
+		 * Initialise settings form fields.
+		 */
+		public function init_form_fields() {
+			parent::init_form_fields();
+
+			/* translators: %s: list of placeholders */
+			$placeholder_text = sprintf( __( 'Available placeholders: %s', 'woocommerce-germanized' ), '<code>' . esc_html( implode( '</code>, <code>', array_keys( $this->placeholders ) ) ) . '</code>' );
+			$subject_at       = array_search( 'subject', array_keys( $this->form_fields ), true );
+
+			/**
+			 * Insert after heading
+			 */
+			array_splice(
+				$this->form_fields,
+				( false !== $subject_at ? (int) $subject_at + 1 : 2 ),
+				0,
+				array(
+					'subject_email_change' => array(
+						'title'       => __( 'Subject (email change)', 'woocommerce-germanized' ),
+						'type'        => 'text',
+						'desc_tip'    => true,
+						'description' => $placeholder_text,
+						'placeholder' => $this->get_default_subject( true ),
+						'default'     => '',
+					),
+				)
+			);
+
+			$heading_at = array_search( 'heading', array_keys( $this->form_fields ), true );
+
+			/**
+			 * Insert after heading
+			 */
+			array_splice(
+				$this->form_fields,
+				( false !== $heading_at ? (int) $heading_at + 1 : 4 ),
+				0,
+				array(
+					'heading_email_change' => array(
+						'title'       => __( 'Email heading (email change)', 'woocommerce-germanized' ),
+						'type'        => 'text',
+						'desc_tip'    => true,
+						'description' => $placeholder_text,
+						'placeholder' => $this->get_default_heading( true ),
+						'default'     => '',
+					),
 				)
 			);
 		}

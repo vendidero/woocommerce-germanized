@@ -125,6 +125,16 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 			}
 		}
 
+		public static function maybe_encrypt( $value ) {
+			$encrypted = self::encrypt( $value );
+
+			if ( ! is_wp_error( $encrypted ) ) {
+				$value = $encrypted;
+			}
+
+			return $value;
+		}
+
 		/**
 		 * Decrypts a message of a certain type.
 		 *
@@ -191,6 +201,16 @@ if ( ! class_exists( 'WC_GZD_Secret_Box_Helper' ) && function_exists( 'sodium_cr
 				$error->add( 'decrypt-error', sprintf( 'Error while decrypting data: %s', wc_print_r( $e, true ) ) );
 				return self::log_error( $error );
 			}
+		}
+
+		public static function maybe_decrypt( $value ) {
+			$decrypted = self::decrypt( $value );
+
+			if ( ! is_wp_error( $decrypted ) ) {
+				$value = $decrypted;
+			}
+
+			return $value;
 		}
 
 		/**
