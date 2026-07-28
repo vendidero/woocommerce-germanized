@@ -76,6 +76,8 @@ class WC_GZD_Customer_Helper {
 				add_action( 'woocommerce_checkout_update_user_meta', array( $this, 'maybe_logout_during_checkout' ), 9999 );
 				add_action( 'woocommerce_checkout_create_order', array( $this, 'on_create_order' ), 9999 );
 
+				add_filter( 'woocommerce_order_received_verify_known_shoppers', array( $this, 'maybe_disable_known_shopper_verification' ), 10 );
+
 				add_action( 'woocommerce_store_api_checkout_update_order_meta', array( $this, 'on_update_api_order' ), 1 );
 				add_action( 'woocommerce_store_api_checkout_update_order_from_request', array( $this, 'on_update_api_order' ), 1 );
 				add_action( 'woocommerce_store_api_checkout_order_processed', array( $this, 'on_create_order' ), 9999 );
@@ -91,6 +93,29 @@ class WC_GZD_Customer_Helper {
 				add_filter( 'send_email_change_email', array( $this, 'on_user_email_changed' ), 10, 3 );
 			}
 		}
+	}
+
+	/**
+	 * By default, Woo prevents non-logged-in-users from accessing order received page (in case the order is linked to a customer).
+	 * Check whether the current DOI session user matches the order's customer id to allow non-validated accounts to access the page.
+	 *
+	 * @param boolean $verify
+	 *
+	 * @return boolean
+	 */
+	public function maybe_disable_known_shopper_verification( $verify ) {
+		global $wp;
+
+		$doi_user_id = ( WC()->session && WC()->session->get( 'doi_user_id' ) ) ? absint( WC()->session->get( 'doi_user_id' ) ) : 0;
+		$order_id    = isset( $wp->query_vars['order-received'] ) ? absint( $wp->query_vars['order-received'] ) : 0;
+
+		if ( ! empty( $doi_user_id ) && ! empty( $order_id ) && ( $order = wc_get_order( $order_id ) ) ) {
+			if ( ! empty( $order->get_customer_id() ) && $doi_user_id === $order->get_customer_id() ) {
+				$verify = false;
+			}
+		}
+
+		return $verify;
 	}
 
 	public function on_user_email_changed( $send_email, $old_user, $new_user ) {
