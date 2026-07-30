@@ -3,11 +3,12 @@ import {closeSmall, Icon} from "@wordpress/icons";
 import Block from "./block";
 
 const Modal = ({
-                   show,
-                   url,
-                   onClose,
-                   content
-               }) => {
+   show,
+   url,
+   onClose,
+   fetchParams = {},
+   content
+}) => {
     const [ isLoading, setIsLoading ] = useState( true );
     const [ modalContent, setModalContent ] = useState( '' );
     let relUrl = '';
@@ -33,8 +34,15 @@ const Modal = ({
             setIsLoading( true );
             setModalContent( '' );
 
+            let formData = new FormData();
+
+            for ( let key in fetchParams ) {
+                formData.append( key, fetchParams[key] );
+            }
+
             fetch( relUrl, {
-                method: 'get',
+                method: 'post',
+                body: formData,
             } )
                 .then( response => response.text() )
                 .then( response => {
