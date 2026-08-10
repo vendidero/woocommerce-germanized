@@ -144,8 +144,10 @@ final class Checkout {
 						 * Latest Woo Checkout Block version inserts the total blocks before checkout fields
 						 */
 						if ( ! empty( $matches ) ) {
-							$content               = str_replace( 'wc-gzd-checkout ', 'wc-gzd-checkout wc-gzd-checkout-v2 ', $content );
-							$replacement           = '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" class="wp-block-woocommerce-checkout-actions-block"></div></div>' . $matches[0];
+							$content          = str_replace( 'wc-gzd-checkout ', 'wc-gzd-checkout wc-gzd-checkout-v2 ', $content );
+							$has_back_to_cart = strstr( $content, 'data-show-return-to-cart' );
+
+							$replacement           = '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" ' . ( $has_back_to_cart ? 'data-show-return-to-cart="true"' : '' ) . ' class="wp-block-woocommerce-checkout-actions-block"></div></div>' . $matches[0];
 							$content               = preg_replace( '/<\/div>(\s*)<div[^<]*?data-block-name="woocommerce\/checkout-fields-block"/', $replacement, $content );
 							$has_custom_gzd_submit = true;
 						} else {
