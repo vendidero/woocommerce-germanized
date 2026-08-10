@@ -2,10 +2,10 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
-Tested up to: 7.0
+Tested up to: 7.1
 WC requires at least: 3.9
-WC tested up to: 10.9
-Stable tag: 4.0.10
+WC tested up to: 11.0
+Stable tag: 4.0.11
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -207,6 +207,19 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.0.11 =
+* Improvement: Compatibility with WP 7.1
+* Improvement: Default product safety tab hiding for variable products in block context
+* Improvement: Do not use feature flag but version check instead to load react fallback for mini cart
+* Improvement: PayPal Payments order confirmation support for express orders with the Pay Now Experience enabled
+* Improvement: Google for WooCommerce new API update unit schema
+* Improvement: Block-based checkout action button back to cart support
+* Security: Refactored AJAX modal support to use POST instead of GET
+* Improvement: [Withdrawal button] Edit withdrawal flow
+* Improvement: [Withdrawal button] Bulk spam protection
+* Security: [Withdrawal button] Remove the partial withdrawal availability check to prevent information leakage (e.g. to check whether a specific email + order exists)
+* Fix: [Withdrawal button] Fix a template typo show_imag vs. show_image
+
 = 4.0.10 =
 * Fix: Improve support for new WC 10.9 iapi mini cart
 * Improvement: Added review reminder checkbox including opt-out link to support new WooCommerce (beta) feature to send review reminder emails

@@ -6,8 +6,8 @@ msgstr ""
 "Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2026-07-13T10:52:25+00:00\n"
-"PO-Revision-Date: 2026-07-13 12:53+0200\n"
+"POT-Creation-Date: 2026-08-10T11:01:15+00:00\n"
+"PO-Revision-Date: 2026-08-10 13:04+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -314,14 +314,14 @@ msgctxt "owb"
 msgid "New withdrawal request: {order_number}"
 msgstr "Neuer Widerruf: {order_number}"
 
-#: includes/eu-owb-core-functions.php:194
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:194
+#: includes/eu-owb-core-functions.php:226
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:226
 msgctxt "owb"
 msgid "Withdraw from contract"
 msgstr "Vertrag widerrufen"
 
-#: includes/eu-owb-core-functions.php:920
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:920
+#: includes/eu-owb-core-functions.php:977
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:977
 #, php-format
 msgctxt "owb"
 msgid "Customer requested an update to the original withdrawal: %1$s"
@@ -329,53 +329,53 @@ msgstr ""
 "Der Kunde hat eine Aktualisierung des ursprünglichen Widerrufs vorgenommen. "
 "Ursprünglicher Widerruf: %1$s"
 
-#: includes/eu-owb-core-functions.php:965
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:965
+#: includes/eu-owb-core-functions.php:1022
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1022
 msgctxt "owb"
 msgid "Error while saving the withdrawal request."
 msgstr "Fehler beim Speichern des Widerrufsantrags."
 
-#: includes/eu-owb-core-functions.php:975
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:975
+#: includes/eu-owb-core-functions.php:1032
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1032
 #, php-format
 msgctxt "owb"
 msgid "A new %1$s has been submitted to this order"
 msgstr "Ein neuer %1$s wurde zu dieser Bestellung angelegt"
 
-#: includes/eu-owb-core-functions.php:975 src/Admin/Admin.php:668
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:975
+#: includes/eu-owb-core-functions.php:1032 src/Admin/Admin.php:668
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1032
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:668
 msgctxt "owb"
 msgid "Partial withdrawal request"
 msgstr "Teilwiderruf"
 
-#: includes/eu-owb-core-functions.php:975 src/Admin/Admin.php:668
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:975
+#: includes/eu-owb-core-functions.php:1032 src/Admin/Admin.php:668
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1032
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:668
 msgctxt "owb"
 msgid "Full withdrawal request"
 msgstr "Vollständiger Widerruf"
 
-#: includes/eu-owb-core-functions.php:1027
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1027
+#: includes/eu-owb-core-functions.php:1084
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1084
 msgctxt "owb"
 msgid "A withdrawal request has been confirmed."
 msgstr "Ein Widerruf wurde bestätigt."
 
-#: includes/eu-owb-core-functions.php:1083
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1083
+#: includes/eu-owb-core-functions.php:1140
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1140
 msgctxt "owb"
 msgid "A withdrawal request has been deleted."
 msgstr "Ein Widerrufsantrag wurde gelöscht."
 
-#: includes/eu-owb-core-functions.php:1086
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1086
+#: includes/eu-owb-core-functions.php:1143
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1143
 msgctxt "owb"
 msgid "A withdrawal request has been deleted by the customer."
 msgstr "Ein Widerrufsantrag wurde vom Kunden gelöscht."
 
-#: includes/eu-owb-core-functions.php:1132
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1132
+#: includes/eu-owb-core-functions.php:1189
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1189
 #, php-format
 msgctxt "owb"
 msgid "A withdrawal request has been rejected: %1$s"
@@ -400,11 +400,11 @@ msgid "Page is missing"
 msgstr "Seite fehlt"
 
 #: src/Admin/Admin.php:96 src/Admin/Privacy.php:19 src/Admin/Privacy.php:28
-#: src/Admin/Privacy.php:193
+#: src/Admin/Privacy.php:197
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:96
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:19
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:28
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:193
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:197
 msgctxt "owb"
 msgid "EU Order Withdrawal Button for WooCommerce"
 msgstr "EU Widerrufsbutton für WooCommerce"
@@ -446,12 +446,12 @@ msgctxt "owb"
 msgid "Reason"
 msgstr "Grund"
 
-#: src/Admin/Admin.php:378 src/Admin/Admin.php:744 src/Admin/Privacy.php:168
+#: src/Admin/Admin.php:378 src/Admin/Admin.php:744 src/Admin/Privacy.php:172
 #: src/Package.php:658 src/Package.php:794 src/Settings.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:58
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:378
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:744
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:168
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:172
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:658
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:794
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Settings.php:21
@@ -641,30 +641,36 @@ msgctxt "owb"
 msgid "Personal data within withdrawal %s has been retained."
 msgstr "Persönliche Daten zum Widerruf %s bleiben erhalten."
 
-#: src/Admin/Privacy.php:121
+#: src/Admin/Privacy.php:121 src/Admin/WithdrawalTable.php:1020
+#: src/Settings.php:100 templates/emails/email-withdrawal-details.php:42
+#: templates/emails/plain/email-withdrawal-details.php:30
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:121
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1020
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Settings.php:100
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:42
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:30
 msgctxt "owb"
-msgid "Order number"
-msgstr "Bestellnummer"
+msgid "Contract Identification"
+msgstr "Identifizierung des Vertrags"
 
 #: src/Admin/Privacy.php:122 src/Settings.php:98
 #: templates/forms/order-withdrawal-request.php:87
-#: templates/forms/order-withdrawal-request.php:277
+#: templates/forms/order-withdrawal-request.php:243
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:122
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Settings.php:98
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:87
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:277
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:243
 msgctxt "owb"
 msgid "First name"
 msgstr "Vorname"
 
 #: src/Admin/Privacy.php:123 src/Settings.php:99
 #: templates/forms/order-withdrawal-request.php:107
-#: templates/forms/order-withdrawal-request.php:297
+#: templates/forms/order-withdrawal-request.php:263
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:123
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Settings.php:99
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:107
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:297
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:263
 msgctxt "owb"
 msgid "Last name"
 msgstr "Nachname"
@@ -673,13 +679,13 @@ msgstr "Nachname"
 #: templates/emails/email-withdrawal-details.php:44
 #: templates/emails/plain/email-withdrawal-details.php:32
 #: templates/forms/order-withdrawal-request.php:56
-#: templates/forms/order-withdrawal-request.php:246
+#: templates/forms/order-withdrawal-request.php:212
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:124
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1012
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:44
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:32
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:56
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:246
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:212
 msgctxt "owb"
 msgid "Email"
 msgstr "E-Mail"
@@ -725,8 +731,8 @@ msgctxt "owb"
 msgid "Status"
 msgstr "Status"
 
-#: src/Admin/Privacy.php:169
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:169
+#: src/Admin/Privacy.php:173
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:173
 msgctxt "owb"
 msgid "User&#8217;s withdrawals data."
 msgstr "Widerrufe des Benutzers"
@@ -875,10 +881,10 @@ msgctxt "owb"
 msgid "Search for an order"
 msgstr "Nach einer Bestellung suchen"
 
-#: src/Admin/WithdrawalTable.php:818 src/Ajax.php:182
+#: src/Admin/WithdrawalTable.php:818 src/Ajax.php:180
 #: src/WithdrawalOrder.php:115
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:818
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:182
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:180
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:115
 #, php-format
 msgctxt "owb"
@@ -939,17 +945,6 @@ msgctxt "owb"
 msgid "Withdrawal Details"
 msgstr "Widerrufdetails"
 
-#: src/Admin/WithdrawalTable.php:1020 src/Settings.php:100
-#: templates/emails/email-withdrawal-details.php:42
-#: templates/emails/plain/email-withdrawal-details.php:30
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1020
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Settings.php:100
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:42
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:30
-msgctxt "owb"
-msgid "Contract Identification"
-msgstr "Identifizierung des Vertrags"
-
 #: src/Admin/WithdrawalTable.php:1025
 #: templates/emails/email-withdrawal-details.php:47
 #: templates/emails/plain/email-withdrawal-details.php:36
@@ -1005,15 +1000,15 @@ msgctxt "owb"
 msgid "Quantity"
 msgstr "Anzahl"
 
-#: src/Ajax.php:283
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:283
+#: src/Ajax.php:257
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:257
 msgctxt "owb"
 msgid "Sorry, no permission to view that order."
 msgstr "Sorry, diese Ressource können Sie nicht abrufen."
 
-#: src/Ajax.php:374 src/Ajax.php:624
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:374
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:624
+#: src/Ajax.php:321 src/Ajax.php:574
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:321
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:574
 msgctxt "owb"
 msgid ""
 "Thank you. We've received your withdrawal request. You'll receive a "
@@ -1022,8 +1017,8 @@ msgstr ""
 "Vielen Dank. Wir haben Ihren Widerruf erhalten. Sie bekommen in Kürze eine E-"
 "Mail mit Ihren Daten als Bestätigung."
 
-#: src/Ajax.php:381
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:381
+#: src/Ajax.php:328
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:328
 msgctxt "owb"
 msgid ""
 "Please wait a little longer before submitting. We’re running a quick "
@@ -1032,56 +1027,29 @@ msgstr ""
 "Bitte warten Sie etwas bevor Sie das Formular abschicken - es läuft gerade "
 "eine kurze Sicherheitsprüfung."
 
-#: src/Ajax.php:386
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:386
+#: src/Ajax.php:333
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:333
 msgctxt "owb"
 msgid "Please enter your first name."
 msgstr "Bitte geben Sie Ihren Vornamen an."
 
-#: src/Ajax.php:390
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:390
+#: src/Ajax.php:337
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:337
 msgctxt "owb"
 msgid "Please enter your last name."
 msgstr "Bitte geben Sie Ihren Nachnamen an."
 
-#: src/Ajax.php:394
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:394
+#: src/Ajax.php:341
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:341
 msgctxt "owb"
 msgid "Please check your email address."
 msgstr "Bitte überprüfen Sie Ihre E-Mail-Adresse."
 
-#: src/Ajax.php:421
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:421
-msgctxt "owb"
-msgid "Please select one or more items to withdraw."
-msgstr "Bitte wählen Sie ein oder mehrere Positionen für den Widerruf aus."
-
-#: src/Ajax.php:434
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:434
-msgctxt "owb"
-msgid ""
-"One ore more of the item(s) you've selected cannot be withdrawn. Please try "
-"again."
-msgstr ""
-"Einer oder mehrere der von Ihnen ausgewählten Artikel können nicht "
-"zurückgegeben werden. Bitte versuchen Sie es erneut."
-
-#: src/Ajax.php:467
+#: src/Ajax.php:354 src/Ajax.php:451 src/Ajax.php:467 src/Ajax.php:509
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:354
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:451
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:467
-msgctxt "owb"
-msgid "Please provide information to identify the contract."
-msgstr "Bitte geben Sie Details zur Identifizierung des Vertrags an."
-
-#: src/Ajax.php:471
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:471
-msgctxt "owb"
-msgid "Please enter additional information."
-msgstr "Bitte geben Sie zusätzliche Informationen an."
-
-#: src/Ajax.php:497 src/Ajax.php:513 src/Ajax.php:551
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:497
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:513
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:551
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:509
 #, php-format
 msgctxt "owb"
 msgid ""
@@ -1093,8 +1061,36 @@ msgstr ""
 "finden. Bitte versuchen Sie es erneut. Falls Sie weiterhin Probleme haben, "
 "<a href=\"%s\">kontaktieren</a> Sie bitte unseren Support."
 
-#: src/Ajax.php:556
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:556
+#: src/Ajax.php:376
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:376
+msgctxt "owb"
+msgid "Please select one or more items to withdraw."
+msgstr "Bitte wählen Sie ein oder mehrere Positionen für den Widerruf aus."
+
+#: src/Ajax.php:389
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:389
+msgctxt "owb"
+msgid ""
+"One ore more of the item(s) you've selected cannot be withdrawn. Please try "
+"again."
+msgstr ""
+"Einer oder mehrere der von Ihnen ausgewählten Artikel können nicht "
+"zurückgegeben werden. Bitte versuchen Sie es erneut."
+
+#: src/Ajax.php:422
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:422
+msgctxt "owb"
+msgid "Please provide information to identify the contract."
+msgstr "Bitte geben Sie Details zur Identifizierung des Vertrags an."
+
+#: src/Ajax.php:426
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:426
+msgctxt "owb"
+msgid "Please enter additional information."
+msgstr "Bitte geben Sie zusätzliche Informationen an."
+
+#: src/Ajax.php:514
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:514
 #, php-format
 msgctxt "owb"
 msgid ""
@@ -1104,16 +1100,17 @@ msgstr ""
 "Leider kann diese Bestellung nicht widerrufen werden. <a "
 "href=\"%s\">Kontaktieren</a> Sie unseren Support, falls Sie Fragen haben."
 
-#: src/Ajax.php:581
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:581
+#: src/Ajax.php:541
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:541
 msgctxt "owb"
 msgid ""
 "You've already submitted an identical withdrawal request for this order."
 msgstr ""
 "Sie haben zu dieser Bestellung bereits einen identischen Widerruf erstellt."
 
-#: src/Ajax.php:606
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:606
+#: src/Ajax.php:609 src/Ajax.php:632
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:609
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:632
 #, php-format
 msgctxt "owb"
 msgid ""
@@ -1124,29 +1121,29 @@ msgstr ""
 "href=\"%s\">Kontaktieren Sie den Support</a> um Hilfe zu erhalten."
 
 #: src/DataStores/WithdrawalOrder.php:142
-#: src/DataStores/WithdrawalOrderCPT.php:95 src/WithdrawalOrder.php:991
+#: src/DataStores/WithdrawalOrderCPT.php:95 src/WithdrawalOrder.php:992
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrder.php:142
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrderCPT.php:95
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:991
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:992
 #, php-format
 msgctxt "owb"
 msgid "Withdrawal status changed from %1$s to %2$s."
 msgstr "Status des Widerrufs geändert von %1$s zu %2$s."
 
 #. translators: %s: Order date
-#: src/DataStores/WithdrawalOrder.php:327
-#: src/DataStores/WithdrawalOrderCPT.php:292
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrder.php:327
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrderCPT.php:292
+#: src/DataStores/WithdrawalOrder.php:340
+#: src/DataStores/WithdrawalOrderCPT.php:305
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrder.php:340
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrderCPT.php:305
 #, php-format
 msgctxt "owb"
 msgid "Withdrawal &ndash; %s"
 msgstr "Widerruf &ndash; %s"
 
-#: src/DataStores/WithdrawalOrder.php:328
-#: src/DataStores/WithdrawalOrderCPT.php:293
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrder.php:328
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrderCPT.php:293
+#: src/DataStores/WithdrawalOrder.php:341
+#: src/DataStores/WithdrawalOrderCPT.php:306
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrder.php:341
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrderCPT.php:306
 msgctxt "owb-order-date-format"
 msgid "M d, Y @ h:i A"
 msgstr "d. M Y \\u\\m H:i \\U\\h\\r"
@@ -1169,10 +1166,10 @@ msgctxt "owb"
 msgid "Withdraw"
 msgstr "Widerrufen"
 
-#: src/Package.php:150 src/Package.php:1006 src/Package.php:1057
+#: src/Package.php:150 src/Package.php:1026 src/Package.php:1077
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:150
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1006
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1057
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1026
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1077
 msgctxt "owb"
 msgid "Withdrawn"
 msgstr "Widerrufen"
@@ -1208,23 +1205,23 @@ msgctxt "owb-email-preview"
 msgid "An example rejection reason."
 msgstr "Ein Beispiel Ablehnungsgrund."
 
-#: src/Package.php:587 src/Package.php:1018
+#: src/Package.php:587 src/Package.php:1038
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:587
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1018
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1038
 msgctxt "owb"
 msgid "Requested"
 msgstr "Angefragt"
 
-#: src/Package.php:588 src/Package.php:1030
+#: src/Package.php:588 src/Package.php:1050
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:588
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1030
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1050
 msgctxt "owb"
 msgid "Confirmed"
 msgstr "Bestätigt"
 
-#: src/Package.php:589 src/Package.php:1042
+#: src/Package.php:589 src/Package.php:1062
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:589
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1042
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1062
 msgctxt "owb"
 msgid "Rejected"
 msgstr "Abgelehnt"
@@ -1248,15 +1245,15 @@ msgctxt "owb"
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/Package.php:994 src/Package.php:1056
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:994
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1056
+#: src/Package.php:1014 src/Package.php:1076
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1014
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1076
 msgctxt "owb"
 msgid "Pending withdrawal"
 msgstr "Widerruf ausstehend"
 
-#: src/Package.php:999
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:999
+#: src/Package.php:1019
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1019
 #, php-format
 msgctxt "owb"
 msgid "Pending withdrawal (%s)"
@@ -1264,8 +1261,8 @@ msgid_plural "Pending withdrawals (%s)"
 msgstr[0] "Widerruf ausstehend (%s)"
 msgstr[1] "Widerruf ausstehend (%s)"
 
-#: src/Package.php:1011
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1011
+#: src/Package.php:1031
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1031
 #, php-format
 msgctxt "owb"
 msgid "Withdrawn (%s)"
@@ -1273,8 +1270,8 @@ msgid_plural "Withdrawn (%s)"
 msgstr[0] "Widerrufen (%s)"
 msgstr[1] "Widerrufen (%s)"
 
-#: src/Package.php:1023
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1023
+#: src/Package.php:1043
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1043
 #, php-format
 msgctxt "owb"
 msgid "Requested (%s)"
@@ -1282,8 +1279,8 @@ msgid_plural "Requested (%s)"
 msgstr[0] "Angefragt (%s)"
 msgstr[1] "Angefragt (%s)"
 
-#: src/Package.php:1035
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1035
+#: src/Package.php:1055
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1055
 #, php-format
 msgctxt "owb"
 msgid "Confirmed (%s)"
@@ -1291,8 +1288,8 @@ msgid_plural "Confirmed (%s)"
 msgstr[0] "Bestätigt (%s)"
 msgstr[1] "Bestätigt (%s)"
 
-#: src/Package.php:1047
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1047
+#: src/Package.php:1067
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1067
 #, php-format
 msgctxt "owb"
 msgid "Rejected (%s)"
@@ -1587,23 +1584,23 @@ msgctxt "owb-order-number"
 msgid "Not specified"
 msgstr "Nicht angegeben"
 
-#: src/WithdrawalOrder.php:785 src/WithdrawalOrder.php:786
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:785
+#: src/WithdrawalOrder.php:786 src/WithdrawalOrder.php:787
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:786
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:787
 msgctxt "owb"
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
-#: src/WithdrawalOrder.php:962
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:962
+#: src/WithdrawalOrder.php:963
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:963
 #, php-format
 msgctxt "owb"
 msgid "Parent order changed from %1$s to %2$s."
 msgstr "Eltern-Bestellung wurde von %1$s zu %2$s geändert."
 
 #. translators: %s: new order status
-#: src/WithdrawalOrder.php:994
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:994
+#: src/WithdrawalOrder.php:995
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:995
 #, php-format
 msgctxt "owb"
 msgid "Withdrawal status set to %s."
@@ -1749,32 +1746,51 @@ msgstr "Vollständiger Name"
 #, php-format
 msgctxt "owb"
 msgid ""
-"As you requested, we have deleted your original withdrawal request for order "
-"%1$s."
+"As you requested, we have deleted your original withdrawal request to %1$s."
 msgstr ""
-"Wie von Ihnen gewünscht, haben wir Ihren ursprünglichen Widerruf für die "
-"Bestellung %1$s gelöscht."
+"Wie von Ihnen gewünscht, haben wir Ihren ursprünglichen Widerruf zu %1$s "
+"gelöscht."
 
-#: templates/emails/email-withdrawal-edit-link.php:25
-#: templates/emails/plain/email-withdrawal-edit-link.php:21
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:25
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:21
+#: templates/emails/email-withdrawal-edit-link.php:23
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:23
+msgctxt "owb"
+msgid "Edit withdrawal request"
+msgstr "Widerruf bearbeiten"
+
+#: templates/emails/email-withdrawal-edit-link.php:23
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:23
+msgctxt "owb"
+msgid "Choose items"
+msgstr "Artikel auswählen"
+
+#: templates/emails/email-withdrawal-edit-link.php:27
+#: templates/emails/plain/email-withdrawal-edit-link.php:22
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:27
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:22
 msgctxt "owb"
 msgid "More than one matching order found"
 msgstr "Mehr als eine passende Bestellung gefunden"
 
-#: templates/emails/email-withdrawal-edit-link.php:27
-#: templates/emails/plain/email-withdrawal-edit-link.php:23
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:27
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:23
+#: templates/emails/email-withdrawal-edit-link.php:29
+#: templates/emails/plain/email-withdrawal-edit-link.php:24
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:29
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:24
+msgctxt "owb"
+msgid "We could not find an order based on your criteria"
+msgstr "Wir konnten keine Bestellung finden"
+
+#: templates/emails/email-withdrawal-edit-link.php:31
+#: templates/emails/plain/email-withdrawal-edit-link.php:26
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:31
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:26
 msgctxt "owb"
 msgid "Want to withdraw certain items only?"
 msgstr "Möchten Sie nur bestimmte Artikel widerrufen?"
 
-#: templates/emails/email-withdrawal-edit-link.php:33
-#: templates/emails/plain/email-withdrawal-edit-link.php:27
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:33
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:27
+#: templates/emails/email-withdrawal-edit-link.php:37
+#: templates/emails/plain/email-withdrawal-edit-link.php:30
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:37
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:30
 msgctxt "owb"
 msgid ""
 "We found more than one order matching your criteria—please use the link "
@@ -1784,17 +1800,18 @@ msgstr ""
 "bitte nutzen Sie den unten stehenden Link, um den Widerruf zu bearbeiten "
 "oder eine andere Bestellung auszuwählen."
 
-#: templates/emails/email-withdrawal-edit-link.php:36
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:36
+#: templates/emails/email-withdrawal-edit-link.php:39
+#: templates/emails/plain/email-withdrawal-edit-link.php:32
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:39
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:32
 msgctxt "owb"
-msgid "Edit withdrawal request"
-msgstr "Widerruf bearbeiten"
-
-#: templates/emails/email-withdrawal-edit-link.php:36
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:36
-msgctxt "owb"
-msgid "Choose items"
-msgstr "Artikel auswählen"
+msgid ""
+"We could not find an order based on your criteria—please use the link below "
+"to select one of the orders matching your email address."
+msgstr ""
+"Wir konnten basierend auf Ihren Angaben keine Bestellung finden – bitte "
+"nutzen Sie den unten stehenden Link, um eine zu Ihrer E-Mail-Adresse "
+"passende Bestellung auszuwählen."
 
 #. translators: %s: Order link.
 #: templates/emails/plain/email-withdrawal-details.php:76
@@ -1804,15 +1821,15 @@ msgctxt "owb"
 msgid "View order: %s"
 msgstr "Bestellung ansehen: %s"
 
-#: templates/emails/plain/email-withdrawal-edit-link.php:31
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:31
+#: templates/emails/plain/email-withdrawal-edit-link.php:36
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:36
 #, php-format
 msgctxt "owb"
 msgid "Edit withdrawal request: %s"
 msgstr "Widerrufsantrag bearbeiten: %s"
 
-#: templates/emails/plain/email-withdrawal-edit-link.php:33
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:33
+#: templates/emails/plain/email-withdrawal-edit-link.php:38
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-edit-link.php:38
 #, php-format
 msgctxt "owb"
 msgid "Choose items to withdraw now: %s"
@@ -1827,9 +1844,7 @@ msgid "Order #%1$s was placed on %2$s."
 msgstr "Bestellung #%1$s wurde am %2$s abgeschickt."
 
 #: templates/forms/order-withdrawal-request-item-select.php:46
-#: templates/forms/order-withdrawal-request.php:155
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request-item-select.php:46
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:155
 msgctxt "owb"
 msgid "I want to select the items to cancel manually."
 msgstr "Ich möchte bestimmte Positionen für den Widerruf auswählen."
@@ -1853,55 +1868,43 @@ msgid "Contract Identification, e.g. order number"
 msgstr "Identifizierung des Vertrags, z.B. Bestellnummer"
 
 #: templates/forms/order-withdrawal-request.php:71
-#: templates/forms/order-withdrawal-request.php:261
+#: templates/forms/order-withdrawal-request.php:227
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:71
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:261
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:227
 msgctxt "owb"
 msgid "Email (repeat)"
 msgstr "E-Mail (wiederholen)"
 
-#: templates/forms/order-withdrawal-request.php:166
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:166
-msgctxt "owb"
-msgid ""
-"You will receive an email confirming receipt of your withdrawal request. In "
-"the email, you will find a link that allows you to select the items you wish "
-"to return."
-msgstr ""
-"Sie erhalten eine E-Mail-Bestätigung über den Eingang des Widerrufs. In "
-"dieser E-Mail finden Sie einen Link, über den Sie die Artikel für den "
-"Widerruf auswählen können."
-
-#: templates/forms/order-withdrawal-request.php:192
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:192
+#: templates/forms/order-withdrawal-request.php:158
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:158
 msgctxt "owb"
 msgid "Please select an order"
 msgstr "Bitte wählen Sie eine Bestellung aus"
 
-#: templates/forms/order-withdrawal-request.php:196
-#: templates/forms/order-withdrawal-request.php:203
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:196
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:203
+#: templates/forms/order-withdrawal-request.php:162
+#: templates/forms/order-withdrawal-request.php:169
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:162
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:169
 #, php-format
 msgctxt "owb"
 msgid "Order #%1$s"
 msgstr "Bestellung #%1$s"
 
-#: templates/forms/order-withdrawal-request.php:212
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:212
+#: templates/forms/order-withdrawal-request.php:178
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:178
 msgctxt "owb"
 msgid "Order"
 msgstr "Bestellung"
 
-#: templates/forms/order-withdrawal-request.php:321
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:321
+#: templates/forms/order-withdrawal-request.php:286
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:286
 #, php-format
 msgctxt "owb"
-msgid "Please delete my original withdrawal request to order #%1$s."
-msgstr "Bitte löschen Sie meinen ursprünglichen Widerruf zur Bestellung #%1$s."
+msgid "Please delete my original withdrawal request to %1$s."
+msgstr "Bitte löschen Sie meinen ursprünglichen Widerruf zu %1$s."
 
-#: templates/forms/order-withdrawal-request.php:343
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:343
+#: templates/forms/order-withdrawal-request.php:303
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:303
 #, php-format
 msgctxt "owb"
 msgid ""
@@ -1913,8 +1916,8 @@ msgstr ""
 "Fragen zu Ihren Bestellungen haben, <a href=\"%s\">kontaktieren</a> Sie "
 "bitte unseren Support."
 
-#: templates/forms/order-withdrawal-request.php:355
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:355
+#: templates/forms/order-withdrawal-request.php:323
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:323
 msgctxt "owb"
 msgid "Confirm withdrawal"
 msgstr "Widerruf bestätigen"
@@ -1922,8 +1925,8 @@ msgstr "Widerruf bestätigen"
 # @ woocommerce-germanized
 #. Plugin Name of the plugin
 #: woocommerce-germanized.php includes/admin/class-wc-gzd-admin.php:371
-#: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:124
-#: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:153
+#: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:136
+#: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:165
 msgid "Germanized for WooCommerce"
 msgstr "Germanized für WooCommerce"
 
@@ -2040,12 +2043,12 @@ msgstr "Nutri-Score %1$s"
 #: includes/abstracts/abstract-wc-gzd-product.php:1676
 #: includes/abstracts/abstract-wc-gzd-product.php:1686
 #: includes/wc-gzd-core-functions.php:607
-#: includes/wc-gzd-template-functions.php:1172
-#: includes/wc-gzd-template-functions.php:1179
+#: includes/wc-gzd-template-functions.php:1195
+#: includes/wc-gzd-template-functions.php:1202
 #: src/Blocks/Integrations/Cart.php:51 src/Blocks/Integrations/Checkout.php:59
-#: src/Blocks/MiniCart.php:63 src/Blocks/MiniCart.php:74
-#: build/mini-cart-blocks/mini-cart-notices-frontend.js:60
-#: build/mini-cart-blocks/mini-cart-notices-style.js:60
+#: src/Blocks/MiniCart.php:64 src/Blocks/MiniCart.php:75
+#: build/mini-cart-blocks/mini-cart-notices-frontend.js:59
+#: build/mini-cart-blocks/mini-cart-notices-style.js:59
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:53
 #: build/mini-cart-blocks/mini-cart-notices-style.js:53
 msgid "incl. VAT"
@@ -2053,9 +2056,9 @@ msgstr "inkl. MwSt."
 
 # @ woocommerce-germanized
 #: includes/abstracts/abstract-wc-gzd-product.php:1676
-#: src/Blocks/MiniCart.php:63
-#: build/mini-cart-blocks/mini-cart-notices-frontend.js:60
-#: build/mini-cart-blocks/mini-cart-notices-style.js:60
+#: src/Blocks/MiniCart.php:64
+#: build/mini-cart-blocks/mini-cart-notices-frontend.js:59
+#: build/mini-cart-blocks/mini-cart-notices-style.js:59
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:53
 #: build/mini-cart-blocks/mini-cart-notices-style.js:53
 msgid "excl. VAT"
@@ -2268,9 +2271,9 @@ msgstr "Verantwortliche Person (EU)"
 #: includes/api/class-wc-gzd-rest-products-controller.php:597
 #: includes/class-wc-gzd-post-types.php:159
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-manufacturer.php:10
-#: build/wc-gzd-blocks-product-elements.js:1302
-#: build/wc-gzd-blocks-product-elements-style.js:1052
-#: build/wc-gzd-blocks-product-elements.js:1037
+#: build/wc-gzd-blocks-product-elements.js:1693
+#: build/wc-gzd-blocks-product-elements-style.js:1246
+#: build/wc-gzd-blocks-product-elements.js:1231
 msgid "Manufacturer"
 msgstr "Hersteller"
 
@@ -2286,8 +2289,8 @@ msgstr ""
 "vorab (%s) um Kompatibilitätsprobleme zu verhindern."
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin-order.php:103 build/checkout.js:312
-#: build/checkout-style.js:266 build/checkout.js:266
+#: includes/admin/class-wc-gzd-admin-order.php:103 build/checkout.js:441
+#: build/checkout-style.js:339 build/checkout.js:339
 msgid "Checkboxes"
 msgstr "Checkboxen"
 
@@ -2329,7 +2332,7 @@ msgstr ""
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:66
 #: includes/admin/settings/class-wc-gzd-settings-tab-oss.php:29
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:37
-#: src/PluginsHelper.php:631 src/PluginsHelper.php:733
+#: src/PluginsHelper.php:637 src/PluginsHelper.php:739
 msgid "One Stop Shop"
 msgstr "One Stop Shop"
 
@@ -2372,8 +2375,8 @@ msgstr "Weiter"
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:106
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:111
-#: includes/admin/views/setup/shiptastic.php:46 src/PluginsHelper.php:633
-#: src/PluginsHelper.php:735
+#: includes/admin/views/setup/shiptastic.php:46 src/PluginsHelper.php:639
+#: src/PluginsHelper.php:741
 msgid "Shiptastic"
 msgstr "Shiptastic"
 
@@ -2714,9 +2717,9 @@ msgstr ""
 #: includes/api/class-wc-gzd-rest-products-controller.php:203
 #: includes/api/class-wc-gzd-rest-products-controller.php:698
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
-#: build/wc-gzd-blocks-product-elements.js:3054
-#: build/wc-gzd-blocks-product-elements-style.js:2328
-#: build/wc-gzd-blocks-product-elements.js:2313
+#: build/wc-gzd-blocks-product-elements.js:3407
+#: build/wc-gzd-blocks-product-elements-style.js:2520
+#: build/wc-gzd-blocks-product-elements.js:2505
 msgid "Unit Price"
 msgstr "Grundpreis"
 
@@ -2741,9 +2744,9 @@ msgstr "Automatische Berechnung an-/ausschalten"
 #: includes/api/class-wc-gzd-rest-products-controller.php:43
 #: includes/api/class-wc-gzd-rest-products-controller.php:522
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:10
-#: build/wc-gzd-blocks-product-elements.js:756
-#: build/wc-gzd-blocks-product-elements-style.js:665
-#: build/wc-gzd-blocks-product-elements.js:665
+#: build/wc-gzd-blocks-product-elements.js:1156
+#: build/wc-gzd-blocks-product-elements-style.js:859
+#: build/wc-gzd-blocks-product-elements.js:859
 msgid "Delivery Time"
 msgstr "Lieferzeit"
 
@@ -2755,7 +2758,7 @@ msgstr "Lieferzeit festlegen"
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:160
 #: includes/admin/settings/class-wc-gzd-settings-pointers.php:91
-#: includes/class-wc-gzd-legal-checkbox.php:896
+#: includes/class-wc-gzd-legal-checkbox.php:903
 msgid "Status"
 msgstr "Status"
 
@@ -2966,7 +2969,7 @@ msgstr ""
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:424
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:742
-#: includes/wc-gzd-template-functions.php:79
+#: includes/wc-gzd-template-functions.php:102
 #: templates/single-product/product-safety.php:22
 msgid "Product safety"
 msgstr "Produktsicherheit"
@@ -2977,11 +2980,11 @@ msgstr "Produktsicherheit"
 #: includes/api/class-wc-gzd-rest-products-controller.php:271
 #: includes/api/class-wc-gzd-rest-products-controller.php:672
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-safety-instructions.php:10
-#: includes/wc-gzd-template-functions.php:878
+#: includes/wc-gzd-template-functions.php:901
 #: templates/single-product/safety-instructions.php:22
-#: build/wc-gzd-blocks-product-elements.js:2027
-#: build/wc-gzd-blocks-product-elements-style.js:1547
-#: build/wc-gzd-blocks-product-elements.js:1532
+#: build/wc-gzd-blocks-product-elements.js:2406
+#: build/wc-gzd-blocks-product-elements-style.js:1741
+#: build/wc-gzd-blocks-product-elements.js:1726
 msgid "Safety instructions"
 msgstr "Sicherheitshinweise"
 
@@ -3010,7 +3013,7 @@ msgstr "Fügt eine Checkbox zur Altersprüfung für dieses Produkt hinzu."
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:645
 #: includes/api/class-wc-gzd-rest-products-controller.php:289
 #: includes/api/class-wc-gzd-rest-products-controller.php:688
-#: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:135
+#: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:147
 msgid "GTIN"
 msgstr "GTIN"
 
@@ -3027,7 +3030,7 @@ msgstr ""
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:658
 #: includes/api/class-wc-gzd-rest-products-controller.php:295
 #: includes/api/class-wc-gzd-rest-products-controller.php:693
-#: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:144
+#: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:156
 msgid "MPN"
 msgstr "MPN"
 
@@ -3057,9 +3060,9 @@ msgstr "Warenkorb Kurzbeschreibung"
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:325
 #: includes/api/class-wc-gzd-rest-products-controller.php:252
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-defect-description.php:10
-#: build/wc-gzd-blocks-product-elements.js:577
-#: build/wc-gzd-blocks-product-elements-style.js:542
-#: build/wc-gzd-blocks-product-elements.js:542
+#: build/wc-gzd-blocks-product-elements.js:980
+#: build/wc-gzd-blocks-product-elements-style.js:736
+#: build/wc-gzd-blocks-product-elements.js:736
 msgid "Defect Description"
 msgstr "Mängelbeschreibung"
 
@@ -3254,9 +3257,9 @@ msgstr "Grundpreis automatisch berechnen."
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:695
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-power-supply.php:10
-#: build/wc-gzd-blocks-product-elements.js:1663
-#: build/wc-gzd-blocks-product-elements-style.js:1299
-#: build/wc-gzd-blocks-product-elements.js:1284
+#: build/wc-gzd-blocks-product-elements.js:2048
+#: build/wc-gzd-blocks-product-elements-style.js:1493
+#: build/wc-gzd-blocks-product-elements.js:1478
 msgid "Power supply"
 msgstr "Netzteil"
 
@@ -3781,11 +3784,11 @@ msgstr ""
 msgid "Manage OSS settings"
 msgstr "OSS Einstellungen anpassen"
 
-#: includes/admin/notes/class-wc-gzd-admin-note.php:263
+#: includes/admin/notes/class-wc-gzd-admin-note.php:270
 msgid "Not now"
 msgstr "Nicht jetzt"
 
-#: includes/admin/notes/class-wc-gzd-admin-note.php:267
+#: includes/admin/notes/class-wc-gzd-admin-note.php:274
 msgid "Deactivate"
 msgstr "Deaktivieren"
 
@@ -3890,7 +3893,7 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:85
 #: includes/class-wc-gzd-payment-gateways.php:124
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:73
-#: includes/wc-gzd-template-functions.php:810
+#: includes/wc-gzd-template-functions.php:833
 #: src/Blocks/Integrations/Checkout.php:121
 msgid "Buy Now"
 msgstr "Jetzt kaufen"
@@ -4101,7 +4104,7 @@ msgstr ""
 "Checkbox bearbeiten indem Sie auf den Link klicken."
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:61
-#: includes/class-wc-gzd-legal-checkbox.php:928
+#: includes/class-wc-gzd-legal-checkbox.php:935
 msgid "Label"
 msgstr "Beschriftung"
 
@@ -6107,7 +6110,7 @@ msgstr "Trusted Shops Easy Integration"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-trusted-shops.php:29
-#: src/PluginsHelper.php:632 src/PluginsHelper.php:734
+#: src/PluginsHelper.php:638 src/PluginsHelper.php:740
 msgid "Trusted Shops"
 msgstr "Trusted Shops"
 
@@ -6122,14 +6125,14 @@ msgstr ""
 # @ woocommerce-germanized
 #: includes/admin/settings/views/html-admin-page-checkboxes.php:11
 #: includes/admin/settings/views/html-admin-settings-tabs.php:53
-#: includes/class-wc-gzd-legal-checkbox.php:903
+#: includes/class-wc-gzd-legal-checkbox.php:910
 msgid "Name"
 msgstr "Name"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/views/html-admin-page-checkboxes.php:12
 #: includes/admin/settings/views/html-admin-settings-tabs.php:55
-#: includes/class-wc-gzd-legal-checkbox.php:920
+#: includes/class-wc-gzd-legal-checkbox.php:927
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1035
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:133
 msgid "Description"
@@ -6142,7 +6145,7 @@ msgstr "Aktiviert"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/views/html-admin-page-checkboxes.php:14
-#: includes/class-wc-gzd-legal-checkbox.php:953
+#: includes/class-wc-gzd-legal-checkbox.php:960
 msgid "Mandatory"
 msgstr "Pflichtfeld"
 
@@ -6944,8 +6947,8 @@ msgstr "Kontoinhaber"
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1065
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1195
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1321
-#: build/wc-gzd-payment-method-direct-debit.js:269
-#: build/wc-gzd-payment-method-direct-debit.js:143
+#: build/wc-gzd-payment-method-direct-debit.js:1639
+#: build/wc-gzd-payment-method-direct-debit.js:1501
 msgid "IBAN"
 msgstr "IBAN"
 
@@ -6958,8 +6961,8 @@ msgstr "IBAN"
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:704
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1199
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1322
-#: build/wc-gzd-payment-method-direct-debit.js:277
-#: build/wc-gzd-payment-method-direct-debit.js:152
+#: build/wc-gzd-payment-method-direct-debit.js:1647
+#: build/wc-gzd-payment-method-direct-debit.js:1510
 msgid "BIC/SWIFT"
 msgstr "BIC/SWIFT"
 
@@ -7281,9 +7284,9 @@ msgstr "Pfand Anzahl"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:404
-#: build/wc-gzd-blocks-product-elements.js:1120
-#: build/wc-gzd-blocks-product-elements-style.js:913
-#: build/wc-gzd-blocks-product-elements.js:913
+#: build/wc-gzd-blocks-product-elements.js:1514
+#: build/wc-gzd-blocks-product-elements-style.js:1107
+#: build/wc-gzd-blocks-product-elements.js:1107
 msgid "Deposit amount"
 msgstr "Pfandbetrag"
 
@@ -7295,9 +7298,9 @@ msgstr "Nährwert Referenzmenge"
 #: includes/api/class-wc-gzd-rest-products-controller.php:419
 #: includes/class-wc-gzd-food-helper.php:48
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-nutri-score.php:10
-#: build/wc-gzd-blocks-product-elements.js:1484
-#: build/wc-gzd-blocks-product-elements-style.js:1176
-#: build/wc-gzd-blocks-product-elements.js:1161
+#: build/wc-gzd-blocks-product-elements.js:1872
+#: build/wc-gzd-blocks-product-elements-style.js:1370
+#: build/wc-gzd-blocks-product-elements.js:1355
 msgid "Nutri-Score"
 msgstr "Nutri-Score"
 
@@ -7368,7 +7371,7 @@ msgstr "Allergen term id"
 #: includes/api/class-wc-gzd-rest-products-controller.php:508
 #: includes/class-wc-gzd-food-helper.php:39
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-ingredients.php:10
-#: includes/wc-gzd-template-functions.php:858
+#: includes/wc-gzd-template-functions.php:881
 msgid "Ingredients"
 msgstr "Zutaten"
 
@@ -7384,7 +7387,7 @@ msgid "%s [new]"
 msgstr "%s [neu]"
 
 #: includes/class-wc-gzd-checkout.php:512
-#: includes/class-wc-gzd-checkout.php:518 src/Blocks/Checkout.php:297
+#: includes/class-wc-gzd-checkout.php:518 src/Blocks/Checkout.php:299
 msgid ""
 "Please check the street field and make sure to provide a valid street number."
 msgstr ""
@@ -7617,7 +7620,7 @@ msgstr ""
 "Dieser Text wird in die Bestellbestätigung eingefügt. Verwenden Sie "
 "{order_number}, {site_title} oder {order_date} als Platzhalter."
 
-#: includes/class-wc-gzd-emails.php:696
+#: includes/class-wc-gzd-emails.php:699
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference."
@@ -7625,11 +7628,11 @@ msgstr ""
 "Ihre Bestellung ist eingegangen und wird nun bearbeitet. Die Einzelheiten "
 "Ihrer Bestellung können Sie der nachfolgenden Tabelle entnehmen."
 
-#: includes/class-wc-gzd-emails.php:745
+#: includes/class-wc-gzd-emails.php:748
 msgid "Someone requested a password reset for your account."
 msgstr "Jemand hat das Zurücksetzen des Passworts für Ihren Account beantragt."
 
-#: includes/class-wc-gzd-emails.php:760
+#: includes/class-wc-gzd-emails.php:763
 #, php-format
 msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass Sie ein Konto bei %s erstellt haben."
@@ -7672,13 +7675,13 @@ msgstr "E"
 #: includes/class-wc-gzd-food-helper.php:40
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-nutrients.php:10
 #: includes/import/class-wc-gzd-product-import.php:254
-#: includes/wc-gzd-template-functions.php:866
+#: includes/wc-gzd-template-functions.php:889
 msgid "Nutrients"
 msgstr "Nährwerte"
 
 #: includes/class-wc-gzd-food-helper.php:41
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-allergenic.php:10
-#: includes/wc-gzd-template-functions.php:862
+#: includes/wc-gzd-template-functions.php:885
 msgid "Allergenic"
 msgstr "Allergene"
 
@@ -7738,26 +7741,26 @@ msgstr ""
 msgid "Other Vitamins & Minerals"
 msgstr "Andere Vitamine & Mineralien"
 
-#: includes/class-wc-gzd-install.php:440
+#: includes/class-wc-gzd-install.php:441
 #, php-format
 msgctxt "shipments-migration"
 msgid "Error while querying %1$s: %2$s"
 msgstr "Fehler bei der Migration von %1$s: %2$s"
 
-#: includes/class-wc-gzd-install.php:466
+#: includes/class-wc-gzd-install.php:467
 #, php-format
 msgctxt "shipments-migration"
 msgid "Error while running additional query on %1$s: %2$s"
 msgstr "Fehler bei einer zusätzlichen Abfrage auf %1$s: %2$s"
 
-#: includes/class-wc-gzd-install.php:513
+#: includes/class-wc-gzd-install.php:514
 #, php-format
 msgctxt "shipments-migration"
 msgid "Could not rename %1$s to %2$s."
 msgstr "Konnte %1$s nicht in %2$s umbenennen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:550
+#: includes/class-wc-gzd-install.php:551
 msgid ""
 "Please install WooCommerce before installing WooCommerce Germanized. Thank "
 "you!"
@@ -7766,85 +7769,85 @@ msgstr ""
 "installieren. Vielen Dank!"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:1002
-#: includes/class-wc-gzd-install.php:1054
+#: includes/class-wc-gzd-install.php:1003
+#: includes/class-wc-gzd-install.php:1055
 msgctxt "Page slug"
 msgid "data-security"
 msgstr "datenschutzerklaerung"
 
-#: includes/class-wc-gzd-install.php:1003
-#: includes/class-wc-gzd-install.php:1056
+#: includes/class-wc-gzd-install.php:1004
+#: includes/class-wc-gzd-install.php:1057
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:1007
+#: includes/class-wc-gzd-install.php:1008
 msgctxt "Page slug"
 msgid "imprint"
 msgstr "impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:1008
+#: includes/class-wc-gzd-install.php:1009
 msgctxt "Page title"
 msgid "Imprint"
 msgstr "Impressum"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:1012
+#: includes/class-wc-gzd-install.php:1013
 msgctxt "Page slug"
 msgid "terms"
 msgstr "agb"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:1013
+#: includes/class-wc-gzd-install.php:1014
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:1017
+#: includes/class-wc-gzd-install.php:1018
 msgctxt "Page slug"
 msgid "revocation"
 msgstr "widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:1018
+#: includes/class-wc-gzd-install.php:1019
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:1022
+#: includes/class-wc-gzd-install.php:1023
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr "versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:1023
+#: includes/class-wc-gzd-install.php:1024
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:1027
+#: includes/class-wc-gzd-install.php:1028
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr "bezahlmoeglichkeiten"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-install.php:1028
+#: includes/class-wc-gzd-install.php:1029
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
 
-#: includes/class-wc-gzd-install.php:1032
+#: includes/class-wc-gzd-install.php:1033
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr "echtheit-von-bewertungen"
 
-#: includes/class-wc-gzd-install.php:1033
+#: includes/class-wc-gzd-install.php:1034
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"
@@ -8149,6 +8152,7 @@ msgid "Review Reminder"
 msgstr "Bewertungserinnerung"
 
 #: includes/class-wc-gzd-legal-checkbox-manager.php:457
+#: includes/updates/woocommerce-gzd-update-4.0.10.php:13
 msgid "Obtain customers' consent to receive a review invitation."
 msgstr ""
 "Holt die Zustimmung der Kunden ein, eine Einladung zur Abgabe einer "
@@ -8195,11 +8199,11 @@ msgid "%s is a mandatory field."
 msgstr "%s ist ein Pflichtfeld."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:899
+#: includes/class-wc-gzd-legal-checkbox.php:906
 msgid "Enable checkbox"
 msgstr "Checkbox aktivieren"
 
-#: includes/class-wc-gzd-legal-checkbox.php:907
+#: includes/class-wc-gzd-legal-checkbox.php:914
 msgid ""
 "Choose a name to identify your checkbox. Upon creating a new checkbox, this "
 "value is being used to generate the Id."
@@ -8207,11 +8211,11 @@ msgstr ""
 "Wähle einen Namen um die Checkbox zu identifizieren. Bei Erstellung einer "
 "neuen Checkbox wird dieser Wert verwendet um eine Id zu erstellen."
 
-#: includes/class-wc-gzd-legal-checkbox.php:911
+#: includes/class-wc-gzd-legal-checkbox.php:918
 msgid "Id"
 msgstr "Id"
 
-#: includes/class-wc-gzd-legal-checkbox.php:915
+#: includes/class-wc-gzd-legal-checkbox.php:922
 msgid ""
 "The checkbox Id is the unique indentifier which is used to identify the "
 "checkbox within the code. Cannot be edited after creating the checkbox."
@@ -8220,27 +8224,27 @@ msgstr ""
 "Code heraus zugreifbar zu machen. Kann nach dem Erstellen einer Checkbox "
 "nicht mehr verändert werden."
 
-#: includes/class-wc-gzd-legal-checkbox.php:923
+#: includes/class-wc-gzd-legal-checkbox.php:930
 msgid "Describe the use case of your checkbox."
 msgstr "Beschreibe hier den Use-Case der Checkbox."
 
-#: includes/class-wc-gzd-legal-checkbox.php:932
+#: includes/class-wc-gzd-legal-checkbox.php:939
 msgid "Choose a label to be inserted next to the checkbox."
 msgstr ""
 "Wählen Sie eine Beschriftung aus, die neben der Checkbox platziert wird."
 
-#: includes/class-wc-gzd-legal-checkbox.php:933
-#: includes/class-wc-gzd-legal-checkbox.php:942
-#: includes/class-wc-gzd-legal-checkbox.php:982
+#: includes/class-wc-gzd-legal-checkbox.php:940
+#: includes/class-wc-gzd-legal-checkbox.php:949
+#: includes/class-wc-gzd-legal-checkbox.php:989
 #, php-format
 msgid "You may use one of the following placeholders within the text: %s"
 msgstr "Sie können einen der folgenden Platzhalter im Text verwenden: %s"
 
-#: includes/class-wc-gzd-legal-checkbox.php:937
+#: includes/class-wc-gzd-legal-checkbox.php:944
 msgid "Error Message"
 msgstr "Fehlermeldung"
 
-#: includes/class-wc-gzd-legal-checkbox.php:941
+#: includes/class-wc-gzd-legal-checkbox.php:948
 msgid ""
 "Choose an error message to be shown when the user has not confirmed the "
 "checkbox."
@@ -8249,34 +8253,34 @@ msgstr ""
 "Nutzer die Checkbox nicht bestätigt hat."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:946
+#: includes/class-wc-gzd-legal-checkbox.php:953
 msgid "Hide input"
 msgstr "Ausblenden"
 
-#: includes/class-wc-gzd-legal-checkbox.php:949
+#: includes/class-wc-gzd-legal-checkbox.php:956
 msgid "Do only show a label and hide the actual checkbox."
 msgstr ""
 "Zeige lediglich die Beschriftung und entferne die eigentliche Checkbox."
 
-#: includes/class-wc-gzd-legal-checkbox.php:956
+#: includes/class-wc-gzd-legal-checkbox.php:963
 msgid "Mark the checkbox as mandatory."
 msgstr "Checkbox zum Pflichtfeld machen."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:960
+#: includes/class-wc-gzd-legal-checkbox.php:967
 msgid "Locations"
 msgstr "Orte"
 
-#: includes/class-wc-gzd-legal-checkbox.php:964
+#: includes/class-wc-gzd-legal-checkbox.php:971
 msgid "Choose where to display your checkbox."
 msgstr "Wählen Sie einen Ort aus, an dem die Checkbox platziert werden soll."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-legal-checkbox.php:977
+#: includes/class-wc-gzd-legal-checkbox.php:984
 msgid "Email confirmation"
 msgstr "E-Mail-Bestätigung"
 
-#: includes/class-wc-gzd-legal-checkbox.php:981
+#: includes/class-wc-gzd-legal-checkbox.php:988
 msgid ""
 "Optionally, include a note within the email notification if the customer has "
 "given their consent."
@@ -8285,35 +8289,35 @@ msgstr ""
 "Kunde seine Einwilligung erteilt hat."
 
 #: includes/class-wc-gzd-manufacturer.php:93
-#: build/product-defect-description-frontend.js:603
-#: build/product-delivery-time-frontend.js:603
-#: build/product-deposit-frontend.js:603
-#: build/product-deposit-packaging-type-frontend.js:603
-#: build/product-manufacturer-frontend.js:603
-#: build/product-nutri-score-frontend.js:603
-#: build/product-power-supply-frontend.js:603
-#: build/product-safety-attachments-frontend.js:603
-#: build/product-safety-instructions-frontend.js:603
-#: build/product-shipping-costs-info-frontend.js:541
-#: build/product-tax-info-frontend.js:541
-#: build/product-unit-price-frontend.js:541
-#: build/product-unit-product-frontend.js:541
-#: build/wc-gzd-blocks-product-elements.js:2382
-#: build/product-defect-description-frontend.js:518
-#: build/product-delivery-time-frontend.js:518
-#: build/product-deposit-frontend.js:518
-#: build/product-deposit-packaging-type-frontend.js:518
-#: build/product-manufacturer-frontend.js:518
-#: build/product-nutri-score-frontend.js:518
-#: build/product-power-supply-frontend.js:518
-#: build/product-safety-attachments-frontend.js:518
-#: build/product-safety-instructions-frontend.js:518
-#: build/product-shipping-costs-info-frontend.js:492
-#: build/product-tax-info-frontend.js:492
-#: build/product-unit-price-frontend.js:492
-#: build/product-unit-product-frontend.js:492
-#: build/wc-gzd-blocks-product-elements-style.js:1841
-#: build/wc-gzd-blocks-product-elements.js:1826
+#: build/product-defect-description-frontend.js:588
+#: build/product-delivery-time-frontend.js:588
+#: build/product-deposit-frontend.js:588
+#: build/product-deposit-packaging-type-frontend.js:588
+#: build/product-manufacturer-frontend.js:588
+#: build/product-nutri-score-frontend.js:588
+#: build/product-power-supply-frontend.js:588
+#: build/product-safety-attachments-frontend.js:588
+#: build/product-safety-instructions-frontend.js:588
+#: build/product-shipping-costs-info-frontend.js:526
+#: build/product-tax-info-frontend.js:526
+#: build/product-unit-price-frontend.js:526
+#: build/product-unit-product-frontend.js:526
+#: build/wc-gzd-blocks-product-elements.js:2744
+#: build/product-defect-description-frontend.js:517
+#: build/product-delivery-time-frontend.js:517
+#: build/product-deposit-frontend.js:517
+#: build/product-deposit-packaging-type-frontend.js:517
+#: build/product-manufacturer-frontend.js:517
+#: build/product-nutri-score-frontend.js:517
+#: build/product-power-supply-frontend.js:517
+#: build/product-safety-attachments-frontend.js:517
+#: build/product-safety-instructions-frontend.js:517
+#: build/product-shipping-costs-info-frontend.js:491
+#: build/product-tax-info-frontend.js:491
+#: build/product-unit-price-frontend.js:491
+#: build/product-unit-product-frontend.js:491
+#: build/wc-gzd-blocks-product-elements-style.js:2033
+#: build/wc-gzd-blocks-product-elements.js:2018
 msgid "Person responsible for the EU"
 msgstr "Verantwortliche Person in der EU"
 
@@ -8340,7 +8344,7 @@ msgstr "%s Zahlungsgebühr"
 # @ woocommerce-germanized
 #: includes/class-wc-gzd-payment-gateways.php:148
 #: includes/wc-gzd-order-functions.php:34
-#: includes/wc-gzd-template-functions.php:1104
+#: includes/wc-gzd-template-functions.php:1127
 #, php-format
 msgid "Plus %s forwarding fee (charged by the transport agent)"
 msgstr "Zzgl. %s Übermittlungsentgelt (direkt an den Zusteller)"
@@ -8774,9 +8778,9 @@ msgstr "Versandkosten Hinweis"
 
 # @ woocommerce-germanized
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-tax-notice.php:10
-#: build/wc-gzd-blocks-product-elements.js:2875
-#: build/wc-gzd-blocks-product-elements-style.js:2204
-#: build/wc-gzd-blocks-product-elements.js:2189
+#: build/wc-gzd-blocks-product-elements.js:3231
+#: build/wc-gzd-blocks-product-elements-style.js:2396
+#: build/wc-gzd-blocks-product-elements.js:2381
 msgid "Tax Notice"
 msgstr "Steuerhinweis"
 
@@ -9628,8 +9632,8 @@ msgstr "Nur unbezahlte"
 # @ woocommerce-germanized
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:43
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:129
-#: build/wc-gzd-payment-method-invoice.js:155
-#: build/wc-gzd-payment-method-invoice.js:70
+#: build/wc-gzd-payment-method-invoice.js:1528
+#: build/wc-gzd-payment-method-invoice.js:1427
 msgid "Pay by Invoice"
 msgstr "Rechnung"
 
@@ -9813,30 +9817,30 @@ msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-template-functions.php:699
+#: includes/wc-gzd-template-functions.php:722
 #: templates/checkout/edit-data-notice.php:25
 msgid "Edit Order"
 msgstr "Bestellung bearbeiten"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-template-functions.php:709
+#: includes/wc-gzd-template-functions.php:732
 msgid "Choose a Payment Gateway"
 msgstr "Zahlungsart auswählen"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-template-functions.php:870
+#: includes/wc-gzd-template-functions.php:893
 #: templates/single-product/manufacturer.php:22
 msgid "Manufacturer information"
 msgstr "Herstellerinformationen"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-template-functions.php:874
+#: includes/wc-gzd-template-functions.php:897
 #: templates/single-product/product-safety-attachments.php:22
 msgid "Product safety documents"
 msgstr "Dokumente zur Produktsicherheit"
 
 # @ woocommerce
-#: includes/wc-gzd-template-functions.php:932
+#: includes/wc-gzd-template-functions.php:955
 msgid "Place order"
 msgstr "Jetzt kaufen"
 
@@ -9909,83 +9913,83 @@ msgstr ""
 "GitHub installiert haben, %1$sschauen Sie sich bitte dieses Dokument an%2$s "
 "um eine Entwicklungsumgebung aufzusetzen."
 
-#: src/Blocks/Checkout.php:356
+#: src/Blocks/Checkout.php:358
 msgid "Whether the cart applies for a photovoltaic system vat exempt or not."
 msgstr ""
 "Ob dieser Warenkorb für die Anwendung des Nullsteuersatzes auf "
 "Photovoltaikanlagen vorgesehen ist oder nicht."
 
-#: src/Blocks/Checkout.php:362
+#: src/Blocks/Checkout.php:364
 msgid "The current cart's photovoltaic system law details."
 msgstr "Details zum Gesetz für Photovoltaikanlagen des aktuellen Warenkorbs."
 
-#: src/Blocks/Checkout.php:368
+#: src/Blocks/Checkout.php:370
 msgid "The actual law, e.g. paragraph."
 msgstr "Das eigentliche Gesetz, z.B. Paragraph XY Absatz Z."
 
-#: src/Blocks/Checkout.php:374
+#: src/Blocks/Checkout.php:376
 msgid "The URL to the law."
 msgstr "Die URL zum Gesetz."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:382
+#: src/Blocks/Checkout.php:384
 msgid "Cart shipping costs notice."
 msgstr "Versandkostenhinweis im Warenkorb."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:388 src/Blocks/Checkout.php:510
+#: src/Blocks/Checkout.php:390 src/Blocks/Checkout.php:512
 msgid "List of cart checkboxes."
 msgstr "Liste der Checkboxen."
 
-#: src/Blocks/Checkout.php:396 src/Blocks/Checkout.php:517
+#: src/Blocks/Checkout.php:398 src/Blocks/Checkout.php:519
 msgid "Unique identifier for the checkbox within the cart."
 msgstr "Eindeutige Bezeichnung der Checkbox innerhalb des Warenkorbs."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:402
+#: src/Blocks/Checkout.php:404
 msgid "Checkbox name."
 msgstr "Checkbox Bezeichnung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:408
+#: src/Blocks/Checkout.php:410
 msgid "Checkbox label."
 msgstr "Checkbox Beschriftung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:414 src/Blocks/Checkout.php:523
+#: src/Blocks/Checkout.php:416 src/Blocks/Checkout.php:525
 msgid "Checkbox checked status."
 msgstr "Checkbox Status."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:420
+#: src/Blocks/Checkout.php:422
 msgid "Checkbox hidden by default."
 msgstr "Checkbox standardmäßig ausgeblendet."
 
-#: src/Blocks/Checkout.php:426
+#: src/Blocks/Checkout.php:428
 msgid "Checkbox error message."
 msgstr "Checkbox Fehlermeldung."
 
-#: src/Blocks/Checkout.php:432
+#: src/Blocks/Checkout.php:434
 msgid "Show for specific payment methods only."
 msgstr "Nur für spezielle Zahlungsarten anzeigen."
 
-#: src/Blocks/Checkout.php:438
+#: src/Blocks/Checkout.php:440
 msgid "Wrapper classes."
 msgstr "Wrapper-Klassen."
 
-#: src/Blocks/Checkout.php:444
+#: src/Blocks/Checkout.php:446
 msgid "Custom styles."
 msgstr "Individuelles Layout."
 
-#: src/Blocks/Checkout.php:450
+#: src/Blocks/Checkout.php:452
 msgid "HTML field id."
 msgstr "HTML Feld ID."
 
-#: src/Blocks/Checkout.php:456
+#: src/Blocks/Checkout.php:458
 msgid "Whether to show a checkbox field or not."
 msgstr "Ob das Checkbox-Feld gezeigt werden soll oder nicht."
 
-#: src/Blocks/Checkout.php:462
+#: src/Blocks/Checkout.php:464
 msgid "Whether the checkbox is required or not."
 msgstr "Ob die Checkbox verpflichtend ist oder nicht."
 
@@ -10112,22 +10116,22 @@ msgstr "Anzahl der Pfandeinheiten."
 msgid "Missing the Germanized %s package"
 msgstr "Das Germanized %s Paket fehlt"
 
-#: src/PluginsHelper.php:373
+#: src/PluginsHelper.php:379
 msgid "This plugin is not allowed to be installed."
 msgstr "Dieses Plugin kann nicht installiert werden."
 
-#: src/PluginsHelper.php:436
+#: src/PluginsHelper.php:442
 #, php-format
 msgid "Please <a href=\"%1$s\">activate the %2$s &raquo;</a> plugin"
 msgstr "Bitte <a href=\"%1$s\">aktiviere das %2$s Plugin &raquo;</a>"
 
-#: src/PluginsHelper.php:436
+#: src/PluginsHelper.php:442
 #, php-format
 msgid "Please <a href=\"%1$s\">install the %2$s &raquo;</a> plugin"
 msgstr "Bitte <a href=\"%1$s\">installiere das %2$s Plugin &raquo;</a>"
 
 #. translators: %s: plugin slug (example: woocommerce-services)
-#: src/PluginsHelper.php:544 src/PluginsHelper.php:575
+#: src/PluginsHelper.php:550 src/PluginsHelper.php:581
 #, php-format
 msgid "The requested plugin %s could not be installed. Plugin API call failed."
 msgstr ""
@@ -10135,7 +10139,7 @@ msgstr ""
 "Fehler."
 
 #. translators: %s: plugin slug (example: woocommerce-services)
-#: src/PluginsHelper.php:599
+#: src/PluginsHelper.php:605
 #, php-format
 msgid ""
 "The requested plugin %s could not be installed. Upgrader install failed."
@@ -10144,41 +10148,41 @@ msgstr ""
 "einen Fehler."
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:630 build/wc-gzd-blocks-product-elements.js:2121
-#: build/wc-gzd-blocks-product-elements-style.js:1605
-#: build/wc-gzd-blocks-product-elements.js:1590
+#: src/PluginsHelper.php:636 build/wc-gzd-blocks-product-elements.js:2498
+#: build/wc-gzd-blocks-product-elements-style.js:1799
+#: build/wc-gzd-blocks-product-elements.js:1784
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:634 src/PluginsHelper.php:737
+#: src/PluginsHelper.php:640 src/PluginsHelper.php:743
 msgid "DHL for Shiptastic"
 msgstr "DHL für Shiptastic"
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:635
+#: src/PluginsHelper.php:641
 msgid "Germanized for WooCommerce Pro"
 msgstr "Germanized für WooCommerce Pro"
 
 #. translators: %s: plugin slug (example: woocommerce-services)
-#: src/PluginsHelper.php:696
+#: src/PluginsHelper.php:702
 #, php-format
 msgid "The requested plugin `%s` is not yet installed."
 msgstr "Das Plugin `%s` ist noch nicht installiert."
 
 #. translators: %s: plugin slug (example: woocommerce-services)
-#: src/PluginsHelper.php:708
+#: src/PluginsHelper.php:714
 #, php-format
 msgid "The requested plugin `%s` could not be activated."
 msgstr "Das Plugin `%s` konnte nicht aktiviert werden."
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:736
+#: src/PluginsHelper.php:742
 msgid "UPS for Shiptastic"
 msgstr "UPS für Shiptastic"
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:742
+#: src/PluginsHelper.php:748
 #, php-format
 msgid "Germanized for WooCommerce: %s"
 msgstr "Germanized für WooCommerce: %s"
@@ -10486,18 +10490,18 @@ msgid "Update totals"
 msgstr "Betrag aktualisieren"
 
 #: templates/checkout/photovoltaic-systems-notice.php:24
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:53
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:53
-#: build/checkout.js:458
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:52
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:52
+#: build/checkout.js:548
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:37
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:37
-#: build/checkout-style.js:346 build/checkout.js:346
+#: build/checkout-style.js:415 build/checkout.js:415
 msgid "Your shopping cart is eligible for VAT exemption"
 msgstr "Ihr Warenkorb ist für eine Mehrwertsteuerbefreiung berechtigt"
 
 #: templates/checkout/photovoltaic-systems-notice.php:25
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:52
-#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:52
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:51
+#: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:51
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:36
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:36
 #, php-format
@@ -10675,16 +10679,16 @@ msgid ""
 "Please wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen Sie zum Zahlungsanbieter weiterzuleiten."
 
-#: build/checkout.js:299 build/checkout-style.js:252 build/checkout.js:252
+#: build/checkout.js:428 build/checkout-style.js:325 build/checkout.js:325
 msgid "This is a label being printed next to your legal checkbox."
 msgstr "Das ist eine Beschriftung, die neben der Checkbox angezeigt wird."
 
 # @ woocommerce-germanized
-#: build/checkout.js:315 build/checkout-style.js:271 build/checkout.js:271
+#: build/checkout.js:444 build/checkout-style.js:344 build/checkout.js:344
 msgid "Manage checkboxes"
 msgstr "Checkboxen verwalten"
 
-#: build/checkout.js:457 build/checkout-style.js:345 build/checkout.js:345
+#: build/checkout.js:547 build/checkout-style.js:414 build/checkout.js:414
 msgid ""
 "To benefit from the tax exemption, please confirm the VAT exemption "
 "according to {legal_text} by activating the checkbox."
@@ -10693,108 +10697,240 @@ msgstr ""
 "bestätigen Sie bitte die entsprechende Checkbox."
 
 # @ woocommerce
-#: build/product-defect-description-frontend.js:561
-#: build/product-delivery-time-frontend.js:561
-#: build/product-deposit-frontend.js:561
-#: build/product-deposit-packaging-type-frontend.js:561
-#: build/product-manufacturer-frontend.js:561
-#: build/product-nutri-score-frontend.js:561
-#: build/product-power-supply-frontend.js:561
-#: build/product-safety-attachments-frontend.js:561
-#: build/product-safety-instructions-frontend.js:561
-#: build/product-shipping-costs-info-frontend.js:499
-#: build/product-tax-info-frontend.js:499
-#: build/product-unit-price-frontend.js:499
-#: build/product-unit-product-frontend.js:499
-#: build/wc-gzd-blocks-product-elements.js:2340
-#: build/product-defect-description-frontend.js:479
-#: build/product-delivery-time-frontend.js:479
-#: build/product-deposit-frontend.js:479
-#: build/product-deposit-packaging-type-frontend.js:479
-#: build/product-manufacturer-frontend.js:479
-#: build/product-nutri-score-frontend.js:479
-#: build/product-power-supply-frontend.js:479
-#: build/product-safety-attachments-frontend.js:479
-#: build/product-safety-instructions-frontend.js:479
-#: build/product-shipping-costs-info-frontend.js:453
-#: build/product-tax-info-frontend.js:453
-#: build/product-unit-price-frontend.js:453
-#: build/product-unit-product-frontend.js:453
-#: build/wc-gzd-blocks-product-elements-style.js:1802
-#: build/wc-gzd-blocks-product-elements.js:1787
+#: build/product-defect-description-frontend.js:546
+#: build/product-delivery-time-frontend.js:546
+#: build/product-deposit-frontend.js:546
+#: build/product-deposit-packaging-type-frontend.js:546
+#: build/product-manufacturer-frontend.js:546
+#: build/product-nutri-score-frontend.js:546
+#: build/product-power-supply-frontend.js:546
+#: build/product-safety-attachments-frontend.js:546
+#: build/product-safety-instructions-frontend.js:546
+#: build/product-shipping-costs-info-frontend.js:484
+#: build/product-tax-info-frontend.js:484
+#: build/product-unit-price-frontend.js:484
+#: build/product-unit-product-frontend.js:484
+#: build/wc-gzd-blocks-product-elements.js:2702
+#: build/product-defect-description-frontend.js:478
+#: build/product-delivery-time-frontend.js:478
+#: build/product-deposit-frontend.js:478
+#: build/product-deposit-packaging-type-frontend.js:478
+#: build/product-manufacturer-frontend.js:478
+#: build/product-nutri-score-frontend.js:478
+#: build/product-power-supply-frontend.js:478
+#: build/product-safety-attachments-frontend.js:478
+#: build/product-safety-instructions-frontend.js:478
+#: build/product-shipping-costs-info-frontend.js:452
+#: build/product-tax-info-frontend.js:452
+#: build/product-unit-price-frontend.js:452
+#: build/product-unit-product-frontend.js:452
+#: build/wc-gzd-blocks-product-elements-style.js:1994
+#: build/wc-gzd-blocks-product-elements.js:1979
 msgctxt "unit"
 msgid "kg"
 msgstr "kg"
 
 # @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:565
-#: build/product-delivery-time-frontend.js:565
-#: build/product-deposit-frontend.js:565
-#: build/product-deposit-packaging-type-frontend.js:565
-#: build/product-manufacturer-frontend.js:565
-#: build/product-nutri-score-frontend.js:565
-#: build/product-power-supply-frontend.js:565
-#: build/product-safety-attachments-frontend.js:565
-#: build/product-safety-instructions-frontend.js:565
-#: build/product-shipping-costs-info-frontend.js:503
-#: build/product-tax-info-frontend.js:503
-#: build/product-unit-price-frontend.js:503
-#: build/product-unit-product-frontend.js:503
-#: build/wc-gzd-blocks-product-elements.js:2344
-#: build/product-defect-description-frontend.js:483
-#: build/product-delivery-time-frontend.js:483
-#: build/product-deposit-frontend.js:483
-#: build/product-deposit-packaging-type-frontend.js:483
-#: build/product-manufacturer-frontend.js:483
-#: build/product-nutri-score-frontend.js:483
-#: build/product-power-supply-frontend.js:483
-#: build/product-safety-attachments-frontend.js:483
-#: build/product-safety-instructions-frontend.js:483
-#: build/product-shipping-costs-info-frontend.js:457
-#: build/product-tax-info-frontend.js:457
-#: build/product-unit-price-frontend.js:457
-#: build/product-unit-product-frontend.js:457
-#: build/wc-gzd-blocks-product-elements-style.js:1806
-#: build/wc-gzd-blocks-product-elements.js:1791
+#: build/product-defect-description-frontend.js:550
+#: build/product-delivery-time-frontend.js:550
+#: build/product-deposit-frontend.js:550
+#: build/product-deposit-packaging-type-frontend.js:550
+#: build/product-manufacturer-frontend.js:550
+#: build/product-nutri-score-frontend.js:550
+#: build/product-power-supply-frontend.js:550
+#: build/product-safety-attachments-frontend.js:550
+#: build/product-safety-instructions-frontend.js:550
+#: build/product-shipping-costs-info-frontend.js:488
+#: build/product-tax-info-frontend.js:488
+#: build/product-unit-price-frontend.js:488
+#: build/product-unit-product-frontend.js:488
+#: build/wc-gzd-blocks-product-elements.js:2706
+#: build/product-defect-description-frontend.js:482
+#: build/product-delivery-time-frontend.js:482
+#: build/product-deposit-frontend.js:482
+#: build/product-deposit-packaging-type-frontend.js:482
+#: build/product-manufacturer-frontend.js:482
+#: build/product-nutri-score-frontend.js:482
+#: build/product-power-supply-frontend.js:482
+#: build/product-safety-attachments-frontend.js:482
+#: build/product-safety-instructions-frontend.js:482
+#: build/product-shipping-costs-info-frontend.js:456
+#: build/product-tax-info-frontend.js:456
+#: build/product-unit-price-frontend.js:456
+#: build/product-unit-product-frontend.js:456
+#: build/wc-gzd-blocks-product-elements-style.js:1998
+#: build/wc-gzd-blocks-product-elements.js:1983
 msgctxt "preview"
 msgid "Delivery time: 2-3 days"
 msgstr "Lieferzeit: 2-3 Tage"
 
 # @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:567
-#: build/product-delivery-time-frontend.js:567
-#: build/product-deposit-frontend.js:567
-#: build/product-deposit-packaging-type-frontend.js:567
-#: build/product-manufacturer-frontend.js:567
-#: build/product-nutri-score-frontend.js:567
-#: build/product-power-supply-frontend.js:567
-#: build/product-safety-attachments-frontend.js:567
-#: build/product-safety-instructions-frontend.js:567
-#: build/product-shipping-costs-info-frontend.js:505
-#: build/product-tax-info-frontend.js:505
-#: build/product-unit-price-frontend.js:505
-#: build/product-unit-product-frontend.js:505
-#: build/wc-gzd-blocks-product-elements.js:2346
-#: build/product-defect-description-frontend.js:485
-#: build/product-delivery-time-frontend.js:485
-#: build/product-deposit-frontend.js:485
-#: build/product-deposit-packaging-type-frontend.js:485
-#: build/product-manufacturer-frontend.js:485
-#: build/product-nutri-score-frontend.js:485
-#: build/product-power-supply-frontend.js:485
-#: build/product-safety-attachments-frontend.js:485
-#: build/product-safety-instructions-frontend.js:485
-#: build/product-shipping-costs-info-frontend.js:459
-#: build/product-tax-info-frontend.js:459
-#: build/product-unit-price-frontend.js:459
-#: build/product-unit-product-frontend.js:459
-#: build/wc-gzd-blocks-product-elements-style.js:1808
-#: build/wc-gzd-blocks-product-elements.js:1793
+#: build/product-defect-description-frontend.js:552
+#: build/product-delivery-time-frontend.js:552
+#: build/product-deposit-frontend.js:552
+#: build/product-deposit-packaging-type-frontend.js:552
+#: build/product-manufacturer-frontend.js:552
+#: build/product-nutri-score-frontend.js:552
+#: build/product-power-supply-frontend.js:552
+#: build/product-safety-attachments-frontend.js:552
+#: build/product-safety-instructions-frontend.js:552
+#: build/product-shipping-costs-info-frontend.js:490
+#: build/product-tax-info-frontend.js:490
+#: build/product-unit-price-frontend.js:490
+#: build/product-unit-product-frontend.js:490
+#: build/wc-gzd-blocks-product-elements.js:2708
+#: build/product-defect-description-frontend.js:484
+#: build/product-delivery-time-frontend.js:484
+#: build/product-deposit-frontend.js:484
+#: build/product-deposit-packaging-type-frontend.js:484
+#: build/product-manufacturer-frontend.js:484
+#: build/product-nutri-score-frontend.js:484
+#: build/product-power-supply-frontend.js:484
+#: build/product-safety-attachments-frontend.js:484
+#: build/product-safety-instructions-frontend.js:484
+#: build/product-shipping-costs-info-frontend.js:458
+#: build/product-tax-info-frontend.js:458
+#: build/product-unit-price-frontend.js:458
+#: build/product-unit-product-frontend.js:458
+#: build/wc-gzd-blocks-product-elements-style.js:2000
+#: build/wc-gzd-blocks-product-elements.js:1985
 msgctxt "preview"
 msgid "incl. 19 % VAT"
 msgstr "inkl. 19 % MwSt."
 
 # @ woocommerce-germanized
+#: build/product-defect-description-frontend.js:554
+#: build/product-delivery-time-frontend.js:554
+#: build/product-deposit-frontend.js:554
+#: build/product-deposit-packaging-type-frontend.js:554
+#: build/product-manufacturer-frontend.js:554
+#: build/product-nutri-score-frontend.js:554
+#: build/product-power-supply-frontend.js:554
+#: build/product-safety-attachments-frontend.js:554
+#: build/product-safety-instructions-frontend.js:554
+#: build/product-shipping-costs-info-frontend.js:492
+#: build/product-tax-info-frontend.js:492
+#: build/product-unit-price-frontend.js:492
+#: build/product-unit-product-frontend.js:492
+#: build/wc-gzd-blocks-product-elements.js:2710
+#: build/product-defect-description-frontend.js:486
+#: build/product-delivery-time-frontend.js:486
+#: build/product-deposit-frontend.js:486
+#: build/product-deposit-packaging-type-frontend.js:486
+#: build/product-manufacturer-frontend.js:486
+#: build/product-nutri-score-frontend.js:486
+#: build/product-power-supply-frontend.js:486
+#: build/product-safety-attachments-frontend.js:486
+#: build/product-safety-instructions-frontend.js:486
+#: build/product-shipping-costs-info-frontend.js:460
+#: build/product-tax-info-frontend.js:460
+#: build/product-unit-price-frontend.js:460
+#: build/product-unit-product-frontend.js:460
+#: build/wc-gzd-blocks-product-elements-style.js:2002
+#: build/wc-gzd-blocks-product-elements.js:1987
+msgctxt "preview"
+msgid "plus shipping costs"
+msgstr "zzgl. Versandkosten "
+
+#: build/product-defect-description-frontend.js:556
+#: build/product-delivery-time-frontend.js:556
+#: build/product-deposit-frontend.js:556
+#: build/product-deposit-packaging-type-frontend.js:556
+#: build/product-manufacturer-frontend.js:556
+#: build/product-nutri-score-frontend.js:556
+#: build/product-power-supply-frontend.js:556
+#: build/product-safety-attachments-frontend.js:556
+#: build/product-safety-instructions-frontend.js:556
+#: build/product-shipping-costs-info-frontend.js:494
+#: build/product-tax-info-frontend.js:494
+#: build/product-unit-price-frontend.js:494
+#: build/product-unit-product-frontend.js:494
+#: build/wc-gzd-blocks-product-elements.js:2712
+#: build/product-defect-description-frontend.js:488
+#: build/product-delivery-time-frontend.js:488
+#: build/product-deposit-frontend.js:488
+#: build/product-deposit-packaging-type-frontend.js:488
+#: build/product-manufacturer-frontend.js:488
+#: build/product-nutri-score-frontend.js:488
+#: build/product-power-supply-frontend.js:488
+#: build/product-safety-attachments-frontend.js:488
+#: build/product-safety-instructions-frontend.js:488
+#: build/product-shipping-costs-info-frontend.js:462
+#: build/product-tax-info-frontend.js:462
+#: build/product-unit-price-frontend.js:462
+#: build/product-unit-product-frontend.js:462
+#: build/wc-gzd-blocks-product-elements-style.js:2004
+#: build/wc-gzd-blocks-product-elements.js:1989
+msgctxt "preview"
+msgid "Product includes: %1$s kg"
+msgstr "Produkt enthält: %1$s kg"
+
+#: build/product-defect-description-frontend.js:558
+#: build/product-delivery-time-frontend.js:558
+#: build/product-deposit-frontend.js:558
+#: build/product-deposit-packaging-type-frontend.js:558
+#: build/product-manufacturer-frontend.js:558
+#: build/product-nutri-score-frontend.js:558
+#: build/product-power-supply-frontend.js:558
+#: build/product-safety-attachments-frontend.js:558
+#: build/product-safety-instructions-frontend.js:558
+#: build/product-shipping-costs-info-frontend.js:496
+#: build/product-tax-info-frontend.js:496
+#: build/product-unit-price-frontend.js:496
+#: build/product-unit-product-frontend.js:496
+#: build/wc-gzd-blocks-product-elements.js:2714
+#: build/product-defect-description-frontend.js:490
+#: build/product-delivery-time-frontend.js:490
+#: build/product-deposit-frontend.js:490
+#: build/product-deposit-packaging-type-frontend.js:490
+#: build/product-manufacturer-frontend.js:490
+#: build/product-nutri-score-frontend.js:490
+#: build/product-power-supply-frontend.js:490
+#: build/product-safety-attachments-frontend.js:490
+#: build/product-safety-instructions-frontend.js:490
+#: build/product-shipping-costs-info-frontend.js:464
+#: build/product-tax-info-frontend.js:464
+#: build/product-unit-price-frontend.js:464
+#: build/product-unit-product-frontend.js:464
+#: build/wc-gzd-blocks-product-elements-style.js:2006
+#: build/wc-gzd-blocks-product-elements.js:1991
+msgctxt "preview"
+msgid "This product has a serious defect."
+msgstr "Dieses Produkt hat einen echten Mangel."
+
+#: build/product-defect-description-frontend.js:563
+#: build/product-delivery-time-frontend.js:563
+#: build/product-deposit-frontend.js:563
+#: build/product-deposit-packaging-type-frontend.js:563
+#: build/product-manufacturer-frontend.js:563
+#: build/product-nutri-score-frontend.js:563
+#: build/product-power-supply-frontend.js:563
+#: build/product-safety-attachments-frontend.js:563
+#: build/product-safety-instructions-frontend.js:563
+#: build/product-shipping-costs-info-frontend.js:501
+#: build/product-tax-info-frontend.js:501
+#: build/product-unit-price-frontend.js:501
+#: build/product-unit-product-frontend.js:501
+#: build/wc-gzd-blocks-product-elements.js:2719
+#: build/product-defect-description-frontend.js:494
+#: build/product-delivery-time-frontend.js:494
+#: build/product-deposit-frontend.js:494
+#: build/product-deposit-packaging-type-frontend.js:494
+#: build/product-manufacturer-frontend.js:494
+#: build/product-nutri-score-frontend.js:494
+#: build/product-power-supply-frontend.js:494
+#: build/product-safety-attachments-frontend.js:494
+#: build/product-safety-instructions-frontend.js:494
+#: build/product-shipping-costs-info-frontend.js:468
+#: build/product-tax-info-frontend.js:468
+#: build/product-unit-price-frontend.js:468
+#: build/product-unit-product-frontend.js:468
+#: build/wc-gzd-blocks-product-elements-style.js:2010
+#: build/wc-gzd-blocks-product-elements.js:1995
+msgctxt "preview"
+msgid "Plus"
+msgstr "Zzgl."
+
 #: build/product-defect-description-frontend.js:569
 #: build/product-delivery-time-frontend.js:569
 #: build/product-deposit-frontend.js:569
@@ -10808,59 +10944,27 @@ msgstr "inkl. 19 % MwSt."
 #: build/product-tax-info-frontend.js:507
 #: build/product-unit-price-frontend.js:507
 #: build/product-unit-product-frontend.js:507
-#: build/wc-gzd-blocks-product-elements.js:2348
-#: build/product-defect-description-frontend.js:487
-#: build/product-delivery-time-frontend.js:487
-#: build/product-deposit-frontend.js:487
-#: build/product-deposit-packaging-type-frontend.js:487
-#: build/product-manufacturer-frontend.js:487
-#: build/product-nutri-score-frontend.js:487
-#: build/product-power-supply-frontend.js:487
-#: build/product-safety-attachments-frontend.js:487
-#: build/product-safety-instructions-frontend.js:487
-#: build/product-shipping-costs-info-frontend.js:461
-#: build/product-tax-info-frontend.js:461
-#: build/product-unit-price-frontend.js:461
-#: build/product-unit-product-frontend.js:461
-#: build/wc-gzd-blocks-product-elements-style.js:1810
-#: build/wc-gzd-blocks-product-elements.js:1795
+#: build/wc-gzd-blocks-product-elements.js:2725
+#: build/product-defect-description-frontend.js:497
+#: build/product-delivery-time-frontend.js:497
+#: build/product-deposit-frontend.js:497
+#: build/product-deposit-packaging-type-frontend.js:497
+#: build/product-manufacturer-frontend.js:497
+#: build/product-nutri-score-frontend.js:497
+#: build/product-power-supply-frontend.js:497
+#: build/product-safety-attachments-frontend.js:497
+#: build/product-safety-instructions-frontend.js:497
+#: build/product-shipping-costs-info-frontend.js:471
+#: build/product-tax-info-frontend.js:471
+#: build/product-unit-price-frontend.js:471
+#: build/product-unit-product-frontend.js:471
+#: build/wc-gzd-blocks-product-elements-style.js:2013
+#: build/wc-gzd-blocks-product-elements.js:1998
 msgctxt "preview"
-msgid "plus shipping costs"
-msgstr "zzgl. Versandkosten "
+msgid "deposit"
+msgstr "Pfand"
 
-#: build/product-defect-description-frontend.js:571
-#: build/product-delivery-time-frontend.js:571
-#: build/product-deposit-frontend.js:571
-#: build/product-deposit-packaging-type-frontend.js:571
-#: build/product-manufacturer-frontend.js:571
-#: build/product-nutri-score-frontend.js:571
-#: build/product-power-supply-frontend.js:571
-#: build/product-safety-attachments-frontend.js:571
-#: build/product-safety-instructions-frontend.js:571
-#: build/product-shipping-costs-info-frontend.js:509
-#: build/product-tax-info-frontend.js:509
-#: build/product-unit-price-frontend.js:509
-#: build/product-unit-product-frontend.js:509
-#: build/wc-gzd-blocks-product-elements.js:2350
-#: build/product-defect-description-frontend.js:489
-#: build/product-delivery-time-frontend.js:489
-#: build/product-deposit-frontend.js:489
-#: build/product-deposit-packaging-type-frontend.js:489
-#: build/product-manufacturer-frontend.js:489
-#: build/product-nutri-score-frontend.js:489
-#: build/product-power-supply-frontend.js:489
-#: build/product-safety-attachments-frontend.js:489
-#: build/product-safety-instructions-frontend.js:489
-#: build/product-shipping-costs-info-frontend.js:463
-#: build/product-tax-info-frontend.js:463
-#: build/product-unit-price-frontend.js:463
-#: build/product-unit-product-frontend.js:463
-#: build/wc-gzd-blocks-product-elements-style.js:1812
-#: build/wc-gzd-blocks-product-elements.js:1797
-msgctxt "preview"
-msgid "Product includes: %1$s kg"
-msgstr "Produkt enthält: %1$s kg"
-
+# @ woocommerce-germanized
 #: build/product-defect-description-frontend.js:573
 #: build/product-delivery-time-frontend.js:573
 #: build/product-deposit-frontend.js:573
@@ -10874,153 +10978,114 @@ msgstr "Produkt enthält: %1$s kg"
 #: build/product-tax-info-frontend.js:511
 #: build/product-unit-price-frontend.js:511
 #: build/product-unit-product-frontend.js:511
-#: build/wc-gzd-blocks-product-elements.js:2352
-#: build/product-defect-description-frontend.js:491
-#: build/product-delivery-time-frontend.js:491
-#: build/product-deposit-frontend.js:491
-#: build/product-deposit-packaging-type-frontend.js:491
-#: build/product-manufacturer-frontend.js:491
-#: build/product-nutri-score-frontend.js:491
-#: build/product-power-supply-frontend.js:491
-#: build/product-safety-attachments-frontend.js:491
-#: build/product-safety-instructions-frontend.js:491
-#: build/product-shipping-costs-info-frontend.js:465
-#: build/product-tax-info-frontend.js:465
-#: build/product-unit-price-frontend.js:465
-#: build/product-unit-product-frontend.js:465
-#: build/wc-gzd-blocks-product-elements-style.js:1814
-#: build/wc-gzd-blocks-product-elements.js:1799
-msgctxt "preview"
-msgid "This product has a serious defect."
-msgstr "Dieses Produkt hat einen echten Mangel."
-
-#: build/product-defect-description-frontend.js:578
-#: build/product-delivery-time-frontend.js:578
-#: build/product-deposit-frontend.js:578
-#: build/product-deposit-packaging-type-frontend.js:578
-#: build/product-manufacturer-frontend.js:578
-#: build/product-nutri-score-frontend.js:578
-#: build/product-power-supply-frontend.js:578
-#: build/product-safety-attachments-frontend.js:578
-#: build/product-safety-instructions-frontend.js:578
-#: build/product-shipping-costs-info-frontend.js:516
-#: build/product-tax-info-frontend.js:516
-#: build/product-unit-price-frontend.js:516
-#: build/product-unit-product-frontend.js:516
-#: build/wc-gzd-blocks-product-elements.js:2357
-#: build/product-defect-description-frontend.js:495
-#: build/product-delivery-time-frontend.js:495
-#: build/product-deposit-frontend.js:495
-#: build/product-deposit-packaging-type-frontend.js:495
-#: build/product-manufacturer-frontend.js:495
-#: build/product-nutri-score-frontend.js:495
-#: build/product-power-supply-frontend.js:495
-#: build/product-safety-attachments-frontend.js:495
-#: build/product-safety-instructions-frontend.js:495
-#: build/product-shipping-costs-info-frontend.js:469
-#: build/product-tax-info-frontend.js:469
-#: build/product-unit-price-frontend.js:469
-#: build/product-unit-product-frontend.js:469
-#: build/wc-gzd-blocks-product-elements-style.js:1818
-#: build/wc-gzd-blocks-product-elements.js:1803
-msgctxt "preview"
-msgid "Plus"
-msgstr "Zzgl."
-
-#: build/product-defect-description-frontend.js:584
-#: build/product-delivery-time-frontend.js:584
-#: build/product-deposit-frontend.js:584
-#: build/product-deposit-packaging-type-frontend.js:584
-#: build/product-manufacturer-frontend.js:584
-#: build/product-nutri-score-frontend.js:584
-#: build/product-power-supply-frontend.js:584
-#: build/product-safety-attachments-frontend.js:584
-#: build/product-safety-instructions-frontend.js:584
-#: build/product-shipping-costs-info-frontend.js:522
-#: build/product-tax-info-frontend.js:522
-#: build/product-unit-price-frontend.js:522
-#: build/product-unit-product-frontend.js:522
-#: build/wc-gzd-blocks-product-elements.js:2363
-#: build/product-defect-description-frontend.js:498
-#: build/product-delivery-time-frontend.js:498
-#: build/product-deposit-frontend.js:498
-#: build/product-deposit-packaging-type-frontend.js:498
-#: build/product-manufacturer-frontend.js:498
-#: build/product-nutri-score-frontend.js:498
-#: build/product-power-supply-frontend.js:498
-#: build/product-safety-attachments-frontend.js:498
-#: build/product-safety-instructions-frontend.js:498
-#: build/product-shipping-costs-info-frontend.js:472
-#: build/product-tax-info-frontend.js:472
-#: build/product-unit-price-frontend.js:472
-#: build/product-unit-product-frontend.js:472
-#: build/wc-gzd-blocks-product-elements-style.js:1821
-#: build/wc-gzd-blocks-product-elements.js:1806
-msgctxt "preview"
-msgid "deposit"
-msgstr "Pfand"
-
-# @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:588
-#: build/product-delivery-time-frontend.js:588
-#: build/product-deposit-frontend.js:588
-#: build/product-deposit-packaging-type-frontend.js:588
-#: build/product-manufacturer-frontend.js:588
-#: build/product-nutri-score-frontend.js:588
-#: build/product-power-supply-frontend.js:588
-#: build/product-safety-attachments-frontend.js:588
-#: build/product-safety-instructions-frontend.js:588
-#: build/product-shipping-costs-info-frontend.js:526
-#: build/product-tax-info-frontend.js:526
-#: build/product-unit-price-frontend.js:526
-#: build/product-unit-product-frontend.js:526
-#: build/wc-gzd-blocks-product-elements.js:2367
-#: build/product-defect-description-frontend.js:502
-#: build/product-delivery-time-frontend.js:502
-#: build/product-deposit-frontend.js:502
-#: build/product-deposit-packaging-type-frontend.js:502
-#: build/product-manufacturer-frontend.js:502
-#: build/product-nutri-score-frontend.js:502
-#: build/product-power-supply-frontend.js:502
-#: build/product-safety-attachments-frontend.js:502
-#: build/product-safety-instructions-frontend.js:502
-#: build/product-shipping-costs-info-frontend.js:476
-#: build/product-tax-info-frontend.js:476
-#: build/product-unit-price-frontend.js:476
-#: build/product-unit-product-frontend.js:476
-#: build/wc-gzd-blocks-product-elements-style.js:1825
-#: build/wc-gzd-blocks-product-elements.js:1810
+#: build/wc-gzd-blocks-product-elements.js:2729
+#: build/product-defect-description-frontend.js:501
+#: build/product-delivery-time-frontend.js:501
+#: build/product-deposit-frontend.js:501
+#: build/product-deposit-packaging-type-frontend.js:501
+#: build/product-manufacturer-frontend.js:501
+#: build/product-nutri-score-frontend.js:501
+#: build/product-power-supply-frontend.js:501
+#: build/product-safety-attachments-frontend.js:501
+#: build/product-safety-instructions-frontend.js:501
+#: build/product-shipping-costs-info-frontend.js:475
+#: build/product-tax-info-frontend.js:475
+#: build/product-unit-price-frontend.js:475
+#: build/product-unit-product-frontend.js:475
+#: build/wc-gzd-blocks-product-elements-style.js:2017
+#: build/wc-gzd-blocks-product-elements.js:2002
 msgctxt "preview"
 msgid "Disposable"
 msgstr "Einweg"
 
-#: build/product-defect-description-frontend.js:600
-#: build/product-defect-description-frontend.js:606
-#: build/product-delivery-time-frontend.js:600
-#: build/product-delivery-time-frontend.js:606
-#: build/product-deposit-frontend.js:600 build/product-deposit-frontend.js:606
-#: build/product-deposit-packaging-type-frontend.js:600
-#: build/product-deposit-packaging-type-frontend.js:606
-#: build/product-manufacturer-frontend.js:600
-#: build/product-manufacturer-frontend.js:606
-#: build/product-nutri-score-frontend.js:600
-#: build/product-nutri-score-frontend.js:606
-#: build/product-power-supply-frontend.js:600
-#: build/product-power-supply-frontend.js:606
-#: build/product-safety-attachments-frontend.js:600
-#: build/product-safety-attachments-frontend.js:606
-#: build/product-safety-instructions-frontend.js:600
-#: build/product-safety-instructions-frontend.js:606
-#: build/product-shipping-costs-info-frontend.js:538
-#: build/product-shipping-costs-info-frontend.js:544
-#: build/product-tax-info-frontend.js:538
-#: build/product-tax-info-frontend.js:544
-#: build/product-unit-price-frontend.js:538
-#: build/product-unit-price-frontend.js:544
-#: build/product-unit-product-frontend.js:538
-#: build/product-unit-product-frontend.js:544
-#: build/wc-gzd-blocks-product-elements.js:2379
-#: build/wc-gzd-blocks-product-elements.js:2385
+#: build/product-defect-description-frontend.js:585
+#: build/product-defect-description-frontend.js:591
+#: build/product-delivery-time-frontend.js:585
+#: build/product-delivery-time-frontend.js:591
+#: build/product-deposit-frontend.js:585 build/product-deposit-frontend.js:591
+#: build/product-deposit-packaging-type-frontend.js:585
+#: build/product-deposit-packaging-type-frontend.js:591
+#: build/product-manufacturer-frontend.js:585
+#: build/product-manufacturer-frontend.js:591
+#: build/product-nutri-score-frontend.js:585
+#: build/product-nutri-score-frontend.js:591
+#: build/product-power-supply-frontend.js:585
+#: build/product-power-supply-frontend.js:591
+#: build/product-safety-attachments-frontend.js:585
+#: build/product-safety-attachments-frontend.js:591
+#: build/product-safety-instructions-frontend.js:585
+#: build/product-safety-instructions-frontend.js:591
+#: build/product-shipping-costs-info-frontend.js:523
+#: build/product-shipping-costs-info-frontend.js:529
+#: build/product-tax-info-frontend.js:523
+#: build/product-tax-info-frontend.js:529
+#: build/product-unit-price-frontend.js:523
+#: build/product-unit-price-frontend.js:529
+#: build/product-unit-product-frontend.js:523
+#: build/product-unit-product-frontend.js:529
+#: build/wc-gzd-blocks-product-elements.js:2741
+#: build/wc-gzd-blocks-product-elements.js:2747
+#: build/product-defect-description-frontend.js:512
+#: build/product-defect-description-frontend.js:519
+#: build/product-delivery-time-frontend.js:512
+#: build/product-delivery-time-frontend.js:519
+#: build/product-deposit-frontend.js:512 build/product-deposit-frontend.js:519
+#: build/product-deposit-packaging-type-frontend.js:512
+#: build/product-deposit-packaging-type-frontend.js:519
+#: build/product-manufacturer-frontend.js:512
+#: build/product-manufacturer-frontend.js:519
+#: build/product-nutri-score-frontend.js:512
+#: build/product-nutri-score-frontend.js:519
+#: build/product-power-supply-frontend.js:512
+#: build/product-power-supply-frontend.js:519
+#: build/product-safety-attachments-frontend.js:512
+#: build/product-safety-attachments-frontend.js:519
+#: build/product-safety-instructions-frontend.js:512
+#: build/product-safety-instructions-frontend.js:519
+#: build/product-shipping-costs-info-frontend.js:486
+#: build/product-shipping-costs-info-frontend.js:493
+#: build/product-tax-info-frontend.js:486
+#: build/product-tax-info-frontend.js:493
+#: build/product-unit-price-frontend.js:486
+#: build/product-unit-price-frontend.js:493
+#: build/product-unit-product-frontend.js:486
+#: build/product-unit-product-frontend.js:493
+#: build/wc-gzd-blocks-product-elements-style.js:2028
+#: build/wc-gzd-blocks-product-elements-style.js:2035
+#: build/wc-gzd-blocks-product-elements.js:2013
+#: build/wc-gzd-blocks-product-elements.js:2020
+msgctxt "preview"
+msgid "Sample company name"
+msgstr "Musterfirma"
+
+# @ woocommerce-germanized
+#: build/product-defect-description-frontend.js:586
+#: build/product-defect-description-frontend.js:592
+#: build/product-delivery-time-frontend.js:586
+#: build/product-delivery-time-frontend.js:592
+#: build/product-deposit-frontend.js:586 build/product-deposit-frontend.js:592
+#: build/product-deposit-packaging-type-frontend.js:586
+#: build/product-deposit-packaging-type-frontend.js:592
+#: build/product-manufacturer-frontend.js:586
+#: build/product-manufacturer-frontend.js:592
+#: build/product-nutri-score-frontend.js:586
+#: build/product-nutri-score-frontend.js:592
+#: build/product-power-supply-frontend.js:586
+#: build/product-power-supply-frontend.js:592
+#: build/product-safety-attachments-frontend.js:586
+#: build/product-safety-attachments-frontend.js:592
+#: build/product-safety-instructions-frontend.js:586
+#: build/product-safety-instructions-frontend.js:592
+#: build/product-shipping-costs-info-frontend.js:524
+#: build/product-shipping-costs-info-frontend.js:530
+#: build/product-tax-info-frontend.js:524
+#: build/product-tax-info-frontend.js:530
+#: build/product-unit-price-frontend.js:524
+#: build/product-unit-price-frontend.js:530
+#: build/product-unit-product-frontend.js:524
+#: build/product-unit-product-frontend.js:530
+#: build/wc-gzd-blocks-product-elements.js:2742
+#: build/wc-gzd-blocks-product-elements.js:2748
 #: build/product-defect-description-frontend.js:513
 #: build/product-defect-description-frontend.js:520
 #: build/product-delivery-time-frontend.js:513
@@ -11046,42 +11111,41 @@ msgstr "Einweg"
 #: build/product-unit-price-frontend.js:494
 #: build/product-unit-product-frontend.js:487
 #: build/product-unit-product-frontend.js:494
-#: build/wc-gzd-blocks-product-elements-style.js:1836
-#: build/wc-gzd-blocks-product-elements-style.js:1843
-#: build/wc-gzd-blocks-product-elements.js:1821
-#: build/wc-gzd-blocks-product-elements.js:1828
+#: build/wc-gzd-blocks-product-elements-style.js:2029
+#: build/wc-gzd-blocks-product-elements-style.js:2036
+#: build/wc-gzd-blocks-product-elements.js:2014
+#: build/wc-gzd-blocks-product-elements.js:2021
 msgctxt "preview"
-msgid "Sample company name"
-msgstr "Musterfirma"
+msgid "Sample address"
+msgstr "Musterstraße 45"
 
-# @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:601
-#: build/product-defect-description-frontend.js:607
-#: build/product-delivery-time-frontend.js:601
-#: build/product-delivery-time-frontend.js:607
-#: build/product-deposit-frontend.js:601 build/product-deposit-frontend.js:607
-#: build/product-deposit-packaging-type-frontend.js:601
-#: build/product-deposit-packaging-type-frontend.js:607
-#: build/product-manufacturer-frontend.js:601
-#: build/product-manufacturer-frontend.js:607
-#: build/product-nutri-score-frontend.js:601
-#: build/product-nutri-score-frontend.js:607
-#: build/product-power-supply-frontend.js:601
-#: build/product-power-supply-frontend.js:607
-#: build/product-safety-attachments-frontend.js:601
-#: build/product-safety-attachments-frontend.js:607
-#: build/product-safety-instructions-frontend.js:601
-#: build/product-safety-instructions-frontend.js:607
-#: build/product-shipping-costs-info-frontend.js:539
-#: build/product-shipping-costs-info-frontend.js:545
-#: build/product-tax-info-frontend.js:539
-#: build/product-tax-info-frontend.js:545
-#: build/product-unit-price-frontend.js:539
-#: build/product-unit-price-frontend.js:545
-#: build/product-unit-product-frontend.js:539
-#: build/product-unit-product-frontend.js:545
-#: build/wc-gzd-blocks-product-elements.js:2380
-#: build/wc-gzd-blocks-product-elements.js:2386
+#: build/product-defect-description-frontend.js:586
+#: build/product-defect-description-frontend.js:592
+#: build/product-delivery-time-frontend.js:586
+#: build/product-delivery-time-frontend.js:592
+#: build/product-deposit-frontend.js:586 build/product-deposit-frontend.js:592
+#: build/product-deposit-packaging-type-frontend.js:586
+#: build/product-deposit-packaging-type-frontend.js:592
+#: build/product-manufacturer-frontend.js:586
+#: build/product-manufacturer-frontend.js:592
+#: build/product-nutri-score-frontend.js:586
+#: build/product-nutri-score-frontend.js:592
+#: build/product-power-supply-frontend.js:586
+#: build/product-power-supply-frontend.js:592
+#: build/product-safety-attachments-frontend.js:586
+#: build/product-safety-attachments-frontend.js:592
+#: build/product-safety-instructions-frontend.js:586
+#: build/product-safety-instructions-frontend.js:592
+#: build/product-shipping-costs-info-frontend.js:524
+#: build/product-shipping-costs-info-frontend.js:530
+#: build/product-tax-info-frontend.js:524
+#: build/product-tax-info-frontend.js:530
+#: build/product-unit-price-frontend.js:524
+#: build/product-unit-price-frontend.js:530
+#: build/product-unit-product-frontend.js:524
+#: build/product-unit-product-frontend.js:530
+#: build/wc-gzd-blocks-product-elements.js:2742
+#: build/wc-gzd-blocks-product-elements.js:2748
 #: build/product-defect-description-frontend.js:514
 #: build/product-defect-description-frontend.js:521
 #: build/product-delivery-time-frontend.js:514
@@ -11107,41 +11171,41 @@ msgstr "Musterfirma"
 #: build/product-unit-price-frontend.js:495
 #: build/product-unit-product-frontend.js:488
 #: build/product-unit-product-frontend.js:495
-#: build/wc-gzd-blocks-product-elements-style.js:1837
-#: build/wc-gzd-blocks-product-elements-style.js:1844
-#: build/wc-gzd-blocks-product-elements.js:1822
-#: build/wc-gzd-blocks-product-elements.js:1829
+#: build/wc-gzd-blocks-product-elements-style.js:2030
+#: build/wc-gzd-blocks-product-elements-style.js:2037
+#: build/wc-gzd-blocks-product-elements.js:2015
+#: build/wc-gzd-blocks-product-elements.js:2022
 msgctxt "preview"
-msgid "Sample address"
-msgstr "Musterstraße 45"
+msgid "12345 Berlin"
+msgstr "12345 Berlin"
 
-#: build/product-defect-description-frontend.js:601
-#: build/product-defect-description-frontend.js:607
-#: build/product-delivery-time-frontend.js:601
-#: build/product-delivery-time-frontend.js:607
-#: build/product-deposit-frontend.js:601 build/product-deposit-frontend.js:607
-#: build/product-deposit-packaging-type-frontend.js:601
-#: build/product-deposit-packaging-type-frontend.js:607
-#: build/product-manufacturer-frontend.js:601
-#: build/product-manufacturer-frontend.js:607
-#: build/product-nutri-score-frontend.js:601
-#: build/product-nutri-score-frontend.js:607
-#: build/product-power-supply-frontend.js:601
-#: build/product-power-supply-frontend.js:607
-#: build/product-safety-attachments-frontend.js:601
-#: build/product-safety-attachments-frontend.js:607
-#: build/product-safety-instructions-frontend.js:601
-#: build/product-safety-instructions-frontend.js:607
-#: build/product-shipping-costs-info-frontend.js:539
-#: build/product-shipping-costs-info-frontend.js:545
-#: build/product-tax-info-frontend.js:539
-#: build/product-tax-info-frontend.js:545
-#: build/product-unit-price-frontend.js:539
-#: build/product-unit-price-frontend.js:545
-#: build/product-unit-product-frontend.js:539
-#: build/product-unit-product-frontend.js:545
-#: build/wc-gzd-blocks-product-elements.js:2380
-#: build/wc-gzd-blocks-product-elements.js:2386
+#: build/product-defect-description-frontend.js:586
+#: build/product-defect-description-frontend.js:592
+#: build/product-delivery-time-frontend.js:586
+#: build/product-delivery-time-frontend.js:592
+#: build/product-deposit-frontend.js:586 build/product-deposit-frontend.js:592
+#: build/product-deposit-packaging-type-frontend.js:586
+#: build/product-deposit-packaging-type-frontend.js:592
+#: build/product-manufacturer-frontend.js:586
+#: build/product-manufacturer-frontend.js:592
+#: build/product-nutri-score-frontend.js:586
+#: build/product-nutri-score-frontend.js:592
+#: build/product-power-supply-frontend.js:586
+#: build/product-power-supply-frontend.js:592
+#: build/product-safety-attachments-frontend.js:586
+#: build/product-safety-attachments-frontend.js:592
+#: build/product-safety-instructions-frontend.js:586
+#: build/product-safety-instructions-frontend.js:592
+#: build/product-shipping-costs-info-frontend.js:524
+#: build/product-shipping-costs-info-frontend.js:530
+#: build/product-tax-info-frontend.js:524
+#: build/product-tax-info-frontend.js:530
+#: build/product-unit-price-frontend.js:524
+#: build/product-unit-price-frontend.js:530
+#: build/product-unit-product-frontend.js:524
+#: build/product-unit-product-frontend.js:530
+#: build/wc-gzd-blocks-product-elements.js:2742
+#: build/wc-gzd-blocks-product-elements.js:2748
 #: build/product-defect-description-frontend.js:515
 #: build/product-defect-description-frontend.js:522
 #: build/product-delivery-time-frontend.js:515
@@ -11167,274 +11231,214 @@ msgstr "Musterstraße 45"
 #: build/product-unit-price-frontend.js:496
 #: build/product-unit-product-frontend.js:489
 #: build/product-unit-product-frontend.js:496
-#: build/wc-gzd-blocks-product-elements-style.js:1838
-#: build/wc-gzd-blocks-product-elements-style.js:1845
-#: build/wc-gzd-blocks-product-elements.js:1823
-#: build/wc-gzd-blocks-product-elements.js:1830
-msgctxt "preview"
-msgid "12345 Berlin"
-msgstr "12345 Berlin"
-
-#: build/product-defect-description-frontend.js:601
-#: build/product-defect-description-frontend.js:607
-#: build/product-delivery-time-frontend.js:601
-#: build/product-delivery-time-frontend.js:607
-#: build/product-deposit-frontend.js:601 build/product-deposit-frontend.js:607
-#: build/product-deposit-packaging-type-frontend.js:601
-#: build/product-deposit-packaging-type-frontend.js:607
-#: build/product-manufacturer-frontend.js:601
-#: build/product-manufacturer-frontend.js:607
-#: build/product-nutri-score-frontend.js:601
-#: build/product-nutri-score-frontend.js:607
-#: build/product-power-supply-frontend.js:601
-#: build/product-power-supply-frontend.js:607
-#: build/product-safety-attachments-frontend.js:601
-#: build/product-safety-attachments-frontend.js:607
-#: build/product-safety-instructions-frontend.js:601
-#: build/product-safety-instructions-frontend.js:607
-#: build/product-shipping-costs-info-frontend.js:539
-#: build/product-shipping-costs-info-frontend.js:545
-#: build/product-tax-info-frontend.js:539
-#: build/product-tax-info-frontend.js:545
-#: build/product-unit-price-frontend.js:539
-#: build/product-unit-price-frontend.js:545
-#: build/product-unit-product-frontend.js:539
-#: build/product-unit-product-frontend.js:545
-#: build/wc-gzd-blocks-product-elements.js:2380
-#: build/wc-gzd-blocks-product-elements.js:2386
-#: build/product-defect-description-frontend.js:516
-#: build/product-defect-description-frontend.js:523
-#: build/product-delivery-time-frontend.js:516
-#: build/product-delivery-time-frontend.js:523
-#: build/product-deposit-frontend.js:516 build/product-deposit-frontend.js:523
-#: build/product-deposit-packaging-type-frontend.js:516
-#: build/product-deposit-packaging-type-frontend.js:523
-#: build/product-manufacturer-frontend.js:516
-#: build/product-manufacturer-frontend.js:523
-#: build/product-nutri-score-frontend.js:516
-#: build/product-nutri-score-frontend.js:523
-#: build/product-power-supply-frontend.js:516
-#: build/product-power-supply-frontend.js:523
-#: build/product-safety-attachments-frontend.js:516
-#: build/product-safety-attachments-frontend.js:523
-#: build/product-safety-instructions-frontend.js:516
-#: build/product-safety-instructions-frontend.js:523
-#: build/product-shipping-costs-info-frontend.js:490
-#: build/product-shipping-costs-info-frontend.js:497
-#: build/product-tax-info-frontend.js:490
-#: build/product-tax-info-frontend.js:497
-#: build/product-unit-price-frontend.js:490
-#: build/product-unit-price-frontend.js:497
-#: build/product-unit-product-frontend.js:490
-#: build/product-unit-product-frontend.js:497
-#: build/wc-gzd-blocks-product-elements-style.js:1839
-#: build/wc-gzd-blocks-product-elements-style.js:1846
-#: build/wc-gzd-blocks-product-elements.js:1824
-#: build/wc-gzd-blocks-product-elements.js:1831
+#: build/wc-gzd-blocks-product-elements-style.js:2031
+#: build/wc-gzd-blocks-product-elements-style.js:2038
+#: build/wc-gzd-blocks-product-elements.js:2016
+#: build/wc-gzd-blocks-product-elements.js:2023
 msgctxt "preview"
 msgid "sample@sample.com"
 msgstr "sample@sample.com"
 
-#: build/product-defect-description-frontend.js:616
-#: build/product-delivery-time-frontend.js:616
-#: build/product-deposit-frontend.js:616
-#: build/product-deposit-packaging-type-frontend.js:616
-#: build/product-manufacturer-frontend.js:616
-#: build/product-nutri-score-frontend.js:616
-#: build/product-power-supply-frontend.js:616
-#: build/product-safety-attachments-frontend.js:616
-#: build/product-safety-instructions-frontend.js:616
-#: build/product-shipping-costs-info-frontend.js:554
-#: build/product-tax-info-frontend.js:554
-#: build/product-unit-price-frontend.js:554
-#: build/product-unit-product-frontend.js:554
-#: build/wc-gzd-blocks-product-elements.js:2395
-#: build/product-defect-description-frontend.js:531
-#: build/product-delivery-time-frontend.js:531
-#: build/product-deposit-frontend.js:531
-#: build/product-deposit-packaging-type-frontend.js:531
-#: build/product-manufacturer-frontend.js:531
-#: build/product-nutri-score-frontend.js:531
-#: build/product-power-supply-frontend.js:531
-#: build/product-safety-attachments-frontend.js:531
-#: build/product-safety-instructions-frontend.js:531
-#: build/product-shipping-costs-info-frontend.js:505
-#: build/product-tax-info-frontend.js:505
-#: build/product-unit-price-frontend.js:505
-#: build/product-unit-product-frontend.js:505
-#: build/wc-gzd-blocks-product-elements-style.js:1854
-#: build/wc-gzd-blocks-product-elements.js:1839
+#: build/product-defect-description-frontend.js:601
+#: build/product-delivery-time-frontend.js:601
+#: build/product-deposit-frontend.js:601
+#: build/product-deposit-packaging-type-frontend.js:601
+#: build/product-manufacturer-frontend.js:601
+#: build/product-nutri-score-frontend.js:601
+#: build/product-power-supply-frontend.js:601
+#: build/product-safety-attachments-frontend.js:601
+#: build/product-safety-instructions-frontend.js:601
+#: build/product-shipping-costs-info-frontend.js:539
+#: build/product-tax-info-frontend.js:539
+#: build/product-unit-price-frontend.js:539
+#: build/product-unit-product-frontend.js:539
+#: build/wc-gzd-blocks-product-elements.js:2757
+#: build/product-defect-description-frontend.js:530
+#: build/product-delivery-time-frontend.js:530
+#: build/product-deposit-frontend.js:530
+#: build/product-deposit-packaging-type-frontend.js:530
+#: build/product-manufacturer-frontend.js:530
+#: build/product-nutri-score-frontend.js:530
+#: build/product-power-supply-frontend.js:530
+#: build/product-safety-attachments-frontend.js:530
+#: build/product-safety-instructions-frontend.js:530
+#: build/product-shipping-costs-info-frontend.js:504
+#: build/product-tax-info-frontend.js:504
+#: build/product-unit-price-frontend.js:504
+#: build/product-unit-product-frontend.js:504
+#: build/wc-gzd-blocks-product-elements-style.js:2046
+#: build/wc-gzd-blocks-product-elements.js:2031
 msgctxt "sample"
 msgid "sample-filename.pdf"
 msgstr "sample-filename.pdf"
 
-#: build/product-defect-description-frontend.js:624
-#: build/product-delivery-time-frontend.js:624
-#: build/product-deposit-frontend.js:624
-#: build/product-deposit-packaging-type-frontend.js:624
-#: build/product-manufacturer-frontend.js:624
-#: build/product-nutri-score-frontend.js:624
-#: build/product-power-supply-frontend.js:624
-#: build/product-safety-attachments-frontend.js:624
-#: build/product-safety-instructions-frontend.js:624
-#: build/product-shipping-costs-info-frontend.js:562
-#: build/product-tax-info-frontend.js:562
-#: build/product-unit-price-frontend.js:562
-#: build/product-unit-product-frontend.js:562
-#: build/wc-gzd-blocks-product-elements.js:2403
-#: build/product-defect-description-frontend.js:539
-#: build/product-delivery-time-frontend.js:539
-#: build/product-deposit-frontend.js:539
-#: build/product-deposit-packaging-type-frontend.js:539
-#: build/product-manufacturer-frontend.js:539
-#: build/product-nutri-score-frontend.js:539
-#: build/product-power-supply-frontend.js:539
-#: build/product-safety-attachments-frontend.js:539
-#: build/product-safety-instructions-frontend.js:539
-#: build/product-shipping-costs-info-frontend.js:513
-#: build/product-tax-info-frontend.js:513
-#: build/product-unit-price-frontend.js:513
-#: build/product-unit-product-frontend.js:513
-#: build/wc-gzd-blocks-product-elements-style.js:1862
-#: build/wc-gzd-blocks-product-elements.js:1847
+#: build/product-defect-description-frontend.js:609
+#: build/product-delivery-time-frontend.js:609
+#: build/product-deposit-frontend.js:609
+#: build/product-deposit-packaging-type-frontend.js:609
+#: build/product-manufacturer-frontend.js:609
+#: build/product-nutri-score-frontend.js:609
+#: build/product-power-supply-frontend.js:609
+#: build/product-safety-attachments-frontend.js:609
+#: build/product-safety-instructions-frontend.js:609
+#: build/product-shipping-costs-info-frontend.js:547
+#: build/product-tax-info-frontend.js:547
+#: build/product-unit-price-frontend.js:547
+#: build/product-unit-product-frontend.js:547
+#: build/wc-gzd-blocks-product-elements.js:2765
+#: build/product-defect-description-frontend.js:538
+#: build/product-delivery-time-frontend.js:538
+#: build/product-deposit-frontend.js:538
+#: build/product-deposit-packaging-type-frontend.js:538
+#: build/product-manufacturer-frontend.js:538
+#: build/product-nutri-score-frontend.js:538
+#: build/product-power-supply-frontend.js:538
+#: build/product-safety-attachments-frontend.js:538
+#: build/product-safety-instructions-frontend.js:538
+#: build/product-shipping-costs-info-frontend.js:512
+#: build/product-tax-info-frontend.js:512
+#: build/product-unit-price-frontend.js:512
+#: build/product-unit-product-frontend.js:512
+#: build/wc-gzd-blocks-product-elements-style.js:2054
+#: build/wc-gzd-blocks-product-elements.js:2039
 msgctxt "preview"
 msgid "Sample safety instructions for a certain product."
 msgstr "Beispiel-Sicherheitshinweis für ein bestimmtes Produkt."
 
-#: build/wc-gzd-blocks-product-elements.js:578
-#: build/wc-gzd-blocks-product-elements-style.js:543
-#: build/wc-gzd-blocks-product-elements.js:543
+#: build/wc-gzd-blocks-product-elements.js:981
+#: build/wc-gzd-blocks-product-elements-style.js:737
+#: build/wc-gzd-blocks-product-elements.js:737
 msgid "Inserts the product's defect description."
 msgstr "Fügt die Mängelbeschreibung des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:757
-#: build/wc-gzd-blocks-product-elements-style.js:666
-#: build/wc-gzd-blocks-product-elements.js:666
+#: build/wc-gzd-blocks-product-elements.js:1157
+#: build/wc-gzd-blocks-product-elements-style.js:860
+#: build/wc-gzd-blocks-product-elements.js:860
 msgid "Inserts the product's delivery time."
 msgstr "Fügt die Lieferzeit des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:938
-#: build/wc-gzd-blocks-product-elements-style.js:789
-#: build/wc-gzd-blocks-product-elements.js:789
+#: build/wc-gzd-blocks-product-elements.js:1335
+#: build/wc-gzd-blocks-product-elements-style.js:983
+#: build/wc-gzd-blocks-product-elements.js:983
 msgid "Deposit packaging type"
 msgstr "Pfand-Verpackungstyp"
 
-#: build/wc-gzd-blocks-product-elements.js:939
-#: build/wc-gzd-blocks-product-elements-style.js:790
-#: build/wc-gzd-blocks-product-elements.js:790
+#: build/wc-gzd-blocks-product-elements.js:1336
+#: build/wc-gzd-blocks-product-elements-style.js:984
+#: build/wc-gzd-blocks-product-elements.js:984
 msgid "Inserts the product's deposit packaging type."
 msgstr "Fügt den Verpackungstyp des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1121
-#: build/wc-gzd-blocks-product-elements-style.js:914
-#: build/wc-gzd-blocks-product-elements.js:914
+#: build/wc-gzd-blocks-product-elements.js:1515
+#: build/wc-gzd-blocks-product-elements-style.js:1108
+#: build/wc-gzd-blocks-product-elements.js:1108
 msgid "Inserts the product's deposit amount."
 msgstr "Fügt den Pfandbetrag des Produkts ein."
 
-#: build/wc-gzd-blocks-product-elements.js:1303
-#: build/wc-gzd-blocks-product-elements-style.js:1053
-#: build/wc-gzd-blocks-product-elements.js:1038
+#: build/wc-gzd-blocks-product-elements.js:1694
+#: build/wc-gzd-blocks-product-elements-style.js:1247
+#: build/wc-gzd-blocks-product-elements.js:1232
 msgid "Inserts the product's manufacturer information."
 msgstr "Fügt die Herstellerinformationen des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1485
-#: build/wc-gzd-blocks-product-elements-style.js:1177
-#: build/wc-gzd-blocks-product-elements.js:1162
+#: build/wc-gzd-blocks-product-elements.js:1873
+#: build/wc-gzd-blocks-product-elements-style.js:1371
+#: build/wc-gzd-blocks-product-elements.js:1356
 msgid "Inserts the product's Nutri-Score."
 msgstr "Fügt den Nutri-Score des Produkts ein."
 
-#: build/wc-gzd-blocks-product-elements.js:1664
-#: build/wc-gzd-blocks-product-elements-style.js:1300
-#: build/wc-gzd-blocks-product-elements.js:1285
+#: build/wc-gzd-blocks-product-elements.js:2049
+#: build/wc-gzd-blocks-product-elements-style.js:1494
+#: build/wc-gzd-blocks-product-elements.js:1479
 msgid "Inserts information on power supply for wireless electronic devices."
 msgstr "Fügt Informationen zum Netzteil für elektronische Geräte (Funk) ein."
 
-#: build/wc-gzd-blocks-product-elements.js:1845
-#: build/wc-gzd-blocks-product-elements-style.js:1423
-#: build/wc-gzd-blocks-product-elements.js:1408
+#: build/wc-gzd-blocks-product-elements.js:2227
+#: build/wc-gzd-blocks-product-elements-style.js:1617
+#: build/wc-gzd-blocks-product-elements.js:1602
 msgid "Product safety attachments"
 msgstr "Dokumente zur Produktsicherheit"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1846
-#: build/wc-gzd-blocks-product-elements-style.js:1424
-#: build/wc-gzd-blocks-product-elements.js:1409
+#: build/wc-gzd-blocks-product-elements.js:2228
+#: build/wc-gzd-blocks-product-elements-style.js:1618
+#: build/wc-gzd-blocks-product-elements.js:1603
 msgid "Inserts the product's safety attachments list."
 msgstr "Fügt eine Liste der Dokumente zur Produktsicherheit ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:2028
-#: build/wc-gzd-blocks-product-elements-style.js:1548
-#: build/wc-gzd-blocks-product-elements.js:1533
+#: build/wc-gzd-blocks-product-elements.js:2407
+#: build/wc-gzd-blocks-product-elements-style.js:1742
+#: build/wc-gzd-blocks-product-elements.js:1727
 msgid "Inserts the product's safety instructions."
 msgstr "Fügt die Sicherheitshinweise des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:2696
-#: build/wc-gzd-blocks-product-elements-style.js:2081
-#: build/wc-gzd-blocks-product-elements.js:2066
+#: build/wc-gzd-blocks-product-elements.js:3055
+#: build/wc-gzd-blocks-product-elements-style.js:2273
+#: build/wc-gzd-blocks-product-elements.js:2258
 msgid "Shipping Costs Notice"
 msgstr "Versandkostenhinweis"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:2697
-#: build/wc-gzd-blocks-product-elements-style.js:2082
-#: build/wc-gzd-blocks-product-elements.js:2067
+#: build/wc-gzd-blocks-product-elements.js:3056
+#: build/wc-gzd-blocks-product-elements-style.js:2274
+#: build/wc-gzd-blocks-product-elements.js:2259
 msgid "Inserts the product's shipping costs notice."
 msgstr "Fügt den Versandkostenhinweis des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:2876
-#: build/wc-gzd-blocks-product-elements-style.js:2205
-#: build/wc-gzd-blocks-product-elements.js:2190
+#: build/wc-gzd-blocks-product-elements.js:3232
+#: build/wc-gzd-blocks-product-elements-style.js:2397
+#: build/wc-gzd-blocks-product-elements.js:2382
 msgid "Inserts the product's tax notice."
 msgstr "Fügt den Steuerhinweis des Produkts ein."
 
-#: build/wc-gzd-blocks-product-elements.js:3055
-#: build/wc-gzd-blocks-product-elements-style.js:2329
-#: build/wc-gzd-blocks-product-elements.js:2314
+#: build/wc-gzd-blocks-product-elements.js:3408
+#: build/wc-gzd-blocks-product-elements-style.js:2521
+#: build/wc-gzd-blocks-product-elements.js:2506
 msgid "Inserts the product's price per unit."
 msgstr "Fügt den Grundpreis des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:3233
-#: build/wc-gzd-blocks-product-elements-style.js:2451
-#: build/wc-gzd-blocks-product-elements.js:2436
+#: build/wc-gzd-blocks-product-elements.js:3583
+#: build/wc-gzd-blocks-product-elements-style.js:2643
+#: build/wc-gzd-blocks-product-elements.js:2628
 msgid "Unit products"
 msgstr "Produkteinheiten"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:3234
-#: build/wc-gzd-blocks-product-elements-style.js:2452
-#: build/wc-gzd-blocks-product-elements.js:2437
+#: build/wc-gzd-blocks-product-elements.js:3584
+#: build/wc-gzd-blocks-product-elements-style.js:2644
+#: build/wc-gzd-blocks-product-elements.js:2629
 msgid "Inserts the product's units."
 msgstr "Fügt die Produkteinheiten des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-payment-method-direct-debit.js:207
-#: build/wc-gzd-payment-method-direct-debit.js:81
+#: build/wc-gzd-payment-method-direct-debit.js:1580
+#: build/wc-gzd-payment-method-direct-debit.js:1438
 msgid "Direct debit"
 msgstr "Lastschrift"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-payment-method-direct-debit.js:261
-#: build/wc-gzd-payment-method-direct-debit.js:134
+#: build/wc-gzd-payment-method-direct-debit.js:1631
+#: build/wc-gzd-payment-method-direct-debit.js:1492
 msgid "Account holder"
 msgstr "Kontoinhaber"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-payment-method-direct-debit.js:324
-#: build/wc-gzd-payment-method-direct-debit.js:212
+#: build/wc-gzd-payment-method-direct-debit.js:1694
+#: build/wc-gzd-payment-method-direct-debit.js:1570
 msgid "Please enter a valid BIC/SWIFT"
 msgstr "Bitte prüfen Sie Ihren BIC/SWIFT"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-payment-method-direct-debit.js:417
-#: build/wc-gzd-payment-method-direct-debit.js:256
+#: build/wc-gzd-payment-method-direct-debit.js:1787
+#: build/wc-gzd-payment-method-direct-debit.js:1614
 msgid "Please enter a valid IBAN"
 msgstr "Bitte prüfen Sie Ihren IBAN"
 
@@ -11474,6 +11478,26 @@ msgstr "Warenkorb-Dropdown rechtl. Hinweise"
 msgctxt "block description"
 msgid "Outputs mini cart legal notices."
 msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
+
+#~ msgctxt "owb"
+#~ msgid "Order number"
+#~ msgstr "Bestellnummer"
+
+#~ msgctxt "owb"
+#~ msgid ""
+#~ "You will receive an email confirming receipt of your withdrawal request. "
+#~ "In the email, you will find a link that allows you to select the items "
+#~ "you wish to return."
+#~ msgstr ""
+#~ "Sie erhalten eine E-Mail-Bestätigung über den Eingang des Widerrufs. In "
+#~ "dieser E-Mail finden Sie einen Link, über den Sie die Artikel für den "
+#~ "Widerruf auswählen können."
+
+#, php-format
+#~ msgctxt "owb"
+#~ msgid "Please delete my original withdrawal request to order #%1$s."
+#~ msgstr ""
+#~ "Bitte löschen Sie meinen ursprünglichen Widerruf zur Bestellung #%1$s."
 
 # @ woocommerce-germanized
 #~ msgid "Confirmation"
@@ -11534,12 +11558,6 @@ msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
 #~ msgctxt "owb"
 #~ msgid "Order %1$s"
 #~ msgstr "Bestellung %1$s"
-
-#, php-format
-#~ msgctxt "owb"
-#~ msgid "Please delete my original withdrawal request to order %1$s."
-#~ msgstr ""
-#~ "Bitte löschen Sie meinen ursprünglichen Widerruf zur Bestellung %1$s."
 
 #~ msgctxt "owb"
 #~ msgid ""
