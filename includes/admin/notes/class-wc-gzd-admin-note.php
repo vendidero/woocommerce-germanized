@@ -239,10 +239,17 @@ abstract class WC_GZD_Admin_Note {
 		}
 
 		if ( is_callable( array( $note, 'set_layout' ) ) ) {
-			try {
-				$note->set_layout( 'thumbnail' );
-			} catch ( \Exception $e ) {
-				$note->set_layout( 'plain' );
+			$woo_version = \Vendidero\Germanized\PluginsHelper::get_plugin_version( 'woocommerce' );
+
+			/**
+			 * There is no layout option support in Woo > 10.8.X.
+			 */
+			if ( version_compare( $woo_version, '10.8.0', '<' ) ) {
+				try {
+					$note->set_layout( 'thumbnail' );
+				} catch ( \Exception $e ) {
+					$note->set_layout( 'plain' );
+				}
 			}
 		}
 

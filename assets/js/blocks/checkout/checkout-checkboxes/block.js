@@ -31,6 +31,7 @@ const Block = ({
 	), {} );
 	const [ checkboxes, setCheckboxes ] = useState( cartCheckboxes );
 	const [ modalUrl, setModalUrl ] = useState( '' );
+	const [ modalParams, setModalParams ] = useState( {} );
 	const hasRendered = useRef( false );
 
 	const getExtensionDataFromCheckboxes = ( checkboxes ) => {
@@ -109,6 +110,7 @@ const Block = ({
 			<Modal
 				show={ showModal }
 				url={ modalUrl }
+				fetchParams={ modalParams }
 				onClose={ () => {
 					setShowModal( false );
 				} }
@@ -123,6 +125,7 @@ const Block = ({
 							checkbox={ checkbox }
 							setShowModal={ setShowModal }
 							setModalUrl={ setModalUrl }
+							setModalParams={ setModalParams }
 							key={ checkbox.id }
 							onChangeCheckbox={ onChangeCheckbox }
 						/>
@@ -133,6 +136,7 @@ const Block = ({
 							checkbox={ checkbox }
 							setShowModal={ setShowModal }
 							setModalUrl={ setModalUrl }
+							setModalParams={ setModalParams }
 							key={ checkbox.id }
 							onChangeCheckbox={ onChangeCheckbox }
 						/>
@@ -143,6 +147,7 @@ const Block = ({
 							checkbox={ checkbox }
 							setShowModal={ setShowModal }
 							setModalUrl={ setModalUrl }
+							setModalParams={ setModalParams }
 							key={ checkbox.id }
 							onChangeCheckbox={ onChangeCheckbox }
 						/>

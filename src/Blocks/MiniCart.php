@@ -2,6 +2,7 @@
 namespace Vendidero\Germanized\Blocks;
 
 use Vendidero\Germanized\Package;
+use Vendidero\Germanized\PluginsHelper;
 
 final class MiniCart {
 
@@ -101,13 +102,13 @@ final class MiniCart {
 		add_action(
 			'woocommerce_blocks_mini-cart_block_registration',
 			function ( $integration_registry ) {
-				$has_iapi_mini_cart = false;
+				$woo_version = PluginsHelper::get_plugin_version( 'woocommerce' );
 
-				if ( class_exists( 'Automattic\WooCommerce\Admin\Features\Features' ) ) {
-					$has_iapi_mini_cart = \Automattic\WooCommerce\Admin\Features\Features::is_enabled( 'experimental-iapi-mini-cart' );
-				}
-
-				if ( ! $has_iapi_mini_cart ) {
+				/**
+				 * Woo mini cart interactivity api is the default since 10.4. Do only register fallback react
+				 * implementation for Woo < 10.4.
+				 */
+				if ( version_compare( $woo_version, '10.4', '<' ) ) {
 					$integration_registry->register( new \Vendidero\Germanized\Blocks\Integrations\MiniCart() );
 				}
 			}

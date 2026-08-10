@@ -9,6 +9,7 @@ const LegalCheckbox = ({
    checkbox,
    setShowModal,
    setModalUrl,
+   setModalParams,
    onChangeCheckbox
 }) => {
     const validationErrorId = 'checkbox-' + checkbox.id;
