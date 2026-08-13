@@ -86,6 +86,7 @@ class WC_GZD_Product_Export {
 				'device_charging_watt_min'        => _x( 'Minimum charging power (Watt)', 'exporter', 'woocommerce-germanized' ),
 				'device_charging_watt_max'        => _x( 'Maximum charging power (Watt)', 'exporter', 'woocommerce-germanized' ),
 				'warranty_attachment_id'          => _x( 'Warranty attachment id (PDF)', 'exporter', 'woocommerce-germanized' ),
+				'guarantee_length'                => _x( 'Guarantee length (months)', 'exporter', 'woocommerce-germanized' ),
 				'gtin'                            => _x( 'GTIN', 'exporter', 'woocommerce-germanized' ),
 				'mpn'                             => _x( 'MPN', 'exporter', 'woocommerce-germanized' ),
 				'differential_taxation'           => _x( 'Is differential taxed?', 'exporter', 'woocommerce-germanized' ),

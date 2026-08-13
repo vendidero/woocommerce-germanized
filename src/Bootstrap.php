@@ -10,6 +10,7 @@ use Vendidero\Germanized\Blocks\MiniCart;
 use Vendidero\Germanized\Blocks\PaymentGateways\DirectDebit;
 use Vendidero\Germanized\Blocks\PaymentGateways\Invoice;
 use Vendidero\Germanized\Blocks\Products;
+use Vendidero\Germanized\StoreApi\StoreApi;
 use Vendidero\Germanized\Registry\Container;
 
 /**
@@ -72,6 +73,8 @@ class Bootstrap {
 				);
 			}
 		}
+
+		$this->container->get( StoreApi::class );
 	}
 
 	protected function load_blocks() {
@@ -141,6 +144,13 @@ class Bootstrap {
 			Cart::class,
 			function ( $container ) {
 				return new Cart();
+			}
+		);
+
+		$this->container->register(
+			StoreApi::class,
+			function ( $container ) {
+				return new StoreApi();
 			}
 		);
 	}

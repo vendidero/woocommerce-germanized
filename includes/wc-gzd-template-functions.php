@@ -434,6 +434,47 @@ if ( ! function_exists( 'woocommerce_gzd_template_loop_deposit_packaging_type' )
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_single_garan_label' ) ) {
+
+	/**
+	 * Single Product EU garan label.
+	 */
+	function woocommerce_gzd_template_single_garan_label() {
+		wc_get_template( 'single-product/garan-label.php' );
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_loop_garan_label' ) ) {
+
+	/**
+	 * Loop EU garan label.
+	 */
+	function woocommerce_gzd_template_loop_garan_label() {
+		wc_get_template( 'loop/garan-label.php' );
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_garan_label' ) ) {
+
+	function woocommerce_gzd_template_grouped_single_garan_label( $html, $grouped_child ) {
+		ob_start();
+		wc_get_template( 'loop/garan-label.php' );
+		$legal_html = ob_get_clean();
+
+		return $html . $legal_html;
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_single_legal_guarantee' ) ) {
+
+	/**
+	 * Single Product EU legal guarantee.
+	 */
+	function woocommerce_gzd_template_single_legal_guarantee() {
+		wc_get_template( 'single-product/legal-guarantee.php' );
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_single_delivery_time_info' ) ) {
 
 	/**

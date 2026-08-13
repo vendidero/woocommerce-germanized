@@ -1521,6 +1521,76 @@ function wc_gzd_print_item_defect_descriptions( $descriptions, $do_echo = false 
 	return $string;
 }
 
+function wc_gzd_kses_post_and_svg( $html ) {
+	$kses_defaults = wp_kses_allowed_html( 'post' );
+
+	$svg_args = array(
+		'svg'      => array(
+			'class'           => true,
+			'aria-hidden'     => true,
+			'aria-labelledby' => true,
+			'role'            => true,
+			'xmlns'           => true,
+			'xmlns:xlink'     => true,
+			'width'           => true,
+			'height'          => true,
+			'viewbox'         => true,
+		),
+		'defs'     => array(),
+		'clippath' => array( 'id' => true ),
+		'style'    => array(),
+		'g'        => array(
+			'fill'  => true,
+			'id'    => true,
+			'class' => true,
+		),
+		'rect'     => array(
+			'class'  => true,
+			'width'  => true,
+			'height' => true,
+			'rx'     => true,
+			'ry'     => true,
+			'x'      => true,
+			'y'      => true,
+		),
+		'line'     => array(
+			'class' => true,
+			'x1'    => true,
+			'y1'    => true,
+			'x2'    => true,
+			'y2'    => true,
+		),
+		'polygon'  => array(
+			'class'  => true,
+			'points' => true,
+		),
+		'circle'   => array(
+			'cx' => true,
+			'cy' => true,
+			'r'  => true,
+		),
+		'title'    => array( 'title' => true ),
+		'text'     => array(
+			'class'     => true,
+			'transform' => true,
+		),
+		'tspan'    => array(
+			'x' => true,
+			'y' => true,
+		),
+		'path'     => array(
+			'd'     => true,
+			'fill'  => true,
+			'class' => true,
+		),
+	);
+
+	$allowed_tags = array_merge( $kses_defaults, $svg_args );
+	$html         = wp_kses( $html, $allowed_tags );
+
+	return $html;
+}
+
 function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = array() ) {
 	global $post;
 	$reset_post = $post;

@@ -96,6 +96,7 @@ class WC_GZD_Product_Import {
 				'manufacturer'                    => array( $this, 'parse_manufacturer' ),
 				'safety_attachment_ids'           => array( $this, 'parse_safety_attachment_ids' ),
 				'warranty_attachment_id'          => 'absint',
+				'guarantee_length'                => 'absint',
 				'gtin'                            => 'wc_clean',
 				'mpn'                             => 'wc_clean',
 				'is_food'                         => array( $this, 'parse_bool_str' ),

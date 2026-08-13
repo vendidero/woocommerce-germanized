@@ -419,7 +419,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			?>
 		</div>
 
-		<div class="variable_product_safety">
+		<div class="variable_product_safety hide_if_variation_virtual">
 			<p class="wc-gzd-product-settings-subtitle">
 				<?php esc_html_e( 'Product safety', 'woocommerce-germanized' ); ?>
 				<a class="page-title-action" href="https://vendidero.de/doc/woocommerce-germanized/allgemeine-produktsicherheit-gpsr"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
@@ -457,6 +457,46 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 						'name'                 => 'variable_safety_attachment_ids[' . esc_attr( $loop ) . '][]',
 						'id'                   => 'variable_safety_attachment_ids_' . $loop,
 						'attachment_ids'       => $gzd_product->get_safety_attachment_ids( 'edit' ),
+					)
+				);
+				?>
+			</p>
+		</div>
+
+		<div class="variable_guarantee hide_if_variation_virtual">
+			<p class="wc-gzd-product-settings-subtitle">
+				<?php esc_html_e( 'Guarantee', 'woocommerce-germanized' ); ?>
+				<a class="page-title-action" href="https://vendidero.de/doc/woocommerce-germanized/allgemeine-produktsicherheit-gpsr"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+			</p>
+
+			<?php
+			woocommerce_wp_text_input(
+				array(
+					'wrapper_class' => 'form-row form-row-full',
+					'id'            => "variable_guarantee_length_{$loop}",
+					'name'          => "variable_guarantee_length[{$loop}]",
+					'label'         => __( 'Guarantee length (months)', 'woocommerce-germanized' ),
+					'data_type'     => 'number',
+					'value'         => $gzd_product->get_guarantee_length( 'edit' ),
+					'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_guarantee_length( 'edit' ) : '',
+					'desc_tip'      => true,
+					'description'   => __( 'The number of months (divisible by 6) of the durability guarantee. This field is used to determine whether to show a EU GARAN label for the product (> 24 months).', 'woocommerce-germanized' ),
+				)
+			);
+			?>
+
+			<p class="form-row form-row-full wc-gzd-warranty-upload-wrapper">
+				<label><?php esc_html_e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
+
+				<?php
+				WC_Germanized_Meta_Box_Product_Data::upload_field(
+					array(
+						'upload_default_label' => __( 'Same as parent', 'woocommerce-germanized' ),
+						'file_types'           => array( 'application/pdf' ),
+						'name'                 => 'variable_warranty_attachment_id[' . esc_attr( $loop ) . ']',
+						'id'                   => 'variable_warranty_attachment_id_' . $loop,
+						'attachment_ids'       => $gzd_product->get_warranty_attachment_id( 'edit' ),
+						'upload_update'        => __( 'Select warranty file', 'woocommerce-germanized' ),
 					)
 				);
 				?>
@@ -519,25 +559,6 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				)
 			);
 			?>
-
-			<div class="variable_warranty_attachment">
-				<p class="form-row form-row-full wc-gzd-warranty-upload-wrapper">
-					<label><?php esc_html_e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
-
-					<?php
-					WC_Germanized_Meta_Box_Product_Data::upload_field(
-						array(
-							'upload_default_label' => __( 'Same as parent', 'woocommerce-germanized' ),
-							'file_types'           => array( 'application/pdf' ),
-							'name'                 => 'variable_warranty_attachment_id[' . esc_attr( $loop ) . ']',
-							'id'                   => 'variable_warranty_attachment_id_' . $loop,
-							'attachment_ids'       => $gzd_product->get_warranty_attachment_id( 'edit' ),
-							'upload_update'        => __( 'Select warranty file', 'woocommerce-germanized' ),
-						)
-					);
-					?>
-				</p>
-			</div>
 
 			<div class="variable_cart_mini_desc">
 				<p class="form-row form-row-full">
@@ -635,6 +656,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 			'_safety_attachment_ids'                    => '',
 			'_safety_instructions'                      => '',
 			'_warranty_attachment_id'                   => '',
+			'_guarantee_length'                         => '',
 			'_nutrient_ids'                             => '',
 			'_nutrient_reference_value'                 => '',
 			'_allergen_ids'                             => '',

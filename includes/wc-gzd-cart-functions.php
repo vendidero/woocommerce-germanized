@@ -606,6 +606,10 @@ function wc_gzd_cart_product_deposit_packaging_type( $title, $cart_item, $cart_i
 	return $title;
 }
 
+function wc_gzd_cart_product_garan_label( $title, $cart_item, $cart_item_key = '' ) {
+	return $title;
+}
+
 /**
  * Appends product units live data (while checkout) or order meta to product name
  *

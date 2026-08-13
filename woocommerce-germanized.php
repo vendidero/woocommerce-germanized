@@ -1045,6 +1045,14 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 				true
 			);
 
+			$this->register_script(
+				'wc-gzd-popover',
+				'static/popover.js',
+				array(
+					'jquery',
+				)
+			);
+
 			if ( function_exists( 'WC' ) ) {
 				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 				wp_register_script( 'wc-accounting', WC()->plugin_url() . '/assets/js/accounting/accounting' . $suffix . '.js', array( 'jquery' ), '0.4.2' ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter

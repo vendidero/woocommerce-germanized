@@ -70,6 +70,7 @@ if ( defined( 'WC_GZD_REMOVE_ALL_DATA' ) && true === WC_GZD_REMOVE_ALL_DATA ) {
 		'_nutri_score',
 		'_manufacture_country',
 		'_warranty_attachment_id',
+		'_guarantee_length',
 		'_min_age',
 		'_default_delivery_time',
 		'_delivery_time_countries',

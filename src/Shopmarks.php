@@ -89,6 +89,16 @@ class Shopmarks {
 					'default_priority' => 15,
 					'callback'         => 'woocommerce_gzd_template_single_nutri_score',
 				),
+				'legal_guarantee'            => array(
+					'default_filter'   => 'woocommerce_before_add_to_cart_form',
+					'default_priority' => 10,
+					'callback'         => 'woocommerce_gzd_template_single_legal_guarantee',
+				),
+				'garan_label'                => array(
+					'default_filter'   => 'woocommerce_before_add_to_cart_form',
+					'default_priority' => 11,
+					'callback'         => 'woocommerce_gzd_template_single_garan_label',
+				),
 			)
 		);
 
@@ -154,6 +164,11 @@ class Shopmarks {
 					'default_priority' => 20,
 					'callback'         => 'woocommerce_gzd_template_grouped_single_nutri_score',
 				),
+				'garan_label'            => array(
+					'default_filter'   => 'woocommerce_grouped_product_list_column_price',
+					'default_priority' => 25,
+					'callback'         => 'woocommerce_gzd_template_grouped_single_garan_label',
+				),
 			)
 		);
 
@@ -218,6 +233,11 @@ class Shopmarks {
 					'default_filter'   => 'woocommerce_after_shop_loop_item',
 					'default_priority' => 15,
 					'callback'         => 'woocommerce_gzd_template_loop_nutri_score',
+				),
+				'garan_label'            => array(
+					'default_filter'   => 'woocommerce_after_shop_loop_item',
+					'default_priority' => 9,
+					'callback'         => 'woocommerce_gzd_template_loop_garan_label',
 				),
 			)
 		);
@@ -285,6 +305,11 @@ class Shopmarks {
 					'default_priority' => 20,
 					'callback'         => 'woocommerce_gzd_template_loop_nutri_score',
 				),
+				'garan_label'            => array(
+					'default_filter'   => 'woocommerce_gzd_after_product_grid_block_after_price',
+					'default_priority' => 17,
+					'callback'         => 'woocommerce_gzd_template_loop_garan_label',
+				),
 			)
 		);
 
@@ -344,6 +369,11 @@ class Shopmarks {
 					'default_filter'   => 'woocommerce_after_cart_item_name',
 					'default_priority' => 5,
 					'callback'         => 'wc_gzd_cart_product_deposit_packaging_type',
+				),
+				'garan_label'            => array(
+					'default_filter'   => 'woocommerce_after_cart_item_name',
+					'default_priority' => 8,
+					'callback'         => 'wc_gzd_cart_product_garan_label',
 				),
 			)
 		);
@@ -405,6 +435,11 @@ class Shopmarks {
 					'default_priority' => 9,
 					'callback'         => 'wc_gzd_cart_product_deposit_packaging_type',
 				),
+				'garan_label'            => array(
+					'default_filter'   => 'woocommerce_after_cart_item_name',
+					'default_priority' => 10,
+					'callback'         => 'wc_gzd_cart_product_garan_label',
+				),
 			)
 		);
 
@@ -465,6 +500,11 @@ class Shopmarks {
 					'default_priority' => 9,
 					'callback'         => 'wc_gzd_cart_product_deposit_packaging_type',
 				),
+				'garan_label'            => array(
+					'default_filter'   => 'woocommerce_checkout_cart_item_quantity',
+					'default_priority' => 10,
+					'callback'         => 'wc_gzd_cart_product_garan_label',
+				),
 			)
 		);
 
@@ -523,6 +563,11 @@ class Shopmarks {
 					'default_filter'   => 'woocommerce_order_item_meta_start',
 					'default_priority' => 9,
 					'callback'         => 'wc_gzd_cart_product_deposit_packaging_type',
+				),
+				'garan_label'            => array(
+					'default_filter'   => 'woocommerce_order_item_meta_start',
+					'default_priority' => 10,
+					'callback'         => 'wc_gzd_cart_product_garan_label',
 				),
 			)
 		);
@@ -812,6 +857,8 @@ class Shopmarks {
 				'manufacturer'               => _x( 'Manufacturer', 'shopmark', 'woocommerce-germanized' ),
 				'product_safety_attachments' => _x( 'Product safety attachments', 'shopmark', 'woocommerce-germanized' ),
 				'safety_instructions'        => _x( 'Safety instructions', 'shopmark', 'woocommerce-germanized' ),
+				'legal_guarantee'            => _x( 'EU Legal Guarantee', 'shopmark', 'woocommerce-germanized' ),
+				'garan_label'                => _x( 'EU GARAN Label', 'shopmark', 'woocommerce-germanized' ),
 				'power_supply'               => _x( 'Power supply', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'single_product_grouped' => array(
@@ -823,6 +870,7 @@ class Shopmarks {
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
 				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
+				'garan_label'            => _x( 'EU GARAN Label', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'product_loop'           => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -833,6 +881,7 @@ class Shopmarks {
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
 				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
+				'garan_label'            => _x( 'EU GARAN Label', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'product_block'          => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -843,6 +892,7 @@ class Shopmarks {
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
 				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
+				'garan_label'            => _x( 'EU GARAN Label', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'cart'                   => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -853,6 +903,7 @@ class Shopmarks {
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
 				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
+				'garan_label'            => _x( 'EU GARAN Label', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'mini_cart'              => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -863,6 +914,7 @@ class Shopmarks {
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
 				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
+				'garan_label'            => _x( 'EU GARAN Label', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'checkout'               => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -873,6 +925,7 @@ class Shopmarks {
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
 				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
+				'garan_label'            => _x( 'EU GARAN Label', 'shopmark', 'woocommerce-germanized' ),
 			),
 			'order'                  => array(
 				'unit_price'             => _x( 'Unit Price', 'shopmark', 'woocommerce-germanized' ),
@@ -883,6 +936,7 @@ class Shopmarks {
 				'deposit'                => _x( 'Deposit', 'shopmark', 'woocommerce-germanized' ),
 				'deposit_packaging_type' => _x( 'Type of Packaging', 'shopmark', 'woocommerce-germanized' ),
 				'nutri_score'            => _x( 'Nutri-Score', 'shopmark', 'woocommerce-germanized' ),
+				'garan_label'            => _x( 'EU GARAN Label', 'shopmark', 'woocommerce-germanized' ),
 			),
 		);
 

@@ -14,6 +14,55 @@ p.wc-gzd-additional-info:empty {
   display: none;
 }
 
+.wc-gzd-popover-trigger {
+  anchor-name: --wc-gzd-popover-anchor;
+}
+
+.wc-gzd-popover-wrapper {
+  anchor-scope: --wc-gzd-popover-anchor;
+}
+
+.wc-gzd-popover.wc-gzd-popover-hover {
+  position-anchor: --wc-gzd-popover-anchor;
+  position: fixed;
+  position-area: bottom center;
+  position-try-fallbacks: top, bottom, right, left;
+}
+
+.wc-gzd-garan-label-folded-svg {
+  max-width: 350px;
+}
+
+.wc-gzd-garan-label-folded {
+  a.wc-gzd-popover-trigger {
+    display: block;
+  }
+}
+
+img.wc-gzd-garan-label-popover-image {
+  max-width: 600px;
+  min-width: 350px;
+  width: 100%;
+}
+
+.wc-gzd-popover {
+  .wc-gzd-popover-header {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &.wc-gzd-popover-hover {
+    .wc-gzd-popover-close {
+      display: none;
+    }
+  }
+}
+
+.wc-gzd-popover:popover-open {
+  border-color: transparent;
+  border-radius: 1rem;
+}
+
 /**
  * Product block support
  */

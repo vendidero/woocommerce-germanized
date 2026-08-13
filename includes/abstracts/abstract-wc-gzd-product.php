@@ -115,6 +115,27 @@ class WC_GZD_Product {
 		return $this->get_prop( 'warranty_attachment_id', $context );
 	}
 
+	public function get_guarantee_length( $context = 'view' ) {
+		$length = $this->get_prop( 'guarantee_length', $context );
+
+		if ( 'view' === $context ) {
+			$length = '' === $length ? 0 : absint( $length );
+		}
+
+		return $length;
+	}
+
+	public function get_guarantee_length_years() {
+		$length = $this->get_guarantee_length();
+		$years  = 0;
+
+		if ( ! empty( $length ) ) {
+			$years = wc_format_localized_decimal( round( $length / 12, 1 ) );
+		}
+
+		return $years;
+	}
+
 	public function get_gtin( $context = 'view' ) {
 		$gtin = $this->get_prop( 'ts_gtin', $context );
 
@@ -124,7 +145,7 @@ class WC_GZD_Product {
 		if ( 'view' === $context && is_callable( array( $this->child, 'get_global_unique_id' ) ) ) {
 			$wc_core_gtin = $this->child->get_global_unique_id();
 
-			if ( ! empty( $wc_gtin ) ) {
+			if ( ! empty( $wc_core_gtin ) ) {
 				$gtin = $wc_core_gtin;
 			}
 		}
@@ -1064,6 +1085,17 @@ class WC_GZD_Product {
 		$this->warranty_attachment = false;
 	}
 
+	public function set_guarantee_length( $length ) {
+		if ( '' !== $length ) {
+			/**
+			 * Round to 6 month/half year only
+			 */
+			$length = round( absint( $length ) / 6 ) * 6;
+		}
+
+		$this->set_prop( 'guarantee_length', $length );
+	}
+
 	public function set_gtin( $gtin ) {
 		$this->set_prop( 'ts_gtin', $gtin );
 	}
@@ -1712,6 +1744,98 @@ class WC_GZD_Product {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function has_garan_label() {
+		return $this->get_guarantee_length() > 24 && $this->get_manufacturer() && $this->get_garan_label_model_id();
+	}
+
+	public function get_garan_label_model_id() {
+		$model_id = '';
+
+		if ( $this->get_gtin() ) {
+			$model_id = $this->get_gtin();
+		} elseif ( $this->get_mpn() ) {
+			$model_id = $this->get_mpn();
+		} else {
+			$model_id = $this->get_wc_product()->get_sku();
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_get_garan_label_model_id', $model_id, $this );
+	}
+
+	public function get_garan_label_svg( $variant = 'full' ) {
+		if ( ! $this->has_garan_label() ) {
+			return false;
+		}
+
+		$label_file = "garan-label-{$variant}.svg";
+		$file       = WC_germanized()->plugin_path( "assets/images/garan-label/{$label_file}" );
+
+		if ( ! file_exists( $file ) ) {
+			return false;
+		}
+
+		$svg = @file_get_contents( $file );
+
+		if ( false === $svg ) {
+			return false;
+		}
+
+		$guarantee_length = $this->get_guarantee_length_years();
+		$replacements     = array(
+			'{garan_length}' => $guarantee_length,
+			'{garan_id}'     => $this->get_garan_label_model_id(),
+			'{garan_brand}'  => $this->get_manufacturer()->get_name(),
+		);
+
+		$svg = str_replace( array_keys( $replacements ), array_values( $replacements ), $svg );
+
+		/**
+		 * Create a unique id suffix to prevent SVG namespace collisions
+		 */
+		$suffix_keys = implode( '|', array_merge( array_keys( $replacements ), array( $variant ) ) );
+		$suffix      = '-' . substr( md5( $suffix_keys ), 0, 8 );
+
+		$svg = (string) preg_replace( '/\bid="([^"]+)"/', 'id="$1' . $suffix . '"', $svg );
+		$svg = (string) preg_replace( '/url\(#([^)]+)\)/', 'url(#$1' . $suffix . ')', $svg );
+
+		return $svg;
+	}
+
+	public function get_garan_label_url( $variant = 'full' ) {
+		return trailingslashit( get_rest_url() ) . "wc/store/v1/products/{$this->get_id()}/garan-label.svg?variant={$variant}";
+	}
+
+	public function get_garan_label_html( $variant = 'full' ) {
+		if ( ! $this->has_garan_label() ) {
+			return '';
+		}
+
+		$html = '<div class="wc-gzd-garan-label wc-gzd-popover-wrapper wc-gzd-garan-label-' . esc_attr( $variant ) . '">';
+
+		if ( 'folded' === $variant ) {
+			$svg          = $this->get_garan_label_svg( $variant );
+			$popover_html = wc_get_template_html(
+				'global/popover.php',
+				array(
+					'popover_description'  => __( 'EU GARAN label', 'woocommerce-germanized' ),
+					'popover_html'         => '<img class="wc-gzd-garan-label-popover-image" src="' . esc_url( $this->get_garan_label_url( 'full' ) ) . '" alt="' . esc_attr( __( 'EU GARAN label', 'woocommerce-germanized' ) ) . '" />',
+					'popover_trigger_html' => $svg,
+				)
+			);
+
+			$html .= $popover_html;
+		} else {
+			$html = '<img class="wc-gzd-garan-label-image" src="' . esc_url( $this->get_garan_label_url( $variant ) ) . '" alt="' . esc_attr( __( 'EU GARAN label', 'woocommerce-germanized' ) ) . '" />';
+		}
+
+		$html .= '</div>';
+
+		return $html;
 	}
 
 	/**
