@@ -39,6 +39,9 @@ class WC_GZD_Manufacturer {
 		return $this->manufacturer->name;
 	}
 
+	public function get_garan_label_name() {
+		return $this->get_name();
+	}
 	protected function get_hook_prefix() {
 		return 'woocommerce_gzd_manufacturer_get';
 	}

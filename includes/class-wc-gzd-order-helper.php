@@ -833,6 +833,10 @@ class WC_GZD_Order_Helper {
 				$gzd_item->set_delivery_time( $gzd_product->get_delivery_time_html() );
 				$gzd_item->set_min_age( $gzd_product->get_min_age() );
 
+				$gzd_item->set_guarantee_length( $gzd_product->get_guarantee_length() );
+				$gzd_item->set_garan_label_manufacturer_name( $gzd_product->get_manufacturer() ? $gzd_product->get_manufacturer()->get_garan_label_name() : '' );
+				$gzd_item->set_garan_label_model_id( $gzd_product->get_garan_label_model_id() );
+
 				if ( $gzd_product->is_food() ) {
 					$gzd_item->set_deposit_type( $gzd_product->get_deposit_type() );
 					$gzd_item->set_deposit_amount_per_unit( $gzd_product->get_deposit_amount_per_unit( 'view', 'incl' ) );

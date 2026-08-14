@@ -1112,6 +1112,59 @@ function woocommerce_gzd_format_unit_price_range( $min_price, $max_price ) {
 	return $formatted;
 }
 
+function wc_gzd_get_garan_label_svg( $args, $variant = 'full' ) {
+	$args = wp_parse_args(
+		$args,
+		array(
+			'guarantee_length' => 0,
+			'model_id'         => '',
+			'brand_name'       => '',
+		)
+	);
+
+	$label_file = "garan-label-{$variant}.svg";
+	$file       = WC_germanized()->plugin_path( "assets/images/garan-label/{$label_file}" );
+
+	if ( ! file_exists( $file ) ) {
+		return false;
+	}
+
+	$svg = @file_get_contents( $file ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+
+	if ( false === $svg ) {
+		return false;
+	}
+
+	$replacements = array(
+		'{garan_length}' => $args['guarantee_length'],
+		'{garan_id}'     => $args['model_id'],
+		'{garan_brand}'  => $args['brand_name'],
+	);
+
+	$svg = str_replace( array_keys( $replacements ), array_values( $replacements ), $svg );
+
+	/**
+	 * Create a unique id suffix to prevent SVG namespace collisions
+	 */
+	$suffix_keys = implode( '|', array_merge( array_keys( $replacements ), array( $variant ) ) );
+	$suffix      = '-' . substr( md5( $suffix_keys ), 0, 8 );
+
+	$svg = (string) preg_replace( '/\bid="([^"]+)"/', 'id="$1' . $suffix . '"', $svg );
+	$svg = (string) preg_replace( '/url\(#([^)]+)\)/', 'url(#$1' . $suffix . ')', $svg );
+
+	return $svg;
+}
+
+function wc_gzd_garan_label_guarantee_to_years( $length ) {
+	$years = 0;
+
+	if ( ! empty( $length ) ) {
+		$years = wc_format_localized_decimal( round( $length / 12, 1 ) );
+	}
+
+	return $years;
+}
+
 function wc_gzd_get_default_revocation_address() {
 	$countries = isset( WC()->countries ) && WC()->countries ? WC()->countries : false;
 	$default   = '';
@@ -1521,76 +1574,6 @@ function wc_gzd_print_item_defect_descriptions( $descriptions, $do_echo = false 
 	return $string;
 }
 
-function wc_gzd_kses_post_and_svg( $html ) {
-	$kses_defaults = wp_kses_allowed_html( 'post' );
-
-	$svg_args = array(
-		'svg'      => array(
-			'class'           => true,
-			'aria-hidden'     => true,
-			'aria-labelledby' => true,
-			'role'            => true,
-			'xmlns'           => true,
-			'xmlns:xlink'     => true,
-			'width'           => true,
-			'height'          => true,
-			'viewbox'         => true,
-		),
-		'defs'     => array(),
-		'clippath' => array( 'id' => true ),
-		'style'    => array(),
-		'g'        => array(
-			'fill'  => true,
-			'id'    => true,
-			'class' => true,
-		),
-		'rect'     => array(
-			'class'  => true,
-			'width'  => true,
-			'height' => true,
-			'rx'     => true,
-			'ry'     => true,
-			'x'      => true,
-			'y'      => true,
-		),
-		'line'     => array(
-			'class' => true,
-			'x1'    => true,
-			'y1'    => true,
-			'x2'    => true,
-			'y2'    => true,
-		),
-		'polygon'  => array(
-			'class'  => true,
-			'points' => true,
-		),
-		'circle'   => array(
-			'cx' => true,
-			'cy' => true,
-			'r'  => true,
-		),
-		'title'    => array( 'title' => true ),
-		'text'     => array(
-			'class'     => true,
-			'transform' => true,
-		),
-		'tspan'    => array(
-			'x' => true,
-			'y' => true,
-		),
-		'path'     => array(
-			'd'     => true,
-			'fill'  => true,
-			'class' => true,
-		),
-	);
-
-	$allowed_tags = array_merge( $kses_defaults, $svg_args );
-	$html         = wp_kses( $html, $allowed_tags );
-
-	return $html;
-}
-
 function wc_gzd_get_post_plain_content( $content_post, $shortcodes_allowed = array() ) {
 	global $post;
 	$reset_post = $post;
@@ -1959,19 +1942,29 @@ function wc_gzd_kses_post_svg( $html ) {
 	$kses_post = wp_kses_allowed_html( 'post' );
 
 	$svg_args = array(
-		'svg'   => array(
+		'svg'      => array(
 			'class'           => true,
 			'aria-hidden'     => true,
 			'aria-labelledby' => true,
 			'role'            => true,
 			'xmlns'           => true,
+			'xmlns:xlink'     => true,
 			'width'           => true,
 			'height'          => true,
 			'viewbox'         => true,
 			'text'            => true,
 			'title'           => true,
 		),
-		'line'  => array(
+		'rect'     => array(
+			'class'  => true,
+			'width'  => true,
+			'height' => true,
+			'rx'     => true,
+			'ry'     => true,
+			'x'      => true,
+			'y'      => true,
+		),
+		'line'     => array(
 			'class'        => true,
 			'x1'           => true,
 			'y1'           => true,
@@ -1980,21 +1973,48 @@ function wc_gzd_kses_post_svg( $html ) {
 			'stroke-width' => true,
 			'stroke'       => true,
 		),
-		'g'     => array( 'fill' => true ),
-		'text'  => array(
-			'x'     => true,
-			'y'     => true,
+		'g'        => array(
+			'fill'  => true,
+			'id'    => true,
 			'class' => true,
 		),
-		'title' => array( 'title' => true ),
-		'path'  => array(
+		'text'     => array(
+			'x'         => true,
+			'y'         => true,
+			'class'     => true,
+			'transform' => true,
+		),
+		'tspan'    => array(
+			'x' => true,
+			'y' => true,
+		),
+		'title'    => array(
+			'title' => true,
+		),
+		'polygon'  => array(
+			'class'  => true,
+			'points' => true,
+		),
+		'circle'   => array(
+			'cx' => true,
+			'cy' => true,
+			'r'  => true,
+		),
+		'path'     => array(
 			'd'     => true,
 			'fill'  => true,
 			'class' => true,
 		),
+		'clippath' => array(
+			'id' => true,
+		),
+		'defs'     => array(),
+		'style'    => array(),
 	);
 
 	$kses_post = array_merge( $kses_post, $svg_args );
+	$html      = wp_kses( $html, $kses_post );
+	$html      = str_replace( 'viewbox', 'viewBox', $html ); // Somehow WP does not handle viewBox attribute in the right way
 
-	return wp_kses( $html, $kses_post );
+	return $html;
 }

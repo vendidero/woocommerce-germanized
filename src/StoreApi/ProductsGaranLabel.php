@@ -71,11 +71,10 @@ class ProductsGaranLabel {
 			rest_get_server()->send_headers(
 				array(
 					'Content-Type' => 'image/svg+xml',
-				// 'Cache-Control' => 'max-age=3600',
 				)
 			);
 
-			echo $svg;
+			echo '<?xml version="1.0" encoding="UTF-8"?>' . wc_gzd_kses_post_svg( $svg );
 			exit();
 		} catch ( \Exception $e ) {
 			$error = new WP_Error( $e->getCode(), $e->getMessage() );

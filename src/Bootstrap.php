@@ -58,8 +58,10 @@ class Bootstrap {
 			OrderWithdrawalButton::init();
 		}
 
+		$this->register_dependencies();
+
 		if ( Package::load_blocks() ) {
-			$this->register_dependencies();
+			$this->register_block_dependencies();
 			$this->register_payment_methods();
 
 			if ( did_action( 'woocommerce_blocks_loaded' ) ) {
@@ -97,6 +99,18 @@ class Bootstrap {
 	 * Register core dependencies with the container.
 	 */
 	protected function register_dependencies() {
+		$this->container->register(
+			StoreApi::class,
+			function ( $container ) {
+				return new StoreApi();
+			}
+		);
+	}
+
+	/**
+	 * Register core dependencies with the container.
+	 */
+	protected function register_block_dependencies() {
 		$this->container->register(
 			Assets::class,
 			function ( $container ) {
@@ -144,13 +158,6 @@ class Bootstrap {
 			Cart::class,
 			function ( $container ) {
 				return new Cart();
-			}
-		);
-
-		$this->container->register(
-			StoreApi::class,
-			function ( $container ) {
-				return new StoreApi();
 			}
 		);
 	}

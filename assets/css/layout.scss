@@ -29,13 +29,14 @@ p.wc-gzd-additional-info:empty {
   position-try-fallbacks: top, bottom, right, left;
 }
 
-.wc-gzd-garan-label-folded-svg {
+.wc-gzd-garan-label-folded-svg, img.wc-gzd-garan-label-folded-image {
   max-width: 350px;
+  min-width: 200px;
 }
 
 .wc-gzd-garan-label-folded {
   a.wc-gzd-popover-trigger {
-    display: block;
+    display: inline-block;
   }
 }
 

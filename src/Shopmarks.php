@@ -436,7 +436,7 @@ class Shopmarks {
 					'callback'         => 'wc_gzd_cart_product_deposit_packaging_type',
 				),
 				'garan_label'            => array(
-					'default_filter'   => 'woocommerce_after_cart_item_name',
+					'default_filter'   => 'woocommerce_widget_cart_item_quantity',
 					'default_priority' => 10,
 					'callback'         => 'wc_gzd_cart_product_garan_label',
 				),
@@ -770,13 +770,18 @@ class Shopmarks {
 				),
 			),
 			'mini_cart'              => array(
-				'woocommerce_cart_item_price' => array(
+				'woocommerce_cart_item_price'           => array(
 					'title'            => $load_translation ? __( 'Item Price', 'woocommerce-germanized' ) : 'Item Price',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),
-				'woocommerce_cart_item_name'  => array(
+				'woocommerce_cart_item_name'            => array(
 					'title'            => $load_translation ? __( 'Item Name', 'woocommerce-germanized' ) : 'Item Name',
+					'is_action'        => false,
+					'number_of_params' => 3,
+				),
+				'woocommerce_widget_cart_item_quantity' => array(
+					'title'            => $load_translation ? __( 'Item Quantity', 'woocommerce-germanized' ) : 'Item Quantity',
 					'is_action'        => false,
 					'number_of_params' => 3,
 				),

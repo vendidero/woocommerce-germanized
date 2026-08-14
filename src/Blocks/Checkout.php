@@ -1,8 +1,8 @@
 <?php
 namespace Vendidero\Germanized\Blocks;
 
-use Automattic\WooCommerce\Blocks\Domain\Services\CheckoutFields;
 use Automattic\WooCommerce\StoreApi\Exceptions\RouteException;
+use Automattic\WooCommerce\StoreApi\Schemas\V1\CartItemSchema;
 use Automattic\WooCommerce\StoreApi\Schemas\V1\CartSchema;
 use Automattic\WooCommerce\StoreApi\Schemas\V1\CheckoutSchema;
 use Vendidero\Germanized\Blocks\PaymentGateways\DirectDebit;
@@ -96,6 +96,8 @@ final class Checkout {
 						ob_start();
 						if ( $label->get_is_action() ) {
 							call_user_func_array( $callback, $args );
+						} elseif ( 'garan_label' === $label->get_type() ) {
+							echo wc_gzd_kses_post_svg( call_user_func_array( $callback, $args ) );
 						} else {
 							echo wp_kses_post( call_user_func_array( $callback, $args ) );
 						}
@@ -222,6 +224,33 @@ final class Checkout {
 				'schema_callback' => function () {
 					return $this->get_cart_schema();
 				},
+			)
+		);
+
+		woocommerce_store_api_register_endpoint_data(
+			array(
+				'endpoint'        => CartItemSchema::IDENTIFIER,
+				'namespace'       => 'woocommerce-germanized',
+				'data_callback'   => function ( $cart_item ) {
+					$product = $cart_item['data'];
+					$garan_label_html = '';
+
+					if ( $gzd_product = wc_gzd_get_product( $product ) ) {
+						$garan_label_html = $gzd_product->get_garan_label_html( 'folded' );
+					}
+
+					return array(
+						'garan_label' => wc_gzd_kses_post_svg( $garan_label_html ),
+					);
+				},
+				'schema_callback' => function () {
+					return array(
+						'garan_label' => array(
+							'type' => 'string',
+						),
+					);
+				},
+				'schema_type'     => ARRAY_A,
 			)
 		);
 

@@ -4,6 +4,14 @@ import { useEffect } from "@wordpress/element";
 import { dispatch, select } from '@wordpress/data';
 import { CHECKOUT_STORE_KEY } from '@woocommerce/block-data';
 
+import {
+    waitUntilElementExists,
+} from '../../../base/utils';
+
+import {
+    replaceItemMeta,
+} from '../../cart-checkout/items';
+
 import SmallBusinessInfo from "../checkout-small-business-info/frontend";
 
 const DomWatcher = ({
@@ -29,12 +37,13 @@ const DomWatcher = ({
         /**
          * Use a timeout as tweak to make sure DOM is available.
          */
-        window.setTimeout( () => {
+        waitUntilElementExists( '.wc-block-components-product-details' ).then( ( elm ) => {
             const orderItems = document.getElementsByClassName( 'wc-block-components-order-summary-item' );
+            let itemKey = 0;
 
             for ( let item of orderItems ) {
                 const unitPrice   = item.getElementsByClassName( "wc-block-components-product-details__gzd-unit-price" )[0];
-                const notGzdElements = item.querySelectorAll( "li:not([class*=__gzd])" )[0];
+                const notGzdElements = item.querySelectorAll( "span:not([class*=__gzd])" )[0];
 
                 if ( notGzdElements ) {
                     notGzdElements.classList.add( "wc-not-gzd-summary-item-first" );
@@ -56,8 +65,12 @@ const DomWatcher = ({
 
                     priceNode.appendChild( newUnitPrice );
                 }
+
+                replaceItemMeta( item, itemKey, cart );
+
+                itemKey++;
             }
-        }, 500 );
+        } );
     }, [
         cart.cartItems
     ] );

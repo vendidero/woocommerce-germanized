@@ -1,7 +1,5 @@
 .wc-block-components-product-metadata {
-  .wc-block-components-product-details:first-child {
-    display: flex;
-    flex-direction: column;
+  > .wc-block-components-product-details {
 
     *[class*="wc-block-components-product-details"] {
       order: 950;
