@@ -34,7 +34,7 @@ class ProductDeliveryTime extends AbstractProductElementBlock {
 	 *
 	 * @return string
 	 */
-	protected function get_label_content( $product ) {
+	protected function get_label_content( $product, $attributes = array() ) {
 		return $product->get_delivery_time_html();
 	}
 }

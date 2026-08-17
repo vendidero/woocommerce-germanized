@@ -19,10 +19,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 } // Exit if accessed directly
 
 global $product;
-?>
 
+$variant = isset( $variant ) ? $variant : 'folded';
+?>
 <?php if ( wc_gzd_get_product( $product )->has_garan_label() ) : ?>
-	<div class="garan-label eu-garan-label wc-gzd-additional-info"><?php echo wc_gzd_kses_post_svg( wc_gzd_get_product( $product )->get_garan_label_html( 'folded' ) ); ?></div>
+	<div class="wc-gzd-garan-label wc-gzd-additional-info"><?php echo wc_gzd_kses_post_svg( wc_gzd_get_product( $product )->get_garan_label_html( $variant ) ); ?></div>
 <?php elseif ( $product->is_type( 'variable' ) ) : ?>
-	<div class="garan-label eu-garan-label wc-gzd-additional-info wc-gzd-additional-info-placeholder" aria-hidden="true"></div>
+	<div class="wc-gzd-garan-label wc-gzd-additional-info wc-gzd-additional-info-placeholder" aria-hidden="true"></div>
 <?php endif; ?>

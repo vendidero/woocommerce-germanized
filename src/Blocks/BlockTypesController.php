@@ -55,6 +55,7 @@ final class BlockTypesController {
 			'ProductSafetyAttachments',
 			'ProductSafetyInstructions',
 			'ProductPowerSupply',
+			'ProductGaranLabel',
 		);
 
 		if ( \Vendidero\Germanized\Package::is_pro() ) {

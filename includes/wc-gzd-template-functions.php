@@ -439,8 +439,8 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_garan_label' ) ) {
 	/**
 	 * Single Product EU garan label.
 	 */
-	function woocommerce_gzd_template_single_garan_label() {
-		wc_get_template( 'single-product/garan-label.php' );
+	function woocommerce_gzd_template_single_garan_label( $args = array() ) {
+		wc_get_template( 'single-product/garan-label.php', $args );
 	}
 }
 
@@ -449,8 +449,8 @@ if ( ! function_exists( 'woocommerce_gzd_template_loop_garan_label' ) ) {
 	/**
 	 * Loop EU garan label.
 	 */
-	function woocommerce_gzd_template_loop_garan_label() {
-		wc_get_template( 'loop/garan-label.php' );
+	function woocommerce_gzd_template_loop_garan_label( $args = array() ) {
+		wc_get_template( 'loop/garan-label.php', $args );
 	}
 }
 

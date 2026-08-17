@@ -23,7 +23,7 @@ class ProductSafetyAttachments extends AbstractProductElementBlock {
 	 *
 	 * @return string
 	 */
-	protected function get_label_content( $product ) {
+	protected function get_label_content( $product, $attributes = array() ) {
 		return $product->get_product_safety_attachments_html();
 	}
 }

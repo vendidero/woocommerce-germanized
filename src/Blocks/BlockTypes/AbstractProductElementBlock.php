@@ -19,7 +19,7 @@ abstract class AbstractProductElementBlock extends AbstractBlock {
 	 *
 	 * @var string
 	 */
-	protected $api_version = '2';
+	protected $api_version = '3';
 
 	/**
 	 * @return string
@@ -28,10 +28,11 @@ abstract class AbstractProductElementBlock extends AbstractBlock {
 
 	/**
 	 * @param \WC_GZD_Product $product
+	 * @param array $attributes
 	 *
 	 * @return string
 	 */
-	abstract protected function get_label_content( $product );
+	abstract protected function get_label_content( $product, $attributes = array() );
 
 	protected function get_label_type_class() {
 		$label_type = $this->get_label_type();
@@ -123,7 +124,7 @@ abstract class AbstractProductElementBlock extends AbstractBlock {
 			$margin_styles_and_classes     = StyleAttributesUtils::get_margin_class_and_style( $attributes );
 			$inner_classes                 = sprintf( 'wc-gzd-block-components-product-%1$s wc-gzd-block-grid__product-%1$s', $this->get_label_type_class() ) . ' ' . ( isset( $text_align_styles_and_classes['class'] ) ? $text_align_styles_and_classes['class'] : '' ) . ' ' . $styles_and_classes['classes'];
 			$inner_classes                .= ' ' . $this->get_additional_classes( $attributes, $product );
-			$html                          = $this->get_label_content( $product );
+			$html                          = $this->get_label_content( $product, $attributes );
 			$block_classes                 = 'wp-block-woocommerce-gzd-product-price-label wp-block-woocommerce-gzd-product-' . $this->get_label_type_class() . ' ' . ( isset( $margin_styles_and_classes['class'] ) ? $margin_styles_and_classes['class'] : '' );
 			$is_hidden                     = false;
 

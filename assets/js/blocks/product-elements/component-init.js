@@ -120,3 +120,12 @@ registerBlockComponent( {
             )
     ),
 } );
+
+registerBlockComponent( {
+    blockName: 'woocommerce-germanized/product-garan-label',
+    component: lazy( () =>
+        import(
+            /* webpackChunkName: "product-garan-label" */ './garan-label/frontend'
+            )
+    ),
+} );

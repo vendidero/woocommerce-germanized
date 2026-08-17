@@ -28,7 +28,7 @@ class ProductTaxInfo extends AbstractProductElementBlock {
 	 *
 	 * @return string
 	 */
-	protected function get_label_content( $product ) {
+	protected function get_label_content( $product, $attributes = array() ) {
 		$html = $product->get_tax_info();
 
 		if ( ! $html && wc_gzd_is_small_business() ) {

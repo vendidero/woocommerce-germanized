@@ -1780,7 +1780,8 @@ class WC_GZD_Product {
 			return '';
 		}
 
-		$html = '<div class="wc-gzd-garan-label wc-gzd-garan-label-' . esc_attr( $variant ) . ' ' . ( 'folded' === $variant ? 'wc-gzd-popover-wrapper' : '' ) . '">';
+		$variant = array_key_exists( $variant, wc_gzd_get_garan_label_variants() ) ? $variant : 'full';
+		$html    = '<div class="wc-gzd-garan-label wc-gzd-garan-label-' . esc_attr( $variant ) . ' ' . ( 'folded' === $variant ? 'wc-gzd-popover-wrapper' : '' ) . '">';
 
 		if ( 'folded' === $variant ) {
 			$popover_html = wc_get_template_html(
@@ -1795,7 +1796,7 @@ class WC_GZD_Product {
 
 			$html .= $popover_html;
 		} else {
-			$html = '<img class="wc-gzd-garan-label-image" src="' . esc_url( $this->get_garan_label_url( $variant ) ) . '" alt="' . esc_attr( __( 'EU GARAN label', 'woocommerce-germanized' ) ) . '" />';
+			$html .= '<img class="wc-gzd-garan-label-image" src="' . esc_url( $this->get_garan_label_url( $variant ) ) . '" alt="' . esc_attr( __( 'EU GARAN label', 'woocommerce-germanized' ) ) . '" />';
 		}
 
 		$html .= '</div>';

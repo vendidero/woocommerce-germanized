@@ -1112,6 +1112,13 @@ function woocommerce_gzd_format_unit_price_range( $min_price, $max_price ) {
 	return $formatted;
 }
 
+function wc_gzd_get_garan_label_variants() {
+	return array(
+		'full'   => _x( 'Full', 'eu-garan-label-variant', 'woocommerce-germanized' ),
+		'folded' => _x( 'Folded', 'eu-garan-label-variant', 'woocommerce-germanized' ),
+	);
+}
+
 function wc_gzd_get_garan_label_svg( $args, $variant = 'full' ) {
 	$args = wp_parse_args(
 		$args,
@@ -1121,6 +1128,10 @@ function wc_gzd_get_garan_label_svg( $args, $variant = 'full' ) {
 			'brand_name'       => '',
 		)
 	);
+
+	if ( ! array_key_exists( $variant, wc_gzd_get_garan_label_variants() ) ) {
+		$variant = 'full';
+	}
 
 	$label_file = "garan-label-{$variant}.svg";
 	$file       = WC_germanized()->plugin_path( "assets/images/garan-label/{$label_file}" );

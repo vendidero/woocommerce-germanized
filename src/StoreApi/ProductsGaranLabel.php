@@ -28,8 +28,8 @@ class ProductsGaranLabel {
 				'args'                => array(
 					'variant' => array(
 						'description' => __( 'The EU GARAN label type.', 'woocommerce-germanized' ),
-						'type'        => 'enum',
-						'options'     => array( 'foldable', 'full' ),
+						'type'        => 'string',
+						'enum'        => array_keys( wc_gzd_get_garan_label_variants() ),
 						'default'     => 'full',
 						'context'     => array( 'view', 'edit' ),
 					),
@@ -48,6 +48,10 @@ class ProductsGaranLabel {
 		try {
 			$product = wc_gzd_get_gzd_product( (int) $request['id'] );
 			$variant = $request['variant'];
+
+			if ( ! array_key_exists( $variant, wc_gzd_get_garan_label_variants() ) ) {
+				$variant = 'full';
+			}
 
 			if ( ! $product || 0 === $product->get_id() || 'publish' !== $product->get_status() ) {
 				throw new \Exception( 'woocommerce_gzd_rest_product_invalid_id', __( 'Invalid product ID.', 'woocommerce-germanized' ), 404 );

@@ -11,9 +11,12 @@ import { __, _x, sprintf } from '@wordpress/i18n';
 import { useStyleProps } from '@germanized/base-hooks';
 import FormattedMonetaryAmount from '@germanized/base-components/formatted-monetary-amount';
 
+import GaranFullSvg from '../../../../images/garan-label/garan-label-full-sample.svg';
+import GaranFoldedSvg from '../../../../images/garan-label/garan-label-folded-sample.svg';
+
 import FormattedPriceLabel from './formatted-price-label';
 
-const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemplate ) => {
+const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemplate, props ) => {
     const gzdData = productData.hasOwnProperty( 'extensions' ) ? productData.extensions['woocommerce-germanized'] : {
         'unit_price_html': '',
         'unit_prices': {
@@ -40,6 +43,7 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
         'manufacturer_html': '',
         'product_safety_attachments_html': '',
         'safety_instructions_html': '',
+        'garan_label_html': '',
     };
 
     const prices            = productData.prices;
@@ -143,6 +147,14 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
                 </svg>
             </>
         );
+    } else if ( 'garan_label' === labelTypeData ) {
+        const garanLabelSrc = 'full' === props['variant'] ? GaranFullSvg : GaranFoldedSvg;
+
+        formattedPreview = (
+            <>
+                <img src={ garanLabelSrc } />
+            </>
+        );
     }
 
     return {
@@ -186,7 +198,7 @@ const PriceLabelBlock = (props) => {
         return productComponent;
     }
 
-    const previewData = getPreviewData(labelType, product, isDescendentOfSingleProductTemplate);
+    const previewData = getPreviewData(labelType, product, isDescendentOfSingleProductTemplate, props);
 
     const productComponent = (
         <FormattedPriceLabel
