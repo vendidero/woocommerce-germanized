@@ -346,6 +346,22 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_setup_global_product' )
 	}
 }
 
+if ( ! function_exists( 'woocommerce_gzd_template_global_legal_guarantee' ) ) {
+
+	function woocommerce_gzd_template_global_legal_guarantee( $args = array() ) {
+		wc_get_template( 'global/legal-guarantee.php', $args );
+	}
+}
+
+if ( ! function_exists( 'woocommerce_gzd_template_global_legal_guarantee_the_content' ) ) {
+
+	function woocommerce_gzd_template_global_legal_guarantee_the_content( $content ) {
+		$html = wc_get_template_html( 'global/legal-guarantee.php', array( 'location' => 'product_description' ) );
+
+		return $content . $html;
+	}
+}
+
 if ( ! function_exists( 'woocommerce_gzd_template_grouped_single_price_unit' ) ) {
 
 	/**
@@ -470,8 +486,8 @@ if ( ! function_exists( 'woocommerce_gzd_template_single_legal_guarantee' ) ) {
 	/**
 	 * Single Product EU legal guarantee.
 	 */
-	function woocommerce_gzd_template_single_legal_guarantee() {
-		wc_get_template( 'single-product/legal-guarantee.php' );
+	function woocommerce_gzd_template_single_legal_guarantee( $args = array() ) {
+		wc_get_template( 'single-product/legal-guarantee.php', $args );
 	}
 }
 

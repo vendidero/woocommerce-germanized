@@ -6,25 +6,29 @@ window.germanized = window.germanized || {};
         params: {},
 
         init: function() {
-            $( document ).on( 'mouseenter', '.wc-gzd-popover-trigger', function(e) {
-                let $popover = $( this ).next( '.wc-gzd-popover' );
-                const isOpen = $popover[0].matches(':popover-open');
+            const isTouch = !!( 'ontouchstart' in window );
 
-                console.log('mouse enter');
+            if ( ! isTouch ) {
+                $( document ).on( 'mouseenter', '.wc-gzd-popover-trigger', function( e ) {
+                    let $popover = $( this ).next( '.wc-gzd-popover' );
+                    const isOpen = $popover[0].matches(':popover-open');
 
-                if ( false === isOpen ) {
-                    $popover.addClass( 'wc-gzd-popover-hover' );
-                    germanized.popover.showPopover( $popover );
-                }
-            } );
+                    if ( false === isOpen ) {
+                        $popover.addClass( 'wc-gzd-popover-hover' );
+                        console.log('hover');
+                        console.log(e);
+                        germanized.popover.showPopover( $popover );
+                    }
+                } );
 
-            $( document ).on( 'mouseleave', '.wc-gzd-popover-trigger', function(e) {
-                let $popover = $( this ).next( '.wc-gzd-popover' );
+                $( document ).on( 'mouseleave', '.wc-gzd-popover-trigger', function(e) {
+                    let $popover = $( this ).next( '.wc-gzd-popover' );
 
-                if ( $popover.hasClass( 'wc-gzd-popover-hover' ) ) {
-                    germanized.popover.hidePopover( $popover );
-                }
-            } );
+                    if ( $popover.hasClass( 'wc-gzd-popover-hover' ) ) {
+                        germanized.popover.hidePopover( $popover );
+                    }
+                } );
+            }
 
             $( document ).on( 'click', '.wc-gzd-popover-trigger', function( e ) {
                 let $popover = $( this ).next( '.wc-gzd-popover' );

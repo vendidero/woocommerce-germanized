@@ -625,7 +625,7 @@ function wc_gzd_cart_product_garan_label( $title, $cart_item, $cart_item_key = '
 		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 
 		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->has_garan_label() ) {
-			$garan_label = wc_gzd_get_gzd_product( $product )->get_garan_label_html( 'folded' );
+			$garan_label = wc_gzd_get_gzd_product( $product )->get_garan_label_html( 'nested' );
 		}
 	}
 

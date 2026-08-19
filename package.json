@@ -43,7 +43,8 @@
     "terser-webpack-plugin": "^5.6.1",
     "webpack": "^5.109.2",
     "webpack-bundle-analyzer": "4.9.X",
-    "webpack-cli": "5.1.X"
+    "webpack-cli": "5.1.X",
+    "qrcode-svg": "^1.1.0"
   },
   "dependencies": {
     "@wordpress/icons": "6.1.1",

@@ -37,7 +37,7 @@ const blockConfig = {
         ...( {
             variant: {
                 type: "string",
-                default: "folded"
+                default: "nested"
             }
         } )
     },

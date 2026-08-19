@@ -12,7 +12,7 @@ import { useStyleProps } from '@germanized/base-hooks';
 import FormattedMonetaryAmount from '@germanized/base-components/formatted-monetary-amount';
 
 import GaranFullSvg from '../../../../images/garan-label/garan-label-full-sample.svg';
-import GaranFoldedSvg from '../../../../images/garan-label/garan-label-folded-sample.svg';
+import GaranNestedSvg from '../../../../images/garan-label/garan-label-nested-sample.svg';
 
 import FormattedPriceLabel from './formatted-price-label';
 
@@ -148,7 +148,7 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
             </>
         );
     } else if ( 'garan_label' === labelTypeData ) {
-        const garanLabelSrc = 'full' === props['variant'] ? GaranFullSvg : GaranFoldedSvg;
+        const garanLabelSrc = 'full' === props['variant'] ? GaranFullSvg : GaranNestedSvg;
 
         formattedPreview = (
             <>

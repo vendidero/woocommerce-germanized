@@ -26,7 +26,7 @@ class ProductGaranLabel extends AbstractProductElementBlock {
 			'variant' => array(
 				'type'    => 'string',
 				'enum'    => array_keys( wc_gzd_get_garan_label_variants() ),
-				'default' => 'folded',
+				'default' => wc_gzd_get_garan_label_default_variant(),
 			),
 		);
 	}

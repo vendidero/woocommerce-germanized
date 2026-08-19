@@ -30,7 +30,7 @@ class ProductsGaranLabel {
 						'description' => __( 'The EU GARAN label type.', 'woocommerce-germanized' ),
 						'type'        => 'string',
 						'enum'        => array_keys( wc_gzd_get_garan_label_variants() ),
-						'default'     => 'full',
+						'default'     => wc_gzd_get_garan_label_default_variant(),
 						'context'     => array( 'view', 'edit' ),
 					),
 				),
@@ -50,7 +50,7 @@ class ProductsGaranLabel {
 			$variant = $request['variant'];
 
 			if ( ! array_key_exists( $variant, wc_gzd_get_garan_label_variants() ) ) {
-				$variant = 'full';
+				$variant = wc_gzd_get_garan_label_default_variant();
 			}
 
 			if ( ! $product || 0 === $product->get_id() || 'publish' !== $product->get_status() ) {

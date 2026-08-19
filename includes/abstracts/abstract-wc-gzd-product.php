@@ -1739,34 +1739,83 @@ class WC_GZD_Product {
 	 * @return boolean
 	 */
 	public function has_garan_label() {
-		return $this->get_guarantee_length() > 24 && $this->get_manufacturer() && $this->get_garan_label_model_id();
+		return apply_filters( 'woocommerce_gzd_product_has_garan_label', ( ! $this->get_wc_product()->is_virtual() && $this->get_guarantee_length() > 24 && $this->get_manufacturer() && $this->get_garan_label_model_id() ), $this );
+	}
+
+	public function needs_legal_guarantee() {
+		return apply_filters( 'woocommerce_gzd_product_needs_legal_guarantee', ! $this->get_wc_product()->is_virtual(), $this );
 	}
 
 	public function get_garan_label_model_id() {
-		$model_id = '';
+		$model_id         = '';
+		$default_property = get_option( 'woocommerce_gzd_garan_label_default_model_id_property', 'gtin' );
 
-		if ( $this->get_gtin() ) {
+		if ( ! array_key_exists( $default_property, wc_gzd_get_garan_label_model_id_properties() ) ) {
+			$default_property = 'gtin';
+		}
+
+		if ( 'gtin' === $default_property ) {
 			$model_id = $this->get_gtin();
-		} elseif ( $this->get_mpn() ) {
+		} elseif ( 'mpn' === $default_property ) {
 			$model_id = $this->get_mpn();
-		} else {
+		} elseif ( 'sku' === $default_property ) {
 			$model_id = $this->get_wc_product()->get_sku();
+		} elseif ( has_filter( "woocommerce_gzd_product_get_garan_label_default_model_id_{$default_property}" ) ) {
+			$model_id = apply_filters( "woocommerce_gzd_product_get_garan_label_default_model_id_{$default_property}", $model_id, $this );
+		}
+
+		if ( empty( $model_id ) ) {
+			if ( has_filter( 'woocommerce_gzd_product_get_garan_label_fallback_model_id' ) ) {
+				$model_id = apply_filters( 'woocommerce_gzd_product_get_garan_label_fallback_model_id', $model_id, $this );
+			} elseif ( $this->get_gtin() ) {
+				$model_id = $this->get_gtin();
+			} elseif ( $this->get_mpn() ) {
+				$model_id = $this->get_mpn();
+			} else {
+				$model_id = $this->get_wc_product()->get_sku();
+			}
 		}
 
 		return apply_filters( 'woocommerce_gzd_product_get_garan_label_model_id', $model_id, $this );
 	}
 
-	public function get_garan_label_svg( $variant = 'full' ) {
+	public function get_garan_label_attachment( $variant = 'full' ) {
+		if ( ! $this->has_garan_label() ) {
+			return false;
+		}
+
+		$garan_label_svg = $this->get_garan_label_svg( $variant );
+
+		if ( ! $garan_label_svg ) {
+			return false;
+		}
+
+		return apply_filters(
+			'woocommerce_gzd_product_garan_label_attachment',
+			array(
+				'filename' => "garan-label-{$this->get_id()}.svg",
+				'content'  => $this->get_garan_label_svg( $variant ),
+			),
+			$this,
+			$variant
+		);
+	}
+
+	protected function get_garan_label_args() {
+		return array(
+			'guarantee_length' => wc_gzd_garan_label_guarantee_to_years( $this->get_guarantee_length() ),
+			'model_id'         => $this->get_garan_label_model_id(),
+			'brand_name'       => $this->get_manufacturer()->get_garan_label_name(),
+		);
+	}
+
+	public function get_garan_label_svg( $variant = 'full', $keep_xml_header = true ) {
 		if ( ! $this->has_garan_label() ) {
 			return false;
 		}
 
 		return wc_gzd_get_garan_label_svg(
-			array(
-				'guarantee_length' => wc_gzd_garan_label_guarantee_to_years( $this->get_guarantee_length() ),
-				'model_id'         => $this->get_garan_label_model_id(),
-				'brand_name'       => $this->get_manufacturer()->get_garan_label_name(),
-			),
+			array_merge( $this->get_garan_label_args(), array( 'keep_xml_header' => $keep_xml_header ) ),
 			$variant
 		);
 	}
@@ -1775,22 +1824,22 @@ class WC_GZD_Product {
 		return trailingslashit( get_rest_url() ) . "wc/store/v1/products/{$this->get_id()}/garan-label.svg?variant={$variant}";
 	}
 
-	public function get_garan_label_html( $variant = 'full' ) {
+	public function get_garan_label_html( $variant = '' ) {
 		if ( ! $this->has_garan_label() ) {
 			return '';
 		}
 
-		$variant = array_key_exists( $variant, wc_gzd_get_garan_label_variants() ) ? $variant : 'full';
-		$html    = '<div class="wc-gzd-garan-label wc-gzd-garan-label-' . esc_attr( $variant ) . ' ' . ( 'folded' === $variant ? 'wc-gzd-popover-wrapper' : '' ) . '">';
+		$variant = array_key_exists( $variant, wc_gzd_get_garan_label_variants() ) ? $variant : wc_gzd_get_garan_label_default_variant();
+		$html    = '<div class="wc-gzd-garan-label wc-gzd-garan-label-' . esc_attr( $variant ) . ' ' . ( 'nested' === $variant ? 'wc-gzd-popover-wrapper' : '' ) . '">';
 
-		if ( 'folded' === $variant ) {
+		if ( 'nested' === $variant ) {
 			$popover_html = wc_get_template_html(
 				'global/popover.php',
 				array(
 					'popover_description'  => __( 'EU GARAN label', 'woocommerce-germanized' ),
 					'popover_fallback_url' => $this->get_garan_label_url( 'full' ),
-					'popover_html'         => '<img class="wc-gzd-garan-label-popover-image" src="' . esc_url( $this->get_garan_label_url( 'full' ) ) . '" alt="' . esc_attr( __( 'EU GARAN label', 'woocommerce-germanized' ) ) . '" />',
-					'popover_trigger_html' => '<img class="wc-gzd-garan-label-folded-image" src="' . esc_url( $this->get_garan_label_url( 'folded' ) ) . '" alt="' . esc_attr( __( 'EU GARAN label preview', 'woocommerce-germanized' ) ) . '" />',
+					'popover_html'         => '<img class="wc-gzd-garan-label-popover-image wc-gzd-popover-image" src="' . esc_url( $this->get_garan_label_url( 'full' ) ) . '" alt="' . esc_attr( __( 'EU GARAN label', 'woocommerce-germanized' ) ) . '" />',
+					'popover_trigger_html' => '<img class="wc-gzd-garan-label-nested-image" src="' . esc_url( $this->get_garan_label_url( 'nested' ) ) . '" alt="' . esc_attr( __( 'EU GARAN label preview', 'woocommerce-germanized' ) ) . '" />',
 				)
 			);
 
@@ -1801,7 +1850,15 @@ class WC_GZD_Product {
 
 		$html .= '</div>';
 
-		return $html;
+		return apply_filters( 'woocommerce_gzd_product_garan_label_html', $html, $variant, $this );
+	}
+
+	public function get_legal_guarantee_html( $variant = '', $lang = '' ) {
+		if ( ! $this->needs_legal_guarantee() ) {
+			return '';
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_legal_guarantee_html', wc_gzd_get_legal_guarantee_html( $variant, $lang ), $variant, $lang, $this );
 	}
 
 	/**

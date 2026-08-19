@@ -411,7 +411,7 @@ function wc_gzd_get_legal_pages( $email_attachable_only = false ) {
 }
 
 function wc_gzd_get_default_email_attachment_order() {
-	return 'terms,revocation,data_security,imprint,warranties,review_authenticity';
+	return 'terms,revocation,data_security,imprint,warranties,eu_guarantees,review_authenticity';
 }
 
 function wc_gzd_get_email_attachment_order( $legal_pages_only = false ) {
@@ -419,6 +419,7 @@ function wc_gzd_get_email_attachment_order( $legal_pages_only = false ) {
 
 	if ( ! $legal_pages_only ) {
 		$available += array( 'warranties' => __( 'Product Warranties', 'woocommerce-germanized' ) );
+		$available += array( 'eu_guarantees' => __( 'EU Guarantee Labels', 'woocommerce-germanized' ) );
 	}
 
 	$current_order = explode( ',', get_option( 'woocommerce_gzd_mail_attach_order', wc_gzd_get_default_email_attachment_order() ) );
@@ -1112,11 +1113,229 @@ function woocommerce_gzd_format_unit_price_range( $min_price, $max_price ) {
 	return $formatted;
 }
 
+function wc_gzd_get_legal_guarantee_variants() {
+	return array(
+		'full'    => _x( 'Full', 'eu-label-variant', 'woocommerce-germanized' ),
+		'preview' => _x( 'Preview', 'eu-label-variant', 'woocommerce-germanized' ),
+		'link'    => _x( 'Link', 'eu-label-variant', 'woocommerce-germanized' ),
+	);
+}
+
+function wc_gzd_get_garan_label_model_id_properties() {
+	return apply_filters(
+		'woocommerce_gzd_garan_label_model_id_properties',
+		array(
+			'gtin' => __( 'GTIN', 'woocommerce-germanized' ),
+			'mpn'  => __( 'MPN', 'woocommerce-germanized' ),
+			'sku'  => __( 'SKU', 'woocommerce-germanized' ),
+		)
+	);
+}
+
 function wc_gzd_get_garan_label_variants() {
 	return array(
-		'full'   => _x( 'Full', 'eu-garan-label-variant', 'woocommerce-germanized' ),
-		'folded' => _x( 'Folded', 'eu-garan-label-variant', 'woocommerce-germanized' ),
+		'full'   => _x( 'Full', 'eu-label-variant', 'woocommerce-germanized' ),
+		'nested' => _x( 'Nested', 'eu-label-variant', 'woocommerce-germanized' ),
 	);
+}
+
+function wc_gzd_is_garan_label_enabled() {
+	return 'yes' === get_option( 'woocommerce_gzd_garan_label_enabled', 'yes' );
+}
+
+function wc_gzd_get_garan_label_default_variant() {
+	$variant = get_option( 'woocommerce_gzd_garan_label_default_display_variant', 'nested' );
+	$options = wc_gzd_get_garan_label_variants();
+
+	if ( ! array_key_exists( $variant, $options ) ) {
+		$variant = 'nested';
+	}
+
+	return $variant;
+}
+
+function wc_gzd_is_legal_guarantee_enabled() {
+	return 'yes' === get_option( 'woocommerce_gzd_legal_guarantee_enabled', 'yes' );
+}
+
+function wc_gzd_get_legal_guarantee_global_locations() {
+	$locations = array();
+
+	if ( wc_gzd_is_legal_guarantee_enabled() ) {
+		$locations = array_filter( (array) get_option( 'woocommerce_gzd_legal_guarantee_display_locations', array( 'footer' ) ) );
+	}
+
+	return $locations;
+}
+
+function wc_gzd_get_legal_guarantee_default_variant() {
+	$variant = get_option( 'woocommerce_gzd_legal_guarantee_default_display_variant', 'preview' );
+	$options = wc_gzd_get_legal_guarantee_variants();
+
+	if ( ! array_key_exists( $variant, $options ) ) {
+		$variant = 'preview';
+	}
+
+	return $variant;
+}
+
+function wc_gzd_get_legal_guarantee_location_hook( $location ) {
+	$hook = array(
+		'hook'     => '',
+		'priority' => 15,
+	);
+
+	if ( 'footer' === $location ) {
+		$custom_hooks = array(
+			'astra'      => array(
+				'hook'     => 'astra_footer',
+				'priority' => 55,
+			),
+			'storefront' => array(
+				'hook'     => 'storefront_footer',
+				'priority' => 25,
+			),
+		);
+
+		$theme = function_exists( 'wp_get_theme' ) ? wp_get_theme() : '';
+		$hook  = array(
+			'hook'     => 'wp_footer',
+			'priority' => 9,
+		);
+
+		if ( array_key_exists( $theme->get_template(), $custom_hooks ) ) {
+			$hook = wp_parse_args(
+				$custom_hooks[ $theme->get_template() ],
+				array(
+					'hook'     => '',
+					'priority' => 15,
+				)
+			);
+		}
+	} elseif ( 'checkout' === $location ) {
+		if ( 'nested' === wc_gzd_get_legal_guarantee_default_variant() ) {
+			$hook = array(
+				'hook'     => 'woocommerce_checkout_before_terms_and_conditions',
+				'priority' => 15,
+			);
+		} else {
+			$hook = array(
+				'hook'     => 'woocommerce_after_order_notes',
+				'priority' => 15,
+			);
+		}
+	}
+
+	return apply_filters( 'woocommerce_gzd_legal_guarantee_location_hook', $hook, $location );
+}
+
+function wc_gzd_get_legal_guarantee_languages() {
+	$available_languages = array(
+		'bg' => 'гаранции',
+		'cs' => 'záruky_cs',
+		'da' => 'garantier',
+		'de' => 'garantien',
+		'el' => 'εγγυήσεις',
+		'es' => 'garantías',
+		'et' => 'garantiid',
+		'fi' => 'virhevastuu',
+		'fr' => 'garanties',
+		'ga' => 'ráthaíochtaí',
+		'hr' => 'jamstva_hr',
+		'hu' => 'jótállás',
+		'it' => 'garanzie',
+		'lt' => 'garantijos',
+		'lv' => 'garantijas',
+		'mt' => 'garanziji',
+		'nl' => 'garantie',
+		'pt' => 'garantias',
+		'ro' => 'garanții',
+		'sk' => 'záruky_sk',
+		'sl' => 'jamstva_sl',
+		'sv' => 'reklamationsrätt',
+	);
+
+	return $available_languages;
+}
+
+function wc_gzd_get_legal_guarantee_html( $variant = '', $lang = '' ) {
+	$variant = array_key_exists( $variant, wc_gzd_get_legal_guarantee_variants() ) ? $variant : wc_gzd_get_legal_guarantee_default_variant();
+	$html    = '<div class="wc-gzd-legal-guarantee-label wc-gzd-legal-guarantee-label-' . esc_attr( $variant ) . ' ' . ( in_array( $variant, array( 'preview', 'link' ), true ) ? 'wc-gzd-popover-wrapper' : '' ) . '">';
+
+	if ( 'link' === $variant ) {
+		$popover_html = wc_get_template_html(
+			'global/popover.php',
+			array(
+				'popover_description'  => __( 'Your legal guarantee rights', 'woocommerce-germanized' ),
+				'popover_fallback_url' => wc_gzd_get_legal_guarantee_image_url( $lang ),
+				'popover_html'         => '<img class="wc-gzd-legal-guarantee-popover-image" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '" /><p class="wc-gzd-popover-caption"><a href="' . esc_url( wc_gzd_get_legal_guarantee_url( $lang ) ) . '" target="_blank">' . esc_html( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '</a></p>',
+				'popover_trigger_html' => __( 'Your legal guarantee rights', 'woocommerce-germanized' ),
+			)
+		);
+
+		$html .= $popover_html;
+	} elseif ( 'preview' === $variant ) {
+		$popover_html = wc_get_template_html(
+			'global/popover.php',
+			array(
+				'popover_description'  => __( 'Your legal guarantee rights', 'woocommerce-germanized' ),
+				'popover_fallback_url' => wc_gzd_get_legal_guarantee_image_url( $lang ),
+				'popover_html'         => '<img class="wc-gzd-legal-guarantee-popover-image wc-gzd-popover-image" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '" /><p class="wc-gzd-popover-caption"><a href="' . esc_url( wc_gzd_get_legal_guarantee_url( $lang ) ) . '" target="_blank">' . esc_html( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '</a></p>',
+				'popover_trigger_html' => '<img class="wc-gzd-legal-guarantee-image-preview" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '" />',
+			)
+		);
+
+		$html .= $popover_html;
+	} else {
+		$html .= '<a class="wc-gzd-legal-guarantee-label-image-link" href="' . esc_url( wc_gzd_get_legal_guarantee_url( $lang ) ) . '" target="_blank"><img class="wc-gzd-legal-guarantee-label-image" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '" /></a>';
+	}
+
+	$html .= '</div>';
+
+	return apply_filters( 'woocommerce_gzd_legal_guarantee_html', $html, $variant, $lang );
+}
+
+function wc_gzd_determine_legal_guarantee_lang( $lang = '' ) {
+	if ( empty( $lang ) ) {
+		if ( function_exists( 'determine_locale' ) ) {
+			$locale = determine_locale();
+		} else {
+			// @todo Remove when start supporting WP 5.0 or later.
+			$locale = is_admin() ? get_user_locale() : get_locale();
+		}
+
+		$locale = explode( '_', $locale );
+		$lang   = apply_filters( 'woocommerce_gzd_legal_guarantee_current_request_lang', strtolower( $locale[0] ) );
+	}
+
+	$available_languages = wc_gzd_get_legal_guarantee_languages();
+
+	if ( array_key_exists( $lang, $available_languages ) ) {
+		return $lang;
+	} else {
+		return apply_filters( 'woocommerce_gzd_legal_guarantee_fallback_lang', 'en' );
+	}
+}
+
+function wc_gzd_get_legal_guarantee_url( $lang = '' ) {
+	$lang      = wc_gzd_determine_legal_guarantee_lang( $lang );
+	$languages = wc_gzd_get_legal_guarantee_languages();
+	$endpoint  = $languages[ $lang ];
+	$url       = "https://europa.eu/youreurope/{$endpoint}";
+
+	return apply_filters( 'woocommerce_gzd_legal_guarantee_url', $url, $lang );
+}
+
+function wc_gzd_get_legal_guarantee_image_url( $lang = '' ) {
+	$lang = wc_gzd_determine_legal_guarantee_lang( $lang );
+
+	return apply_filters( 'woocommerce_gzd_legal_guarantee_image_url', WC_germanized()->plugin_url( 'assets/images/legal-guarantee/legal_guarantee_notice-' . $lang . '.png' ), $lang );
+}
+
+function wc_gzd_get_legal_guarantee_pdf_path( $lang = '' ) {
+	$lang = wc_gzd_determine_legal_guarantee_lang( $lang );
+
+	return apply_filters( 'woocommerce_gzd_legal_guarantee_pdf_path', WC_germanized()->plugin_path( 'assets/images/legal-guarantee/pdf/legal_guarantee_notice-' . $lang . '.pdf' ), $lang );
 }
 
 function wc_gzd_get_garan_label_svg( $args, $variant = 'full' ) {
@@ -1126,6 +1345,7 @@ function wc_gzd_get_garan_label_svg( $args, $variant = 'full' ) {
 			'guarantee_length' => 0,
 			'model_id'         => '',
 			'brand_name'       => '',
+			'keep_xml_header'  => true,
 		)
 	);
 
@@ -1134,7 +1354,7 @@ function wc_gzd_get_garan_label_svg( $args, $variant = 'full' ) {
 	}
 
 	$label_file = "garan-label-{$variant}.svg";
-	$file       = WC_germanized()->plugin_path( "assets/images/garan-label/{$label_file}" );
+	$file       = apply_filters( 'woocommerce_gzd_garan_label_svg_template_file', WC_germanized()->plugin_path( "assets/images/garan-label/{$label_file}" ), $variant );
 
 	if ( ! file_exists( $file ) ) {
 		return false;
@@ -1147,21 +1367,16 @@ function wc_gzd_get_garan_label_svg( $args, $variant = 'full' ) {
 	}
 
 	$replacements = array(
-		'{garan_length}' => $args['guarantee_length'],
-		'{garan_id}'     => $args['model_id'],
-		'{garan_brand}'  => $args['brand_name'],
+		'{garan_length}' => wc_clean( $args['guarantee_length'] ),
+		'{garan_id}'     => wc_clean( $args['model_id'] ),
+		'{garan_brand}'  => wc_clean( $args['brand_name'] ),
 	);
 
 	$svg = str_replace( array_keys( $replacements ), array_values( $replacements ), $svg );
 
-	/**
-	 * Create a unique id suffix to prevent SVG namespace collisions
-	 */
-	$suffix_keys = implode( '|', array_merge( array_keys( $replacements ), array( $variant ) ) );
-	$suffix      = '-' . substr( md5( $suffix_keys ), 0, 8 );
-
-	$svg = (string) preg_replace( '/\bid="([^"]+)"/', 'id="$1' . $suffix . '"', $svg );
-	$svg = (string) preg_replace( '/url\(#([^)]+)\)/', 'url(#$1' . $suffix . ')', $svg );
+	if ( ! $args['keep_xml_header'] ) {
+		$svg = preg_replace( '/<\\?xml.*\\?>/', '', $svg, 1 );
+	}
 
 	return $svg;
 }
@@ -1967,13 +2182,17 @@ function wc_gzd_kses_post_svg( $html ) {
 			'title'           => true,
 		),
 		'rect'     => array(
-			'class'  => true,
-			'width'  => true,
-			'height' => true,
-			'rx'     => true,
-			'ry'     => true,
-			'x'      => true,
-			'y'      => true,
+			'class'           => true,
+			'width'           => true,
+			'height'          => true,
+			'fill'            => true,
+			'rx'              => true,
+			'ry'              => true,
+			'opacity'         => true,
+			'x'               => true,
+			'y'               => true,
+			'style'           => true,
+			'shape-rendering' => true,
 		),
 		'line'     => array(
 			'class'        => true,
@@ -1983,17 +2202,21 @@ function wc_gzd_kses_post_svg( $html ) {
 			'y2'           => true,
 			'stroke-width' => true,
 			'stroke'       => true,
+			'style'        => true,
 		),
 		'g'        => array(
-			'fill'  => true,
-			'id'    => true,
-			'class' => true,
+			'fill'      => true,
+			'id'        => true,
+			'class'     => true,
+			'style'     => true,
+			'transform' => true,
 		),
 		'text'     => array(
 			'x'         => true,
 			'y'         => true,
 			'class'     => true,
 			'transform' => true,
+			'style'     => true,
 		),
 		'tspan'    => array(
 			'x' => true,
@@ -2005,16 +2228,23 @@ function wc_gzd_kses_post_svg( $html ) {
 		'polygon'  => array(
 			'class'  => true,
 			'points' => true,
+			'style'  => true,
 		),
 		'circle'   => array(
-			'cx' => true,
-			'cy' => true,
-			'r'  => true,
+			'cx'    => true,
+			'cy'    => true,
+			'r'     => true,
+			'style' => true,
 		),
 		'path'     => array(
-			'd'     => true,
-			'fill'  => true,
-			'class' => true,
+			'd'               => true,
+			'fill'            => true,
+			'class'           => true,
+			'style'           => true,
+			'fill-rule'       => true,
+			'shape-rendering' => true,
+			'opacity'         => true,
+
 		),
 		'clippath' => array(
 			'id' => true,

@@ -34,11 +34,12 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 
 	public function get_sections() {
 		$sections = array(
-			''               => __( 'General', 'woocommerce-germanized' ),
-			'delivery_times' => __( 'Delivery times', 'woocommerce-germanized' ),
-			'unit_prices'    => __( 'Unit prices', 'woocommerce-germanized' ),
-			'food'           => __( 'Food', 'woocommerce-germanized' ),
-			'price_labels'   => __( 'Price labels', 'woocommerce-germanized' ),
+			''                 => __( 'General', 'woocommerce-germanized' ),
+			'delivery_times'   => __( 'Delivery times', 'woocommerce-germanized' ),
+			'unit_prices'      => __( 'Unit prices', 'woocommerce-germanized' ),
+			'guarantee_labels' => __( 'Guarantee Labels', 'woocommerce-germanized' ),
+			'food'             => __( 'Food', 'woocommerce-germanized' ),
+			'price_labels'     => __( 'Price labels', 'woocommerce-germanized' ),
 		);
 
 		foreach ( Shopmarks::get_locations() as $location => $title ) {
@@ -74,7 +75,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			$pointers = array(
 				'pointers' => array(
 					'display' => array(
-						'target'       => 'ul.subsubsub li:nth-of-type(5) a',
+						'target'       => 'ul.subsubsub li:nth-of-type(6) a',
 						'next'         => '',
 						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=single_product&tutorial=yes' ),
 						'next_trigger' => array(),
@@ -183,6 +184,8 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			$settings = $this->get_delivery_time_settings();
 		} elseif ( 'unit_prices' === $current_section ) {
 			$settings = $this->get_unit_price_settings();
+		} elseif ( 'guarantee_labels' === $current_section ) {
+			$settings = $this->get_guarantee_labels_settings();
 		} elseif ( 'food' === $current_section ) {
 			$settings = $this->get_food_settings();
 		} elseif ( 'price_labels' === $current_section ) {
@@ -742,6 +745,75 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 			array(
 				'type' => 'sectionend',
 				'id'   => 'unit_price_options',
+			),
+		);
+	}
+
+	protected function get_guarantee_labels_settings() {
+		return array(
+			array(
+				'type'  => 'title',
+				'title' => '',
+				'id'    => 'guarantee_labels_options',
+			),
+			array(
+				'title'   => __( 'Enable legal guarantee', 'woocommerce-germanized' ),
+				'desc'    => __( 'Enable the EU legal guarantee label.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'Disable this option if your shop does not need to show the label at all, e.g. virtual products/b2b only.', 'woocommerce-germanized' ) . '</div>',
+				'id'      => 'woocommerce_gzd_legal_guarantee_enabled',
+				'default' => 'yes',
+				'type'    => 'gzd_toggle',
+			),
+			array(
+				'title'             => __( 'Global display', 'woocommerce-germanized' ),
+				'desc'              => '<div class="wc-gzd-additional-desc">' . __( 'Choose location(s) where the harmonised notice on the legal guarantee of conformity should be displayed. Disable the default display options if you want to place the label manually, e.g. via shortcode, block, price label or custom code.', 'woocommerce-germanized' ) . '</div>',
+				'id'                => 'woocommerce_gzd_legal_guarantee_display_locations',
+				'class'             => 'wc-enhanced-select',
+				'type'              => 'multiselect',
+				'options'           => array(
+					'footer'                    => __( 'Footer', 'woocommerce-germanized' ),
+					'checkout'                  => __( 'Checkout', 'woocommerce-germanized' ),
+					'product_description_after' => __( 'Product description (after)', 'woocommerce-germanized' ),
+				),
+				'default'           => array( 'footer' ),
+				'custom_attributes' => array( 'data-show_if_woocommerce_gzd_legal_guarantee_enabled' => '' ),
+			),
+			array(
+				'title'             => __( 'Display variant', 'woocommerce-germanized' ),
+				'desc'              => '<div class="wc-gzd-additional-desc">' . __( 'Choose a default display variant for the legal guarantee label. Both preview and link options open a popover containing a larger version of the label on user interaction. Please note that, from a legal standpoint, the link option is not currently recommended.', 'woocommerce-germanized' ) . '</div>',
+				'id'                => 'woocommerce_gzd_legal_guarantee_default_display_variant',
+				'default'           => 'preview',
+				'type'              => 'select',
+				'options'           => wc_gzd_get_legal_guarantee_variants(),
+				'custom_attributes' => array( 'data-show_if_woocommerce_gzd_legal_guarantee_enabled' => '' ),
+			),
+			array(
+				'title'   => __( 'Enable GARAN label', 'woocommerce-germanized' ),
+				'desc'    => __( 'Enable the EU GARAN label.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'This label shows on a per-product basis. Make sure that any product applicable has a legal guarantee of > 24 months set, a manufacturer linked and a valid model id (GTIN, MPN or SKU). Disable this option if your shop does not need to show the label at all, e.g. virtual products/b2b only.', 'woocommerce-germanized' ) . '</div>',
+				'id'      => 'woocommerce_gzd_garan_label_enabled',
+				'default' => 'yes',
+				'type'    => 'gzd_toggle',
+			),
+			array(
+				'title'             => __( 'Display variant', 'woocommerce-germanized' ),
+				'desc'              => '<div class="wc-gzd-additional-desc">' . __( 'Choose a default display variant for the GARAN label. The nested option shows a preview version of the full label and opens a popover containing the full label on user interaction.', 'woocommerce-germanized' ) . '</div>',
+				'id'                => 'woocommerce_gzd_garan_label_default_display_variant',
+				'default'           => 'nested',
+				'type'              => 'select',
+				'options'           => wc_gzd_get_garan_label_variants(),
+				'custom_attributes' => array( 'data-show_if_woocommerce_gzd_garan_label_enabled' => '' ),
+			),
+			array(
+				'title'             => __( 'Model id', 'woocommerce-germanized' ),
+				'desc'              => '<div class="wc-gzd-additional-desc">' . __( 'Choose a default property that is being used to determine the GARAN label model id. If no valid model id is found, a fallback value is determined based on the GTIN, MPN, and SKU (in that order).', 'woocommerce-germanized' ) . '</div>',
+				'id'                => 'woocommerce_gzd_garan_label_default_model_id_property',
+				'default'           => 'gtin',
+				'type'              => 'select',
+				'options'           => wc_gzd_get_garan_label_model_id_properties(),
+				'custom_attributes' => array( 'data-show_if_woocommerce_gzd_garan_label_enabled' => '' ),
+			),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'guarantee_labels_options',
 			),
 		);
 	}

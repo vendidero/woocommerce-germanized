@@ -174,7 +174,8 @@ class WC_GZD_Emails {
 		add_filter( 'woocommerce_email_headers', array( $this, 'add_bcc_email_headers' ), 10, 4 );
 		add_filter( 'woocommerce_email_footer_text', array( $this, 'reset_email_instance' ), 1000 );
 
-		add_filter( 'woocommerce_email_attachments', array( $this, 'attach_product_warranties' ), 100, 3 );
+		add_filter( 'woocommerce_email_attachments', array( $this, 'build_attachments' ), 100, 3 );
+		add_filter( 'woocommerce_mail_callback_params', array( $this, 'enable_string_attachment_support' ), 100, 2 );
 
 		add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
 		add_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this, 'send_manual_order_confirmation' ), 10 );
@@ -306,31 +307,143 @@ class WC_GZD_Emails {
 		return apply_filters( 'woocommerce_gzd_email_plain_content', $content );
 	}
 
-	public function attach_product_warranties( $attachments, $mail_id, $object_in_email = false ) {
-		$warranty_email_ids = array_filter( (array) get_option( 'woocommerce_gzd_mail_attach_warranties', array() ) );
+	public function enable_string_attachment_support( $mail_args, $email ) {
+		if ( isset( $mail_args[4] ) && is_array( $mail_args[4] ) ) {
+			$string_attachments = array();
 
-		if ( $object_in_email && in_array( $mail_id, $warranty_email_ids, true ) ) {
-			$product_ids = array();
+			foreach ( $mail_args[4] as $key => $attachment ) {
+				if ( is_array( $attachment ) && isset( $attachment['filename'], $attachment['content'] ) ) {
+					$string_attachments[] = $attachment;
 
-			if ( is_a( $object_in_email, 'WC_Order' ) ) {
-				foreach ( $object_in_email->get_items( 'line_item' ) as $item ) {
-					$product_ids[] = $item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id();
-				}
-			} elseif ( is_a( $object_in_email, '\Vendidero\Shiptastic\Shipment' ) ) {
-				foreach ( $object_in_email->get_items() as $item ) {
-					$product_ids[] = $item->get_product_id();
+					unset( $mail_args[4][ $key ] );
 				}
 			}
 
-			$product_ids = apply_filters( 'woocommerce_gzd_product_warranties_email_product_ids', $product_ids, $object_in_email, $mail_id );
-			$product_ids = array_filter( array_unique( $product_ids ) );
+			if ( ! empty( $string_attachments ) ) {
+				add_filter(
+					'phpmailer_init',
+					function ( $phpmailer ) use ( $string_attachments, $email ) {
+						foreach ( $string_attachments as $attachment ) {
+							$attachment = wp_parse_args(
+								$attachment,
+								array(
+									'filename' => '',
+									'content'  => '',
+									'type'     => '',
+								)
+							);
 
-			if ( ! empty( $product_ids ) ) {
-				foreach ( $product_ids as $product_id ) {
-					if ( $gzd_product = wc_gzd_get_gzd_product( $product_id ) ) {
-						if ( $gzd_product->has_warranty() ) {
-							if ( ! in_array( $gzd_product->get_warranty_file(), $attachments, true ) ) {
-								$attachments[] = $gzd_product->get_warranty_file();
+							try {
+								$phpmailer->addStringAttachment( $attachment['content'], $attachment['filename'], 'base64', $attachment['type'] );
+							} catch ( \Exception $ex ) {
+								if ( ! apply_filters( 'woocommerce_email_log_enabled', true, $email->id, $email ) ) {
+									return;
+								}
+
+								$recipient = '' === $email->get_recipient() ? 'guest' : $email->get_recipient();
+
+								if ( ! empty( $recipient ) ) {
+									$labels = array_map(
+										function ( string $email ): string {
+											$user = get_user_by( 'email', trim( $email ) );
+											return $user instanceof WP_User ? $user->user_login : 'guest';
+										},
+										explode( ',', $recipient )
+									);
+
+									$recipient = implode( ', ', $labels );
+								}
+
+								$context = array(
+									'source'     => 'transactional-emails',
+									'email_type' => $email->id,
+									'status'     => 'failed',
+									'recipient'  => $recipient,
+								);
+
+								wc_get_logger()->log( WC_Log_Levels::NOTICE, sprintf( 'Error while adding string attachment %s to %s: %s', esc_html( $attachment['filename'] ), esc_html( $email->id ), wp_kses_post( $ex->getMessage() ) ), $context );
+							}
+						}
+
+						remove_all_filters( 'phpmailer_init', 9191 );
+					},
+					9191
+				);
+
+				add_action(
+					'woocommerce_email_sent',
+					function () {
+						remove_all_filters( 'phpmailer_init', 9191 );
+					}
+				);
+			}
+		}
+
+		return $mail_args;
+	}
+
+	/**
+	 * @param WC_Order|\Vendidero\Shiptastic\Shipment $object_in_email
+	 *
+	 * @return array
+	 */
+	protected function get_email_product_ids( $object_in_email ) {
+		$product_ids = array();
+
+		if ( is_a( $object_in_email, 'WC_Order' ) ) {
+			foreach ( $object_in_email->get_items( 'line_item' ) as $item ) {
+				$product_ids[] = $item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id();
+			}
+		} elseif ( is_a( $object_in_email, '\Vendidero\Shiptastic\Shipment' ) ) {
+			foreach ( $object_in_email->get_items() as $item ) {
+				$product_ids[] = $item->get_product_id();
+			}
+		}
+
+		return $product_ids;
+	}
+
+	public function build_attachments( $attachments, $mail_id, $object_in_email = false ) {
+		$warranty_email_ids  = array_filter( (array) get_option( 'woocommerce_gzd_mail_attach_warranties', array() ) );
+		$guarantee_email_ids = array_filter( (array) get_option( 'woocommerce_gzd_mail_attach_eu_guarantees', array() ) );
+
+		if ( $object_in_email ) {
+			$product_ids = array();
+
+			if ( in_array( $mail_id, $warranty_email_ids, true ) || in_array( $mail_id, $guarantee_email_ids, true ) ) {
+				$product_ids = $this->get_email_product_ids( $object_in_email );
+			}
+
+			if ( in_array( $mail_id, $warranty_email_ids, true ) && ! empty( $product_ids ) ) {
+				$product_ids = apply_filters( 'woocommerce_gzd_product_warranties_email_product_ids', $product_ids, $object_in_email, $mail_id );
+				$product_ids = array_filter( array_unique( $product_ids ) );
+
+				if ( ! empty( $product_ids ) ) {
+					foreach ( $product_ids as $product_id ) {
+						if ( $gzd_product = wc_gzd_get_gzd_product( $product_id ) ) {
+							if ( $gzd_product->has_warranty() ) {
+								if ( ! in_array( $gzd_product->get_warranty_file(), $attachments, true ) ) {
+									$attachments[] = $gzd_product->get_warranty_file();
+								}
+							}
+						}
+					}
+				}
+			}
+
+			if ( in_array( $mail_id, $guarantee_email_ids, true ) && ! empty( $product_ids ) ) {
+				$product_ids = apply_filters( 'woocommerce_gzd_product_eu_guarantees_email_product_ids', $product_ids, $object_in_email, $mail_id );
+				$product_ids = array_filter( array_unique( $product_ids ) );
+
+				if ( ! empty( $product_ids ) ) {
+					foreach ( $product_ids as $product_id ) {
+						if ( $gzd_product = wc_gzd_get_gzd_product( $product_id ) ) {
+							if ( $gzd_product->has_garan_label() ) {
+								$attachment = $gzd_product->get_garan_label_attachment( 'full' );
+
+								if ( $attachment ) {
+									$attachments[] = $attachment;
+								}
 							}
 						}
 					}
@@ -380,7 +493,7 @@ class WC_GZD_Emails {
 	 * @return mixed
 	 */
 	public function maybe_set_current_email_instance( $template, $template_name, $args ) {
-		if ( isset( $args['email'] ) && is_a( $args['email'], 'WC_Email' ) ) {
+		if ( is_array( $args ) && isset( $args['email'] ) && is_a( $args['email'], 'WC_Email' ) ) {
 			$this->current_email_instance = $args['email'];
 		}
 

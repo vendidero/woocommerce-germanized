@@ -1,7 +1,7 @@
 $desktop:  768px;
 $handheld: 568px;
 
-p.wc-gzd-additional-info:empty {
+p.wc-gzd-additional-info:empty, div.wc-gzd-additional-info:empty {
   display: none;
 }
 
@@ -20,6 +20,15 @@ p.wc-gzd-additional-info:empty {
 
 .wc-gzd-popover-wrapper {
   anchor-scope: --wc-gzd-popover-anchor;
+
+  .wc-gzd-popover-trigger {
+    display: inline-block;
+
+    img.wc-gzd-legal-guarantee-image-preview {
+      max-width: 250px;
+      min-width: 200px;
+    }
+  }
 }
 
 .wc-gzd-popover.wc-gzd-popover-hover {
@@ -29,24 +38,25 @@ p.wc-gzd-additional-info:empty {
   position-try-fallbacks: top, bottom, right, left;
 }
 
-.wc-gzd-garan-label-folded-svg, img.wc-gzd-garan-label-folded-image {
+.wc-gzd-garan-label-nested-svg, img.wc-gzd-garan-label-nested-image {
   max-width: 350px;
   min-width: 200px;
 }
 
-.wc-gzd-garan-label-folded {
-  a.wc-gzd-popover-trigger {
-    display: inline-block;
-  }
-}
-
-img.wc-gzd-garan-label-popover-image {
-  max-width: 600px;
+img.wc-gzd-popover-image {
+  max-width: 100%;
   min-width: 350px;
   width: 100%;
 }
 
+.wc-gzd-legal-guarantee-footer {
+  margin: 10px 0;
+  text-align: center;
+}
+
 .wc-gzd-popover {
+  max-height: 100vh;
+
   .wc-gzd-popover-header {
     display: flex;
     justify-content: flex-end;
@@ -57,11 +67,42 @@ img.wc-gzd-garan-label-popover-image {
       display: none;
     }
   }
+
+  .wc-gzd-popover-content {
+    img {
+      max-height: 90vh;
+    }
+  }
+
+  &.wc-gzd-popover-hover {
+    .wc-gzd-popover-content {
+      img {
+        max-width: none;
+      }
+    }
+
+    p.wc-gzd-popover-caption {
+      display: none;
+    }
+  }
+
+  p.wc-gzd-popover-caption {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
 }
 
 .wc-gzd-popover:popover-open {
   border-color: transparent;
   border-radius: 1rem;
+}
+
+.wc-gzd-legal-guarantee-global {
+  img.wc-gzd-legal-guarantee-label-image {
+    min-width: 250px;
+    max-width: 300px;
+  }
 }
 
 /**
@@ -243,11 +284,12 @@ body.theme-astra {
   margin-bottom: 0.7em;
 }
 
-.product p.wc-gzd-additional-info {
+.product p.wc-gzd-additional-info, .product div.wc-gzd-additional-info {
   margin-bottom: 0.5rem;
   font-size: 0.9em;
   clear: left;
 }
+
 .product .defect-description:not(:empty) {
   padding: .5em;
   border: 2px solid #4b4f58;

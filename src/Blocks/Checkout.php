@@ -236,7 +236,7 @@ final class Checkout {
 					$garan_label_html = '';
 
 					if ( $gzd_product = wc_gzd_get_product( $product ) ) {
-						$garan_label_html = $gzd_product->get_garan_label_html( 'folded' );
+						$garan_label_html = $gzd_product->get_garan_label_html( 'nested' );
 					}
 
 					return array(

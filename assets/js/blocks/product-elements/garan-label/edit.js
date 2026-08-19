@@ -39,7 +39,7 @@ const Edit = ( {
 
     const variants = {
         'full': __( 'Full', 'woocommerce-germanized' ),
-        'folded': __( 'Folded', 'woocommerce-germanized' ),
+        'nested': __( 'nested', 'woocommerce-germanized' ),
     };
 
     useEffect(

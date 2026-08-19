@@ -28,6 +28,7 @@ class WC_GZD_Shortcodes {
 			'gzd_vat_info'                       => __CLASS__ . '::gzd_vat_info',
 			'gzd_sale_info'                      => __CLASS__ . '::gzd_sale_info',
 			'gzd_complaints'                     => __CLASS__ . '::gzd_complaints',
+			'gzd_legal_guarantee'                => __CLASS__ . '::gzd_legal_guarantee',
 			'gzd_product_unit_price'             => __CLASS__ . '::gzd_product_unit_price',
 			'gzd_product_units'                  => __CLASS__ . '::gzd_product_units',
 			'gzd_product_delivery_time'          => __CLASS__ . '::gzd_product_delivery_time',
@@ -42,6 +43,7 @@ class WC_GZD_Shortcodes {
 			'gzd_product_deposit'                => __CLASS__ . '::gzd_product_deposit',
 			'gzd_product_power_supply'           => __CLASS__ . '::gzd_product_power_supply',
 			'gzd_product_garan_label'            => __CLASS__ . '::gzd_product_garan_label',
+			'gzd_product_legal_guarantee'        => __CLASS__ . '::gzd_product_legal_guarantee',
 			'gzd_product_deposit_packaging_type' => __CLASS__ . '::gzd_product_deposit_packaging_type',
 			'gzd_email_legal_page_attachments'   => __CLASS__ . '::gzd_email_legal_page_attachments',
 		);
@@ -307,7 +309,7 @@ class WC_GZD_Shortcodes {
 		$atts = wp_parse_args(
 			$atts,
 			array(
-				'variant' => 'folded',
+				'variant' => '',
 			)
 		);
 
@@ -317,9 +319,50 @@ class WC_GZD_Shortcodes {
 		 * @param string $html The output.
 		 * @param array $atts The shortcode arguments.
 		 *
-		 * @since 3.9.0
+		 * @since 4.1.0
 		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_garan_label_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_garan_label' ), $atts );
+	}
+
+	public static function gzd_product_legal_guarantee( $atts ) {
+		$atts = wp_parse_args(
+			$atts,
+			array(
+				'variant' => '',
+				'lang'    => '',
+			)
+		);
+
+		/**
+		 * Filter shortcode product EU legal guarantee label.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 4.1.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_legal_guarantee_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_legal_guarantee' ), $atts );
+	}
+
+	public static function gzd_legal_guarantee( $atts ) {
+		$atts = wp_parse_args(
+			$atts,
+			array(
+				'variant'  => '',
+				'lang'     => '',
+				'location' => '',
+			)
+		);
+
+		/**
+		 * Filter shortcode EU legal guarantee label.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 4.1.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_legal_guarantee_html', wc_get_template_html( 'global/legal-guarantee.php', $atts ), $atts );
 	}
 
 	public static function gzd_product_food( $atts, $content, $tag ) {
