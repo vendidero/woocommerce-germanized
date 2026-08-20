@@ -23,5 +23,5 @@ $location = isset( $location ) ? $location : '';
 $lang     = isset( $lang ) ? $lang : '';
 ?>
 <?php if ( wc_gzd_is_legal_guarantee_enabled() ) : ?>
-	<div class="wc-gzd-legal-guarantee wc-gzd-legal-guarantee-global <?php echo ( ! empty( $location ) ? esc_attr( 'wc-gzd-legal-guarantee-' . $location ) : '' ); ?>"><?php echo wc_gzd_kses_post_svg( wc_gzd_get_legal_guarantee_html( $variant, $lang ) ); ?></div>
+	<div class="wc-gzd-legal-guarantee wc-gzd-legal-guarantee-global <?php echo ( ! empty( $location ) ? esc_attr( 'wc-gzd-legal-guarantee-' . $location ) : '' ); ?>"><?php echo wc_gzd_kses_post_svg( wc_gzd_get_legal_guarantee_html( $variant, $lang, $location ) ); ?></div>
 <?php endif; ?>

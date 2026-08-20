@@ -93,6 +93,7 @@ class Shopmarks {
 					'default_filter'   => 'woocommerce_before_add_to_cart_form',
 					'default_priority' => 10,
 					'callback'         => 'woocommerce_gzd_template_single_legal_guarantee',
+					'default_enabled'  => false,
 				),
 				'garan_label'                => array(
 					'default_filter'   => 'woocommerce_before_add_to_cart_form',

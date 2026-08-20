@@ -9,6 +9,7 @@ import {
 } from '@woocommerce/shared-context';
 import { __, _x, sprintf } from '@wordpress/i18n';
 import { useStyleProps } from '@germanized/base-hooks';
+import { WC_GZD_ASSET_URL } from '@germanized/settings';
 import FormattedMonetaryAmount from '@germanized/base-components/formatted-monetary-amount';
 
 import GaranFullSvg from '../../../../images/garan-label/garan-label-full-sample.svg';
@@ -44,6 +45,7 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
         'product_safety_attachments_html': '',
         'safety_instructions_html': '',
         'garan_label_html': '',
+        'legal_guarantee_html': '',
     };
 
     const prices            = productData.prices;
@@ -155,6 +157,22 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
                 <img src={ garanLabelSrc } />
             </>
         );
+    } else if ( 'legal_guarantee' === labelTypeData ) {
+        if ( 'full' === props['variant'] || 'preview' === props['variant'] ) {
+            const maxWidth = 'full' === props['variant'] ? '100%' : '50%';
+
+            formattedPreview = (
+                <>
+                    <img style={{maxWidth: maxWidth}} src={ `${ WC_GZD_ASSET_URL }images/legal-guarantee/legal_guarantee_notice-EN.png` } />
+                </>
+            );
+        } else if ( 'link' === props['variant'] ) {
+            formattedPreview = (
+                <>
+                    <p><a href="#">{ __( 'Your legal guarantee rights', 'woocommerce-germanized' ) }</a></p>
+                </>
+            );
+        }
     }
 
     return {

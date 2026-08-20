@@ -1140,22 +1140,24 @@ function wc_gzd_get_garan_label_variants() {
 }
 
 function wc_gzd_is_garan_label_enabled() {
-	return 'yes' === get_option( 'woocommerce_gzd_garan_label_enabled', 'yes' );
+	return 'yes' === get_option( 'woocommerce_gzd_garan_label_enabled', 'no' );
 }
 
-function wc_gzd_get_garan_label_default_variant() {
-	$variant = get_option( 'woocommerce_gzd_garan_label_default_display_variant', 'nested' );
-	$options = wc_gzd_get_garan_label_variants();
+function wc_gzd_get_garan_label_variant( $variant = '', $location = '' ) {
+	$default_variant = get_option( 'woocommerce_gzd_garan_label_default_display_variant', 'nested' );
+	$options         = wc_gzd_get_garan_label_variants();
 
-	if ( ! array_key_exists( $variant, $options ) ) {
-		$variant = 'nested';
+	if ( ! array_key_exists( $default_variant, $options ) ) {
+		$default_variant = 'full';
 	}
 
-	return $variant;
+	$variant = empty( $variant ) ? $default_variant : $variant;
+
+	return apply_filters( 'woocommerce_gzd_garan_label_variant', ( array_key_exists( $variant, $options ) ? $variant : $default_variant ), $location );
 }
 
 function wc_gzd_is_legal_guarantee_enabled() {
-	return 'yes' === get_option( 'woocommerce_gzd_legal_guarantee_enabled', 'yes' );
+	return 'yes' === get_option( 'woocommerce_gzd_legal_guarantee_enabled', 'no' );
 }
 
 function wc_gzd_get_legal_guarantee_global_locations() {
@@ -1168,15 +1170,17 @@ function wc_gzd_get_legal_guarantee_global_locations() {
 	return $locations;
 }
 
-function wc_gzd_get_legal_guarantee_default_variant() {
-	$variant = get_option( 'woocommerce_gzd_legal_guarantee_default_display_variant', 'preview' );
-	$options = wc_gzd_get_legal_guarantee_variants();
+function wc_gzd_get_legal_guarantee_variant( $variant = '', $location = '' ) {
+	$default_variant = get_option( 'woocommerce_gzd_legal_guarantee_default_display_variant', 'preview' );
+	$options         = wc_gzd_get_legal_guarantee_variants();
 
-	if ( ! array_key_exists( $variant, $options ) ) {
-		$variant = 'preview';
+	if ( ! array_key_exists( $default_variant, $options ) ) {
+		$default_variant = 'preview';
 	}
 
-	return $variant;
+	$variant = empty( $variant ) ? $default_variant : $variant;
+
+	return apply_filters( 'woocommerce_gzd_legal_guarantee_variant', ( array_key_exists( $variant, $options ) ? $variant : $default_variant ), $location );
 }
 
 function wc_gzd_get_legal_guarantee_location_hook( $location ) {
@@ -1213,7 +1217,7 @@ function wc_gzd_get_legal_guarantee_location_hook( $location ) {
 			);
 		}
 	} elseif ( 'checkout' === $location ) {
-		if ( 'nested' === wc_gzd_get_legal_guarantee_default_variant() ) {
+		if ( 'link' === wc_gzd_get_legal_guarantee_variant( '', 'checkout' ) ) {
 			$hook = array(
 				'hook'     => 'woocommerce_checkout_before_terms_and_conditions',
 				'priority' => 15,
@@ -1258,8 +1262,8 @@ function wc_gzd_get_legal_guarantee_languages() {
 	return $available_languages;
 }
 
-function wc_gzd_get_legal_guarantee_html( $variant = '', $lang = '' ) {
-	$variant = array_key_exists( $variant, wc_gzd_get_legal_guarantee_variants() ) ? $variant : wc_gzd_get_legal_guarantee_default_variant();
+function wc_gzd_get_legal_guarantee_html( $variant = '', $lang = '', $location = '' ) {
+	$variant = wc_gzd_get_legal_guarantee_variant( $variant, $location );
 	$html    = '<div class="wc-gzd-legal-guarantee-label wc-gzd-legal-guarantee-label-' . esc_attr( $variant ) . ' ' . ( in_array( $variant, array( 'preview', 'link' ), true ) ? 'wc-gzd-popover-wrapper' : '' ) . '">';
 
 	if ( 'link' === $variant ) {

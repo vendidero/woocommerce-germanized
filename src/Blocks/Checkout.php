@@ -236,7 +236,7 @@ final class Checkout {
 					$garan_label_html = '';
 
 					if ( $gzd_product = wc_gzd_get_product( $product ) ) {
-						$garan_label_html = $gzd_product->get_garan_label_html( 'nested' );
+						$garan_label_html = $gzd_product->get_garan_label_html( 'nested', 'checkout' );
 					}
 
 					return array(
@@ -409,6 +409,12 @@ final class Checkout {
 					),
 				),
 			),
+			'needs_legal_guarantee'                      => array(
+				'description' => __( 'Whether the cart needs a EU legal guarantee label or not.', 'woocommerce-germanized' ),
+				'type'        => 'boolean',
+				'context'     => array( 'view', 'edit' ),
+				'readonly'    => true,
+			),
 			'shipping_costs_notice'                      => array(
 				'description' => __( 'Cart shipping costs notice.', 'woocommerce-germanized' ),
 				'type'        => 'string',
@@ -529,6 +535,7 @@ final class Checkout {
 
 		return array(
 			'applies_for_photovoltaic_system_vat_exempt' => wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption(),
+			'needs_legal_guarantee'                      => wc_gzd_cart_needs_legal_guarantee(),
 			'photovoltaic_system_law_details'            => wc_gzd_cart_get_photovoltaic_systems_law_details(),
 			'checkboxes'                                 => $checkboxes_for_api,
 			'shipping_costs_notice'                      => wc_gzd_get_shipping_costs_text(),

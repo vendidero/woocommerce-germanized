@@ -38,8 +38,9 @@ const Edit = ( {
     }
 
     const variants = {
+        'preview': __( 'Preview', 'woocommerce-germanized' ),
         'full': __( 'Full', 'woocommerce-germanized' ),
-        'nested': __( 'Nested', 'woocommerce-germanized' ),
+        'link': __( 'Link', 'woocommerce-germanized' ),
     };
 
     useEffect(

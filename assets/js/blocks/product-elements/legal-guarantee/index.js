@@ -16,8 +16,8 @@ const { ancestor, ...configuration } = sharedConfig;
 const blockConfig = {
     ...configuration,
     apiVersion: 3,
-    title: __( 'EU GARAN label', 'woocommerce-germanized' ),
-    description: __( 'Inserts the EU GARAN label for the product in case available.', 'woocommerce-germanized' ),
+    title: __( 'EU Legal Guarantee', 'woocommerce-germanized' ),
+    description: __( 'Inserts the legal guarantee label for the product in case available.', 'woocommerce-germanized' ),
     usesContext: [ 'query', 'queryId', 'postId' ],
     icon: { src: <Icon
             icon={ info }
@@ -27,7 +27,7 @@ const blockConfig = {
         ...sharedConfig.supports,
         ...( {
             __experimentalSelector:
-                '.wp-block-woocommerce-gzd-product-garan-label .wc-gzd-block-components-product-garan-label',
+                '.wp-block-woocommerce-gzd-product-legal-guarantee .wc-gzd-block-components-product-legal-guarantee',
         } )
     },
     attributes: {
@@ -35,11 +35,11 @@ const blockConfig = {
         ...( {
             variant: {
                 type: "string",
-                default: "nested"
+                default: "preview"
             }
         } )
     },
     edit,
 };
 
-registerBlockType( 'woocommerce-germanized/product-garan-label', blockConfig );
+registerBlockType( 'woocommerce-germanized/product-legal-guarantee', blockConfig );

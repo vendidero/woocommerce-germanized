@@ -919,6 +919,8 @@ if ( ! function_exists( 'woocommerce_gzd_add_variation_options' ) ) {
 					'safety_instructions'            => $gzd_product->get_formatted_safety_instructions(),
 					'wireless_electronic_device'     => $gzd_product->is_wireless_electronic_device() ? 'yes' : 'no',
 					'power_supply'                   => $gzd_product->get_power_supply_html(),
+					'garan_label'                    => $gzd_product->get_garan_label_html(),
+					'legal_guarantee'                => $gzd_product->get_legal_guarantee_html(),
 					'is_food'                        => $gzd_product->is_food() ? 'yes' : 'no',
 					'food_description'               => $gzd_product->is_food() ? $gzd_product->get_formatted_food_description() : '',
 					'food_place_of_origin'           => $gzd_product->is_food() ? $gzd_product->get_formatted_food_place_of_origin() : '',
@@ -1502,7 +1504,6 @@ if ( ! function_exists( 'woocommerce_gzd_template_mini_cart_maybe_remove_hooks' 
 if ( ! function_exists( 'woocommerce_gzd_template_product_blocks' ) ) {
 
 	function woocommerce_gzd_template_product_blocks( $price_html, $product ) {
-
 		$post = get_post();
 
 		if ( $post && wc_gzd_post_has_woocommerce_block( $post->post_content ) ) {
@@ -1556,6 +1557,10 @@ if ( ! function_exists( 'woocommerce_gzd_template_add_price_html_suffixes' ) ) {
 				'delivery_time_info'     => array(
 					'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_delivery_time", true ) ),
 					'priority' => 70,
+				),
+				'garan_label'            => array(
+					'show'     => wc_string_to_bool( get_option( "woocommerce_gzd_display_{$location}_garan_label", true ) ),
+					'priority' => 80,
 				),
 			)
 		);

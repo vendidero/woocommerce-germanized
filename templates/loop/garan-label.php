@@ -23,5 +23,5 @@ global $product;
 $variant = isset( $variant ) ? $variant : '';
 ?>
 <?php if ( wc_gzd_get_product( $product )->has_garan_label() ) : ?>
-	<div class="wc-gzd-garan-label wc-gzd-additional-info wc-gzd-additional-info-loop"><?php echo wc_gzd_kses_post_svg( wc_gzd_get_product( $product )->get_garan_label_html( $variant ) ); ?></div>
+	<div class="wc-gzd-garan-label wc-gzd-additional-info wc-gzd-additional-info-loop"><?php echo wc_gzd_kses_post_svg( wc_gzd_get_product( $product )->get_garan_label_html( $variant, 'product_loop' ) ); ?></div>
 <?php endif; ?>

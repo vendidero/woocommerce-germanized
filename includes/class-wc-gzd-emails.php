@@ -432,8 +432,9 @@ class WC_GZD_Emails {
 			}
 
 			if ( in_array( $mail_id, $guarantee_email_ids, true ) && ! empty( $product_ids ) ) {
-				$product_ids = apply_filters( 'woocommerce_gzd_product_eu_guarantees_email_product_ids', $product_ids, $object_in_email, $mail_id );
-				$product_ids = array_filter( array_unique( $product_ids ) );
+				$product_ids             = apply_filters( 'woocommerce_gzd_product_eu_guarantees_email_product_ids', $product_ids, $object_in_email, $mail_id );
+				$product_ids             = array_filter( array_unique( $product_ids ) );
+				$include_legal_guarantee = false;
 
 				if ( ! empty( $product_ids ) ) {
 					foreach ( $product_ids as $product_id ) {
@@ -445,7 +446,17 @@ class WC_GZD_Emails {
 									$attachments[] = $attachment;
 								}
 							}
+
+							if ( $gzd_product->needs_legal_guarantee() ) {
+								$include_legal_guarantee = true;
+							}
 						}
+					}
+				}
+
+				if ( apply_filters( 'woocommerce_gzd_attach_legal_guarantee_to_email', $include_legal_guarantee, $mail_id, $object_in_email ) ) {
+					if ( $path = wc_gzd_get_legal_guarantee_pdf_path( apply_filters( 'woocommerce_gzd_legal_guarantee_email_attachment_lang', '', $mail_id, $object_in_email ) ) ) {
+						$attachments[] = $path;
 					}
 				}
 			}
