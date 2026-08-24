@@ -504,6 +504,32 @@ final class Checkout {
 					),
 				),
 			),
+			'direct_debit'                               => array(
+				'description' => __( 'Direct debit customer data.', 'woocommerce-germanized' ),
+				'type'        => 'object',
+				'context'     => array( 'view', 'edit' ),
+				'readonly'    => true,
+				'properties'  => array(
+					'holder' => array(
+						'description' => __( 'Account Holder', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+					'iban'   => array(
+						'description' => __( 'IBAN', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+					'bic'    => array(
+						'description' => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+				),
+			),
 		);
 	}
 
@@ -539,6 +565,11 @@ final class Checkout {
 			'photovoltaic_system_law_details'            => wc_gzd_cart_get_photovoltaic_systems_law_details(),
 			'checkboxes'                                 => $checkboxes_for_api,
 			'shipping_costs_notice'                      => wc_gzd_get_shipping_costs_text(),
+      'direct_debit'                               => array(
+					'holder' => '',
+					'iban'   => '',
+					'bic'    => '',
+      )
 		);
 	}
 

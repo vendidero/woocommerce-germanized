@@ -66,6 +66,14 @@ class WC_GZD_Compatibility_WooCommerce_Subscriptions extends WC_GZD_Compatibilit
 
 		add_filter( 'woocommerce_gzd_enable_force_pay_order', array( $this, 'stop_forced_redirect' ), 10, 2 );
 		add_filter( 'wcs_place_subscription_order_text', array( $this, 'override_order_button_text' ), 10 );
+
+		add_filter( 'woocommerce_gzd_customer_double_opt_in_supported_user_roles', array( $this, 'register_doi_role' ) );
+	}
+
+	public function register_doi_role( $user_roles ) {
+		$user_roles[] = 'subscriber';
+
+		return $user_roles;
 	}
 
 	public function override_order_button_text( $text ) {

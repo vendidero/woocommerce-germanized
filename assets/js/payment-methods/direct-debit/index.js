@@ -10,7 +10,7 @@ import {
     ValidatedTextInput,
     ValidatedTextInputHandle,
 } from '@woocommerce/blocks-checkout';
-import { useDispatch, useSelect } from '@wordpress/data';
+import {dispatch, select, useDispatch, useSelect} from '@wordpress/data';
 import { CHECKOUT_STORE_KEY, PAYMENT_STORE_KEY } from '@woocommerce/block-data';
 
 const settings = getPaymentMethodData( 'direct-debit', {} );
@@ -38,7 +38,8 @@ const DirectDebitForm = ( {
   billing,
   eventRegistration,
   emitResponse,
-  components
+  components,
+  cartData
 } ) => {
     const {
         values
@@ -50,20 +51,18 @@ const DirectDebitForm = ( {
         };
     }, [] );
 
+    useEffect( () => {
+        const gzdData = cartData['extensions'].hasOwnProperty( 'woocommerce-germanized' ) ? cartData['extensions']['woocommerce-germanized'] : {};
+        const debitData = gzdData.hasOwnProperty( 'direct_debit' ) ? gzdData['direct_debit'] : { 'holder': '', 'iban': '', 'bic': '' };
+
+        values['direct_debit_account_holder'] = debitData['holder'];
+        values['direct_debit_account_iban'] = debitData['iban'];
+        values['direct_debit_account_bic'] = debitData['bic'];
+    }, [] );
+
     const {
         __internalSetPaymentMethodData
     } = useDispatch( PAYMENT_STORE_KEY );
-
-    const { extensionData } = useSelect(
-        ( select ) => {
-            const store = select( CHECKOUT_STORE_KEY );
-            const extensionData = store.getExtensionData();
-
-            return {
-                extensionData: extensionData.hasOwnProperty( 'woocommerce-germanized' ) ? extensionData['woocommerce-germanized'] : {},
-            };
-        }
-    );
 
     const fields = [
         {

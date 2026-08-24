@@ -113,6 +113,8 @@
         <key name="woocommerce_customer_new_account_activation_settings">
             <key name="subject" />
             <key name="heading" />
+            <key name="subject_email_update" />
+            <key name="heading_email_update" />
             <key name="additional_content" />
         </key>
         <key name="woocommerce_customer_sepa_direct_debit_mandate_settings">

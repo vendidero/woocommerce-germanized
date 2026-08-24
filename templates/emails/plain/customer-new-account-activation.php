@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 2.0.1
+ * @version 4.1.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -22,7 +22,11 @@ echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
 echo esc_html( wp_strip_all_tags( $email_heading ) );
 echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 
-echo sprintf( esc_html__( 'Thanks for creating an account on %s. Please follow the activation link to activate your account:', 'woocommerce-germanized' ), esc_html( $blogname ) ) . "\n\n";
+if ( $is_email_change ) {
+	echo sprintf( esc_html__( 'If you have changed your account\'s email address on %s to this one, please click on the confirmation link below:', 'woocommerce-germanized' ), esc_html( $blogname ) ) . "\n\n";
+} else {
+	echo sprintf( esc_html__( 'Thanks for creating an account on %s. Please follow the activation link to activate your account:', 'woocommerce-germanized' ), esc_html( $blogname ) ) . "\n\n";
+}
 
 echo "\n----------------------------------------\n\n";
 
@@ -31,7 +35,7 @@ echo esc_url( $user_activation_url ) . "\n\n";
 echo "\n----------------------------------------\n\n";
 
 // Only send the set new password link if the user hasn't set their password during sign-up.
-if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) && $password_generated && $set_password_url ) {
+if ( ! $is_email_change && 'yes' === get_option( 'woocommerce_registration_generate_password' ) && $password_generated && $set_password_url ) {
 	/* translators: URL follows */
 	echo esc_html__( 'To set your password, visit the following address: ', 'woocommerce-germanized' ) . "\n\n";
 	echo esc_html( $set_password_url ) . "\n\n";

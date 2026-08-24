@@ -73,28 +73,26 @@ class WC_GZD_Admin_Customer {
 		if ( ! current_user_can( 'manage_woocommerce' ) || ! WC_GZD_Customer_Helper::instance()->enable_double_opt_in_for_user( $user ) || 'yes' !== get_option( 'woocommerce_gzd_customer_activation' ) ) {
 			return;
 		}
-		if ( current_user_can( 'edit_user', $user->ID ) ) {
-			?>
-			<table class="form-table">
-				<tbody>
-				<tr>
-					<th>
-						<label for="woocommerce_activation"><?php esc_html_e( 'Double opt in', 'woocommerce-germanized' ); ?></label>
-					</th>
-					<td>
-						<label for="woocommerce_activation">
-							<input name="_woocommerce_activation" type="checkbox" id="_woocommerce_activation" value="1" <?php checked( wc_gzd_is_customer_activated( $user->ID ), 1 ); ?> <?php echo wc_gzd_is_customer_activated( $user->ID ) ? 'disabled="disabled"' : ''; ?> />
-							<?php esc_html_e( 'Yes, customer opted in', 'woocommerce-germanized' ); ?>
-						</label>
-						<?php if ( ! wc_gzd_is_customer_activated( $user->ID ) ) : ?>
-							<br/> <a class="wc-gzd-resend-activation-link button button-secondary" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'gzd-resend-activation' => 'yes' ) ), 'resend-activation-link' ) ); ?>"><?php esc_html_e( 'Resend activation link', 'woocommerce-germanized' ); ?></a>
-						<?php endif; ?>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-			<?php
-		}
+		?>
+		<table class="form-table">
+			<tbody>
+			<tr>
+				<th>
+					<label for="_woocommerce_activation"><?php esc_html_e( 'Double opt in', 'woocommerce-germanized' ); ?></label>
+				</th>
+				<td>
+					<label for="_woocommerce_activation">
+						<input name="_woocommerce_activation" type="checkbox" id="_woocommerce_activation" value="1" <?php checked( wc_gzd_is_customer_activated( $user->ID ), 1 ); ?> <?php echo wc_gzd_is_customer_activated( $user->ID ) ? 'disabled="disabled"' : ''; ?> />
+						<?php esc_html_e( 'Yes, customer opted in', 'woocommerce-germanized' ); ?>
+					</label>
+					<?php if ( ! wc_gzd_is_customer_activated( $user->ID ) ) : ?>
+						<br/> <a class="wc-gzd-resend-activation-link button button-secondary" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'gzd-resend-activation' => 'yes' ) ), 'resend-activation-link' ) ); ?>"><?php esc_html_e( 'Resend activation link', 'woocommerce-germanized' ); ?></a>
+					<?php endif; ?>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<?php
 	}
 
 	/**
@@ -103,11 +101,10 @@ class WC_GZD_Admin_Customer {
 	 * @param int $user_id
 	 */
 	public function profile_save_activation_field( $user_id ) {
-		if ( current_user_can( 'edit_user', $user_id ) ) {
-			$user = get_userdata( $user_id );
-
+		if ( current_user_can( 'manage_woocommerce' ) ) {
 			if ( isset( $_POST['_woocommerce_activation'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 				delete_user_meta( $user_id, '_woocommerce_activation' );
+				delete_user_meta( $user_id, '_woocommerce_gzd_pending_email_change' );
 			}
 		}
 	}
