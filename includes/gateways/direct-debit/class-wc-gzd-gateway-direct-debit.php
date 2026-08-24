@@ -125,14 +125,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'products',
 		);
 
-		if ( $this->get_option( 'enabled' ) === 'yes' && ! $this->supports_encryption() ) {
-			ob_start();
-			include_once 'views/html-encryption-notice.php';
-			$notice = ob_get_clean();
-
-			$this->method_description .= $notice;
-		}
-
 		// Force disabling remember account data if encryption is not supported
 		if ( ! $this->supports_encryption() ) {
 			$this->remember = 'no';
@@ -1016,7 +1008,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * Initialise Gateway Settings Form Fields
 	 */
 	public function init_form_fields() {
-
 		$this->form_fields = array(
 			'enabled'                       => array(
 				'title'   => __( 'Enable/Disable', 'woocommerce-germanized' ),
@@ -1128,11 +1119,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				'description' => __( 'This will lead to masked IBANs within emails (replaced by *). All but last 4 digits will be masked.', 'woocommerce-germanized' ),
 				'default'     => 'yes',
 			),
-
 		);
 
 		if ( $this->supports_encryption() ) {
-
 			$this->form_fields = array_merge(
 				$this->form_fields,
 				array(
@@ -1145,12 +1134,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 					),
 				)
 			);
-
 		}
 	}
 
 	public function get_user_account_data( $user_id = '' ) {
-
 		if ( empty( $user_id ) ) {
 			$user_id = get_current_user_id();
 		}
@@ -1178,7 +1165,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * Payment form on checkout page
 	 */
 	public function payment_fields() {
-
 		if ( $description = $this->get_description() ) {
 			echo wp_kses_post( wpautop( wptexturize( $description ) ) );
 		}
@@ -1417,15 +1403,27 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function maybe_encrypt( $to_encrypt ) {
 		if ( $this->supports_encryption() ) {
-			return WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->encrypt( $to_encrypt );
+			$encrypted = WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->encrypt( $to_encrypt );
+
+			if ( ! is_wp_error( $encrypted ) ) {
+				$to_encrypt = $encrypted;
+			}
 		}
 
 		return $to_encrypt;
 	}
 
 	public function maybe_decrypt( $to_decrypt ) {
-		if ( $this->supports_encryption() ) {
+		if ( $this->supports_encryption() && strlen( $to_decrypt ) >= 40 ) {
 			$decrypted = WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->decrypt( $to_decrypt );
+
+			if ( is_wp_error( $decrypted ) ) {
+				if ( $logger = wc_get_logger() ) {
+					$logger->error( $decrypted->get_error_message(), array( 'source' => 'wc-gzd-direct-debit-encryption' ) );
+				}
+
+				return $to_decrypt;
+			}
 
 			// Maxlength of IBAN is 30 - seems like we have an encrypted string (cannot be decrypted, maybe key changed)
 			if ( strlen( $decrypted ) > 40 ) {
@@ -1439,21 +1437,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function supports_encryption() {
-
-		global $wp_version;
-
-		if ( version_compare( phpversion(), '5.4', '<' ) ) {
-			return false;
-		}
-
-		if ( ! extension_loaded( 'openssl' ) ) {
-			return false;
-		}
-
-		if ( version_compare( $wp_version, '4.4', '<' ) ) {
-			return false;
-		}
-
 		require_once WC_GERMANIZED_ABSPATH . 'includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit-encryption-helper.php';
 
 		if ( ! WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->is_configured() ) {
