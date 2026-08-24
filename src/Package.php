@@ -84,4 +84,14 @@ class Package {
 
 		return version_compare( $woo_version, '8.2.0', '>=' );
 	}
+
+	public static function has_email_improvements_enabled() {
+		$is_enabled = false;
+
+		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+			$is_enabled = \Automattic\WooCommerce\Utilities\FeaturesUtil::feature_is_enabled( 'email_improvements' );
+		}
+
+		return $is_enabled;
+	}
 }

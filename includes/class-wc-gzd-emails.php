@@ -574,16 +574,16 @@ class WC_GZD_Emails {
 		}
 	}
 
+	public function get_email_button_template() {
+		return version_compare( \Vendidero\Germanized\PluginsHelper::get_plugin_version( 'woocommerce' ), '11.0', '>=' ) ? 'emails/email-button.php' : 'emails/email-button-legacy.php';
+	}
+
 	public function print_processing_email_text( $order ) {
-		$email_improvements_enabled = false;
+		$email_improvements_enabled = \Vendidero\Germanized\Package::has_email_improvements_enabled();
 		$processing_text            = $this->get_processing_email_text( $order );
 
 		if ( ! $processing_text ) {
 			return;
-		}
-
-		if ( class_exists( 'Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
-			$email_improvements_enabled = Automattic\WooCommerce\Utilities\FeaturesUtil::feature_is_enabled( 'email_improvements' );
 		}
 
 		/**
