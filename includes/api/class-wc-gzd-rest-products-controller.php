@@ -285,6 +285,12 @@ class WC_GZD_REST_Products_Controller {
 			'default'     => '',
 			'context'     => array( 'view', 'edit' ),
 		);
+		$schema_properties['guarantee_length']                = array(
+			'description' => __( 'Guarantee length (months)', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'default'     => '',
+			'context'     => array( 'view', 'edit' ),
+		);
 		$schema_properties['gtin']                            = array(
 			'description' => __( 'GTIN', 'woocommerce-germanized' ),
 			'type'        => 'string',
@@ -335,12 +341,12 @@ class WC_GZD_REST_Products_Controller {
 		);
 		$schema_properties['device_charging_watt_min']        = array(
 			'description' => __( 'Minimum power for charging the device.', 'woocommerce-germanized' ),
-			'type'        => 'text',
+			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
 		);
 		$schema_properties['device_charging_watt_max']        = array(
 			'description' => __( 'Power necessary to reach the maximum charging speed of the device.', 'woocommerce-germanized' ),
-			'type'        => 'text',
+			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
 		);
 		$schema_properties['photovoltaic_system']             = array(
@@ -684,6 +690,11 @@ class WC_GZD_REST_Products_Controller {
 			'type'        => 'string',
 			'context'     => array( 'view', 'edit' ),
 		);
+		$schema_properties['variations']['items']['properties']['guarantee_length']         = array(
+			'description' => __( 'Guarantee length (months)', 'woocommerce-germanized' ),
+			'type'        => 'string',
+			'context'     => array( 'view', 'edit' ),
+		);
 		$schema_properties['variations']['items']['properties']['gtin']                     = array(
 			'description' => __( 'GTIN', 'woocommerce-germanized' ),
 			'type'        => 'string',
@@ -932,6 +943,10 @@ class WC_GZD_REST_Products_Controller {
 			}
 		} else {
 			$data['_warranty_attachment_id'] = $gzd_product->get_warranty_attachment_id();
+		}
+
+		if ( isset( $request['guarantee_length'] ) ) {
+			$data['_guarantee_length'] = '' === $request['guarantee_length'] ? '' : absint( $request['guarantee_length'] );
 		}
 
 		/**
@@ -1213,6 +1228,8 @@ class WC_GZD_REST_Products_Controller {
 		$data['differential_taxation'] = $gzd_product->is_differential_taxed( $context );
 
 		$data['warranty_attachment_id'] = $gzd_product->get_warranty_attachment_id( $context );
+
+		$data['guarantee_length'] = $gzd_product->get_guarantee_length( $context );
 
 		// Is food?
 		$data['is_food'] = $gzd_product->is_food( $context );

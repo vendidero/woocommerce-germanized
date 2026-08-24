@@ -606,6 +606,55 @@ function wc_gzd_cart_product_deposit_packaging_type( $title, $cart_item, $cart_i
 	return $title;
 }
 
+function wc_gzd_cart_product_garan_label( $title, $cart_item, $cart_item_key = '' ) {
+	$garan_label = '';
+	$echo        = false;
+
+	if ( is_array( $title ) && isset( $title['data'] ) ) {
+		$cart_item     = $title;
+		$cart_item_key = $cart_item;
+		$title         = '';
+		$echo          = true;
+	} elseif ( is_numeric( $title ) && wc_gzd_is_checkout_action() && is_a( $cart_item, 'WC_Order_Item_Product' ) ) {
+		$echo          = true;
+		$cart_item_key = $title;
+		$title         = '';
+	}
+
+	if ( is_array( $cart_item ) && isset( $cart_item['data'] ) ) {
+		$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+
+		if ( is_a( $product, 'WC_Product' ) && wc_gzd_get_product( $product )->has_garan_label() ) {
+			$garan_label = wc_gzd_get_gzd_product( $product )->get_garan_label_html( 'nested', 'cart' );
+		}
+	}
+
+	/**
+	 * Filter that allows adjusting the EU GARAN label HTML content before outputting within cart.
+	 *
+	 * @param string $garan_label_html The HTML content.
+	 * @param array  $cart_item The cart item data.
+	 * @param string $cart_item_key The cart item key.
+	 *
+	 * @since 3.7.3
+	 */
+	$garan_label = apply_filters( 'woocommerce_gzd_cart_garan_label_html', $garan_label, $cart_item, $cart_item_key );
+
+	/**
+	 * Remove unnecessary whitespace + wrapper as a tweak to prevent the current mini cart impl to trim the output.
+	 */
+	if ( ! empty( $garan_label ) ) {
+		$garan_label = preg_replace( '~>\s+<~', '><', $garan_label );
+		$title      .= $garan_label;
+	}
+
+	if ( $echo ) {
+		echo wc_gzd_kses_post_svg( $title );
+	}
+
+	return $title;
+}
+
 /**
  * Appends product units live data (while checkout) or order meta to product name
  *
@@ -669,6 +718,37 @@ function wc_gzd_cart_product_units( $title, $cart_item, $cart_item_key = '' ) {
 
 function wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption( $items = false ) {
 	return apply_filters( 'woocommerce_gzd_cart_applies_for_photovoltaic_system_vat_exemption', wc_gzd_cart_customer_applies_for_photovoltaic_system_vat_exemption() && wc_gzd_cart_contains_photovoltaic_system( $items ) );
+}
+
+function wc_gzd_cart_needs_legal_guarantee( $items = false ) {
+	$items                 = $items ? (array) $items : WC()->cart->get_cart();
+	$needs_legal_guarantee = false;
+
+	if ( ! empty( $items ) ) {
+		foreach ( $items as $cart_item_key => $values ) {
+			$_product = false;
+
+			if ( isset( $values['data'] ) ) {
+				$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+			}
+
+			if ( $_product && wc_gzd_get_product( $_product )->needs_legal_guarantee() ) {
+				$needs_legal_guarantee = true;
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Determines whether a cart needs a EU legal guarantee label or not.
+	 *
+	 * @param bool $needs_legal_guarantee Whether the cart includes an item with legal guarantee or not.
+	 * @param array $items The cart items.
+	 *
+	 * @since 4.1.0
+	 *
+	 */
+	return apply_filters( 'woocommerce_gzd_cart_needs_legal_guarantee', $needs_legal_guarantee, $items );
 }
 
 function wc_gzd_cart_get_photovoltaic_systems_law_details( $args = array() ) {

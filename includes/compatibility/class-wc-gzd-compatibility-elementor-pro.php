@@ -316,6 +316,8 @@ class WC_GZD_Compatibility_Elementor_Pro extends WC_GZD_Compatibility {
 			'manufacturer'           => 'WC_GZD_Elementor_Widget_Product_Manufacturer',
 			'safety_attachments'     => 'WC_GZD_Elementor_Widget_Product_Safety_Attachments',
 			'safety_instructions'    => 'WC_GZD_Elementor_Widget_Product_Safety_Instructions',
+			'garan_label'            => 'WC_GZD_Elementor_Widget_Product_Garan_Label',
+			'legal_guarantee'        => 'WC_GZD_Elementor_Widget_Product_Legal_Guarantee',
 		);
 	}
 

@@ -115,6 +115,16 @@ class WC_GZD_Product {
 		return $this->get_prop( 'warranty_attachment_id', $context );
 	}
 
+	public function get_guarantee_length( $context = 'view' ) {
+		$length = $this->get_prop( 'guarantee_length', $context );
+
+		if ( 'view' === $context ) {
+			$length = '' === $length ? 0 : absint( $length );
+		}
+
+		return $length;
+	}
+
 	public function get_gtin( $context = 'view' ) {
 		$gtin = $this->get_prop( 'ts_gtin', $context );
 
@@ -124,7 +134,7 @@ class WC_GZD_Product {
 		if ( 'view' === $context && is_callable( array( $this->child, 'get_global_unique_id' ) ) ) {
 			$wc_core_gtin = $this->child->get_global_unique_id();
 
-			if ( ! empty( $wc_gtin ) ) {
+			if ( ! empty( $wc_core_gtin ) ) {
 				$gtin = $wc_core_gtin;
 			}
 		}
@@ -1064,6 +1074,17 @@ class WC_GZD_Product {
 		$this->warranty_attachment = false;
 	}
 
+	public function set_guarantee_length( $length ) {
+		if ( '' !== $length ) {
+			/**
+			 * Round to 6 month/half year only
+			 */
+			$length = round( absint( $length ) / 6 ) * 6;
+		}
+
+		$this->set_prop( 'guarantee_length', $length );
+	}
+
 	public function set_gtin( $gtin ) {
 		$this->set_prop( 'ts_gtin', $gtin );
 	}
@@ -1712,6 +1733,132 @@ class WC_GZD_Product {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function has_garan_label() {
+		return apply_filters( 'woocommerce_gzd_product_has_garan_label', ( wc_gzd_is_garan_label_enabled() && ! $this->get_wc_product()->is_virtual() && $this->get_guarantee_length() > 24 && $this->get_manufacturer() && $this->get_garan_label_model_id() ), $this );
+	}
+
+	public function needs_legal_guarantee() {
+		return apply_filters( 'woocommerce_gzd_product_needs_legal_guarantee', ( wc_gzd_is_legal_guarantee_enabled() && ! $this->get_wc_product()->is_virtual() ), $this );
+	}
+
+	public function get_garan_label_model_id() {
+		$model_id         = '';
+		$default_property = get_option( 'woocommerce_gzd_garan_label_default_model_id_property', 'gtin' );
+
+		if ( ! array_key_exists( $default_property, wc_gzd_get_garan_label_model_id_properties() ) ) {
+			$default_property = 'gtin';
+		}
+
+		if ( 'gtin' === $default_property ) {
+			$model_id = $this->get_gtin();
+		} elseif ( 'mpn' === $default_property ) {
+			$model_id = $this->get_mpn();
+		} elseif ( 'sku' === $default_property ) {
+			$model_id = $this->get_wc_product()->get_sku();
+		} elseif ( has_filter( "woocommerce_gzd_product_get_garan_label_default_model_id_{$default_property}" ) ) {
+			$model_id = apply_filters( "woocommerce_gzd_product_get_garan_label_default_model_id_{$default_property}", $model_id, $this );
+		}
+
+		if ( empty( $model_id ) ) {
+			if ( has_filter( 'woocommerce_gzd_product_get_garan_label_fallback_model_id' ) ) {
+				$model_id = apply_filters( 'woocommerce_gzd_product_get_garan_label_fallback_model_id', $model_id, $this );
+			} elseif ( $this->get_gtin() ) {
+				$model_id = $this->get_gtin();
+			} elseif ( $this->get_mpn() ) {
+				$model_id = $this->get_mpn();
+			} else {
+				$model_id = $this->get_wc_product()->get_sku();
+			}
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_get_garan_label_model_id', $model_id, $this );
+	}
+
+	public function get_garan_label_attachment( $variant = 'full' ) {
+		if ( ! $this->has_garan_label() ) {
+			return false;
+		}
+
+		$garan_label_svg = $this->get_garan_label_svg( $variant );
+
+		if ( ! $garan_label_svg ) {
+			return false;
+		}
+
+		return apply_filters(
+			'woocommerce_gzd_product_garan_label_attachment',
+			array(
+				'filename' => sanitize_file_name( "GARAN-{$this->get_id()}-{$this->get_wc_product()->get_title()}.svg" ),
+				'content'  => $this->get_garan_label_svg( $variant ),
+			),
+			$this,
+			$variant
+		);
+	}
+
+	protected function get_garan_label_args() {
+		return array(
+			'guarantee_length' => wc_gzd_garan_label_guarantee_to_years( $this->get_guarantee_length() ),
+			'model_id'         => $this->get_garan_label_model_id(),
+			'brand_name'       => $this->get_manufacturer()->get_garan_label_name(),
+		);
+	}
+
+	public function get_garan_label_svg( $variant = 'full', $keep_xml_header = true ) {
+		if ( ! $this->has_garan_label() ) {
+			return false;
+		}
+
+		return wc_gzd_get_garan_label_svg(
+			array_merge( $this->get_garan_label_args(), array( 'keep_xml_header' => $keep_xml_header ) ),
+			$variant
+		);
+	}
+
+	public function get_garan_label_url( $variant = 'full' ) {
+		return trailingslashit( get_rest_url() ) . "wc/store/v1/products/{$this->get_id()}/garan-label.svg?variant={$variant}";
+	}
+
+	public function get_garan_label_html( $variant = '', $location = 'product' ) {
+		if ( ! $this->has_garan_label() ) {
+			return '';
+		}
+
+		$variant = wc_gzd_get_garan_label_variant( $variant, $location );
+		$html    = '<div class="wc-gzd-garan-label wc-gzd-garan-label-' . esc_attr( $variant ) . ' ' . ( 'nested' === $variant ? 'wc-gzd-popover-wrapper' : '' ) . '">';
+
+		if ( 'nested' === $variant ) {
+			$popover_html = wc_get_template_html(
+				'global/popover.php',
+				array(
+					'popover_description'  => __( 'EU GARAN label', 'woocommerce-germanized' ),
+					'popover_fallback_url' => $this->get_garan_label_url( 'full' ),
+					'popover_html'         => '<img class="wc-gzd-garan-label-popover-image wc-gzd-popover-image" src="' . esc_url( $this->get_garan_label_url( 'full' ) ) . '" alt="' . esc_attr( __( 'EU GARAN label', 'woocommerce-germanized' ) ) . '" />',
+					'popover_trigger_html' => '<img class="wc-gzd-garan-label-nested-image" src="' . esc_url( $this->get_garan_label_url( 'nested' ) ) . '" alt="' . esc_attr( __( 'EU GARAN label preview', 'woocommerce-germanized' ) ) . '" />',
+				)
+			);
+
+			$html .= $popover_html;
+		} else {
+			$html .= '<img class="wc-gzd-garan-label-image" src="' . esc_url( $this->get_garan_label_url( $variant ) ) . '" alt="' . esc_attr( __( 'EU GARAN label', 'woocommerce-germanized' ) ) . '" />';
+		}
+
+		$html .= '</div>';
+
+		return apply_filters( 'woocommerce_gzd_product_garan_label_html', $html, $variant, $location, $this );
+	}
+
+	public function get_legal_guarantee_html( $variant = '', $lang = '', $location = 'product' ) {
+		if ( ! $this->needs_legal_guarantee() ) {
+			return '';
+		}
+
+		return apply_filters( 'woocommerce_gzd_product_legal_guarantee_html', wc_gzd_get_legal_guarantee_html( $variant, $lang, $location ), $variant, $lang, $location, $this );
 	}
 
 	/**

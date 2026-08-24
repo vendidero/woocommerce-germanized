@@ -401,6 +401,7 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 
 		if ( ! empty( $lang ) ) {
 			add_filter( 'wcml_email_language', array( $this, 'filter_email_lang' ), 10 );
+			add_filter( 'woocommerce_gzd_legal_guarantee_email_attachment_lang', array( $this, 'filter_email_lang' ), 10 );
 
 			$this->switch_lang( $lang );
 

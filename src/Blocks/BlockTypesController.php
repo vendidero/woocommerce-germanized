@@ -45,6 +45,7 @@ final class BlockTypesController {
 		$block_types = array(
 			'CheckoutCheckboxes',
 			'CheckoutPhotovoltaicSystemNotice',
+			'CheckoutLegalGuarantee',
 			'ProductUnitPrice',
 			'ProductDeliveryTime',
 			'ProductTaxInfo',
@@ -55,6 +56,8 @@ final class BlockTypesController {
 			'ProductSafetyAttachments',
 			'ProductSafetyInstructions',
 			'ProductPowerSupply',
+			'ProductGaranLabel',
+			'ProductLegalGuarantee',
 		);
 
 		if ( \Vendidero\Germanized\Package::is_pro() ) {

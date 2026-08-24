@@ -28,6 +28,8 @@ abstract class AbstractInnerBlock extends AbstractBlock {
 
 		if ( isset( $this->api_version ) && '2' === $this->api_version ) {
 			$block_settings['api_version'] = 2;
+		} else {
+			$block_settings['api_version'] = 3;
 		}
 
 		$metadata_path = $this->assets->get_block_metadata_path( $this->block_name, 'inner-blocks/' );

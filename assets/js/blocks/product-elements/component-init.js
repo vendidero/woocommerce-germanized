@@ -120,3 +120,21 @@ registerBlockComponent( {
             )
     ),
 } );
+
+registerBlockComponent( {
+    blockName: 'woocommerce-germanized/product-garan-label',
+    component: lazy( () =>
+        import(
+            /* webpackChunkName: "product-garan-label" */ './garan-label/frontend'
+            )
+    ),
+} );
+
+registerBlockComponent( {
+    blockName: 'woocommerce-germanized/product-legal-guarantee',
+    component: lazy( () =>
+        import(
+            /* webpackChunkName: "product-legal-guarantee" */ './legal-guarantee/frontend'
+            )
+    ),
+} );

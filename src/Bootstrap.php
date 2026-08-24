@@ -10,6 +10,7 @@ use Vendidero\Germanized\Blocks\MiniCart;
 use Vendidero\Germanized\Blocks\PaymentGateways\DirectDebit;
 use Vendidero\Germanized\Blocks\PaymentGateways\Invoice;
 use Vendidero\Germanized\Blocks\Products;
+use Vendidero\Germanized\StoreApi\StoreApi;
 use Vendidero\Germanized\Registry\Container;
 
 /**
@@ -57,8 +58,10 @@ class Bootstrap {
 			OrderWithdrawalButton::init();
 		}
 
+		$this->register_dependencies();
+
 		if ( Package::load_blocks() ) {
-			$this->register_dependencies();
+			$this->register_block_dependencies();
 			$this->register_payment_methods();
 
 			if ( did_action( 'woocommerce_blocks_loaded' ) ) {
@@ -72,6 +75,8 @@ class Bootstrap {
 				);
 			}
 		}
+
+		$this->container->get( StoreApi::class );
 	}
 
 	protected function load_blocks() {
@@ -94,6 +99,18 @@ class Bootstrap {
 	 * Register core dependencies with the container.
 	 */
 	protected function register_dependencies() {
+		$this->container->register(
+			StoreApi::class,
+			function ( $container ) {
+				return new StoreApi();
+			}
+		);
+	}
+
+	/**
+	 * Register core dependencies with the container.
+	 */
+	protected function register_block_dependencies() {
 		$this->container->register(
 			Assets::class,
 			function ( $container ) {

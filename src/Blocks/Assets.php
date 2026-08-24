@@ -30,19 +30,19 @@ final class Assets {
 		if ( wp_style_is( 'wc-gzd-blocks-editor-style' ) ) {
 			$custom_css = '
                 .wc-gzd-nutri-score-value-a {
-                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-a.svg' ) ) . ') no-repeat;
+                    background: url(' . esc_url( Package::get_url( 'assets/images/nutri-score-a.svg' ) ) . ') no-repeat;
                 }
                 .wc-gzd-nutri-score-value-b {
-                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-b.svg' ) ) . ') no-repeat;
+                    background: url(' . esc_url( Package::get_url( 'assets/images/nutri-score-b.svg' ) ) . ') no-repeat;
                 }
                 .wc-gzd-nutri-score-value-c {
-                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-c.svg' ) ) . ') no-repeat;
+                    background: url(' . esc_url( Package::get_url( 'assets/images/nutri-score-c.svg' ) ) . ') no-repeat;
                 }
                 .wc-gzd-nutri-score-value-d {
-                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-d.svg' ) ) . ') no-repeat;
+                    background: url(' . esc_url( Package::get_url( 'assets/images/nutri-score-d.svg' ) ) . ') no-repeat;
                 }
                 .wc-gzd-nutri-score-value-e {
-                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-e.svg' ) ) . ') no-repeat;
+                    background: url(' . esc_url( Package::get_url( 'assets/images/nutri-score-e.svg' ) ) . ') no-repeat;
                 }
             ';
 
@@ -58,25 +58,26 @@ final class Assets {
 		$this->register_style( 'wc-gzd-blocks-editor-style', $this->get_block_asset_build_path( 'wc-gzd-blocks-editor-style', 'css' ), array( 'wp-edit-blocks' ), 'all' );
 
 		$this->register_data( 'isPro', Package::is_pro() );
+		$this->register_data( 'wcGzdAssetUrl', Package::get_url( 'assets/' ) );
 	}
 
 	public function enqueue_frontend_styles() {
 		if ( wp_style_is( 'wc-blocks-style' ) ) {
 			$custom_css = '
                 .wc-gzd-nutri-score-value-a {
-                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-a.svg' ) ) . ') no-repeat;
+                    background: url(' . esc_url( Package::get_url( 'assets/images/nutri-score-a.svg' ) ) . ') no-repeat;
                 }
                 .wc-gzd-nutri-score-value-b {
-                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-b.svg' ) ) . ') no-repeat;
+                    background: url(' . esc_url( Package::get_url( 'assets/images/nutri-score-b.svg' ) ) . ') no-repeat;
                 }
                 .wc-gzd-nutri-score-value-c {
-                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-c.svg' ) ) . ') no-repeat;
+                    background: url(' . esc_url( Package::get_url( 'assets/images/nutri-score-c.svg' ) ) . ') no-repeat;
                 }
                 .wc-gzd-nutri-score-value-d {
-                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-d.svg' ) ) . ') no-repeat;
+                    background: url(' . esc_url( Package::get_url( 'assets/images/nutri-score-d.svg' ) ) . ') no-repeat;
                 }
                 .wc-gzd-nutri-score-value-e {
-                    background: url(' . esc_url( Package::get_url( '/assets/images/nutri-score-e.svg' ) ) . ') no-repeat;
+                    background: url(' . esc_url( Package::get_url( 'assets/images/nutri-score-e.svg' ) ) . ') no-repeat;
                 }
             ';
 

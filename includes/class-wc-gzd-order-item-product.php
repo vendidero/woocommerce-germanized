@@ -300,6 +300,49 @@ class WC_GZD_Order_Item_Product extends WC_GZD_Order_Item {
 		$this->order_item->update_meta_data( '_min_age', $min_age );
 	}
 
+	public function get_guarantee_length() {
+		return $this->order_item->get_meta( '_guarantee_length', true );
+	}
+
+	public function set_guarantee_length( $guarantee_length ) {
+		$this->order_item->update_meta_data( '_guarantee_length', absint( $guarantee_length ) );
+	}
+
+	public function get_garan_label_manufacturer_name() {
+		return $this->order_item->get_meta( '_garan_label_manufacturer_name', true );
+	}
+
+	public function set_garan_label_manufacturer_name( $name ) {
+		$this->order_item->update_meta_data( '_garan_label_manufacturer_name', $name );
+	}
+
+	public function get_garan_label_model_id() {
+		return $this->order_item->get_meta( '_garan_label_model_id', true );
+	}
+
+	public function set_garan_label_model_id( $id ) {
+		$this->order_item->update_meta_data( '_garan_label_model_id', $id );
+	}
+
+	public function has_garan_label() {
+		return $this->get_guarantee_length() > 24 && $this->get_garan_label_manufacturer_name() && $this->get_garan_label_model_id();
+	}
+
+	public function get_garan_label_svg( $variant = 'full' ) {
+		if ( ! $this->has_garan_label() ) {
+			return false;
+		}
+
+		return wc_gzd_get_garan_label_svg(
+			array(
+				'guarantee_length' => wc_gzd_garan_label_guarantee_to_years( $this->get_guarantee_length() ),
+				'model_id'         => $this->get_garan_label_model_id(),
+				'brand_name'       => $this->get_garan_label_manufacturer_name(),
+			),
+			$variant
+		);
+	}
+
 	public function needs_age_verification() {
 		$min_age = $this->get_min_age();
 

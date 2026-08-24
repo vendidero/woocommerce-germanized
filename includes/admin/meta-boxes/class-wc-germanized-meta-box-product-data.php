@@ -664,24 +664,6 @@ class WC_Germanized_Meta_Box_Product_Data {
 			?>
 		</div>
 
-		<div class="options_group show_if_simple show_if_variable show_if_external">
-			<p class="form-field" id="warranty_attachment">
-				<label for="upload_warranty_button"><?php esc_html_e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
-
-				<?php
-				self::upload_field(
-					array(
-						'file_types'     => array( 'application/pdf' ),
-						'name'           => '_warranty_attachment_id',
-						'id'             => 'warrenty_attachment_id',
-						'attachment_ids' => $_gzd_product->get_warranty_attachment_id( 'edit' ),
-						'upload_update'  => __( 'Select warranty file', 'woocommerce-germanized' ),
-					)
-				);
-				?>
-			</p>
-		</div>
-
 		<div class="options_group show_if_simple show_if_wireless_electronic_device">
 			<p class="wc-gzd-product-settings-subtitle">
 				<?php esc_html_e( 'Electronic device (wireless)', 'woocommerce-germanized' ); ?>
@@ -737,7 +719,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			?>
 		</div>
 
-		<div class="options_group show_if_simple show_if_variable show_if_external">
+		<div class="options_group show_if_simple show_if_variable show_if_external hide_if_virtual">
 			<p class="wc-gzd-product-settings-subtitle">
 				<?php esc_html_e( 'Product safety', 'woocommerce-germanized' ); ?>
 				<a class="page-title-action" href="https://vendidero.de/doc/woocommerce-germanized/allgemeine-produktsicherheit-gpsr"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
@@ -777,6 +759,45 @@ class WC_Germanized_Meta_Box_Product_Data {
 						'id'             => 'safety_attachment_ids',
 						'multiple'       => true,
 						'attachment_ids' => $_gzd_product->get_safety_attachment_ids( 'edit' ),
+					)
+				);
+				?>
+			</p>
+		</div>
+
+		<div class="options_group show_if_simple show_if_variable show_if_external hide_if_virtual">
+			<p class="wc-gzd-product-settings-subtitle">
+				<?php esc_html_e( 'Guarantee', 'woocommerce-germanized' ); ?>
+				<a class="page-title-action" href="https://vendidero.de/doc/woocommerce-germanized/allgemeine-produktsicherheit-gpsr"><?php esc_html_e( 'Help', 'woocommerce-germanized' ); ?></a>
+			</p>
+
+			<p class="form-field">
+				<?php
+				woocommerce_wp_text_input(
+					array(
+						'id'          => '_guarantee_length',
+						'value'       => $_gzd_product->get_guarantee_length( 'edit' ),
+						'label'       => __( 'Guarantee length (months)', 'woocommerce-germanized' ),
+						'data_type'   => 'number',
+						'style'       => 'width: 100px',
+						'desc_tip'    => true,
+						'description' => __( 'The number of months (divisible by 6) of the durability guarantee. This field is used to determine whether to show a EU GARAN label for the product (> 24 months).', 'woocommerce-germanized' ),
+					)
+				);
+				?>
+			</p>
+
+			<p class="form-field" id="warranty_attachment">
+				<label for="upload_warranty_button"><?php esc_html_e( 'Warranty (PDF)', 'woocommerce-germanized' ); ?></label>
+
+				<?php
+				self::upload_field(
+					array(
+						'file_types'     => array( 'application/pdf' ),
+						'name'           => '_warranty_attachment_id',
+						'id'             => 'warrenty_attachment_id',
+						'attachment_ids' => $_gzd_product->get_warranty_attachment_id( 'edit' ),
+						'upload_update'  => __( 'Select warranty file', 'woocommerce-germanized' ),
 					)
 				);
 				?>
@@ -1066,6 +1087,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 			'_mini_desc'                                => '',
 			'_defect_description'                       => '',
 			'_warranty_attachment_id'                   => '',
+			'_guarantee_length'                         => '',
 			'_safety_attachment_ids'                    => '',
 			'_safety_instructions'                      => '',
 			'_gtin'                                     => '',
@@ -1527,6 +1549,10 @@ class WC_Germanized_Meta_Box_Product_Data {
 			}
 		} else {
 			$gzd_product->set_warranty_attachment_id( 0 );
+		}
+
+		if ( isset( $data['_guarantee_length'] ) ) {
+			$gzd_product->set_guarantee_length( is_numeric( $data['_guarantee_length'] ) ? absint( $data['_guarantee_length'] ) : '' );
 		}
 
 		$safety_attachment_ids = isset( $data['_safety_attachment_ids'] ) ? array_map( 'absint', (array) $data['_safety_attachment_ids'] ) : array();

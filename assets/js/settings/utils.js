@@ -1,6 +1,8 @@
 import { allSettings } from './settings-init';
 import { getSetting as getWooSetting } from '@woocommerce/settings'
 
+export const WC_GZD_ASSET_URL = allSettings.wcGzdAssetUrl;
+
 /**
  * Retrieves a setting value from the setting state.
  *

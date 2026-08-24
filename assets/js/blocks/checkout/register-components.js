@@ -25,3 +25,13 @@ registerCheckoutBlock({
                 )
     ),
 });
+
+registerCheckoutBlock({
+    metadata: metadata.CHECKOUT_LEGAL_GUARANTEE,
+    component: lazy(
+        () =>
+            import(
+                /* webpackChunkName: "checkout-blocks/checkout-legal-guarantee" */ './checkout-legal-guarantee/frontend'
+                )
+    ),
+});

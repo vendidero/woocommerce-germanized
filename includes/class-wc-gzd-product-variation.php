@@ -42,6 +42,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 		'default_delivery_time',
 		'delivery_time_countries',
 		'warranty_attachment_id',
+		'guarantee_length',
 		'manufacturer_slug',
 		'safety_attachment_ids',
 		'safety_instructions',
@@ -72,6 +73,7 @@ class WC_GZD_Product_Variation extends WC_GZD_Product {
 
 	protected $gzd_variation_prevent_zero_inherit_meta_data = array(
 		'alcohol_content',
+		'guarantee_length',
 	);
 
 	protected $gzd_variation_forced_inherited_meta_data = array(

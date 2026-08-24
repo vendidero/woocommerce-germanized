@@ -11,5 +11,7 @@ import './defect-description';
 import './manufacturer';
 import './product-safety-attachments';
 import './safety-instructions';
+import './garan-label';
+import './legal-guarantee';
 
 export * from './component-init'

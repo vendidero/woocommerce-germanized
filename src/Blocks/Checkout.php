@@ -1,8 +1,8 @@
 <?php
 namespace Vendidero\Germanized\Blocks;
 
-use Automattic\WooCommerce\Blocks\Domain\Services\CheckoutFields;
 use Automattic\WooCommerce\StoreApi\Exceptions\RouteException;
+use Automattic\WooCommerce\StoreApi\Schemas\V1\CartItemSchema;
 use Automattic\WooCommerce\StoreApi\Schemas\V1\CartSchema;
 use Automattic\WooCommerce\StoreApi\Schemas\V1\CheckoutSchema;
 use Vendidero\Germanized\Blocks\PaymentGateways\DirectDebit;
@@ -96,6 +96,8 @@ final class Checkout {
 						ob_start();
 						if ( $label->get_is_action() ) {
 							call_user_func_array( $callback, $args );
+						} elseif ( 'garan_label' === $label->get_type() ) {
+							echo wc_gzd_kses_post_svg( call_user_func_array( $callback, $args ) );
 						} else {
 							echo wp_kses_post( call_user_func_array( $callback, $args ) );
 						}
@@ -222,6 +224,33 @@ final class Checkout {
 				'schema_callback' => function () {
 					return $this->get_cart_schema();
 				},
+			)
+		);
+
+		woocommerce_store_api_register_endpoint_data(
+			array(
+				'endpoint'        => CartItemSchema::IDENTIFIER,
+				'namespace'       => 'woocommerce-germanized',
+				'data_callback'   => function ( $cart_item ) {
+					$product = $cart_item['data'];
+					$garan_label_html = '';
+
+					if ( $gzd_product = wc_gzd_get_product( $product ) ) {
+						$garan_label_html = $gzd_product->get_garan_label_html( 'nested', 'checkout' );
+					}
+
+					return array(
+						'garan_label' => wc_gzd_kses_post_svg( $garan_label_html ),
+					);
+				},
+				'schema_callback' => function () {
+					return array(
+						'garan_label' => array(
+							'type' => 'string',
+						),
+					);
+				},
+				'schema_type'     => ARRAY_A,
 			)
 		);
 
@@ -380,6 +409,12 @@ final class Checkout {
 					),
 				),
 			),
+			'needs_legal_guarantee'                      => array(
+				'description' => __( 'Whether the cart needs a EU legal guarantee label or not.', 'woocommerce-germanized' ),
+				'type'        => 'boolean',
+				'context'     => array( 'view', 'edit' ),
+				'readonly'    => true,
+			),
 			'shipping_costs_notice'                      => array(
 				'description' => __( 'Cart shipping costs notice.', 'woocommerce-germanized' ),
 				'type'        => 'string',
@@ -524,19 +559,17 @@ final class Checkout {
 			);
 		}
 
-		return apply_filters(
-			'woocommerce_gzd_checkout_block_cart_api_data',
-			array(
-				'applies_for_photovoltaic_system_vat_exempt' => wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption(),
-				'photovoltaic_system_law_details' => wc_gzd_cart_get_photovoltaic_systems_law_details(),
-				'checkboxes'                      => $checkboxes_for_api,
-				'shipping_costs_notice'           => wc_gzd_get_shipping_costs_text(),
-				'direct_debit'                    => array(
+		return array(
+			'applies_for_photovoltaic_system_vat_exempt' => wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption(),
+			'needs_legal_guarantee'                      => wc_gzd_cart_needs_legal_guarantee(),
+			'photovoltaic_system_law_details'            => wc_gzd_cart_get_photovoltaic_systems_law_details(),
+			'checkboxes'                                 => $checkboxes_for_api,
+			'shipping_costs_notice'                      => wc_gzd_get_shipping_costs_text(),
+      'direct_debit'                               => array(
 					'holder' => '',
 					'iban'   => '',
 					'bic'    => '',
-				),
-			)
+      )
 		);
 	}
 

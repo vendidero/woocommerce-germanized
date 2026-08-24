@@ -28,6 +28,7 @@ class WC_GZD_Shortcodes {
 			'gzd_vat_info'                       => __CLASS__ . '::gzd_vat_info',
 			'gzd_sale_info'                      => __CLASS__ . '::gzd_sale_info',
 			'gzd_complaints'                     => __CLASS__ . '::gzd_complaints',
+			'gzd_legal_guarantee'                => __CLASS__ . '::gzd_legal_guarantee',
 			'gzd_product_unit_price'             => __CLASS__ . '::gzd_product_unit_price',
 			'gzd_product_units'                  => __CLASS__ . '::gzd_product_units',
 			'gzd_product_delivery_time'          => __CLASS__ . '::gzd_product_delivery_time',
@@ -41,6 +42,8 @@ class WC_GZD_Shortcodes {
 			'gzd_product_safety_instructions'    => __CLASS__ . '::gzd_product_safety_instructions',
 			'gzd_product_deposit'                => __CLASS__ . '::gzd_product_deposit',
 			'gzd_product_power_supply'           => __CLASS__ . '::gzd_product_power_supply',
+			'gzd_product_garan_label'            => __CLASS__ . '::gzd_product_garan_label',
+			'gzd_product_legal_guarantee'        => __CLASS__ . '::gzd_product_legal_guarantee',
 			'gzd_product_deposit_packaging_type' => __CLASS__ . '::gzd_product_deposit_packaging_type',
 			'gzd_email_legal_page_attachments'   => __CLASS__ . '::gzd_email_legal_page_attachments',
 		);
@@ -88,9 +91,8 @@ class WC_GZD_Shortcodes {
 		}
 
 		if ( $product && is_a( $product, 'WC_Product' ) ) {
-			$args = array(
-				'print_title' => wc_string_to_bool( $atts['print_title'] ),
-			);
+			$args                = array_diff_key( $atts, array( 'product' => null ) );
+			$args['print_title'] = wc_string_to_bool( $args['print_title'] );
 
 			ob_start();
 			call_user_func( $function_name, $args );
@@ -301,6 +303,66 @@ class WC_GZD_Shortcodes {
 		 * @since 3.9.0
 		 */
 		return apply_filters( 'woocommerce_gzd_shortcode_product_power_supply_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_product_power_supply' ), $atts );
+	}
+
+	public static function gzd_product_garan_label( $atts ) {
+		$atts = wp_parse_args(
+			$atts,
+			array(
+				'variant' => '',
+			)
+		);
+
+		/**
+		 * Filter shortcode product EU GARAN label.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 4.1.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_garan_label_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_garan_label' ), $atts );
+	}
+
+	public static function gzd_product_legal_guarantee( $atts ) {
+		$atts = wp_parse_args(
+			$atts,
+			array(
+				'variant' => '',
+				'lang'    => '',
+			)
+		);
+
+		/**
+		 * Filter shortcode product EU legal guarantee label.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 4.1.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_product_legal_guarantee_html', self::get_gzd_product_shortcode( $atts, 'woocommerce_gzd_template_single_legal_guarantee' ), $atts );
+	}
+
+	public static function gzd_legal_guarantee( $atts ) {
+		$atts = wp_parse_args(
+			$atts,
+			array(
+				'variant'  => '',
+				'lang'     => '',
+				'location' => '',
+			)
+		);
+
+		/**
+		 * Filter shortcode EU legal guarantee label.
+		 *
+		 * @param string $html The output.
+		 * @param array $atts The shortcode arguments.
+		 *
+		 * @since 4.1.0
+		 */
+		return apply_filters( 'woocommerce_gzd_shortcode_legal_guarantee_html', wc_get_template_html( 'global/legal-guarantee.php', $atts ), $atts );
 	}
 
 	public static function gzd_product_food( $atts, $content, $tag ) {

@@ -776,30 +776,38 @@ class WC_GZD_Order_Helper {
 	 * @param array $metas
 	 */
 	public function set_order_meta_hidden( $metas ) {
-		array_push( $metas, '_item_desc' );
-		array_push( $metas, '_units' );
-		array_push( $metas, '_delivery_time' );
-		array_push( $metas, '_unit_price' );
-		array_push( $metas, '_unit_price_raw' );
-		array_push( $metas, '_unit_price_subtotal_raw' );
-		array_push( $metas, '_unit_price_subtotal_net_raw' );
-		array_push( $metas, '_unit_price_net_raw' );
-		array_push( $metas, '_unit_product' );
-		array_push( $metas, '_unit' );
-		array_push( $metas, '_unit_base' );
-		array_push( $metas, '_min_age' );
-		array_push( $metas, '_defect_description' );
-		array_push( $metas, '_deposit_type' );
-		array_push( $metas, '_deposit_amount' );
-		array_push( $metas, '_deposit_net_amount' );
-		array_push( $metas, '_deposit_quantity' );
-		array_push( $metas, '_deposit_amount_per_unit' );
-		array_push( $metas, '_deposit_net_amount_per_unit' );
-		array_push( $metas, '_deposit_tax_status' );
-		array_push( $metas, '_deposit_packaging_type' );
-		array_push( $metas, '_deposit_packaging_amount' );
-		array_push( $metas, '_deposit_packaging_net_amount' );
-		array_push( $metas, '_deposit_packaging_number_contents' );
+		$metas = array_merge(
+			$metas,
+			array(
+				'_item_desc',
+				'_units',
+				'_delivery_time',
+				'_unit_price',
+				'_unit_price_raw',
+				'_unit_price_subtotal_raw',
+				'_unit_price_subtotal_net_raw',
+				'_unit_price_net_raw',
+				'_unit_product',
+				'_unit',
+				'_unit_base',
+				'_min_age',
+				'_defect_description',
+				'_deposit_type',
+				'_deposit_amount',
+				'_deposit_net_amount',
+				'_deposit_quantity',
+				'_deposit_amount_per_unit',
+				'_deposit_net_amount_per_unit',
+				'_deposit_tax_status',
+				'_deposit_packaging_type',
+				'_deposit_packaging_amount',
+				'_deposit_packaging_net_amount',
+				'_deposit_packaging_number_contents',
+				'_guarantee_length',
+				'_garan_label_manufacturer_name',
+				'_garan_label_model_id',
+			)
+		);
 
 		return $metas;
 	}
@@ -832,6 +840,10 @@ class WC_GZD_Order_Helper {
 				$gzd_item->set_defect_description( $gzd_product->get_formatted_defect_description() );
 				$gzd_item->set_delivery_time( $gzd_product->get_delivery_time_html() );
 				$gzd_item->set_min_age( $gzd_product->get_min_age() );
+
+				$gzd_item->set_guarantee_length( $gzd_product->get_guarantee_length() );
+				$gzd_item->set_garan_label_manufacturer_name( $gzd_product->get_manufacturer() ? $gzd_product->get_manufacturer()->get_garan_label_name() : '' );
+				$gzd_item->set_garan_label_model_id( $gzd_product->get_garan_label_model_id() );
 
 				if ( $gzd_product->is_food() ) {
 					$gzd_item->set_deposit_type( $gzd_product->get_deposit_type() );

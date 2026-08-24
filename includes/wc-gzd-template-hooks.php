@@ -61,6 +61,52 @@ foreach ( wc_gzd_get_product_block_shopmarks() as $shopmark ) {
 	$shopmark->execute();
 }
 
+add_action(
+	'init',
+	function () {
+		foreach ( wc_gzd_get_legal_guarantee_global_locations() as $location ) {
+			if ( 'product_description_after' === $location ) {
+				add_filter(
+					'woocommerce_product_tabs',
+					function ( $tabs ) {
+						global $post;
+
+						/**
+						 * Enforce showing the label even though there is no product description available.
+						 */
+						if ( empty( $post->post_content ) ) {
+							$post->post_content = woocommerce_gzd_template_global_legal_guarantee_the_content( $post->post_content );
+						}
+
+						add_filter( 'the_content', 'woocommerce_gzd_template_global_legal_guarantee_the_content', 5000 );
+
+						return $tabs;
+					},
+					5
+				);
+				add_action(
+					'woocommerce_product_after_tabs',
+					function () {
+						remove_filter( 'the_content', 'woocommerce_gzd_template_global_legal_guarantee_the_content', 5000 );
+					}
+				);
+			} else {
+				$hook = wc_gzd_get_legal_guarantee_location_hook( $location );
+
+				if ( ! empty( $hook['hook'] ) ) {
+					add_action(
+						$hook['hook'],
+						function () use ( $location ) {
+							woocommerce_gzd_template_global_legal_guarantee( array( 'location' => $location ) );
+						},
+						(int) $hook['priority']
+					);
+				}
+			}
+		}
+	}
+);
+
 // Make sure to add a global product object to allow getting the grouped parent product within child display
 add_action( 'woocommerce_before_add_to_cart_form', 'woocommerce_gzd_template_single_setup_global_product' );
 
