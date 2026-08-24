@@ -144,8 +144,10 @@ final class Checkout {
 						 * Latest Woo Checkout Block version inserts the total blocks before checkout fields
 						 */
 						if ( ! empty( $matches ) ) {
-							$content               = str_replace( 'wc-gzd-checkout ', 'wc-gzd-checkout wc-gzd-checkout-v2 ', $content );
-							$replacement           = '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" class="wp-block-woocommerce-checkout-actions-block"></div></div>' . $matches[0];
+							$content          = str_replace( 'wc-gzd-checkout ', 'wc-gzd-checkout wc-gzd-checkout-v2 ', $content );
+							$has_back_to_cart = strstr( $content, 'data-show-return-to-cart' );
+
+							$replacement           = '<div class="wc-gzd-checkout-submit"><div data-block-name="woocommerce/checkout-order-summary-block" class="wp-block-woocommerce-checkout-order-summary-block"></div><div data-block-name="woocommerce/checkout-actions-block" ' . ( $has_back_to_cart ? 'data-show-return-to-cart="true"' : '' ) . ' class="wp-block-woocommerce-checkout-actions-block"></div></div>' . $matches[0];
 							$content               = preg_replace( '/<\/div>(\s*)<div[^<]*?data-block-name="woocommerce\/checkout-fields-block"/', $replacement, $content );
 							$has_custom_gzd_submit = true;
 						} else {
@@ -467,6 +469,32 @@ final class Checkout {
 					),
 				),
 			),
+			'direct_debit'                               => array(
+				'description' => __( 'Direct debit customer data.', 'woocommerce-germanized' ),
+				'type'        => 'object',
+				'context'     => array( 'view', 'edit' ),
+				'readonly'    => true,
+				'properties'  => array(
+					'holder' => array(
+						'description' => __( 'Account Holder', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+					'iban'   => array(
+						'description' => __( 'IBAN', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+					'bic'    => array(
+						'description' => __( 'BIC/SWIFT', 'woocommerce-germanized' ),
+						'type'        => 'string',
+						'context'     => array( 'view', 'edit' ),
+						'readonly'    => true,
+					),
+				),
+			),
 		);
 	}
 
@@ -496,11 +524,19 @@ final class Checkout {
 			);
 		}
 
-		return array(
-			'applies_for_photovoltaic_system_vat_exempt' => wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption(),
-			'photovoltaic_system_law_details'            => wc_gzd_cart_get_photovoltaic_systems_law_details(),
-			'checkboxes'                                 => $checkboxes_for_api,
-			'shipping_costs_notice'                      => wc_gzd_get_shipping_costs_text(),
+		return apply_filters(
+			'woocommerce_gzd_checkout_block_cart_api_data',
+			array(
+				'applies_for_photovoltaic_system_vat_exempt' => wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption(),
+				'photovoltaic_system_law_details' => wc_gzd_cart_get_photovoltaic_systems_law_details(),
+				'checkboxes'                      => $checkboxes_for_api,
+				'shipping_costs_notice'           => wc_gzd_get_shipping_costs_text(),
+				'direct_debit'                    => array(
+					'holder' => '',
+					'iban'   => '',
+					'bic'    => '',
+				),
+			)
 		);
 	}
 
@@ -548,14 +584,22 @@ final class Checkout {
 		);
 
 		$checkbox_manager = \WC_GZD_Legal_Checkbox_Manager::instance();
-
-		return $checkbox_manager->get_checkboxes(
+		$checkboxes       = $checkbox_manager->get_checkboxes(
 			array(
 				'locations' => 'checkout',
 				'sort'      => true,
 			),
 			'render'
 		);
+		/**
+		 * Reset checkbox show/hide logic to prevent side effects within hydration requests.
+		 * The cart hydration logic calls the cart endpoint server-side within a lot of requests, e.g.
+		 * from within the registration form. Without resetting the checkboxes the registration checkbox may be
+		 * in a hidden status.
+		 */
+		$checkbox_manager->do_register_action();
+
+		return $checkboxes;
 	}
 
 	private function parse_checkboxes( $checkboxes ) {

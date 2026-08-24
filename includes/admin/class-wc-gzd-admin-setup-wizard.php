@@ -174,9 +174,9 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 						'title'    => __( 'Settings', 'woocommerce-germanized' ),
 						'desc'     => __( 'Germanize WooCommerce settings (e.g. currency, tax display).', 'woocommerce-germanized' ),
 						'id'       => 'woocommerce_gzd_germanize_settings',
-						'default'  => 'yes',
+						'default'  => ( wc_gzd_base_country_is_eu() && 'no' === get_option( 'woocommerce_gzd_updated_default_settings', 'no' ) ) ? 'yes' : 'no',
 						'type'     => 'gzd_toggle',
-						'desc_tip' => __( 'In case you\'ve already adjusted your WooCommerce settings (tax display, currency etc) you should skip this option.', 'woocommerce-germanized' ),
+						'desc_tip' => __( 'In case you\'ve already adjusted your WooCommerce settings (tax display, currency, ship to countries etc) you should skip this option.', 'woocommerce-germanized' ),
 					),
 					$pages,
 					array(
@@ -200,7 +200,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 						'title'   => _x( 'VAT', 'install', 'woocommerce-germanized' ),
 						'desc'    => __( 'Let Germanized insert EU VAT rates.', 'woocommerce-germanized' ),
 						'id'      => 'woocommerce_gzd_vat_rates',
-						'default' => 'yes',
+						'default' => wc_gzd_base_country_is_eu() ? 'yes' : 'no',
 						'type'    => 'gzd_toggle',
 					),
 					array(

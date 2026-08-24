@@ -4,8 +4,6 @@ import { __, sprintf } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
 import { CART_STORE_KEY } from '@woocommerce/block-data';
 
-import './style.scss';
-
 /**
  * External dependencies
  */

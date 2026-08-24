@@ -52,13 +52,25 @@ class WC_GZD_Compatibility_Google_For_WooCommerce extends WC_GZD_Compatibility {
 	public function inject_unit_price( $attributes, $product, $adapter ) {
 		if ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) {
 			if ( $gzd_product->has_unit() && apply_filters( 'woocommerce_gzd_google_for_woocommerce_inject_unit_price', true, $product ) ) {
-				$base_measure = new ProductUnitPricingBaseMeasure();
-				$base_measure->setUnit( $gzd_product->get_unit() );
-				$base_measure->setValue( $gzd_product->get_unit_base() );
+				if ( is_a( $adapter, '\Automattic\WooCommerce\GoogleListingsAndAds\Product\WCProductInputAdapter' ) ) {
+					$base_measure = array(
+						'value' => $gzd_product->get_unit_base(),
+						'unit'  => strtolower( $gzd_product->get_unit() ),
+					);
 
-				$measure = new ProductUnitPricingMeasure();
-				$measure->setUnit( $gzd_product->get_unit() );
-				$measure->setValue( $gzd_product->get_unit_product() );
+					$measure = array(
+						'value' => $gzd_product->get_unit_product(),
+						'unit'  => strtolower( $gzd_product->get_unit() ),
+					);
+				} else {
+					$base_measure = new ProductUnitPricingBaseMeasure();
+					$base_measure->setUnit( strtolower( $gzd_product->get_unit() ) );
+					$base_measure->setValue( $gzd_product->get_unit_base() );
+
+					$measure = new ProductUnitPricingMeasure();
+					$measure->setUnit( strtolower( $gzd_product->get_unit() ) );
+					$measure->setValue( $gzd_product->get_unit_product() );
+				}
 
 				$attributes['unitPricingMeasure']     = $measure;
 				$attributes['unitPricingBaseMeasure'] = $base_measure;

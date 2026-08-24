@@ -680,58 +680,61 @@ class WC_GZD_Checkout {
 	 * @param WC_Order $order
 	 */
 	public function order_store_checkbox_data( $order ) {
-		if ( $checkbox = wc_gzd_get_legal_checkbox( 'parcel_delivery' ) ) {
-			if ( $checkbox->is_enabled() && $order->has_shipping_address() ) {
-				$method_ids = array();
-				$items      = $order->get_shipping_methods();
+		foreach ( WC_GZD_Legal_Checkbox_Manager::instance()->get_loggable_checkboxes( 'order' ) as $checkbox_id ) {
+			if ( $checkbox = wc_gzd_get_legal_checkbox( $checkbox_id ) ) {
+				$enable_logging = $checkbox->is_enabled();
 
-				foreach ( $items as $item ) {
-					$constructed_method_id = $item->get_method_id();
+				if ( 'parcel_delivery' === $checkbox->get_id() ) {
+					$enable_logging = false;
 
-					if ( is_callable( array( $item, 'get_instance_id' ) ) ) {
-						$constructed_method_id .= ':' . $item->get_instance_id();
+					if ( $checkbox->is_enabled() && $order->has_shipping_address() ) {
+						$method_ids = array();
+						$items      = $order->get_shipping_methods();
+
+						foreach ( $items as $item ) {
+							$constructed_method_id = $item->get_method_id();
+
+							if ( is_callable( array( $item, 'get_instance_id' ) ) ) {
+								$constructed_method_id .= ':' . $item->get_instance_id();
+							}
+
+							$method_ids[] = $constructed_method_id;
+						}
+
+						$enable_logging = wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $method_ids );
 					}
-
-					$method_ids[] = $constructed_method_id;
+				} elseif ( 'photovoltaic_systems' === $checkbox->get_id() ) {
+					$enable_logging = $checkbox->is_enabled() && wc_gzd_cart_contains_photovoltaic_system();
 				}
 
-				if ( wc_gzd_is_parcel_delivery_data_transfer_checkbox_enabled( $method_ids ) ) {
-					$selected = $this->checkbox_is_checked( $checkbox );
+				$enable_logging = apply_filters( "woocommerce_gzd_checkbox_{$checkbox->get_id()}_enable_logging", $enable_logging, $checkbox );
 
-					$order->update_meta_data( '_parcel_delivery_opted_in', $selected ? 'yes' : 'no' );
+				if ( $enable_logging ) {
+					if ( $this->checkbox_is_checked( $checkbox ) ) {
+						$order->update_meta_data( "_{$checkbox->get_id()}_opted_in", 'yes' );
 
-					/**
-					 * Parcel delivery notification.
-					 *
-					 * Execute whenever the parcel delivery notification data is stored for a certain order.
-					 *
-					 * @param int $order_id The order id.
-					 * @param bool $selected True if the checkbox was checked. False otherwise.
-					 *
-					 * @since 1.7.2
-					 */
-					do_action( 'woocommerce_gzd_parcel_delivery_order_opted_in', $order->get_id(), $selected );
-				}
-			}
-		}
+						/**
+						 * Customer has opted-in a certain checkbox within checkout.
+						 *
+						 * @param int $order_id The order id.
+						 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+						 *
+						 * @since 3.12.0
+						 */
+						do_action( "woocommerce_gzd_{$checkbox->get_id()}_opted_in", $order->get_id(), $checkbox );
 
-		if ( $checkbox = wc_gzd_get_legal_checkbox( 'photovoltaic_systems' ) ) {
-			if ( $checkbox->is_enabled() && wc_gzd_cart_contains_photovoltaic_system() ) {
-				if ( $this->checkbox_is_checked( $checkbox ) ) {
-					$order->update_meta_data( '_photovoltaic_systems_opted_in', 'yes' );
-
-					/**
-					 * Customer has opted in to the photovoltaic systems' checkbox.
-					 *
-					 * Execute whenever a customer has opted in to the photovoltaic systems' checkbox.
-					 *
-					 * @param int $order_id The order id.
-					 *
-					 * @since 3.12.0
-					 */
-					do_action( 'woocommerce_gzd_photovoltaic_systems_opted_in', $order->get_id() );
-				} else {
-					$order->update_meta_data( '_photovoltaic_systems_opted_in', 'no' );
+						/**
+						 * Customer has opted-in a certain checkbox within checkout.
+						 *
+						 * @param int $order_id The order id.
+						 * @param WC_GZD_Legal_Checkbox $checkbox The checkbox instance.
+						 *
+						 * @since 4.1.0
+						 */
+						do_action( "woocommerce_gzd_{$checkbox->get_id()}_order_opted_in", $order->get_id(), $checkbox );
+					} else {
+						$order->update_meta_data( "_{$checkbox->get_id()}_opted_in", 'no' );
+					}
 				}
 			}
 		}

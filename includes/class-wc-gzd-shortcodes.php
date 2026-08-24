@@ -401,11 +401,13 @@ class WC_GZD_Shortcodes {
 	 * @return string revocation form html
 	 */
 	public static function revocation_form( $atts ) {
-		ob_start();
-		wc_get_template( 'forms/revocation-form.php' );
-		$return = '<div class="woocommerce woocommerce-gzd">' . ob_get_clean() . '</div>';
+		$url = function_exists( 'eu_owb_get_withdrawal_page_permalink' ) ? eu_owb_get_withdrawal_page_permalink() : '';
 
-		return $return;
+		if ( ! empty( $url ) ) {
+			return '<p>' . sprintf( __( 'You may also use our <a href="%s">withdrawal form</a> to submit your withdrawal.', 'woocommerce-germanized' ), $url ) . '</p>';
+		} else {
+			return '';
+		}
 	}
 
 	/**

@@ -78,9 +78,6 @@ class WC_GZD_Compatibility_WPML extends WC_GZD_Compatibility {
 		// Force using the original term id for nutrient values to map to product data
 		add_filter( 'woocommerce_gzd_product_nutrient_value_term_id', array( $this, 'filter_product_nutrient_value_term' ), 10, 3 );
 
-		// Add language field to revocation form
-		add_action( 'woocommerce_gzd_after_revocation_form_fields', array( $this, 'set_language_field' ), 10 );
-
 		add_action( 'woocommerce_gzd_before_add_order_item_meta', array( $this, 'maybe_switch_order_meta_language' ), 10, 2 );
 		add_action( 'woocommerce_gzd_after_add_order_item_meta', array( $this, 'maybe_restore_order_meta_language' ), 10, 2 );
 

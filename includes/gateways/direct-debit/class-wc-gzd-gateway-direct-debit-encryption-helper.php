@@ -1,7 +1,5 @@
 <?php
 
-use Defuse\Crypto;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -26,13 +24,11 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 	}
 
 	public function get_random_key() {
-		$key = Crypto\Key::createNewRandomKey();
-
-		return $key->saveToAsciiSafeString();
+		return WC_GZD_Secret_Box_Helper::get_random_encryption_key();
 	}
 
 	public function is_configured() {
-		return ( $this->get_key() ? true : false );
+		return WC_GZD_Secret_Box_Helper::has_valid_encryption_key();
 	}
 
 	public function encrypt( $to_encrypt ) {
@@ -40,7 +36,7 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 			return $to_encrypt;
 		}
 
-		return Crypto\Crypto::encrypt( $to_encrypt, $this->get_key() );
+		return WC_GZD_Secret_Box_Helper::encrypt( $to_encrypt );
 	}
 
 	public function decrypt( $to_decrypt ) {
@@ -48,25 +44,144 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 			return $to_decrypt;
 		}
 
-		$secret_data = $to_decrypt;
+		$decrypted = WC_GZD_Secret_Box_Helper::decrypt( $to_decrypt );
 
-		try {
-			$secret_data = Crypto\Crypto::decrypt( $to_decrypt, $this->get_key() );
-		} catch ( Crypto\Exception\WrongKeyOrModifiedCiphertextException $ex ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
-		}
-
-		return $secret_data;
-	}
-
-	private function get_key() {
-		if ( defined( 'WC_GZD_DIRECT_DEBIT_KEY' ) ) {
+		if ( ! is_wp_error( $decrypted ) ) {
+			return $decrypted;
+		} else {
 			try {
-				return Crypto\Key::loadFromAsciiSafeString( WC_GZD_DIRECT_DEBIT_KEY );
-			} catch ( \Exception $e ) {
-				return false;
+				$legacy_header_version_size    = 4;
+				$legacy_salt_byte_size         = 32;
+				$legacy_mac_byte_size          = 32;
+				$legacy_block_byte_size        = 16;
+				$legacy_serialize_header_bytes = 4;
+				$legacy_checksum_byte_size     = 32;
+				$legacy_hash_function_name     = 'sha256';
+				$legacy_encryption_info_string = 'DefusePHP|V2|KeyForEncryption';
+				$legacy_key_byte_size          = 32;
+				$legacy_cypher_method          = 'aes-256-ctr';
+
+				$decoded   = sodium_hex2bin( $to_decrypt );
+				$salt      = mb_substr( $decoded, $legacy_header_version_size, $legacy_salt_byte_size, '8bit' );
+				$iv        = mb_substr( $decoded, $legacy_header_version_size + $legacy_salt_byte_size, $legacy_block_byte_size, '8bit' );
+				$encrypted = mb_substr(
+					$decoded,
+					$legacy_header_version_size + $legacy_salt_byte_size + $legacy_block_byte_size,
+					mb_strlen( $decoded, '8bit' ) - $legacy_mac_byte_size - $legacy_salt_byte_size - $legacy_block_byte_size - $legacy_header_version_size,
+					'8bit'
+				);
+
+				$key = sodium_hex2bin( WC_GZD_DIRECT_DEBIT_KEY );
+				$key = mb_substr(
+					$key,
+					$legacy_serialize_header_bytes,
+					mb_strlen( $key, '8bit' ) - $legacy_serialize_header_bytes - $legacy_checksum_byte_size,
+					'8bit'
+				);
+
+				$e_key = $this->hkdf(
+					$legacy_hash_function_name,
+					$key,
+					$legacy_key_byte_size,
+					$legacy_encryption_info_string,
+					$salt
+				);
+
+				$decrypted = \openssl_decrypt(
+					$encrypted,
+					$legacy_cypher_method,
+					$e_key,
+					OPENSSL_RAW_DATA,
+					$iv
+				);
+
+				if ( false === $decrypted ) {
+					return new WP_Error( 'decrypt-decode', 'Error while decoding the encrypted message.' );
+				}
+
+				return $decrypted;
+			} catch ( Exception $e ) {
+				return new WP_Error( 'decrypt-decode', sprintf( 'Error while decoding the encrypted message: %s', $e->getMessage() ) );
 			}
 		}
+	}
 
-		return false;
+	/**
+	 * Internal legacy method for PHP < 7 which might not include hash_hkdf.
+	 * Only for use of legacy decrypting defuse/php-encryption encrypted data.
+	 *
+	 * @param $hash
+	 * @param $ikm
+	 * @param $length
+	 * @param $info
+	 * @param $salt
+	 *
+	 * @return string
+	 * @throws Exception
+	 */
+	private function hkdf( $hash, $ikm, $length, $info = '', $salt = null ) {
+		static $native_hkdf = null;
+
+		if ( null === $native_hkdf ) {
+			$native_hkdf = is_callable( '\\hash_hkdf' );
+		}
+
+		if ( $native_hkdf ) {
+			if ( \is_null( $salt ) ) {
+				$salt = '';
+			}
+
+			return \hash_hkdf( $hash, $ikm, $length, $info, $salt );
+		}
+
+		$digest_length = mb_strlen( \hash_hmac( $hash, '', '', true ), '8bit' );
+
+		// Sanity-check the desired output length.
+		$this->ensure_true(
+			! empty( $length ) && \is_int( $length ) && $length >= 0 && $length <= 255 * $digest_length,
+			'Bad output length requested of HDKF.'
+		);
+
+		// "if [salt] not provided, is set to a string of HashLen zeroes."
+		if ( \is_null( $salt ) ) {
+			$salt = \str_repeat( "\x00", $digest_length );
+		}
+
+		// HKDF-Extract:
+		// PRK = HMAC-Hash(salt, IKM)
+		// The salt is the HMAC key.
+		$prk = \hash_hmac( $hash, $ikm, $salt, true );
+
+		// HKDF-Expand:
+
+		// This check is useless, but it serves as a reminder to the spec.
+		$this->ensure_true( mb_strlen( $prk, '8bit' ) >= $digest_length );
+
+		$t          = '';
+		$last_block = '';
+		$t_len      = mb_strlen( $t, '8bit' );
+
+		for ( $block_index = 1; $t_len < $length; ++$block_index ) {
+			// T(i) = HMAC-Hash(PRK, T(i-1) | info | 0x??)
+			$last_block = \hash_hmac(
+				$hash,
+				$last_block . $info . \chr( $block_index ),
+				$prk,
+				true
+			);
+			$t         .= $last_block;
+		}
+
+		// ORM = first L octets of T
+		/** @var string $orm */
+		$orm = mb_substr( $t, 0, $length, '8bit' );
+		$this->ensure_true( \is_string( $orm ) );
+		return $orm;
+	}
+
+	private function ensure_true( $condition, $message = '' ) {
+		if ( ! $condition ) {
+			throw new Exception( wp_kses_post( $message ) );
+		}
 	}
 }

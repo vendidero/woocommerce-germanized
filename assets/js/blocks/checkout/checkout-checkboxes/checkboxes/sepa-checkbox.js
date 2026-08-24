@@ -5,9 +5,8 @@ import { PAYMENT_STORE_KEY } from '@woocommerce/block-data';
 
 import LegalCheckbox from "./legal-checkbox";
 
-const SepaCheckbox = (props ) => {
-    const [ fields, setFields ] = useState({} );
-    const { onChangeCheckbox, checkbox } = props;
+const SepaCheckbox = ( props ) => {
+    const { onChangeCheckbox, checkbox, setModalParams } = props;
 
     const { billingAddress, paymentData, currentPaymentMethod } = useSelect(
         ( select ) => {
@@ -34,7 +33,7 @@ const SepaCheckbox = (props ) => {
             'account_swift': paymentData.hasOwnProperty( 'direct_debit_account_bic' ) ? paymentData['direct_debit_account_bic'] : '',
         };
 
-        setFields( fields );
+        setModalParams( fields );
 
         if ( currentPaymentMethod === 'direct-debit' && fields['account_holder'] && fields['account_iban'] && fields['account_swift'] ) {
             onChangeCheckbox( { ...checkbox, hidden: false } );
@@ -47,17 +46,9 @@ const SepaCheckbox = (props ) => {
         currentPaymentMethod
     ] );
 
-    const setModalUrl = ( url ) => {
-        const searchParams = new URLSearchParams( fields );
-        url += '&' + searchParams.toString();
-
-        props.setModalUrl( url );
-    };
-
     return (
         <LegalCheckbox
             { ...props }
-            setModalUrl={ setModalUrl }
         />
     );
 };

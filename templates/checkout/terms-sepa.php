@@ -12,7 +12,7 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 1.8.1
+ * @version 4.0.9
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -45,7 +45,7 @@ do_action( "woocommerce_gzd_before_legal_checkbox_{$checkbox_id}", $checkbox );
 		<?php endif; ?>
 		<span class="woocommerce-gzd-<?php echo esc_attr( $checkbox->get_html_id() ); ?>-checkbox-text"><?php echo wp_kses_post( $checkbox->get_label() ); ?></span>
 		<?php if ( $checkbox->is_mandatory() ) : ?>
-			&nbsp;<abbr class="required" title="<?php echo esc_attr__( 'required', 'woocommerce-germanized' ); ?>">*</abbr>
+			&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce-germanized' ); ?></span>
 		<?php endif; ?>
 		<a href="" rel="prettyPhoto" id="show-direct-debit-pretty" class="hidden"></a>
 	</label>

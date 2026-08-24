@@ -1189,16 +1189,7 @@ function wc_gzd_get_legal_text_digital_email_notice() {
 	$text = '';
 
 	if ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) {
-		$text = $checkbox->confirmation;
-
-		if ( $text ) {
-			$replacements = array(
-				'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
-				'{/link}' => '</a>',
-			);
-
-			$text = wc_gzd_replace_label_shortcodes( $text, $replacements );
-		}
+		$text = $checkbox->get_confirmation();
 	}
 
 	/**
@@ -1223,16 +1214,7 @@ function wc_gzd_get_legal_text_service_email_notice() {
 	$text = '';
 
 	if ( $checkbox = wc_gzd_get_legal_checkbox( 'service' ) ) {
-		$text = $checkbox->confirmation;
-
-		if ( $text ) {
-			$replacements = array(
-				'{link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '" target="_blank">',
-				'{/link}' => '</a>',
-			);
-
-			$text = wc_gzd_replace_label_shortcodes( $text, $replacements );
-		}
+		$text = $checkbox->get_confirmation();
 	}
 
 	/**
@@ -1244,6 +1226,33 @@ function wc_gzd_get_legal_text_service_email_notice() {
 	 *
 	 */
 	return apply_filters( 'woocommerce_gzd_legal_service_email_text', $text );
+}
+
+function wc_gzd_get_legal_text_review_reminder_email_notice() {
+	$text = '';
+
+	if ( $checkbox = wc_gzd_get_legal_checkbox( 'review_reminder' ) ) {
+		$text = $checkbox->get_confirmation();
+
+		if ( $text ) {
+			$replacements = array(
+				'{privacy_policy_link}'  => '<a href="' . esc_url( wc_gzd_get_page_permalink( 'data_security' ) ) . '" target="_blank">',
+				'{/privacy_policy_link}' => '</a>',
+			);
+
+			$text = wc_gzd_replace_label_shortcodes( $text, $replacements );
+		}
+	}
+
+	/**
+	 * Filter to adjust the legal email text for customers that agreed to receive a review reminder email.
+	 *
+	 * @param string $text The HTML output.
+	 *
+	 * @since 2.0.2
+	 *
+	 */
+	return apply_filters( 'woocommerce_gzd_legal_review_reminder_email_text', $text );
 }
 
 function wc_gzd_get_chosen_shipping_rates( $args = array() ) {
@@ -1350,4 +1359,26 @@ function woocommerce_gzd_checkout_custom_submit_button_is_shown() {
 	$gzd_submit_button_shown = has_action( 'woocommerce_checkout_order_review', 'woocommerce_gzd_template_order_submit' ) || WC_GZD_Checkout::instance()->get_checkout_value( 'wc_gzd_order_submit_button_shown' );
 
 	return $gzd_submit_button_shown && ! wc_gzd_checkout_adjustments_disabled();
+}
+
+function woocommerce_gzd_mini_cart_show_shipping_costs_notice() {
+	$hidden_for_types = get_option( 'woocommerce_gzd_display_shipping_costs_hidden_types', array() );
+	$show_shipping    = empty( $hidden_for_types ) ? true : false;
+
+	foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+		if ( $_product = $cart_item['data'] ) {
+			if ( ! wc_gzd_product_matches_extended_type( $hidden_for_types, $_product ) ) {
+				$show_shipping = true;
+			}
+		}
+	}
+
+	// Do only show shipping notice if shipping costs are > 0
+	if ( is_callable( array( WC()->cart, 'get_shipping_total' ) ) ) {
+		if ( WC()->cart->get_shipping_total() <= 0 ) {
+			$show_shipping = false;
+		}
+	}
+
+	return apply_filters( 'woocommerce_gzd_show_mini_cart_totals_shipping_costs_notice', $show_shipping );
 }

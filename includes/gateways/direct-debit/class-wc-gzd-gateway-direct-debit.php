@@ -125,14 +125,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			'products',
 		);
 
-		if ( $this->get_option( 'enabled' ) === 'yes' && ! $this->supports_encryption() ) {
-			ob_start();
-			include_once 'views/html-encryption-notice.php';
-			$notice = ob_get_clean();
-
-			$this->method_description .= $notice;
-		}
-
 		// Force disabling remember account data if encryption is not supported
 		if ( ! $this->supports_encryption() ) {
 			$this->remember = 'no';
@@ -893,19 +885,19 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			exit();
 		}
 
-		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_GET['_wpnonce'] ), 'show_direct_debit' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), 'show_direct_debit' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			exit();
 		}
 
 		$params = array();
 
 		foreach ( array_keys( $this->get_mandate_text_checkout_fields() ) as $field_name ) {
-			$params[ $field_name ] = wc_clean( isset( $_GET[ $field_name ] ) ? wp_unslash( $_GET[ $field_name ] ) : '' );
+			$params[ $field_name ] = wc_clean( isset( $_REQUEST[ $field_name ] ) ? wp_unslash( $_REQUEST[ $field_name ] ) : '' );
 		}
 
-		$params['account_iban']  = $this->sanitize_iban( isset( $_GET['account_iban'] ) ? wp_unslash( $_GET['account_iban'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$params['account_swift'] = $this->sanitize_bic( isset( $_GET['account_swift'] ) ? wp_unslash( $_GET['account_swift'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$params['country']       = ( isset( $_GET['country'] ) && isset( WC()->countries->countries[ wc_clean( wp_unslash( $_GET['country'] ) ) ] ) ? WC()->countries->countries[ wc_clean( wp_unslash( $_GET['country'] ) ) ] : '' );
+		$params['account_iban']  = $this->sanitize_iban( isset( $_REQUEST['account_iban'] ) ? wp_unslash( $_REQUEST['account_iban'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$params['account_swift'] = $this->sanitize_bic( isset( $_REQUEST['account_swift'] ) ? wp_unslash( $_REQUEST['account_swift'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$params['country']       = ( isset( $_REQUEST['country'] ) && isset( WC()->countries->countries[ wc_clean( wp_unslash( $_REQUEST['country'] ) ) ] ) ? WC()->countries->countries[ wc_clean( wp_unslash( $_REQUEST['country'] ) ) ] : '' );
 
 		/**
 		 * Filter to adjust the default mandate type text.
@@ -916,7 +908,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		 */
 		$params['mandate_type_text'] = apply_filters( 'woocommerce_gzd_direct_debit_mandate_type_text', __( 'a single payment', 'woocommerce-germanized' ) );
 
-		$order_key = isset( $_GET['order_key'] ) ? wc_clean( wp_unslash( $_GET['order_key'] ) ) : '';
+		$order_key = isset( $_REQUEST['order_key'] ) ? wc_clean( wp_unslash( $_REQUEST['order_key'] ) ) : '';
 
 		if ( ! empty( $order_key ) ) {
 			$order_id = wc_get_order_id_by_order_key( $order_key );
@@ -1016,7 +1008,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * Initialise Gateway Settings Form Fields
 	 */
 	public function init_form_fields() {
-
 		$this->form_fields = array(
 			'enabled'                       => array(
 				'title'   => __( 'Enable/Disable', 'woocommerce-germanized' ),
@@ -1128,11 +1119,9 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 				'description' => __( 'This will lead to masked IBANs within emails (replaced by *). All but last 4 digits will be masked.', 'woocommerce-germanized' ),
 				'default'     => 'yes',
 			),
-
 		);
 
 		if ( $this->supports_encryption() ) {
-
 			$this->form_fields = array_merge(
 				$this->form_fields,
 				array(
@@ -1145,12 +1134,10 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 					),
 				)
 			);
-
 		}
 	}
 
 	public function get_user_account_data( $user_id = '' ) {
-
 		if ( empty( $user_id ) ) {
 			$user_id = get_current_user_id();
 		}
@@ -1178,7 +1165,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	 * Payment form on checkout page
 	 */
 	public function payment_fields() {
-
 		if ( $description = $this->get_description() ) {
 			echo wp_kses_post( wpautop( wptexturize( $description ) ) );
 		}
@@ -1417,15 +1403,27 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 	public function maybe_encrypt( $to_encrypt ) {
 		if ( $this->supports_encryption() ) {
-			return WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->encrypt( $to_encrypt );
+			$encrypted = WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->encrypt( $to_encrypt );
+
+			if ( ! is_wp_error( $encrypted ) ) {
+				$to_encrypt = $encrypted;
+			}
 		}
 
 		return $to_encrypt;
 	}
 
 	public function maybe_decrypt( $to_decrypt ) {
-		if ( $this->supports_encryption() ) {
+		if ( $this->supports_encryption() && strlen( $to_decrypt ) >= 40 ) {
 			$decrypted = WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->decrypt( $to_decrypt );
+
+			if ( is_wp_error( $decrypted ) ) {
+				if ( $logger = wc_get_logger() ) {
+					$logger->error( $decrypted->get_error_message(), array( 'source' => 'wc-gzd-direct-debit-encryption' ) );
+				}
+
+				return $to_decrypt;
+			}
 
 			// Maxlength of IBAN is 30 - seems like we have an encrypted string (cannot be decrypted, maybe key changed)
 			if ( strlen( $decrypted ) > 40 ) {
@@ -1439,21 +1437,6 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 	}
 
 	public function supports_encryption() {
-
-		global $wp_version;
-
-		if ( version_compare( phpversion(), '5.4', '<' ) ) {
-			return false;
-		}
-
-		if ( ! extension_loaded( 'openssl' ) ) {
-			return false;
-		}
-
-		if ( version_compare( $wp_version, '4.4', '<' ) ) {
-			return false;
-		}
-
 		require_once WC_GERMANIZED_ABSPATH . 'includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit-encryption-helper.php';
 
 		if ( ! WC_GZD_Gateway_Direct_Debit_Encryption_Helper::instance()->is_configured() ) {

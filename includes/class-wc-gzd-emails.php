@@ -191,17 +191,6 @@ class WC_GZD_Emails {
 	public function preview_email( $email_instance ) {
 		if ( is_a( $email_instance, 'WC_GZD_Email_Customer_SEPA_Direct_Debit_Mandate' ) ) {
 			$email_instance->gateway = new WC_GZD_Gateway_Direct_Debit();
-		} elseif ( is_a( $email_instance, 'WC_GZD_Email_Customer_Revocation' ) ) {
-			$email_instance->object = array(
-				'content'           => 'Hiermit widerrufe ich meinen Vertrag.',
-				'order_date'        => wc_format_datetime( $email_instance->object->get_date_created() ),
-				'address_firstname' => 'Max',
-				'address_lastname'  => 'Mustermann',
-				'address_street'    => 'Musterstr. 12',
-				'address_postal'    => '12345',
-				'address_city'      => 'Berlin',
-				'address_mail'      => 'max@muster.de',
-			);
 		} elseif ( is_a( $email_instance, 'WC_GZD_Email_Customer_New_Account_Activation' ) ) {
 			$email_instance->user_activation     = '12345';
 			$email_instance->user_activation_url = WC_GZD_Customer_Helper::instance()->get_customer_activation_url( $email_instance->user_activation );
@@ -278,9 +267,6 @@ class WC_GZD_Emails {
 		$post               = is_numeric( $content_post ) ? get_post( $content_post ) : $content_post;
 
 		if ( is_a( $post, 'WP_Post' ) ) {
-			remove_shortcode( 'revocation_form' );
-			add_shortcode( 'revocation_form', array( $this, 'revocation_form_replacement' ) );
-
 			if ( ! get_post_meta( $post->ID, '_legal_text', true ) ) {
 				$content = wc_gzd_get_post_plain_content( $post, $shortcodes_allowed );
 			} else {
@@ -315,8 +301,6 @@ class WC_GZD_Emails {
 				 */
 				do_action( 'woocommerce_gzd_before_get_email_meta_plain_content', $post );
 			}
-
-			add_shortcode( 'revocation_form', 'WC_GZD_Shortcodes::revocation_form' );
 		}
 
 		return apply_filters( 'woocommerce_gzd_email_plain_content', $content );
@@ -582,7 +566,7 @@ class WC_GZD_Emails {
 		 *
 		 * @since 3.0.0
 		 */
-		if ( strpos( $template_name, 'emails/' ) !== false && isset( $args['order'] ) && is_a( $args['order'], 'WC_Order' ) && get_option( 'woocommerce_gzd_email_title_text' ) && apply_filters( 'woocommerce_gzd_replace_email_titles', true ) ) {
+		if ( strpos( $template_name, 'emails/' ) !== false && isset( $args['order'] ) && is_a( $args['order'], 'WC_Order' ) && get_option( 'woocommerce_gzd_email_title_text' ) && apply_filters( 'woocommerce_gzd_replace_email_titles', true, $args, $template_name ) ) {
 			$this->current_order_instance = $args['order'];
 
 			add_filter( 'gettext', array( $this, 'replace_title_email_text' ), 9999, 3 );
@@ -639,6 +623,10 @@ class WC_GZD_Emails {
 		return $this->replace_title_email_text( $translated, $original, $domain );
 	}
 
+	protected function esc_gettext_str( $str ) {
+		return str_replace( '%', '%%', $str );
+	}
+
 	public function replace_title_email_text( $translated, $original, $domain ) {
 		/**
 		 * Filters whether to replace the email title for a given textdomain.
@@ -663,9 +651,9 @@ class WC_GZD_Emails {
 					$order         = $this->current_order_instance;
 					$title_text    = get_option( 'woocommerce_gzd_email_title_text' );
 					$title_options = array(
-						'{first_name}' => $order->get_billing_first_name(),
-						'{last_name}'  => $order->get_billing_last_name(),
-						'{title}'      => wc_gzd_get_order_customer_title( $order, 'billing' ),
+						'{first_name}' => $this->esc_gettext_str( $order->get_billing_first_name() ),
+						'{last_name}'  => $this->esc_gettext_str( $order->get_billing_last_name() ),
+						'{title}'      => $this->esc_gettext_str( wc_gzd_get_order_customer_title( $order, 'billing' ) ),
 					);
 
 					$title_text = str_replace( array_keys( $title_options ), array_values( $title_options ), $title_text );
@@ -677,7 +665,6 @@ class WC_GZD_Emails {
 					 * @param WC_Order $order The order object.
 					 *
 					 * @since 2.0.0
-					 *
 					 */
 					return apply_filters( 'woocommerce_gzd_email_title', esc_html( $title_text ), $order );
 				}
@@ -825,6 +812,8 @@ class WC_GZD_Emails {
 			if ( 'admin' === $order->get_created_via() && apply_filters( 'woocommerce_gzd_send_order_confirmation_for_manual_order', true, $order_id ) ) {
 				$this->confirm_order( $order );
 			} elseif ( 'rest-api' === $order->get_created_via() && apply_filters( 'woocommerce_gzd_send_order_confirmation_for_rest_api_orders', true, $order_id ) ) {
+				$this->confirm_order( $order );
+			} elseif ( apply_filters( 'woocommerce_gzd_send_order_confirmation_as_fallback', false, $order ) ) {
 				$this->confirm_order( $order );
 			}
 		}
@@ -1235,7 +1224,8 @@ class WC_GZD_Emails {
 		$type = $this->get_current_email_object();
 
 		if ( $type ) {
-			WC_GZD_Legal_Checkbox_Manager::instance()->show_conditionally_order( $order, 'checkout' );
+			$checkbox_manager = WC_GZD_Legal_Checkbox_Manager::instance();
+			$checkbox_manager->show_conditionally_order( $order, 'checkout' );
 
 			// Check if order contains digital products
 			$items = $order->get_items();
@@ -1268,14 +1258,12 @@ class WC_GZD_Emails {
 
 			if ( get_option( 'woocommerce_gzd_differential_taxation_checkout_notices' ) === 'yes' && $is_differential_taxed && apply_filters( 'woocommerce_gzd_show_differential_taxation_in_emails', true, $type ) ) {
 				$mark = wc_gzd_get_differential_taxation_mark();
-
 				/**
 				 * Filters the differential taxation notice text for emails.
 				 *
 				 * @param string $html The notice output.
 				 *
 				 * @since 1.5.0
-				 *
 				 */
 				$notice = apply_filters( 'woocommerce_gzd_differential_taxation_notice_text_email', $mark . wc_gzd_get_differential_taxation_notice_text() );
 
@@ -1284,7 +1272,6 @@ class WC_GZD_Emails {
 
 			if ( $this->is_order_confirmation_email( $type->id ) ) {
 				if ( $is_downloadable && ( ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) && $checkbox->is_shown() ) && $text = wc_gzd_get_legal_text_digital_email_notice() ) {
-
 					/**
 					 * Filters the order confirmation digital notice text.
 					 *
@@ -1292,7 +1279,6 @@ class WC_GZD_Emails {
 					 * @param WC_Order $order The order object.
 					 *
 					 * @since 1.0.0
-					 *
 					 */
 					echo wp_kses_post( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . wpautop( $text ) . '</div>', $order ) );
 				}
@@ -1305,9 +1291,35 @@ class WC_GZD_Emails {
 					 * @param WC_Order $order The order object.
 					 *
 					 * @since 1.0.0
-					 *
 					 */
 					echo wp_kses_post( apply_filters( 'woocommerce_gzd_order_confirmation_service_notice', '<div class="gzd-service-notice-text">' . wpautop( $text ) . '</div>', $order ) );
+				}
+			}
+
+			foreach ( $checkbox_manager->get_checkboxes( array( 'has_confirmation' => true ) ) as $checkbox ) {
+				/**
+				 * Digital + service checkbox have separate treatments, see above.
+				 */
+				if ( in_array( $checkbox->get_id(), array( 'download', 'service' ), true ) ) {
+					continue;
+				}
+
+				if ( $checkbox->is_enabled() && $checkbox_manager->is_checked( $checkbox->get_id(), $order ) ) {
+					$confirmation_text = $checkbox->get_confirmation();
+					$attach_to_email   = apply_filters( "woocommerce_gzd_checkbox_{$checkbox->get_id()}_email_confirmation_enable", $this->is_order_confirmation_email( $type->id ), $type, $checkbox );
+
+					if ( ! empty( $confirmation_text ) && $attach_to_email ) {
+						/**
+						 * Filters the checkbox email confirmation text.
+						 *
+						 * @param string $html The notice HTML.
+						 * @param WC_Order $order The order object.
+						 * @param WC_GZD_Legal_Checkbox $checkbox The legal checkbox object.
+						 *
+						 * @since 4.1.0
+						 */
+						echo wp_kses_post( apply_filters( "woocommerce_gzd_checkbox_{$checkbox->get_id()}_email_confirmation_notice", '<div class="gzd-checkbox-email-confirmation gzd-' . esc_attr( $checkbox->get_id() ) . '-notice-text">' . wpautop( $confirmation_text ) . '</div>', $order, $checkbox ) );
+					}
 				}
 			}
 		}
@@ -1627,16 +1639,5 @@ class WC_GZD_Emails {
 				setup_postdata( $reset_post );
 			}
 		}
-	}
-
-	/**
-	 * Replaces revocation_form shortcut with a link to the revocation form
-	 *
-	 * @param array $atts
-	 *
-	 * @return string
-	 */
-	public function revocation_form_replacement( $atts ) {
-		return '<a href="' . esc_url( wc_gzd_get_page_permalink( 'revocation' ) ) . '">' . _x( 'Forward your withdrawal online', 'revocation-form', 'woocommerce-germanized' ) . '</a>';
 	}
 }

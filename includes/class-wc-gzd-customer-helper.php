@@ -479,6 +479,18 @@ class WC_GZD_Customer_Helper {
 		return $redirect;
 	}
 
+	public function reset_disable_checkout_session() {
+		/**
+		 * Prevent errors in case this is not a frontend request
+		 */
+		if ( ! WC()->session ) {
+			return;
+		}
+
+		// On accessing cart - reset disable checkout signup so that the customer is rechecked before redirecting him to the checkout.
+		unset( WC()->session->disable_checkout_signup );
+	}
+
 	public function disable_checkout() {
 		wc_deprecated_function( 'WC_GZD_Customer_Helper::disable_checkout', '4.1.0' );
 	}
@@ -516,7 +528,12 @@ class WC_GZD_Customer_Helper {
 
 		// Has not been activated yet
 		if ( $this->enable_double_opt_in_for_user( $user_id ) && ! wc_gzd_is_customer_activated( $user_id ) ) {
-			$result = false;
+			if ( wp_doing_ajax() ) {
+				return false;
+			} else {
+				wp_redirect( esc_url_raw( wp_validate_redirect( $this->registration_redirect( array( 'account' => 'activate' ) ) ) ) ); //phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
+				exit;
+			}
 		}
 
 		return $result;

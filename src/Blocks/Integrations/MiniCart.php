@@ -29,9 +29,7 @@ class MiniCart implements IntegrationInterface {
 	 */
 	public function initialize() {
 		$this->assets = Package::container()->get( Assets::class );
-
 		$this->assets->register_script( 'wc-gzd-blocks-mini-cart-frontend', $this->assets->get_block_asset_build_path( 'mini-cart-frontend' ) );
-		$this->assets->register_style( 'wc-gzd-blocks-mini-cart-frontend', $this->assets->get_block_asset_build_path( 'style-mini-cart', 'css' ) );
 
 		foreach ( $this->get_chunks() as $chunk ) {
 			$handle = 'wc-gzd-blocks-' . $chunk . '-chunk';
@@ -45,19 +43,6 @@ class MiniCart implements IntegrationInterface {
 
 			wp_deregister_script( $handle );
 		}
-
-		add_filter(
-			'render_block',
-			function ( $content, $block ) {
-				if ( ! empty( $block['blockName'] ) && 'woocommerce/mini-cart' === $block['blockName'] ) {
-					wp_enqueue_style( 'wc-gzd-blocks-mini-cart-frontend' );
-				}
-
-				return $content;
-			},
-			5,
-			2
-		);
 	}
 
 	protected function get_chunks() {

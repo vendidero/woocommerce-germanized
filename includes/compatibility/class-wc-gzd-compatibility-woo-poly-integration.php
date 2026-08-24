@@ -34,7 +34,6 @@ class WC_GZD_Compatibility_Woo_Poly_Integration extends WC_GZD_Compatibility {
 
 		$this->other_emails = array(
 			'customer_new_account_activation',
-			'customer_revocation',
 		);
 
 		add_filter( 'woo-poly.pages.list', array( $this, 'register_pages' ) );
