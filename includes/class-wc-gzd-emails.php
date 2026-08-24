@@ -623,6 +623,10 @@ class WC_GZD_Emails {
 		return $this->replace_title_email_text( $translated, $original, $domain );
 	}
 
+	protected function esc_gettext_str( $str ) {
+		return str_replace( '%', '%%', $str );
+	}
+
 	public function replace_title_email_text( $translated, $original, $domain ) {
 		/**
 		 * Filters whether to replace the email title for a given textdomain.
@@ -647,9 +651,9 @@ class WC_GZD_Emails {
 					$order         = $this->current_order_instance;
 					$title_text    = get_option( 'woocommerce_gzd_email_title_text' );
 					$title_options = array(
-						'{first_name}' => $order->get_billing_first_name(),
-						'{last_name}'  => $order->get_billing_last_name(),
-						'{title}'      => wc_gzd_get_order_customer_title( $order, 'billing' ),
+						'{first_name}' => $this->esc_gettext_str( $order->get_billing_first_name() ),
+						'{last_name}'  => $this->esc_gettext_str( $order->get_billing_last_name() ),
+						'{title}'      => $this->esc_gettext_str( wc_gzd_get_order_customer_title( $order, 'billing' ) ),
 					);
 
 					$title_text = str_replace( array_keys( $title_options ), array_values( $title_options ), $title_text );
@@ -661,7 +665,6 @@ class WC_GZD_Emails {
 					 * @param WC_Order $order The order object.
 					 *
 					 * @since 2.0.0
-					 *
 					 */
 					return apply_filters( 'woocommerce_gzd_email_title', esc_html( $title_text ), $order );
 				}
@@ -809,6 +812,8 @@ class WC_GZD_Emails {
 			if ( 'admin' === $order->get_created_via() && apply_filters( 'woocommerce_gzd_send_order_confirmation_for_manual_order', true, $order_id ) ) {
 				$this->confirm_order( $order );
 			} elseif ( 'rest-api' === $order->get_created_via() && apply_filters( 'woocommerce_gzd_send_order_confirmation_for_rest_api_orders', true, $order_id ) ) {
+				$this->confirm_order( $order );
+			} elseif ( apply_filters( 'woocommerce_gzd_send_order_confirmation_as_fallback', false, $order ) ) {
 				$this->confirm_order( $order );
 			}
 		}

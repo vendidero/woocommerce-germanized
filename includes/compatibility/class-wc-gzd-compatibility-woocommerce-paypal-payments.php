@@ -83,6 +83,23 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 				);
 			}
 		);
+
+		/**
+		 * When PayPal > Settings > Pay Now Experience is enabled (skip order review page), we'll need to
+		 * send the order confirmation as a fallback as no WC_Checkout hooks are applied in this case.
+		 */
+		add_filter(
+			'woocommerce_gzd_send_order_confirmation_as_fallback',
+			function ( $send_confirmation, $order ) {
+				if ( '' === $order->get_created_via() && 'ppcp-gateway' === $order->get_payment_method() ) {
+					$send_confirmation = true;
+				}
+
+				return $send_confirmation;
+			},
+			10,
+			2
+		);
 	}
 
 	public function after_plugins_loaded() {

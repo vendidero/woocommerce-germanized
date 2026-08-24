@@ -152,6 +152,10 @@ foreach ( wc_gzd_get_cart_shopmarks() as $shopmark ) {
  */
 add_filter( 'woocommerce_product_tabs', 'woocommerce_gzd_template_register_product_tabs', 20 );
 add_filter( 'woocommerce_post_class', 'woocommerce_gzd_template_product_classes', 10, 2 );
+/**
+ * Improve support for custom templates, e.g. elementor that do not call woocommerce_post_class.
+ */
+add_filter( 'post_class', 'woocommerce_gzd_template_post_classes', 21, 3 );
 
 // Small enterprises
 if ( wc_gzd_is_small_business() ) {

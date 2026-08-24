@@ -294,13 +294,14 @@ class PluginsHelper {
 	 * @return string
 	 */
 	protected static function parse_version( $version ) {
+		$version = empty( $version ) ? '1.0.0' : $version;
 		$version = preg_replace( '#(\.0+)+($|-)#', '', $version );
 
 		// Remove/ignore beta, alpha, rc status from version strings
-		$version = trim( preg_replace( '#(beta|alpha|rc)#', ' ', $version ) );
+		$version = trim( preg_replace( '#(beta|alpha|rc)(.*)#', ' ', $version ) );
 
 		// Make sure version has at least 2 signs, e.g. 3 -> 3.0
-		if ( strlen( $version ) === 1 ) {
+		if ( ! strstr( $version, '.' ) ) {
 			$version = $version . '.0';
 		}
 
@@ -335,10 +336,15 @@ class PluginsHelper {
 		return version_compare( $main_ver, $ver2, $operator );
 	}
 
+	/**
+	 * @param $plugin
+	 *
+	 * @return string
+	 */
 	public static function get_plugin_version( $plugin ) {
 		$data = self::get_plugin_data( $plugin );
 
-		return ( $data && isset( $data['Version'] ) ) ? self::parse_version( $data['Version'] ) : false;
+		return ( $data && isset( $data['Version'] ) ) ? self::parse_version( $data['Version'] ) : '1.0.0';
 	}
 
 	/**

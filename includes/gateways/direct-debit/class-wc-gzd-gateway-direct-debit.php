@@ -885,19 +885,19 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			exit();
 		}
 
-		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_GET['_wpnonce'] ), 'show_direct_debit' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( wp_unslash( $_REQUEST['_wpnonce'] ), 'show_direct_debit' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			exit();
 		}
 
 		$params = array();
 
 		foreach ( array_keys( $this->get_mandate_text_checkout_fields() ) as $field_name ) {
-			$params[ $field_name ] = wc_clean( isset( $_GET[ $field_name ] ) ? wp_unslash( $_GET[ $field_name ] ) : '' );
+			$params[ $field_name ] = wc_clean( isset( $_REQUEST[ $field_name ] ) ? wp_unslash( $_REQUEST[ $field_name ] ) : '' );
 		}
 
-		$params['account_iban']  = $this->sanitize_iban( isset( $_GET['account_iban'] ) ? wp_unslash( $_GET['account_iban'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$params['account_swift'] = $this->sanitize_bic( isset( $_GET['account_swift'] ) ? wp_unslash( $_GET['account_swift'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$params['country']       = ( isset( $_GET['country'] ) && isset( WC()->countries->countries[ wc_clean( wp_unslash( $_GET['country'] ) ) ] ) ? WC()->countries->countries[ wc_clean( wp_unslash( $_GET['country'] ) ) ] : '' );
+		$params['account_iban']  = $this->sanitize_iban( isset( $_REQUEST['account_iban'] ) ? wp_unslash( $_REQUEST['account_iban'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$params['account_swift'] = $this->sanitize_bic( isset( $_REQUEST['account_swift'] ) ? wp_unslash( $_REQUEST['account_swift'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$params['country']       = ( isset( $_REQUEST['country'] ) && isset( WC()->countries->countries[ wc_clean( wp_unslash( $_REQUEST['country'] ) ) ] ) ? WC()->countries->countries[ wc_clean( wp_unslash( $_REQUEST['country'] ) ) ] : '' );
 
 		/**
 		 * Filter to adjust the default mandate type text.
@@ -908,7 +908,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		 */
 		$params['mandate_type_text'] = apply_filters( 'woocommerce_gzd_direct_debit_mandate_type_text', __( 'a single payment', 'woocommerce-germanized' ) );
 
-		$order_key = isset( $_GET['order_key'] ) ? wc_clean( wp_unslash( $_GET['order_key'] ) ) : '';
+		$order_key = isset( $_REQUEST['order_key'] ) ? wc_clean( wp_unslash( $_REQUEST['order_key'] ) ) : '';
 
 		if ( ! empty( $order_key ) ) {
 			$order_id = wc_get_order_id_by_order_key( $order_key );

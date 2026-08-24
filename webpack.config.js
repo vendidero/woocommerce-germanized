@@ -59,7 +59,7 @@ const getBlockEntries = ( relativePath ) => {
                     relativePath
                 );
                 if ( filePaths.length > 0 ) {
-                    return [ blockCode, filePaths ];
+                    return [ blockCode, filePaths.map( ( path ) => { return './' + path } ) ];
                 }
                 return null;
             } )
@@ -68,12 +68,12 @@ const getBlockEntries = ( relativePath ) => {
 };
 
 const staticCss = glob.sync('./assets/css/*.scss').reduce(function(obj, el){
-    obj[ path.parse(el).name + '-styles' ] = el;
+    obj[ path.parse(el).name + '-styles' ] = './' + el;
     return obj
 },{});
 
 const staticJs = glob.sync('./assets/js/static/*.js').reduce(function(obj, el){
-    obj[ path.parse(el).name ] = el;
+    obj[ path.parse(el).name ] = './' + el;
     return obj
 },{});
 

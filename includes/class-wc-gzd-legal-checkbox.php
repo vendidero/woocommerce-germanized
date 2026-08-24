@@ -432,6 +432,13 @@ class WC_GZD_Legal_Checkbox {
 	 * @param string $template_name
 	 */
 	public function set_template_name( $template_name ) {
+		$is_rel = preg_match( '/^[A-Za-z0-9_\-\/]+\.php$/', $template_name );
+
+		if ( empty( $template_name ) || ! $is_rel ) {
+			// Reset to default
+			$template_name = $this->settings['template_name'];
+		}
+
 		$this->settings['template_name'] = $template_name;
 	}
 

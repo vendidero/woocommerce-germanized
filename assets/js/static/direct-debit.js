@@ -94,8 +94,7 @@ jQuery( function( $ ) {
 
             e.preventDefault();
 
-            var url  = $( this ).attr( 'href' );
-            var data = {};
+            let data = {};
 
             $.each( self.params.mandate_fields, function( key, selector ) {
                 if ( $( 'input' + selector + ', select' + selector ).length > 0 ) {
@@ -105,10 +104,24 @@ jQuery( function( $ ) {
                 }
             } );
 
-            url += '&ajax=true&' + jQuery.param( data );
+            $.ajax({
+                type: "POST",
+                url:   $( this ).attr( 'href' ),
+                data: data,
+                success: function( responseHtml ) {
+                    $( '#show-direct-debit-pretty' ).attr( 'href', '#show-direct-debit-container' );
+                    $( '#show-direct-debit-container' ).remove();
 
-            $( '#show-direct-debit-pretty' ).attr( 'href', url );
-            $( '#show-direct-debit-pretty' ).trigger( 'click' );
+                    $( 'body' ).append( '<div id="show-direct-debit-container"></div>' );
+
+                    $( '#show-direct-debit-container' ).hide();
+                    $( '#show-direct-debit-container' ).html( responseHtml );
+                    $( '#show-direct-debit-pretty' ).trigger( 'click' );
+                },
+                error: function() {
+                },
+                dataType: 'html'
+            } );
         },
 
         initPrettyPhoto: function() {

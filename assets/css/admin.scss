@@ -67,7 +67,9 @@ span.woocommerce-gzd-input-toggle {
     margin-top: -10px;
     font-size: 13px;
     line-height: 1.2em;
+    display: block;
     text-decoration: none;
+    width: auto;
 
     &::before {
       position: relative;
