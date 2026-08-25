@@ -63,8 +63,10 @@ class WC_GZD_Customer_Helper {
 			add_action( 'wp_login', array( $this, 'delete_doi_session' ) );
 			add_action( 'wp_logout', array( $this, 'delete_doi_session' ) );
 
-			add_filter( 'woocommerce_customer_email_is_verified', array( $this, 'wc_filter_email_is_verified' ), 10, 2 );
+			add_filter( 'woocommerce_customer_email_is_verified', array( $this, 'wc_filter_email_is_verified' ), 10, 2 ); // May exist sometime: https://github.com/woocommerce/woocommerce/issues/67049
+			add_filter( 'get_user_metadata', array( $this, 'wc_filter_email_verified_meta' ), 99, 4 ); // Filter _wc_email_verified meta as a fallback
 			add_action( 'woocommerce_before_account_orders', array( $this, 'wc_remove_doi_notice' ), 5 );
+			add_filter( 'woocommerce_customer_email_verification_should_show_prompt', '__return_false' ); // WC 11.1
 
 			/**
 			 * Prevent users from logging in before the account has been activated.
@@ -96,6 +98,20 @@ class WC_GZD_Customer_Helper {
 			} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 			}
 		}
+	}
+
+	public function wc_filter_email_verified_meta( $check, $object_id, $meta_key, $single ) {
+		global $wpdb;
+
+		$site_specific_key = '_wc_email_verified_' . rtrim( $wpdb->get_blog_prefix( get_current_blog_id() ), '_' );
+
+		if ( $single && $site_specific_key === $meta_key ) {
+			if ( $this->enable_double_opt_in_for_user( $object_id ) && wc_gzd_is_customer_activated( $object_id ) ) {
+				$check = $this->get_user_email( $object_id );
+			}
+		}
+
+		return $check;
 	}
 
 	public function wc_filter_email_is_verified( $is_verified, $user_id ) {
