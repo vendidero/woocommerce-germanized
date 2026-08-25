@@ -9,7 +9,7 @@ import {
 } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { PanelBody, SelectControl } from "@wordpress/components";
-import { __ } from '@wordpress/i18n';
+import { __, _x } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
@@ -38,9 +38,9 @@ const Edit = ( {
     }
 
     const variants = {
-        'preview': __( 'Preview', 'woocommerce-germanized' ),
-        'full': __( 'Full', 'woocommerce-germanized' ),
-        'link': __( 'Link', 'woocommerce-germanized' ),
+        'preview': _x( 'Preview', 'eu-label-variant', 'woocommerce-germanized' ),
+        'full': _x( 'Full', 'eu-label-variant', 'woocommerce-germanized' ),
+        'link': _x( 'Link', 'eu-label-variant', 'woocommerce-germanized' ),
     };
 
     useEffect(

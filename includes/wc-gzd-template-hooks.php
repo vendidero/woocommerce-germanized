@@ -104,7 +104,8 @@ add_action(
 				}
 			}
 		}
-	}
+	},
+	50
 );
 
 // Make sure to add a global product object to allow getting the grouped parent product within child display

@@ -48,6 +48,7 @@ class WC_GZD_REST_Product_Manufacturers_Controller extends WC_REST_Terms_Control
 			'count'                => (int) $item->count,
 			'formatted_address'    => $manufacturer->get_formatted_address( 'edit' ),
 			'formatted_eu_address' => $manufacturer->get_formatted_eu_address( 'edit' ),
+			'garan_label_name'     => $manufacturer->get_garan_label_name( 'edit' ),
 		);
 
 		$context = ! empty( $request['context'] ) ? $request['context'] : 'view';
@@ -118,6 +119,11 @@ class WC_GZD_REST_Product_Manufacturers_Controller extends WC_REST_Terms_Control
 					'type'        => 'string',
 					'context'     => array( 'view', 'edit' ),
 				),
+				'garan_label_name'     => array(
+					'description' => __( 'Alternate GARAN label name.', 'woocommerce-germanized' ),
+					'type'        => 'string',
+					'context'     => array( 'view', 'edit' ),
+				),
 			),
 		);
 
@@ -138,6 +144,10 @@ class WC_GZD_REST_Product_Manufacturers_Controller extends WC_REST_Terms_Control
 
 		if ( isset( $request['formatted_eu_address'] ) ) {
 			update_term_meta( $term->term_id, 'formatted_eu_address', wc_gzd_sanitize_html_text_field( $request['formatted_eu_address'] ) );
+		}
+
+		if ( isset( $request['garan_label_name'] ) ) {
+			update_term_meta( $term->term_id, 'garan_label_name', sanitize_text_field( $request['garan_label_name'] ) );
 		}
 
 		return true;

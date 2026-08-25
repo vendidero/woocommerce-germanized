@@ -63,7 +63,8 @@ class WC_GZD_Customer_Helper {
 			add_action( 'wp_login', array( $this, 'delete_doi_session' ) );
 			add_action( 'wp_logout', array( $this, 'delete_doi_session' ) );
 
-			add_filter( 'get_user_metadata', array( $this, 'filter_wc_email_verified_meta' ), 99, 3 );
+			add_filter( 'woocommerce_customer_email_is_verified', array( $this, 'wc_filter_email_is_verified' ), 10, 2 );
+			add_action( 'woocommerce_before_account_orders', array( $this, 'wc_remove_doi_notice' ), 5 );
 
 			/**
 			 * Prevent users from logging in before the account has been activated.
@@ -87,18 +88,24 @@ class WC_GZD_Customer_Helper {
 		}
 	}
 
-	public function filter_wc_email_verified_meta( $check, $object_id, $meta_key ) {
-		global $wpdb;
+	public function wc_remove_doi_notice() {
+		if ( class_exists( 'Automattic\WooCommerce\Internal\CustomerEmailVerification\VerificationController' ) ) {
+			try {
+				$controller = wc_get_container()->get( Automattic\WooCommerce\Internal\CustomerEmailVerification\VerificationController::class );
+				add_action( 'woocommerce_before_account_orders', array( $controller, 'render_prompt' ) );
+			} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+			}
+		}
+	}
 
-		$site_specific_key = '_wc_email_verified_' . rtrim( $wpdb->get_blog_prefix( get_current_blog_id() ), '_' );
-
-		if ( $site_specific_key === $meta_key ) {
-			if ( $this->enable_double_opt_in_for_user( $object_id ) && wc_gzd_is_customer_activated( $object_id ) ) {
-				$check = $this->get_user_email( $object_id );
+	public function wc_filter_email_is_verified( $is_verified, $user_id ) {
+		if ( ! $is_verified ) {
+			if ( $this->enable_double_opt_in_for_user( $user_id ) && wc_gzd_is_customer_activated( $user_id ) ) {
+				$is_verified = true;
 			}
 		}
 
-		return $check;
+		return $is_verified;
 	}
 
 	public function on_user_email_changed( $send_email, $old_user, $new_user ) {

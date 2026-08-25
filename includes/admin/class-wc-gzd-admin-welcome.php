@@ -137,6 +137,27 @@ class WC_GZD_Admin_Welcome {
 			</p>
 
 			<div class="changelog new-feature">
+				<h3>EU Garantie- und Gewährleistungslabel</h3>
+
+				<div class="columns two-col">
+					<div class="col">
+						<p>
+							Ab dem 27.09.26 sind die neuen EU Labels für Gewährleistung (und Garantie) darzustellen. Verpflichtend wird die Darstellung für alle Händler die physische Produkte B2C, d.h. an Verbraucher verkaufen.
+							Germanized 4.1 bereitet deinen WooCommerce Shop nun auf diese neuen Richtlinien vor, damit du die Labels vorab ausführlich testen und einbinden kannst.
+						</p>
+
+						<div class="wc-gzd-actions wc-gzd-actions-right">
+							<a href="https://vendidero.de/eu-gewaehrleistungs-und-garantie-label-fuer-woocommerce" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
+							<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=guarantee_labels' ) ); ?>" class="wc-gzd-default-button button button-primary">Einstellungen anpassen</a>
+						</div>
+					</div>
+					<div class="col col-center">
+						<img style="max-height: 130px; width: 100%; object-fit:cover; object-position: top left;" src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/legal-guarantee/legal_guarantee_notice-de.png"/>
+					</div>
+				</div>
+			</div>
+
+			<div class="changelog new-feature">
 				<h3>Widerrufsbutton für WooCommerce</h3>
 
 				<div class="columns two-col">
@@ -149,7 +170,7 @@ class WC_GZD_Admin_Welcome {
 
 						<div class="wc-gzd-actions wc-gzd-actions-right">
 							<a href="https://vendidero.de/widerrufsbutton-rechtssicher-in-woocommerce-umsetzen" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-							<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=withdrawal_button' ) ); ?>" class="wc-gzd-default-button button button-primary" target="_blank">Einstellungen verwalten</a>
+							<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=withdrawal_button' ) ); ?>" class="wc-gzd-default-button button button-primary">Einstellungen verwalten</a>
 						</div>
 					</div>
 					<div class="col col-center">
@@ -266,88 +287,6 @@ class WC_GZD_Admin_Welcome {
 
 						<div class="wc-gzd-actions wc-gzd-actions-right">
 							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<p class="price smaller wc-gzd-pro-version">ab 85 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>Built-in Versandregeln, automatisches Packen & mehr</h3>
-
-				<div class="columns two-col">
-					<div class="col">
-						<p>
-							Germanized 3.15 kommt mit neuen, lang ersehnten Features. Von nun an benötigst du kein separates Plugin mehr um deine Versandregeln zu konfigurieren.
-							Mit Germanized kannst du nun ganz bequem, je Versanddienstleister, eigene Versandregeln anhand konkreter Bedingungen hinterlegen. Diese Regeln beziehen sich
-							allesamt auf die von dir hinterlegten Verpackungen. Germanized bestimmt von nun an automatisch im Warenkorb welche Verpackung(en) benötigt werden und berechnet anhand
-							deiner konfigurierten Regeln die Versandkosten. Das Feature <i>automatisches Packen</i> ist von nun an auch in der Basis-Version von Germanized verfügbar 🎉
-						</p>
-
-						<p>
-							Außerdem kannst du von nun an deine individuellen Konfigurationen für das Erstellen von Labels, z.B. DHL Warenpost + GoGreen direkt an eine Verpackung binden.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/germanized-3-15" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-							<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=shipping' ) ); ?>" class="wc-gzd-default-button button button-primary" target="_blank">Versandarten konfigurieren</a>
-						</div>
-					</div>
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/shipping-rules.png"/>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>Full-Site-Editing & Checkout-Block Support</h3>
-
-				<div class="columns two-col">
-					<div class="col">
-						<p>
-							In Germanized 3.14 haben wir uns sehr intensiv mit den neuen Blöcken auseinandergesetzt, die WooCommerce z.B. für eine
-							optimierte Darstellung des <a href="https://woocommerce.com/de-de/checkout-blocks/" target="_blank">Kaufvorgangs</a> bereitstellt. In diesem Zusammenhang haben wir uns neben der Anpassung der neuen Kasse
-							an die Vorgaben der Button-Lösung auch um das Bereitstellen individueller Blöcke (z.B. Checkboxen, Hinweis für Photovoltaikanlagen,
-							USt.-ID Abfrage <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span>) gekümmert. Insofern du bereits die Block-basierte Kasse nutzt, solltest
-							du das Layout kontrollieren und die von Germanized bereitgestellten Blöcke einfügen.</p>
-
-						<p>Darüber hinaus stellt Germanized nun individuelle Blöcke für die verschiedenen Preisauszeichnungen bereit - diese Blöcke kannst du z.B. bei der Bearbeitung der Vorlage <em>Einzelnes Produkt</em> in WooCommerce verwenden.</p>
-
-						<div class="wc-gzd-actions">
-							<a href="https://vendidero.de/germanized-3-14" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-
-							<?php if ( wc_gzd_has_checkout_block() ) : ?>
-								<a href="<?php echo esc_url( get_edit_post_link( wc_get_page_id( 'checkout' ) ) ); ?>" class="wc-gzd-default-button button button-primary" target="_blank">Kasse bearbeiten</a>
-							<?php endif; ?>
-							<?php if ( wc_gzd_current_theme_is_fse_theme() ) : ?>
-								<a href="<?php echo esc_url( admin_url( 'site-editor.php?postType=wp_template&postId=woocommerce/woocommerce//single-product&canvas=edit' ) ); ?>" class="wc-gzd-default-button button button-primary" target="_blank">Einzelnes Produkt bearbeiten</a>
-							<?php endif; ?>
-						</div>
-					</div>
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/checkout-block.png"/>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>Handels- bzw. Proformarechnungen erstellen <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
-
-				<div class="columns two-col">
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/commercial-invoice.png" style="max-width: 450px;"/>
-					</div>
-					<div class="col">
-						<p>
-							Erstelle mit Germanized Pro für deine internationale Sendungen bequem eine Handels- bzw. Proformarechnungen um den Zollbestimmungen zu entsprechen.
-							Alle relevanten Informationen (Gewichte, Herstellerland, Exportgrund usw.) werden für dich automatisch platziert. Wie bei den anderen Dokumenten
-							(Rechnung, Stornierung, Lieferschein) kannst du auch bei der Handelsrechnung das Layout individuell über den integrierten PDF-Editor anpassen.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<a href="https://vendidero.de/doc/woocommerce-germanized/handelsrechnungen-zu-sendungen-erstellen" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-
 							<p class="price smaller wc-gzd-pro-version">ab 85 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
 						</div>
 					</div>

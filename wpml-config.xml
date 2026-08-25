@@ -46,6 +46,7 @@
     <custom-term-fields>
 		<custom-term-field action="copy-once" style="textarea">formatted_address</custom-term-field>
 		<custom-term-field action="copy-once" style="textarea">formatted_eu_address</custom-term-field>
+        <custom-term-field action="copy-once">garan_label_name</custom-term-field>
 	</custom-term-fields>
     <taxonomies>
         <taxonomy translate="1">product_price_label</taxonomy>

@@ -2,7 +2,7 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import { kebabCase } from 'change-case';
+import { paramCase as kebabCase } from 'change-case';
 import { getCSSRules } from '@wordpress/style-engine';
 import { isString, isObject } from '@germanized/types';
 

@@ -9,7 +9,7 @@ import {
 } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
 import { PanelBody, SelectControl } from "@wordpress/components";
-import { __ } from '@wordpress/i18n';
+import { __, _x } from '@wordpress/i18n';
 
 /**
  * Internal dependencies
@@ -38,8 +38,8 @@ const Edit = ( {
     }
 
     const variants = {
-        'full': __( 'Full', 'woocommerce-germanized' ),
-        'nested': __( 'Nested', 'woocommerce-germanized' ),
+        'full': _x( 'Full', 'eu-label-variant', 'woocommerce-germanized' ),
+        'nested': _x( 'Nested', 'eu-label-variant', 'woocommerce-germanized' ),
     };
 
     useEffect(

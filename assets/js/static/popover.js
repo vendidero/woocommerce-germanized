@@ -11,18 +11,25 @@ window.germanized = window.germanized || {};
             if ( ! isTouch ) {
                 $( document ).on( 'mouseenter', '.wc-gzd-popover-trigger', function( e ) {
                     let $popover = $( this ).next( '.wc-gzd-popover' );
+
+                    if ( $popover.length <= 0 ) {
+                        return;
+                    }
+
                     const isOpen = $popover[0].matches(':popover-open');
 
                     if ( false === isOpen ) {
                         $popover.addClass( 'wc-gzd-popover-hover' );
-                        console.log('hover');
-                        console.log(e);
                         germanized.popover.showPopover( $popover );
                     }
                 } );
 
                 $( document ).on( 'mouseleave', '.wc-gzd-popover-trigger', function(e) {
                     let $popover = $( this ).next( '.wc-gzd-popover' );
+
+                    if ( $popover.length <= 0 ) {
+                        return;
+                    }
 
                     if ( $popover.hasClass( 'wc-gzd-popover-hover' ) ) {
                         germanized.popover.hidePopover( $popover );
@@ -32,6 +39,10 @@ window.germanized = window.germanized || {};
 
             $( document ).on( 'click', '.wc-gzd-popover-trigger', function( e ) {
                 let $popover = $( this ).next( '.wc-gzd-popover' );
+
+                if ( $popover.length <= 0 ) {
+                    return;
+                }
 
                 $popover.removeClass( 'wc-gzd-popover-hover' );
                 germanized.popover.showPopover( $popover );
@@ -46,6 +57,10 @@ window.germanized = window.germanized || {};
                     $popover = $( this );
                 } else {
                     $popover = $( this ).parents( '.wc-gzd-popover' );
+                }
+
+                if ( $popover.length <= 0 ) {
+                    return;
                 }
 
                 germanized.popover.hidePopover( $popover );

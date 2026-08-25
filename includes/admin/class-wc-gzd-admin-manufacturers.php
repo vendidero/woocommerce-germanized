@@ -55,6 +55,12 @@ class WC_GZD_Admin_Manufacturers {
 				'cols'  => 50,
 				'rows'  => 5,
 			),
+			'garan_label_name'     => array(
+				'label'     => __( 'GARAN Label name', 'woocommerce-germanized' ),
+				'type'      => 'text',
+				'id'        => 'garan_label_name',
+				'term_desc' => __( 'Optionally, choose a different name specifically for the GARAN label.', 'woocommerce-germanized' ),
+			),
 		);
 	}
 
@@ -148,7 +154,12 @@ class WC_GZD_Admin_Manufacturers {
 			<div class="form-field" style="position: relative">
 				<?php if ( 'textarea' === $field['type'] ) : ?>
 					<?php woocommerce_wp_textarea_input( $field ); ?>
-				<?php else : ?>
+				<?php elseif ( 'text' === $field['type'] ) : ?>
+					<?php woocommerce_wp_text_input( $field ); ?>
+				<?php endif; ?>
+
+				<?php if ( ! empty( $field['term_desc'] ) ) : ?>
+					<p class="description" id="description-<?php echo esc_attr( $field['id'] ); ?>"><?php echo wp_kses_post( $field['term_desc'] ); ?></p>
 				<?php endif; ?>
 			</div>
 			<?php
@@ -168,6 +179,10 @@ class WC_GZD_Admin_Manufacturers {
 			$getter         = "get_{$field['id']}";
 			$field['value'] = is_callable( array( $manufacturer, $getter ) ) ? $manufacturer->{ $getter }( 'edit' ) : '';
 			$field['label'] = '';
+
+			if ( 'garan_label_name' === $field_name ) {
+				$field['placeholder'] = $manufacturer->get_name();
+			}
 			?>
 			<tr class="form-field term-manufacturer-address-wrap">
 				<th scope="row" valign="top">
@@ -176,7 +191,12 @@ class WC_GZD_Admin_Manufacturers {
 				<td>
 					<?php if ( 'textarea' === $field['type'] ) : ?>
 						<?php woocommerce_wp_textarea_input( $field ); ?>
-					<?php else : ?>
+					<?php elseif ( 'text' === $field['type'] ) : ?>
+						<?php woocommerce_wp_text_input( $field ); ?>
+					<?php endif; ?>
+
+					<?php if ( ! empty( $field['term_desc'] ) ) : ?>
+						<p class="description" id="description-<?php echo esc_attr( $field['id'] ); ?>"><?php echo wp_kses_post( $field['term_desc'] ); ?></p>
 					<?php endif; ?>
 				</td>
 			</tr>

@@ -1338,12 +1338,13 @@ function wc_gzd_determine_legal_guarantee_lang( $lang = '' ) {
 		$lang   = apply_filters( 'woocommerce_gzd_legal_guarantee_current_request_lang', strtolower( $locale[0] ) );
 	}
 
+	$lang                = strtolower( $lang );
 	$available_languages = wc_gzd_get_legal_guarantee_languages();
 
 	if ( array_key_exists( $lang, $available_languages ) ) {
 		return $lang;
 	} else {
-		return apply_filters( 'woocommerce_gzd_legal_guarantee_fallback_lang', 'en' );
+		return strtolower( apply_filters( 'woocommerce_gzd_legal_guarantee_fallback_lang', 'en' ) );
 	}
 }
 

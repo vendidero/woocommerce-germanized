@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 7.1
 WC requires at least: 3.9
-WC tested up to: 11.0
-Stable tag: 4.0.11
+WC tested up to: 11.1
+Stable tag: 4.1.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -29,6 +29,7 @@ Germanized extends WooCommerce with typical german shop functionality: Delivery 
 * *Legal Checkboxes UI* - Adjust your legal WooCommerce checkboxes (e.g. terms & conditions) through a fluent user interface.
 * *Button Solution* - We adjust your checkout and submit button to comply with german button solution.
 * *Withdrawal Button* - Add a withdrawal button (EU directive 2023/2673) to your store which contains a form to let your customers conveniently place withdrawal requests.
+* *EU Guarantee Labels* - Embed EU harmonised notice on legal guarantee and commercial guarantee (GARAN label).
 * *Sell Food (Pro)* - Label your food (nutrients, ingredients, allergenic), sell deposit bottles, show the Nutri-Score.
 * *OSS compliance* - Germanized helps your WooCommerce shop to be compliant with the new One Stop Shop procedure
 * *Double opt-in (DOI) for Customers* - Make sure customers opted in while registering within your shop. Optionally disable checkout until the customer opted in.
@@ -207,6 +208,14 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.1.0 =
+* New: EU legal guarantee, commercial guarantee labels
+* New: DOI: Disable guest checkout redirect to registration page and link guest orders after confirming the account instead
+* Improvement: Refactored direct debit encryption/decryption to use core encryption instead of relying on a third-party library
+* Improvement: DOI after email change
+* Improvement: [Withdrawal button]Prefer searching for custom order number first to prevent finding wrong ids
+* Improvement: [Withdrawal button] Restock order items on withdrawal confirmation in case no payment has been made yet
+
 = 4.0.11 =
 * Improvement: Compatibility with WP 7.1
 * Improvement: Default product safety tab hiding for variable products in block context

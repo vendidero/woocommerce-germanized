@@ -39,9 +39,16 @@ class WC_GZD_Manufacturer {
 		return $this->manufacturer->name;
 	}
 
-	public function get_garan_label_name() {
-		return $this->get_name();
+	public function get_garan_label_name( $context = 'view' ) {
+		$garan_label_name = get_term_meta( $this->get_id(), 'garan_label_name', true );
+
+		if ( 'view' === $context && empty( $garan_label_name ) ) {
+			$garan_label_name = $this->get_name();
+		}
+
+		return $garan_label_name;
 	}
+
 	protected function get_hook_prefix() {
 		return 'woocommerce_gzd_manufacturer_get';
 	}

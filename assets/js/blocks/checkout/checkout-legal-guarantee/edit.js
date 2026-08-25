@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { __, sprintf } from '@wordpress/i18n';
+import { __, _x, sprintf } from '@wordpress/i18n';
 import {
 	useBlockProps,
 	InspectorControls
@@ -16,9 +16,9 @@ export const Edit = ({ attributes, setAttributes, className }) => {
 	const blockProps = useBlockProps();
 
 	const variants = {
-		'preview': __( 'Preview', 'woocommerce-germanized' ),
-		'full': __( 'Full', 'woocommerce-germanized' ),
-		'link': __( 'Link', 'woocommerce-germanized' ),
+		'preview': _x( 'Preview', 'eu-label-variant', 'woocommerce-germanized' ),
+		'full': _x( 'Full', 'eu-label-variant', 'woocommerce-germanized' ),
+		'link': _x( 'Link', 'eu-label-variant', 'woocommerce-germanized' ),
 	};
 
 	let formattedPreview = '';

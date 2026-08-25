@@ -565,11 +565,11 @@ final class Checkout {
 			'photovoltaic_system_law_details'            => wc_gzd_cart_get_photovoltaic_systems_law_details(),
 			'checkboxes'                                 => $checkboxes_for_api,
 			'shipping_costs_notice'                      => wc_gzd_get_shipping_costs_text(),
-      'direct_debit'                               => array(
-					'holder' => '',
-					'iban'   => '',
-					'bic'    => '',
-      )
+			'direct_debit'                               => array(
+				'holder' => '',
+				'iban'   => '',
+				'bic'    => '',
+			),
 		);
 	}
 
