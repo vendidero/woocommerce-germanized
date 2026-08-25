@@ -1793,7 +1793,7 @@ class WC_GZD_Product {
 		return apply_filters(
 			'woocommerce_gzd_product_garan_label_attachment',
 			array(
-				'filename' => sanitize_file_name( "GARAN-{$this->get_id()}-{$this->get_wc_product()->get_title()}.svg" ),
+				'filename' => sanitize_file_name( "GARAN-{$variant}-{$this->get_id()}-{$this->get_wc_product()->get_title()}.svg" ),
 				'content'  => $this->get_garan_label_svg( $variant ),
 			),
 			$this,
