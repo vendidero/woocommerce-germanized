@@ -92,7 +92,7 @@ class WC_GZD_Customer_Helper {
 		if ( class_exists( 'Automattic\WooCommerce\Internal\CustomerEmailVerification\VerificationController' ) ) {
 			try {
 				$controller = wc_get_container()->get( Automattic\WooCommerce\Internal\CustomerEmailVerification\VerificationController::class );
-				add_action( 'woocommerce_before_account_orders', array( $controller, 'render_prompt' ) );
+				remove_action( 'woocommerce_before_account_orders', array( $controller, 'render_prompt' ) );
 			} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 			}
 		}

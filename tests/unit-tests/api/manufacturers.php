@@ -49,6 +49,7 @@ class WC_GZD_Manufacturers_API extends WC_GZD_REST_Unit_Test_Case {
 			'count'                => 0,
 			'formatted_address'    => "vendidero Gmbh\nMusterstr. 36\n12207 Berlin",
 			'formatted_eu_address' => "vendidero Gmbh\nMusterstr. 36\n12207 Berlin",
+			'garan_label_name'     => ''
 		) );
 
 		wp_delete_term( $term['term_id'], 'product_manufacturer' );
