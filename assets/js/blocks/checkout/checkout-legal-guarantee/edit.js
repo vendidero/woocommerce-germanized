@@ -9,17 +9,13 @@ import {
 import classnames from "classnames";
 
 import { PanelBody, SelectControl } from "@wordpress/components";
-import { WC_GZD_ASSET_URL } from '@germanized/settings';
+import { WC_GZD_ASSET_URL, getSetting } from '@germanized/settings';
 
 export const Edit = ({ attributes, setAttributes, className }) => {
 	const { variant, align } = attributes;
 	const blockProps = useBlockProps();
 
-	const variants = {
-		'preview': _x( 'Preview', 'eu-label-variant', 'woocommerce-germanized' ),
-		'full': _x( 'Full', 'eu-label-variant', 'woocommerce-germanized' ),
-		'link': _x( 'Link', 'eu-label-variant', 'woocommerce-germanized' ),
-	};
+	const variants = getSetting( 'legalGuaranteeVariants', {} );
 
 	let formattedPreview = '';
 

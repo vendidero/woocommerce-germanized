@@ -721,8 +721,8 @@ function wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption( $items = fal
 }
 
 function wc_gzd_cart_needs_legal_guarantee( $items = false ) {
-	$items                 = $items ? (array) $items : WC()->cart->get_cart();
-	$needs_legal_guarantee = false;
+	$items                 = $items ? (array) $items : ( WC()->cart ? WC()->cart->get_cart() : array() );
+	$needs_legal_guarantee = empty( $items ) ? true : false;
 
 	if ( ! empty( $items ) ) {
 		foreach ( $items as $cart_item_key => $values ) {
@@ -740,15 +740,54 @@ function wc_gzd_cart_needs_legal_guarantee( $items = false ) {
 	}
 
 	/**
-	 * Determines whether a cart needs a EU legal guarantee label or not.
+	 * Determines whether a cart needs an EU legal guarantee label or not.
 	 *
 	 * @param bool $needs_legal_guarantee Whether the cart includes an item with legal guarantee or not.
 	 * @param array $items The cart items.
 	 *
 	 * @since 4.1.0
-	 *
 	 */
 	return apply_filters( 'woocommerce_gzd_cart_needs_legal_guarantee', $needs_legal_guarantee, $items );
+}
+
+function wc_gzd_cart_contains_products_without_legal_guarantee( $items = false ) {
+	$items                        = $items ? (array) $items : ( WC()->cart ? WC()->cart->get_cart() : array() );
+	$contains_non_legal_guarantee = false;
+
+	if ( ! empty( $items ) ) {
+		foreach ( $items as $cart_item_key => $values ) {
+			$_product = false;
+
+			if ( isset( $values['data'] ) ) {
+				$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
+			}
+
+			if ( $_product && ! wc_gzd_get_product( $_product )->needs_legal_guarantee() ) {
+				$contains_non_legal_guarantee = true;
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Determines whether a cart does contain at least one product which does not need an EU legal guarantee label.
+	 *
+	 * @param bool $contains_non_legal_guarantee Whether the cart includes an item which does not need a legal guarantee.
+	 * @param array $items The cart items.
+	 *
+	 * @since 4.1.0
+	 */
+	return apply_filters( 'woocommerce_gzd_cart_contains_products_without_legal_guarantee', $contains_non_legal_guarantee, $items );
+}
+
+function wc_gzd_cart_get_legal_guarantee_mixed_cart_notice( $variant ) {
+	$notice = __( 'For physical products: Please mind the following notice on your legal guarantee rights:', 'woocommerce-germanized' );
+
+	if ( 'link' === $variant ) {
+		$notice = __( 'For physical products:', 'woocommerce-germanized' );
+	}
+
+	return apply_filters( 'woocommerce_gzd_legal_guarantee_mixed_cart_notice', $notice, $variant );
 }
 
 function wc_gzd_cart_get_photovoltaic_systems_law_details( $args = array() ) {

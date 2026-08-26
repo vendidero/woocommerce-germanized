@@ -22,6 +22,6 @@ $variant  = isset( $variant ) ? $variant : '';
 $location = isset( $location ) ? $location : '';
 $lang     = isset( $lang ) ? $lang : '';
 ?>
-<?php if ( wc_gzd_is_legal_guarantee_enabled() ) : ?>
+<?php if ( wc_gzd_is_legal_guarantee_enabled() && apply_filters( 'woocommerce_gzd_show_global_legal_guarantee_notice', ( 'checkout' === $location ? wc_gzd_cart_needs_legal_guarantee() : true ), $location ) ) : ?>
 	<div class="wc-gzd-legal-guarantee wc-gzd-legal-guarantee-global <?php echo ( ! empty( $location ) ? esc_attr( 'wc-gzd-legal-guarantee-' . $location ) : '' ); ?>"><?php echo wc_gzd_kses_post_svg( wc_gzd_get_legal_guarantee_html( $variant, $lang, $location ) ); ?></div>
 <?php endif; ?>

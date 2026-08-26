@@ -1291,17 +1291,28 @@ function wc_gzd_get_legal_guarantee_languages() {
 }
 
 function wc_gzd_get_legal_guarantee_html( $variant = '', $lang = '', $location = '' ) {
-	$variant = wc_gzd_get_legal_guarantee_variant( $variant, $location );
-	$html    = '<div class="wc-gzd-legal-guarantee-label wc-gzd-legal-guarantee-label-' . esc_attr( $variant ) . ' ' . ( in_array( $variant, array( 'preview', 'link' ), true ) ? 'wc-gzd-popover-wrapper' : '' ) . '">';
+	$variant           = wc_gzd_get_legal_guarantee_variant( $variant, $location );
+	$html              = '<div class="wc-gzd-legal-guarantee-label wc-gzd-legal-guarantee-label-' . esc_attr( $variant ) . ' ' . ( in_array( $variant, array( 'preview', 'link' ), true ) ? 'wc-gzd-popover-wrapper' : '' ) . '">';
+	$mixed_notice_html = ( 'checkout' === $location && wc_gzd_cart_contains_products_without_legal_guarantee() ) ? wc_gzd_cart_get_legal_guarantee_mixed_cart_notice( $variant ) : '';
+
+	if ( 'link' !== $variant && ! empty( $mixed_notice_html ) ) {
+		$html .= '<p class="wc-gzd-legal-guarantee-mixed-cart-notice">' . esc_html( $mixed_notice_html ) . '</p>';
+	}
 
 	if ( 'link' === $variant ) {
+		$trigger_html = __( 'Your legal guarantee rights', 'woocommerce-germanized' );
+
+		if ( ! empty( $mixed_notice_html ) ) {
+			$trigger_html = $mixed_notice_html . ' ' . $trigger_html;
+		}
+
 		$popover_html = wc_get_template_html(
 			'global/popover.php',
 			array(
 				'popover_description'  => __( 'Your legal guarantee rights', 'woocommerce-germanized' ),
 				'popover_fallback_url' => wc_gzd_get_legal_guarantee_image_url( $lang ),
 				'popover_html'         => '<img class="wc-gzd-legal-guarantee-popover-image" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '" /><p class="wc-gzd-popover-caption"><a href="' . esc_url( wc_gzd_get_legal_guarantee_url( $lang ) ) . '" target="_blank">' . esc_html( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '</a></p>',
-				'popover_trigger_html' => __( 'Your legal guarantee rights', 'woocommerce-germanized' ),
+				'popover_trigger_html' => apply_filters( 'woocommerce_gzd_legal_guarantee_link_description', $trigger_html, $location ),
 			)
 		);
 

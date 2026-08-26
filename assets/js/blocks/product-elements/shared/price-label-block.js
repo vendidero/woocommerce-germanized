@@ -147,18 +147,20 @@ const getPreviewData = ( labelType, productData, isDescendentOfSingleProductTemp
             </>
         );
     } else if ( 'garan_label' === labelTypeData ) {
+        const maxWidth = 'full' === props['variant'] ? '100%' : '350px';
+
         formattedPreview = (
             <>
-                <img src={ `${ WC_GZD_ASSET_URL }images/garan-label/garan-label-${ props['variant'] }-sample.svg` } />
+                <img style={{minWidth: '200px', maxWidth: maxWidth}} src={ `${ WC_GZD_ASSET_URL }images/garan-label/garan-label-${ props['variant'] }-sample.svg` } />
             </>
         );
     } else if ( 'legal_guarantee' === labelTypeData ) {
         if ( 'full' === props['variant'] || 'preview' === props['variant'] ) {
-            const maxWidth = 'full' === props['variant'] ? '100%' : '50%';
+            const maxWidth = 'full' === props['variant'] ? '100%' : '250px';
 
             formattedPreview = (
                 <>
-                    <img style={{maxWidth: maxWidth}} src={ `${ WC_GZD_ASSET_URL }images/legal-guarantee/legal_guarantee_notice-EN.png` } />
+                    <img style={{maxWidth: maxWidth, minWidth: '200px'}} src={ `${ WC_GZD_ASSET_URL }images/legal-guarantee/legal_guarantee_notice-EN.png` } />
                 </>
             );
         } else if ( 'link' === props['variant'] ) {
@@ -227,6 +229,22 @@ const PriceLabelBlock = (props) => {
             }
         />
     );
+
+    if ( isDescendentOfSingleProductTemplate ) {
+        return (
+            <FormattedPriceLabel
+                align={textAlign}
+                parentClassName={ parentClassName }
+                className={ className }
+                labelType={ labelType }
+                formattedLabel={
+                    isDescendentOfSingleProductTemplate
+                        ? previewData['preview']
+                        : previewData['data']
+                }
+            />
+        );
+    }
 
     if (isDescendentOfAllProductsBlock) {
         const allProductsClassName = `wp-block-woocommerce-gzd-product-${labelType}`;

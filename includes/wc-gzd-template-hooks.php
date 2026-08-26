@@ -62,7 +62,7 @@ foreach ( wc_gzd_get_product_block_shopmarks() as $shopmark ) {
 }
 
 add_action(
-	'init',
+	'wp_loaded',
 	function () {
 		foreach ( wc_gzd_get_legal_guarantee_global_locations() as $location ) {
 			if ( 'product_description_after' === $location ) {

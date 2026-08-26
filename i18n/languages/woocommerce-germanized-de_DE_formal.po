@@ -6,8 +6,8 @@ msgstr ""
 "Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2026-08-25T08:25:44+00:00\n"
-"PO-Revision-Date: 2026-08-25 10:30+0200\n"
+"POT-Creation-Date: 2026-08-26T09:11:53+00:00\n"
+"PO-Revision-Date: 2026-08-26 11:13+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -2081,9 +2081,9 @@ msgstr "exkl. %s %% MwSt."
 #: includes/abstracts/abstract-wc-gzd-product.php:1841
 #: includes/abstracts/abstract-wc-gzd-product.php:1848
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-garan-label.php:10
-#: build/wc-gzd-blocks-product-elements.js:1894
-#: build/wc-gzd-blocks-product-elements-style.js:1406
-#: build/wc-gzd-blocks-product-elements.js:1406
+#: build/wc-gzd-blocks-product-elements.js:1729
+#: build/wc-gzd-blocks-product-elements-style.js:1273
+#: build/wc-gzd-blocks-product-elements.js:1273
 msgid "EU GARAN label"
 msgstr "EU-GARAN-Label"
 
@@ -2294,9 +2294,9 @@ msgstr "Wählen Sie optional eine abweichende Bezeichnung für das GARAN Label."
 #: includes/api/class-wc-gzd-rest-products-controller.php:603
 #: includes/class-wc-gzd-post-types.php:159
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-manufacturer.php:10
-#: build/wc-gzd-blocks-product-elements.js:2299
-#: build/wc-gzd-blocks-product-elements-style.js:1714
-#: build/wc-gzd-blocks-product-elements.js:1697
+#: build/wc-gzd-blocks-product-elements.js:2133
+#: build/wc-gzd-blocks-product-elements-style.js:1578
+#: build/wc-gzd-blocks-product-elements.js:1561
 msgid "Manufacturer"
 msgstr "Hersteller"
 
@@ -2740,9 +2740,9 @@ msgstr ""
 #: includes/api/class-wc-gzd-rest-products-controller.php:203
 #: includes/api/class-wc-gzd-rest-products-controller.php:709
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
-#: build/wc-gzd-blocks-product-elements.js:4050
-#: build/wc-gzd-blocks-product-elements-style.js:3018
-#: build/wc-gzd-blocks-product-elements.js:3001
+#: build/wc-gzd-blocks-product-elements.js:3894
+#: build/wc-gzd-blocks-product-elements-style.js:2895
+#: build/wc-gzd-blocks-product-elements.js:2878
 msgid "Unit Price"
 msgstr "Grundpreis"
 
@@ -2767,9 +2767,9 @@ msgstr "Automatische Berechnung an-/ausschalten"
 #: includes/api/class-wc-gzd-rest-products-controller.php:43
 #: includes/api/class-wc-gzd-rest-products-controller.php:528
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:10
-#: build/wc-gzd-blocks-product-elements.js:1329
-#: build/wc-gzd-blocks-product-elements-style.js:1008
-#: build/wc-gzd-blocks-product-elements.js:1008
+#: build/wc-gzd-blocks-product-elements.js:1164
+#: build/wc-gzd-blocks-product-elements-style.js:877
+#: build/wc-gzd-blocks-product-elements.js:877
 msgid "Delivery Time"
 msgstr "Lieferzeit"
 
@@ -3007,9 +3007,9 @@ msgstr "Produktsicherheit"
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-safety-instructions.php:10
 #: includes/wc-gzd-template-functions.php:960
 #: templates/single-product/safety-instructions.php:22
-#: build/wc-gzd-blocks-product-elements.js:3012
-#: build/wc-gzd-blocks-product-elements-style.js:2209
-#: build/wc-gzd-blocks-product-elements.js:2192
+#: build/wc-gzd-blocks-product-elements.js:2846
+#: build/wc-gzd-blocks-product-elements-style.js:2073
+#: build/wc-gzd-blocks-product-elements.js:2056
 msgid "Safety instructions"
 msgstr "Sicherheitshinweise"
 
@@ -3110,9 +3110,9 @@ msgstr "Warenkorb Kurzbeschreibung"
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:328
 #: includes/api/class-wc-gzd-rest-products-controller.php:252
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-defect-description.php:10
-#: build/wc-gzd-blocks-product-elements.js:1153
-#: build/wc-gzd-blocks-product-elements-style.js:885
-#: build/wc-gzd-blocks-product-elements.js:885
+#: build/wc-gzd-blocks-product-elements.js:988
+#: build/wc-gzd-blocks-product-elements-style.js:754
+#: build/wc-gzd-blocks-product-elements.js:754
 msgid "Defect Description"
 msgstr "Mängelbeschreibung"
 
@@ -3307,9 +3307,9 @@ msgstr "Grundpreis automatisch berechnen."
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:677
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-power-supply.php:10
-#: build/wc-gzd-blocks-product-elements.js:2654
-#: build/wc-gzd-blocks-product-elements-style.js:1961
-#: build/wc-gzd-blocks-product-elements.js:1944
+#: build/wc-gzd-blocks-product-elements.js:2488
+#: build/wc-gzd-blocks-product-elements-style.js:1825
+#: build/wc-gzd-blocks-product-elements.js:1808
 msgid "Power supply"
 msgstr "Netzteil"
 
@@ -4374,8 +4374,8 @@ msgstr ""
 #: includes/api/class-wc-gzd-rest-orders-controller.php:156
 #: includes/class-wc-gzd-checkout.php:1002
 #: includes/class-wc-gzd-checkout.php:1016
-#: includes/class-wc-gzd-customer-helper.php:443
-#: includes/class-wc-gzd-customer-helper.php:451
+#: includes/class-wc-gzd-customer-helper.php:459
+#: includes/class-wc-gzd-customer-helper.php:467
 msgid "Title"
 msgstr "Anrede"
 
@@ -7436,9 +7436,9 @@ msgstr "Pfand Anzahl"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-products-controller.php:410
-#: build/wc-gzd-blocks-product-elements.js:1687
-#: build/wc-gzd-blocks-product-elements-style.js:1256
-#: build/wc-gzd-blocks-product-elements.js:1256
+#: build/wc-gzd-blocks-product-elements.js:1522
+#: build/wc-gzd-blocks-product-elements-style.js:1125
+#: build/wc-gzd-blocks-product-elements.js:1125
 msgid "Deposit amount"
 msgstr "Pfandbetrag"
 
@@ -7450,9 +7450,9 @@ msgstr "Nährwert Referenzmenge"
 #: includes/api/class-wc-gzd-rest-products-controller.php:425
 #: includes/class-wc-gzd-food-helper.php:48
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-nutri-score.php:10
-#: build/wc-gzd-blocks-product-elements.js:2478
-#: build/wc-gzd-blocks-product-elements-style.js:1838
-#: build/wc-gzd-blocks-product-elements.js:1821
+#: build/wc-gzd-blocks-product-elements.js:2312
+#: build/wc-gzd-blocks-product-elements-style.js:1702
+#: build/wc-gzd-blocks-product-elements.js:1685
 msgid "Nutri-Score"
 msgstr "Nutri-Score"
 
@@ -7636,13 +7636,13 @@ msgstr ""
 "besteuert. Weitere Informationen finden Sie <a href=\"%s\" "
 "target=\"_blank\">hier</a>."
 
-#: includes/class-wc-gzd-customer-helper.php:232
-#: includes/class-wc-gzd-customer-helper.php:258
+#: includes/class-wc-gzd-customer-helper.php:248
+#: includes/class-wc-gzd-customer-helper.php:274
 msgid "Your account has been created and is waiting for your activation"
 msgstr "Ihr Konto wurde erstellt und wartet auf Ihre Aktivierung"
 
-#: includes/class-wc-gzd-customer-helper.php:232
-#: includes/class-wc-gzd-customer-helper.php:258
+#: includes/class-wc-gzd-customer-helper.php:248
+#: includes/class-wc-gzd-customer-helper.php:274
 #, php-format
 msgid ""
 "Please check your e-mails and activate your account. Did not receive an "
@@ -7651,8 +7651,8 @@ msgstr ""
 "Bitte aktivieren Sie Ihr Kundenkonto indem Sie auf den Link in der E-Mail "
 "klicken. Keine E-Mail erhalten? <a href=\"%s\">Erneut zusenden</a>."
 
-#: includes/class-wc-gzd-customer-helper.php:348
-#: includes/class-wc-gzd-customer-helper.php:431
+#: includes/class-wc-gzd-customer-helper.php:364
+#: includes/class-wc-gzd-customer-helper.php:447
 msgid ""
 "Please activate your account through clicking on the activation link "
 "received via email."
@@ -7661,13 +7661,13 @@ msgstr ""
 "klicken."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-customer-helper.php:373
+#: includes/class-wc-gzd-customer-helper.php:389
 #, php-format
 msgid "Did not receive the activation email? <a href=\"%s\">Try again</a>."
 msgstr ""
 "Keine Aktivierungs-E-Mail erhalten? <a href=\"%s\">Erneut zusenden</a>."
 
-#: includes/class-wc-gzd-customer-helper.php:613
+#: includes/class-wc-gzd-customer-helper.php:629
 #, php-format
 msgid ""
 "Please activate your account through clicking on the activation link "
@@ -7676,7 +7676,7 @@ msgstr ""
 "Bitte aktivieren Sie Ihr Kundenkonto indem Sie auf den Link in der E-Mail "
 "klicken. Keine E-Mail erhalten? <a href=\"%s\">Erneut zusenden</a>."
 
-#: includes/class-wc-gzd-customer-helper.php:738
+#: includes/class-wc-gzd-customer-helper.php:754
 msgid ""
 "This activation code has expired. We have sent you a new activation code via "
 "e-mail."
@@ -7685,25 +7685,25 @@ msgstr ""
 "Code per E-Mail geschickt."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-customer-helper.php:740
+#: includes/class-wc-gzd-customer-helper.php:756
 msgid "Sorry, but this activation code cannot be found."
 msgstr "Sorry, dieser Aktivierungscode ist uns leider nicht bekannt."
 
-#: includes/class-wc-gzd-customer-helper.php:747
+#: includes/class-wc-gzd-customer-helper.php:763
 msgid "Thank you. Your new email address has been confirmed."
 msgstr "Vielen Dank. Ihre neue E-Mail-Adresse wurde bestätigt."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-customer-helper.php:749
+#: includes/class-wc-gzd-customer-helper.php:765
 msgid "Thank you. You have successfully activated your account."
 msgstr "Vielen Dank. Ihr Benutzerkonto wurde erfolgreich aktiviert."
 
-#: includes/class-wc-gzd-customer-helper.php:975
-#: includes/class-wc-gzd-customer-helper.php:1077
+#: includes/class-wc-gzd-customer-helper.php:991
+#: includes/class-wc-gzd-customer-helper.php:1093
 msgid "Invalid activation key"
 msgstr "Aktivierungscode ungültig"
 
-#: includes/class-wc-gzd-customer-helper.php:1072
+#: includes/class-wc-gzd-customer-helper.php:1088
 msgid "Expired activation key"
 msgstr "Abgelaufener Aktivierungscode"
 
@@ -8436,39 +8436,39 @@ msgstr ""
 "Kunde seine Einwilligung erteilt hat."
 
 #: includes/class-wc-gzd-manufacturer.php:103
-#: build/product-defect-description-frontend.js:760
-#: build/product-delivery-time-frontend.js:760
-#: build/product-deposit-frontend.js:760
-#: build/product-deposit-packaging-type-frontend.js:760
-#: build/product-garan-label-frontend.js:760
-#: build/product-legal-guarantee-frontend.js:760
-#: build/product-manufacturer-frontend.js:760
-#: build/product-nutri-score-frontend.js:760
-#: build/product-power-supply-frontend.js:760
-#: build/product-safety-attachments-frontend.js:760
-#: build/product-safety-instructions-frontend.js:760
-#: build/product-shipping-costs-info-frontend.js:698
-#: build/product-tax-info-frontend.js:698
-#: build/product-unit-price-frontend.js:698
-#: build/product-unit-product-frontend.js:698
-#: build/wc-gzd-blocks-product-elements.js:3359
-#: build/product-defect-description-frontend.js:654
-#: build/product-delivery-time-frontend.js:654
-#: build/product-deposit-frontend.js:654
-#: build/product-deposit-packaging-type-frontend.js:654
-#: build/product-garan-label-frontend.js:654
-#: build/product-legal-guarantee-frontend.js:654
-#: build/product-manufacturer-frontend.js:654
-#: build/product-nutri-score-frontend.js:654
-#: build/product-power-supply-frontend.js:654
-#: build/product-safety-attachments-frontend.js:654
-#: build/product-safety-instructions-frontend.js:654
-#: build/product-shipping-costs-info-frontend.js:628
-#: build/product-tax-info-frontend.js:628
-#: build/product-unit-price-frontend.js:628
-#: build/product-unit-product-frontend.js:628
-#: build/wc-gzd-blocks-product-elements-style.js:2507
-#: build/wc-gzd-blocks-product-elements.js:2490
+#: build/product-defect-description-frontend.js:593
+#: build/product-delivery-time-frontend.js:593
+#: build/product-deposit-frontend.js:593
+#: build/product-deposit-packaging-type-frontend.js:593
+#: build/product-garan-label-frontend.js:593
+#: build/product-legal-guarantee-frontend.js:593
+#: build/product-manufacturer-frontend.js:593
+#: build/product-nutri-score-frontend.js:593
+#: build/product-power-supply-frontend.js:593
+#: build/product-safety-attachments-frontend.js:593
+#: build/product-safety-instructions-frontend.js:593
+#: build/product-shipping-costs-info-frontend.js:531
+#: build/product-tax-info-frontend.js:531
+#: build/product-unit-price-frontend.js:531
+#: build/product-unit-product-frontend.js:531
+#: build/wc-gzd-blocks-product-elements.js:3189
+#: build/product-defect-description-frontend.js:520
+#: build/product-delivery-time-frontend.js:520
+#: build/product-deposit-frontend.js:520
+#: build/product-deposit-packaging-type-frontend.js:520
+#: build/product-garan-label-frontend.js:520
+#: build/product-legal-guarantee-frontend.js:520
+#: build/product-manufacturer-frontend.js:520
+#: build/product-nutri-score-frontend.js:520
+#: build/product-power-supply-frontend.js:520
+#: build/product-safety-attachments-frontend.js:520
+#: build/product-safety-instructions-frontend.js:520
+#: build/product-shipping-costs-info-frontend.js:494
+#: build/product-tax-info-frontend.js:494
+#: build/product-unit-price-frontend.js:494
+#: build/product-unit-product-frontend.js:494
+#: build/wc-gzd-blocks-product-elements-style.js:2368
+#: build/wc-gzd-blocks-product-elements.js:2351
 msgid "Person responsible for the EU"
 msgstr "Verantwortliche Person in der EU"
 
@@ -8923,9 +8923,9 @@ msgid "Deposit Amount"
 msgstr "Pfandbetrag"
 
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-legal-guarantee.php:10
-#: build/wc-gzd-blocks-product-elements.js:2111
-#: build/wc-gzd-blocks-product-elements-style.js:1582
-#: build/wc-gzd-blocks-product-elements.js:1565
+#: build/wc-gzd-blocks-product-elements.js:1945
+#: build/wc-gzd-blocks-product-elements-style.js:1446
+#: build/wc-gzd-blocks-product-elements.js:1429
 msgid "EU Legal Guarantee"
 msgstr "EU Gewährleistungslabel"
 
@@ -8936,9 +8936,9 @@ msgstr "Versandkosten Hinweis"
 
 # @ woocommerce-germanized
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-tax-notice.php:10
-#: build/wc-gzd-blocks-product-elements.js:3874
-#: build/wc-gzd-blocks-product-elements-style.js:2894
-#: build/wc-gzd-blocks-product-elements.js:2877
+#: build/wc-gzd-blocks-product-elements.js:3718
+#: build/wc-gzd-blocks-product-elements-style.js:2771
+#: build/wc-gzd-blocks-product-elements.js:2754
 msgid "Tax Notice"
 msgstr "Steuerhinweis"
 
@@ -9893,7 +9893,19 @@ msgstr ""
 "term_link}, {revocation_link}Widerrufsbestimmungen{/revocation_link} und "
 "{data_security_link}Datenschutzbestimmungen{/data_security_link}."
 
-#: includes/wc-gzd-cart-functions.php:759
+#: includes/wc-gzd-cart-functions.php:784
+msgid ""
+"For physical products: Please mind the following notice on your legal "
+"guarantee rights:"
+msgstr ""
+"Für körperliche Produkte: Bitte beachten Sie den nachfolgenden Hinweis zur "
+"Gewährleistung:"
+
+#: includes/wc-gzd-cart-functions.php:787
+msgid "For physical products:"
+msgstr "Für körperliche Produkte:"
+
+#: includes/wc-gzd-cart-functions.php:798
 msgid "§12 paragraph 3 UStG"
 msgstr "§12 Absatz 3 UStG"
 
@@ -9963,29 +9975,17 @@ msgid "More variants available"
 msgstr "Weitere Varianten verfügbar"
 
 #: includes/wc-gzd-core-functions.php:1144
-#: includes/wc-gzd-core-functions.php:1163 build/checkout.js:625
-#: build/wc-gzd-blocks-product-elements.js:1810
-#: build/wc-gzd-blocks-product-elements.js:2027 build/checkout-style.js:466
-#: build/checkout.js:466 build/wc-gzd-blocks-product-elements-style.js:1336
-#: build/wc-gzd-blocks-product-elements-style.js:1512
-#: build/wc-gzd-blocks-product-elements.js:1336
-#: build/wc-gzd-blocks-product-elements.js:1495
+#: includes/wc-gzd-core-functions.php:1163
 msgctxt "eu-label-variant"
 msgid "Full"
 msgstr "Vollständig"
 
-#: includes/wc-gzd-core-functions.php:1145 build/checkout.js:624
-#: build/wc-gzd-blocks-product-elements.js:2026 build/checkout-style.js:465
-#: build/checkout.js:465 build/wc-gzd-blocks-product-elements-style.js:1511
-#: build/wc-gzd-blocks-product-elements.js:1494
+#: includes/wc-gzd-core-functions.php:1145
 msgctxt "eu-label-variant"
 msgid "Preview"
 msgstr "Vorschau"
 
-#: includes/wc-gzd-core-functions.php:1146 build/checkout.js:626
-#: build/wc-gzd-blocks-product-elements.js:2028 build/checkout-style.js:467
-#: build/checkout.js:467 build/wc-gzd-blocks-product-elements-style.js:1513
-#: build/wc-gzd-blocks-product-elements.js:1496
+#: includes/wc-gzd-core-functions.php:1146
 msgctxt "eu-label-variant"
 msgid "Link"
 msgstr "Link"
@@ -9995,57 +9995,54 @@ msgid "SKU"
 msgstr "Art.-Nr."
 
 #: includes/wc-gzd-core-functions.php:1164
-#: build/wc-gzd-blocks-product-elements.js:1811
-#: build/wc-gzd-blocks-product-elements-style.js:1337
-#: build/wc-gzd-blocks-product-elements.js:1337
 msgctxt "eu-label-variant"
 msgid "Nested"
 msgstr "Geschachtelt"
 
-#: includes/wc-gzd-core-functions.php:1299
-#: includes/wc-gzd-core-functions.php:1301
-#: includes/wc-gzd-core-functions.php:1302
-#: includes/wc-gzd-core-functions.php:1311
-#: includes/wc-gzd-core-functions.php:1313
+#: includes/wc-gzd-core-functions.php:1303
+#: includes/wc-gzd-core-functions.php:1312
 #: includes/wc-gzd-core-functions.php:1314
-#: includes/wc-gzd-core-functions.php:1320 build/checkout.js:644
-#: build/product-defect-description-frontend.js:847
-#: build/product-delivery-time-frontend.js:847
-#: build/product-deposit-frontend.js:847
-#: build/product-deposit-packaging-type-frontend.js:847
-#: build/product-garan-label-frontend.js:847
-#: build/product-legal-guarantee-frontend.js:847
-#: build/product-manufacturer-frontend.js:847
-#: build/product-nutri-score-frontend.js:847
-#: build/product-power-supply-frontend.js:847
-#: build/product-safety-attachments-frontend.js:847
-#: build/product-safety-instructions-frontend.js:847
-#: build/product-shipping-costs-info-frontend.js:785
-#: build/product-tax-info-frontend.js:785
-#: build/product-unit-price-frontend.js:785
-#: build/product-unit-product-frontend.js:785
-#: build/wc-gzd-blocks-product-elements.js:3446 build/checkout-style.js:483
-#: build/checkout.js:483 build/product-defect-description-frontend.js:721
-#: build/product-delivery-time-frontend.js:721
-#: build/product-deposit-frontend.js:721
-#: build/product-deposit-packaging-type-frontend.js:721
-#: build/product-garan-label-frontend.js:721
-#: build/product-legal-guarantee-frontend.js:721
-#: build/product-manufacturer-frontend.js:721
-#: build/product-nutri-score-frontend.js:721
-#: build/product-power-supply-frontend.js:721
-#: build/product-safety-attachments-frontend.js:721
-#: build/product-safety-instructions-frontend.js:721
-#: build/product-shipping-costs-info-frontend.js:695
-#: build/product-tax-info-frontend.js:695
-#: build/product-unit-price-frontend.js:695
-#: build/product-unit-product-frontend.js:695
-#: build/wc-gzd-blocks-product-elements-style.js:2574
-#: build/wc-gzd-blocks-product-elements.js:2557
+#: includes/wc-gzd-core-functions.php:1324
+#: includes/wc-gzd-core-functions.php:1326
+#: includes/wc-gzd-core-functions.php:1327
+#: includes/wc-gzd-core-functions.php:1333 build/checkout.js:640
+#: build/product-defect-description-frontend.js:685
+#: build/product-delivery-time-frontend.js:685
+#: build/product-deposit-frontend.js:685
+#: build/product-deposit-packaging-type-frontend.js:685
+#: build/product-garan-label-frontend.js:685
+#: build/product-legal-guarantee-frontend.js:685
+#: build/product-manufacturer-frontend.js:685
+#: build/product-nutri-score-frontend.js:685
+#: build/product-power-supply-frontend.js:685
+#: build/product-safety-attachments-frontend.js:685
+#: build/product-safety-instructions-frontend.js:685
+#: build/product-shipping-costs-info-frontend.js:623
+#: build/product-tax-info-frontend.js:623
+#: build/product-unit-price-frontend.js:623
+#: build/product-unit-product-frontend.js:623
+#: build/wc-gzd-blocks-product-elements.js:3281 build/checkout-style.js:479
+#: build/checkout.js:479 build/product-defect-description-frontend.js:587
+#: build/product-delivery-time-frontend.js:587
+#: build/product-deposit-frontend.js:587
+#: build/product-deposit-packaging-type-frontend.js:587
+#: build/product-garan-label-frontend.js:587
+#: build/product-legal-guarantee-frontend.js:587
+#: build/product-manufacturer-frontend.js:587
+#: build/product-nutri-score-frontend.js:587
+#: build/product-power-supply-frontend.js:587
+#: build/product-safety-attachments-frontend.js:587
+#: build/product-safety-instructions-frontend.js:587
+#: build/product-shipping-costs-info-frontend.js:561
+#: build/product-tax-info-frontend.js:561
+#: build/product-unit-price-frontend.js:561
+#: build/product-unit-product-frontend.js:561
+#: build/wc-gzd-blocks-product-elements-style.js:2435
+#: build/wc-gzd-blocks-product-elements.js:2418
 msgid "Your legal guarantee rights"
 msgstr "Ihre gesetzlichen Gewährleistungsrechte"
 
-#: includes/wc-gzd-core-functions.php:1810
+#: includes/wc-gzd-core-functions.php:1823
 #, php-format
 msgctxt "defect-descriptions"
 msgid "%1$s (%2$s)"
@@ -10177,11 +10174,11 @@ msgid "Cart shipping costs notice."
 msgstr "Versandkostenhinweis im Warenkorb."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:425 src/Blocks/Checkout.php:579
+#: src/Blocks/Checkout.php:425 src/Blocks/Checkout.php:581
 msgid "List of cart checkboxes."
 msgstr "Liste der Checkboxen."
 
-#: src/Blocks/Checkout.php:433 src/Blocks/Checkout.php:586
+#: src/Blocks/Checkout.php:433 src/Blocks/Checkout.php:588
 msgid "Unique identifier for the checkbox within the cart."
 msgstr "Eindeutige Bezeichnung der Checkbox innerhalb des Warenkorbs."
 
@@ -10196,7 +10193,7 @@ msgid "Checkbox label."
 msgstr "Checkbox Beschriftung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:451 src/Blocks/Checkout.php:592
+#: src/Blocks/Checkout.php:451 src/Blocks/Checkout.php:594
 msgid "Checkbox checked status."
 msgstr "Checkbox Status."
 
@@ -10393,9 +10390,9 @@ msgstr ""
 "einen Fehler."
 
 # @ woocommerce-germanized
-#: src/PluginsHelper.php:636 build/wc-gzd-blocks-product-elements.js:3104
-#: build/wc-gzd-blocks-product-elements-style.js:2267
-#: build/wc-gzd-blocks-product-elements.js:2250
+#: src/PluginsHelper.php:636 build/wc-gzd-blocks-product-elements.js:2938
+#: build/wc-gzd-blocks-product-elements-style.js:2131
+#: build/wc-gzd-blocks-product-elements.js:2114
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
@@ -10766,10 +10763,10 @@ msgstr "Betrag aktualisieren"
 #: templates/checkout/photovoltaic-systems-notice.php:24
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:52
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:52
-#: build/checkout.js:766
+#: build/checkout.js:762
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-frontend.js:37
 #: build/checkout-blocks/checkout-photovoltaic-system-notice-style.js:37
-#: build/checkout-style.js:565 build/checkout.js:565
+#: build/checkout-style.js:561 build/checkout.js:561
 msgid "Your shopping cart is eligible for VAT exemption"
 msgstr "Ihr Warenkorb ist für eine Mehrwertsteuerbefreiung berechtigt"
 
@@ -10975,16 +10972,16 @@ msgstr "Das ist eine Beschriftung, die neben der Checkbox angezeigt wird."
 msgid "Manage checkboxes"
 msgstr "Checkboxen verwalten"
 
-#: build/checkout.js:662 build/wc-gzd-blocks-product-elements.js:1835
-#: build/wc-gzd-blocks-product-elements.js:2052 build/checkout-style.js:502
-#: build/checkout.js:502 build/wc-gzd-blocks-product-elements-style.js:1369
-#: build/wc-gzd-blocks-product-elements-style.js:1545
-#: build/wc-gzd-blocks-product-elements.js:1369
-#: build/wc-gzd-blocks-product-elements.js:1528
+#: build/checkout.js:658 build/wc-gzd-blocks-product-elements.js:1670
+#: build/wc-gzd-blocks-product-elements.js:1886 build/checkout-style.js:498
+#: build/checkout.js:498 build/wc-gzd-blocks-product-elements-style.js:1236
+#: build/wc-gzd-blocks-product-elements-style.js:1409
+#: build/wc-gzd-blocks-product-elements.js:1236
+#: build/wc-gzd-blocks-product-elements.js:1392
 msgid "Variant"
 msgstr "Variante"
 
-#: build/checkout.js:765 build/checkout-style.js:564 build/checkout.js:564
+#: build/checkout.js:761 build/checkout-style.js:560 build/checkout.js:560
 msgid ""
 "To benefit from the tax exemption, please confirm the VAT exemption "
 "according to {legal_text} by activating the checkbox."
@@ -10993,813 +10990,813 @@ msgstr ""
 "bestätigen Sie bitte die entsprechende Checkbox."
 
 # @ woocommerce
-#: build/product-defect-description-frontend.js:718
-#: build/product-delivery-time-frontend.js:718
-#: build/product-deposit-frontend.js:718
-#: build/product-deposit-packaging-type-frontend.js:718
-#: build/product-garan-label-frontend.js:718
-#: build/product-legal-guarantee-frontend.js:718
-#: build/product-manufacturer-frontend.js:718
-#: build/product-nutri-score-frontend.js:718
-#: build/product-power-supply-frontend.js:718
-#: build/product-safety-attachments-frontend.js:718
-#: build/product-safety-instructions-frontend.js:718
-#: build/product-shipping-costs-info-frontend.js:656
-#: build/product-tax-info-frontend.js:656
-#: build/product-unit-price-frontend.js:656
-#: build/product-unit-product-frontend.js:656
-#: build/wc-gzd-blocks-product-elements.js:3317
-#: build/product-defect-description-frontend.js:615
-#: build/product-delivery-time-frontend.js:615
-#: build/product-deposit-frontend.js:615
-#: build/product-deposit-packaging-type-frontend.js:615
-#: build/product-garan-label-frontend.js:615
-#: build/product-legal-guarantee-frontend.js:615
-#: build/product-manufacturer-frontend.js:615
-#: build/product-nutri-score-frontend.js:615
-#: build/product-power-supply-frontend.js:615
-#: build/product-safety-attachments-frontend.js:615
-#: build/product-safety-instructions-frontend.js:615
-#: build/product-shipping-costs-info-frontend.js:589
-#: build/product-tax-info-frontend.js:589
-#: build/product-unit-price-frontend.js:589
-#: build/product-unit-product-frontend.js:589
-#: build/wc-gzd-blocks-product-elements-style.js:2468
-#: build/wc-gzd-blocks-product-elements.js:2451
+#: build/product-defect-description-frontend.js:551
+#: build/product-delivery-time-frontend.js:551
+#: build/product-deposit-frontend.js:551
+#: build/product-deposit-packaging-type-frontend.js:551
+#: build/product-garan-label-frontend.js:551
+#: build/product-legal-guarantee-frontend.js:551
+#: build/product-manufacturer-frontend.js:551
+#: build/product-nutri-score-frontend.js:551
+#: build/product-power-supply-frontend.js:551
+#: build/product-safety-attachments-frontend.js:551
+#: build/product-safety-instructions-frontend.js:551
+#: build/product-shipping-costs-info-frontend.js:489
+#: build/product-tax-info-frontend.js:489
+#: build/product-unit-price-frontend.js:489
+#: build/product-unit-product-frontend.js:489
+#: build/wc-gzd-blocks-product-elements.js:3147
+#: build/product-defect-description-frontend.js:481
+#: build/product-delivery-time-frontend.js:481
+#: build/product-deposit-frontend.js:481
+#: build/product-deposit-packaging-type-frontend.js:481
+#: build/product-garan-label-frontend.js:481
+#: build/product-legal-guarantee-frontend.js:481
+#: build/product-manufacturer-frontend.js:481
+#: build/product-nutri-score-frontend.js:481
+#: build/product-power-supply-frontend.js:481
+#: build/product-safety-attachments-frontend.js:481
+#: build/product-safety-instructions-frontend.js:481
+#: build/product-shipping-costs-info-frontend.js:455
+#: build/product-tax-info-frontend.js:455
+#: build/product-unit-price-frontend.js:455
+#: build/product-unit-product-frontend.js:455
+#: build/wc-gzd-blocks-product-elements-style.js:2329
+#: build/wc-gzd-blocks-product-elements.js:2312
 msgctxt "unit"
 msgid "kg"
 msgstr "kg"
 
 # @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:722
-#: build/product-delivery-time-frontend.js:722
-#: build/product-deposit-frontend.js:722
-#: build/product-deposit-packaging-type-frontend.js:722
-#: build/product-garan-label-frontend.js:722
-#: build/product-legal-guarantee-frontend.js:722
-#: build/product-manufacturer-frontend.js:722
-#: build/product-nutri-score-frontend.js:722
-#: build/product-power-supply-frontend.js:722
-#: build/product-safety-attachments-frontend.js:722
-#: build/product-safety-instructions-frontend.js:722
-#: build/product-shipping-costs-info-frontend.js:660
-#: build/product-tax-info-frontend.js:660
-#: build/product-unit-price-frontend.js:660
-#: build/product-unit-product-frontend.js:660
-#: build/wc-gzd-blocks-product-elements.js:3321
-#: build/product-defect-description-frontend.js:619
-#: build/product-delivery-time-frontend.js:619
-#: build/product-deposit-frontend.js:619
-#: build/product-deposit-packaging-type-frontend.js:619
-#: build/product-garan-label-frontend.js:619
-#: build/product-legal-guarantee-frontend.js:619
-#: build/product-manufacturer-frontend.js:619
-#: build/product-nutri-score-frontend.js:619
-#: build/product-power-supply-frontend.js:619
-#: build/product-safety-attachments-frontend.js:619
-#: build/product-safety-instructions-frontend.js:619
-#: build/product-shipping-costs-info-frontend.js:593
-#: build/product-tax-info-frontend.js:593
-#: build/product-unit-price-frontend.js:593
-#: build/product-unit-product-frontend.js:593
-#: build/wc-gzd-blocks-product-elements-style.js:2472
-#: build/wc-gzd-blocks-product-elements.js:2455
+#: build/product-defect-description-frontend.js:555
+#: build/product-delivery-time-frontend.js:555
+#: build/product-deposit-frontend.js:555
+#: build/product-deposit-packaging-type-frontend.js:555
+#: build/product-garan-label-frontend.js:555
+#: build/product-legal-guarantee-frontend.js:555
+#: build/product-manufacturer-frontend.js:555
+#: build/product-nutri-score-frontend.js:555
+#: build/product-power-supply-frontend.js:555
+#: build/product-safety-attachments-frontend.js:555
+#: build/product-safety-instructions-frontend.js:555
+#: build/product-shipping-costs-info-frontend.js:493
+#: build/product-tax-info-frontend.js:493
+#: build/product-unit-price-frontend.js:493
+#: build/product-unit-product-frontend.js:493
+#: build/wc-gzd-blocks-product-elements.js:3151
+#: build/product-defect-description-frontend.js:485
+#: build/product-delivery-time-frontend.js:485
+#: build/product-deposit-frontend.js:485
+#: build/product-deposit-packaging-type-frontend.js:485
+#: build/product-garan-label-frontend.js:485
+#: build/product-legal-guarantee-frontend.js:485
+#: build/product-manufacturer-frontend.js:485
+#: build/product-nutri-score-frontend.js:485
+#: build/product-power-supply-frontend.js:485
+#: build/product-safety-attachments-frontend.js:485
+#: build/product-safety-instructions-frontend.js:485
+#: build/product-shipping-costs-info-frontend.js:459
+#: build/product-tax-info-frontend.js:459
+#: build/product-unit-price-frontend.js:459
+#: build/product-unit-product-frontend.js:459
+#: build/wc-gzd-blocks-product-elements-style.js:2333
+#: build/wc-gzd-blocks-product-elements.js:2316
 msgctxt "preview"
 msgid "Delivery time: 2-3 days"
 msgstr "Lieferzeit: 2-3 Tage"
 
 # @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:724
-#: build/product-delivery-time-frontend.js:724
-#: build/product-deposit-frontend.js:724
-#: build/product-deposit-packaging-type-frontend.js:724
-#: build/product-garan-label-frontend.js:724
-#: build/product-legal-guarantee-frontend.js:724
-#: build/product-manufacturer-frontend.js:724
-#: build/product-nutri-score-frontend.js:724
-#: build/product-power-supply-frontend.js:724
-#: build/product-safety-attachments-frontend.js:724
-#: build/product-safety-instructions-frontend.js:724
-#: build/product-shipping-costs-info-frontend.js:662
-#: build/product-tax-info-frontend.js:662
-#: build/product-unit-price-frontend.js:662
-#: build/product-unit-product-frontend.js:662
-#: build/wc-gzd-blocks-product-elements.js:3323
-#: build/product-defect-description-frontend.js:621
-#: build/product-delivery-time-frontend.js:621
-#: build/product-deposit-frontend.js:621
-#: build/product-deposit-packaging-type-frontend.js:621
-#: build/product-garan-label-frontend.js:621
-#: build/product-legal-guarantee-frontend.js:621
-#: build/product-manufacturer-frontend.js:621
-#: build/product-nutri-score-frontend.js:621
-#: build/product-power-supply-frontend.js:621
-#: build/product-safety-attachments-frontend.js:621
-#: build/product-safety-instructions-frontend.js:621
-#: build/product-shipping-costs-info-frontend.js:595
-#: build/product-tax-info-frontend.js:595
-#: build/product-unit-price-frontend.js:595
-#: build/product-unit-product-frontend.js:595
-#: build/wc-gzd-blocks-product-elements-style.js:2474
-#: build/wc-gzd-blocks-product-elements.js:2457
+#: build/product-defect-description-frontend.js:557
+#: build/product-delivery-time-frontend.js:557
+#: build/product-deposit-frontend.js:557
+#: build/product-deposit-packaging-type-frontend.js:557
+#: build/product-garan-label-frontend.js:557
+#: build/product-legal-guarantee-frontend.js:557
+#: build/product-manufacturer-frontend.js:557
+#: build/product-nutri-score-frontend.js:557
+#: build/product-power-supply-frontend.js:557
+#: build/product-safety-attachments-frontend.js:557
+#: build/product-safety-instructions-frontend.js:557
+#: build/product-shipping-costs-info-frontend.js:495
+#: build/product-tax-info-frontend.js:495
+#: build/product-unit-price-frontend.js:495
+#: build/product-unit-product-frontend.js:495
+#: build/wc-gzd-blocks-product-elements.js:3153
+#: build/product-defect-description-frontend.js:487
+#: build/product-delivery-time-frontend.js:487
+#: build/product-deposit-frontend.js:487
+#: build/product-deposit-packaging-type-frontend.js:487
+#: build/product-garan-label-frontend.js:487
+#: build/product-legal-guarantee-frontend.js:487
+#: build/product-manufacturer-frontend.js:487
+#: build/product-nutri-score-frontend.js:487
+#: build/product-power-supply-frontend.js:487
+#: build/product-safety-attachments-frontend.js:487
+#: build/product-safety-instructions-frontend.js:487
+#: build/product-shipping-costs-info-frontend.js:461
+#: build/product-tax-info-frontend.js:461
+#: build/product-unit-price-frontend.js:461
+#: build/product-unit-product-frontend.js:461
+#: build/wc-gzd-blocks-product-elements-style.js:2335
+#: build/wc-gzd-blocks-product-elements.js:2318
 msgctxt "preview"
 msgid "incl. 19 % VAT"
 msgstr "inkl. 19 % MwSt."
 
 # @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:726
-#: build/product-delivery-time-frontend.js:726
-#: build/product-deposit-frontend.js:726
-#: build/product-deposit-packaging-type-frontend.js:726
-#: build/product-garan-label-frontend.js:726
-#: build/product-legal-guarantee-frontend.js:726
-#: build/product-manufacturer-frontend.js:726
-#: build/product-nutri-score-frontend.js:726
-#: build/product-power-supply-frontend.js:726
-#: build/product-safety-attachments-frontend.js:726
-#: build/product-safety-instructions-frontend.js:726
-#: build/product-shipping-costs-info-frontend.js:664
-#: build/product-tax-info-frontend.js:664
-#: build/product-unit-price-frontend.js:664
-#: build/product-unit-product-frontend.js:664
-#: build/wc-gzd-blocks-product-elements.js:3325
-#: build/product-defect-description-frontend.js:623
-#: build/product-delivery-time-frontend.js:623
-#: build/product-deposit-frontend.js:623
-#: build/product-deposit-packaging-type-frontend.js:623
-#: build/product-garan-label-frontend.js:623
-#: build/product-legal-guarantee-frontend.js:623
-#: build/product-manufacturer-frontend.js:623
-#: build/product-nutri-score-frontend.js:623
-#: build/product-power-supply-frontend.js:623
-#: build/product-safety-attachments-frontend.js:623
-#: build/product-safety-instructions-frontend.js:623
-#: build/product-shipping-costs-info-frontend.js:597
-#: build/product-tax-info-frontend.js:597
-#: build/product-unit-price-frontend.js:597
-#: build/product-unit-product-frontend.js:597
-#: build/wc-gzd-blocks-product-elements-style.js:2476
-#: build/wc-gzd-blocks-product-elements.js:2459
+#: build/product-defect-description-frontend.js:559
+#: build/product-delivery-time-frontend.js:559
+#: build/product-deposit-frontend.js:559
+#: build/product-deposit-packaging-type-frontend.js:559
+#: build/product-garan-label-frontend.js:559
+#: build/product-legal-guarantee-frontend.js:559
+#: build/product-manufacturer-frontend.js:559
+#: build/product-nutri-score-frontend.js:559
+#: build/product-power-supply-frontend.js:559
+#: build/product-safety-attachments-frontend.js:559
+#: build/product-safety-instructions-frontend.js:559
+#: build/product-shipping-costs-info-frontend.js:497
+#: build/product-tax-info-frontend.js:497
+#: build/product-unit-price-frontend.js:497
+#: build/product-unit-product-frontend.js:497
+#: build/wc-gzd-blocks-product-elements.js:3155
+#: build/product-defect-description-frontend.js:489
+#: build/product-delivery-time-frontend.js:489
+#: build/product-deposit-frontend.js:489
+#: build/product-deposit-packaging-type-frontend.js:489
+#: build/product-garan-label-frontend.js:489
+#: build/product-legal-guarantee-frontend.js:489
+#: build/product-manufacturer-frontend.js:489
+#: build/product-nutri-score-frontend.js:489
+#: build/product-power-supply-frontend.js:489
+#: build/product-safety-attachments-frontend.js:489
+#: build/product-safety-instructions-frontend.js:489
+#: build/product-shipping-costs-info-frontend.js:463
+#: build/product-tax-info-frontend.js:463
+#: build/product-unit-price-frontend.js:463
+#: build/product-unit-product-frontend.js:463
+#: build/wc-gzd-blocks-product-elements-style.js:2337
+#: build/wc-gzd-blocks-product-elements.js:2320
 msgctxt "preview"
 msgid "plus shipping costs"
 msgstr "zzgl. Versandkosten "
 
-#: build/product-defect-description-frontend.js:728
-#: build/product-delivery-time-frontend.js:728
-#: build/product-deposit-frontend.js:728
-#: build/product-deposit-packaging-type-frontend.js:728
-#: build/product-garan-label-frontend.js:728
-#: build/product-legal-guarantee-frontend.js:728
-#: build/product-manufacturer-frontend.js:728
-#: build/product-nutri-score-frontend.js:728
-#: build/product-power-supply-frontend.js:728
-#: build/product-safety-attachments-frontend.js:728
-#: build/product-safety-instructions-frontend.js:728
-#: build/product-shipping-costs-info-frontend.js:666
-#: build/product-tax-info-frontend.js:666
-#: build/product-unit-price-frontend.js:666
-#: build/product-unit-product-frontend.js:666
-#: build/wc-gzd-blocks-product-elements.js:3327
-#: build/product-defect-description-frontend.js:625
-#: build/product-delivery-time-frontend.js:625
-#: build/product-deposit-frontend.js:625
-#: build/product-deposit-packaging-type-frontend.js:625
-#: build/product-garan-label-frontend.js:625
-#: build/product-legal-guarantee-frontend.js:625
-#: build/product-manufacturer-frontend.js:625
-#: build/product-nutri-score-frontend.js:625
-#: build/product-power-supply-frontend.js:625
-#: build/product-safety-attachments-frontend.js:625
-#: build/product-safety-instructions-frontend.js:625
-#: build/product-shipping-costs-info-frontend.js:599
-#: build/product-tax-info-frontend.js:599
-#: build/product-unit-price-frontend.js:599
-#: build/product-unit-product-frontend.js:599
-#: build/wc-gzd-blocks-product-elements-style.js:2478
-#: build/wc-gzd-blocks-product-elements.js:2461
+#: build/product-defect-description-frontend.js:561
+#: build/product-delivery-time-frontend.js:561
+#: build/product-deposit-frontend.js:561
+#: build/product-deposit-packaging-type-frontend.js:561
+#: build/product-garan-label-frontend.js:561
+#: build/product-legal-guarantee-frontend.js:561
+#: build/product-manufacturer-frontend.js:561
+#: build/product-nutri-score-frontend.js:561
+#: build/product-power-supply-frontend.js:561
+#: build/product-safety-attachments-frontend.js:561
+#: build/product-safety-instructions-frontend.js:561
+#: build/product-shipping-costs-info-frontend.js:499
+#: build/product-tax-info-frontend.js:499
+#: build/product-unit-price-frontend.js:499
+#: build/product-unit-product-frontend.js:499
+#: build/wc-gzd-blocks-product-elements.js:3157
+#: build/product-defect-description-frontend.js:491
+#: build/product-delivery-time-frontend.js:491
+#: build/product-deposit-frontend.js:491
+#: build/product-deposit-packaging-type-frontend.js:491
+#: build/product-garan-label-frontend.js:491
+#: build/product-legal-guarantee-frontend.js:491
+#: build/product-manufacturer-frontend.js:491
+#: build/product-nutri-score-frontend.js:491
+#: build/product-power-supply-frontend.js:491
+#: build/product-safety-attachments-frontend.js:491
+#: build/product-safety-instructions-frontend.js:491
+#: build/product-shipping-costs-info-frontend.js:465
+#: build/product-tax-info-frontend.js:465
+#: build/product-unit-price-frontend.js:465
+#: build/product-unit-product-frontend.js:465
+#: build/wc-gzd-blocks-product-elements-style.js:2339
+#: build/wc-gzd-blocks-product-elements.js:2322
 msgctxt "preview"
 msgid "Product includes: %1$s kg"
 msgstr "Produkt enthält: %1$s kg"
 
-#: build/product-defect-description-frontend.js:730
-#: build/product-delivery-time-frontend.js:730
-#: build/product-deposit-frontend.js:730
-#: build/product-deposit-packaging-type-frontend.js:730
-#: build/product-garan-label-frontend.js:730
-#: build/product-legal-guarantee-frontend.js:730
-#: build/product-manufacturer-frontend.js:730
-#: build/product-nutri-score-frontend.js:730
-#: build/product-power-supply-frontend.js:730
-#: build/product-safety-attachments-frontend.js:730
-#: build/product-safety-instructions-frontend.js:730
-#: build/product-shipping-costs-info-frontend.js:668
-#: build/product-tax-info-frontend.js:668
-#: build/product-unit-price-frontend.js:668
-#: build/product-unit-product-frontend.js:668
-#: build/wc-gzd-blocks-product-elements.js:3329
-#: build/product-defect-description-frontend.js:627
-#: build/product-delivery-time-frontend.js:627
-#: build/product-deposit-frontend.js:627
-#: build/product-deposit-packaging-type-frontend.js:627
-#: build/product-garan-label-frontend.js:627
-#: build/product-legal-guarantee-frontend.js:627
-#: build/product-manufacturer-frontend.js:627
-#: build/product-nutri-score-frontend.js:627
-#: build/product-power-supply-frontend.js:627
-#: build/product-safety-attachments-frontend.js:627
-#: build/product-safety-instructions-frontend.js:627
-#: build/product-shipping-costs-info-frontend.js:601
-#: build/product-tax-info-frontend.js:601
-#: build/product-unit-price-frontend.js:601
-#: build/product-unit-product-frontend.js:601
-#: build/wc-gzd-blocks-product-elements-style.js:2480
-#: build/wc-gzd-blocks-product-elements.js:2463
+#: build/product-defect-description-frontend.js:563
+#: build/product-delivery-time-frontend.js:563
+#: build/product-deposit-frontend.js:563
+#: build/product-deposit-packaging-type-frontend.js:563
+#: build/product-garan-label-frontend.js:563
+#: build/product-legal-guarantee-frontend.js:563
+#: build/product-manufacturer-frontend.js:563
+#: build/product-nutri-score-frontend.js:563
+#: build/product-power-supply-frontend.js:563
+#: build/product-safety-attachments-frontend.js:563
+#: build/product-safety-instructions-frontend.js:563
+#: build/product-shipping-costs-info-frontend.js:501
+#: build/product-tax-info-frontend.js:501
+#: build/product-unit-price-frontend.js:501
+#: build/product-unit-product-frontend.js:501
+#: build/wc-gzd-blocks-product-elements.js:3159
+#: build/product-defect-description-frontend.js:493
+#: build/product-delivery-time-frontend.js:493
+#: build/product-deposit-frontend.js:493
+#: build/product-deposit-packaging-type-frontend.js:493
+#: build/product-garan-label-frontend.js:493
+#: build/product-legal-guarantee-frontend.js:493
+#: build/product-manufacturer-frontend.js:493
+#: build/product-nutri-score-frontend.js:493
+#: build/product-power-supply-frontend.js:493
+#: build/product-safety-attachments-frontend.js:493
+#: build/product-safety-instructions-frontend.js:493
+#: build/product-shipping-costs-info-frontend.js:467
+#: build/product-tax-info-frontend.js:467
+#: build/product-unit-price-frontend.js:467
+#: build/product-unit-product-frontend.js:467
+#: build/wc-gzd-blocks-product-elements-style.js:2341
+#: build/wc-gzd-blocks-product-elements.js:2324
 msgctxt "preview"
 msgid "This product has a serious defect."
 msgstr "Dieses Produkt hat einen echten Mangel."
 
-#: build/product-defect-description-frontend.js:735
-#: build/product-delivery-time-frontend.js:735
-#: build/product-deposit-frontend.js:735
-#: build/product-deposit-packaging-type-frontend.js:735
-#: build/product-garan-label-frontend.js:735
-#: build/product-legal-guarantee-frontend.js:735
-#: build/product-manufacturer-frontend.js:735
-#: build/product-nutri-score-frontend.js:735
-#: build/product-power-supply-frontend.js:735
-#: build/product-safety-attachments-frontend.js:735
-#: build/product-safety-instructions-frontend.js:735
-#: build/product-shipping-costs-info-frontend.js:673
-#: build/product-tax-info-frontend.js:673
-#: build/product-unit-price-frontend.js:673
-#: build/product-unit-product-frontend.js:673
-#: build/wc-gzd-blocks-product-elements.js:3334
-#: build/product-defect-description-frontend.js:631
-#: build/product-delivery-time-frontend.js:631
-#: build/product-deposit-frontend.js:631
-#: build/product-deposit-packaging-type-frontend.js:631
-#: build/product-garan-label-frontend.js:631
-#: build/product-legal-guarantee-frontend.js:631
-#: build/product-manufacturer-frontend.js:631
-#: build/product-nutri-score-frontend.js:631
-#: build/product-power-supply-frontend.js:631
-#: build/product-safety-attachments-frontend.js:631
-#: build/product-safety-instructions-frontend.js:631
-#: build/product-shipping-costs-info-frontend.js:605
-#: build/product-tax-info-frontend.js:605
-#: build/product-unit-price-frontend.js:605
-#: build/product-unit-product-frontend.js:605
-#: build/wc-gzd-blocks-product-elements-style.js:2484
-#: build/wc-gzd-blocks-product-elements.js:2467
+#: build/product-defect-description-frontend.js:568
+#: build/product-delivery-time-frontend.js:568
+#: build/product-deposit-frontend.js:568
+#: build/product-deposit-packaging-type-frontend.js:568
+#: build/product-garan-label-frontend.js:568
+#: build/product-legal-guarantee-frontend.js:568
+#: build/product-manufacturer-frontend.js:568
+#: build/product-nutri-score-frontend.js:568
+#: build/product-power-supply-frontend.js:568
+#: build/product-safety-attachments-frontend.js:568
+#: build/product-safety-instructions-frontend.js:568
+#: build/product-shipping-costs-info-frontend.js:506
+#: build/product-tax-info-frontend.js:506
+#: build/product-unit-price-frontend.js:506
+#: build/product-unit-product-frontend.js:506
+#: build/wc-gzd-blocks-product-elements.js:3164
+#: build/product-defect-description-frontend.js:497
+#: build/product-delivery-time-frontend.js:497
+#: build/product-deposit-frontend.js:497
+#: build/product-deposit-packaging-type-frontend.js:497
+#: build/product-garan-label-frontend.js:497
+#: build/product-legal-guarantee-frontend.js:497
+#: build/product-manufacturer-frontend.js:497
+#: build/product-nutri-score-frontend.js:497
+#: build/product-power-supply-frontend.js:497
+#: build/product-safety-attachments-frontend.js:497
+#: build/product-safety-instructions-frontend.js:497
+#: build/product-shipping-costs-info-frontend.js:471
+#: build/product-tax-info-frontend.js:471
+#: build/product-unit-price-frontend.js:471
+#: build/product-unit-product-frontend.js:471
+#: build/wc-gzd-blocks-product-elements-style.js:2345
+#: build/wc-gzd-blocks-product-elements.js:2328
 msgctxt "preview"
 msgid "Plus"
 msgstr "Zzgl."
 
-#: build/product-defect-description-frontend.js:741
-#: build/product-delivery-time-frontend.js:741
-#: build/product-deposit-frontend.js:741
-#: build/product-deposit-packaging-type-frontend.js:741
-#: build/product-garan-label-frontend.js:741
-#: build/product-legal-guarantee-frontend.js:741
-#: build/product-manufacturer-frontend.js:741
-#: build/product-nutri-score-frontend.js:741
-#: build/product-power-supply-frontend.js:741
-#: build/product-safety-attachments-frontend.js:741
-#: build/product-safety-instructions-frontend.js:741
-#: build/product-shipping-costs-info-frontend.js:679
-#: build/product-tax-info-frontend.js:679
-#: build/product-unit-price-frontend.js:679
-#: build/product-unit-product-frontend.js:679
-#: build/wc-gzd-blocks-product-elements.js:3340
-#: build/product-defect-description-frontend.js:634
-#: build/product-delivery-time-frontend.js:634
-#: build/product-deposit-frontend.js:634
-#: build/product-deposit-packaging-type-frontend.js:634
-#: build/product-garan-label-frontend.js:634
-#: build/product-legal-guarantee-frontend.js:634
-#: build/product-manufacturer-frontend.js:634
-#: build/product-nutri-score-frontend.js:634
-#: build/product-power-supply-frontend.js:634
-#: build/product-safety-attachments-frontend.js:634
-#: build/product-safety-instructions-frontend.js:634
-#: build/product-shipping-costs-info-frontend.js:608
-#: build/product-tax-info-frontend.js:608
-#: build/product-unit-price-frontend.js:608
-#: build/product-unit-product-frontend.js:608
-#: build/wc-gzd-blocks-product-elements-style.js:2487
-#: build/wc-gzd-blocks-product-elements.js:2470
+#: build/product-defect-description-frontend.js:574
+#: build/product-delivery-time-frontend.js:574
+#: build/product-deposit-frontend.js:574
+#: build/product-deposit-packaging-type-frontend.js:574
+#: build/product-garan-label-frontend.js:574
+#: build/product-legal-guarantee-frontend.js:574
+#: build/product-manufacturer-frontend.js:574
+#: build/product-nutri-score-frontend.js:574
+#: build/product-power-supply-frontend.js:574
+#: build/product-safety-attachments-frontend.js:574
+#: build/product-safety-instructions-frontend.js:574
+#: build/product-shipping-costs-info-frontend.js:512
+#: build/product-tax-info-frontend.js:512
+#: build/product-unit-price-frontend.js:512
+#: build/product-unit-product-frontend.js:512
+#: build/wc-gzd-blocks-product-elements.js:3170
+#: build/product-defect-description-frontend.js:500
+#: build/product-delivery-time-frontend.js:500
+#: build/product-deposit-frontend.js:500
+#: build/product-deposit-packaging-type-frontend.js:500
+#: build/product-garan-label-frontend.js:500
+#: build/product-legal-guarantee-frontend.js:500
+#: build/product-manufacturer-frontend.js:500
+#: build/product-nutri-score-frontend.js:500
+#: build/product-power-supply-frontend.js:500
+#: build/product-safety-attachments-frontend.js:500
+#: build/product-safety-instructions-frontend.js:500
+#: build/product-shipping-costs-info-frontend.js:474
+#: build/product-tax-info-frontend.js:474
+#: build/product-unit-price-frontend.js:474
+#: build/product-unit-product-frontend.js:474
+#: build/wc-gzd-blocks-product-elements-style.js:2348
+#: build/wc-gzd-blocks-product-elements.js:2331
 msgctxt "preview"
 msgid "deposit"
 msgstr "Pfand"
 
 # @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:745
-#: build/product-delivery-time-frontend.js:745
-#: build/product-deposit-frontend.js:745
-#: build/product-deposit-packaging-type-frontend.js:745
-#: build/product-garan-label-frontend.js:745
-#: build/product-legal-guarantee-frontend.js:745
-#: build/product-manufacturer-frontend.js:745
-#: build/product-nutri-score-frontend.js:745
-#: build/product-power-supply-frontend.js:745
-#: build/product-safety-attachments-frontend.js:745
-#: build/product-safety-instructions-frontend.js:745
-#: build/product-shipping-costs-info-frontend.js:683
-#: build/product-tax-info-frontend.js:683
-#: build/product-unit-price-frontend.js:683
-#: build/product-unit-product-frontend.js:683
-#: build/wc-gzd-blocks-product-elements.js:3344
-#: build/product-defect-description-frontend.js:638
-#: build/product-delivery-time-frontend.js:638
-#: build/product-deposit-frontend.js:638
-#: build/product-deposit-packaging-type-frontend.js:638
-#: build/product-garan-label-frontend.js:638
-#: build/product-legal-guarantee-frontend.js:638
-#: build/product-manufacturer-frontend.js:638
-#: build/product-nutri-score-frontend.js:638
-#: build/product-power-supply-frontend.js:638
-#: build/product-safety-attachments-frontend.js:638
-#: build/product-safety-instructions-frontend.js:638
-#: build/product-shipping-costs-info-frontend.js:612
-#: build/product-tax-info-frontend.js:612
-#: build/product-unit-price-frontend.js:612
-#: build/product-unit-product-frontend.js:612
-#: build/wc-gzd-blocks-product-elements-style.js:2491
-#: build/wc-gzd-blocks-product-elements.js:2474
+#: build/product-defect-description-frontend.js:578
+#: build/product-delivery-time-frontend.js:578
+#: build/product-deposit-frontend.js:578
+#: build/product-deposit-packaging-type-frontend.js:578
+#: build/product-garan-label-frontend.js:578
+#: build/product-legal-guarantee-frontend.js:578
+#: build/product-manufacturer-frontend.js:578
+#: build/product-nutri-score-frontend.js:578
+#: build/product-power-supply-frontend.js:578
+#: build/product-safety-attachments-frontend.js:578
+#: build/product-safety-instructions-frontend.js:578
+#: build/product-shipping-costs-info-frontend.js:516
+#: build/product-tax-info-frontend.js:516
+#: build/product-unit-price-frontend.js:516
+#: build/product-unit-product-frontend.js:516
+#: build/wc-gzd-blocks-product-elements.js:3174
+#: build/product-defect-description-frontend.js:504
+#: build/product-delivery-time-frontend.js:504
+#: build/product-deposit-frontend.js:504
+#: build/product-deposit-packaging-type-frontend.js:504
+#: build/product-garan-label-frontend.js:504
+#: build/product-legal-guarantee-frontend.js:504
+#: build/product-manufacturer-frontend.js:504
+#: build/product-nutri-score-frontend.js:504
+#: build/product-power-supply-frontend.js:504
+#: build/product-safety-attachments-frontend.js:504
+#: build/product-safety-instructions-frontend.js:504
+#: build/product-shipping-costs-info-frontend.js:478
+#: build/product-tax-info-frontend.js:478
+#: build/product-unit-price-frontend.js:478
+#: build/product-unit-product-frontend.js:478
+#: build/wc-gzd-blocks-product-elements-style.js:2352
+#: build/wc-gzd-blocks-product-elements.js:2335
 msgctxt "preview"
 msgid "Disposable"
 msgstr "Einweg"
 
-#: build/product-defect-description-frontend.js:757
-#: build/product-defect-description-frontend.js:763
-#: build/product-delivery-time-frontend.js:757
-#: build/product-delivery-time-frontend.js:763
-#: build/product-deposit-frontend.js:757 build/product-deposit-frontend.js:763
-#: build/product-deposit-packaging-type-frontend.js:757
-#: build/product-deposit-packaging-type-frontend.js:763
-#: build/product-garan-label-frontend.js:757
-#: build/product-garan-label-frontend.js:763
-#: build/product-legal-guarantee-frontend.js:757
-#: build/product-legal-guarantee-frontend.js:763
-#: build/product-manufacturer-frontend.js:757
-#: build/product-manufacturer-frontend.js:763
-#: build/product-nutri-score-frontend.js:757
-#: build/product-nutri-score-frontend.js:763
-#: build/product-power-supply-frontend.js:757
-#: build/product-power-supply-frontend.js:763
-#: build/product-safety-attachments-frontend.js:757
-#: build/product-safety-attachments-frontend.js:763
-#: build/product-safety-instructions-frontend.js:757
-#: build/product-safety-instructions-frontend.js:763
-#: build/product-shipping-costs-info-frontend.js:695
-#: build/product-shipping-costs-info-frontend.js:701
-#: build/product-tax-info-frontend.js:695
-#: build/product-tax-info-frontend.js:701
-#: build/product-unit-price-frontend.js:695
-#: build/product-unit-price-frontend.js:701
-#: build/product-unit-product-frontend.js:695
-#: build/product-unit-product-frontend.js:701
-#: build/wc-gzd-blocks-product-elements.js:3356
-#: build/wc-gzd-blocks-product-elements.js:3362
-#: build/product-defect-description-frontend.js:649
-#: build/product-defect-description-frontend.js:656
-#: build/product-delivery-time-frontend.js:649
-#: build/product-delivery-time-frontend.js:656
-#: build/product-deposit-frontend.js:649 build/product-deposit-frontend.js:656
-#: build/product-deposit-packaging-type-frontend.js:649
-#: build/product-deposit-packaging-type-frontend.js:656
-#: build/product-garan-label-frontend.js:649
-#: build/product-garan-label-frontend.js:656
-#: build/product-legal-guarantee-frontend.js:649
-#: build/product-legal-guarantee-frontend.js:656
-#: build/product-manufacturer-frontend.js:649
-#: build/product-manufacturer-frontend.js:656
-#: build/product-nutri-score-frontend.js:649
-#: build/product-nutri-score-frontend.js:656
-#: build/product-power-supply-frontend.js:649
-#: build/product-power-supply-frontend.js:656
-#: build/product-safety-attachments-frontend.js:649
-#: build/product-safety-attachments-frontend.js:656
-#: build/product-safety-instructions-frontend.js:649
-#: build/product-safety-instructions-frontend.js:656
-#: build/product-shipping-costs-info-frontend.js:623
-#: build/product-shipping-costs-info-frontend.js:630
-#: build/product-tax-info-frontend.js:623
-#: build/product-tax-info-frontend.js:630
-#: build/product-unit-price-frontend.js:623
-#: build/product-unit-price-frontend.js:630
-#: build/product-unit-product-frontend.js:623
-#: build/product-unit-product-frontend.js:630
-#: build/wc-gzd-blocks-product-elements-style.js:2502
-#: build/wc-gzd-blocks-product-elements-style.js:2509
-#: build/wc-gzd-blocks-product-elements.js:2485
-#: build/wc-gzd-blocks-product-elements.js:2492
+#: build/product-defect-description-frontend.js:590
+#: build/product-defect-description-frontend.js:596
+#: build/product-delivery-time-frontend.js:590
+#: build/product-delivery-time-frontend.js:596
+#: build/product-deposit-frontend.js:590 build/product-deposit-frontend.js:596
+#: build/product-deposit-packaging-type-frontend.js:590
+#: build/product-deposit-packaging-type-frontend.js:596
+#: build/product-garan-label-frontend.js:590
+#: build/product-garan-label-frontend.js:596
+#: build/product-legal-guarantee-frontend.js:590
+#: build/product-legal-guarantee-frontend.js:596
+#: build/product-manufacturer-frontend.js:590
+#: build/product-manufacturer-frontend.js:596
+#: build/product-nutri-score-frontend.js:590
+#: build/product-nutri-score-frontend.js:596
+#: build/product-power-supply-frontend.js:590
+#: build/product-power-supply-frontend.js:596
+#: build/product-safety-attachments-frontend.js:590
+#: build/product-safety-attachments-frontend.js:596
+#: build/product-safety-instructions-frontend.js:590
+#: build/product-safety-instructions-frontend.js:596
+#: build/product-shipping-costs-info-frontend.js:528
+#: build/product-shipping-costs-info-frontend.js:534
+#: build/product-tax-info-frontend.js:528
+#: build/product-tax-info-frontend.js:534
+#: build/product-unit-price-frontend.js:528
+#: build/product-unit-price-frontend.js:534
+#: build/product-unit-product-frontend.js:528
+#: build/product-unit-product-frontend.js:534
+#: build/wc-gzd-blocks-product-elements.js:3186
+#: build/wc-gzd-blocks-product-elements.js:3192
+#: build/product-defect-description-frontend.js:515
+#: build/product-defect-description-frontend.js:522
+#: build/product-delivery-time-frontend.js:515
+#: build/product-delivery-time-frontend.js:522
+#: build/product-deposit-frontend.js:515 build/product-deposit-frontend.js:522
+#: build/product-deposit-packaging-type-frontend.js:515
+#: build/product-deposit-packaging-type-frontend.js:522
+#: build/product-garan-label-frontend.js:515
+#: build/product-garan-label-frontend.js:522
+#: build/product-legal-guarantee-frontend.js:515
+#: build/product-legal-guarantee-frontend.js:522
+#: build/product-manufacturer-frontend.js:515
+#: build/product-manufacturer-frontend.js:522
+#: build/product-nutri-score-frontend.js:515
+#: build/product-nutri-score-frontend.js:522
+#: build/product-power-supply-frontend.js:515
+#: build/product-power-supply-frontend.js:522
+#: build/product-safety-attachments-frontend.js:515
+#: build/product-safety-attachments-frontend.js:522
+#: build/product-safety-instructions-frontend.js:515
+#: build/product-safety-instructions-frontend.js:522
+#: build/product-shipping-costs-info-frontend.js:489
+#: build/product-shipping-costs-info-frontend.js:496
+#: build/product-tax-info-frontend.js:489
+#: build/product-tax-info-frontend.js:496
+#: build/product-unit-price-frontend.js:489
+#: build/product-unit-price-frontend.js:496
+#: build/product-unit-product-frontend.js:489
+#: build/product-unit-product-frontend.js:496
+#: build/wc-gzd-blocks-product-elements-style.js:2363
+#: build/wc-gzd-blocks-product-elements-style.js:2370
+#: build/wc-gzd-blocks-product-elements.js:2346
+#: build/wc-gzd-blocks-product-elements.js:2353
 msgctxt "preview"
 msgid "Sample company name"
 msgstr "Musterfirma"
 
 # @ woocommerce-germanized
-#: build/product-defect-description-frontend.js:758
-#: build/product-defect-description-frontend.js:764
-#: build/product-delivery-time-frontend.js:758
-#: build/product-delivery-time-frontend.js:764
-#: build/product-deposit-frontend.js:758 build/product-deposit-frontend.js:764
-#: build/product-deposit-packaging-type-frontend.js:758
-#: build/product-deposit-packaging-type-frontend.js:764
-#: build/product-garan-label-frontend.js:758
-#: build/product-garan-label-frontend.js:764
-#: build/product-legal-guarantee-frontend.js:758
-#: build/product-legal-guarantee-frontend.js:764
-#: build/product-manufacturer-frontend.js:758
-#: build/product-manufacturer-frontend.js:764
-#: build/product-nutri-score-frontend.js:758
-#: build/product-nutri-score-frontend.js:764
-#: build/product-power-supply-frontend.js:758
-#: build/product-power-supply-frontend.js:764
-#: build/product-safety-attachments-frontend.js:758
-#: build/product-safety-attachments-frontend.js:764
-#: build/product-safety-instructions-frontend.js:758
-#: build/product-safety-instructions-frontend.js:764
-#: build/product-shipping-costs-info-frontend.js:696
-#: build/product-shipping-costs-info-frontend.js:702
-#: build/product-tax-info-frontend.js:696
-#: build/product-tax-info-frontend.js:702
-#: build/product-unit-price-frontend.js:696
-#: build/product-unit-price-frontend.js:702
-#: build/product-unit-product-frontend.js:696
-#: build/product-unit-product-frontend.js:702
-#: build/wc-gzd-blocks-product-elements.js:3357
-#: build/wc-gzd-blocks-product-elements.js:3363
-#: build/product-defect-description-frontend.js:650
-#: build/product-defect-description-frontend.js:657
-#: build/product-delivery-time-frontend.js:650
-#: build/product-delivery-time-frontend.js:657
-#: build/product-deposit-frontend.js:650 build/product-deposit-frontend.js:657
-#: build/product-deposit-packaging-type-frontend.js:650
-#: build/product-deposit-packaging-type-frontend.js:657
-#: build/product-garan-label-frontend.js:650
-#: build/product-garan-label-frontend.js:657
-#: build/product-legal-guarantee-frontend.js:650
-#: build/product-legal-guarantee-frontend.js:657
-#: build/product-manufacturer-frontend.js:650
-#: build/product-manufacturer-frontend.js:657
-#: build/product-nutri-score-frontend.js:650
-#: build/product-nutri-score-frontend.js:657
-#: build/product-power-supply-frontend.js:650
-#: build/product-power-supply-frontend.js:657
-#: build/product-safety-attachments-frontend.js:650
-#: build/product-safety-attachments-frontend.js:657
-#: build/product-safety-instructions-frontend.js:650
-#: build/product-safety-instructions-frontend.js:657
-#: build/product-shipping-costs-info-frontend.js:624
-#: build/product-shipping-costs-info-frontend.js:631
-#: build/product-tax-info-frontend.js:624
-#: build/product-tax-info-frontend.js:631
-#: build/product-unit-price-frontend.js:624
-#: build/product-unit-price-frontend.js:631
-#: build/product-unit-product-frontend.js:624
-#: build/product-unit-product-frontend.js:631
-#: build/wc-gzd-blocks-product-elements-style.js:2503
-#: build/wc-gzd-blocks-product-elements-style.js:2510
-#: build/wc-gzd-blocks-product-elements.js:2486
-#: build/wc-gzd-blocks-product-elements.js:2493
+#: build/product-defect-description-frontend.js:591
+#: build/product-defect-description-frontend.js:597
+#: build/product-delivery-time-frontend.js:591
+#: build/product-delivery-time-frontend.js:597
+#: build/product-deposit-frontend.js:591 build/product-deposit-frontend.js:597
+#: build/product-deposit-packaging-type-frontend.js:591
+#: build/product-deposit-packaging-type-frontend.js:597
+#: build/product-garan-label-frontend.js:591
+#: build/product-garan-label-frontend.js:597
+#: build/product-legal-guarantee-frontend.js:591
+#: build/product-legal-guarantee-frontend.js:597
+#: build/product-manufacturer-frontend.js:591
+#: build/product-manufacturer-frontend.js:597
+#: build/product-nutri-score-frontend.js:591
+#: build/product-nutri-score-frontend.js:597
+#: build/product-power-supply-frontend.js:591
+#: build/product-power-supply-frontend.js:597
+#: build/product-safety-attachments-frontend.js:591
+#: build/product-safety-attachments-frontend.js:597
+#: build/product-safety-instructions-frontend.js:591
+#: build/product-safety-instructions-frontend.js:597
+#: build/product-shipping-costs-info-frontend.js:529
+#: build/product-shipping-costs-info-frontend.js:535
+#: build/product-tax-info-frontend.js:529
+#: build/product-tax-info-frontend.js:535
+#: build/product-unit-price-frontend.js:529
+#: build/product-unit-price-frontend.js:535
+#: build/product-unit-product-frontend.js:529
+#: build/product-unit-product-frontend.js:535
+#: build/wc-gzd-blocks-product-elements.js:3187
+#: build/wc-gzd-blocks-product-elements.js:3193
+#: build/product-defect-description-frontend.js:516
+#: build/product-defect-description-frontend.js:523
+#: build/product-delivery-time-frontend.js:516
+#: build/product-delivery-time-frontend.js:523
+#: build/product-deposit-frontend.js:516 build/product-deposit-frontend.js:523
+#: build/product-deposit-packaging-type-frontend.js:516
+#: build/product-deposit-packaging-type-frontend.js:523
+#: build/product-garan-label-frontend.js:516
+#: build/product-garan-label-frontend.js:523
+#: build/product-legal-guarantee-frontend.js:516
+#: build/product-legal-guarantee-frontend.js:523
+#: build/product-manufacturer-frontend.js:516
+#: build/product-manufacturer-frontend.js:523
+#: build/product-nutri-score-frontend.js:516
+#: build/product-nutri-score-frontend.js:523
+#: build/product-power-supply-frontend.js:516
+#: build/product-power-supply-frontend.js:523
+#: build/product-safety-attachments-frontend.js:516
+#: build/product-safety-attachments-frontend.js:523
+#: build/product-safety-instructions-frontend.js:516
+#: build/product-safety-instructions-frontend.js:523
+#: build/product-shipping-costs-info-frontend.js:490
+#: build/product-shipping-costs-info-frontend.js:497
+#: build/product-tax-info-frontend.js:490
+#: build/product-tax-info-frontend.js:497
+#: build/product-unit-price-frontend.js:490
+#: build/product-unit-price-frontend.js:497
+#: build/product-unit-product-frontend.js:490
+#: build/product-unit-product-frontend.js:497
+#: build/wc-gzd-blocks-product-elements-style.js:2364
+#: build/wc-gzd-blocks-product-elements-style.js:2371
+#: build/wc-gzd-blocks-product-elements.js:2347
+#: build/wc-gzd-blocks-product-elements.js:2354
 msgctxt "preview"
 msgid "Sample address"
 msgstr "Musterstraße 45"
 
-#: build/product-defect-description-frontend.js:758
-#: build/product-defect-description-frontend.js:764
-#: build/product-delivery-time-frontend.js:758
-#: build/product-delivery-time-frontend.js:764
-#: build/product-deposit-frontend.js:758 build/product-deposit-frontend.js:764
-#: build/product-deposit-packaging-type-frontend.js:758
-#: build/product-deposit-packaging-type-frontend.js:764
-#: build/product-garan-label-frontend.js:758
-#: build/product-garan-label-frontend.js:764
-#: build/product-legal-guarantee-frontend.js:758
-#: build/product-legal-guarantee-frontend.js:764
-#: build/product-manufacturer-frontend.js:758
-#: build/product-manufacturer-frontend.js:764
-#: build/product-nutri-score-frontend.js:758
-#: build/product-nutri-score-frontend.js:764
-#: build/product-power-supply-frontend.js:758
-#: build/product-power-supply-frontend.js:764
-#: build/product-safety-attachments-frontend.js:758
-#: build/product-safety-attachments-frontend.js:764
-#: build/product-safety-instructions-frontend.js:758
-#: build/product-safety-instructions-frontend.js:764
-#: build/product-shipping-costs-info-frontend.js:696
-#: build/product-shipping-costs-info-frontend.js:702
-#: build/product-tax-info-frontend.js:696
-#: build/product-tax-info-frontend.js:702
-#: build/product-unit-price-frontend.js:696
-#: build/product-unit-price-frontend.js:702
-#: build/product-unit-product-frontend.js:696
-#: build/product-unit-product-frontend.js:702
-#: build/wc-gzd-blocks-product-elements.js:3357
-#: build/wc-gzd-blocks-product-elements.js:3363
-#: build/product-defect-description-frontend.js:651
-#: build/product-defect-description-frontend.js:658
-#: build/product-delivery-time-frontend.js:651
-#: build/product-delivery-time-frontend.js:658
-#: build/product-deposit-frontend.js:651 build/product-deposit-frontend.js:658
-#: build/product-deposit-packaging-type-frontend.js:651
-#: build/product-deposit-packaging-type-frontend.js:658
-#: build/product-garan-label-frontend.js:651
-#: build/product-garan-label-frontend.js:658
-#: build/product-legal-guarantee-frontend.js:651
-#: build/product-legal-guarantee-frontend.js:658
-#: build/product-manufacturer-frontend.js:651
-#: build/product-manufacturer-frontend.js:658
-#: build/product-nutri-score-frontend.js:651
-#: build/product-nutri-score-frontend.js:658
-#: build/product-power-supply-frontend.js:651
-#: build/product-power-supply-frontend.js:658
-#: build/product-safety-attachments-frontend.js:651
-#: build/product-safety-attachments-frontend.js:658
-#: build/product-safety-instructions-frontend.js:651
-#: build/product-safety-instructions-frontend.js:658
-#: build/product-shipping-costs-info-frontend.js:625
-#: build/product-shipping-costs-info-frontend.js:632
-#: build/product-tax-info-frontend.js:625
-#: build/product-tax-info-frontend.js:632
-#: build/product-unit-price-frontend.js:625
-#: build/product-unit-price-frontend.js:632
-#: build/product-unit-product-frontend.js:625
-#: build/product-unit-product-frontend.js:632
-#: build/wc-gzd-blocks-product-elements-style.js:2504
-#: build/wc-gzd-blocks-product-elements-style.js:2511
-#: build/wc-gzd-blocks-product-elements.js:2487
-#: build/wc-gzd-blocks-product-elements.js:2494
+#: build/product-defect-description-frontend.js:591
+#: build/product-defect-description-frontend.js:597
+#: build/product-delivery-time-frontend.js:591
+#: build/product-delivery-time-frontend.js:597
+#: build/product-deposit-frontend.js:591 build/product-deposit-frontend.js:597
+#: build/product-deposit-packaging-type-frontend.js:591
+#: build/product-deposit-packaging-type-frontend.js:597
+#: build/product-garan-label-frontend.js:591
+#: build/product-garan-label-frontend.js:597
+#: build/product-legal-guarantee-frontend.js:591
+#: build/product-legal-guarantee-frontend.js:597
+#: build/product-manufacturer-frontend.js:591
+#: build/product-manufacturer-frontend.js:597
+#: build/product-nutri-score-frontend.js:591
+#: build/product-nutri-score-frontend.js:597
+#: build/product-power-supply-frontend.js:591
+#: build/product-power-supply-frontend.js:597
+#: build/product-safety-attachments-frontend.js:591
+#: build/product-safety-attachments-frontend.js:597
+#: build/product-safety-instructions-frontend.js:591
+#: build/product-safety-instructions-frontend.js:597
+#: build/product-shipping-costs-info-frontend.js:529
+#: build/product-shipping-costs-info-frontend.js:535
+#: build/product-tax-info-frontend.js:529
+#: build/product-tax-info-frontend.js:535
+#: build/product-unit-price-frontend.js:529
+#: build/product-unit-price-frontend.js:535
+#: build/product-unit-product-frontend.js:529
+#: build/product-unit-product-frontend.js:535
+#: build/wc-gzd-blocks-product-elements.js:3187
+#: build/wc-gzd-blocks-product-elements.js:3193
+#: build/product-defect-description-frontend.js:517
+#: build/product-defect-description-frontend.js:524
+#: build/product-delivery-time-frontend.js:517
+#: build/product-delivery-time-frontend.js:524
+#: build/product-deposit-frontend.js:517 build/product-deposit-frontend.js:524
+#: build/product-deposit-packaging-type-frontend.js:517
+#: build/product-deposit-packaging-type-frontend.js:524
+#: build/product-garan-label-frontend.js:517
+#: build/product-garan-label-frontend.js:524
+#: build/product-legal-guarantee-frontend.js:517
+#: build/product-legal-guarantee-frontend.js:524
+#: build/product-manufacturer-frontend.js:517
+#: build/product-manufacturer-frontend.js:524
+#: build/product-nutri-score-frontend.js:517
+#: build/product-nutri-score-frontend.js:524
+#: build/product-power-supply-frontend.js:517
+#: build/product-power-supply-frontend.js:524
+#: build/product-safety-attachments-frontend.js:517
+#: build/product-safety-attachments-frontend.js:524
+#: build/product-safety-instructions-frontend.js:517
+#: build/product-safety-instructions-frontend.js:524
+#: build/product-shipping-costs-info-frontend.js:491
+#: build/product-shipping-costs-info-frontend.js:498
+#: build/product-tax-info-frontend.js:491
+#: build/product-tax-info-frontend.js:498
+#: build/product-unit-price-frontend.js:491
+#: build/product-unit-price-frontend.js:498
+#: build/product-unit-product-frontend.js:491
+#: build/product-unit-product-frontend.js:498
+#: build/wc-gzd-blocks-product-elements-style.js:2365
+#: build/wc-gzd-blocks-product-elements-style.js:2372
+#: build/wc-gzd-blocks-product-elements.js:2348
+#: build/wc-gzd-blocks-product-elements.js:2355
 msgctxt "preview"
 msgid "12345 Berlin"
 msgstr "12345 Berlin"
 
-#: build/product-defect-description-frontend.js:758
-#: build/product-defect-description-frontend.js:764
-#: build/product-delivery-time-frontend.js:758
-#: build/product-delivery-time-frontend.js:764
-#: build/product-deposit-frontend.js:758 build/product-deposit-frontend.js:764
-#: build/product-deposit-packaging-type-frontend.js:758
-#: build/product-deposit-packaging-type-frontend.js:764
-#: build/product-garan-label-frontend.js:758
-#: build/product-garan-label-frontend.js:764
-#: build/product-legal-guarantee-frontend.js:758
-#: build/product-legal-guarantee-frontend.js:764
-#: build/product-manufacturer-frontend.js:758
-#: build/product-manufacturer-frontend.js:764
-#: build/product-nutri-score-frontend.js:758
-#: build/product-nutri-score-frontend.js:764
-#: build/product-power-supply-frontend.js:758
-#: build/product-power-supply-frontend.js:764
-#: build/product-safety-attachments-frontend.js:758
-#: build/product-safety-attachments-frontend.js:764
-#: build/product-safety-instructions-frontend.js:758
-#: build/product-safety-instructions-frontend.js:764
-#: build/product-shipping-costs-info-frontend.js:696
-#: build/product-shipping-costs-info-frontend.js:702
-#: build/product-tax-info-frontend.js:696
-#: build/product-tax-info-frontend.js:702
-#: build/product-unit-price-frontend.js:696
-#: build/product-unit-price-frontend.js:702
-#: build/product-unit-product-frontend.js:696
-#: build/product-unit-product-frontend.js:702
-#: build/wc-gzd-blocks-product-elements.js:3357
-#: build/wc-gzd-blocks-product-elements.js:3363
-#: build/product-defect-description-frontend.js:652
-#: build/product-defect-description-frontend.js:659
-#: build/product-delivery-time-frontend.js:652
-#: build/product-delivery-time-frontend.js:659
-#: build/product-deposit-frontend.js:652 build/product-deposit-frontend.js:659
-#: build/product-deposit-packaging-type-frontend.js:652
-#: build/product-deposit-packaging-type-frontend.js:659
-#: build/product-garan-label-frontend.js:652
-#: build/product-garan-label-frontend.js:659
-#: build/product-legal-guarantee-frontend.js:652
-#: build/product-legal-guarantee-frontend.js:659
-#: build/product-manufacturer-frontend.js:652
-#: build/product-manufacturer-frontend.js:659
-#: build/product-nutri-score-frontend.js:652
-#: build/product-nutri-score-frontend.js:659
-#: build/product-power-supply-frontend.js:652
-#: build/product-power-supply-frontend.js:659
-#: build/product-safety-attachments-frontend.js:652
-#: build/product-safety-attachments-frontend.js:659
-#: build/product-safety-instructions-frontend.js:652
-#: build/product-safety-instructions-frontend.js:659
-#: build/product-shipping-costs-info-frontend.js:626
-#: build/product-shipping-costs-info-frontend.js:633
-#: build/product-tax-info-frontend.js:626
-#: build/product-tax-info-frontend.js:633
-#: build/product-unit-price-frontend.js:626
-#: build/product-unit-price-frontend.js:633
-#: build/product-unit-product-frontend.js:626
-#: build/product-unit-product-frontend.js:633
-#: build/wc-gzd-blocks-product-elements-style.js:2505
-#: build/wc-gzd-blocks-product-elements-style.js:2512
-#: build/wc-gzd-blocks-product-elements.js:2488
-#: build/wc-gzd-blocks-product-elements.js:2495
+#: build/product-defect-description-frontend.js:591
+#: build/product-defect-description-frontend.js:597
+#: build/product-delivery-time-frontend.js:591
+#: build/product-delivery-time-frontend.js:597
+#: build/product-deposit-frontend.js:591 build/product-deposit-frontend.js:597
+#: build/product-deposit-packaging-type-frontend.js:591
+#: build/product-deposit-packaging-type-frontend.js:597
+#: build/product-garan-label-frontend.js:591
+#: build/product-garan-label-frontend.js:597
+#: build/product-legal-guarantee-frontend.js:591
+#: build/product-legal-guarantee-frontend.js:597
+#: build/product-manufacturer-frontend.js:591
+#: build/product-manufacturer-frontend.js:597
+#: build/product-nutri-score-frontend.js:591
+#: build/product-nutri-score-frontend.js:597
+#: build/product-power-supply-frontend.js:591
+#: build/product-power-supply-frontend.js:597
+#: build/product-safety-attachments-frontend.js:591
+#: build/product-safety-attachments-frontend.js:597
+#: build/product-safety-instructions-frontend.js:591
+#: build/product-safety-instructions-frontend.js:597
+#: build/product-shipping-costs-info-frontend.js:529
+#: build/product-shipping-costs-info-frontend.js:535
+#: build/product-tax-info-frontend.js:529
+#: build/product-tax-info-frontend.js:535
+#: build/product-unit-price-frontend.js:529
+#: build/product-unit-price-frontend.js:535
+#: build/product-unit-product-frontend.js:529
+#: build/product-unit-product-frontend.js:535
+#: build/wc-gzd-blocks-product-elements.js:3187
+#: build/wc-gzd-blocks-product-elements.js:3193
+#: build/product-defect-description-frontend.js:518
+#: build/product-defect-description-frontend.js:525
+#: build/product-delivery-time-frontend.js:518
+#: build/product-delivery-time-frontend.js:525
+#: build/product-deposit-frontend.js:518 build/product-deposit-frontend.js:525
+#: build/product-deposit-packaging-type-frontend.js:518
+#: build/product-deposit-packaging-type-frontend.js:525
+#: build/product-garan-label-frontend.js:518
+#: build/product-garan-label-frontend.js:525
+#: build/product-legal-guarantee-frontend.js:518
+#: build/product-legal-guarantee-frontend.js:525
+#: build/product-manufacturer-frontend.js:518
+#: build/product-manufacturer-frontend.js:525
+#: build/product-nutri-score-frontend.js:518
+#: build/product-nutri-score-frontend.js:525
+#: build/product-power-supply-frontend.js:518
+#: build/product-power-supply-frontend.js:525
+#: build/product-safety-attachments-frontend.js:518
+#: build/product-safety-attachments-frontend.js:525
+#: build/product-safety-instructions-frontend.js:518
+#: build/product-safety-instructions-frontend.js:525
+#: build/product-shipping-costs-info-frontend.js:492
+#: build/product-shipping-costs-info-frontend.js:499
+#: build/product-tax-info-frontend.js:492
+#: build/product-tax-info-frontend.js:499
+#: build/product-unit-price-frontend.js:492
+#: build/product-unit-price-frontend.js:499
+#: build/product-unit-product-frontend.js:492
+#: build/product-unit-product-frontend.js:499
+#: build/wc-gzd-blocks-product-elements-style.js:2366
+#: build/wc-gzd-blocks-product-elements-style.js:2373
+#: build/wc-gzd-blocks-product-elements.js:2349
+#: build/wc-gzd-blocks-product-elements.js:2356
 msgctxt "preview"
 msgid "sample@sample.com"
 msgstr "sample@sample.com"
 
-#: build/product-defect-description-frontend.js:773
-#: build/product-delivery-time-frontend.js:773
-#: build/product-deposit-frontend.js:773
-#: build/product-deposit-packaging-type-frontend.js:773
-#: build/product-garan-label-frontend.js:773
-#: build/product-legal-guarantee-frontend.js:773
-#: build/product-manufacturer-frontend.js:773
-#: build/product-nutri-score-frontend.js:773
-#: build/product-power-supply-frontend.js:773
-#: build/product-safety-attachments-frontend.js:773
-#: build/product-safety-instructions-frontend.js:773
-#: build/product-shipping-costs-info-frontend.js:711
-#: build/product-tax-info-frontend.js:711
-#: build/product-unit-price-frontend.js:711
-#: build/product-unit-product-frontend.js:711
-#: build/wc-gzd-blocks-product-elements.js:3372
-#: build/product-defect-description-frontend.js:667
-#: build/product-delivery-time-frontend.js:667
-#: build/product-deposit-frontend.js:667
-#: build/product-deposit-packaging-type-frontend.js:667
-#: build/product-garan-label-frontend.js:667
-#: build/product-legal-guarantee-frontend.js:667
-#: build/product-manufacturer-frontend.js:667
-#: build/product-nutri-score-frontend.js:667
-#: build/product-power-supply-frontend.js:667
-#: build/product-safety-attachments-frontend.js:667
-#: build/product-safety-instructions-frontend.js:667
-#: build/product-shipping-costs-info-frontend.js:641
-#: build/product-tax-info-frontend.js:641
-#: build/product-unit-price-frontend.js:641
-#: build/product-unit-product-frontend.js:641
-#: build/wc-gzd-blocks-product-elements-style.js:2520
-#: build/wc-gzd-blocks-product-elements.js:2503
+#: build/product-defect-description-frontend.js:606
+#: build/product-delivery-time-frontend.js:606
+#: build/product-deposit-frontend.js:606
+#: build/product-deposit-packaging-type-frontend.js:606
+#: build/product-garan-label-frontend.js:606
+#: build/product-legal-guarantee-frontend.js:606
+#: build/product-manufacturer-frontend.js:606
+#: build/product-nutri-score-frontend.js:606
+#: build/product-power-supply-frontend.js:606
+#: build/product-safety-attachments-frontend.js:606
+#: build/product-safety-instructions-frontend.js:606
+#: build/product-shipping-costs-info-frontend.js:544
+#: build/product-tax-info-frontend.js:544
+#: build/product-unit-price-frontend.js:544
+#: build/product-unit-product-frontend.js:544
+#: build/wc-gzd-blocks-product-elements.js:3202
+#: build/product-defect-description-frontend.js:533
+#: build/product-delivery-time-frontend.js:533
+#: build/product-deposit-frontend.js:533
+#: build/product-deposit-packaging-type-frontend.js:533
+#: build/product-garan-label-frontend.js:533
+#: build/product-legal-guarantee-frontend.js:533
+#: build/product-manufacturer-frontend.js:533
+#: build/product-nutri-score-frontend.js:533
+#: build/product-power-supply-frontend.js:533
+#: build/product-safety-attachments-frontend.js:533
+#: build/product-safety-instructions-frontend.js:533
+#: build/product-shipping-costs-info-frontend.js:507
+#: build/product-tax-info-frontend.js:507
+#: build/product-unit-price-frontend.js:507
+#: build/product-unit-product-frontend.js:507
+#: build/wc-gzd-blocks-product-elements-style.js:2381
+#: build/wc-gzd-blocks-product-elements.js:2364
 msgctxt "sample"
 msgid "sample-filename.pdf"
 msgstr "sample-filename.pdf"
 
-#: build/product-defect-description-frontend.js:781
-#: build/product-delivery-time-frontend.js:781
-#: build/product-deposit-frontend.js:781
-#: build/product-deposit-packaging-type-frontend.js:781
-#: build/product-garan-label-frontend.js:781
-#: build/product-legal-guarantee-frontend.js:781
-#: build/product-manufacturer-frontend.js:781
-#: build/product-nutri-score-frontend.js:781
-#: build/product-power-supply-frontend.js:781
-#: build/product-safety-attachments-frontend.js:781
-#: build/product-safety-instructions-frontend.js:781
-#: build/product-shipping-costs-info-frontend.js:719
-#: build/product-tax-info-frontend.js:719
-#: build/product-unit-price-frontend.js:719
-#: build/product-unit-product-frontend.js:719
-#: build/wc-gzd-blocks-product-elements.js:3380
-#: build/product-defect-description-frontend.js:675
-#: build/product-delivery-time-frontend.js:675
-#: build/product-deposit-frontend.js:675
-#: build/product-deposit-packaging-type-frontend.js:675
-#: build/product-garan-label-frontend.js:675
-#: build/product-legal-guarantee-frontend.js:675
-#: build/product-manufacturer-frontend.js:675
-#: build/product-nutri-score-frontend.js:675
-#: build/product-power-supply-frontend.js:675
-#: build/product-safety-attachments-frontend.js:675
-#: build/product-safety-instructions-frontend.js:675
-#: build/product-shipping-costs-info-frontend.js:649
-#: build/product-tax-info-frontend.js:649
-#: build/product-unit-price-frontend.js:649
-#: build/product-unit-product-frontend.js:649
-#: build/wc-gzd-blocks-product-elements-style.js:2528
-#: build/wc-gzd-blocks-product-elements.js:2511
+#: build/product-defect-description-frontend.js:614
+#: build/product-delivery-time-frontend.js:614
+#: build/product-deposit-frontend.js:614
+#: build/product-deposit-packaging-type-frontend.js:614
+#: build/product-garan-label-frontend.js:614
+#: build/product-legal-guarantee-frontend.js:614
+#: build/product-manufacturer-frontend.js:614
+#: build/product-nutri-score-frontend.js:614
+#: build/product-power-supply-frontend.js:614
+#: build/product-safety-attachments-frontend.js:614
+#: build/product-safety-instructions-frontend.js:614
+#: build/product-shipping-costs-info-frontend.js:552
+#: build/product-tax-info-frontend.js:552
+#: build/product-unit-price-frontend.js:552
+#: build/product-unit-product-frontend.js:552
+#: build/wc-gzd-blocks-product-elements.js:3210
+#: build/product-defect-description-frontend.js:541
+#: build/product-delivery-time-frontend.js:541
+#: build/product-deposit-frontend.js:541
+#: build/product-deposit-packaging-type-frontend.js:541
+#: build/product-garan-label-frontend.js:541
+#: build/product-legal-guarantee-frontend.js:541
+#: build/product-manufacturer-frontend.js:541
+#: build/product-nutri-score-frontend.js:541
+#: build/product-power-supply-frontend.js:541
+#: build/product-safety-attachments-frontend.js:541
+#: build/product-safety-instructions-frontend.js:541
+#: build/product-shipping-costs-info-frontend.js:515
+#: build/product-tax-info-frontend.js:515
+#: build/product-unit-price-frontend.js:515
+#: build/product-unit-product-frontend.js:515
+#: build/wc-gzd-blocks-product-elements-style.js:2389
+#: build/wc-gzd-blocks-product-elements.js:2372
 msgctxt "preview"
 msgid "Sample safety instructions for a certain product."
 msgstr "Beispiel-Sicherheitshinweis für ein bestimmtes Produkt."
 
-#: build/wc-gzd-blocks-product-elements.js:1154
-#: build/wc-gzd-blocks-product-elements-style.js:886
-#: build/wc-gzd-blocks-product-elements.js:886
+#: build/wc-gzd-blocks-product-elements.js:989
+#: build/wc-gzd-blocks-product-elements-style.js:755
+#: build/wc-gzd-blocks-product-elements.js:755
 msgid "Inserts the product's defect description."
 msgstr "Fügt die Mängelbeschreibung des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1330
-#: build/wc-gzd-blocks-product-elements-style.js:1009
-#: build/wc-gzd-blocks-product-elements.js:1009
+#: build/wc-gzd-blocks-product-elements.js:1165
+#: build/wc-gzd-blocks-product-elements-style.js:878
+#: build/wc-gzd-blocks-product-elements.js:878
 msgid "Inserts the product's delivery time."
 msgstr "Fügt die Lieferzeit des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1508
-#: build/wc-gzd-blocks-product-elements-style.js:1132
-#: build/wc-gzd-blocks-product-elements.js:1132
+#: build/wc-gzd-blocks-product-elements.js:1343
+#: build/wc-gzd-blocks-product-elements-style.js:1001
+#: build/wc-gzd-blocks-product-elements.js:1001
 msgid "Deposit packaging type"
 msgstr "Pfand-Verpackungstyp"
 
-#: build/wc-gzd-blocks-product-elements.js:1509
-#: build/wc-gzd-blocks-product-elements-style.js:1133
-#: build/wc-gzd-blocks-product-elements.js:1133
+#: build/wc-gzd-blocks-product-elements.js:1344
+#: build/wc-gzd-blocks-product-elements-style.js:1002
+#: build/wc-gzd-blocks-product-elements.js:1002
 msgid "Inserts the product's deposit packaging type."
 msgstr "Fügt den Verpackungstyp des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:1688
-#: build/wc-gzd-blocks-product-elements-style.js:1257
-#: build/wc-gzd-blocks-product-elements.js:1257
+#: build/wc-gzd-blocks-product-elements.js:1523
+#: build/wc-gzd-blocks-product-elements-style.js:1126
+#: build/wc-gzd-blocks-product-elements.js:1126
 msgid "Inserts the product's deposit amount."
 msgstr "Fügt den Pfandbetrag des Produkts ein."
 
-#: build/wc-gzd-blocks-product-elements.js:1895
-#: build/wc-gzd-blocks-product-elements-style.js:1407
-#: build/wc-gzd-blocks-product-elements.js:1407
+#: build/wc-gzd-blocks-product-elements.js:1730
+#: build/wc-gzd-blocks-product-elements-style.js:1274
+#: build/wc-gzd-blocks-product-elements.js:1274
 msgid "Inserts the EU GARAN label for the product in case available."
 msgstr "Fügt, insofern verfügbar, das EU-GARAN-Label für das Produkt hinzu."
 
-#: build/wc-gzd-blocks-product-elements.js:2112
-#: build/wc-gzd-blocks-product-elements-style.js:1583
-#: build/wc-gzd-blocks-product-elements.js:1566
+#: build/wc-gzd-blocks-product-elements.js:1946
+#: build/wc-gzd-blocks-product-elements-style.js:1447
+#: build/wc-gzd-blocks-product-elements.js:1430
 msgid "Inserts the legal guarantee label for the product in case available."
 msgstr ""
 "Fügt, insofern verfügbar, das EU Gewährleistungslabel für das Produkt hinzu."
 
-#: build/wc-gzd-blocks-product-elements.js:2300
-#: build/wc-gzd-blocks-product-elements-style.js:1715
-#: build/wc-gzd-blocks-product-elements.js:1698
+#: build/wc-gzd-blocks-product-elements.js:2134
+#: build/wc-gzd-blocks-product-elements-style.js:1579
+#: build/wc-gzd-blocks-product-elements.js:1562
 msgid "Inserts the product's manufacturer information."
 msgstr "Fügt die Herstellerinformationen des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:2479
-#: build/wc-gzd-blocks-product-elements-style.js:1839
-#: build/wc-gzd-blocks-product-elements.js:1822
+#: build/wc-gzd-blocks-product-elements.js:2313
+#: build/wc-gzd-blocks-product-elements-style.js:1703
+#: build/wc-gzd-blocks-product-elements.js:1686
 msgid "Inserts the product's Nutri-Score."
 msgstr "Fügt den Nutri-Score des Produkts ein."
 
-#: build/wc-gzd-blocks-product-elements.js:2655
-#: build/wc-gzd-blocks-product-elements-style.js:1962
-#: build/wc-gzd-blocks-product-elements.js:1945
+#: build/wc-gzd-blocks-product-elements.js:2489
+#: build/wc-gzd-blocks-product-elements-style.js:1826
+#: build/wc-gzd-blocks-product-elements.js:1809
 msgid "Inserts information on power supply for wireless electronic devices."
 msgstr "Fügt Informationen zum Netzteil für elektronische Geräte (Funk) ein."
 
-#: build/wc-gzd-blocks-product-elements.js:2833
-#: build/wc-gzd-blocks-product-elements-style.js:2085
-#: build/wc-gzd-blocks-product-elements.js:2068
+#: build/wc-gzd-blocks-product-elements.js:2667
+#: build/wc-gzd-blocks-product-elements-style.js:1949
+#: build/wc-gzd-blocks-product-elements.js:1932
 msgid "Product safety attachments"
 msgstr "Dokumente zur Produktsicherheit"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:2834
-#: build/wc-gzd-blocks-product-elements-style.js:2086
-#: build/wc-gzd-blocks-product-elements.js:2069
+#: build/wc-gzd-blocks-product-elements.js:2668
+#: build/wc-gzd-blocks-product-elements-style.js:1950
+#: build/wc-gzd-blocks-product-elements.js:1933
 msgid "Inserts the product's safety attachments list."
 msgstr "Fügt eine Liste der Dokumente zur Produktsicherheit ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:3013
-#: build/wc-gzd-blocks-product-elements-style.js:2210
-#: build/wc-gzd-blocks-product-elements.js:2193
+#: build/wc-gzd-blocks-product-elements.js:2847
+#: build/wc-gzd-blocks-product-elements-style.js:2074
+#: build/wc-gzd-blocks-product-elements.js:2057
 msgid "Inserts the product's safety instructions."
 msgstr "Fügt die Sicherheitshinweise des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:3698
-#: build/wc-gzd-blocks-product-elements-style.js:2771
-#: build/wc-gzd-blocks-product-elements.js:2754
+#: build/wc-gzd-blocks-product-elements.js:3542
+#: build/wc-gzd-blocks-product-elements-style.js:2648
+#: build/wc-gzd-blocks-product-elements.js:2631
 msgid "Shipping Costs Notice"
 msgstr "Versandkostenhinweis"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:3699
-#: build/wc-gzd-blocks-product-elements-style.js:2772
-#: build/wc-gzd-blocks-product-elements.js:2755
+#: build/wc-gzd-blocks-product-elements.js:3543
+#: build/wc-gzd-blocks-product-elements-style.js:2649
+#: build/wc-gzd-blocks-product-elements.js:2632
 msgid "Inserts the product's shipping costs notice."
 msgstr "Fügt den Versandkostenhinweis des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:3875
-#: build/wc-gzd-blocks-product-elements-style.js:2895
-#: build/wc-gzd-blocks-product-elements.js:2878
+#: build/wc-gzd-blocks-product-elements.js:3719
+#: build/wc-gzd-blocks-product-elements-style.js:2772
+#: build/wc-gzd-blocks-product-elements.js:2755
 msgid "Inserts the product's tax notice."
 msgstr "Fügt den Steuerhinweis des Produkts ein."
 
-#: build/wc-gzd-blocks-product-elements.js:4051
-#: build/wc-gzd-blocks-product-elements-style.js:3019
-#: build/wc-gzd-blocks-product-elements.js:3002
+#: build/wc-gzd-blocks-product-elements.js:3895
+#: build/wc-gzd-blocks-product-elements-style.js:2896
+#: build/wc-gzd-blocks-product-elements.js:2879
 msgid "Inserts the product's price per unit."
 msgstr "Fügt den Grundpreis des Produkts ein."
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:4226
-#: build/wc-gzd-blocks-product-elements-style.js:3141
-#: build/wc-gzd-blocks-product-elements.js:3124
+#: build/wc-gzd-blocks-product-elements.js:4070
+#: build/wc-gzd-blocks-product-elements-style.js:3018
+#: build/wc-gzd-blocks-product-elements.js:3001
 msgid "Unit products"
 msgstr "Produkteinheiten"
 
 # @ woocommerce-germanized
-#: build/wc-gzd-blocks-product-elements.js:4227
-#: build/wc-gzd-blocks-product-elements-style.js:3142
-#: build/wc-gzd-blocks-product-elements.js:3125
+#: build/wc-gzd-blocks-product-elements.js:4071
+#: build/wc-gzd-blocks-product-elements-style.js:3019
+#: build/wc-gzd-blocks-product-elements.js:3002
 msgid "Inserts the product's units."
 msgstr "Fügt die Produkteinheiten des Produkts ein."
 

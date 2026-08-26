@@ -13,9 +13,6 @@ const Block = ({
     const gzdData = extensions.hasOwnProperty( 'woocommerce-germanized' ) ? extensions['woocommerce-germanized'] : {};
     const needsLegalGuarantee = gzdData['needs_legal_guarantee'];
 
-    console.log(needsLegalGuarantee);
-    console.log(className);
-
     useEffect( () => {
         if ( needsLegalGuarantee ) {
             setShow( true );
@@ -34,7 +31,7 @@ const Block = ({
     return (
 		<div
             className={ classnames(
-                `wc-gzd-block-checkout__legal-guarantee wc-block-components-checkout-step`,
+                `wc-gzd-block-checkout__legal-guarantee wc-block-components-checkout-step wc-gzd-legal-guarantee wc-gzd-legal-guarantee-checkout`,
                 className,
             ) }>
             { children }

@@ -59,6 +59,8 @@ final class Assets {
 
 		$this->register_data( 'isPro', Package::is_pro() );
 		$this->register_data( 'wcGzdAssetUrl', Package::get_url( 'assets/' ) );
+		$this->register_data( 'legalGuaranteeVariants', wc_gzd_get_legal_guarantee_variants() );
+		$this->register_data( 'garanLabelVariants', wc_gzd_get_garan_label_variants() );
 	}
 
 	public function enqueue_frontend_styles() {

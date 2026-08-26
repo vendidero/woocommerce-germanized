@@ -10,6 +10,7 @@ import {
 import { useEffect } from '@wordpress/element';
 import { PanelBody, SelectControl } from "@wordpress/components";
 import { __, _x } from '@wordpress/i18n';
+import { getSetting } from '@germanized/settings';
 
 /**
  * Internal dependencies
@@ -37,10 +38,7 @@ const Edit = ( {
         isDescendentOfSingleProductTemplate = false;
     }
 
-    const variants = {
-        'full': _x( 'Full', 'eu-label-variant', 'woocommerce-germanized' ),
-        'nested': _x( 'Nested', 'eu-label-variant', 'woocommerce-germanized' ),
-    };
+    const variants = getSetting( 'garanLabelVariants', {} );
 
     useEffect(
         () =>
