@@ -559,17 +559,20 @@ final class Checkout {
 			);
 		}
 
-		return array(
-			'applies_for_photovoltaic_system_vat_exempt' => wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption(),
-			'needs_legal_guarantee'                      => wc_gzd_cart_needs_legal_guarantee(),
-			'photovoltaic_system_law_details'            => wc_gzd_cart_get_photovoltaic_systems_law_details(),
-			'checkboxes'                                 => $checkboxes_for_api,
-			'shipping_costs_notice'                      => wc_gzd_get_shipping_costs_text(),
-			'direct_debit'                               => array(
-				'holder' => '',
-				'iban'   => '',
-				'bic'    => '',
-			),
+		return apply_filters(
+			'woocommerce_gzd_checkout_block_cart_api_data',
+			array(
+				'applies_for_photovoltaic_system_vat_exempt' => wc_gzd_cart_applies_for_photovoltaic_system_vat_exemption(),
+				'needs_legal_guarantee'           => wc_gzd_cart_needs_legal_guarantee(),
+				'photovoltaic_system_law_details' => wc_gzd_cart_get_photovoltaic_systems_law_details(),
+				'checkboxes'                      => $checkboxes_for_api,
+				'shipping_costs_notice'           => wc_gzd_get_shipping_costs_text(),
+				'direct_debit'                    => array(
+					'holder' => '',
+					'iban'   => '',
+					'bic'    => '',
+				),
+			)
 		);
 	}
 
