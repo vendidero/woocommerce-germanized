@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 7.1
 WC requires at least: 3.9
 WC tested up to: 11.1
-Stable tag: 4.1.0
+Stable tag: 4.1.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -208,6 +208,16 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.1.1 =
+* New: EU legal guarantee, commercial guarantee labels
+* New: DOI: Disable guest checkout redirect to registration page and link guest orders after confirming the account instead
+* Improvement: Refactored direct debit encryption/decryption to use core encryption instead of relying on a third-party library
+* Improvement: DOI after email change
+* Improvement: [Withdrawal button]Prefer searching for custom order number first to prevent finding wrong ids
+* Improvement: [Withdrawal button] Restock order items on withdrawal confirmation in case no payment has been made yet
+* Improvement: [Withdrawal button] Introduce guest order validation setting (set to none after update)
+* Fix: Divi 5 compatibility
+
 = 4.1.0 =
 * New: EU legal guarantee, commercial guarantee labels
 * New: DOI: Disable guest checkout redirect to registration page and link guest orders after confirming the account instead
