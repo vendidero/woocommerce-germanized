@@ -46,6 +46,7 @@ p.wc-gzd-additional-info:empty, div.wc-gzd-additional-info:empty {
 img.wc-gzd-popover-image {
   max-width: 100%;
   min-width: 350px;
+  object-fit: contain;
   width: 100%;
 }
 
@@ -77,6 +78,8 @@ img.wc-gzd-popover-image {
   .wc-gzd-popover-content {
     img {
       max-height: 90vh;
+      width: auto;
+      object-fit: contain;
     }
   }
 

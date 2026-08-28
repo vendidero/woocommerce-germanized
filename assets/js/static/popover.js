@@ -4,6 +4,7 @@ window.germanized = window.germanized || {};
 ( function( $, germanized ) {
     germanized.popover = {
         params: {},
+        hoverTimeout: null,
 
         init: function() {
             const isTouch = !!( 'ontouchstart' in window );
@@ -12,19 +13,23 @@ window.germanized = window.germanized || {};
                 $( document ).on( 'mouseenter', '.wc-gzd-popover-trigger', function( e ) {
                     let $popover = $( this ).next( '.wc-gzd-popover' );
 
-                    if ( $popover.length <= 0 ) {
-                        return;
-                    }
+                    germanized.popover.hoverTimeout = setTimeout( function() {
+                        if ( $popover.length <= 0 ) {
+                            return;
+                        }
 
-                    const isOpen = $popover[0].matches(':popover-open');
+                        const isOpen = $popover[0].matches(':popover-open');
 
-                    if ( false === isOpen ) {
-                        $popover.addClass( 'wc-gzd-popover-hover' );
-                        germanized.popover.showPopover( $popover );
-                    }
+                        if ( false === isOpen ) {
+                            $popover.addClass( 'wc-gzd-popover-hover' );
+                            germanized.popover.showPopover( $popover );
+                        }
+                    }, 1000 );
                 } );
 
                 $( document ).on( 'mouseleave', '.wc-gzd-popover-trigger', function(e) {
+                    clearTimeout( germanized.popover.hoverTimeout );
+
                     let $popover = $( this ).next( '.wc-gzd-popover' );
 
                     if ( $popover.length <= 0 ) {

@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 wp_enqueue_script( 'wc-gzd-popover' );
 ?>
-<a href="<?php echo $popover_fallback_url ? esc_url( $popover_fallback_url ) : '#'; ?>" <?php echo $popover_fallback_url ? 'target="_blank"' : ''; ?> class="wc-gzd-popover-trigger"><?php echo wc_gzd_kses_post_svg( $popover_trigger_html ); ?></a>
+<a href="<?php echo $popover_fallback_url ? esc_url( $popover_fallback_url ) : '#'; ?>" <?php echo $popover_fallback_url ? 'target="_blank"' : ''; ?> class="wc-gzd-popover-trigger" data-elementor-open-lightbox="no"><?php echo wc_gzd_kses_post_svg( $popover_trigger_html ); ?></a>
 <div popover role="tooltip" class="wc-gzd-popover" aria-label="<?php echo esc_attr( isset( $popover_description ) ? $popover_description : '' ); ?>">
 	<div class="wc-gzd-popover-inner">
 		<div class="wc-gzd-popover-header">
