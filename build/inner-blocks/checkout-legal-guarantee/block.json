@@ -1,0 +1,39 @@
+{
+	"apiVersion": 3,
+	"name": "woocommerce-germanized/checkout-legal-guarantee",
+	"version": "2.0.0",
+	"title": "EU Legal Guarantee",
+	"category": "woocommerce",
+	"description": "Display the EU legal guarantee notice.",
+	"supports": {
+		"align": true,
+		"html": false,
+		"multiple": false,
+		"reusable": false,
+		"lock": false
+	},
+	"parent": [ "woocommerce/checkout-totals-block", "woocommerce/checkout", "woocommerce/checkout-fields-block"],
+	"textdomain": "woocommerce-germanized",
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"className": {
+			"type": "string",
+			"default": ""
+		},
+		"variant": {
+			"type": "string",
+			"default": "preview",
+			"required": false
+		},
+		"lock": {
+			"type": "object",
+			"default": {
+				"remove": false,
+				"move": false
+			}
+		}
+	}
+}
