@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
 import sharedConfig from '../shared/config';
 import edit from './edit';
 
-const { ancestor, ...configuration } = sharedConfig;
+const { configuration } = sharedConfig;
 
 const blockConfig = {
     ...configuration,

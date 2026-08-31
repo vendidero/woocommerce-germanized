@@ -1254,6 +1254,11 @@ function wc_gzd_get_legal_guarantee_location_hook( $location ) {
 				'priority' => 15,
 			);
 		}
+	} elseif ( 'cart' === $location ) {
+		$hook = array(
+			'hook'     => 'woocommerce_after_cart_totals',
+			'priority' => 15,
+		);
 	}
 
 	return apply_filters( 'woocommerce_gzd_legal_guarantee_location_hook', $hook, $location );

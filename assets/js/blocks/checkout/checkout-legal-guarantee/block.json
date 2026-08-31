@@ -12,7 +12,7 @@
 		"reusable": false,
 		"lock": false
 	},
-	"parent": [ "woocommerce/checkout-totals-block", "woocommerce/checkout", "woocommerce/checkout-fields-block"],
+	"parent": [ "woocommerce/checkout-totals-block", "woocommerce/checkout", "woocommerce/checkout-fields-block", "woocommerce/filled-cart-block", "woocommerce/cart-items-block", "woocommerce/cart-totals-block" ],
 	"textdomain": "woocommerce-germanized",
 	"attributes": {
 		"align": {

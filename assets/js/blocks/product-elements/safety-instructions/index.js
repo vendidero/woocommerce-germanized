@@ -12,7 +12,7 @@ import { getSetting } from '@germanized/settings';
 import sharedConfig from '../shared/config';
 import edit from './edit';
 
-const { ancestor, ...configuration } = sharedConfig;
+const { configuration } = sharedConfig;
 
 const blockConfig = {
     ...configuration,

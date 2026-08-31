@@ -772,6 +772,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'options'           => array(
 					'footer'                    => __( 'Footer', 'woocommerce-germanized' ),
 					'checkout'                  => __( 'Checkout', 'woocommerce-germanized' ),
+					'cart'                      => __( 'Cart', 'woocommerce-germanized' ),
 					'product_description_after' => __( 'Product description (after)', 'woocommerce-germanized' ),
 				),
 				'default'           => array( 'footer' ),

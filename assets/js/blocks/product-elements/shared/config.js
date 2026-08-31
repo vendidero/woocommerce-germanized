@@ -71,7 +71,7 @@ const sharedConfig = {
             default: false,
         }
     },
-    ancestor: [ 'woocommerce/all-products', 'woocommerce/single-product' ],
+    ancestor: [ 'woocommerce/all-products', 'woocommerce/single-product', 'woocommerce/featured-product', 'woocommerce/product-template', 'core/post-template' ],
     save
 };
 
