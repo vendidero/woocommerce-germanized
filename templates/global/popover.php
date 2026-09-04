@@ -12,15 +12,17 @@
  *
  * @see https://github.com/vendidero/woocommerce-germanized/wiki/Overriding-Germanized-Templates
  * @package Germanized/Templates
- * @version 4.1.0
+ * @version 4.1.2
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
 
 wp_enqueue_script( 'wc-gzd-popover' );
+
+$popover_enable_mouseover = isset( $popover_enable_mouseover ) ? $popover_enable_mouseover : true;
 ?>
-<a href="<?php echo $popover_fallback_url ? esc_url( $popover_fallback_url ) : '#'; ?>" <?php echo $popover_fallback_url ? 'target="_blank"' : ''; ?> class="wc-gzd-popover-trigger" data-elementor-open-lightbox="no"><?php echo wc_gzd_kses_post_svg( $popover_trigger_html ); ?></a>
+<a href="<?php echo $popover_fallback_url ? esc_url( $popover_fallback_url ) : '#'; ?>" <?php echo $popover_fallback_url ? 'target="_blank"' : ''; ?> class="wc-gzd-popover-trigger" data-elementor-open-lightbox="no" data-e-hover="<?php echo esc_attr( apply_filters( 'woocommerce_gzd_popover_enable_mouseover', $popover_enable_mouseover ) ); ?>"><?php echo wc_gzd_kses_post_svg( $popover_trigger_html ); ?></a>
 <div popover role="tooltip" class="wc-gzd-popover" aria-label="<?php echo esc_attr( isset( $popover_description ) ? $popover_description : '' ); ?>">
 	<div class="wc-gzd-popover-inner">
 		<div class="wc-gzd-popover-header">

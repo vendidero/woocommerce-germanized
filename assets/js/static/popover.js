@@ -12,9 +12,10 @@ window.germanized = window.germanized || {};
             if ( ! isTouch ) {
                 $( document ).on( 'mouseenter', '.wc-gzd-popover-trigger', function( e ) {
                     let $popover = $( this ).next( '.wc-gzd-popover' );
+                    let $trigger = $( this );
 
                     germanized.popover.hoverTimeout = setTimeout( function() {
-                        if ( $popover.length <= 0 ) {
+                        if ( $popover.length <= 0 || ! $trigger.data( 'e-hover' ) ) {
                             return;
                         }
 
@@ -31,8 +32,9 @@ window.germanized = window.germanized || {};
                     clearTimeout( germanized.popover.hoverTimeout );
 
                     let $popover = $( this ).next( '.wc-gzd-popover' );
+                    let $trigger = $( this );
 
-                    if ( $popover.length <= 0 ) {
+                    if ( $popover.length <= 0 || ! $trigger.data( 'e-hover' ) ) {
                         return;
                     }
 

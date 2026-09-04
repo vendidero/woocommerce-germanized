@@ -1836,10 +1836,11 @@ class WC_GZD_Product {
 			$popover_html = wc_get_template_html(
 				'global/popover.php',
 				array(
-					'popover_description'  => __( 'EU GARAN label', 'woocommerce-germanized' ),
-					'popover_fallback_url' => $this->get_garan_label_url( 'full' ),
-					'popover_html'         => '<img class="wc-gzd-garan-label-popover-image wc-gzd-popover-image" src="' . esc_url( $this->get_garan_label_url( 'full' ) ) . '" alt="' . esc_attr( __( 'EU GARAN label', 'woocommerce-germanized' ) ) . '" />',
-					'popover_trigger_html' => '<img class="wc-gzd-garan-label-nested-image" src="' . esc_url( $this->get_garan_label_url( 'nested' ) ) . '" alt="' . esc_attr( __( 'EU GARAN label preview', 'woocommerce-germanized' ) ) . '" />',
+					'popover_description'      => __( 'EU GARAN label', 'woocommerce-germanized' ),
+					'popover_fallback_url'     => $this->get_garan_label_url( 'full' ),
+					'popover_enable_mouseover' => apply_filters( 'woocommerce_gzd_garan_label_enable_mouseover', true, $this, $variant, $location ),
+					'popover_html'             => '<img class="wc-gzd-garan-label-popover-image wc-gzd-popover-image" src="' . esc_url( $this->get_garan_label_url( 'full' ) ) . '" alt="' . esc_attr( __( 'EU GARAN label', 'woocommerce-germanized' ) ) . '" />',
+					'popover_trigger_html'     => '<img class="wc-gzd-garan-label-nested-image" src="' . esc_url( $this->get_garan_label_url( 'nested' ) ) . '" alt="' . esc_attr( __( 'EU GARAN label preview', 'woocommerce-germanized' ) ) . '" />',
 				)
 			);
 
