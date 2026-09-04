@@ -66,12 +66,20 @@
          * Block-based themes have the global post/product classes attached to body instead of the product group wrapper.
          */
         var $defaultWrapper = $( 'body' ).hasClass( 'type-product' ) ? $( 'body' ) : self.$product;
+        var $safetyTab = self.$product.find( '.product_safety_tab' );
         has_product_safety_information = undefined === has_product_safety_information ? $defaultWrapper.hasClass( 'has-product-safety-information' ) : has_product_safety_information;
 
         if ( has_product_safety_information ) {
-            self.$product.find( '.product_safety_tab' ).show().css( 'display', 'inline-block' );
+            if ( $safetyTab.is( 'div' ) ) {
+                $safetyTab.show();
+            } else {
+                $safetyTab.show().css( 'display', 'inline-block' );
+            }
+
+            $safetyTab.addClass( 'product-safety-tab-visible' );
         } else {
-            self.$product.find( '.product_safety_tab' ).hide();
+            $safetyTab.hide();
+            $safetyTab.removeClass( 'product-safety-tab-visible' );
         }
     };
 

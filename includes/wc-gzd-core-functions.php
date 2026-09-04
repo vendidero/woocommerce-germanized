@@ -444,11 +444,14 @@ function wc_gzd_get_email_attachment_order( $legal_pages_only = false ) {
 	$available = wc_gzd_get_legal_pages( true );
 
 	if ( ! $legal_pages_only ) {
-		$available += array( 'warranties' => __( 'Product Warranties', 'woocommerce-germanized' ) );
-		$available += array( 'eu_guarantees' => __( 'EU Guarantee Labels', 'woocommerce-germanized' ) );
+		$available['warranties']    = __( 'Product Warranties', 'woocommerce-germanized' );
+		$available['eu_guarantees'] = __( 'EU Guarantee Labels', 'woocommerce-germanized' );
 	}
 
 	$current_order = explode( ',', get_option( 'woocommerce_gzd_mail_attach_order', wc_gzd_get_default_email_attachment_order() ) );
+
+	// Make sure that only available items exist in current order
+	$current_order = array_intersect( array_keys( $available ), $current_order );
 	// Mare sure all default items exist within option order array
 	$current_order = array_replace( array_keys( $available ), $current_order );
 	$items         = array();
