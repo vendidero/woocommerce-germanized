@@ -74,7 +74,7 @@ class WC_GZD_Customer_Helper {
 			 */
 			if ( $this->is_double_opt_in_login_enabled() ) {
 				add_filter( 'wp_authenticate_user', array( $this, 'login_restriction' ), 10, 2 );
-				add_filter( 'send_auth_cookies', array( $this, 'maybe_disable_auth_cookies' ), 10, 6 );
+				add_filter( 'send_auth_cookies', array( $this, 'maybe_disable_auth_cookies' ), 10, 4 );
 				add_action( 'set_current_user', array( $this, 'maybe_block_login_after_account_creation' ), 10 );
 				add_filter( 'render_block', array( $this, 'replace_order_confirmation_blocks' ), 1000, 2 );
 
@@ -198,7 +198,7 @@ class WC_GZD_Customer_Helper {
 	 *
 	 * @see \Automattic\WooCommerce\Blocks\BlockTypes\OrderConfirmation\CreateAccount::process_form_post()
 	 */
-	public function maybe_disable_auth_cookies( $send_auth, $expire, $expiration, $user_id, $scheme, $token ) {
+	public function maybe_disable_auth_cookies( $send_auth, $expire, $expiration, $user_id ) {
 		if ( $this->block_user_login( $user_id ) ) {
 			if ( WC()->session && true === WC()->session->get( 'doi_disable_login_after_account_creation' ) ) {
 				$send_auth = false;
