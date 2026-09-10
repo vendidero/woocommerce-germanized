@@ -13,7 +13,7 @@
     "composer/installers": "^1.9.0",
     "digitick/sepa-xml" : "3.0.0",
     "globalcitizen/php-iban": "^4.0.0",
-    "vendidero/woocommerce-eu-tax-helper": "2.1.0",
+    "vendidero/woocommerce-eu-tax-helper": "2.1.1",
     "vendidero/eu-order-withdrawal-button-for-woocommerce": "2.4.2"
   },
   "require-dev": {

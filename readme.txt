@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 7.1
 WC requires at least: 3.9
 WC tested up to: 11.1
-Stable tag: 4.1.1
+Stable tag: 4.1.2
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -208,6 +208,13 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.1.2 =
+* Improvement: Added cart location for legal guarantee (and WooCommerce cart block)
+* Improvement: WP < 6.9 compatibility for popover div attribute
+* Improvement: Added filters for GARAN and legal guarantee label to disable mouseover for popovers
+* Improvement: Use a timeout on mouseover to prevent flashes on first mouse move
+* Improvement: Prevent opening elementor lightbox when opening popover
+
 = 4.1.1 =
 * New: EU legal guarantee, commercial guarantee labels
 * New: DOI: Disable guest checkout redirect to registration page and link guest orders after confirming the account instead

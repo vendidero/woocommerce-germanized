@@ -4,15 +4,6 @@
 import { registerCheckoutFilters } from '@woocommerce/blocks-checkout';
 import { getSetting } from '@germanized/settings';
 
-registerCheckoutFilters(
-    'woocommerce-germanized',
-    {
-        placeOrderButtonLabel: ( value, extensions, args ) => {
-            return getSetting( 'buyNowButtonText' );
-        }
-    }
-);
-
 const adjustInnerBlockTemplate = (
     defaultValue,
     extensions,
@@ -22,10 +13,16 @@ const adjustInnerBlockTemplate = (
     if ( args?.block === 'woocommerce/cart-items-block' || args?.block === 'woocommerce/cart-totals-block' ) {
         defaultValue.push( 'woocommerce-germanized/checkout-legal-guarantee' );
     }
-R
+    R
     return defaultValue;
 };
 
-registerCheckoutFilters( 'woocommerce-germanized', {
-    additionalCartCheckoutInnerBlockTypes: adjustInnerBlockTemplate,
-} );
+registerCheckoutFilters(
+    'woocommerce-germanized',
+    {
+        placeOrderButtonLabel: ( value, extensions, args ) => {
+            return getSetting( 'buyNowButtonText' );
+        },
+        additionalCartCheckoutInnerBlockTypes: adjustInnerBlockTemplate,
+    }
+);

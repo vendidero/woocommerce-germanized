@@ -451,9 +451,9 @@ function wc_gzd_get_email_attachment_order( $legal_pages_only = false ) {
 	$current_order = explode( ',', get_option( 'woocommerce_gzd_mail_attach_order', wc_gzd_get_default_email_attachment_order() ) );
 
 	// Make sure that only available items exist in current order
-	$current_order = array_intersect( array_keys( $available ), $current_order );
+	$current_order = array_values( array_intersect( $current_order, array_keys( $available ) ) );
 	// Mare sure all default items exist within option order array
-	$current_order = array_replace( array_keys( $available ), $current_order );
+	$current_order = array_unique( array_merge( $current_order, array_diff( array_keys( $available ), $current_order ) ) );
 	$items         = array();
 
 	foreach ( $current_order as $key => $item ) {
@@ -2308,8 +2308,18 @@ function wc_gzd_kses_post_svg( $html ) {
 	);
 
 	$kses_post = array_merge( $kses_post, $svg_args );
-	$html      = wp_kses( $html, $kses_post );
-	$html      = str_replace( 'viewbox', 'viewBox', $html ); // Somehow WP does not handle viewBox attribute in the right way
+	/**
+	 * Add fallback support for WP < 6.9 for the popover attribute
+	 */
+	$kses_post['div'] = array_merge(
+		isset( $kses_post['div'] ) ? $kses_post['div'] : array(),
+		array(
+			'popover' => true,
+		)
+	);
+
+	$html = wp_kses( $html, $kses_post );
+	$html = str_replace( 'viewbox', 'viewBox', $html ); // Somehow WP does not handle viewBox attribute in the right way
 
 	return $html;
 }
