@@ -1,0 +1,1 @@
+((window.wcGzd=window.wcGzd||{}).blocks=window.wcGzd.blocks||{})["mini-cart"]={};
