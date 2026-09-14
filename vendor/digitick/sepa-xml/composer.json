@@ -1,0 +1,68 @@
+{
+    "name": "digitick/sepa-xml",
+    "type": "library",
+    "description": "Creates Single Euro Payments Area (SEPA) XML files for the Direct Debit and Credit Transfer operations.",
+    "keywords": ["banking", "sepa", "xml"],
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Ianaré Sévi"
+        },
+        {
+            "name": "Digitick, SA",
+            "email": "info@digitick.net"
+        },
+        {
+            "name": "Sören Rohweder (monofone)",
+            "email": "s.rohweder@blage.net"
+        },
+        {
+            "name": "Borislav Sabev (Borkata)",
+            "email": "contact@borkata.mailer.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Digitick\\Sepa\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Digitick\\Sepa\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "ext-dom": "*",
+        "php": ">=7.2",
+        "ramsey/uuid": "^4.2.3"
+    },
+    "require-dev": {
+        "ext-xml": "*",
+        "phpunit/phpunit": "^10.0",
+        "rector/rector": "^2.0",
+        "phpstan/phpstan": "^2.0",
+        "fakerphp/faker": "^1.24"
+    },
+    "config": {
+        "bin-dir": "bin/"
+    },
+    "scripts": {
+        "rector": "bin/rector process --clear-cache --no-diffs",
+        "phpstan": "bin/phpstan analyse",
+        "phpstan-cc": "bin/phpstan clear-result-cache",
+        "phpstan-dp": "bin/phpstan dump-parameters",
+        "php-codeQualityFull" : [
+            "@phpstan",
+            "@rector"
+        ],
+        "phpunit": "bin/phpunit"
+    },
+    "scripts-descriptions": {
+        "rector": "runs `bin/rector process --clear-cache --no-diffs`",
+        "phpstan": "runs `bin/phpstan analyse`",
+        "phpstan-cc": "runs `bin/phpstan clear-result-cache`",
+        "phpstan-dp": "runs `bin/phpstan dump-parameters`",
+        "php-codeQualityFull" : "run `phpstan` and then `rector`",
+        "phpunit" : "It's pretty obvious what this does, isn't it?"
+    }
+}
