@@ -38,8 +38,8 @@ class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_sections() {
-		if ( \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ) {
-			return Vendidero\OneStopShop\Settings::get_sections();
+		if ( class_exists( '\Vendidero\OneStopShop\Settings' ) ) {
+			return \Vendidero\OneStopShop\Settings::get_sections();
 		} else {
 			return array(
 				'' => __( 'General', 'woocommerce-germanized' ),
@@ -48,15 +48,15 @@ class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_tab_settings( $current_section = '' ) {
-		if ( \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() ) {
-			return Vendidero\OneStopShop\Settings::get_settings( $current_section );
+		if ( class_exists( '\Vendidero\OneStopShop\Settings' ) ) {
+			return \Vendidero\OneStopShop\Settings::get_settings( $current_section );
 		} else {
 			return array();
 		}
 	}
 
 	public function is_enabled() {
-		if ( \Vendidero\Germanized\PluginsHelper::is_oss_plugin_active() && ( \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() || \Vendidero\OneStopShop\Package::enable_auto_observer() ) ) {
+		if ( class_exists( '\Vendidero\OneStopShop\Package' ) && ( \Vendidero\OneStopShop\Package::oss_procedure_is_enabled() || \Vendidero\OneStopShop\Package::enable_auto_observer() ) ) {
 			return true;
 		}
 

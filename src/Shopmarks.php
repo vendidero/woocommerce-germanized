@@ -636,7 +636,7 @@ class Shopmarks {
 	 *
 	 * @return string[]
 	 */
-	public static function get_filters( $location = 'single_product' ) {
+	public static function get_filters( $location = 'single_product', $suppress_filters = false ) {
 		$load_translation = doing_action( 'init' ) || did_action( 'init' );
 
 		$filters = array(
@@ -835,18 +835,22 @@ class Shopmarks {
 
 		$filter_data = isset( $filters[ $location ] ) ? $filters[ $location ] : array();
 
-		/**
-		 * Filter to adjust available hook names for a certain location.
-		 *
-		 * The dynamic portion of the hook name, `$location` refers to the
-		 * shopmark location e.g. single_product
-		 *
-		 * @param array $hook_names Array containing available hook names.
-		 * @param boolean $load_translation Whether to load translations
-		 *
-		 * @since 3.0.0
-		 */
-		return apply_filters( "woocommerce_gzd_shopmark_{$location}_filters", $filter_data, $load_translation );
+		if ( $suppress_filters ) {
+			return $filter_data;
+		} else {
+			/**
+			 * Filter to adjust available hook names for a certain location.
+			 *
+			 * The dynamic portion of the hook name, `$location` refers to the
+			 * shopmark location e.g. single_product
+			 *
+			 * @param array $hook_names Array containing available hook names.
+			 * @param boolean $load_translation Whether to load translations
+			 *
+			 * @since 3.0.0
+			 */
+			return apply_filters( "woocommerce_gzd_shopmark_{$location}_filters", $filter_data, $load_translation );
+		}
 	}
 
 	public static function get_types( $location = 'single_product' ) {
@@ -978,6 +982,10 @@ class Shopmarks {
 		$filters = self::get_filters( $location );
 
 		return isset( $filters[ $filter_name ] ) ? $filters[ $filter_name ] : false;
+	}
+
+	public static function is_core_filter( $filter_name ) {
+		return apply_filters( 'woocommerce_gzd_shopmark_is_core_filter', ( 'woocommerce_' === substr( $filter_name, 0, 12 ) ), $filter_name );
 	}
 
 	public static function get_filter_options( $location ) {

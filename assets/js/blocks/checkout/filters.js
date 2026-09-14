@@ -13,7 +13,7 @@ const adjustInnerBlockTemplate = (
     if ( args?.block === 'woocommerce/cart-items-block' || args?.block === 'woocommerce/cart-totals-block' ) {
         defaultValue.push( 'woocommerce-germanized/checkout-legal-guarantee' );
     }
-    R
+
     return defaultValue;
 };
 
