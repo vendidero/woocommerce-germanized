@@ -623,7 +623,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	public function show_conditionally_pay_for_order() {
 		global $wp;
 
-		$order_id = absint( $wp->query_vars['order-pay'] );
+		$order_id = isset( $wp->query_vars['order-pay'] ) ? absint( $wp->query_vars['order-pay'] ) : false;
 
 		if ( ! $order_id || ! ( $order = wc_get_order( $order_id ) ) ) {
 			return;
