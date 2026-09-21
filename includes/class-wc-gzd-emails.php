@@ -404,8 +404,8 @@ class WC_GZD_Emails {
 	}
 
 	public function build_attachments( $attachments, $mail_id, $object_in_email = false ) {
-		$warranty_email_ids  = array_filter( (array) get_option( 'woocommerce_gzd_mail_attach_warranties', array() ) );
-		$guarantee_email_ids = array_filter( (array) get_option( 'woocommerce_gzd_mail_attach_eu_guarantees', array() ) );
+		$warranty_email_ids  = array_filter( (array) get_option( 'woocommerce_gzd_mail_attach_warranties', array( 'customer_processing_order' ) ) );
+		$guarantee_email_ids = array_filter( (array) get_option( 'woocommerce_gzd_mail_attach_eu_guarantees', array( 'customer_processing_order' ) ) );
 
 		if ( $object_in_email ) {
 			$product_ids = array();
@@ -452,6 +452,10 @@ class WC_GZD_Emails {
 							}
 						}
 					}
+				}
+
+				if ( is_a( $object_in_email, '\Automattic\WooCommerce\Internal\Admin\EmailPreview\PreviewOrder' ) ) {
+					$include_legal_guarantee = true;
 				}
 
 				if ( apply_filters( 'woocommerce_gzd_attach_legal_guarantee_to_email', $include_legal_guarantee, $mail_id, $object_in_email ) ) {

@@ -230,7 +230,7 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 				$email_ids = array( 'customer_processing_order' );
 				break;
 			case 'warranties':
-				$email_ids = array( 'customer_completed_order' );
+				$email_ids = array( 'customer_processing_order' );
 				break;
 			case 'eu_guarantees':
 				$email_ids = array( 'customer_processing_order' );

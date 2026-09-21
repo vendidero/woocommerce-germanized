@@ -43,11 +43,19 @@ p.wc-gzd-additional-info:empty, div.wc-gzd-additional-info:empty {
   min-width: 200px;
 }
 
-img.wc-gzd-popover-image {
-  max-width: 100%;
-  min-width: 350px;
-  object-fit: contain;
-  width: 100%;
+.wc-gzd-popover-wrapper {
+  a.wc-gzd-popover-trigger {
+    img:hover {
+      cursor: zoom-in;
+    }
+  }
+
+  .wc-gzd-popover:not(.wc-gzd-popover-hover) {
+    &::backdrop {
+      background-color: #000;
+      opacity: .4;
+    }
+  }
 }
 
 .wc-gzd-legal-guarantee-footer {
@@ -77,9 +85,11 @@ img.wc-gzd-popover-image {
 
   .wc-gzd-popover-content {
     img {
-      max-height: 90vh;
-      width: auto;
+      max-height: 80vh;
       object-fit: contain;
+      max-width: 100%;
+      min-height: 350px;
+      width: 100%;
     }
   }
 
@@ -111,6 +121,12 @@ img.wc-gzd-popover-image {
   img.wc-gzd-legal-guarantee-label-image {
     min-width: 250px;
     max-width: 300px;
+  }
+
+  .wc-gzd-legal-guarantee-label-full {
+    img.wc-gzd-legal-guarantee-label-image {
+      max-width: 500px;
+    }
   }
 }
 

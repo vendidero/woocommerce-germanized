@@ -7,7 +7,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
 "POT-Creation-Date: 2026-09-10T08:09:32+00:00\n"
-"PO-Revision-Date: 2026-09-10 10:10+0200\n"
+"PO-Revision-Date: 2026-09-18 09:53+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -5855,7 +5855,7 @@ msgstr "Produktbeschreibung (nachher)"
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:782
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:798
 msgid "Display variant"
-msgstr "Modelnummer"
+msgstr "Anzeigevariante"
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:783
 msgid ""
@@ -5888,7 +5888,7 @@ msgstr ""
 "dass für jedes betroffene Produkt eine Länge der Garantie von mehr als 24 "
 "Monaten festgelegt ist, ein Hersteller angegeben ist und eine gültige "
 "Modellnummer (GTIN, MPN oder SKU) vorliegt. Deaktivieren Sie diese Option, "
-"wenn Ihr Shop das Label überhaupt nicht anzeigen muss, z. B. Beim Verkauf "
+"wenn Ihr Shop das Label überhaupt nicht anzeigen muss, z. B. beim Verkauf "
 "von virtuellen Produkten oder B2B."
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:799
@@ -5897,7 +5897,7 @@ msgid ""
 "shows a preview version of the full label and opens a popover containing the "
 "full label on user interaction."
 msgstr ""
-"Wählen Sie eine Anzeigenvariante für das GARAN-Label aus. Die verschachtelte "
+"Wählen Sie eine Anzeigenvariante für das GARAN-Label aus. Die geschachtelte "
 "Option zeigt eine Vorschau des Labels an und öffnet bei einer Benutzeraktion "
 "ein Popover mit dem vollständigen Label."
 

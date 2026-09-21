@@ -1821,7 +1821,9 @@ class WC_GZD_Product {
 	}
 
 	public function get_garan_label_url( $variant = 'full' ) {
-		return trailingslashit( get_rest_url() ) . "wc/store/v1/products/{$this->get_id()}/garan-label.svg?variant={$variant}";
+		$product_version = $this->get_wc_product()->get_date_modified() ? $this->get_wc_product()->get_date_modified()->getTimestamp() : $this->get_wc_product()->get_date_created()->getTimestamp();
+
+		return trailingslashit( get_rest_url() ) . "wc/store/v1/products/{$this->get_id()}/garan-label.svg?variant={$variant}&v={$product_version}";
 	}
 
 	public function get_garan_label_html( $variant = '', $location = 'product' ) {

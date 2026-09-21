@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 7.1
 WC requires at least: 3.9
 WC tested up to: 11.1
-Stable tag: 4.1.3
+Stable tag: 4.1.4
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -208,6 +208,12 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.1.4 =
+* Improvement: Popover styles for EU GARAN label and legal guarantee
+* Improvement: Add version to EU GARAN label url to improve caching support
+* Improvement: Better default option support for EU label attachment option
+* Fix: Potential warning when rendering pay-for-order checkboxes
+
 = 4.1.3 =
 * Fix: Typo in filters.js which lead to block issues
 * Fix: Register cart legal guarantee block frontend logic

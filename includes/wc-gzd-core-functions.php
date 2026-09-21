@@ -2308,6 +2308,7 @@ function wc_gzd_kses_post_svg( $html ) {
 	);
 
 	$kses_post = array_merge( $kses_post, $svg_args );
+
 	/**
 	 * Add fallback support for WP < 6.9 for the popover attribute
 	 */
@@ -2318,7 +2319,37 @@ function wc_gzd_kses_post_svg( $html ) {
 		)
 	);
 
+	/**
+	 * Add fallback support for WP < 6.9 for missing svg inline styles
+	 */
+	add_filter(
+		'safe_style_css',
+		function ( $props ) {
+			return array_merge(
+				$props,
+				array(
+					'fill',
+					'fill-opacity',
+					'fill-rule',
+					'stroke',
+					'stroke-dasharray',
+					'stroke-linecap',
+					'stroke-linejoin',
+					'stroke-miterlimit',
+					'stroke-opacity',
+					'stroke-width',
+					'font-variation-settings',
+					'shape-rendering',
+				)
+			);
+		},
+		9991
+	);
+
 	$html = wp_kses( $html, $kses_post );
+
+	remove_all_filters( 'safe_style_css', 9991 );
+
 	$html = str_replace( 'viewbox', 'viewBox', $html ); // Somehow WP does not handle viewBox attribute in the right way
 
 	return $html;
