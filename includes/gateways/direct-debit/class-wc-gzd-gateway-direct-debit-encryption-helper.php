@@ -48,7 +48,7 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 
 		if ( ! is_wp_error( $decrypted ) ) {
 			return $decrypted;
-		} else {
+		} elseif ( defined( 'WC_GZD_DIRECT_DEBIT_KEY' ) ) {
 			try {
 				$legacy_header_version_size    = 4;
 				$legacy_salt_byte_size         = 32;
@@ -104,6 +104,8 @@ class WC_GZD_Gateway_Direct_Debit_Encryption_Helper {
 				return new WP_Error( 'decrypt-decode', sprintf( 'Error while decoding the encrypted message: %s', $e->getMessage() ) );
 			}
 		}
+
+		return new WP_Error( 'decrypt-decode', 'Error while decoding the encrypted message.' );
 	}
 
 	/**

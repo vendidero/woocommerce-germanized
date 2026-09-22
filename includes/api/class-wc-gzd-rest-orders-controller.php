@@ -40,7 +40,6 @@ class WC_GZD_REST_Orders_Controller {
 	 *
 	 */
 	public function prepare( $response, $post, $request ) {
-
 		$order               = wc_get_order( $post );
 		$response_order_data = $response->get_data();
 
