@@ -81,6 +81,11 @@
 
     .wp-block-woocommerce-checkout-order-summary-block {
       .wc-block-components-checkout-order-summary__title {
+        pointer-events: none;
+        padding: 0;
+        border: none;
+        margin-bottom: 16px;
+
         .wc-block-components-checkout-order-summary__title-icon {
           display: none;
         }

@@ -143,7 +143,7 @@ class WC_GZD_Admin_Welcome {
 					<div class="col">
 						<p>
 							Ab dem 27.09.26 sind die neuen EU Labels für Gewährleistung (und Garantie) darzustellen. Verpflichtend wird die Darstellung für alle Händler die physische Produkte B2C, d.h. an Verbraucher verkaufen.
-							Germanized 4.1 bereitet deinen WooCommerce Shop nun auf diese neuen Richtlinien vor, damit du die Labels vorab ausführlich testen und einbinden kannst.
+							Germanized 4.1 bereitet deinen WooCommerce Shop nun auf diese neuen Richtlinien vor, damit du die Labels vorab ausführlich testen und einbinden kannst. Bitte prüfe deine Einstellungen - das neue EU Gewährleistungslabel wird standardmäßig im Footer und in der Kasse angezeigt.
 						</p>
 
 						<div class="wc-gzd-actions wc-gzd-actions-right">

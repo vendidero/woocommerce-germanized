@@ -444,8 +444,11 @@ function wc_gzd_get_email_attachment_order( $legal_pages_only = false ) {
 	$available = wc_gzd_get_legal_pages( true );
 
 	if ( ! $legal_pages_only ) {
-		$available['warranties']    = __( 'Product Warranties', 'woocommerce-germanized' );
-		$available['eu_guarantees'] = __( 'EU Guarantee Labels', 'woocommerce-germanized' );
+		$available['warranties'] = __( 'Product Warranties', 'woocommerce-germanized' );
+
+		if ( wc_gzd_is_legal_guarantee_enabled() || wc_gzd_is_garan_label_enabled() ) {
+			$available['eu_guarantees'] = __( 'EU Guarantee Labels', 'woocommerce-germanized' );
+		}
 	}
 
 	$current_order = explode( ',', get_option( 'woocommerce_gzd_mail_attach_order', wc_gzd_get_default_email_attachment_order() ) );
@@ -1301,7 +1304,8 @@ function wc_gzd_get_legal_guarantee_languages() {
 function wc_gzd_get_legal_guarantee_html( $variant = '', $lang = '', $location = '' ) {
 	$variant           = wc_gzd_get_legal_guarantee_variant( $variant, $location );
 	$html              = '<div class="wc-gzd-legal-guarantee-label wc-gzd-legal-guarantee-label-' . esc_attr( $variant ) . ' ' . ( in_array( $variant, array( 'preview', 'link' ), true ) ? 'wc-gzd-popover-wrapper' : '' ) . '">';
-	$mixed_notice_html = ( 'checkout' === $location && wc_gzd_cart_contains_products_without_legal_guarantee() ) ? wc_gzd_cart_get_legal_guarantee_mixed_cart_notice( $variant ) : '';
+	$mixed_notice_html = ( in_array( $location, array( 'checkout', 'cart' ), true ) && wc_gzd_cart_contains_products_without_legal_guarantee() ) ? wc_gzd_cart_get_legal_guarantee_mixed_cart_notice( $variant ) : '';
+	$alt_text          = apply_filters( 'woocommerce_gzd_legal_guarantee_alt_text', __( 'Your legal guarantee rights: Minimum two-year legal guarantee protection for goods sold in the European Union.', 'woocommerce-germanized' ), $variant, $lang, $location );
 
 	if ( 'link' !== $variant && ! empty( $mixed_notice_html ) ) {
 		$html .= '<p class="wc-gzd-legal-guarantee-mixed-cart-notice">' . esc_html( $mixed_notice_html ) . '</p>';
@@ -1320,7 +1324,7 @@ function wc_gzd_get_legal_guarantee_html( $variant = '', $lang = '', $location =
 				'popover_description'      => __( 'Your legal guarantee rights', 'woocommerce-germanized' ),
 				'popover_fallback_url'     => wc_gzd_get_legal_guarantee_image_url( $lang ),
 				'popover_enable_mouseover' => apply_filters( 'woocommerce_gzd_legal_guarantee_enable_mouseover', true, $variant, $location ),
-				'popover_html'             => '<img class="wc-gzd-legal-guarantee-popover-image" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '" /><p class="wc-gzd-popover-caption"><a href="' . esc_url( wc_gzd_get_legal_guarantee_url( $lang ) ) . '" target="_blank">' . esc_html( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '</a></p>',
+				'popover_html'             => '<img class="wc-gzd-legal-guarantee-popover-image" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( $alt_text ) . '" /><p class="wc-gzd-popover-caption"><a href="' . esc_url( wc_gzd_get_legal_guarantee_url( $lang ) ) . '" target="_blank">' . esc_html( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '</a></p>',
 				'popover_trigger_html'     => apply_filters( 'woocommerce_gzd_legal_guarantee_link_description', $trigger_html, $location ),
 			)
 		);
@@ -1333,14 +1337,14 @@ function wc_gzd_get_legal_guarantee_html( $variant = '', $lang = '', $location =
 				'popover_description'      => __( 'Your legal guarantee rights', 'woocommerce-germanized' ),
 				'popover_fallback_url'     => wc_gzd_get_legal_guarantee_image_url( $lang ),
 				'popover_enable_mouseover' => apply_filters( 'woocommerce_gzd_legal_guarantee_enable_mouseover', true, $variant, $location ),
-				'popover_html'             => '<img class="wc-gzd-legal-guarantee-popover-image wc-gzd-popover-image" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '" /><p class="wc-gzd-popover-caption"><a href="' . esc_url( wc_gzd_get_legal_guarantee_url( $lang ) ) . '" target="_blank">' . esc_html( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '</a></p>',
-				'popover_trigger_html'     => '<img class="wc-gzd-legal-guarantee-image-preview" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '" />',
+				'popover_html'             => '<img class="wc-gzd-legal-guarantee-popover-image wc-gzd-popover-image" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( $alt_text ) . '" /><p class="wc-gzd-popover-caption"><a href="' . esc_url( wc_gzd_get_legal_guarantee_url( $lang ) ) . '" target="_blank">' . esc_html( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '</a></p>',
+				'popover_trigger_html'     => '<img class="wc-gzd-legal-guarantee-image-preview" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( $alt_text ) . '" />',
 			)
 		);
 
 		$html .= $popover_html;
 	} else {
-		$html .= '<a class="wc-gzd-legal-guarantee-label-image-link" href="' . esc_url( wc_gzd_get_legal_guarantee_url( $lang ) ) . '" target="_blank"><img class="wc-gzd-legal-guarantee-label-image" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( __( 'Your legal guarantee rights', 'woocommerce-germanized' ) ) . '" /></a>';
+		$html .= '<a class="wc-gzd-legal-guarantee-label-image-link" href="' . esc_url( wc_gzd_get_legal_guarantee_url( $lang ) ) . '" target="_blank"><img class="wc-gzd-legal-guarantee-label-image" src="' . esc_url( wc_gzd_get_legal_guarantee_image_url( $lang ) ) . '" alt="' . esc_attr( $alt_text ) . '" /></a>';
 	}
 
 	$html .= '</div>';
@@ -1421,9 +1425,10 @@ function wc_gzd_get_garan_label_svg( $args, $variant = 'full' ) {
 	}
 
 	$replacements = array(
-		'{garan_length}' => wc_clean( $args['guarantee_length'] ),
-		'{garan_id}'     => wc_clean( $args['model_id'] ),
-		'{garan_brand}'  => wc_clean( $args['brand_name'] ),
+		'{garan_length}'     => wc_clean( $args['guarantee_length'] ),
+		'{garan_id}'         => wc_clean( $args['model_id'] ),
+		'{garan_brand}'      => wc_clean( $args['brand_name'] ),
+		'{garan_aria_label}' => esc_attr( sprintf( __( '%1$s-Year guarantee from %2$s for model %3$s', 'woocommerce-germanized' ), $args['guarantee_length'], $args['brand_name'], $args['model_id'] ) ),
 	);
 
 	$svg = str_replace( array_keys( $replacements ), array_values( $replacements ), $svg );
@@ -2226,6 +2231,7 @@ function wc_gzd_kses_post_svg( $html ) {
 			'class'           => true,
 			'aria-hidden'     => true,
 			'aria-labelledby' => true,
+			'aria-label'      => true,
 			'role'            => true,
 			'xmlns'           => true,
 			'xmlns:xlink'     => true,
@@ -2353,4 +2359,32 @@ function wc_gzd_kses_post_svg( $html ) {
 	$html = str_replace( 'viewbox', 'viewBox', $html ); // Somehow WP does not handle viewBox attribute in the right way
 
 	return $html;
+}
+
+function wc_gzd_shop_needs_eu_labels_by_default() {
+	$base_country              = wc_gzd_get_base_country();
+	$eu_countries              = WC()->countries->get_european_union_countries();
+	$is_eu_base_country        = WC()->countries ? in_array( $base_country, $eu_countries, true ) : ( 'CH' !== $base_country );
+	$selling_to_eu_countries   = WC()->countries && is_callable( array( WC()->countries, 'get_allowed_countries' ) ) ? array_intersect( array_keys( WC()->countries->get_allowed_countries() ), WC()->countries->get_european_union_countries() ) : array();
+	$profiler_data             = get_option( 'woocommerce_onboarding_profile', array() );
+	$product_types             = isset( $profiler_data['product_types'] ) ? $profiler_data['product_types'] : array();
+	$downloads_only            = array( 'downloads' ) === $product_types;
+	$has_virtual_products_only = get_transient( 'wc_gzd_has_virtual_products_only' );
+
+	if ( false === $has_virtual_products_only && function_exists( 'wc_get_products' ) ) {
+		$non_virtual_products = wc_get_products(
+			array(
+				'limit'   => 1,
+				'virtual' => false,
+			)
+		);
+
+		$has_virtual_products_only = empty( $non_virtual_products ) ? 'yes' : 'no';
+
+		set_transient( 'wc_gzd_has_virtual_products_only', $has_virtual_products_only, DAY_IN_SECONDS );
+	} else {
+		$has_virtual_products_only = 'no';
+	}
+
+	return ( $is_eu_base_country || ! empty( $selling_to_eu_countries ) ) && ! $downloads_only && ! wc_string_to_bool( $has_virtual_products_only );
 }

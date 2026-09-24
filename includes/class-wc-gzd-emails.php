@@ -454,7 +454,7 @@ class WC_GZD_Emails {
 					}
 				}
 
-				if ( is_a( $object_in_email, '\Automattic\WooCommerce\Internal\Admin\EmailPreview\PreviewOrder' ) ) {
+				if ( is_a( $object_in_email, '\Automattic\WooCommerce\Internal\Admin\EmailPreview\PreviewOrder' ) && wc_gzd_is_legal_guarantee_enabled() ) {
 					$include_legal_guarantee = true;
 				}
 

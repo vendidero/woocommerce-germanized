@@ -89,8 +89,18 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		return '';
 	}
 
+	public function get_section_help_link( $section ) {
+		return '';
+	}
+
 	public function has_help_link() {
 		$help_link = $this->get_help_link();
+
+		return ( ! empty( $help_link ) ? true : false );
+	}
+
+	public function has_section_help_link( $section ) {
+		$help_link = $this->get_section_help_link( $section );
 
 		return ( ! empty( $help_link ) ? true : false );
 	}
@@ -200,6 +210,8 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 			$label = $label . '<a class="page-title-action" href="' . esc_url( $this->get_help_link() ) . '" target="_blank">' . __( 'Learn more', 'woocommerce-germanized' ) . '</a>';
 		} elseif ( ! empty( $section ) && ! WC_germanized()->is_pro() && $this->section_is_pro( $section ) ) {
 			$label = $label . '<span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span>';
+		} elseif ( ! empty( $section ) && $this->has_section_help_link( $section ) ) {
+			$label = $label . ' <a class="page-title-action" href="' . esc_url( $this->get_section_help_link( $section ) ) . '" target="_blank">' . __( 'Learn more', 'woocommerce-germanized' ) . '</a>';
 		}
 
 		return $label;

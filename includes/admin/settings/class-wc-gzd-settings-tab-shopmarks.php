@@ -5,7 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use Vendidero\Germanized\Shopmarks;
-use Vendidero\Germanized\Shopmark;
 
 /**
  * Adds Germanized Shopmark settings.
@@ -749,7 +748,17 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		);
 	}
 
+	public function get_section_help_link( $section ) {
+		if ( 'guarantee_labels' === $section ) {
+			return 'https://vendidero.de/eu-gewaehrleistungs-und-garantie-label-fuer-woocommerce';
+		} else {
+			return parent::get_section_help_link( $section );
+		}
+	}
+
 	protected function get_guarantee_labels_settings() {
+		$needs_labels = wc_gzd_shop_needs_eu_labels_by_default();
+
 		return array(
 			array(
 				'type'  => 'title',
@@ -760,7 +769,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'title'   => __( 'Enable legal guarantee', 'woocommerce-germanized' ),
 				'desc'    => __( 'Enable the EU legal guarantee label.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'Disable this option if your shop does not need to show the label at all, e.g. virtual products/b2b only.', 'woocommerce-germanized' ) . '</div>',
 				'id'      => 'woocommerce_gzd_legal_guarantee_enabled',
-				'default' => 'no',
+				'default' => $needs_labels ? 'yes' : 'no',
 				'type'    => 'gzd_toggle',
 			),
 			array(
@@ -775,7 +784,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 					'cart'                      => __( 'Cart', 'woocommerce-germanized' ),
 					'product_description_after' => __( 'Product description (after)', 'woocommerce-germanized' ),
 				),
-				'default'           => array( 'footer' ),
+				'default'           => array( 'checkout', 'footer' ),
 				'custom_attributes' => array( 'data-show_if_woocommerce_gzd_legal_guarantee_enabled' => '' ),
 			),
 			array(
@@ -791,7 +800,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'title'   => __( 'Enable GARAN label', 'woocommerce-germanized' ),
 				'desc'    => __( 'Enable the EU GARAN label.', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . __( 'This label shows on a per-product basis. Make sure that any product applicable has a legal guarantee of > 24 months set, a manufacturer linked and a valid model id (GTIN, MPN or SKU). Disable this option if your shop does not need to show the label at all, e.g. virtual products/b2b only.', 'woocommerce-germanized' ) . '</div>',
 				'id'      => 'woocommerce_gzd_garan_label_enabled',
-				'default' => 'no',
+				'default' => $needs_labels ? 'yes' : 'no',
 				'type'    => 'gzd_toggle',
 			),
 			array(

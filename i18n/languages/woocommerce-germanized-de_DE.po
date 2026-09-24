@@ -6,8 +6,8 @@ msgstr ""
 "Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2026-09-10T08:09:32+00:00\n"
-"PO-Revision-Date: 2026-09-18 10:17+0200\n"
+"POT-Creation-Date: 2026-09-24T11:36:03+00:00\n"
+"PO-Revision-Date: 2026-09-24 13:45+0200\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -2104,7 +2104,7 @@ msgstr "Nutri-Score %1$s"
 # @ woocommerce-germanized
 #: includes/abstracts/abstract-wc-gzd-product.php:1697
 #: includes/abstracts/abstract-wc-gzd-product.php:1707
-#: includes/wc-gzd-core-functions.php:637
+#: includes/wc-gzd-core-functions.php:640
 #: includes/wc-gzd-template-functions.php:1262
 #: includes/wc-gzd-template-functions.php:1269
 #: src/Blocks/Integrations/Cart.php:51 src/Blocks/Integrations/Checkout.php:59
@@ -2128,7 +2128,7 @@ msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
 #: includes/abstracts/abstract-wc-gzd-product.php:1699
-#: includes/wc-gzd-core-functions.php:637
+#: includes/wc-gzd-core-functions.php:640
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s %% MwSt."
@@ -2139,19 +2139,19 @@ msgstr "inkl. %s %% MwSt."
 msgid "excl. %s%% VAT"
 msgstr "exkl. %s %% MwSt."
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1839
-#: includes/abstracts/abstract-wc-gzd-product.php:1842
-#: includes/abstracts/abstract-wc-gzd-product.php:1849
+#: includes/abstracts/abstract-wc-gzd-product.php:1837
+#: includes/wc-gzd-core-functions.php:1431
+#, php-format
+msgid "%1$s-Year guarantee from %2$s for model %3$s"
+msgstr "%1$s Jahre Garantie von %2$s für das Modell %3$s"
+
+#: includes/abstracts/abstract-wc-gzd-product.php:1843
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-garan-label.php:10
 #: build/wc-gzd-blocks-product-elements.js:1724
 #: build/wc-gzd-blocks-product-elements-style.js:1273
 #: build/wc-gzd-blocks-product-elements.js:1273
 msgid "EU GARAN label"
 msgstr "EU-GARAN-Label"
-
-#: includes/abstracts/abstract-wc-gzd-product.php:1843
-msgid "EU GARAN label preview"
-msgstr "EU-GARAN-Label Vorschau"
 
 #: includes/admin/class-wc-gzd-admin-customer.php:44
 #: includes/admin/class-wc-gzd-admin.php:525
@@ -2212,9 +2212,9 @@ msgstr "Anzahl des Inhalts"
 #: includes/admin/class-wc-gzd-admin-deposit-types.php:208
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:582
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:68
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:264
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:336
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:660
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:263
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:335
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:659
 msgid "Deposit"
 msgstr "Pfand"
 
@@ -2263,14 +2263,14 @@ msgstr "Herunterladbares Produkt"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-legal-checkboxes.php:78
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:536
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:535
 msgid "Virtual Product"
 msgstr "Virtuelles Produkt"
 
 #: includes/admin/class-wc-gzd-admin-legal-checkboxes.php:79
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:178
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:455
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:537
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:536
 #: includes/class-wc-gzd-legal-checkbox-manager.php:249
 #: src/OrderWithdrawalButton.php:13
 msgid "Service"
@@ -2395,8 +2395,8 @@ msgstr "Gleiche wie übergeordnet"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-product-categories.php:82
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:546
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:823
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:545
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:824
 msgid "None"
 msgstr "Keine"
 
@@ -2452,8 +2452,8 @@ msgid "Insert key"
 msgstr "Schlüssel einfügen"
 
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:98
-#: includes/admin/class-wc-gzd-admin-setup-wizard.php:493
-#: includes/admin/class-wc-gzd-admin-setup-wizard.php:495
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:500
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:502
 msgid "Continue"
 msgstr "Weiter"
 
@@ -2598,38 +2598,56 @@ msgstr ""
 "7 Tagen gelöscht</strong>. Die Double-Opt-In <a href=\"%s\" "
 "target=\"_blank\">Einstellungen</a> können nachträglich angepasst werden."
 
-#: includes/admin/class-wc-gzd-admin-setup-wizard.php:263
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:234
+msgid "b2b exclusively?"
+msgstr "Nur b2b?"
+
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:235
+msgid "Are you selling b2b exclusively?"
+msgstr "Verkaufst du ausschließlich b2b?"
+
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:235
+msgid ""
+"Enable this option in case you are NOT selling to consumers. Disable this "
+"option will disable placing the withdrawal button and EU legal guarantee "
+"labels."
+msgstr ""
+"Aktiviere diese Einstellung falls du NICHT an Verbraucher verkaufst. Wenn du "
+"diese Einstellung deaktivierst, werden die EU Gewährleistungslabels und der "
+"Widerrrufsbutton deaktiviert."
+
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:270
 #, php-format
 msgid "Upgrade to %1$s to activate %2$s integration."
 msgstr "Upgrade auf %1$s um die %2$s Integration zu aktivieren."
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin-setup-wizard.php:280
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:287
 #, php-format
 msgid "Install %s integration plugin"
 msgstr "%s Integration installieren"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin-setup-wizard.php:280
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:287
 #, php-format
 msgid "Enable %s integration"
 msgstr "%s Integration aktivieren"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin-setup-wizard.php:308
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:315
 msgid "Setup"
 msgstr "Setup"
 
-#: includes/admin/class-wc-gzd-admin-setup-wizard.php:415
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:422
 msgid "Germanized &rsaquo; Setup Wizard"
 msgstr "Germanized &rsaquo; Setup"
 
 # @ woocommerce-germanized
-#: includes/admin/class-wc-gzd-admin-setup-wizard.php:489
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:496
 msgid "Skip Step"
 msgstr "Schritt überspringen"
 
-#: includes/admin/class-wc-gzd-admin-setup-wizard.php:501
+#: includes/admin/class-wc-gzd-admin-setup-wizard.php:508
 msgid "Return to WP Admin"
 msgstr "Zurück zu WP Admin"
 
@@ -2797,8 +2815,8 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:151
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:242
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:296
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:241
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:295
 #: includes/api/class-wc-gzd-rest-products-controller.php:203
 #: includes/api/class-wc-gzd-rest-products-controller.php:709
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
@@ -2931,8 +2949,8 @@ msgstr "Angebotspreis Hinweis"
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:252
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:563
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:249
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:304
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:248
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:303
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-units.php:10
 msgid "Product Units"
 msgstr "Produkteinheiten"
@@ -3135,7 +3153,7 @@ msgstr "Fügt eine Checkbox zur Altersprüfung für dieses Produkt hinzu."
 #: includes/api/class-wc-gzd-rest-products-controller.php:295
 #: includes/api/class-wc-gzd-rest-products-controller.php:699
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:147
-#: includes/wc-gzd-core-functions.php:1157
+#: includes/wc-gzd-core-functions.php:1160
 msgid "GTIN"
 msgstr "GTIN"
 
@@ -3153,7 +3171,7 @@ msgstr ""
 #: includes/api/class-wc-gzd-rest-products-controller.php:301
 #: includes/api/class-wc-gzd-rest-products-controller.php:704
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:156
-#: includes/wc-gzd-core-functions.php:1158
+#: includes/wc-gzd-core-functions.php:1161
 msgid "MPN"
 msgstr "MPN"
 
@@ -3169,7 +3187,7 @@ msgstr "Warenkorb Kurzbeschreibung"
 
 # @ woocommerce-germanized
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:572
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:328
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:327
 #: includes/api/class-wc-gzd-rest-products-controller.php:252
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-defect-description.php:10
 #: build/wc-gzd-blocks-product-elements.js:987
@@ -3248,7 +3266,7 @@ msgstr "Jetzt upgraden"
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:121
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:496
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:41
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:40
 #: src/OrderWithdrawalButton.php:14
 msgid "Food"
 msgstr "Lebensmittel"
@@ -3585,13 +3603,16 @@ msgstr "Achtung: Neue Regulierungen"
 
 #: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:34
 msgid ""
-"You've probably heard about the new requirement to provide a withdrawal "
-"button. Germanized is, of course, already prepared for this. Please check "
-"your settings and test the process."
+"You've probably heard about the new EU labels for guarantees which will be "
+"mandatory starting September 27. Please check how the labels are displayed "
+"in the frontend. If your store doesn't need (e.g. b2b only) the labels, "
+"disable their display in the settings."
 msgstr ""
-"Du hast sicher vom neuen Widerrufsbutton gehört. Germanized ist darauf "
-"natürlich bereits vorbereitet. Bitte prüfe deine Einstellungen und teste den "
-"Prozess."
+"Du hast sicher von den neuen EU Labels zur Gewährleistung, die ab dem "
+"27.09.26 verpflichtend sind, gehört. Bitte prüfe, wie (und ob) die Labels in "
+"deinem Shop korrekt angezeigt werden. Falls dein Shop diese Labels nicht "
+"benötigt (z.B. ausschließlich b2b), deaktiviere die Labels in den "
+"Einstellungen."
 
 #: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:41
 msgid "Review your settings"
@@ -4369,7 +4390,7 @@ msgstr "E-Mails"
 #: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:30
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-oss.php:45
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:37
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:36
 #: includes/admin/settings/class-wc-gzd-settings-tab-trusted-shops.php:45
 msgid "General"
 msgstr "Allgemein"
@@ -4432,8 +4453,8 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:345
 #: includes/api/class-wc-gzd-rest-customers-controller.php:138
 #: includes/api/class-wc-gzd-rest-customers-controller.php:151
-#: includes/api/class-wc-gzd-rest-orders-controller.php:143
-#: includes/api/class-wc-gzd-rest-orders-controller.php:156
+#: includes/api/class-wc-gzd-rest-orders-controller.php:142
+#: includes/api/class-wc-gzd-rest-orders-controller.php:155
 #: includes/class-wc-gzd-checkout.php:1002
 #: includes/class-wc-gzd-checkout.php:1016
 #: includes/class-wc-gzd-customer-helper.php:459
@@ -4555,7 +4576,7 @@ msgstr "Kleinunternehmer"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:33
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:774
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:775
 #: includes/class-wc-gzd-legal-checkbox-manager.php:1000 src/Shopmarks.php:609
 msgid "Checkout"
 msgstr "Kasse"
@@ -4804,7 +4825,7 @@ msgstr "Jetzt hinzufügen"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:314
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:468
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:467
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:225
 msgid "Notice Text"
 msgstr "Hinweistext"
@@ -4815,7 +4836,7 @@ msgid ""
 msgstr "Passe hier, falls notwending, den Kleinunternehmer Hinweistext an."
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:322
-#: includes/wc-gzd-core-functions.php:504
+#: includes/wc-gzd-core-functions.php:507
 msgid ""
 "Value added tax is not collected, as small businesses according to §19 (1) "
 "UStG."
@@ -5045,10 +5066,10 @@ msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:520
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:532
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:145
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:597
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:668
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:723
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:144
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:596
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:667
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:722
 msgid "Format"
 msgstr "Format"
 
@@ -5296,50 +5317,50 @@ msgctxt "shipments-settings-tab"
 msgid "Shiptastic"
 msgstr "Shiptastic"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:20
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:19
 msgid ""
 "Adjust shopmark related settings. Choose which and where they shall be "
 "attached to your product data."
 msgstr "Wähle aus, wo, welche Preisauszeichnungen angezeigt werden sollen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:24
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:23
 msgid "Shopmarks"
 msgstr "Preisauszeichnung"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:38
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:37
 msgid "Delivery times"
 msgstr "Lieferzeiten"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:39
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:38
 msgid "Unit prices"
 msgstr "Grundpreise"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:40
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:39
 msgid "Guarantee Labels"
 msgstr "EU Gewährleistung"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:42
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:41
 msgid "Price labels"
 msgstr "Preishinweise"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:52
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:51
 msgid "Widgets"
 msgstr "Widgets"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:53
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:295
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:52
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:294
 msgid "E-Mails"
 msgstr "E-Mails"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:83
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:82
 msgid "Shopmark Display"
 msgstr "Preisauszeichnung"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:83
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:82
 msgid ""
 "By adjusting the display settings you might determine where to show or hide "
 "your shopmarks e.g. the tax notice on single product pages."
@@ -5349,12 +5370,12 @@ msgstr ""
 "deaktivieren."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:101
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:401
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:100
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:400
 msgid "Location"
 msgstr "Ort"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:101
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:100
 msgid ""
 "Adjust the location of the shopmark by selecting a location from the list. "
 "Some Themes might apply the locations at different positions that's why the "
@@ -5365,12 +5386,12 @@ msgstr ""
 "unterschiedlichen Stellen aus, sodass das Ergebnis u.U. von Theme zu Theme "
 "abweichen kann."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:114
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:416
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:113
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:415
 msgid "Priority"
 msgstr "Priorität"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:114
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:113
 msgid ""
 "Many different information may be attached to the location selected. By "
 "adjusting the priority you can choose whether the shopmark gets applied "
@@ -5382,12 +5403,12 @@ msgstr ""
 "soll."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:132
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:131
 #: includes/admin/views/html-page-status-germanized.php:61
 msgid "Default Delivery Time"
 msgstr "Standard-Lieferzeit"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:132
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:131
 msgid ""
 "Choose a delivery time that serves as fallback in case no delivery time was "
 "added to the product."
@@ -5395,7 +5416,7 @@ msgstr ""
 "Wähle eine Lieferzeit aus, die verwendet wird, wenn dem Produkt keine "
 "Lieferzeit zugeordnet wurde."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:145
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:144
 msgid ""
 "You may want to adjust the delivery time output format. You might use "
 "{delivery_time} to output the current product's delivery time."
@@ -5404,11 +5425,11 @@ msgstr ""
 "zur Ausgabe der Lieferzeit des Produktes."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:163
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:162
 msgid "Default Price Label"
 msgstr "Standard-Preishinweis"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:163
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:162
 msgid ""
 "Price labels are added to sale products to inform the customers of the "
 "different prices' meaning. You may add a fallback label in case a product "
@@ -5419,11 +5440,11 @@ msgstr ""
 "Hinweise, um sicherzustellen, dass für Produkte ohne abweichenden Hinweis im "
 "Zweifel der Standard-Hinweis verwendet wird."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:208
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:207
 msgid "Adjust Product Widgets & Blocks visibility options."
 msgstr "Passe die Anzeige in Widgets & Blöcken an."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:212
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:211
 #, php-format
 msgid ""
 "Adjust %s visibility options and choose which shopmarks to be displayed at "
@@ -5432,68 +5453,68 @@ msgstr ""
 "Verwalte die Anzeige der Preisauszeichnungen für „%s“ und wähle aus welche "
 "Auszeichnungen an welchen Orten angezeigt werden sollen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:227
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:226
 msgid "Widgets & Blocks"
 msgstr "Widgets & Blöcke"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:228
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:227
 msgid "Shipping Costs notice"
 msgstr "Versandkosten-Hinweis"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:235
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:234
 msgid "Tax Info"
 msgstr "MwSt. Hinweis"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:256
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:312
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:255
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:311
 msgid "Delivery Time Notice"
 msgstr "Lieferzeiten-Hinweis"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:272
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:344
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:271
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:343
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-deposit-packaging-type.php:10
 msgid "Deposit Packaging Type"
 msgstr "Pfand-Verpackungstyp"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:320
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:319
 msgid "Short Description"
 msgstr "Warenkorbkurzbeschreibung"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:374
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:373
 #, php-format
 msgid "Show %s shopmark"
 msgstr "Preisauszeichnung „%s“ anzeigen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:382
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:381
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
 msgid "Tax"
 msgstr "Steuer"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:383
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:382
 msgid "Show Tax shopmark"
 msgstr "Preisauszeichnung „Steuer“ anzeigen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:391
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:462
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:390
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:461
 #: includes/wc-gzd-core-functions.php:419
 msgid "Shipping Costs"
 msgstr "Versandkosten"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:392
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:391
 msgid "Show Shipping Costs shopmark"
 msgstr "Preisauszeichnung „Versandkosten“ anzeigen"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:402
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:401
 msgid ""
 "Choose a location for the shopmark. Locations are mapped to specific "
 "WooCommerce hooks and may differ from Theme to Theme."
@@ -5501,7 +5522,7 @@ msgstr ""
 "Wähle einen Ort für die Preisauszeichnung aus. Orte werden in WooCommerce an "
 "bestimmte Hooks gebunden und können sich von Theme zu Theme unterscheiden."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:417
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:416
 #, php-format
 msgid ""
 "Choose a priority by which the shopmark should be attached to the location. "
@@ -5512,16 +5533,16 @@ msgstr ""
 "werden soll. Je höher die Priorität ist, desto später wird die "
 "Preisauszeichnung hinzugefügt. Standard ist %d."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:442
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:441
 msgid "Price Ranges"
 msgstr "Preisspannen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:448
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:447
 msgid "Price Range Format"
 msgstr "Preisspannen-Format"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:449
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:448
 msgid ""
 "Adjust the price range format e.g. for variable products. Use {min_price} as "
 "placeholder for the minimum price. Use {max_price} as placeholder for the "
@@ -5531,14 +5552,14 @@ msgstr ""
 "{min_price} als Platzhalter für den minimalen Preis und {max_price} als "
 "Platzhalter für den höchsten Preis."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:453
-#: includes/wc-gzd-core-functions.php:1130
-#: includes/wc-gzd-core-functions.php:1134
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:452
+#: includes/wc-gzd-core-functions.php:1133
+#: includes/wc-gzd-core-functions.php:1137
 msgid "{min_price} &ndash; {max_price}"
 msgstr "{min_price} &ndash; {max_price}"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:469
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:468
 msgid ""
 "This text will be used to inform the customer about shipping costs. Use "
 "{link}{/link} to insert link to shipping costs page."
@@ -5548,17 +5569,17 @@ msgstr ""
 "zur Versandkosten-Seite einzufügen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:474
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:473
 msgid "plus {link}Shipping Costs{/link}"
 msgstr "zzgl. {link}Versandkosten{/link}"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:477
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:476
 msgid "Free Shipping Text"
 msgstr "Kostenloser Versand Text"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:478
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:477
 msgid ""
 "This text will be used to inform the customer about free shipping. Leave "
 "empty to disable notice. Use {link}{/link} to insert link to shipping costs "
@@ -5569,13 +5590,13 @@ msgstr ""
 "Versandkosten-Seite einzufügen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:486
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:626
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:485
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:625
 msgid "Hide Notice"
 msgstr "Hinweis ausblenden"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:487
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:486
 msgid ""
 "Select product types for which you might want to disable the shipping costs "
 "notice."
@@ -5584,38 +5605,38 @@ msgstr ""
 "möchtest."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:502
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:773
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:501
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:774
 msgid "Footer"
 msgstr "Footer"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:508
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:507
 msgid "Notice"
 msgstr "Hinweis"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:509
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:508
 msgid "Attach a global VAT notice to your footer."
 msgstr "Einen seitenübergreifenden MwSt.-Hinweis im Footer einfügen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:516
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:515
 msgid "Attach a global sale price notice to your footer."
 msgstr ""
 "Einen seitenübergreifenden Hinweis zu reduzierten Preisen im Footer einfügen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:547
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:546
 msgid "Same as global fallback"
 msgstr "Entspricht globalem Fallback"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:564
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:563
 msgid "Fallback"
 msgstr "Fallback"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:565
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:564
 msgid ""
 "This delivery time will be added to every product if no delivery time has "
 "been chosen individually"
@@ -5624,18 +5645,18 @@ msgstr ""
 "zugeordnet wurde"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:572
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:583
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:594
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:571
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:582
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:593
 msgid "Manage Delivery Times"
 msgstr "Lieferzeiten verwalten"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:575
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:574
 msgid "Fallback EU Countries"
 msgstr "Fallback EU-Länder"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:576
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:575
 msgid ""
 "This delivery time will serve as a fallback for EU countries other than your "
 "base country."
@@ -5643,11 +5664,11 @@ msgstr ""
 "Diese Lieferzeit dient als Fallback für, von deinem Basisland abweichende, "
 "EU-Länder."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:586
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:585
 msgid "Fallback Third Countries"
 msgstr "Fallback Drittländer"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:587
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:586
 msgid ""
 "This delivery time will serve as a fallback for third countries other than "
 "your base country."
@@ -5656,7 +5677,7 @@ msgstr ""
 "Drittländer."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:598
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:597
 msgid ""
 "This text will be used to indicate delivery time for products. Use "
 "{delivery_time} as placeholder. Use {stock_status} to output the current "
@@ -5667,15 +5688,15 @@ msgstr ""
 "Lagerstatus."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:602
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:601
 msgid "Delivery time: {delivery_time}"
 msgstr "Lieferzeit: {delivery_time}"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:605
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:604
 msgid "Digital text"
 msgstr "Digitaler Text"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:609
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:608
 msgid ""
 "Enter a text which will be shown as digital delivery time text (replacement "
 "for default digital time on digital products)."
@@ -5685,24 +5706,24 @@ msgstr ""
 "lassen."
 
 # @ woocommerce
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:612
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:611
 msgid "Backorder"
 msgstr "Lieferrückstand"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:613
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:612
 msgid "Hide delivery time if a product is on backorder."
 msgstr "Lieferzeit ausblenden falls das Produkt im Lieferrückstand ist."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:619
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:618
 msgid "Not in Stock"
 msgstr "Nicht auf Lager"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:620
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:619
 msgid "Hide delivery time if a product is not in stock."
 msgstr "Lieferzeit ausblenden falls das Produkt nicht auf Lager ist."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:627
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:626
 msgid ""
 "Select product types for which you might want to disable the delivery time "
 "notice."
@@ -5710,7 +5731,7 @@ msgstr ""
 "Wähle Produkttypen aus, für die du die Anzeige der Lieferzeit deaktivieren "
 "möchtest."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:669
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:668
 msgid ""
 "This text will be used to display the deposit notice. Use {amount} to insert "
 "the deposit amount. {type} for the deposit type name, {amount_per_unit} for "
@@ -5722,16 +5743,16 @@ msgstr ""
 "den Pfandbetrag je Einheit, {packaging_type} für den Verpackungstyp und "
 "{quantity} für die Anzahl der Einheiten."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:673
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:672
 msgid "plus {amount} deposit"
 msgstr "zzgl. {amount} Pfand"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:676
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:675
 msgid "Packaging Font Size"
 msgstr "Verpackung Schriftgröße"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:677
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:676
 #, php-format
 msgid ""
 "Adjust the packaging type title font size which must <a href=\"%s\" "
@@ -5742,7 +5763,7 @@ msgstr ""
 "sollte <a href=\"%s\" target=\"_blank\">mindestens der Preisauszeichnung</a> "
 "für das jeweilige Produkt entsprechen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:702
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:701
 #, php-format
 msgid ""
 "Want to sell your food in a legally compliant way? Include nutrients, "
@@ -5753,7 +5774,7 @@ msgstr ""
 "Zutaten, den Nutri-Score, Pfand und mehr an. %1$sUpgrade auf %2$spro%3$s%4$s"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:724
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:723
 msgid ""
 "This text will be used to display the unit price. Use {price} to insert the "
 "price. If you want to specifically format unit price output use {base}, "
@@ -5765,17 +5786,17 @@ msgstr ""
 "{base_price} für die einzelnen Elemente."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:728
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:727
 msgid "{price}"
 msgstr "{price}"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:731
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:730
 msgid "Product units format"
 msgstr "Produkteinheiten Format"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:732
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:731
 msgid ""
 "This text will be used to display the product units. Use {product_units} to "
 "insert the amount of product units. Use {unit} to insert the unit. "
@@ -5787,29 +5808,29 @@ msgstr ""
 "Grundpreis."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:736
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:735
 msgid "Product contains: {product_units} {unit}"
 msgstr "Produkt enthält: {product_units} {unit}"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:739
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:738
 msgid "Variable Unit Price"
 msgstr "Variabler Grundpreis"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:740
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:739
 msgid "Enable price range unit prices for variable products."
 msgstr "Aktiviere von-bis-Grundpreise für variable Produkte."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:760
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:761
 msgid "Enable legal guarantee"
 msgstr "Gewährleistungslabel"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:761
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:762
 msgid "Enable the EU legal guarantee label."
 msgstr "Aktiviere das EU Gewährleistungslabel."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:761
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:762
 msgid ""
 "Disable this option if your shop does not need to show the label at all, e."
 "g. virtual products/b2b only."
@@ -5817,11 +5838,11 @@ msgstr ""
 "Deaktiviere diese Option, wenn Dein Shop das Label überhaupt nicht anzeigen "
 "muss, z.B. bei rein virtuellen Produkten oder B2B."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:767
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:768
 msgid "Global display"
 msgstr "Globale Anzeige"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:768
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:769
 msgid ""
 "Choose location(s) where the harmonised notice on the legal guarantee of "
 "conformity should be displayed. Disable the default display options if you "
@@ -5833,23 +5854,23 @@ msgstr ""
 "wenn das Label manuell platziert werden soll, z.B. über einen Shortcode, "
 "einen Block, eine Preisauszeichnung oder benutzerdefinierten Code."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:775
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:776
 #: src/Shopmarks.php:607
 msgid "Cart"
 msgstr "Warenkorb"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:776
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:777
 msgid "Product description (after)"
 msgstr "Produktbeschreibung (nachher)"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:782
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:798
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:783
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:799
 msgid "Display variant"
 msgstr "Anzeigevariante"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:783
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:784
 msgid ""
 "Choose a default display variant for the legal guarantee label. Both preview "
 "and link options open a popover containing a larger version of the label on "
@@ -5861,15 +5882,15 @@ msgstr ""
 "Popover mit einer vergrößerten Version des Labels. Bitte beachte, dass die "
 "Link-Option aus rechtlicher Sicht derzeit nicht empfohlen wird."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:791
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:792
 msgid "Enable GARAN label"
 msgstr "GARAN-Label aktivieren"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:792
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:793
 msgid "Enable the EU GARAN label."
 msgstr "Aktiviere das EU-GARAN-Label."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:792
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:793
 msgid ""
 "This label shows on a per-product basis. Make sure that any product "
 "applicable has a legal guarantee of > 24 months set, a manufacturer linked "
@@ -5883,7 +5904,7 @@ msgstr ""
 "Label überhaupt nicht anzeigen muss, z. B. beim Verkauf von virtuellen "
 "Produkten oder B2B."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:799
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:800
 msgid ""
 "Choose a default display variant for the GARAN label. The nested option "
 "shows a preview version of the full label and opens a popover containing the "
@@ -5893,11 +5914,11 @@ msgstr ""
 "Option zeigt eine Vorschau des Labels an und öffnet bei einer Benutzeraktion "
 "ein Popover mit dem vollständigen Label."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:807
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:808
 msgid "Model id"
 msgstr "Modelnummer"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:808
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:809
 msgid ""
 "Choose a default property that is being used to determine the GARAN label "
 "model id. If no valid model id is found, a fallback value is determined "
@@ -5909,16 +5930,16 @@ msgstr ""
 "Reihenfolge) ermittelt."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:832
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:833
 msgid "Fallback Strike Price Label"
 msgstr "Standard-Streichpreis"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:839
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:849
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:840
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:850
 msgid "Manage Price Labels"
 msgstr "Preishinweise verwalten"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:839
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:840
 msgid ""
 "Choose whether you would like to have a default strike price label to inform "
 "the customer about the regular price (e.g. Recommended Retail Price)."
@@ -5928,11 +5949,11 @@ msgstr ""
 "Streichpreis) hinweist (z.B. UVP)."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:842
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:843
 msgid "Fallback Sale Price Label"
 msgstr "Standard-Angebotspreis"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:849
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:850
 msgid ""
 "Choose whether you would like to have a default sale price label to inform "
 "the customer about the sale price (e.g. New Price)."
@@ -5942,21 +5963,21 @@ msgstr ""
 "hinweist (z.B. Unser neuer Preis)."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:853
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:854
 #: src/Shopmarks.php:603
 msgid "Single Product"
 msgstr "Produktseite"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:854
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:855
 msgid "Show price labels on single product page."
 msgstr "Zeige Preishinweise auf der Produktseite."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:861
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:862
 msgid "Loop"
 msgstr "Produktlisten"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:862
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:863
 msgid "Show price labels in product loops."
 msgstr "Zeige Preishinweise in Produktlisten."
 
@@ -5976,7 +5997,7 @@ msgstr "Steuern"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:30
-#: includes/wc-gzd-core-functions.php:639
+#: includes/wc-gzd-core-functions.php:642
 msgid "VAT"
 msgstr "Umsatzsteuer"
 
@@ -7112,8 +7133,8 @@ msgstr "HTML Beschreibung der Ressource."
 
 #: includes/api/class-wc-gzd-rest-customers-controller.php:144
 #: includes/api/class-wc-gzd-rest-customers-controller.php:157
-#: includes/api/class-wc-gzd-rest-orders-controller.php:149
-#: includes/api/class-wc-gzd-rest-orders-controller.php:162
+#: includes/api/class-wc-gzd-rest-orders-controller.php:148
+#: includes/api/class-wc-gzd-rest-orders-controller.php:161
 msgid "Formatted title"
 msgstr "Formatierter Titel"
 
@@ -7123,7 +7144,7 @@ msgstr "Aktiviert via DOI?"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-customers-controller.php:173
-#: includes/api/class-wc-gzd-rest-orders-controller.php:176
+#: includes/api/class-wc-gzd-rest-orders-controller.php:175
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:67
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1022
 #: includes/gateways/direct-debit/views/html-export.php:30
@@ -7132,20 +7153,20 @@ msgstr "Lastschrift"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-customers-controller.php:178
-#: includes/api/class-wc-gzd-rest-orders-controller.php:181
+#: includes/api/class-wc-gzd-rest-orders-controller.php:180
 #: includes/class-wc-gzd-privacy.php:98 includes/class-wc-gzd-privacy.php:134
 #: includes/class-wc-gzd-privacy.php:187
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:139
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:694
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1048
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1177
-#: src/Blocks/Checkout.php:514
+#: src/Blocks/Checkout.php:535
 msgid "Account Holder"
 msgstr "Kontoinhaber"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-customers-controller.php:183
-#: includes/api/class-wc-gzd-rest-orders-controller.php:186
+#: includes/api/class-wc-gzd-rest-orders-controller.php:185
 #: includes/class-wc-gzd-privacy.php:99 includes/class-wc-gzd-privacy.php:135
 #: includes/class-wc-gzd-privacy.php:188
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:146
@@ -7153,21 +7174,21 @@ msgstr "Kontoinhaber"
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1056
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1181
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1307
-#: src/Blocks/Checkout.php:520 build/wc-gzd-payment-method-direct-debit.js:1642
+#: src/Blocks/Checkout.php:541 build/wc-gzd-payment-method-direct-debit.js:1642
 #: build/wc-gzd-payment-method-direct-debit.js:1500
 msgid "IBAN"
 msgstr "IBAN"
 
 # @ woocommerce-germanized
 #: includes/api/class-wc-gzd-rest-customers-controller.php:188
-#: includes/api/class-wc-gzd-rest-orders-controller.php:191
+#: includes/api/class-wc-gzd-rest-orders-controller.php:190
 #: includes/class-wc-gzd-privacy.php:100 includes/class-wc-gzd-privacy.php:136
 #: includes/class-wc-gzd-privacy.php:189
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:153
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:696
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1185
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1308
-#: src/Blocks/Checkout.php:526 build/wc-gzd-payment-method-direct-debit.js:1650
+#: src/Blocks/Checkout.php:547 build/wc-gzd-payment-method-direct-debit.js:1650
 #: build/wc-gzd-payment-method-direct-debit.js:1509
 msgid "BIC/SWIFT"
 msgstr "BIC/SWIFT"
@@ -7205,12 +7226,12 @@ msgstr "Aktuelle Rundungs-Regel des Nährwerts."
 msgid "The current nutrient unit."
 msgstr "Aktuelle Einheit des Nährwerts."
 
-#: includes/api/class-wc-gzd-rest-orders-controller.php:169
+#: includes/api/class-wc-gzd-rest-orders-controller.php:168
 msgid "Parcel Delivery Data Transfer"
 msgstr "Paketdienstleister Datenweitergabe"
 
 # @ woocommerce-germanized
-#: includes/api/class-wc-gzd-rest-orders-controller.php:196
+#: includes/api/class-wc-gzd-rest-orders-controller.php:195
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:160
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:700
 msgid "Mandate Reference ID"
@@ -7597,7 +7618,7 @@ msgid "%s [new]"
 msgstr "%s [neu]"
 
 #: includes/class-wc-gzd-checkout.php:512
-#: includes/class-wc-gzd-checkout.php:518 src/Blocks/Checkout.php:328
+#: includes/class-wc-gzd-checkout.php:518 src/Blocks/Checkout.php:349
 msgid ""
 "Please check the street field and make sure to provide a valid street number."
 msgstr ""
@@ -7639,7 +7660,7 @@ msgstr "Für diese Bestellung ist ein Mindestalter von %s Jahren vorgesehen."
 
 # @ woocommerce-germanized
 #: includes/class-wc-gzd-checkout.php:1559
-#: includes/wc-gzd-core-functions.php:802
+#: includes/wc-gzd-core-functions.php:805
 msgid "Mr."
 msgstr "Herr"
 
@@ -7793,20 +7814,20 @@ msgctxt "deposit-tax-status"
 msgid "None"
 msgstr "Keiner"
 
-#: includes/class-wc-gzd-emails.php:566
+#: includes/class-wc-gzd-emails.php:570
 msgid "BCC recipients"
 msgstr "BCC Empfänger"
 
-#: includes/class-wc-gzd-emails.php:568
+#: includes/class-wc-gzd-emails.php:572
 msgid "Enter blind-copy recipients (comma separated) for this email."
 msgstr "Füge Empfänger (kommasepariert) einer Blindkopie für diese E-Mail ein."
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-emails.php:643
+#: includes/class-wc-gzd-emails.php:647
 msgid "Confirmation text"
 msgstr "Bestätigung Text"
 
-#: includes/class-wc-gzd-emails.php:644
+#: includes/class-wc-gzd-emails.php:648
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference:"
@@ -7815,7 +7836,7 @@ msgstr ""
 "deiner Bestellung kannst du der nachfolgenden Tabelle entnehmen:"
 
 # @ woocommerce-germanized
-#: includes/class-wc-gzd-emails.php:645
+#: includes/class-wc-gzd-emails.php:649
 msgid ""
 "This text will be inserted within the order confirmation email. Use "
 "{order_number}, {site_title} or {order_date} as placeholder."
@@ -7823,7 +7844,7 @@ msgstr ""
 "Dieser Text wird in die Bestellbestätigung eingefügt. Verwende "
 "{order_number}, {site_title} oder {order_date} als Platzhalter."
 
-#: includes/class-wc-gzd-emails.php:823
+#: includes/class-wc-gzd-emails.php:827
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference."
@@ -7831,12 +7852,12 @@ msgstr ""
 "Deine Bestellung ist eingegangen und wird nun bearbeitet. Die Einzelheiten "
 "deiner Bestellung kannst du der nachfolgenden Tabelle entnehmen."
 
-#: includes/class-wc-gzd-emails.php:872
+#: includes/class-wc-gzd-emails.php:876
 msgid "Someone requested a password reset for your account."
 msgstr ""
 "Jemand hat das Zurücksetzen des Passworts für deinen Account beantragt."
 
-#: includes/class-wc-gzd-emails.php:887
+#: includes/class-wc-gzd-emails.php:891
 #, php-format
 msgid "Thanks for creating an account on %s."
 msgstr "Danke, dass du ein Konto bei %s erstellt hast."
@@ -9992,72 +10013,79 @@ msgid "Product Warranties"
 msgstr "Produktgarantien"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-core-functions.php:448
+#: includes/wc-gzd-core-functions.php:450
 msgid "EU Guarantee Labels"
 msgstr "EU Gewährleistung"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-core-functions.php:639
+#: includes/wc-gzd-core-functions.php:642
 #, php-format
 msgid "%s%% VAT"
 msgstr "%s %% MwSt."
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-core-functions.php:801
-#: includes/wc-gzd-core-functions.php:829
+#: includes/wc-gzd-core-functions.php:804
+#: includes/wc-gzd-core-functions.php:832
 msgctxt "title-option"
 msgid "None"
 msgstr "Keine"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-core-functions.php:803
-#: includes/wc-gzd-core-functions.php:823
+#: includes/wc-gzd-core-functions.php:806
+#: includes/wc-gzd-core-functions.php:826
 msgid "Ms."
 msgstr "Frau"
 
-#: includes/wc-gzd-core-functions.php:804
-#: includes/wc-gzd-core-functions.php:829
+#: includes/wc-gzd-core-functions.php:807
+#: includes/wc-gzd-core-functions.php:832
 msgid "Mx"
 msgstr "Divers"
 
 # @ woocommerce-germanized
-#: includes/wc-gzd-core-functions.php:1083
+#: includes/wc-gzd-core-functions.php:1086
 msgid "More variants available"
 msgstr "Weitere Varianten verfügbar"
 
-#: includes/wc-gzd-core-functions.php:1147
-#: includes/wc-gzd-core-functions.php:1166
+#: includes/wc-gzd-core-functions.php:1150
+#: includes/wc-gzd-core-functions.php:1169
 msgctxt "eu-label-variant"
 msgid "Full"
 msgstr "Vollständig"
 
-#: includes/wc-gzd-core-functions.php:1148
+#: includes/wc-gzd-core-functions.php:1151
 msgctxt "eu-label-variant"
 msgid "Preview"
 msgstr "Vorschau"
 
-#: includes/wc-gzd-core-functions.php:1149
+#: includes/wc-gzd-core-functions.php:1152
 msgctxt "eu-label-variant"
 msgid "Link"
 msgstr "Link"
 
-#: includes/wc-gzd-core-functions.php:1159
+#: includes/wc-gzd-core-functions.php:1162
 msgid "SKU"
 msgstr "Art.-Nr."
 
-#: includes/wc-gzd-core-functions.php:1167
+#: includes/wc-gzd-core-functions.php:1170
 msgctxt "eu-label-variant"
 msgid "Nested"
 msgstr "Geschachtelt"
 
-#: includes/wc-gzd-core-functions.php:1311
-#: includes/wc-gzd-core-functions.php:1320
-#: includes/wc-gzd-core-functions.php:1323
-#: includes/wc-gzd-core-functions.php:1333
-#: includes/wc-gzd-core-functions.php:1336
+#: includes/wc-gzd-core-functions.php:1308
+msgid ""
+"Your legal guarantee rights: Minimum two-year legal guarantee protection for "
+"goods sold in the European Union."
+msgstr ""
+"Deine gesetzlichen Gewährleistungsrechte: Mindestens zwei Jahre gesetzliche "
+"Gewährleistung der Vertragsmäßigkeit für Waren, die in der Europäischen "
+"Union verkauft werden."
+
+#: includes/wc-gzd-core-functions.php:1315
+#: includes/wc-gzd-core-functions.php:1324
+#: includes/wc-gzd-core-functions.php:1327
 #: includes/wc-gzd-core-functions.php:1337
-#: includes/wc-gzd-core-functions.php:1343 build/checkout.js:640
-#: build/product-defect-description-frontend.js:685
+#: includes/wc-gzd-core-functions.php:1340 build/cart.js:286
+#: build/checkout.js:640 build/product-defect-description-frontend.js:685
 #: build/product-delivery-time-frontend.js:685
 #: build/product-deposit-frontend.js:685
 #: build/product-deposit-packaging-type-frontend.js:685
@@ -10072,8 +10100,9 @@ msgstr "Geschachtelt"
 #: build/product-tax-info-frontend.js:623
 #: build/product-unit-price-frontend.js:623
 #: build/product-unit-product-frontend.js:623
-#: build/wc-gzd-blocks-product-elements.js:3270 build/checkout-style.js:479
-#: build/checkout.js:479 build/product-defect-description-frontend.js:587
+#: build/wc-gzd-blocks-product-elements.js:3270 build/cart-style.js:207
+#: build/cart.js:186 build/checkout-style.js:479 build/checkout.js:479
+#: build/product-defect-description-frontend.js:587
 #: build/product-delivery-time-frontend.js:587
 #: build/product-deposit-frontend.js:587
 #: build/product-deposit-packaging-type-frontend.js:587
@@ -10093,7 +10122,7 @@ msgstr "Geschachtelt"
 msgid "Your legal guarantee rights"
 msgstr "Deine gesetzlichen Gewährleistungsrechte"
 
-#: includes/wc-gzd-core-functions.php:1833
+#: includes/wc-gzd-core-functions.php:1838
 #, php-format
 msgctxt "defect-descriptions"
 msgid "%1$s (%2$s)"
@@ -10145,27 +10174,27 @@ msgstr "Stark reduzierter Preis"
 msgid "Zero rate"
 msgstr ""
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1187
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1196
 msgctxt "tax-helper"
 msgid "Madeira"
 msgstr "Madeira"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1194
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1203
 msgctxt "tax-helper"
 msgid "Acores"
 msgstr "Azoren"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1231
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1240
 msgctxt "tax-helper"
 msgid "Northern Ireland"
 msgstr "Nordirland"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1265
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1274
 msgctxt "tax-helper-rate-import"
 msgid "Exempt"
 msgstr "Ausnahme"
 
-#: packages/woocommerce-eu-tax-helper/src/Helper.php:1350
+#: packages/woocommerce-eu-tax-helper/src/Helper.php:1364
 #, php-format
 msgctxt "tax-helper-rate-import"
 msgid "VAT %1$s %% %2$s"
@@ -10195,93 +10224,93 @@ msgstr ""
 "GitHub installiert hast, %1$sschaue dir bitte dieses Dokument an%2$s um eine "
 "Entwicklungsumgebung aufzusetzen."
 
-#: src/Blocks/Checkout.php:387
+#: src/Blocks/Checkout.php:408
 msgid "Whether the cart applies for a photovoltaic system vat exempt or not."
 msgstr ""
 "Ob dieser Warenkorb für die Anwendung des Nullsteuersatzes auf "
 "Photovoltaikanlagen vorgesehen ist oder nicht."
 
-#: src/Blocks/Checkout.php:393
+#: src/Blocks/Checkout.php:414
 msgid "The current cart's photovoltaic system law details."
 msgstr "Details zum Gesetz für Photovoltaikanlagen des aktuellen Warenkorbs."
 
-#: src/Blocks/Checkout.php:399
+#: src/Blocks/Checkout.php:420
 msgid "The actual law, e.g. paragraph."
 msgstr "Das eigentliche Gesetz, z.B. Paragraph XY Absatz Z."
 
-#: src/Blocks/Checkout.php:405
+#: src/Blocks/Checkout.php:426
 msgid "The URL to the law."
 msgstr "Die URL zum Gesetz."
 
-#: src/Blocks/Checkout.php:413
+#: src/Blocks/Checkout.php:434
 msgid "Whether the cart needs a EU legal guarantee label or not."
 msgstr ""
 "Ob der aktuelle Warenkorb ein EU Gewährleistungslabel benötigt oder nicht."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:419
+#: src/Blocks/Checkout.php:440
 msgid "Cart shipping costs notice."
 msgstr "Versandkostenhinweis im Warenkorb."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:425 src/Blocks/Checkout.php:582
+#: src/Blocks/Checkout.php:446 src/Blocks/Checkout.php:603
 msgid "List of cart checkboxes."
 msgstr "Liste der Checkboxen."
 
-#: src/Blocks/Checkout.php:433 src/Blocks/Checkout.php:589
+#: src/Blocks/Checkout.php:454 src/Blocks/Checkout.php:610
 msgid "Unique identifier for the checkbox within the cart."
 msgstr "Eindeutige Bezeichnung der Checkbox innerhalb des Warenkorbs."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:439
+#: src/Blocks/Checkout.php:460
 msgid "Checkbox name."
 msgstr "Checkbox Bezeichnung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:445
+#: src/Blocks/Checkout.php:466
 msgid "Checkbox label."
 msgstr "Checkbox Beschriftung."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:451 src/Blocks/Checkout.php:595
+#: src/Blocks/Checkout.php:472 src/Blocks/Checkout.php:616
 msgid "Checkbox checked status."
 msgstr "Checkbox Status."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:457
+#: src/Blocks/Checkout.php:478
 msgid "Checkbox hidden by default."
 msgstr "Checkbox standardmäßig ausgeblendet."
 
-#: src/Blocks/Checkout.php:463
+#: src/Blocks/Checkout.php:484
 msgid "Checkbox error message."
 msgstr "Checkbox Fehlermeldung."
 
-#: src/Blocks/Checkout.php:469
+#: src/Blocks/Checkout.php:490
 msgid "Show for specific payment methods only."
 msgstr "Nur für spezielle Zahlungsarten anzeigen."
 
-#: src/Blocks/Checkout.php:475
+#: src/Blocks/Checkout.php:496
 msgid "Wrapper classes."
 msgstr "Wrapper-Klassen."
 
-#: src/Blocks/Checkout.php:481
+#: src/Blocks/Checkout.php:502
 msgid "Custom styles."
 msgstr "Individuelles Layout."
 
-#: src/Blocks/Checkout.php:487
+#: src/Blocks/Checkout.php:508
 msgid "HTML field id."
 msgstr "HTML Feld ID."
 
-#: src/Blocks/Checkout.php:493
+#: src/Blocks/Checkout.php:514
 msgid "Whether to show a checkbox field or not."
 msgstr "Ob das Checkbox-Feld gezeigt werden soll oder nicht."
 
-#: src/Blocks/Checkout.php:499
+#: src/Blocks/Checkout.php:520
 msgid "Whether the checkbox is required or not."
 msgstr "Ob die Checkbox verpflichtend ist oder nicht."
 
 # @ woocommerce-germanized
-#: src/Blocks/Checkout.php:508
+#: src/Blocks/Checkout.php:529
 msgid "Direct debit customer data."
 msgstr "Lastschriftdaten des Kunden."
 
@@ -10639,112 +10668,112 @@ msgid "Before Meta"
 msgstr "Produktmeta - vorher"
 
 # @ woocommerce-germanized
-#: src/Shopmarks.php:855 src/Shopmarks.php:871 src/Shopmarks.php:882
-#: src/Shopmarks.php:893 src/Shopmarks.php:904 src/Shopmarks.php:915
-#: src/Shopmarks.php:926 src/Shopmarks.php:937
+#: src/Shopmarks.php:859 src/Shopmarks.php:875 src/Shopmarks.php:886
+#: src/Shopmarks.php:897 src/Shopmarks.php:908 src/Shopmarks.php:919
+#: src/Shopmarks.php:930 src/Shopmarks.php:941
 msgctxt "shopmark"
 msgid "Unit Price"
 msgstr "Grundpreis"
 
 # @ woocommerce-germanized
-#: src/Shopmarks.php:856 src/Shopmarks.php:872 src/Shopmarks.php:883
-#: src/Shopmarks.php:894 src/Shopmarks.php:906 src/Shopmarks.php:917
-#: src/Shopmarks.php:928 src/Shopmarks.php:939
+#: src/Shopmarks.php:860 src/Shopmarks.php:876 src/Shopmarks.php:887
+#: src/Shopmarks.php:898 src/Shopmarks.php:910 src/Shopmarks.php:921
+#: src/Shopmarks.php:932 src/Shopmarks.php:943
 msgctxt "shopmark"
 msgid "Delivery Time"
 msgstr "Lieferzeit"
 
 # @ woocommerce-germanized
-#: src/Shopmarks.php:857 src/Shopmarks.php:873
+#: src/Shopmarks.php:861 src/Shopmarks.php:877
 msgctxt "shopmark"
 msgid "General"
 msgstr "Allgemein"
 
 # @ woocommerce-germanized
-#: src/Shopmarks.php:858 src/Shopmarks.php:874 src/Shopmarks.php:886
-#: src/Shopmarks.php:897 src/Shopmarks.php:905 src/Shopmarks.php:916
-#: src/Shopmarks.php:927 src/Shopmarks.php:938
+#: src/Shopmarks.php:862 src/Shopmarks.php:878 src/Shopmarks.php:890
+#: src/Shopmarks.php:901 src/Shopmarks.php:909 src/Shopmarks.php:920
+#: src/Shopmarks.php:931 src/Shopmarks.php:942
 msgctxt "shopmark"
 msgid "Product Units"
 msgstr "Produkteinheiten"
 
 # @ woocommerce-germanized
-#: src/Shopmarks.php:859 src/Shopmarks.php:875 src/Shopmarks.php:908
-#: src/Shopmarks.php:919 src/Shopmarks.php:930 src/Shopmarks.php:941
+#: src/Shopmarks.php:863 src/Shopmarks.php:879 src/Shopmarks.php:912
+#: src/Shopmarks.php:923 src/Shopmarks.php:934 src/Shopmarks.php:945
 msgctxt "shopmark"
 msgid "Defect Description"
 msgstr "Mängelbeschreibung"
 
-#: src/Shopmarks.php:860 src/Shopmarks.php:876 src/Shopmarks.php:887
-#: src/Shopmarks.php:898 src/Shopmarks.php:909 src/Shopmarks.php:920
-#: src/Shopmarks.php:931 src/Shopmarks.php:942
+#: src/Shopmarks.php:864 src/Shopmarks.php:880 src/Shopmarks.php:891
+#: src/Shopmarks.php:902 src/Shopmarks.php:913 src/Shopmarks.php:924
+#: src/Shopmarks.php:935 src/Shopmarks.php:946
 msgctxt "shopmark"
 msgid "Deposit"
 msgstr "Pfand"
 
 # @ woocommerce-germanized
-#: src/Shopmarks.php:861 src/Shopmarks.php:877 src/Shopmarks.php:888
-#: src/Shopmarks.php:899 src/Shopmarks.php:910 src/Shopmarks.php:921
-#: src/Shopmarks.php:932 src/Shopmarks.php:943
+#: src/Shopmarks.php:865 src/Shopmarks.php:881 src/Shopmarks.php:892
+#: src/Shopmarks.php:903 src/Shopmarks.php:914 src/Shopmarks.php:925
+#: src/Shopmarks.php:936 src/Shopmarks.php:947
 msgctxt "shopmark"
 msgid "Type of Packaging"
 msgstr "Verpackungstyp"
 
-#: src/Shopmarks.php:862 src/Shopmarks.php:878 src/Shopmarks.php:889
-#: src/Shopmarks.php:900 src/Shopmarks.php:911 src/Shopmarks.php:922
-#: src/Shopmarks.php:933 src/Shopmarks.php:944
+#: src/Shopmarks.php:866 src/Shopmarks.php:882 src/Shopmarks.php:893
+#: src/Shopmarks.php:904 src/Shopmarks.php:915 src/Shopmarks.php:926
+#: src/Shopmarks.php:937 src/Shopmarks.php:948
 msgctxt "shopmark"
 msgid "Nutri-Score"
 msgstr "Nutri-Score"
 
-#: src/Shopmarks.php:863
+#: src/Shopmarks.php:867
 msgctxt "shopmark"
 msgid "Manufacturer"
 msgstr "Hersteller"
 
-#: src/Shopmarks.php:864
+#: src/Shopmarks.php:868
 msgctxt "shopmark"
 msgid "Product safety attachments"
 msgstr "Dokumente zur Produktsicherheit"
 
 # @ woocommerce-germanized
-#: src/Shopmarks.php:865
+#: src/Shopmarks.php:869
 msgctxt "shopmark"
 msgid "Safety instructions"
 msgstr "Sicherheitshinweise"
 
-#: src/Shopmarks.php:866
+#: src/Shopmarks.php:870
 msgctxt "shopmark"
 msgid "EU Legal Guarantee"
 msgstr "EU Gewährleistungslabel"
 
-#: src/Shopmarks.php:867 src/Shopmarks.php:879 src/Shopmarks.php:890
-#: src/Shopmarks.php:901 src/Shopmarks.php:912 src/Shopmarks.php:923
-#: src/Shopmarks.php:934 src/Shopmarks.php:945
+#: src/Shopmarks.php:871 src/Shopmarks.php:883 src/Shopmarks.php:894
+#: src/Shopmarks.php:905 src/Shopmarks.php:916 src/Shopmarks.php:927
+#: src/Shopmarks.php:938 src/Shopmarks.php:949
 msgctxt "shopmark"
 msgid "EU GARAN Label"
 msgstr "EU-GARAN-Label"
 
-#: src/Shopmarks.php:868
+#: src/Shopmarks.php:872
 msgctxt "shopmark"
 msgid "Power supply"
 msgstr "Netzteil"
 
 # @ woocommerce-germanized
-#: src/Shopmarks.php:884 src/Shopmarks.php:895
+#: src/Shopmarks.php:888 src/Shopmarks.php:899
 msgctxt "shopmark"
 msgid "Tax"
 msgstr "Steuer"
 
 # @ woocommerce-germanized
-#: src/Shopmarks.php:885 src/Shopmarks.php:896
+#: src/Shopmarks.php:889 src/Shopmarks.php:900
 msgctxt "shopmark"
 msgid "Shipping Costs"
 msgstr "Versandkosten"
 
 # @ woocommerce-germanized
-#: src/Shopmarks.php:907 src/Shopmarks.php:918 src/Shopmarks.php:929
-#: src/Shopmarks.php:940
+#: src/Shopmarks.php:911 src/Shopmarks.php:922 src/Shopmarks.php:933
+#: src/Shopmarks.php:944
 msgctxt "shopmark"
 msgid "Cart Description"
 msgstr "Warenkorbkurzbeschreibung"
@@ -11009,6 +11038,17 @@ msgid ""
 "Please wait while we are trying to redirect you to the payment provider."
 msgstr "Einen Moment - wir versuchen dich zum Zahlungsanbieter weiterzuleiten."
 
+#: build/cart.js:304 build/checkout.js:658
+#: build/wc-gzd-blocks-product-elements.js:1666
+#: build/wc-gzd-blocks-product-elements.js:1881 build/cart-style.js:226
+#: build/cart.js:205 build/checkout-style.js:498 build/checkout.js:498
+#: build/wc-gzd-blocks-product-elements-style.js:1236
+#: build/wc-gzd-blocks-product-elements-style.js:1409
+#: build/wc-gzd-blocks-product-elements.js:1236
+#: build/wc-gzd-blocks-product-elements.js:1392
+msgid "Variant"
+msgstr "Variante"
+
 #: build/checkout.js:496 build/checkout-style.js:372 build/checkout.js:372
 msgid "This is a label being printed next to your legal checkbox."
 msgstr "Das ist eine Beschriftung, die neben der Checkbox angezeigt wird."
@@ -11017,15 +11057,6 @@ msgstr "Das ist eine Beschriftung, die neben der Checkbox angezeigt wird."
 #: build/checkout.js:512 build/checkout-style.js:391 build/checkout.js:391
 msgid "Manage checkboxes"
 msgstr "Checkboxen verwalten"
-
-#: build/checkout.js:658 build/wc-gzd-blocks-product-elements.js:1666
-#: build/wc-gzd-blocks-product-elements.js:1881 build/checkout-style.js:498
-#: build/checkout.js:498 build/wc-gzd-blocks-product-elements-style.js:1236
-#: build/wc-gzd-blocks-product-elements-style.js:1409
-#: build/wc-gzd-blocks-product-elements.js:1236
-#: build/wc-gzd-blocks-product-elements.js:1392
-msgid "Variant"
-msgstr "Variante"
 
 #: build/checkout.js:761 build/checkout-style.js:560 build/checkout.js:560
 msgid ""
@@ -11918,6 +11949,18 @@ msgstr "Warenkorb-Dropdown rechtl. Hinweise"
 msgctxt "block description"
 msgid "Outputs mini cart legal notices."
 msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
+
+#~ msgid "EU GARAN label preview"
+#~ msgstr "EU-GARAN-Label Vorschau"
+
+#~ msgid ""
+#~ "You've probably heard about the new requirement to provide a withdrawal "
+#~ "button. Germanized is, of course, already prepared for this. Please check "
+#~ "your settings and test the process."
+#~ msgstr ""
+#~ "Du hast sicher vom neuen Widerrufsbutton gehört. Germanized ist darauf "
+#~ "natürlich bereits vorbereitet. Bitte prüfe deine Einstellungen und teste "
+#~ "den Prozess."
 
 #~ msgid "Preview"
 #~ msgstr "Vorschau"

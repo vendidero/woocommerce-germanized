@@ -69,7 +69,17 @@ add_action(
 				add_filter(
 					'woocommerce_product_tabs',
 					function ( $tabs ) {
-						global $post;
+						global $post, $product;
+
+						$show_legal_guarantee = true;
+
+						if ( $product && ( $gzd_product = wc_gzd_get_gzd_product( $product ) ) ) {
+							$show_legal_guarantee = $gzd_product->needs_legal_guarantee();
+						}
+
+						if ( ! apply_filters( 'woocommerce_gzd_show_global_legal_guarantee_notice', $show_legal_guarantee, 'product_description_after' ) ) {
+							return $tabs;
+						}
 
 						/**
 						 * Enforce showing the label even though there is no product description available.
