@@ -83,7 +83,7 @@ class Cart implements IntegrationInterface {
 	 * @return string[]
 	 */
 	public function get_script_handles() {
-		return array( 'wc-gzd-blocks-cart', 'wc-gzd-blocks-cart-frontend' );
+		return array( 'wc-gzd-blocks-cart-frontend' );
 	}
 
 	/**

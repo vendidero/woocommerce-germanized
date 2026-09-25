@@ -37,6 +37,7 @@ class Checkout implements IntegrationInterface {
 
 		foreach ( $this->get_chunks() as $chunk ) {
 			$handle = 'wc-gzd-blocks-' . $chunk . '-chunk';
+
 			$this->assets->register_script( $handle, $this->assets->get_block_asset_build_path( 'checkout-blocks' . $chunk ), array(), true );
 
 			wp_add_inline_script(
@@ -100,7 +101,7 @@ class Checkout implements IntegrationInterface {
 	 * @return string[]
 	 */
 	public function get_script_handles() {
-		return array( 'wc-gzd-blocks-checkout', 'wc-gzd-blocks-checkout-frontend' );
+		return array( 'wc-gzd-blocks-checkout-frontend' );
 	}
 
 	/**

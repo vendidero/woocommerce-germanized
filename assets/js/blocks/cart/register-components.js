@@ -2,17 +2,12 @@
  * External dependencies
  */
 import { registerCheckoutBlock } from '@woocommerce/blocks-checkout';
-import { lazy } from '@wordpress/element';
 
 import metadata from './component-metadata';
+import CheckoutLegalGuaranteeFrontend from '../checkout/checkout-legal-guarantee/frontend';
 
 registerCheckoutBlock({
     metadata: metadata.CHECKOUT_LEGAL_GUARANTEE,
-    component: lazy(
-        () =>
-            import(
-                /* webpackChunkName: "checkout-blocks/checkout-legal-guarantee" */ '../checkout/checkout-legal-guarantee/frontend'
-                )
-    ),
+    component: CheckoutLegalGuaranteeFrontend,
 });
 
