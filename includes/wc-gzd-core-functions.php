@@ -2363,7 +2363,7 @@ function wc_gzd_kses_post_svg( $html ) {
 
 function wc_gzd_shop_needs_eu_labels_by_default() {
 	$base_country              = wc_gzd_get_base_country();
-	$eu_countries              = WC()->countries->get_european_union_countries();
+	$eu_countries              = WC()->countries ? WC()->countries->get_european_union_countries() : array();
 	$is_eu_base_country        = WC()->countries ? in_array( $base_country, $eu_countries, true ) : ( 'CH' !== $base_country );
 	$selling_to_eu_countries   = WC()->countries && is_callable( array( WC()->countries, 'get_allowed_countries' ) ) ? array_intersect( array_keys( WC()->countries->get_allowed_countries() ), WC()->countries->get_european_union_countries() ) : array();
 	$profiler_data             = get_option( 'woocommerce_onboarding_profile', array() );
