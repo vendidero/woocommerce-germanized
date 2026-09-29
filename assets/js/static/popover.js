@@ -19,7 +19,9 @@ window.germanized = window.germanized || {};
                             return;
                         }
 
-                        const isOpen = $popover[0].matches(':popover-open');
+                        const isOpen = 'popover' in HTMLElement.prototype
+                            ? $popover[0].matches( ':popover-open' )
+                            : $popover.is( ':visible' );
 
                         if ( false === isOpen ) {
                             $popover.addClass( 'wc-gzd-popover-hover' );

@@ -209,7 +209,6 @@ Please report security bugs found in the source code of the Germanized for WooCo
 
 == Changelog ==
 = 4.1.4 =
-* New: Enable EU guarantee labels for EU shops (or shops selling to EU) which sell non-virtual products by default, in case no other option is set yet
 * Improvement: Popover styles for EU GARAN label and legal guarantee
 * Improvement: Add version to EU GARAN label url to improve caching support
 * Improvement: Better default option support for EU label attachment option

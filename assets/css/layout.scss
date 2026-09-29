@@ -41,13 +41,6 @@ p.wc-gzd-additional-info:empty, div.wc-gzd-additional-info:empty {
   }
 }
 
-.wc-gzd-popover.wc-gzd-popover-hover {
-  position-anchor: --wc-gzd-popover-anchor;
-  position: fixed;
-  position-area: bottom center;
-  position-try-fallbacks: top, bottom, right, left;
-}
-
 .wc-gzd-garan-label-nested-svg, img.wc-gzd-garan-label-nested-image {
   max-width: 350px;
   min-width: 200px;
@@ -80,6 +73,7 @@ p.wc-gzd-additional-info:empty, div.wc-gzd-additional-info:empty {
 }
 
 .wc-gzd-popover {
+  display: none;
   max-height: 100vh;
 
   .wc-gzd-popover-header {
@@ -104,12 +98,6 @@ p.wc-gzd-additional-info:empty, div.wc-gzd-additional-info:empty {
   }
 
   &.wc-gzd-popover-hover {
-    .wc-gzd-popover-content {
-      img {
-        max-width: none;
-      }
-    }
-
     p.wc-gzd-popover-caption {
       display: none;
     }
@@ -123,8 +111,45 @@ p.wc-gzd-additional-info:empty, div.wc-gzd-additional-info:empty {
 }
 
 .wc-gzd-popover:popover-open {
+  display: block;
   border-color: transparent;
   border-radius: 1rem;
+}
+
+@supports selector(:popover-open) and (anchor-name: --wc-gzd-popover-anchor) and (anchor-scope: --wc-gzd-popover-anchor) and (position-area: bottom center) {
+  .wc-gzd-popover.wc-gzd-popover-hover {
+    position-anchor: --wc-gzd-popover-anchor;
+    position: fixed;
+    position-area: bottom center;
+    position-try-fallbacks: top, bottom, right, left;
+
+    .wc-gzd-popover-content img {
+      max-width: none;
+    }
+  }
+}
+
+@supports not (selector(:popover-open) and (anchor-name: --wc-gzd-popover-anchor) and (anchor-scope: --wc-gzd-popover-anchor) and (position-area: bottom center)) {
+  .wc-gzd-popover {
+    position: fixed;
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    width: max-content;
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100vh - 2rem);
+    margin: 0;
+    padding: 1rem;
+    overflow: auto;
+    z-index: 100000;
+    color: #000;
+    background-color: #fff;
+    border: 0;
+    border-radius: 1rem;
+  }
 }
 
 .wc-gzd-legal-guarantee-global {

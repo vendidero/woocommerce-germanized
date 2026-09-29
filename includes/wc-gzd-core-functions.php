@@ -2376,6 +2376,7 @@ function wc_gzd_shop_needs_eu_labels_by_default() {
 			array(
 				'limit'   => 1,
 				'virtual' => false,
+				'status'  => 'publish',
 			)
 		);
 
