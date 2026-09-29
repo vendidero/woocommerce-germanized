@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-29T09:35:57+00:00\n"
+"POT-Creation-Date: 2026-09-29T09:56:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
@@ -3212,11 +3212,11 @@ msgid "Install Shiptastic & Internetmarke Integration now"
 msgstr ""
 
 #: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:30
-msgid "Attention: New Regulations"
+msgid "Attention: EU guarantee labels"
 msgstr ""
 
 #: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:34
-msgid "You've probably heard about the new EU labels for guarantees which will be mandatory starting September 27. Please check how the labels are displayed in the frontend. If your store doesn't need (e.g. b2b only) the labels, disable their display in the settings."
+msgid "You've probably heard about the new EU guarantee labels which will be mandatory starting September 27, 2026. Please make sure that the labels - if your store requires them - are activated and displayed on the front end."
 msgstr ""
 
 #: includes/admin/notes/class-wc-gzd-admin-note-legal-news.php:41

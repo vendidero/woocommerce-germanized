@@ -27,11 +27,11 @@ class WC_GZD_Admin_Note_Legal_News extends WC_GZD_Admin_Note {
 	}
 
 	public function get_title() {
-		return __( 'Attention: New Regulations', 'woocommerce-germanized' );
+		return __( 'Attention: EU guarantee labels', 'woocommerce-germanized' );
 	}
 
 	public function get_content() {
-		return __( 'You\'ve probably heard about the new EU labels for guarantees which will be mandatory starting September 27. Please check how the labels are displayed in the frontend. If your store doesn\'t need (e.g. b2b only) the labels, disable their display in the settings.', 'woocommerce-germanized' );
+		return __( 'You\'ve probably heard about the new EU guarantee labels which will be mandatory starting September 27, 2026. Please make sure that the labels - if your store requires them - are activated and displayed on the front end.', 'woocommerce-germanized' );
 	}
 
 	public function get_actions() {
