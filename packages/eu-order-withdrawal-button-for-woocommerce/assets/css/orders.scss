@@ -1,0 +1,13 @@
+.withdrawal-quantity {
+  background: #eba3a3;
+  border: none;
+  padding: 4px;
+  color: #a00;
+  border-radius: 4px;
+  font-size: .9em;
+
+  &.withdrawal-requested {
+    background: #f8dda7;
+    color: #573b00;
+  }
+}
