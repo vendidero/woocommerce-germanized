@@ -50,7 +50,7 @@ class ProductsGaranLabel {
 			$variant = wc_gzd_get_garan_label_variant( $request['variant'], 'product' );
 
 			if ( ! $product || 0 === $product->get_id() || 'publish' !== $product->get_status() ) {
-				throw new \Exception( 'woocommerce_gzd_rest_product_invalid_id', __( 'Invalid product ID.', 'woocommerce-germanized' ), 404 );
+				throw new \Exception( __( 'Invalid product ID.', 'woocommerce-germanized' ), 404 );
 			}
 
 			// A variation's visibility follows its parent product.
@@ -58,14 +58,14 @@ class ProductsGaranLabel {
 				$parent = wc_get_product( $product->get_parent_id() );
 
 				if ( ! $parent || 'publish' !== $parent->get_status() ) {
-					throw new \Exception( 'woocommerce_gzd_rest_product_invalid_id', __( 'Invalid product ID.', 'woocommerce-germanized' ), 404 );
+					throw new \Exception( __( 'Invalid product ID.', 'woocommerce-germanized' ), 404 );
 				}
 			}
 
 			$svg = $product->get_garan_label_svg( $variant );
 
 			if ( ! $svg ) {
-				throw new \Exception( 'woocommerce_gzd_rest_product_invalid_label', __( 'Invalid GARAN label.', 'woocommerce-germanized' ), 404 );
+				throw new \Exception( __( 'Invalid GARAN label.', 'woocommerce-germanized' ), 404 );
 			}
 
 			rest_get_server()->send_headers(

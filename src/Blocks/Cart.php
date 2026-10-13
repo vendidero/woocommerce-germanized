@@ -4,11 +4,11 @@ namespace Vendidero\Germanized\Blocks;
 final class Cart {
 
 	public function __construct() {
-		$this->adjust_checkout_block();
+		$this->adjust_cart_block();
 		$this->register_integrations();
 	}
 
-	private function adjust_checkout_block() {
+	private function adjust_cart_block() {
 		add_filter(
 			'render_block',
 			function ( $content, $block ) {

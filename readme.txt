@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 7.1
 WC requires at least: 3.9
-WC tested up to: 11.1
-Stable tag: 4.1.4
+WC tested up to: 11.2
+Stable tag: 4.1.5
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -208,6 +208,12 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.1.5 =
+* Security: Always execute the on_user_email_changed hook in DOI context to prevent activation token reuse and embed email address within verification key (thanks to Sawyer for reporting)
+* Improvement: Add missing meta fields to wpml-config.xml
+* Improvement: Prevent duplicate variation meta within cart/block context
+* Fix: GARAN label REST API endpoint exceptions
+
 = 4.1.4 =
 * Improvement: Popover styles for EU GARAN label and legal guarantee
 * Improvement: Add version to EU GARAN label url to improve caching support

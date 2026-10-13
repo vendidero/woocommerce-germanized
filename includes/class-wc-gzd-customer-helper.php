@@ -68,6 +68,9 @@ class WC_GZD_Customer_Helper {
 			add_action( 'woocommerce_before_account_orders', array( $this, 'wc_remove_doi_notice' ), 5 );
 			add_filter( 'woocommerce_customer_email_verification_should_show_prompt', '__return_false' ); // WC 11.1
 
+			// Listen to user email changes and mark user account as non-verified
+			add_filter( 'send_email_change_email', array( $this, 'on_user_email_changed' ), 10, 3 );
+
 			/**
 			 * Prevent users from logging in before the account has been activated.
 			 * Uses some tweaks to prevent auto-logins during (classic, block) checkout.
@@ -83,9 +86,6 @@ class WC_GZD_Customer_Helper {
 
 				// WC Social Login comp
 				add_filter( 'wc_social_login_set_auth_cookie', array( $this, 'social_login_activation_check' ), 10, 2 );
-
-				// Listen to user email changes and mark user account as non-verified
-				add_filter( 'send_email_change_email', array( $this, 'on_user_email_changed' ), 10, 3 );
 			}
 		}
 	}
@@ -533,7 +533,7 @@ class WC_GZD_Customer_Helper {
 		);
 
 		/**
-		 * Filter URL which serves as redirection if a customer has not yet activated it's account and
+		 * Filter URL which serves as redirection if a customer has not yet activated its account and
 		 * wants to access checkout.
 		 *
 		 * @param string $url The redirection URL.
@@ -551,12 +551,7 @@ class WC_GZD_Customer_Helper {
 
 		// Has not been activated yet
 		if ( $this->enable_double_opt_in_for_user( $user_id ) && ! wc_gzd_is_customer_activated( $user_id ) ) {
-			if ( wp_doing_ajax() ) {
-				return false;
-			} else {
-				wp_redirect( esc_url_raw( wp_validate_redirect( $this->registration_redirect( array( 'account' => 'activate' ) ) ) ) ); //phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
-				exit;
-			}
+			$result = false;
 		}
 
 		return $result;
@@ -651,16 +646,17 @@ class WC_GZD_Customer_Helper {
 			return null;
 		}
 
-		$parts       = explode( ':', $activation_code, 3 );
+		$parts       = explode( ':', $activation_code, 4 );
 		$timestamp   = (int) $parts[0];
 		$hash        = $parts[1];
 		$customer_id = (int) ( count( $parts ) >= 3 ? absint( base64_decode( $parts[2] ) ) : -1 ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+		$email_hash  = count( $parts ) >= 4 ? $parts[3] : ''; // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 
 		if ( '' === $hash || 0 === $timestamp ) {
 			return null;
 		}
 
-		return array( $timestamp, $hash, $customer_id );
+		return array( $timestamp, $hash, $customer_id, $email_hash );
 	}
 
 	protected function seconds_since_last_key( $user_id ) {
@@ -968,6 +964,12 @@ class WC_GZD_Customer_Helper {
 				$parsed_activation_code = $this->parse_activation_code( $activation_code );
 				$expiration_time        = $parsed_activation_code[0] + $expiration_duration;
 
+				if ( ! empty( $parsed_activation_code[3] ) ) {
+					if ( ! $this->verify_hash( $user->user_email, $parsed_activation_code[3] ) ) {
+						return new WP_Error( 'invalid_key', __( 'Invalid activation key', 'woocommerce-germanized' ) );
+					}
+				}
+
 				if ( $expiration_time && time() < $expiration_time ) {
 					$new_email_address = get_user_meta( $user->ID, '_woocommerce_gzd_pending_email_change', true );
 					$is_email_change   = ! empty( $new_email_address );
@@ -1203,8 +1205,6 @@ class WC_GZD_Customer_Helper {
 	}
 
 	public function get_customer_activation_meta( $customer_id, $force_new = false ) {
-		global $wp_hasher;
-
 		if ( ! $customer_id ) {
 			return '';
 		}
@@ -1221,17 +1221,46 @@ class WC_GZD_Customer_Helper {
 		// Generate something random for a password reset key.
 		$key = wp_generate_password( 20, false );
 
-		// Now insert the key, hashed, into the DB.
-		if ( empty( $wp_hasher ) ) {
-			require_once ABSPATH . WPINC . '/class-phpass.php';
-			$wp_hasher = new PasswordHash( 8, true ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-		}
+		$account_email = $this->get_user_email( $customer_id );
+		$email_hash    = null !== $account_email ? $this->get_hash( $account_email ) : '';
 
-		$user_activation = time() . ':' . $wp_hasher->HashPassword( $key ) . ':' . base64_encode( $customer_id ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+		$user_activation = time() . ':' . $this->get_hash( $key ) . ':' . base64_encode( $customer_id ) . ':' . $email_hash; // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 
 		update_user_meta( $customer_id, '_woocommerce_activation', $user_activation );
 
 		return $user_activation;
+	}
+
+	protected function get_hash( $str ) {
+		if ( function_exists( 'wp_fast_hash' ) ) {
+			return wp_fast_hash( $str );
+		} else {
+			global $wp_hasher;
+
+			// Now insert the key, hashed, into the DB.
+			if ( empty( $wp_hasher ) ) {
+				require_once ABSPATH . WPINC . '/class-phpass.php';
+				$wp_hasher = new PasswordHash( 8, true ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			}
+
+			return $wp_hasher->HashPassword( $str );
+		}
+	}
+
+	protected function verify_hash( $message, $hash ) {
+		if ( function_exists( 'wp_verify_fast_hash' ) ) {
+			return wp_verify_fast_hash( $message, $hash );
+		} else {
+			global $wp_hasher;
+
+			// Now insert the key, hashed, into the DB.
+			if ( empty( $wp_hasher ) ) {
+				require_once ABSPATH . WPINC . '/class-phpass.php';
+				$wp_hasher = new PasswordHash( 8, true ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			}
+
+			return $wp_hasher->checkPassword( $message, $hash );
+		}
 	}
 
 	public function get_account_cleanup_user_role_exclusions() {

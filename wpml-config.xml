@@ -42,6 +42,15 @@
         <custom-field action="copy">_manufacture_country</custom-field>
         <custom-field action="copy">_rounding_rule</custom-field>
         <custom-field action="copy">_nutrient_type</custom-field>
+        <custom-field action="copy">_guarantee_length</custom-field>
+        <custom-field action="copy">_defective_copy</custom-field>
+        <custom-field action="copy">_is_non_alcoholic</custom-field>
+        <custom-field action="copy">_photovoltaic_system</custom-field>
+        <custom-field action="copy">_wireless_electronic_device</custom-field>
+        <custom-field action="copy">_device_contains_power_supply</custom-field>
+        <custom-field action="copy">_device_charging_supports_usb_pd</custom-field>
+        <custom-field action="copy">_device_charging_watt_min</custom-field>
+        <custom-field action="copy">_device_charging_watt_max</custom-field>
     </custom-fields>
     <custom-term-fields>
 		<custom-term-field action="copy-once" style="textarea">formatted_address</custom-term-field>

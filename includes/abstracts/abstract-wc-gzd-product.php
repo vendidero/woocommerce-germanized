@@ -1,5 +1,7 @@
 <?php
 
+use Vendidero\Germanized\Utilities\CartCheckout;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
@@ -1441,9 +1443,13 @@ class WC_GZD_Product {
 	}
 
 	public function get_checkout_attributes( $item_data = array(), $cart_variation_data = array() ) {
-		$item_data = ! empty( $item_data ) ? $item_data : array();
+		$item_data       = ! empty( $item_data ) ? $item_data : array();
+		$is_using_blocks = CartCheckout::uses_checkout_block() || CartCheckout::uses_cart_block() || WC()->is_rest_api_request();
 
-		if ( $this->child->is_type( 'variation' ) ) {
+		/**
+		 * In a block-context: Prevent adding variation attributes to item data as those attributes are listed separately instead.
+		 */
+		if ( ! $is_using_blocks && $this->child->is_type( 'variation' ) ) {
 			$attributes = ! empty( $cart_variation_data ) ? $cart_variation_data : $this->child->get_variation_attributes();
 
 			foreach ( $attributes as $name => $value ) {
