@@ -965,7 +965,7 @@ class WC_GZD_Customer_Helper {
 				$expiration_time        = $parsed_activation_code[0] + $expiration_duration;
 
 				if ( ! empty( $parsed_activation_code[3] ) ) {
-					if ( ! $this->verify_hash( $user->user_email, $parsed_activation_code[3] ) ) {
+					if ( ! $this->verify_hash( $this->get_user_email( $user ), $parsed_activation_code[3] ) ) {
 						return new WP_Error( 'invalid_key', __( 'Invalid activation key', 'woocommerce-germanized' ) );
 					}
 				}

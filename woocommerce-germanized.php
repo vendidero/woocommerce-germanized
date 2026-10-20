@@ -3,7 +3,7 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 4.1.5
+ * Version: 4.1.6
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
@@ -68,7 +68,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '4.1.5';
+		public $version = '4.1.6';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -944,8 +944,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 
 			$locale                  = apply_filters( 'plugin_locale', $locale, 'woocommerce-germanized' );
-			$custom_translation_path = WP_LANG_DIR . '/woocommerce-germanized/woocommerce-germanized' . $locale . '.mo';
-			$plugin_translation_path = WP_LANG_DIR . '/plugins/woocommerce-germanized' . $locale . '.mo';
+			$custom_translation_path = WP_LANG_DIR . '/woocommerce-germanized/woocommerce-germanized-' . $locale . '.mo';
+			$plugin_translation_path = WP_LANG_DIR . '/plugins/woocommerce-germanized-' . $locale . '.mo';
 
 			// If a custom translation exists (by default it will not, as it is not a standard WordPress convention)
 			// we unload the existing translation, then essentially layer the custom translation on top of the canonical

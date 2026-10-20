@@ -87,13 +87,20 @@ p.wc-gzd-additional-info:empty, div.wc-gzd-additional-info:empty {
     }
   }
 
+  &:not(.wc-gzd-popover-hover) {
+    .wc-gzd-popover-content {
+      img {
+        width: 100% !important;
+      }
+    }
+  }
+
   .wc-gzd-popover-content {
     img {
       max-height: 80vh;
       object-fit: contain;
       max-width: 100%;
       min-height: 350px;
-      width: 100% !important;
     }
   }
 
