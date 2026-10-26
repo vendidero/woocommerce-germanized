@@ -109,6 +109,11 @@ class WC_GZD_Emails {
 				0,
 				2
 			);
+
+			/**
+			 * Trigger cancellation email
+			 */
+			add_action( 'woocommerce_order_status_pending_to_cancelled_notification', array( $this, 'trigger_cancellation' ), 10, 2 );
 		}
 
 		// Register the woocommerce_gzd_order_confirmation action which will be used as a notification to send the confirmation
@@ -186,6 +191,25 @@ class WC_GZD_Emails {
 
 		if ( is_admin() ) {
 			$this->admin_hooks();
+		}
+	}
+
+	/**
+	 * Trigger customer cancellation email during pending -> cancelled order status transition
+	 * as the Woo Core email does not do that.
+	 *
+	 * @param $order_id
+	 * @param $order
+	 *
+	 * @return void
+	 */
+	public function trigger_cancellation( $order_id, $order = false ) {
+		if ( $email = $this->get_email_instance_by_id( 'customer_cancelled_order' ) ) {
+			$is_gzd_email = is_a( $email, 'WC_GZD_Email_Customer_Cancelled_Order' );
+
+			if ( apply_filters( 'woocommerce_gzd_send_customer_cancelled_order_email', ! $is_gzd_email, $order_id ) ) {
+				$email->trigger( $order_id, $order );
+			}
 		}
 	}
 
