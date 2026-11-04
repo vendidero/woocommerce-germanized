@@ -1202,7 +1202,7 @@ class WC_GZD_Admin {
 
 		if ( ! empty( $gateways ) ) {
 			foreach ( $gateways as $gateway ) {
-				$options[ $gateway->id ] = $gateway->title;
+				$options[ $gateway->id ] = is_callable( array( $gateway, 'get_title' ) ) ? $gateway->get_title() : $gateway->title;
 			}
 		}
 

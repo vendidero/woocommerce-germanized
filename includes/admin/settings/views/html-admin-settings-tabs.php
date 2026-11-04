@@ -24,15 +24,15 @@ defined( 'ABSPATH' ) || exit;
 				$license_expires_soon = is_callable( array( $product, 'expires_soon' ) ) ? ( ! $license_has_expired && $product->expires_soon() ) : false;
 				$license_page         = is_callable( array( $product, 'get_license_page' ) ) ? $product->get_license_page() : $license_page;
 
-				if ( $product->is_registered() ) {
-					$license_status = 'valid';
-					$license_title  = __( 'Manage your license', 'woocommerce-germanized' );
-				} elseif ( $license_has_expired ) {
+				if ( $license_has_expired ) {
 					$license_title  = __( 'License expired', 'woocommerce-germanized' );
 					$license_status = 'expired invalid';
 				} elseif ( $license_expires_soon ) {
 					$license_title  = __( 'License expires soon', 'woocommerce-germanized' );
 					$license_status = 'expires-soon warning';
+				} elseif ( $product->is_registered() ) {
+					$license_status = 'valid';
+					$license_title  = __( 'Manage your license', 'woocommerce-germanized' );
 				}
 			}
 		}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "085cf92dbad8c2bc95cc108e1686a57d",
+    "content-hash": "9852bed99d2157f82fb66340e99ddf03",
     "packages": [
         {
             "name": "automattic/jetpack-autoloader",
@@ -805,16 +805,16 @@
         },
         {
             "name": "vendidero/eu-order-withdrawal-button-for-woocommerce",
-            "version": "2.4.5",
+            "version": "2.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/eu-order-withdrawal-button-for-woocommerce.git",
-                "reference": "821cf4d1257e51fc86eb28a5b3e6e68752944896"
+                "reference": "c75210810e4858c862aa41e2adc725f896821934"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/eu-order-withdrawal-button-for-woocommerce/zipball/821cf4d1257e51fc86eb28a5b3e6e68752944896",
-                "reference": "821cf4d1257e51fc86eb28a5b3e6e68752944896",
+                "url": "https://api.github.com/repos/vendidero/eu-order-withdrawal-button-for-woocommerce/zipball/c75210810e4858c862aa41e2adc725f896821934",
+                "reference": "c75210810e4858c862aa41e2adc725f896821934",
                 "shasum": ""
             },
             "require": {
@@ -848,23 +848,23 @@
             "description": "EU Order Withdrawal Button for WooCommerce",
             "homepage": "https://vendidero.de",
             "support": {
-                "source": "https://github.com/vendidero/eu-order-withdrawal-button-for-woocommerce/tree/v2.4.5",
+                "source": "https://github.com/vendidero/eu-order-withdrawal-button-for-woocommerce/tree/v2.4.6",
                 "issues": "https://github.com/vendidero/eu-order-withdrawal-button-for-woocommerce/issues"
             },
-            "time": "2026-10-20T13:37:53+00:00"
+            "time": "2026-11-03T13:30:25+00:00"
         },
         {
             "name": "vendidero/woocommerce-eu-tax-helper",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vendidero/woocommerce-eu-tax-helper.git",
-                "reference": "037ec4299b063e9c1e0f29d9561143ae50901234"
+                "reference": "40ae25b0c5b094aaae41a298ab14b2d11872c6c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/037ec4299b063e9c1e0f29d9561143ae50901234",
-                "reference": "037ec4299b063e9c1e0f29d9561143ae50901234",
+                "url": "https://api.github.com/repos/vendidero/woocommerce-eu-tax-helper/zipball/40ae25b0c5b094aaae41a298ab14b2d11872c6c4",
+                "reference": "40ae25b0c5b094aaae41a298ab14b2d11872c6c4",
                 "shasum": ""
             },
             "require": {
@@ -901,10 +901,10 @@
             "description": "EU tax helper for WooCommerce",
             "homepage": "https://vendidero.de/",
             "support": {
-                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/v2.2.0",
+                "source": "https://github.com/vendidero/woocommerce-eu-tax-helper/tree/v2.2.1",
                 "issues": "https://github.com/vendidero/woocommerce-eu-tax-helper/issues"
             },
-            "time": "2026-09-21T10:24:40+00:00"
+            "time": "2026-10-28T07:53:25+00:00"
         }
     ],
     "packages-dev": [

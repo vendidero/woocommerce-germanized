@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 4.1.5\n"
+"Project-Id-Version: Germanized for WooCommerce 4.1.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-13T07:49:25+00:00\n"
+"POT-Creation-Date: 2026-11-03T13:56:58+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
@@ -136,7 +136,9 @@ msgstr ""
 
 #. translators: %s: list of placeholders
 #: includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:250
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:259
 #: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-customer-withdrawal-request-received.php:250
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:259
 #, php-format
 msgctxt "owb"
 msgid "Available placeholders: %s"
@@ -253,45 +255,69 @@ msgid "Withdrawal request deleted: {order_number}"
 msgstr ""
 
 #: includes/emails/class-eu-owb-email-deleted-withdrawal-request.php:202
-#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:200
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:290
 #: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-deleted-withdrawal-request.php:202
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:200
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:290
 msgctxt "owb"
 msgid "Recipient(s)"
 msgstr ""
 
 #. translators: %s: WP admin email
 #: includes/emails/class-eu-owb-email-deleted-withdrawal-request.php:205
-#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:203
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:293
 #: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-deleted-withdrawal-request.php:205
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:203
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:293
 #, php-format
 msgctxt "owb"
 msgid "Enter recipients (comma separated) for this email. Defaults to %s."
 msgstr ""
 
-#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:37
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:37
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:44
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:44
 msgctxt "owb"
 msgid "New withdrawal request"
 msgstr ""
 
-#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:38
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:38
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:45
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:45
 msgctxt "owb"
 msgid "New withdrawal request emails are sent to chosen recipient(s) when a customer submits a withdrawal request."
-msgstr ""
-
-#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:66
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:66
-msgctxt "owb"
-msgid "[{site_title}]: New withdrawal request to {order_number}"
 msgstr ""
 
 #: includes/emails/class-eu-owb-email-new-withdrawal-request.php:75
 #: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:75
 msgctxt "owb"
+msgid "[{site_title}]: Updated withdrawal request to {order_number}"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:77
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:77
+msgctxt "owb"
+msgid "[{site_title}]: New withdrawal request to {order_number}"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:89
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:89
+msgctxt "owb"
+msgid "Updated withdrawal request: {order_number}"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:91
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:91
+msgctxt "owb"
 msgid "New withdrawal request: {order_number}"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:267
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:267
+msgctxt "owb"
+msgid "Updated withdrawal subject"
+msgstr ""
+
+#: includes/emails/class-eu-owb-email-new-withdrawal-request.php:276
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/emails/class-eu-owb-email-new-withdrawal-request.php:276
+msgctxt "owb"
+msgid "Updated withdrawal email heading"
 msgstr ""
 
 #: includes/eu-owb-core-functions.php:227
@@ -429,15 +455,15 @@ msgstr ""
 #: src/Admin/Admin.php:378
 #: src/Admin/Admin.php:744
 #: src/Admin/Privacy.php:172
-#: src/Package.php:668
-#: src/Package.php:804
+#: src/Package.php:686
+#: src/Package.php:822
 #: src/Settings.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:58
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:378
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:744
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:172
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:668
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:804
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:686
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:822
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Settings.php:21
 msgctxt "owb"
 msgid "Withdrawals"
@@ -490,9 +516,9 @@ msgid "Delete withdrawal"
 msgstr ""
 
 #: src/Admin/Admin.php:529
-#: src/Package.php:150
+#: src/Package.php:152
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:529
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:150
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:152
 #, php-format
 msgctxt "owb"
 msgid "Withdrawn %1$sx"
@@ -977,20 +1003,20 @@ msgid "%1$s at %2$s"
 msgstr ""
 
 #: src/Admin/WithdrawalTable.php:1111
-#: templates/emails/email-withdrawal-details.php:74
+#: templates/emails/email-withdrawal-details.php:76
 #: templates/forms/order-withdrawal-request-item-select.php:66
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1111
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:74
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:76
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request-item-select.php:66
 msgctxt "owb"
 msgid "Product"
 msgstr ""
 
 #: src/Admin/WithdrawalTable.php:1112
-#: templates/emails/email-withdrawal-details.php:75
+#: templates/emails/email-withdrawal-details.php:77
 #: templates/forms/order-withdrawal-request-item-select.php:67
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1112
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:75
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:77
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request-item-select.php:67
 msgctxt "owb"
 msgid "Quantity"
@@ -1003,9 +1029,9 @@ msgid "Sorry, no permission to view that order."
 msgstr ""
 
 #: src/Ajax.php:321
-#: src/Ajax.php:599
+#: src/Ajax.php:604
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:321
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:599
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:604
 msgctxt "owb"
 msgid "Thank you. We've received your withdrawal request. You'll receive a confirmation of your request by email."
 msgstr ""
@@ -1035,19 +1061,19 @@ msgid "Please check your email address."
 msgstr ""
 
 #: src/Ajax.php:354
-#: src/Ajax.php:451
-#: src/Ajax.php:467
-#: src/Ajax.php:493
-#: src/Ajax.php:499
-#: src/Ajax.php:505
-#: src/Ajax.php:534
+#: src/Ajax.php:450
+#: src/Ajax.php:466
+#: src/Ajax.php:492
+#: src/Ajax.php:498
+#: src/Ajax.php:504
+#: src/Ajax.php:533
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:354
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:451
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:467
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:493
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:499
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:505
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:534
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:450
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:466
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:492
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:498
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:504
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:533
 #, php-format
 msgctxt "owb"
 msgid "Sorry, we were unable to find an order based on the information you provided. Please try again - if the issue persists, please <a href=\"%s\">contact support</a> for help."
@@ -1077,23 +1103,23 @@ msgctxt "owb"
 msgid "Please enter additional information."
 msgstr ""
 
-#: src/Ajax.php:539
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:539
+#: src/Ajax.php:538
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:538
 #, php-format
 msgctxt "owb"
 msgid "Sorry, but this order cannot be withdrawn. <a href=\"%s\">Contact support</a> for help."
 msgstr ""
 
-#: src/Ajax.php:566
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:566
+#: src/Ajax.php:565
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:565
 msgctxt "owb"
 msgid "You've already submitted an identical withdrawal request for this order."
 msgstr ""
 
-#: src/Ajax.php:634
-#: src/Ajax.php:657
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:634
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:657
+#: src/Ajax.php:639
+#: src/Ajax.php:662
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:639
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:662
 #, php-format
 msgctxt "owb"
 msgid "You've submitted too many different unverified withdrawal requests. <a href=\"%s\">Contact support</a> for help."
@@ -1101,10 +1127,10 @@ msgstr ""
 
 #: src/DataStores/WithdrawalOrder.php:142
 #: src/DataStores/WithdrawalOrderCPT.php:95
-#: src/WithdrawalOrder.php:995
+#: src/WithdrawalOrder.php:1005
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrder.php:142
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrderCPT.php:95
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:995
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:1005
 #, php-format
 msgctxt "owb"
 msgid "Withdrawal status changed from %1$s to %2$s."
@@ -1140,100 +1166,100 @@ msgctxt "owb-page-title"
 msgid "Withdraw from contract"
 msgstr ""
 
-#: src/Package.php:107
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:107
+#: src/Package.php:109
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:109
 msgctxt "owb"
 msgid "Withdraw"
 msgstr ""
 
-#: src/Package.php:150
-#: src/Package.php:1036
-#: src/Package.php:1087
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:150
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1036
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1087
+#: src/Package.php:152
+#: src/Package.php:1054
+#: src/Package.php:1105
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:152
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1054
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1105
 msgctxt "owb"
 msgid "Withdrawn"
 msgstr ""
 
-#: src/Package.php:155
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:155
+#: src/Package.php:157
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:157
 msgctxt "owb"
 msgid "Withdrawal requested"
 msgstr ""
 
-#: src/Package.php:155
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:155
+#: src/Package.php:157
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:157
 #, php-format
 msgctxt "owb"
 msgid "Withdrawal requested %1$sx"
 msgstr ""
 
-#: src/Package.php:555
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:555
+#: src/Package.php:573
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:573
 msgctxt "owb-email-preview"
 msgid "John"
 msgstr ""
 
-#: src/Package.php:556
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:556
+#: src/Package.php:574
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:574
 msgctxt "owb-email-preview"
 msgid "Doe"
 msgstr ""
 
-#: src/Package.php:559
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:559
+#: src/Package.php:577
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:577
 msgctxt "owb-email-preview"
 msgid "An example rejection reason."
 msgstr ""
 
-#: src/Package.php:587
-#: src/Package.php:1048
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:587
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1048
+#: src/Package.php:605
+#: src/Package.php:1066
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:605
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1066
 msgctxt "owb"
 msgid "Requested"
 msgstr ""
 
-#: src/Package.php:588
-#: src/Package.php:1060
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:588
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1060
+#: src/Package.php:606
+#: src/Package.php:1078
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:606
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1078
 msgctxt "owb"
 msgid "Confirmed"
 msgstr ""
 
-#: src/Package.php:589
-#: src/Package.php:1072
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:589
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1072
+#: src/Package.php:607
+#: src/Package.php:1090
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:607
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1090
 msgctxt "owb"
 msgid "Rejected"
 msgstr ""
 
-#: src/Package.php:752
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:752
+#: src/Package.php:770
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:770
 #, php-format
 msgctxt "owb"
 msgid "Sorry, we've detected a technical issue while submitting your withdrawal. Please try again - if the issue persists, please <a href=\"%s\">contact support</a> for help."
 msgstr ""
 
-#: src/Package.php:803
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:803
+#: src/Package.php:821
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:821
 msgctxt "owb"
 msgid "Settings"
 msgstr ""
 
-#: src/Package.php:1024
-#: src/Package.php:1086
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1024
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1086
+#: src/Package.php:1042
+#: src/Package.php:1104
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1042
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1104
 msgctxt "owb"
 msgid "Pending withdrawal"
 msgstr ""
 
-#: src/Package.php:1029
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1029
+#: src/Package.php:1047
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1047
 #, php-format
 msgctxt "owb"
 msgid "Pending withdrawal (%s)"
@@ -1241,8 +1267,8 @@ msgid_plural "Pending withdrawals (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Package.php:1041
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1041
+#: src/Package.php:1059
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1059
 #, php-format
 msgctxt "owb"
 msgid "Withdrawn (%s)"
@@ -1250,8 +1276,8 @@ msgid_plural "Withdrawn (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Package.php:1053
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1053
+#: src/Package.php:1071
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1071
 #, php-format
 msgctxt "owb"
 msgid "Requested (%s)"
@@ -1259,8 +1285,8 @@ msgid_plural "Requested (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Package.php:1065
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1065
+#: src/Package.php:1083
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1083
 #, php-format
 msgctxt "owb"
 msgid "Confirmed (%s)"
@@ -1268,8 +1294,8 @@ msgid_plural "Confirmed (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Package.php:1077
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1077
+#: src/Package.php:1095
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1095
 #, php-format
 msgctxt "owb"
 msgid "Rejected (%s)"
@@ -1559,24 +1585,24 @@ msgctxt "owb-order-number"
 msgid "Not specified"
 msgstr ""
 
-#: src/WithdrawalOrder.php:786
-#: src/WithdrawalOrder.php:787
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:786
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:787
+#: src/WithdrawalOrder.php:796
+#: src/WithdrawalOrder.php:797
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:796
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:797
 msgctxt "owb"
 msgid "WooCommerce"
 msgstr ""
 
-#: src/WithdrawalOrder.php:966
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:966
+#: src/WithdrawalOrder.php:976
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:976
 #, php-format
 msgctxt "owb"
 msgid "Parent order changed from %1$s to %2$s."
 msgstr ""
 
 #. translators: %s: new order status
-#: src/WithdrawalOrder.php:998
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:998
+#: src/WithdrawalOrder.php:1008
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:1008
 #, php-format
 msgctxt "owb"
 msgid "Withdrawal status set to %s."
@@ -1590,10 +1616,18 @@ msgctxt "owb"
 msgid "A withdrawal request has been deleted:"
 msgstr ""
 
-#: templates/emails/admin-new-withdrawal-request.php:26
-#: templates/emails/plain/admin-new-withdrawal-request.php:24
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/admin-new-withdrawal-request.php:26
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/admin-new-withdrawal-request.php:24
+#: templates/emails/admin-new-withdrawal-request.php:27
+#: templates/emails/plain/admin-new-withdrawal-request.php:25
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/admin-new-withdrawal-request.php:27
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/admin-new-withdrawal-request.php:25
+msgctxt "owb"
+msgid "A withdrawal request has been updated:"
+msgstr ""
+
+#: templates/emails/admin-new-withdrawal-request.php:29
+#: templates/emails/plain/admin-new-withdrawal-request.php:27
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/admin-new-withdrawal-request.php:29
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/admin-new-withdrawal-request.php:27
 msgctxt "owb"
 msgid "You’ve received a new withdrawal request:"
 msgstr ""
@@ -1715,6 +1749,14 @@ msgctxt "owb"
 msgid "As you requested, we have deleted your original withdrawal request to %1$s."
 msgstr ""
 
+#: templates/emails/email-withdrawal-details.php:68
+#: templates/emails/plain/email-withdrawal-details.php:55
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:68
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:55
+msgctxt "owb"
+msgid "As you requested, we have edited your original withdrawal request."
+msgstr ""
+
 #: templates/emails/email-withdrawal-edit-link.php:23
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-edit-link.php:23
 msgctxt "owb"
@@ -1768,8 +1810,8 @@ msgid "We could not find an order based on your criteria—please use the link b
 msgstr ""
 
 #. translators: %s: Order link.
-#: templates/emails/plain/email-withdrawal-details.php:76
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:76
+#: templates/emails/plain/email-withdrawal-details.php:78
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:78
 #, php-format
 msgctxt "owb"
 msgid "View order: %s"
@@ -5096,16 +5138,16 @@ msgstr ""
 msgid "Register your license"
 msgstr ""
 
-#: includes/admin/settings/views/html-admin-settings-tabs.php:29
-msgid "Manage your license"
-msgstr ""
-
-#: includes/admin/settings/views/html-admin-settings-tabs.php:31
+#: includes/admin/settings/views/html-admin-settings-tabs.php:28
 msgid "License expired"
 msgstr ""
 
-#: includes/admin/settings/views/html-admin-settings-tabs.php:34
+#: includes/admin/settings/views/html-admin-settings-tabs.php:31
 msgid "License expires soon"
+msgstr ""
+
+#: includes/admin/settings/views/html-admin-settings-tabs.php:35
+msgid "Manage your license"
 msgstr ""
 
 #: includes/admin/settings/views/html-admin-settings-tabs.php:47
@@ -6194,35 +6236,35 @@ msgctxt "deposit-tax-status"
 msgid "None"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:570
+#: includes/class-wc-gzd-emails.php:594
 msgid "BCC recipients"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:572
+#: includes/class-wc-gzd-emails.php:596
 msgid "Enter blind-copy recipients (comma separated) for this email."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:647
+#: includes/class-wc-gzd-emails.php:671
 msgid "Confirmation text"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:648
+#: includes/class-wc-gzd-emails.php:672
 msgid "Your order has been received and is now being processed. Your order details are shown below for your reference:"
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:649
+#: includes/class-wc-gzd-emails.php:673
 msgid "This text will be inserted within the order confirmation email. Use {order_number}, {site_title} or {order_date} as placeholder."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:827
+#: includes/class-wc-gzd-emails.php:851
 msgid "Your order has been received and is now being processed. Your order details are shown below for your reference."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:876
+#: includes/class-wc-gzd-emails.php:900
 msgid "Someone requested a password reset for your account."
 msgstr ""
 
-#: includes/class-wc-gzd-emails.php:891
+#: includes/class-wc-gzd-emails.php:915
 #, php-format
 msgid "Thanks for creating an account on %s."
 msgstr ""
