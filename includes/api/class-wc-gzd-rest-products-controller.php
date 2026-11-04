@@ -766,12 +766,111 @@ class WC_GZD_REST_Products_Controller {
 		$custom_properties = $this->get_item_schema_properties();
 		unset( $custom_properties['variations'] );
 
+		if ( isset( $schema_properties['attributes']['items']['properties'] ) ) {
+			$schema_properties['attributes']['items']['properties']['checkout_visible'] = array(
+				'description' => __( 'Define if the attribute is visible during cart/checkout.', 'woocommerce-germanized' ),
+				'type'        => 'boolean',
+				'context'     => array( 'view', 'edit' ),
+			);
+		}
+
 		return array_merge_recursive( $schema_properties, $custom_properties );
+	}
+
+	/**
+	 * Add checkout visibility to (non-variation) product attributes in the REST response.
+	 *
+	 * @param array      $attributes Attributes as prepared by the Woo REST controller.
+	 * @param WC_Product $product
+	 *
+	 * @return array
+	 */
+	protected function prepare_attributes( $attributes, $product ) {
+		$product_attributes = $product->get_attributes();
+
+		foreach ( $attributes as $k => $attribute ) {
+			if ( ! isset( $attribute['slug'] ) ) {
+				continue;
+			}
+
+			$key = sanitize_title( $attribute['slug'] );
+
+			if ( isset( $product_attributes[ $key ] ) && is_a( $product_attributes[ $key ], 'WC_Product_Attribute' ) ) {
+				$attributes[ $k ]['checkout_visible'] = (bool) WC_GZD_Product_Attribute_Helper::instance()->get_attribute( $product_attributes[ $key ], $product )->is_checkout_visible();
+			}
+		}
+
+		return $attributes;
+	}
+
+	/**
+	 * Apply checkout visibility passed per attribute within the REST request.
+	 *
+	 * @param WP_REST_Request $request
+	 * @param WC_Product      $product
+	 *
+	 * @return WC_Product
+	 */
+	protected function save_attributes_checkout_visibility( $request, $product ) {
+		if ( ! isset( $request['attributes'] ) || ! is_array( $request['attributes'] ) || $product->is_type( 'variation' ) ) {
+			return $product;
+		}
+
+		$attributes  = $product->get_attributes();
+		$has_updated = false;
+
+		foreach ( $request['attributes'] as $request_attribute ) {
+			if ( ! is_array( $request_attribute ) || ! isset( $request_attribute['checkout_visible'] ) ) {
+				continue;
+			}
+
+			// Use the same name resolution as the Woo REST controller.
+			$attribute_name = '';
+
+			if ( ! empty( $request_attribute['id'] ) ) {
+				$attribute_name = wc_attribute_taxonomy_name_by_id( absint( $request_attribute['id'] ) );
+			} elseif ( ! empty( $request_attribute['name'] ) ) {
+				$attribute_name = wc_clean( $request_attribute['name'] );
+			}
+
+			$key = sanitize_title( $attribute_name );
+
+			if ( ! $attribute_name || ! isset( $attributes[ $key ] ) || ! is_a( $attributes[ $key ], 'WC_Product_Attribute' ) ) {
+				continue;
+			}
+
+			$is_checkout_visible = wc_string_to_bool( $request_attribute['checkout_visible'] );
+
+			if ( is_a( $attributes[ $key ], 'WC_GZD_Product_Attribute' ) ) {
+				$attributes[ $key ]->set_checkout_visible( $is_checkout_visible );
+			} elseif ( is_callable( array( $attributes[ $key ], 'set_extra_data' ) ) ) {
+				// Woo >= 10.6
+				$attributes[ $key ]->set_extra_data( 'checkout_visible', $is_checkout_visible );
+			} else {
+				// Woo < 10.6: the deprecated helper persists WC_GZD_Product_Attribute data after saving.
+				$attributes[ $key ] = new WC_GZD_Product_Attribute( $attributes[ $key ] );
+				$attributes[ $key ]->set_checkout_visible( $is_checkout_visible );
+			}
+
+			$has_updated = true;
+		}
+
+		if ( $has_updated ) {
+			$product->set_attributes( $attributes );
+		}
+
+		return $product;
 	}
 
 	public function prepare( $response, $post, $request ) {
 		$product = wc_get_product( $post );
 		$context = ! empty( $request['context'] ) ? $request['context'] : 'view';
+
+		if ( ! $product->is_type( 'variation' ) && ! empty( $response->data['attributes'] ) && is_array( $response->data['attributes'] ) ) {
+			$data               = $response->data;
+			$data['attributes'] = $this->prepare_attributes( $data['attributes'], $product );
+			$response->set_data( $data );
+		}
 
 		// Add variations to variable v2 API requests.
 		if ( $product->is_type( 'variable' ) && $product->has_child() ) {
@@ -797,6 +896,7 @@ class WC_GZD_REST_Products_Controller {
 
 	public function insert_update( $product, $request, $inserted ) {
 		$product = $this->save_update_product_data( $request, $product );
+		$product = $this->save_attributes_checkout_visibility( $request, $product );
 
 		return $product;
 	}

@@ -225,9 +225,7 @@ class WC_GZD_Product_Export {
 					$this->additional_columns[ 'attributes:checkout_visible' . $i ] = sprintf( __( 'Attribute %d checkout visible', 'woocommerce-germanized' ), $i );
 
 					if ( is_a( $attribute, 'WC_Product_Attribute' ) ) {
-                        $row[ 'attributes:checkout_visible' . $i ] = method_exists( $attribute, 'get_extra_data' ) ?
-                            $attribute->get_extra_data( 'checkout_visible' ) :
-                            WC_GZD_Product_Attribute_Helper::instance()->get_attribute( $attribute, $product )->get_checkout_visible();
+						$row[ 'attributes:checkout_visible' . $i ] = WC_GZD_Product_Attribute_Helper::instance()->get_attribute( $attribute, $product )->get_checkout_visible() ? 1 : 0;
 					} else {
 						$row[ 'attributes:checkout_visible' . $i ] = 0;
 					}

@@ -40,11 +40,36 @@ class WC_GZD_Product_Attribute extends WC_Product_Attribute {
 		 */
 		$default_visible = apply_filters( 'woocommerce_gzd_product_attribute_checkout_visible_default_value', false, $this );
 		$this->data      = array_merge(
-			$this->attribute->get_data(),
+			$attribute->get_data(),
 			array(
 				'checkout_visible' => $default_visible,
 			)
 		);
+
+		/**
+		 * As of Woo 10.6 additional attribute data is stored as extra data. Make sure to keep
+		 * the original extra data and to sync checkout visibility so that the data store
+		 * (which persists get_all_extra_data()) saves it.
+		 */
+		if ( $this->supports_extra_data() ) {
+			$this->extra_data = $attribute->get_all_extra_data();
+			$checkout_visible = $attribute->get_extra_data( 'checkout_visible' );
+
+			if ( ! is_null( $checkout_visible ) ) {
+				$this->data['checkout_visible'] = wc_string_to_bool( $checkout_visible );
+			}
+
+			$this->extra_data['checkout_visible'] = $this->data['checkout_visible'];
+		}
+	}
+
+	/**
+	 * Whether the Woo core attribute supports extra data (Woo >= 10.6).
+	 *
+	 * @return bool
+	 */
+	protected function supports_extra_data() {
+		return method_exists( 'WC_Product_Attribute', 'get_all_extra_data' );
 	}
 
 	/**
@@ -72,6 +97,10 @@ class WC_GZD_Product_Attribute extends WC_Product_Attribute {
 	 */
 	public function set_checkout_visible( $value ) {
 		$this->data['checkout_visible'] = wc_string_to_bool( $value );
+
+		if ( $this->supports_extra_data() ) {
+			$this->extra_data['checkout_visible'] = $this->data['checkout_visible'];
+		}
 	}
 
 	/**
