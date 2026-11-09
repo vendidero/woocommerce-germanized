@@ -57,7 +57,10 @@ class WC_GZD_Customer_Helper {
 			add_action( 'template_redirect', array( $this, 'maybe_add_activation_notice' ), 30 );
 
 			// Set doi meta while creating Woo customer
-			add_action( 'woocommerce_created_customer', array( $this, 'set_doi' ), 1, 1 );
+			add_action( 'woocommerce_created_customer', array( $this, 'set_doi' ), 1 );
+
+			// Replace the Woo registration success notice with a DOI-specific notice
+			add_filter( 'woocommerce_add_success', array( $this, 'maybe_replace_registration_notice' ), 10, 1 );
 
 			// Remove session data
 			add_action( 'wp_login', array( $this, 'delete_doi_session' ) );
@@ -295,6 +298,48 @@ class WC_GZD_Customer_Helper {
 			$this->set_doi_session( $user_id );
 			$this->get_customer_activation_meta( $user_id, true );
 		}
+	}
+
+	/**
+	 * Replace the default Woo notice shown after registering a new account via the
+	 * my account page in case the double opt-in has been triggered for the new customer.
+	 *
+	 * @see WC_Form_Handler::process_registration()
+	 *
+	 * @param string $message
+	 *
+	 * @return string
+	 */
+	public function maybe_replace_registration_notice( $message ) {
+		if ( ! $this->has_doi_session() ) {
+			return $message;
+		}
+
+		$woo_notices = array(
+			__( 'Your account was created successfully and a password has been sent to your email address.', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+			__( 'Your account was created successfully. Your login details have been sent to your email address.', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+		);
+
+		if ( in_array( $message, $woo_notices, true ) ) {
+			if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) ) {
+				$new_message = __( 'Your account has been created and is waiting for your activation. Please check your e-mails and activate your account by clicking on the activation link. The email also contains a link to set your password.', 'woocommerce-germanized' );
+			} else {
+				$new_message = __( 'Your account has been created and is waiting for your activation. Please check your e-mails and activate your account by clicking on the activation link.', 'woocommerce-germanized' );
+			}
+
+			/**
+			 * Filters the notice shown after registering a new customer account in case DOI was triggered.
+			 *
+			 * @param string $new_message The new notice.
+			 * @param string $message The original Woo notice.
+			 * @param integer $user_id The newly created user id.
+			 *
+			 * @since 4.1.8
+			 */
+			$message = apply_filters( 'woocommerce_gzd_double_opt_in_registration_notice', $new_message, $message, $this->get_current_doi_session_user_id() );
+		}
+
+		return $message;
 	}
 
 	public function set_doi_session( $user_id ) {
