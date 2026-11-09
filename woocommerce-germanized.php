@@ -321,6 +321,14 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			add_filter( 'woocommerce_product_get_global_unique_id', array( $this, 'add_gtin_fallback' ), 10, 2 );
 			add_filter( 'woocommerce_product_variation_get_global_unique_id', array( $this, 'add_gtin_fallback' ), 10, 2 );
 
+			/**
+			 * Use the Germanized revocation page as fallback for the Woo refund & returns page
+			 * and prevent Woo from creating a separate page in case a revocation page exists.
+			 */
+			add_filter( 'option_woocommerce_refund_returns_page_id', array( $this, 'refund_returns_page_fallback' ), 10 );
+			add_filter( 'default_option_woocommerce_refund_returns_page_id', array( $this, 'refund_returns_page_fallback' ), 10 );
+			add_filter( 'woocommerce_create_pages', array( $this, 'prevent_refund_returns_page_creation' ), 10 );
+
 			add_action( 'change_locale', array( $this, 'on_change_locale' ) );
 
 			// Payment gateways
@@ -1548,6 +1556,60 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			}
 
 			return $gtin;
+		}
+
+		/**
+		 * Returns the revocation page id in case a valid (non-trashed) revocation page exists.
+		 *
+		 * @return int
+		 */
+		protected function get_valid_revocation_page_id() {
+			$page_id = absint( get_option( 'woocommerce_revocation_page_id' ) );
+
+			if ( $page_id > 0 && ( $page = get_post( $page_id ) ) ) {
+				if ( 'page' === $page->post_type && ! in_array( $page->post_status, array( 'trash', 'auto-draft' ), true ) ) {
+					return $page_id;
+				}
+			}
+
+			return 0;
+		}
+
+		/**
+		 * Falls back to the Germanized revocation page in case no (published) refund & returns page is set.
+		 * This also covers the draft page Woo automatically creates on install.
+		 *
+		 * @param mixed $page_id
+		 *
+		 * @return mixed
+		 */
+		public function refund_returns_page_fallback( $page_id ) {
+			$has_valid_page = false;
+
+			if ( absint( $page_id ) > 0 && ( $page = get_post( absint( $page_id ) ) ) ) {
+				$has_valid_page = 'page' === $page->post_type && in_array( $page->post_status, array( 'publish', 'private' ), true );
+			}
+
+			if ( ! $has_valid_page && ( $revocation_page_id = $this->get_valid_revocation_page_id() ) ) {
+				$page_id = $revocation_page_id;
+			}
+
+			return $page_id;
+		}
+
+		/**
+		 * Prevent Woo from creating a separate refund & returns page in case a revocation page exists.
+		 *
+		 * @param array $pages
+		 *
+		 * @return array
+		 */
+		public function prevent_refund_returns_page_creation( $pages ) {
+			if ( is_array( $pages ) && array_key_exists( 'refund_returns', $pages ) && $this->get_valid_revocation_page_id() ) {
+				unset( $pages['refund_returns'] );
+			}
+
+			return $pages;
 		}
 
 		public function add_structured_product_data( $markup, $product ) {

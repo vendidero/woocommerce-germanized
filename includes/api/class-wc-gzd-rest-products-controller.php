@@ -789,11 +789,21 @@ class WC_GZD_REST_Products_Controller {
 		$product_attributes = $product->get_attributes();
 
 		foreach ( $attributes as $k => $attribute ) {
-			if ( ! isset( $attribute['slug'] ) ) {
+			/**
+			 * The slug is only part of the Woo REST response as of Woo 8.4. Fall back to the same
+			 * name resolution as used when saving: taxonomy name by id for global attributes, name otherwise.
+			 */
+			if ( ! empty( $attribute['slug'] ) ) {
+				$attribute_name = $attribute['slug'];
+			} elseif ( ! empty( $attribute['id'] ) ) {
+				$attribute_name = wc_attribute_taxonomy_name_by_id( absint( $attribute['id'] ) );
+			} elseif ( ! empty( $attribute['name'] ) ) {
+				$attribute_name = $attribute['name'];
+			} else {
 				continue;
 			}
 
-			$key = sanitize_title( $attribute['slug'] );
+			$key = sanitize_title( $attribute_name );
 
 			if ( isset( $product_attributes[ $key ] ) && is_a( $product_attributes[ $key ], 'WC_Product_Attribute' ) ) {
 				$attributes[ $k ]['checkout_visible'] = (bool) WC_GZD_Product_Attribute_Helper::instance()->get_attribute( $product_attributes[ $key ], $product )->is_checkout_visible();
