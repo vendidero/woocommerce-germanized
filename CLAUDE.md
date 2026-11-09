@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Germanized for WooCommerce — a WordPress/WooCommerce plugin that adapts WooCommerce to German/EU legal requirements (unit prices, delivery times, legal checkboxes, price labels, revocation, GPSR/product safety, food info, deposits, SEPA direct debit, e-invoices).
 
-Minimums: PHP 5.6 (bootstrap) / 7.4 (composer platform), WP 5.4, WooCommerce 3.9. Text domain: `woocommerce-germanized`. Node `^20.11.1`.
+Minimums: PHP 5.6 (bootstrap) / 7.4 (composer platform), WP 5.4, WooCommerce 3.9. Text domain: `woocommerce-germanized`. Node `^22.22.2 || ^24.15.0` (required by `@wordpress/scripts` 36+).
 
 ## Commands
 

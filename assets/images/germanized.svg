@@ -1,7 +1,7 @@
 <svg version="1.1"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 x="0px" y="0px" width="509.16px" height="167.07px" viewBox="0 0 509.16 167.07"
-	 style="enable-background:new 0 0 509.16 167.07;" xml:space="preserve">
+	 x="0px" y="0px" width="509.16px" height="110px" viewBox="0 0 509.16 110"
+	 style="enable-background:new 0 0 509.16 110;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;}
 	.st1{enable-background:new    ;}
@@ -33,7 +33,7 @@
 <rect id="XMLID_9_" x="94.64" y="68.31" class="st2" width="106.5" height="8.76"/>
 <rect id="XMLID_8_" x="201.14" y="68.31" class="st3" width="106.5" height="8.76"/>
 <rect id="XMLID_7_" x="307.64" y="68.31" class="st4" width="106.5" height="8.76"/>
-<rect id="XMLID_1_" x="81.83" y="88.07" class="st0" width="345.94" height="79"/>
+<rect id="XMLID_1_" x="81.83" y="88.07" class="st0" width="345.94" height="21.93"/>
 <g class="st1">
 	<path class="st2" d="M105.89,93.94v3.12h6.3v4.73h-6.3v6.87h-5.45v-19.6h12.47v4.89H105.89z"/>
 	<path class="st2" d="M125.36,109.15c-6.3,0-10.8-4.31-10.8-10.3s4.5-10.29,10.8-10.29c6.28,0,10.76,4.29,10.76,10.29

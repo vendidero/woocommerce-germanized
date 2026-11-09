@@ -15,10 +15,22 @@ $base_country = in_array(
 $countries    = WC()->countries->get_countries();
 $country_name = isset( $countries[ $base_country ] ) ? $countries[ $base_country ] : __( 'Germany', 'woocommerce-germanized' );
 ?>
-<h1><?php esc_html_e( 'Germanize WooCommerce', 'woocommerce-germanized' ); ?></h1>
+<div class="wc-gzd-wizard-entry">
+	<h1><?php esc_html_e( 'Germanize WooCommerce', 'woocommerce-germanized' ); ?></h1>
+</div>
 
-<p class="headliner"><?php printf( esc_html__( 'Let Germanized prepare your WooCommerce installation for %s.', 'woocommerce-germanized' ), esc_html( $country_name ) ); ?></p>
+<div class="wc-gzd-wizard-inner-content inner-content-small">
+	<p class="entry-desc"><?php printf( esc_html__( 'Let Germanized prepare your WooCommerce installation for %s.', 'woocommerce-germanized' ), esc_html( $country_name ) ); ?></p>
 
-<div class="wc-gzd-admin-settings">
-	<?php WC_Admin_Settings::output_fields( $settings ); ?>
+	<div class="wc-gzd-wizard-config">
+		<?php $wizard->output_errors(); ?>
+
+		<table class="wc-gzd-wizard-settings form-table">
+			<tbody>
+				<?php WC_Admin_Settings::output_fields( $settings ); ?>
+			</tbody>
+		</table>
+	</div>
+
+	<?php $wizard->output_links(); ?>
 </div>

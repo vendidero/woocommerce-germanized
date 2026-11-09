@@ -1,269 +1,512 @@
-// Spectre
-// See: https://github.com/picturepan2/spectre
-@import '../../node_modules/spectre.css/src/variables';
-
-$primary-color: #8865ff;
-$gray-color: #b5b5b5;
-$border-color: #b5b5b5;
-$light-color: #f1f1f1;
-
-@import '../../node_modules/spectre.css/src/steps';
+$wizard-accent: var(--wp-admin-theme-color, #007cba);
+$wizard-border-color: #e0e0e0;
+$wizard-input-border-color: #bbb;
+$wizard-muted-color: #757575;
 
 body {
-  margin: 30px auto 24px;
-  box-shadow: none;
-  background: #f1f1f1;
-  padding: 0;
-  border: none;
+  background-color: #fff;
+  color: #50575e;
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.wc-gzd-setup {
-  .wc-gzd-setup-header {
-    margin-top: 5em;
-    width: 100%;
+a {
+  text-decoration: none;
+}
 
-    .logo-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 1.5em;
+.wc-gzd-wizard * {
+  box-sizing: border-box;
+}
 
-      .logo {
-        display: inline-block;
-        text-indent: -9999px;
-        width: 7em;
-        vertical-align: top;
-        height: 7em;
-        background: url(../images/icon-germanized.svg) no-repeat;
-        background-size: contain;
+.wc-gzd-wizard-header {
+  .wc-gzd-wizard-progress-bar {
+    .wc-gzd-wizard-progress-bar-container {
+      height: 8px;
+      width: 100%;
+      background: transparent;
+    }
+
+    .wc-gzd-wizard-progress-bar-filler {
+      height: 100%;
+      min-width: 8px;
+      background-color: $wizard-accent;
+    }
+  }
+
+  .wc-gzd-wizard-header-nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 15px 15px;
+
+    .wc-gzd-wizard-logo {
+      img {
+        display: block;
+        width: 150px;
+        height: auto;
       }
     }
   }
 }
 
-.step {
-  .step-item {
-    a {
-      &:focus, &:visited, &:active {
-        box-shadow: none;
-      }
+.wc-gzd-wizard-form {
+  min-height: 630px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 20px;
+
+  .wc-gzd-wizard-error-wrapper {
+    .notice, .error, .updated {
+      margin: 10px 0;
     }
   }
 }
 
-.wc-gzd-setup-content {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .13);
-  padding: 24px 24px;
-  background: #fff;
-  overflow: hidden;
-  zoom: 1;
-  margin-top: 1.5em;
-
-  a {
-    color: $primary-color;
-  }
-
-  .error {
-    margin: 0;
-    margin-bottom: 1.5em;
-    box-shadow: none;
-  }
-
+.wc-gzd-wizard-entry {
   h1 {
+    font-style: normal;
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: normal;
+    padding-top: 0;
+    font-weight: 500;
+  }
+}
+
+.wc-gzd-wizard-links {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 30px;
+
+  .button-primary {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 16px;
+    height: 48px;
+    font-size: 14px;
+    font-weight: normal;
+    background: $wizard-accent;
+    border-color: $wizard-accent;
+    outline: none;
+    align-items: center;
+  }
+}
+
+.select2-dropdown {
+  border-color: $wizard-input-border-color;
+}
+
+.wc-gzd-wizard-content {
+  color: #1e1e1e;
+  width: 100%;
+
+  .entry-desc {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: $wizard-muted-color;
+  }
+
+  .wc-gzd-wizard-inner-content {
+    margin: 0 auto;
+    max-width: 900px;
+
+    &.inner-content-small {
+      max-width: 520px;
+    }
+  }
+
+  .wc-gzd-wizard-config {
+    margin-top: 30px;
+  }
+
+  .wc-gzd-wizard-settings {
+    display: flex;
+    border: 0;
+    margin-left: -10px;
+    margin-right: -10px;
     margin-top: 0;
-    border-bottom: none;
-  }
-
-  ul.features {
-    padding-left: 0;
-
-    li {
-      font-size: 15px;
-      line-height: 1.8;
-    }
-  }
-
-  .wc-gzd-admin-settings {
-    .woocommerce-input-toggle:not(.woocommerce-input-toggle--disabled) {
-      border-color: $primary-color;
-      background-color: $primary-color;
-    }
+    width: auto;
+    clear: none;
 
     .wc-gzd-additional-desc {
-      background: rgba($primary-color, .08);
+      margin-top: 8px;
+      font-size: 11px;
+      line-height: 15px;
+      color: $wizard-muted-color;
 
       a {
-        color: $primary-color;
-        text-decoration: none;
+        color: $wizard-accent;
       }
     }
 
-    h2 {
-      display: none;
-    }
+    > tbody {
+      display: flex;
+      flex: 1 0 100%;
+      flex-wrap: wrap;
 
-    .wc-gzd-label-wrap {
-      display: inline-block;
-    }
+      > tr {
+        width: 100%;
+        flex-wrap: wrap;
+        display: flex;
+        margin: 5px 10px;
+        justify-content: flex-start;
 
-    .form-table {
-      th {
-        position: relative;
-        padding: 20px 10px 20px 0;
-        padding-right: 14px;
-        padding-top: 14px;
-        vertical-align: top;
-        text-align: left;
-        width: 150px;
-        line-height: 1.3;
-        font-weight: 600;
-      }
-      td {
-        margin-bottom: 9px;
-        padding: 15px 10px;
-        line-height: 1.3;
-        vertical-align: middle;
+        &.wc-settings-row-half {
+          flex: 1 0 calc(50% - 20px);
+        }
 
-        p.description {
-          margin-top: 0;
+        > th {
+          width: 100%;
+          margin: 0;
+          padding: 5px 0;
+          text-align: left;
+          text-transform: uppercase;
+          font-weight: 500;
+          line-height: 16px;
+          font-size: 11px;
+
+          .wc-gzd-label-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+
+            .woocommerce-help-tip {
+              margin: 0;
+            }
+          }
+        }
+
+        > td {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+
+          > p, fieldset > p {
+            margin-top: 0;
+          }
+        }
+
+        // Germanized toggles render the toggle and its (long) description within the td.
+        // The description is wrapped in a <p> containing a <div class="wc-gzd-additional-desc">, which browsers
+        // split into sibling elements - lay them out in a grid: toggle | description, additional desc below.
+        > td.forminp-gzd_toggle {
+          fieldset {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            column-gap: 10px;
+            align-items: start;
+
+            > p:empty {
+              display: none;
+            }
+
+            > .wc-gzd-additional-desc {
+              grid-column: 2;
+            }
+          }
+
+          a.woocommerce-gzd-input-toggle-trigger {
+            margin-top: 2px;
+            color: transparent;
+            border: none;
+            box-shadow: none;
+          }
+
+          span.woocommerce-gzd-input-toggle:not(.woocommerce-input-toggle--disabled) {
+            border-color: $wizard-accent;
+            background-color: $wizard-accent;
+          }
+
+          span.description, p.description {
+            display: block;
+            margin: 0;
+            font-style: normal;
+            font-size: 13px;
+            line-height: 20px;
+            color: #1e1e1e;
+
+            a {
+              color: $wizard-accent;
+            }
+          }
+        }
+
+        > td.forminp-html {
+          p {
+            margin: 0;
+            font-size: 13px;
+          }
+        }
+
+        input[type=text] {
+          width: 100%;
+          height: 40px;
+          border-color: $wizard-input-border-color;
+          border-radius: 2px;
+          border-width: 1px;
+          font-size: 13px;
+        }
+
+        select {
+          height: 40px;
+        }
+
+        .select2 {
+          width: 100% !important;
+          border-color: $wizard-input-border-color;
+          border-radius: 2px;
+
+          .select2-selection {
+            border-color: $wizard-input-border-color;
+            border-radius: 2px;
+
+            &.select2-selection--single {
+              border-color: $wizard-input-border-color;
+            }
+          }
         }
       }
-      .status-disabled {
-        display: inline-block;
-      }
     }
   }
 
-  p.headliner {
-    border-bottom: 1px solid $border-color;
-    font-size: 16px;
-    line-height: 2;
-    margin-bottom: 1.5em;
-    padding-bottom: 1em;
-
-    &.no-border {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-  }
-
-  p.desc {
-    font-size: 11px;
-    line-height: 2;
+  pre.wc-gzd-wizard-code {
+    width: 100%;
+    margin: 0;
+    padding: 12px;
+    overflow-x: auto;
+    background: #f6f7f7;
+    border: 1px solid $wizard-border-color;
+    border-radius: 2px;
 
     code {
-      font-size: inherit;
-    }
-  }
-
-  p.form-wrapper {
-    input[type=text] {
-      padding: 10px;
-      width: 100%;
-    }
-  }
-
-  h2 {
-    border-top: 1px solid $border-color;
-    padding-top: 1em;
-    margin-top: 1em;
-    border-bottom: none;
-  }
-
-  ul.demo-layouts {
-    list-style: none;
-    padding: 0;
-
-    li.demo-layout {
-      width: 33.3333333%;
-      max-width: 100%;
-      overflow: hidden;
-
-      label {
-        .desc {
-          font-weight: 600;
-          font-size: 16px;
-        }
-      }
-
-      img {
-        width: 100%;
-        height: auto;
-        margin-top: 1em;
-      }
-    }
-  }
-
-  .wc-gzd-setup-grid {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin-left: -.5rem;
-    margin-right: -.5rem;
-
-    .wc-gzd-setup-grid-item {
-      flex: none;
-      width: 50%;
-      max-width: 100%;
-      padding-left: .5rem;
-      padding-right: .5rem;
-      box-sizing: border-box;
-    }
-  }
-
-  ul.more {
-    padding-left: 0;
-
-    li {
-      a {
-        color: #444;
-        text-decoration: none;
-      }
+      background: transparent;
+      padding: 0;
+      font-size: 12px;
+      cursor: copy;
     }
   }
 }
 
-.wc-gzd-setup-footer {
-  margin-top: 1em;
-  padding-bottom: 1.5em;
+.wc-gzd-wizard-footer {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 15px 15px;
+}
 
-  .wc-gzd-setup-links {
+.wc-gzd-wizard-inner-content {
+  // Direct children only - settings rows render their own fieldsets.
+  > fieldset {
+    display: flex;
+    gap: 18px;
+    flex-direction: column;
+  }
+}
+
+// Same as the fieldset list above, but as a div - used where items contain toggles (see provider.php).
+.wc-gzd-wizard-list {
+  display: flex;
+  gap: 18px;
+  flex-direction: column;
+}
+
+.wc-gzd-wizard-provider-icon {
+  max-height: 50px;
+  display: inline-flex;
+  max-width: 100px;
+
+  img {
+    max-width: 100px;
+    height: auto;
+    display: inline-flex;
+  }
+}
+
+.wc-gzd-wizard-provider {
+  .list-item-content {
+    gap: 16px;
+
+    // Shiptastic appends a pro badge to placeholder provider titles - its admin styles are not loaded within the wizard.
+    h3 .wc-shiptastic-pro {
+      font-size: 9px;
+      font-weight: normal;
+      font-style: normal;
+      line-height: 9px;
+      text-transform: uppercase;
+      text-align: center;
+      border-radius: 3px;
+      padding: 1px 3px;
+      margin-left: 8px;
+      border: 1px solid #222;
+      color: #222;
+      background: transparent;
+    }
+  }
+
+  ul.wc-gzd-wizard-provider-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .wizard-feature {
+      display: inline-flex;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 5px;
+      line-height: 16px;
+      font-size: 11px;
+      margin: 0;
+      color: #454545;
+      background: #e5e5e5;
+      border: 1px solid $wizard-border-color;
+      white-space: nowrap;
+    }
+  }
+
+  .list-item-footer {
+    padding-top: 16px;
+    border-top: 1px solid $wizard-border-color;
+
+    fieldset.wc-gzd-wizard-provider-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+
+      a.woocommerce-gzd-input-toggle-trigger {
+        display: inline-flex;
+        color: transparent;
+        border: none;
+        box-shadow: none;
+      }
+
+      span.woocommerce-gzd-input-toggle:not(.woocommerce-input-toggle--disabled) {
+        border-color: $wizard-accent;
+        background-color: $wizard-accent;
+      }
+
+      p.description {
+        margin: 0;
+        font-style: normal;
+        font-size: 13px;
+        color: #1e1e1e;
+      }
+    }
+
+    .wc-gzd-wizard-provider-upgrade {
+      margin: 0;
+      font-size: 13px;
+    }
+  }
+}
+
+.wc-gzd-wizard-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  border: 1px solid $wizard-border-color;
+  border-radius: 2px;
+  width: 100%;
+
+  > p:first-child {
+    margin-top: 0;
+  }
+
+  > p:last-child {
+    margin-bottom: 0;
+  }
+
+  .list-item-content {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.5em;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  .list-item-footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-    align-items: baseline;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
   }
 
-  .wc-gzd-setup-link {
-    text-decoration: none;
+  ul.wc-gzd-wizard-features {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
-    &.wc-gzd-setup-link-skip {
-      color: $gray-color;
-      margin-right: 2em;
-      margin-top: .5em;
+    li {
+      position: relative;
+      padding-left: 28px;
+      font-size: 14px;
+      line-height: 22px;
+      margin: 0 0 8px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &::before {
+        content: "\f147";
+        font-family: dashicons;
+        font-size: 20px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: $wizard-accent;
+      }
     }
   }
 
-  .button-primary {
-    padding: .5em 1em;
-    line-height: 1em;
-    font-size: 12px;
-    font-weight: 600;
-    height: 45px;
-    text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-  }
+  ul.wc-gzd-wizard-resources {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
-  .escape {
-    text-align: center;
-    margin-top: 1em;
+    li {
+      margin: 0 0 8px;
+      font-size: 14px;
 
-    a {
-      color: $gray-color;
-      font-size: 11px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .dashicons {
+        color: $wizard-muted-color;
+        margin-right: 4px;
+      }
+
+      a {
+        color: #1e1e1e;
+      }
     }
   }
 }

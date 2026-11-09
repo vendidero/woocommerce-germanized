@@ -400,7 +400,7 @@ class WC_GZD_Checkout {
 	}
 
 	protected function disable_de_state_select() {
-		return apply_filters( 'woocommerce_gzd_disable_de_checkout_state_select', ( is_checkout() || WC_germanized()->is_rest_api_request() ) );
+		return apply_filters( 'woocommerce_gzd_disable_de_checkout_state_select', ( is_checkout() || WC_germanized()->is_rest_api_request() || is_account_page() ) );
 	}
 
 	/**

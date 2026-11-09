@@ -1005,8 +1005,20 @@ class WC_GZD_Customer_Helper {
 					if ( class_exists( 'Automattic\WooCommerce\Internal\CustomerEmailVerification\EmailVerificationService' ) ) {
 						try {
 							$verification_service = wc_get_container()->get( Automattic\WooCommerce\Internal\CustomerEmailVerification\EmailVerificationService::class );
-							$verification_service->mark_verified( $user->ID );
-						} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+							/**
+							 * Woo >= 11.3 expects the (verified) email address as second argument.
+							 * Check the actual method signature as this is an internal API.
+							 */
+							$method = new ReflectionMethod( $verification_service, 'mark_verified' );
+
+							if ( $method->getNumberOfParameters() >= 2 ) {
+								$verification_service->mark_verified( $user->ID, $this->get_user_email( $user ) );
+							} else {
+								$verification_service->mark_verified( $user->ID );
+							}
+						} catch ( \Throwable $e ) {
+							// Internal API might change - do never break the activation.
+							$this->link_customer_past_orders( $user->ID );
 						}
 					} else {
 						$this->link_customer_past_orders( $user->ID );

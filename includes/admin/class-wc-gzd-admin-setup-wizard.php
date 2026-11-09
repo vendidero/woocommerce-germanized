@@ -108,7 +108,9 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 					'handler'     => array( $this, 'wc_gzd_setup_shiptastic_save' ),
 					'order'       => 5,
 					'button_next' => __( 'Install & continue', 'woocommerce-germanized' ),
-					'oss_install' => current_user_can( 'install_plugins' ) ? sprintf( __( 'There was an error while automatically installing %1$s. %2$s', 'woocommerce-germanized' ), esc_html__( 'Shiptastic', 'woocommerce-germanized' ), \Vendidero\Germanized\PluginsHelper::get_plugin_manual_install_message( 'shiptastic-for-woocommerce' ) ) : '',
+					'errors'      => array(
+						'shiptastic_install' => current_user_can( 'install_plugins' ) ? sprintf( __( 'There was an error while automatically installing %1$s. %2$s', 'woocommerce-germanized' ), esc_html__( 'Shiptastic', 'woocommerce-germanized' ), \Vendidero\Germanized\PluginsHelper::get_plugin_manual_install_message( 'shiptastic-for-woocommerce' ) ) : '',
+					),
 				);
 			}
 
@@ -165,12 +167,6 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 
 				$settings = array(
 					array(
-						'title' => '',
-						'type'  => 'title',
-						'desc'  => '',
-						'id'    => 'germanized_options',
-					),
-					array(
 						'title'    => __( 'Settings', 'woocommerce-germanized' ),
 						'desc'     => __( 'Germanize WooCommerce settings (e.g. currency, tax display).', 'woocommerce-germanized' ),
 						'id'       => 'woocommerce_gzd_germanize_settings',
@@ -203,19 +199,9 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 						'default' => wc_gzd_base_country_is_eu() ? 'yes' : 'no',
 						'type'    => 'gzd_toggle',
 					),
-					array(
-						'type' => 'sectionend',
-						'id'   => 'germanized_options',
-					),
 				);
 			} elseif ( 'settings' === $step ) {
 				$settings = array(
-					array(
-						'title' => '',
-						'type'  => 'title',
-						'desc'  => '',
-						'id'    => 'setting_options',
-					),
 					array(
 						'title'   => __( 'Small-Enterprise-Regulation', 'woocommerce-germanized' ),
 						'desc'    => __( 'VAT based on &#167;19 UStG', 'woocommerce-germanized' ) . '<div class="wc-gzd-additional-desc">' . sprintf( __( 'Enable this option if you have chosen to apply to <a href="%s" target="_blank">&#167;19 UStG</a>.', 'woocommerce-germanized' ), esc_url( 'http://www.gesetze-im-internet.de/ustg_1980/__19.html' ) ) . '</div>',
@@ -244,72 +230,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 						'default' => 'no',
 						'type'    => 'gzd_toggle',
 					),
-					array(
-						'type' => 'sectionend',
-						'id'   => 'setting_options',
-					),
 				);
-			} elseif ( 'shipping_provider' === $step ) {
-				foreach ( self::get_available_shipping_provider_integrations() as $provider ) {
-					$title_clean = wp_strip_all_tags( preg_replace( '/>.*?</s', '><', $provider->get_title() ) );
-
-					$settings = array_merge(
-						$settings,
-						array(
-							array(
-								'title' => '',
-								'type'  => 'title',
-								'desc'  => '',
-								'id'    => 'shipping_provider_' . $provider->get_name(),
-							),
-						)
-					);
-
-					if ( $provider->is_pro() && ! WC_germanized()->is_pro() ) {
-						$settings = array_merge(
-							$settings,
-							array(
-								array(
-									'title'   => $title_clean,
-									'id'      => 'woocommerce_gzd_' . $provider->get_name() . '_activate',
-									'default' => wc_bool_to_string( $provider->is_activated() ),
-									'type'    => 'html',
-									'html'    => '<p><span class="status-disabled" style="display: inline-block; vertical-align: middle; margin-right: 3px;"></span> ' . sprintf( __( 'Upgrade to %1$s to activate %2$s integration.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized#upgrade" class="wc-gzd-pro wc-gzd-pro-outlined" target="_blank" rel="noreferrer">pro</a>', $title_clean ) . '</p>',
-								),
-							)
-						);
-					} else {
-						$is_installed = is_callable( array( $provider, 'is_installed' ) ) ? $provider->is_installed() : false;
-						$is_active    = wc_bool_to_string( $provider->is_activated() );
-
-						if ( 'deutsche_post' === $provider->get_name() && ! $provider->get_id() ) {
-							$is_active = false;
-						}
-
-						$settings = array_merge(
-							$settings,
-							array(
-								array(
-									'title'   => $title_clean,
-									'desc'    => ! $is_installed ? ( sprintf( __( 'Install %s integration plugin', 'woocommerce-germanized' ), $provider->get_title() ) ) : sprintf( __( 'Enable %s integration', 'woocommerce-germanized' ), $provider->get_title() ),
-									'id'      => 'woocommerce_gzd_' . $provider->get_name() . '_activate',
-									'default' => wc_bool_to_string( $is_active ),
-									'type'    => 'gzd_toggle',
-								),
-							)
-						);
-					}
-
-					$settings = array_merge(
-						$settings,
-						array(
-							array(
-								'type' => 'sectionend',
-								'id'   => 'shipping_provider_' . $provider->get_name(),
-							),
-						)
-					);
-				}
 			}
 
 			return $settings;
@@ -335,7 +256,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				wp_enqueue_style( 'woocommerce-gzd-admin' );
 
 				// Register admin styles.
-				wp_register_style( 'woocommerce-gzd-admin-setup-wizard', $gzd->get_assets_build_url( 'static/admin-wizard.css' ), array( 'wp-admin', 'dashicons', 'install', 'woocommerce-gzd-admin-settings' ), WC_GERMANIZED_VERSION );
+				wp_register_style( 'woocommerce-gzd-admin-setup-wizard', $gzd->get_assets_build_url( 'static/admin-wizard.css' ), array( 'wp-admin', 'dashicons', 'buttons', 'woocommerce-gzd-admin-settings' ), WC_GERMANIZED_VERSION );
 				wp_enqueue_style( 'woocommerce-gzd-admin-setup-wizard' );
 
 				wp_register_script( 'wc-gzd-admin', $gzd->get_assets_build_url( 'static/admin.js' ), array( 'jquery' ), WC_GERMANIZED_VERSION ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter
@@ -379,7 +300,6 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 
 			ob_start();
 			$this->header();
-			$this->steps();
 			$this->content();
 			$this->footer();
 			exit;
@@ -420,6 +340,9 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 
 		protected function header() {
 			set_current_screen( 'wc-gzd-setup' );
+
+			$current  = $this->get_step();
+			$step_pct = ceil( $current['order'] / count( $this->steps ) * 100 );
 			?>
 			<!DOCTYPE html>
 			<html <?php language_attributes(); ?>>
@@ -433,89 +356,96 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 				<?php do_action( 'admin_print_scripts' ); ?>
 				<?php do_action( 'admin_head' ); ?>
 			</head>
-			<body class="wc-gzd-setup wp-core-ui wc-gzd-setup-step-<?php echo esc_attr( $this->step ); ?>">
-				<div class="wc-gzd-setup-header">
-					<div class="logo-wrapper"><div class="logo"></div></div>
-			<?php
-		}
-
-		protected function steps() {
-			$output_steps = $this->steps;
-			?>
-			<ul class="step wc-gzd-steps">
-				<?php
-				foreach ( $output_steps as $step_key => $step ) {
-					?>
-					<li class="step-item <?php echo $step_key === $this->step ? 'active' : ''; ?>">
-						<a href="<?php echo esc_url( $this->get_step_url( $step_key ) ); ?>"><?php echo esc_html( $step['name'] ); ?></a>
-					</li>
-					<?php
-				}
-				?>
-			</ul>
-			</div>
+			<body class="wc-gzd-wizard wp-core-ui wc-gzd-wizard-step-<?php echo esc_attr( $this->step ); ?>">
+				<div class="wc-gzd-wizard-header">
+					<div class="wc-gzd-wizard-progress-bar">
+						<div class="wc-gzd-wizard-progress-bar-container">
+							<div class="wc-gzd-wizard-progress-bar-filler" style="width: <?php echo esc_attr( $step_pct ); ?>%;"></div>
+						</div>
+					</div>
+					<div class="wc-gzd-wizard-header-nav">
+						<div class="wc-gzd-wizard-logo">
+							<img src="<?php echo esc_url( WC_germanized()->plugin_url() . '/assets/images/germanized.svg' ); ?>" alt="<?php esc_attr_e( 'Germanized', 'woocommerce-germanized' ); ?>" />
+						</div>
+						<?php if ( $current['order'] < count( $this->steps ) ) : ?>
+							<a class="wc-gzd-wizard-link wc-gzd-wizard-link-skip" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'skip' => esc_attr( $this->step ) ), $this->get_step_url( $this->get_next_step() ) ), 'wc-gzd-setup-skip' ) ); ?>"><?php esc_html_e( 'Skip Step', 'woocommerce-germanized' ); ?></a>
+						<?php endif; ?>
+					</div>
+				</div>
 			<?php
 		}
 
 		protected function content() {
 			?>
-			<form class="wc-gzd-setup-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-				<div class="wc-gzd-setup-content">
+			<form class="wc-gzd-wizard-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<div class="wc-gzd-wizard-content">
+					<?php
+					if ( ! empty( $this->steps[ $this->step ]['view'] ) ) {
+						if ( file_exists( WC_GERMANIZED_ABSPATH . 'includes/admin/views/setup/' . $this->steps[ $this->step ]['view'] ) ) {
 
-				<?php if ( $error_message = $this->get_error_message() ) : ?>
-					<div id="message" class="error inline">
-						<p><?php echo wp_kses_post( $error_message ); ?></p>
-					</div>
-				<?php endif; ?>
+							// Extract the variables to a local namespace
+							extract( // phpcs:ignore WordPress.PHP.DontExtract.extract_extract
+								array(
+									'steps'    => $this->steps,
+									'step'     => $this->step,
+									'wizard'   => $this,
+									'settings' => $this->get_settings( $this->step ),
+								)
+							);
 
-				<?php
-				if ( ! empty( $this->steps[ $this->step ]['view'] ) ) {
-					if ( file_exists( WC_GERMANIZED_ABSPATH . 'includes/admin/views/setup/' . $this->steps[ $this->step ]['view'] ) ) {
-
-						// Extract the variables to a local namespace
-						extract( // phpcs:ignore WordPress.PHP.DontExtract.extract_extract
-							array(
-								'steps'    => $this->steps,
-								'step'     => $this->step,
-								'wizard'   => $this,
-								'settings' => $this->get_settings( $this->step ),
-							)
-						);
-
-						include 'views/setup/' . $this->steps[ $this->step ]['view'];
+							include 'views/setup/' . $this->steps[ $this->step ]['view'];
+						}
 					}
-				}
+					?>
 
-				echo '</div>';
-		}
-
-		protected function footer() {
-			$current = $this->get_step( $this->step );
-			?>
-			<div class="wc-gzd-setup-footer">
-				<div class="wc-gzd-setup-links">
 					<input type="hidden" name="action" value="wc_gzd_setup" />
 					<input type="hidden" name="step" value="<?php echo esc_attr( $this->step ); ?>" />
 
 					<?php wp_nonce_field( 'wc-gzd-setup' ); ?>
-
-					<?php if ( $current['order'] < count( $this->steps ) ) : ?>
-						<a class="wc-gzd-setup-link wc-gzd-setup-link-skip" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'skip' => esc_attr( $this->step ) ), $this->get_step_url( $this->get_next_step() ) ), 'wc-gzd-setup-skip' ) ); ?>"><?php esc_html_e( 'Skip Step', 'woocommerce-germanized' ); ?></a>
-					<?php endif; ?>
-
-					<?php if ( isset( $current['button_next_link'] ) && ! empty( $current['button_next_link'] ) ) : ?>
-						<a class="button button-primary wc-gzd-button wc-gzd-setup-link" href="<?php echo esc_url( $current['button_next_link'] ); ?>"><?php echo isset( $current['button_next'] ) ? esc_attr( $current['button_next'] ) : esc_attr__( 'Continue', 'woocommerce-germanized' ); ?></a>
-					<?php else : ?>
-						<button class="button button-primary wc-gzd-setup-link wc-gzd-button" type="submit"><?php echo isset( $current['button_next'] ) ? esc_attr( $current['button_next'] ) : esc_attr__( 'Continue', 'woocommerce-germanized' ); ?></button>
-					<?php endif; ?>
-
 				</div>
+			</form>
+			<?php
+		}
 
+		/**
+		 * Output the error wrapper (including the current error message, if any) within a step view.
+		 */
+		public function output_errors() {
+			?>
+			<div class="wc-gzd-wizard-error-wrapper">
+				<?php if ( $error_message = $this->get_error_message() ) : ?>
+					<div class="notice notice-error inline">
+						<p><?php echo wp_kses_post( $error_message ); ?></p>
+					</div>
+				<?php endif; ?>
+			</div>
+			<?php
+		}
+
+		/**
+		 * Output the primary step action (continue button or link) within a step view.
+		 */
+		public function output_links() {
+			$current     = $this->get_step();
+			$button_text = isset( $current['button_next'] ) ? $current['button_next'] : __( 'Continue', 'woocommerce-germanized' );
+			?>
+			<div class="wc-gzd-wizard-links">
+				<?php if ( ! empty( $current['button_next_link'] ) ) : ?>
+					<a class="button button-primary" href="<?php echo esc_url( $current['button_next_link'] ); ?>"><?php echo esc_html( $button_text ); ?></a>
+				<?php else : ?>
+					<button class="button button-primary button-submit" type="submit"><?php echo esc_html( $button_text ); ?></button>
+				<?php endif; ?>
+			</div>
+			<?php
+		}
+
+		protected function footer() {
+			?>
+			<div class="wc-gzd-wizard-footer">
 				<div class="escape">
 					<a href="<?php echo esc_url( admin_url() ); ?>"><?php esc_html_e( 'Return to WP Admin', 'woocommerce-germanized' ); ?></a>
 				</div>
 			</div>
-			</form>
 			<?php do_action( 'admin_footer', '' ); ?>
 			<?php do_action( 'admin_print_footer_scripts' ); ?>
 			</body>
@@ -565,7 +495,7 @@ if ( ! class_exists( 'WC_GZD_Admin_Setup_Wizard' ) ) :
 			exit();
 		}
 
-		protected function get_available_shipping_provider_integrations() {
+		public function get_available_shipping_provider_integrations() {
 			$integrations = array();
 
 			if ( \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_loaded() ) {
