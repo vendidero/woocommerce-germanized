@@ -34,7 +34,7 @@ $base_country  = wc_gzd_get_base_country();
 $provider_list = array();
 
 foreach ( $provider_available as $provider ) {
-	if ( ! empty( $provider_available['countries_supported'] ) && ! in_array( $base_country, $provider_available['countries_supported'], true ) ) {
+	if ( ! empty( $provider['countries_supported'] ) && ! in_array( $base_country, $provider['countries_supported'], true ) ) {
 		continue;
 	}
 

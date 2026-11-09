@@ -4,8 +4,8 @@ Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
 Tested up to: 7.1
 WC requires at least: 3.9
-WC tested up to: 11.2
-Stable tag: 4.1.6
+WC tested up to: 11.3
+Stable tag: 4.1.7
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -208,6 +208,17 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.1.7 =
+* Improvement: WC 11.3 compatibility
+* Improvement: Use new Woo product attribute filters to store checkout visibility (with fallback for older Woo versions)
+* Improvement: Support attribute checkout visibility within the REST API product endpoints
+* Improvement: Send customer cancellation email on pending to cancelled order status transitions
+* Improvement: [Withdrawal button] Make sure that withdrawal edit flow does not delete the original withdrawal request in case the (linked) order stays the same
+* Improvement: [Withdrawal button] Indicate that a withdrawal request has been edited when sending notifications
+* Fix: Include withdrawal request emails within wpml-config.xml
+* Fix: Disable DE state select within the customer account too
+* Fix: Use the gateway title getter to determine payment gateway titles within settings
+
 = 4.1.6 =
 * Fix: Lowercase email address during DOI email hash comparison
 * Fix: [Withdrawal button] Privacy eraser/exporter overrides
