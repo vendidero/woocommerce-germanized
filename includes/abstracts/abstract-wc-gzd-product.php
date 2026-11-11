@@ -39,6 +39,13 @@ class WC_GZD_Product {
 	 */
 	protected $manufacturer = null;
 
+	/**
+	 * Per-request cache of the manufacturer slug derived from the product's brands.
+	 *
+	 * @var null|string
+	 */
+	protected $brand_manufacturer_slug = null;
+
 	protected $allergenic = null;
 
 	protected $nutrients = null;
@@ -377,44 +384,69 @@ class WC_GZD_Product {
 		$manufacturer_slug = $this->get_prop( 'manufacturer_slug', $context );
 
 		if ( 'view' === $context && empty( $manufacturer_slug ) && taxonomy_exists( 'product_brand' ) ) {
-			$product_id              = is_a( $this, 'WC_GZD_Product_Variation' ) ? $this->child->get_parent_id() : $this->get_id();
-			$brands                  = wp_get_post_terms( $product_id, 'product_brand', array( 'parent' => 0 ) );
-			$main_brand              = false;
-			$brand_manufacturer_slug = false;
-
-			if ( is_wp_error( $brands ) ) {
-				return $manufacturer_slug;
+			if ( is_null( $this->brand_manufacturer_slug ) ) {
+				$this->brand_manufacturer_slug = $this->get_manufacturer_slug_from_brands();
 			}
 
-			if ( empty( $brands ) ) {
-				$brands = wp_get_post_terms( $product_id, 'product_brand' );
-			}
-
-			if ( ! empty( $brands ) ) {
-				$main_brand = $brands[0];
-
-				if ( 0 === $main_brand->parent ) {
-					$child_brands = wp_get_post_terms( $product_id, 'product_brand', array( 'parent' => $main_brand->term_id ) );
-
-					foreach ( $child_brands as $child_brand ) {
-						if ( get_term_meta( $child_brand->term_id, 'manufacturer', true ) ) {
-							$main_brand = $child_brand;
-							break;
-						}
-					}
-				}
-			}
-
-			$main_brand = apply_filters( 'woocommerce_gzd_product_get_main_brand_for_manufacturer', $main_brand, $this );
-
-			if ( is_a( $main_brand, 'WP_Term' ) ) {
-				if ( ! $brand_manufacturer_slug && ( $m_slug = get_term_meta( $main_brand->term_id, 'manufacturer', true ) ) ) {
-					$manufacturer_slug = $m_slug;
-				}
+			if ( ! empty( $this->brand_manufacturer_slug ) ) {
+				$manufacturer_slug = $this->brand_manufacturer_slug;
 			}
 		}
 
 		return $manufacturer_slug;
+	}
+
+	/**
+	 * Determines the manufacturer slug based on the product's (main) brand. Uses get_the_terms()
+	 * which makes use of the (primed) object term cache instead of querying terms per call.
+	 *
+	 * @return string
+	 */
+	protected function get_manufacturer_slug_from_brands() {
+		$product_id = is_a( $this, 'WC_GZD_Product_Variation' ) ? $this->child->get_parent_id() : $this->get_id();
+		$all_brands = get_the_terms( $product_id, 'product_brand' );
+		$main_brand = false;
+
+		if ( is_wp_error( $all_brands ) ) {
+			return '';
+		}
+
+		$all_brands = is_array( $all_brands ) ? array_values( $all_brands ) : array();
+		$brands     = array_values(
+			array_filter(
+				$all_brands,
+				function ( $brand ) {
+					return 0 === (int) $brand->parent;
+				}
+			)
+		);
+
+		if ( empty( $brands ) ) {
+			$brands = $all_brands;
+		}
+
+		if ( ! empty( $brands ) ) {
+			$main_brand = $brands[0];
+
+			if ( 0 === (int) $main_brand->parent ) {
+				foreach ( $all_brands as $child_brand ) {
+					if ( (int) $child_brand->parent === (int) $main_brand->term_id && get_term_meta( $child_brand->term_id, 'manufacturer', true ) ) {
+						$main_brand = $child_brand;
+						break;
+					}
+				}
+			}
+		}
+
+		$main_brand = apply_filters( 'woocommerce_gzd_product_get_main_brand_for_manufacturer', $main_brand, $this );
+
+		if ( is_a( $main_brand, 'WP_Term' ) ) {
+			if ( $m_slug = get_term_meta( $main_brand->term_id, 'manufacturer', true ) ) {
+				return $m_slug;
+			}
+		}
+
+		return '';
 	}
 
 	public function has_product_safety_information() {
@@ -422,7 +454,8 @@ class WC_GZD_Product {
 	}
 
 	public function set_manufacturer_slug( $slug ) {
-		$this->manufacturer = null;
+		$this->manufacturer            = null;
+		$this->brand_manufacturer_slug = null;
 
 		$this->set_prop( 'manufacturer_slug', $slug );
 	}

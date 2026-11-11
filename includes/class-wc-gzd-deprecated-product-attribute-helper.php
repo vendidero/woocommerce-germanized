@@ -88,13 +88,20 @@ class WC_GZD_Deprecated_Product_Attribute_Helper {
 				}
 
 				if ( false === $tmp_result ) {
+					/**
+					 * Note: $prev_value is not the currently stored value but an (optional) condition
+					 * passed to update_post_meta(). Load the currently stored attributes instead.
+					 */
+					$existing_value = get_post_meta( $object_id, $meta_key, true );
+					$existing_value = is_array( $existing_value ) ? $existing_value : array();
+
 					foreach ( $meta_value as $attribute_key => $value ) {
 						if ( ! isset( $value['checkout_visible'] ) && is_array( $meta_value[ $attribute_key ] ) ) {
 							$attribute           = new WC_GZD_Product_Attribute();
 							$is_checkout_visible = $attribute->is_checkout_visible();
 
-							if ( isset( $prev_value[ $attribute_key ] ) && $prev_value[ $attribute_key ]['checkout_visible'] ) {
-								$is_checkout_visible = $prev_value[ $attribute_key ]['checkout_visible'];
+							if ( isset( $existing_value[ $attribute_key ]['checkout_visible'] ) ) {
+								$is_checkout_visible = $existing_value[ $attribute_key ]['checkout_visible'];
 							}
 
 							$meta_value[ $attribute_key ]['checkout_visible'] = $is_checkout_visible;

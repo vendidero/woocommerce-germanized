@@ -2371,20 +2371,36 @@ function wc_gzd_shop_needs_eu_labels_by_default() {
 	$downloads_only            = array( 'downloads' ) === $product_types;
 	$has_virtual_products_only = get_transient( 'wc_gzd_has_virtual_products_only' );
 
-	if ( false === $has_virtual_products_only && function_exists( 'wc_get_products' ) ) {
-		$non_virtual_products = wc_get_products(
-			array(
-				'limit'   => 1,
-				'virtual' => false,
-				'status'  => 'publish',
-			)
-		);
+	if ( false === $has_virtual_products_only ) {
+		if ( function_exists( 'wc_get_products' ) ) {
+			$non_virtual_products = wc_get_products(
+				array(
+					'limit'   => 1,
+					'virtual' => false,
+					'status'  => 'publish',
+					'return'  => 'ids',
+				)
+			);
 
-		$has_virtual_products_only = empty( $non_virtual_products ) ? 'yes' : 'no';
+			/**
+			 * A shop without any (published) products, e.g. a fresh install, does not sell virtual products only.
+			 */
+			$has_products = ! empty( $non_virtual_products ) || ! empty(
+				wc_get_products(
+					array(
+						'limit'  => 1,
+						'status' => 'publish',
+						'return' => 'ids',
+					)
+				)
+			);
 
-		set_transient( 'wc_gzd_has_virtual_products_only', $has_virtual_products_only, DAY_IN_SECONDS );
-	} else {
-		$has_virtual_products_only = 'no';
+			$has_virtual_products_only = ( $has_products && empty( $non_virtual_products ) ) ? 'yes' : 'no';
+
+			set_transient( 'wc_gzd_has_virtual_products_only', $has_virtual_products_only, DAY_IN_SECONDS );
+		} else {
+			$has_virtual_products_only = 'no';
+		}
 	}
 
 	return ( $is_eu_base_country || ! empty( $selling_to_eu_countries ) ) && ! $downloads_only && ! wc_string_to_bool( $has_virtual_products_only );

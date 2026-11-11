@@ -350,6 +350,27 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 		return $query;
 	}
 
+	/**
+	 * HPOS: The completed date is stored within the operational data table (not as meta),
+	 * that's why the meta query used for the CPT data store does not work here.
+	 *
+	 * @param string[] $clauses
+	 * @param \Automattic\WooCommerce\Internal\DataStores\Orders\OrdersTableQuery $query
+	 * @param array $query_vars
+	 *
+	 * @return string[]
+	 */
+	public function unpaid_order_hpos_query( $clauses, $query, $query_vars ) {
+		if ( isset( $query_vars['unpaid_only'] ) && true === $query_vars['unpaid_only'] ) {
+			$orders_table      = $query->get_table_name( 'orders' );
+			$operational_table = $query->get_table_name( 'operational_data' );
+
+			$clauses['where'] = ( ! empty( $clauses['where'] ) ? '(' . $clauses['where'] . ') AND ' : '' ) . "NOT EXISTS ( SELECT 1 FROM `{$operational_table}` AS gzd_unpaid_op WHERE gzd_unpaid_op.order_id = `{$orders_table}`.id AND gzd_unpaid_op.date_completed_gmt IS NOT NULL )";
+		}
+
+		return $clauses;
+	}
+
 	public function export_args( $args = array() ) {
 		if ( isset( $_GET['content'] ) && 'sepa' === wc_clean( wp_unslash( $_GET['content'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$args['content'] = 'sepa';
@@ -435,6 +456,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			}
 
 			add_filter( 'woocommerce_order_data_store_cpt_get_orders_query', array( $this, 'unpaid_order_query' ), 10, 2 );
+			add_filter( 'woocommerce_orders_table_query_clauses', array( $this, 'unpaid_order_hpos_query' ), 10, 3 );
 
 			/**
 			 * Filter to adjust direct debit export arguments passed to `wc_get_orders`.
@@ -447,6 +469,7 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 			$orders = wc_get_orders( apply_filters( 'woocommerce_gzd_direct_debit_export_order_query_args', $query_args, $args ) );
 
 			remove_filter( 'woocommerce_order_data_store_cpt_get_orders_query', array( $this, 'unpaid_order_query' ), 10 );
+			remove_filter( 'woocommerce_orders_table_query_clauses', array( $this, 'unpaid_order_hpos_query' ), 10 );
 		}
 
 		/**

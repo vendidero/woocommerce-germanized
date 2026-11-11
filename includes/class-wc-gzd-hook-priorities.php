@@ -52,7 +52,14 @@ class WC_GZD_Hook_Priorities {
 		add_action( 'after_setup_theme', array( $this, 'load_priorities' ), 45 );
 		add_action( 'after_setup_theme', array( $this, 'force_hook_order_queued' ), 50 );
 
+		/**
+		 * The priority cache does not expire (to make sure it is autoloaded) and needs to be cleared
+		 * whenever the theme or the active plugins (which may adjust hook priorities) change.
+		 */
 		add_action( 'after_switch_theme', array( $this, 'clear_cache' ), 25 );
+		add_action( 'activated_plugin', array( $this, 'clear_cache' ), 25 );
+		add_action( 'deactivated_plugin', array( $this, 'clear_cache' ), 25 );
+		add_action( 'upgrader_process_complete', array( $this, 'clear_cache' ), 25 );
 	}
 
 	public function init() {
@@ -295,7 +302,7 @@ class WC_GZD_Hook_Priorities {
 			}
 
 			if ( ! empty( $this->priorities ) ) {
-				set_transient( 'woocommerce_gzd_hook_priorities', $this->priorities, apply_filters( 'woocommerce_gzd_hook_priority_cache_duration', MINUTE_IN_SECONDS * 5 ) );
+				set_transient( 'woocommerce_gzd_hook_priorities', $this->priorities, apply_filters( 'woocommerce_gzd_hook_priority_cache_duration', 0 ) );
 			} else {
 				delete_transient( 'woocommerce_gzd_hook_priorities' );
 			}

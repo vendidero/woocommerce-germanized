@@ -56,6 +56,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			'4.0.8'   => 'updates/woocommerce-gzd-update-4.0.8.php',
 			'4.0.10'  => 'updates/woocommerce-gzd-update-4.0.10.php',
 			'4.1.4'   => 'updates/woocommerce-gzd-update-4.1.4.php',
+			'4.1.8'   => 'updates/woocommerce-gzd-update-4.1.8.php',
 		);
 
 		/**
@@ -657,7 +658,7 @@ if ( ! class_exists( 'WC_GZD_Install' ) ) :
 			/**
 			 * Clear old shiptastic actions
 			 */
-			if ( version_compare( $current_version, '4.0.2', '<' ) && ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ) {
+			if ( version_compare( (string) $current_version, '4.0.2', '<' ) && ! \Vendidero\Germanized\PluginsHelper::is_shiptastic_plugin_active() ) {
 				if ( function_exists( 'as_unschedule_all_actions' ) ) {
 					$hooks = array(
 						'woocommerce_gzd_shipments_daily_cleanup',
