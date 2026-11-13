@@ -53,3 +53,6 @@ auth.json
 *.idea
 ehthumbs.db
 Thumbs.db
+
+# Composer packages (installed via composer, see extra.installer-paths)
+/packages/

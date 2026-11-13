@@ -1,0 +1,27 @@
+# Files excluded from the distributable plugin (GitHub release zip + wordpress.org SVN).
+# Used as rsync --exclude-from list by .github/workflows/release.yml.
+# Mirrors the exclude list of bin/deploy.sh (patterns are unanchored, as before).
+.*/
+.*
+*.md
+composer.*
+*.lock
+apigen.neon
+apigen/
+bin/
+CHANGELOG.txt
+webpack.config.js
+node_modules/
+none
+auth.json
+package.json
+package-lock.json
+phpcs.xml
+phpcs.ruleset.xml
+docker-compose.yml
+phpunit.xml
+phpunit.xml.dist
+renovate.json
+tests/
+release/
+dist/

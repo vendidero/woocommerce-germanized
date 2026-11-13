@@ -42,8 +42,13 @@ composer phpcbf        # auto-fix
 ### Release
 ```bash
 ./bin/bump-version.sh -v 4.0.11   # syncs woocommerce-germanized.php, package.json, src/Package.php
-./bin/deploy.sh           # Deploys to wp.org and creates github release
+./bin/deploy.sh           # Legacy local deploy (wp.org + GitHub release)
 ```
+Preferred: GitHub Actions (manual `workflow_dispatch`):
+1. `.github/workflows/release.yml` — builds, tags `v<version>` on a build commit (incl. `vendor/`, `packages/`, `build/`, i18n JSON) and creates the GitHub release with `woocommerce-germanized.zip` attached. Never touches wp.org.
+2. `.github/workflows/deploy-wporg.yml` — pushes that release zip to wp.org SVN (`release` | `tag-only` | `assets-only`), syncing `.wordpress-org/` to `assets/` when changed. The SVN password is a per-run input (masked, never stored); SVN username comes from the `SVN_USERNAME` repo variable. Supports `dry_run`.
+
+Files shipped are defined by `.distignore`.
 
 ## Architecture
 

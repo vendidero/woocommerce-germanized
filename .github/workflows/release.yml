@@ -1,0 +1,152 @@
+name: Release (GitHub)
+
+# Builds the plugin and creates a GitHub release (tag v<version> pointing to a build commit which
+# includes vendor/, packages/, build/ and i18n JSON files) with the distributable zip attached.
+# Does NOT touch wordpress.org - use the "Deploy to wordpress.org" workflow afterwards.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release, e.g. 4.1.8 (must match the plugin header). Versions containing "-" are pre-releases.'
+        required: true
+        type: string
+      branch:
+        description: 'Branch to release from'
+        required: true
+        default: 'master'
+        type: string
+
+run-name: Release ${{ inputs.version }} from ${{ inputs.branch }}
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  PLUGIN_SLUG: woocommerce-germanized
+  VERSION: ${{ inputs.version }}
+  BRANCH: ${{ inputs.branch }}
+  TERM: xterm
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate input
+        run: |
+          if ! printf '%s' "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$'; then
+            echo "::error::Invalid version \"$VERSION\"."
+            exit 1
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: Check versions and tag
+        run: |
+          PLUGIN_VERSION=$(grep -i "^ \* Version:" "${PLUGIN_SLUG}.php" | awk '{print $NF}' | tr -d '\r')
+          README_STABLE=$(grep -i "^Stable tag:" readme.txt | awk '{print $NF}' | tr -d '\r')
+
+          if [ "$PLUGIN_VERSION" != "$VERSION" ]; then
+            echo "::error::Version in ${PLUGIN_SLUG}.php is \"${PLUGIN_VERSION}\" but \"${VERSION}\" was requested."
+            exit 1
+          fi
+
+          if [ "$README_STABLE" != "$VERSION" ] && [ "$README_STABLE" != "trunk" ]; then
+            echo "::warning::Stable tag in readme.txt is \"${README_STABLE}\", not \"${VERSION}\"."
+          fi
+
+          if git ls-remote --exit-code --tags origin "refs/tags/v${VERSION}" > /dev/null; then
+            echo "::error::Tag v${VERSION} already exists."
+            exit 1
+          fi
+
+      # Build with the lowest supported PHP version (matches config.platform.php in composer.json) so that
+      # composer scripts and autoloader generation run under the same version the dependencies are resolved for.
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: composer, wp-cli
+          coverage: none
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Composer install
+        run: composer install --no-dev --no-interaction --prefer-dist
+        env:
+          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.GITHUB_TOKEN }}"}}'
+
+      - name: JS build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Generate i18n JSON files
+        run: |
+          if ls i18n/languages/*.po > /dev/null 2>&1; then
+            wp i18n make-json --no-purge i18n/languages
+          fi
+
+      - name: Build distributable zip
+        run: |
+          # Built outside the workspace so that the build commit below does not pick it up.
+          mkdir -p "${RUNNER_TEMP}/dist/${PLUGIN_SLUG}"
+          rsync -r --delete --delete-excluded --exclude-from=.distignore ./ "${RUNNER_TEMP}/dist/${PLUGIN_SLUG}/"
+          (cd "${RUNNER_TEMP}/dist" && zip -qr "${RUNNER_TEMP}/${PLUGIN_SLUG}.zip" "${PLUGIN_SLUG}")
+          unzip -l "${RUNNER_TEMP}/${PLUGIN_SLUG}.zip" | tail -1
+
+      # Guards backwards compatibility: fails in case any shipped file (incl. vendor/ and packages/)
+      # contains syntax unsupported by PHP 7.4.
+      - name: Lint shipped PHP files (PHP 7.4)
+        run: |
+          php -v | head -1
+          if find "${RUNNER_TEMP}/dist/${PLUGIN_SLUG}" -name '*.php' -print0 | xargs -0 -n 100 -P 4 php -l 2>&1 | grep -v '^No syntax errors'; then
+            echo "::error::PHP 7.4 syntax errors found in shipped files."
+            exit 1
+          fi
+
+      - name: Create build commit and tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "build/${VERSION}"
+          git add --force packages/. build/. vendor/.
+          git add --force i18n/languages/.
+          git add .
+          git commit -m "Build ${VERSION}: add packages/, build/, vendor/ and i18n JSON files" --no-verify
+
+          git tag "v${VERSION}"
+          git push origin "refs/tags/v${VERSION}"
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PRERELEASE=""
+          case "$VERSION" in
+            *-*) PRERELEASE="--prerelease" ;;
+          esac
+
+          gh release create "v${VERSION}" "${RUNNER_TEMP}/${PLUGIN_SLUG}.zip" \
+            --verify-tag \
+            --title "${VERSION}" \
+            --notes "Release of version ${VERSION}. See readme.txt for details." \
+            $PRERELEASE
+
+          {
+            echo "### Released v${VERSION} on GitHub"
+            echo
+            echo "Push it to wordpress.org via the **Deploy to wordpress.org** workflow (tag \`v${VERSION}\`)."
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,272 @@
+name: Deploy to wordpress.org
+
+# Pushes an existing GitHub release (created by the "Release (GitHub)" workflow) to wordpress.org SVN.
+#
+# Modes:
+#   release      - sync the release zip to trunk, copy trunk to tags/<version>, sync .wordpress-org/ to assets/
+#   tag-only     - only create tags/<version> from the release zip (e.g. backports), optionally bump the
+#                  "Stable tag" in trunk/readme.txt. Assets are not touched.
+#   assets-only  - sync .wordpress-org/ (of the given tag/branch) to assets/, optionally readme.txt to
+#                  trunk/ and the current stable tag.
+#
+# Asset changes are only committed in case something actually changed.
+#
+# The SVN password is supplied per run (never stored in GitHub). It is read from the event payload and
+# masked before use. Workflow inputs are NOT secrets: they are kept with the run's event payload. Use a
+# freshly generated SVN password (wordpress.org profile -> Account & Security) and revoke it after deploying.
+#
+# The SVN username is read from the repository variable SVN_USERNAME (Settings -> Variables -> Actions).
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag, e.g. v4.1.8 (assets-only mode: any tag or branch to take assets/readme from)'
+        required: true
+        type: string
+      mode:
+        description: 'What to deploy'
+        required: true
+        default: 'release'
+        type: choice
+        options:
+          - release
+          - tag-only
+          - assets-only
+      update_stable_tag:
+        description: 'tag-only: set "Stable tag" in trunk/readme.txt to this version'
+        required: false
+        default: false
+        type: boolean
+      sync_readme:
+        description: 'assets-only: also sync readme.txt to trunk/ and the current stable tag'
+        required: false
+        default: false
+        type: boolean
+      dry_run:
+        description: 'Dry run: prepare everything and show the SVN diff, but do not commit (password optional)'
+        required: false
+        default: false
+        type: boolean
+      svn_password:
+        description: 'wordpress.org SVN password - use a fresh one and revoke it afterwards'
+        required: false
+        type: string
+
+# Never reference the password input here or anywhere else in this file via ${{ }} expressions -
+# expressions are expanded into the logged step scripts before masking takes effect.
+run-name: Deploy ${{ inputs.tag }} to wordpress.org (${{ inputs.mode }}${{ inputs.dry_run && ', dry run' || '' }})
+
+concurrency:
+  group: wporg-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  PLUGIN_SLUG: woocommerce-germanized
+  SVN_URL: https://plugins.svn.wordpress.org/woocommerce-germanized
+  SVN_DIR: ${{ github.workspace }}/svn
+  DIST_DIR: ${{ github.workspace }}/dist
+  TAG: ${{ inputs.tag }}
+  MODE: ${{ inputs.mode }}
+  UPDATE_STABLE_TAG: ${{ inputs.update_stable_tag }}
+  SYNC_README: ${{ inputs.sync_readme }}
+  DRY_RUN: ${{ inputs.dry_run }}
+  SVN_USERNAME: ${{ vars.SVN_USERNAME }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: wordpress-org
+      url: https://wordpress.org/plugins/woocommerce-germanized/
+    steps:
+      # Must stay the first step: masks the password for all following log output.
+      - name: Mask SVN password
+        run: |
+          SVN_PASSWORD="$(jq -r '.inputs.svn_password // ""' "$GITHUB_EVENT_PATH")"
+
+          if [ -n "$SVN_PASSWORD" ]; then
+            echo "::add-mask::${SVN_PASSWORD}"
+          elif [ "$DRY_RUN" != "true" ]; then
+            echo "::error::The svn_password input is required unless running a dry run."
+            exit 1
+          fi
+
+          if [ -z "$SVN_USERNAME" ] && [ "$DRY_RUN" != "true" ]; then
+            echo "::error::Repository variable SVN_USERNAME is not set."
+            exit 1
+          fi
+
+      - name: Validate input
+        run: |
+          if [ "$MODE" = "assets-only" ]; then
+            if ! printf '%s' "$TAG" | grep -Eq '^[A-Za-z0-9._/-]+$'; then
+              echo "::error::Invalid ref \"$TAG\"."
+              exit 1
+            fi
+          else
+            VERSION="${TAG#v}"
+            if ! printf '%s' "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$'; then
+              echo "::error::Invalid tag \"$TAG\"."
+              exit 1
+            fi
+            echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
+            echo "TAG=v${VERSION}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Install Subversion
+        run: |
+          if ! command -v svn > /dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq subversion
+          fi
+          svn --version --quiet
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+          sparse-checkout: |
+            /.wordpress-org/
+            /readme.txt
+          sparse-checkout-cone-mode: false
+
+      - name: Download release zip
+        if: env.MODE != 'assets-only'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "${PLUGIN_SLUG}.zip" --dir "$RUNNER_TEMP"
+          mkdir -p "$DIST_DIR"
+          unzip -q "${RUNNER_TEMP}/${PLUGIN_SLUG}.zip" -d "$DIST_DIR"
+
+          ZIP_VERSION=$(grep -i "^ \* Version:" "${DIST_DIR}/${PLUGIN_SLUG}/${PLUGIN_SLUG}.php" | awk '{print $NF}' | tr -d '\r')
+          if [ "$ZIP_VERSION" != "$VERSION" ]; then
+            echo "::error::Release zip contains version \"${ZIP_VERSION}\", expected \"${VERSION}\"."
+            exit 1
+          fi
+
+          if svn info "${SVN_URL}/tags/${VERSION}" > /dev/null 2>&1; then
+            echo "::error::SVN tag ${VERSION} already exists."
+            exit 1
+          fi
+
+      - name: Checkout SVN
+        run: |
+          svn checkout --quiet --depth immediates "$SVN_URL" "$SVN_DIR"
+          cd "$SVN_DIR"
+          svn update --quiet --set-depth infinity trunk
+          svn update --quiet --set-depth infinity assets
+
+      - name: Prepare SVN changes
+        run: |
+          cd "$SVN_DIR"
+
+          # Add unversioned and remove missing files below the given path.
+          svn_sync() {
+            svn add --force --no-ignore --quiet "$1"
+            svn status "$1" | grep '^!' | cut -c9- | while IFS= read -r file; do
+              svn rm --quiet "${file}@"
+            done
+          }
+
+          sync_assets() {
+            if [ ! -d "${GITHUB_WORKSPACE}/.wordpress-org" ]; then
+              echo "No .wordpress-org directory found, skipping assets."
+              return
+            fi
+            rsync -rc --delete "${GITHUB_WORKSPACE}/.wordpress-org/" assets/
+            svn_sync assets
+
+            set_mime() {
+              find assets -type f -name "$1" -exec svn propset --quiet --force svn:mime-type "$2" {} +
+            }
+            set_mime '*.png' image/png
+            set_mime '*.jpg' image/jpeg
+            set_mime '*.jpeg' image/jpeg
+            set_mime '*.gif' image/gif
+            set_mime '*.svg' image/svg+xml
+            set_mime '*.json' application/json
+          }
+
+          current_stable_tag() {
+            grep -i "^Stable tag:" trunk/readme.txt | awk '{print $NF}' | tr -d '\r'
+          }
+
+          case "$MODE" in
+            release)
+              rsync -rc --delete "${DIST_DIR}/${PLUGIN_SLUG}/" trunk/
+              svn_sync trunk
+              svn cp --quiet trunk "tags/${VERSION}"
+              sync_assets
+              COMMIT_MSG="Release ${VERSION}, see readme.txt for changelog."
+              ;;
+            tag-only)
+              mkdir "tags/${VERSION}"
+              rsync -rc "${DIST_DIR}/${PLUGIN_SLUG}/" "tags/${VERSION}/"
+              svn add --force --no-ignore --quiet "tags/${VERSION}"
+              if [ "$UPDATE_STABLE_TAG" = "true" ]; then
+                perl -i -pe "s/^Stable tag: .*/Stable tag: ${VERSION}/i" trunk/readme.txt
+              fi
+              COMMIT_MSG="Tagging version ${VERSION}."
+              ;;
+            assets-only)
+              sync_assets
+              COMMIT_MSG="Update assets."
+              if [ "$SYNC_README" = "true" ]; then
+                STABLE=$(current_stable_tag)
+                NEW_STABLE=$(grep -i "^Stable tag:" "${GITHUB_WORKSPACE}/readme.txt" | awk '{print $NF}' | tr -d '\r')
+                if [ "$STABLE" != "$NEW_STABLE" ]; then
+                  echo "::error::readme.txt of ${TAG} has Stable tag \"${NEW_STABLE}\" but SVN has \"${STABLE}\". Deploy a release instead."
+                  exit 1
+                fi
+                cp "${GITHUB_WORKSPACE}/readme.txt" trunk/readme.txt
+                if [ "$STABLE" != "trunk" ] && svn info "${SVN_URL}/tags/${STABLE}" > /dev/null 2>&1; then
+                  svn update --quiet --set-depth files "tags/${STABLE}"
+                  cp "${GITHUB_WORKSPACE}/readme.txt" "tags/${STABLE}/readme.txt"
+                fi
+                COMMIT_MSG="Update readme and assets."
+              fi
+              ;;
+          esac
+
+          echo "COMMIT_MSG=${COMMIT_MSG}" >> "$GITHUB_ENV"
+
+          echo "Pending SVN changes:"
+          svn status --depth infinity | grep -v '^Performing' || true
+
+      - name: Commit to SVN
+        run: |
+          cd "$SVN_DIR"
+
+          if [ -z "$(svn status)" ]; then
+            echo "Nothing to commit."
+            echo "### Nothing to commit to wordpress.org" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "Dry run - skipping commit."
+            {
+              echo "### Dry run: ${COMMIT_MSG}"
+              echo
+              echo '```'
+              svn status
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          SVN_PASSWORD="$(jq -r '.inputs.svn_password // ""' "$GITHUB_EVENT_PATH")"
+          svn commit --non-interactive --no-auth-cache \
+            --username "$SVN_USERNAME" --password "$SVN_PASSWORD" \
+            -m "$COMMIT_MSG"
+
+          {
+            echo "### Committed to wordpress.org: ${COMMIT_MSG}"
+            echo
+            echo "Revoke the SVN password used for this run (wordpress.org profile -> Account & Security)."
+          } >> "$GITHUB_STEP_SUMMARY"
