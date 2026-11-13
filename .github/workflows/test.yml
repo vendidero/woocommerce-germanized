@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:8.4
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: wordpress_test
@@ -18,12 +18,18 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php: ['7.4', '8.0', '8.2']
+        php: ['7.4', '8.0', '8.2', '8.3', '8.4']
         woo: ['latest', '6.4.1']
+        exclude:
+          # WooCommerce 6.4.1 predates PHP 8.3 support
+          - php: '8.3'
+            woo: '6.4.1'
+          - php: '8.4'
+            woo: '6.4.1'
     name: PHP ${{ matrix.php }} test for Woo ${{ matrix.woo }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -32,12 +38,14 @@ jobs:
           tools: composer
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
           ini-values: post_max_size=256M, short_open_tag=On #optional, setup php.ini configuration
-          coverage: xdebug #optional, setup coverage driver
+          coverage: none
 
       - name: Composer install
-        run: composer config github-oauth.github.com ${{ secrets.GH_TOKEN }} && composer install
+        run: composer install --no-interaction --prefer-dist
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          # The built-in token is sufficient - all VCS repositories are public, it is only used to avoid GitHub API rate limits.
+          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.GITHUB_TOKEN }}"}}'
+          TERM: xterm
 
       - name: Install WP Tests
         run: bash tests/bin/install.sh wordpress_test root root 127.0.0.1:${{ job.services.mysql.ports['3306'] }} latest ${{ matrix.woo }} true
