@@ -12033,6 +12033,14 @@ msgctxt "block description"
 msgid "Outputs mini cart legal notices."
 msgstr "Gibt rechtliche Hinweise im Warenkorb-Dropdown Block aus."
 
+#: includes/class-wc-gzd-customer-helper.php
+msgid "Your account has been created and is waiting for your activation. Please check your e-mails and activate your account by clicking on the activation link. The email also contains a link to set your password."
+msgstr "Ihr Konto wurde erstellt und wartet auf Ihre Aktivierung. Bitte prüfen Sie Ihre E-Mails und aktivieren Sie Ihr Kundenkonto, indem Sie auf den Aktivierungslink klicken. Die E-Mail enthält außerdem einen Link, um Ihr Passwort festzulegen."
+
+#: includes/class-wc-gzd-customer-helper.php
+msgid "Your account has been created and is waiting for your activation. Please check your e-mails and activate your account by clicking on the activation link."
+msgstr "Ihr Konto wurde erstellt und wartet auf Ihre Aktivierung. Bitte prüfen Sie Ihre E-Mails und aktivieren Sie Ihr Kundenkonto, indem Sie auf den Aktivierungslink klicken."
+
 #~ msgid "Attention: New Regulations"
 #~ msgstr "Achtung: Neue Regulierungen"
 
