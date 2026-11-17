@@ -810,13 +810,9 @@ class WC_GZD_Customer_Helper {
 	}
 
 	/**
-	 * Check for customer that didn't activate their accounts within a couple of time and delete them.
-	 * Users are processed in batches. In case more users need to be processed than allowed within one run,
-	 * a follow-up event is scheduled.
-	 *
-	 * @param int $offset Number of (skipped) users to exclude from the query, passed by follow-up events.
+	 * Check for customer that didn't activate their accounts within a couple of time and delete them
 	 */
-	public function account_cleanup( $offset = 0 ) {
+	public function account_cleanup() {
 		$cleanup_interval = get_option( 'woocommerce_gzd_customer_cleanup_interval' );
 
 		if ( ! $this->is_double_opt_in_enabled() || ! $cleanup_interval || empty( $cleanup_interval ) ) {
@@ -826,67 +822,36 @@ class WC_GZD_Customer_Helper {
 		$roles             = array_map( 'ucfirst', $this->get_double_opt_in_user_roles() );
 		$cleanup_days      = (int) $cleanup_interval;
 		$registered_before = gmdate( 'Y-m-d H:i:s', strtotime( "-{$cleanup_days} days" ) );
-		$offset            = absint( $offset );
 
-		/**
-		 * Filter to adjust the number of unactivated customers processed per batch during account cleanup.
-		 *
-		 * @param int $batch_size The batch size.
-		 *
-		 * @since 4.1.8
-		 */
-		$batch_size = max( 1, absint( apply_filters( 'woocommerce_gzd_customer_account_cleanup_batch_size', 50 ) ) );
-
-		/**
-		 * Filter to adjust the max number of batches processed within one cleanup run.
-		 *
-		 * @param int $max_batches The max number of batches.
-		 *
-		 * @since 4.1.8
-		 */
-		$max_batches = max( 1, absint( apply_filters( 'woocommerce_gzd_customer_account_cleanup_max_batches', 10 ) ) );
-		$batch       = 0;
-		$has_more    = false;
-
-		require_once ABSPATH . 'wp-admin/includes/user.php';
-
-		while ( $batch < $max_batches ) {
-			++$batch;
-
-			$user_query = new WP_User_Query(
-				array(
-					'role'         => $roles,
-					'role__not_in' => $this->get_account_cleanup_user_role_exclusions(),
-					'fields'       => 'ID',
-					'number'       => $batch_size,
-					'offset'       => $offset,
-					'orderby'      => 'ID',
-					'order'        => 'ASC',
-					'count_total'  => false,
-					'date_query'   => array(
-						array(
-							'before'    => $registered_before,
-							'inclusive' => true,
-						),
+		$user_query = new WP_User_Query(
+			array(
+				'role'         => $roles,
+				'role__not_in' => $this->get_account_cleanup_user_role_exclusions(),
+				'date_query'   => array(
+					array(
+						'before'    => $registered_before,
+						'inclusive' => true,
 					),
-					'meta_query'   => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-						array(
-							'key'     => '_woocommerce_activation',
-							'compare' => '!=',
-							'value'   => '',
-						),
+				),
+				'meta_query'   => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+					array(
+						'key'     => '_woocommerce_activation',
+						'compare' => 'EXISTS',
 					),
-				)
-			);
+					array(
+						'key'     => '_woocommerce_activation',
+						'compare' => '!=',
+						'value'   => '',
+					),
+				),
+			)
+		);
 
-			$user_ids = array_map( 'absint', (array) $user_query->get_results() );
+		if ( ! empty( $user_query->results ) ) {
+			foreach ( $user_query->results as $user ) {
+				$activation_meta = get_user_meta( $user->ID, '_woocommerce_activation', true );
 
-			foreach ( $user_ids as $user_id ) {
-				$activation_meta = get_user_meta( $user_id, '_woocommerce_activation', true );
-				$user            = get_userdata( $user_id );
-				$deleted         = false;
-
-				if ( $user && ! empty( $activation_meta ) ) {
+				if ( ! empty( $activation_meta ) ) {
 					/**
 					 * Filters whether a certain user which has not yet been activated
 					 * should be deleted.
@@ -897,28 +862,11 @@ class WC_GZD_Customer_Helper {
 					 * @since 1.0.0
 					 */
 					if ( apply_filters( 'woocommerce_gzd_delete_unactivated_customer', true, $user ) ) {
-						$deleted = wp_delete_user( $user_id );
+						require_once ABSPATH . 'wp-admin/includes/user.php';
+						wp_delete_user( $user->ID );
 					}
 				}
-
-				/**
-				 * Users which have not been deleted will still be part of the result set - skip them.
-				 */
-				if ( ! $deleted ) {
-					++$offset;
-				}
 			}
-
-			if ( count( $user_ids ) < $batch_size ) {
-				$has_more = false;
-				break;
-			}
-
-			$has_more = true;
-		}
-
-		if ( $has_more && ! wp_next_scheduled( 'woocommerce_gzd_customer_cleanup', array( $offset ) ) ) {
-			wp_schedule_single_event( time() + 5 * MINUTE_IN_SECONDS, 'woocommerce_gzd_customer_cleanup', array( $offset ) );
 		}
 	}
 

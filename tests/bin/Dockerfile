@@ -1,4 +1,4 @@
-FROM wordpress:php8.2-apache
+FROM wordpress:latest
 
 CMD echo "Installing dependencies..."
 
