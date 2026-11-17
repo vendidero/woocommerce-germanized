@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 7.1
 WC requires at least: 3.9
 WC tested up to: 11.3
-Stable tag: 4.1.7
+Stable tag: 4.1.8
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -208,6 +208,11 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.1.8 =
+* Improvement: Replace the default WooCommerce registration notice with a double opt-in notice in case double opt-in is enabled
+* Improvement: Use the Germanized revocation page as fallback for the WooCommerce refund & returns page and prevent WooCommerce from creating a separate page in case a revocation page exists
+* Security: [Withdrawal button] Cross-Site scripting via User-Agent Header in withdrawal preview modal (thanks to Mohamed Amgad Khater for disclosing)
+
 = 4.1.7 =
 * Improvement: WC 11.3 compatibility
 * Improvement: Use new Woo product attribute filters to store checkout visibility (with fallback for older Woo versions)
