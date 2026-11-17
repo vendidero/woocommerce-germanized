@@ -34,28 +34,12 @@ function wc_gzd_get_cart_tax_display_mode( $cart = false ) {
 }
 
 function wc_gzd_get_tax_rate( $tax_rate_id ) {
-	$tax_rate_id = absint( $tax_rate_id );
+	global $wpdb;
 
-	if ( empty( $tax_rate_id ) ) {
-		return false;
-	}
-
-	/**
-	 * WC_Tax::_get_tax_rate() does not cache results. Use the taxes cache group
-	 * which is invalidated by WooCommerce on tax rate changes.
-	 */
-	$cache_key = WC_Cache_Helper::get_cache_prefix( 'taxes' ) . 'wc_gzd_tax_rate_' . $tax_rate_id;
-	$rate      = wp_cache_get( $cache_key, 'taxes' );
-
-	if ( false === $rate ) {
-		$rate = WC_Tax::_get_tax_rate( $tax_rate_id, OBJECT );
-		$rate = ! empty( $rate ) ? $rate : 0;
-
-		wp_cache_set( $cache_key, $rate, 'taxes' );
-	}
+	$rate = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}woocommerce_tax_rates WHERE tax_rate_id = %d LIMIT 1", $tax_rate_id ) );
 
 	if ( ! empty( $rate ) ) {
-		return clone $rate;
+		return $rate[0];
 	}
 
 	return false;
