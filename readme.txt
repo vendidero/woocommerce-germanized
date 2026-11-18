@@ -2,10 +2,10 @@
 Contributors: vendidero, vdwoocommercesupport
 Tags: woocommerce, germany, germany, deutsch, woo
 Requires at least: 5.4
-Tested up to: 7.1
+Tested up to: 7.2
 WC requires at least: 3.9
 WC tested up to: 11.3
-Stable tag: 4.1.8
+Stable tag: 4.1.9
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -208,6 +208,16 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.1.9 =
+* Security: Treat customer-controlled placeholders within the SEPA direct debit mandate text as plain text
+* Security: Escape legal checkbox opt-in meta in admin
+* Security: Rescanned codebase for wp_kses usage to prevent html-tag rebuilding
+* Security: [Withdrawal button] Cross-Site Scripting via (inherited) billing name in admin withdrawal list table (thanks to Mariusz for disclosing)
+* Security: [Withdrawal button] Strip markup from customer-controlled email placeholders
+* Security: [Withdrawal button] Escape withdrawal rejection reason in admin, order notes and emails
+* Fix: [Withdrawal button] Restrict props editable via the admin withdrawal save AJAX action
+* Fix: [Withdrawal button] Do not include additional information in customer emails for unverified withdrawal requests
+
 = 4.1.8 =
 * Improvement: Replace the default WooCommerce registration notice with a double opt-in notice in case double opt-in is enabled
 * Improvement: Use the Germanized revocation page as fallback for the WooCommerce refund & returns page and prevent WooCommerce from creating a separate page in case a revocation page exists
