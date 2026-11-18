@@ -1480,7 +1480,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 							if ( $opted_in_at = $this->get_opted_in_at( $checkbox_id, $instance_object ) ) :
 								$opted_in_ip = $this->get_opted_in_ip( $checkbox_id, $instance_object ) ? wc_gzd_maybe_mask_ip_address( $this->get_opted_in_ip( $checkbox_id, $instance_object ) ) : '?';
 								?>
-								<span class="checkbox-meta"><?php echo wp_kses_post( sprintf( esc_html__( 'Opted in on %1$s @ %2$s from %3$s', 'woocommerce-germanized' ), wc_format_datetime( $opted_in_at ), wc_format_datetime( $opted_in_at, get_option( 'time_format' ) ), $opted_in_ip ) ); ?></span>
+								<span class="checkbox-meta"><?php echo esc_html( sprintf( __( 'Opted in on %1$s @ %2$s from %3$s', 'woocommerce-germanized' ), wc_format_datetime( $opted_in_at ), wc_format_datetime( $opted_in_at, get_option( 'time_format' ) ), $opted_in_ip ) ); ?></span>
 							<?php endif; ?>
 						</p>
 						<p class="checkbox-status">

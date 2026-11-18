@@ -1017,8 +1017,20 @@ Please notice: Period for pre-information of the SEPA direct debit is shortened 
 
 		$text = $this->mandate_text;
 
+		/**
+		 * Customer-controlled placeholders (e.g. billing data submitted via the Store API)
+		 * must be treated as plain text - never as HTML.
+		 */
+		$plain_text_args = array( 'account_holder', 'account_iban', 'account_swift', 'street', 'postcode', 'city', 'country', 'mandate_id', 'date' );
+
 		foreach ( $args as $key => $val ) {
-			$text = str_replace( '[' . $key . ']', strip_shortcodes( $val ), $text );
+			$val = strip_shortcodes( (string) $val );
+
+			if ( in_array( $key, $plain_text_args, true ) ) {
+				$val = esc_html( $val );
+			}
+
+			$text = str_replace( '[' . $key . ']', $val, $text );
 		}
 
 		$content = wptexturize( $text );
