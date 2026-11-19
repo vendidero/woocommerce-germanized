@@ -189,6 +189,19 @@ class WC_GZD_Checkout {
 		return $value;
 	}
 
+	/**
+	 * Explicitly provide the (raw, unslashed) checkout form data for the current request.
+	 * Use this for third-party requests which do not post the checkout form as $_POST['post_data']
+	 * or as a regular checkout submit, e.g. PayPal Payments AJAX requests which send the form as JSON.
+	 *
+	 * @param array|null $data
+	 *
+	 * @return void
+	 */
+	public function set_checkout_data( $data ) {
+		$this->checkout_data = ( is_array( $data ) && ! empty( $data ) ) ? wc_clean( $data ) : null;
+	}
+
 	public function get_checkout_value( $key ) {
 		$value = null;
 
@@ -205,30 +218,7 @@ class WC_GZD_Checkout {
 					$value = $customer->{ $getter }();
 				}
 			} else {
-				if ( is_null( $this->checkout_data ) ) {
-					/**
-					 * Use raw post data in case available as only certain billing/shipping address
-					 * specific data is available during AJAX requests in get_posted_data.
-					 */
-					if ( isset( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-						$posted = array();
-
-						if ( is_string( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-							parse_str( $_POST['post_data'], $posted ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
-							$this->checkout_data = wc_clean( wp_unslash( $posted ) );
-						} elseif ( is_array( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-							$this->checkout_data = wc_clean( wp_unslash( $_POST['post_data'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-						}
-					} elseif ( isset( $_POST['woocommerce-process-checkout-nonce'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-						/**
-						 * get_posted_data() does only include core Woo data, no third-party data included.
-						 * Prevent calling get_posted_data() before fields were loaded to prevent infinite loops.
-						 */
-						if ( did_action( 'woocommerce_checkout_fields' ) || did_action( 'woocommerce_checkout_process' ) ) {
-							$this->checkout_data = WC()->checkout()->get_posted_data();
-						}
-					}
-				}
+				$this->maybe_setup_checkout_data();
 
 				/**
 				 * Fallback to customer data (or posted data in case available).
@@ -262,6 +252,68 @@ class WC_GZD_Checkout {
 		return apply_filters( 'woocommerce_gzd_get_checkout_value', $value, $key );
 	}
 
+	protected function maybe_setup_checkout_data() {
+		if ( ! is_null( $this->checkout_data ) ) {
+			return;
+		}
+
+		/**
+		 * Use raw post data in case available as only certain billing/shipping address
+		 * specific data is available during AJAX requests in get_posted_data.
+		 */
+		if ( isset( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$posted = array();
+
+			if ( is_string( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				parse_str( $_POST['post_data'], $posted ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+				$this->checkout_data = wc_clean( wp_unslash( $posted ) );
+			} elseif ( is_array( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$this->checkout_data = wc_clean( wp_unslash( $_POST['post_data'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			}
+		} elseif ( isset( $_POST['woocommerce-process-checkout-nonce'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			/**
+			 * get_posted_data() does only include core Woo data, no third-party data included.
+			 * Prevent calling get_posted_data() before fields were loaded to prevent infinite loops.
+			 */
+			if ( did_action( 'woocommerce_checkout_fields' ) || did_action( 'woocommerce_checkout_process' ) ) {
+				$this->checkout_data = WC()->checkout()->get_posted_data();
+			}
+		}
+	}
+
+	/**
+	 * Returns a value which has actually been submitted with the checkout form during the current request
+	 * (checkout refresh, checkout submit or checkout data explicitly provided via set_checkout_data()).
+	 *
+	 * Other than get_checkout_value() this does not fall back to customer data or default values
+	 * (e.g. the woocommerce_checkout_get_value filter). Use it for legal checkboxes which must be
+	 * confirmed by the customer within the current checkout, e.g. the photovoltaic systems VAT exemption.
+	 *
+	 * For backwards compatibility the value is passed through the woocommerce_gzd_get_checkout_value filter
+	 * (which has been applied to checkbox values before) as well.
+	 *
+	 * @param string $key
+	 *
+	 * @return mixed|null
+	 */
+	public function get_posted_checkout_value( $key ) {
+		$value = null;
+
+		if ( ! WC_germanized()->is_rest_api_request() ) {
+			$this->maybe_setup_checkout_data();
+
+			if ( is_array( $this->checkout_data ) && isset( $this->checkout_data[ $key ] ) ) {
+				$value = $this->checkout_data[ $key ];
+			} elseif ( isset( $_POST['woocommerce-process-checkout-nonce'], $_POST[ $key ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$value = wc_clean( wp_unslash( $_POST[ $key ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			}
+		}
+
+		$value = apply_filters( 'woocommerce_gzd_get_checkout_value', $value, $key );
+
+		return apply_filters( 'woocommerce_gzd_get_posted_checkout_value', $value, $key );
+	}
+
 	public function refresh_photovoltaic_systems_notice( $fragments ) {
 		$fragments['.wc-gzd-photovoltaic-systems-notice'] = '';
 
@@ -291,7 +343,11 @@ class WC_GZD_Checkout {
 
 		if ( is_a( $checkbox, 'WC_GZD_Legal_Checkbox' ) ) {
 			$checkbox_id = $checkbox->get_id();
-			$value       = $this->get_checkout_value( $checkbox->get_html_name() ) ? self::instance()->get_checkout_value( $checkbox->get_html_name() ) : '';
+			/**
+			 * Legal checkboxes need to be confirmed within the current checkout. Do not fall back to
+			 * default values (e.g. a checkout form stored by a payment plugin during an earlier attempt).
+			 */
+			$value = $this->get_posted_checkout_value( $checkbox->get_html_name() );
 
 			if ( $this->checkbox_is_visible( $checkbox ) && ( ! empty( $value ) || $checkbox->hide_input() ) ) {
 				$is_checked = true;
@@ -312,10 +368,36 @@ class WC_GZD_Checkout {
 
 		if ( is_a( $checkbox, 'WC_GZD_Legal_Checkbox' ) ) {
 			$checkbox_id = $checkbox->get_id();
-			$is_visible  = ! empty( $this->get_checkout_value( $checkbox->get_html_name() . '-field' ) ) ? true : false;
+			$is_visible  = ! empty( $this->get_posted_checkout_value( $checkbox->get_html_name() . '-field' ) ) ? true : false;
 		}
 
 		return apply_filters( 'woocommerce_gzd_checkout_checkbox_is_visible', $is_visible, $checkbox_id );
+	}
+
+	/**
+	 * Whether the current request may lead to an order (or a payment) and thus requires the customer
+	 * to explicitly confirm the photovoltaic systems VAT exemption. Zero tax classes of photovoltaic systems
+	 * (e.g. used to show zero-taxed prices within the shop) are removed in this context unless confirmed.
+	 *
+	 * Besides the checkout this includes REST requests (e.g. the Store API used by the checkout block and express
+	 * payment buttons) and express checkout requests of payment plugins (see woocommerce_gzd_is_express_checkout_request).
+	 *
+	 * @return bool
+	 */
+	public function is_photovoltaic_systems_exemption_context() {
+		$is_context = is_checkout() || $this->checkbox_is_visible( 'photovoltaic_systems' ) || WC_germanized()->is_rest_api_request() || $this->is_express_checkout_request();
+
+		return (bool) apply_filters( 'woocommerce_gzd_is_photovoltaic_systems_exemption_context', $is_context );
+	}
+
+	/**
+	 * Whether the current request is an express checkout request of a payment plugin (e.g. PayPal buttons on
+	 * product or cart pages) which may create a payment or an order without passing the checkout.
+	 *
+	 * @return bool
+	 */
+	public function is_express_checkout_request() {
+		return (bool) apply_filters( 'woocommerce_gzd_is_express_checkout_request', false );
 	}
 
 	/**
@@ -356,7 +438,7 @@ class WC_GZD_Checkout {
 							$_product->set_tax_class( get_option( 'woocommerce_gzd_photovoltaic_systems_zero_tax_class', 'zero-rate' ) );
 						}
 					}
-				} elseif ( apply_filters( 'woocommerce_gzd_photovoltaic_systems_remove_zero_tax_class_for_non_exemptions', ( ! $is_vat_exempt && ( is_checkout() || $this->checkbox_is_visible( 'photovoltaic_systems' ) ) ) ) ) {
+				} elseif ( apply_filters( 'woocommerce_gzd_photovoltaic_systems_remove_zero_tax_class_for_non_exemptions', ( ! $is_vat_exempt && $this->is_photovoltaic_systems_exemption_context() ) ) ) {
 					foreach ( $cart->get_cart() as $cart_item_key => $values ) {
 						$_product = apply_filters( 'woocommerce_cart_item_product', $values['data'], $values, $cart_item_key );
 
