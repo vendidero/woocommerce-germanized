@@ -160,9 +160,69 @@ class WC_GZD_Checkout {
 		add_filter( 'woocommerce_update_order_review_fragments', array( $this, 'refresh_photovoltaic_systems_notice' ), 10, 1 );
 
 		/**
+		 * Third-party scripts (e.g. PayPal Payments) may request the Store API cart while the customer is on the classic checkout.
+		 * Store API requests recalculate (and store) the cart totals. Make the current photovoltaic systems confirmation available
+		 * to these (REST) requests the same way the checkout block does and reset it as soon as the customer leaves the checkout.
+		 */
+		add_action( 'woocommerce_checkout_update_order_review', array( $this, 'store_photovoltaic_systems_checkout_state' ), 5 );
+		add_action( 'template_redirect', array( $this, 'maybe_reset_photovoltaic_systems_checkout_state' ), 5 );
+
+		/**
 		 * Other services (e.g. virtual, services) are not taxable in northern ireland
 		 */
 		add_action( 'woocommerce_before_calculate_totals', array( $this, 'maybe_remove_northern_ireland_taxes' ), 15 );
+	}
+
+	/**
+	 * Classic checkout refresh: store whether the photovoltaic systems checkbox has been confirmed within the session.
+	 * The session data is shared with the checkout block integration which evaluates it within REST (Store API) requests.
+	 *
+	 * @see \Vendidero\Germanized\Blocks\Checkout::register_filters()
+	 *
+	 * @return void
+	 */
+	public function store_photovoltaic_systems_checkout_state() {
+		if ( ! WC()->session || ! wc_gzd_base_country_supports_photovoltaic_system_vat_exempt() ) {
+			return;
+		}
+
+		$this->set_photovoltaic_systems_checkout_state( $this->checkbox_is_checked( 'photovoltaic_systems' ), $this->checkbox_is_visible( 'photovoltaic_systems' ) );
+	}
+
+	/**
+	 * Reset the stored photovoltaic systems confirmation as soon as a page outside the checkout is viewed,
+	 * e.g. to prevent express checkouts from product or cart pages to inherit the confirmation.
+	 *
+	 * @return void
+	 */
+	public function maybe_reset_photovoltaic_systems_checkout_state() {
+		if ( ! WC()->session || ( is_checkout() && ! is_wc_endpoint_url( 'order-received' ) ) ) {
+			return;
+		}
+
+		$this->set_photovoltaic_systems_checkout_state( false, false );
+	}
+
+	/**
+	 * @param bool $is_checked
+	 * @param bool $is_visible
+	 *
+	 * @return void
+	 */
+	protected function set_photovoltaic_systems_checkout_state( $is_checked, $is_visible ) {
+		$checked    = (array) WC()->session->get( 'checkout_checkboxes_checked', array() );
+		$is_current = in_array( 'photovoltaic_systems', $checked, true );
+
+		if ( $is_checked && ! $is_current ) {
+			$checked[] = 'photovoltaic_systems';
+			WC()->session->set( 'checkout_checkboxes_checked', array_values( $checked ) );
+		} elseif ( ! $is_checked && $is_current ) {
+			WC()->session->set( 'checkout_checkboxes_checked', array_values( array_diff( $checked, array( 'photovoltaic_systems' ) ) ) );
+		}
+
+		if ( (bool) WC()->session->get( 'gzd_is_checkout_checkout', false ) !== (bool) $is_visible ) {
+			WC()->session->set( 'gzd_is_checkout_checkout', (bool) $is_visible );
+		}
 	}
 
 	public function maybe_remove_northern_ireland_taxes( $cart ) {

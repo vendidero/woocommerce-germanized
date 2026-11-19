@@ -212,7 +212,7 @@ Please report security bugs found in the source code of the Germanized for WooCo
 * Improvement: Performance improvements, e.g. persistently cache hook priorities (cleared on theme/plugin changes), autoload legal checkbox settings, cache tax rate lookups and use the object term cache to determine manufacturers from product brands
 * Improvement: Process the cleanup of unactivated customer accounts in batches
 * Improvement: Legal checkboxes (e.g. photovoltaic systems VAT exemption) only count values submitted with the current checkout form - default values provided via woocommerce_checkout_get_value (e.g. a checkout form stored by a payment plugin) are ignored. Use woocommerce_gzd_get_checkout_value or woocommerce_gzd_get_posted_checkout_value to provide values programmatically.
-* Fix: PayPal Payments: Respect the photovoltaic systems VAT exemption checkbox while creating the PayPal order, even if third-party plugins recalculate the cart
+* Fix: Respect the photovoltaic systems VAT exemption within Store API requests during the classic checkout, e.g. PayPal Payments requesting the cart (which led to PayPal orders including VAT)
 * Fix: Do not apply the photovoltaic systems VAT exemption (or zero tax classes of photovoltaic systems) to express checkouts and Store API requests without explicit confirmation
 * Fix: Direct debit export of unpaid orders only in case HPOS is enabled
 * Fix: Keep the checkout visibility of product attributes when updating product attributes

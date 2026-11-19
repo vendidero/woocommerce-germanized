@@ -62,14 +62,11 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 		);
 
 		/**
-		 * PayPal Payments sends the checkout form as JSON (not as post_data) when creating the PayPal order and
-		 * only stores it within its own session after the purchase unit has been built. Provide the form to Germanized
-		 * as early as possible so that every cart (re-)calculation during these requests (e.g. triggered by third-party plugins)
-		 * respects checkout-dependent data such as the photovoltaic systems VAT exemption checkbox.
+		 * PayPal Payments sends the checkout form as JSON (not as post_data) when creating the PayPal order.
+		 * Provide the form to Germanized so that cart (re-)calculations during this request (e.g. triggered by third-party plugins)
+		 * respect checkout-dependent data such as the photovoltaic systems VAT exemption checkbox.
 		 */
-		add_action( 'wp_loaded', array( $this, 'maybe_set_checkout_data_before_cart_load' ), 1 );
 		add_action( 'woocommerce_paypal_payments_create_order_request_started', array( $this, 'set_checkout_data_from_request' ), 1 );
-		add_action( 'woocommerce_paypal_payments_approve_order_request_started', array( $this, 'set_checkout_data_from_session' ), 1 );
 
 		/**
 		 * PayPal Payments AJAX requests (e.g. express buttons on product/cart pages, wallets, order approval) may lead to
@@ -152,35 +149,6 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 	}
 
 	/**
-	 * WooCommerce loads the cart from the session on wp_loaded, before PayPal Payments handles its AJAX request.
-	 * Parse the create order request body (the same way PayPal Payments does) beforehand to make sure the cart
-	 * is set up with the current checkout data (e.g. photovoltaic systems VAT exemption) from the very start.
-	 *
-	 * @return void
-	 */
-	public function maybe_set_checkout_data_before_cart_load() {
-		if ( ! isset( $_GET['wc-ajax'] ) || 'ppc-create-order' !== wc_clean( wp_unslash( $_GET['wc-ajax'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			return;
-		}
-
-		$body = file_get_contents( 'php://input' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-		$data = $body ? json_decode( $body, true ) : null;
-
-		if ( ! is_array( $data ) ) {
-			return;
-		}
-
-		if ( isset( $data['form_encoded'] ) && is_string( $data['form_encoded'] ) ) {
-			$form = array();
-			parse_str( $data['form_encoded'], $form );
-
-			$data['form'] = $form;
-		}
-
-		$this->set_checkout_data_from_request( $data );
-	}
-
-	/**
 	 * @param array $data The parsed PayPal Payments request data (form_encoded is parsed into form).
 	 *
 	 * @return void
@@ -235,29 +203,6 @@ class WC_GZD_Compatibility_WooCommerce_PayPal_Payments extends WC_GZD_Compatibil
 
 		if ( WC()->cart && wc_gzd_cart_contains_photovoltaic_system( WC()->cart->get_cart() ) ) {
 			WC()->cart->calculate_totals();
-		}
-	}
-
-	/**
-	 * Use the checkout form PayPal Payments stored within its session (during order creation) as fallback.
-	 *
-	 * @param array $data The PayPal Payments approve order request data.
-	 *
-	 * @return void
-	 */
-	public function set_checkout_data_from_session( $data = array() ) {
-		/**
-		 * Express checkouts (Pay Now) create the order right away without showing the checkout form.
-		 * Do not apply a checkout form which might have been stored during an earlier checkout attempt.
-		 */
-		if ( is_array( $data ) && ! empty( $data['should_create_wc_order'] ) ) {
-			return;
-		}
-
-		$ppcp_session = WC()->session ? WC()->session->get( 'ppcp' ) : null;
-
-		if ( is_array( $ppcp_session ) && ! empty( $ppcp_session['checkout_form'] ) && is_array( $ppcp_session['checkout_form'] ) ) {
-			WC_GZD_Checkout::instance()->set_checkout_data( $ppcp_session['checkout_form'] );
 		}
 	}
 

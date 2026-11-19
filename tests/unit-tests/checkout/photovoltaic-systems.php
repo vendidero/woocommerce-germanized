@@ -62,6 +62,8 @@ class WC_GZD_Tests_Checkout_Photovoltaic_Systems extends WC_GZD_Unit_Test_Case {
 
 		remove_all_filters( 'woocommerce_gzd_is_express_checkout_request' );
 		unset( $_POST['post_data'], $_POST['woocommerce-process-checkout-nonce'], $_POST['photovoltaic_systems'], $_POST['photovoltaic_systems-field'] );
+		WC()->session->set( 'checkout_checkboxes_checked', array() );
+		WC()->session->set( 'gzd_is_checkout_checkout', false );
 		$this->reset_checkout_data();
 
 		WC()->cart->empty_cart();
@@ -188,5 +190,38 @@ class WC_GZD_Tests_Checkout_Photovoltaic_Systems extends WC_GZD_Unit_Test_Case {
 		// Explicitly confirmed (e.g. checkout form sent with the request).
 		WC_GZD_Checkout::instance()->set_checkout_data( $this->get_confirmed_form() );
 		$this->assertSame( 0.0, $this->get_cart_tax( 'zero-rate' ) );
+	}
+
+	/**
+	 * Classic checkout refreshes store the confirmation within the session (evaluated by Store API requests,
+	 * e.g. the cart requested by PayPal Payments while the customer is on the checkout).
+	 */
+	public function test_classic_checkout_refresh_stores_state_for_store_api() {
+		$_POST['post_data'] = http_build_query( $this->get_confirmed_form() );
+		WC_GZD_Checkout::instance()->store_photovoltaic_systems_checkout_state();
+
+		$this->assertContains( 'photovoltaic_systems', (array) WC()->session->get( 'checkout_checkboxes_checked' ) );
+		$this->assertTrue( WC()->session->get( 'gzd_is_checkout_checkout' ) );
+
+		// Unchecked within the next refresh.
+		$form = $this->get_confirmed_form();
+		unset( $form['photovoltaic_systems'] );
+		$_POST['post_data'] = http_build_query( $form );
+		$this->reset_checkout_data();
+		WC_GZD_Checkout::instance()->store_photovoltaic_systems_checkout_state();
+
+		$this->assertNotContains( 'photovoltaic_systems', (array) WC()->session->get( 'checkout_checkboxes_checked' ) );
+		$this->assertTrue( WC()->session->get( 'gzd_is_checkout_checkout' ) );
+	}
+
+	public function test_leaving_the_checkout_resets_state() {
+		WC()->session->set( 'checkout_checkboxes_checked', array( 'terms', 'photovoltaic_systems' ) );
+		WC()->session->set( 'gzd_is_checkout_checkout', true );
+
+		// Not on the checkout page (e.g. product or cart page view).
+		WC_GZD_Checkout::instance()->maybe_reset_photovoltaic_systems_checkout_state();
+
+		$this->assertSame( array( 'terms' ), WC()->session->get( 'checkout_checkboxes_checked' ) );
+		$this->assertFalse( WC()->session->get( 'gzd_is_checkout_checkout' ) );
 	}
 }
