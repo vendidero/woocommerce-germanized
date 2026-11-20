@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 7.2
 WC requires at least: 3.9
 WC tested up to: 11.3
-Stable tag: 4.1.9
+Stable tag: 4.1.10
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -208,6 +208,9 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.1.10 =
+* Fix: Empty (mobile) order summary within the checkout block with WooCommerce 11.3+ (incl. multilevel checkout)
+
 = 4.1.9 =
 * Security: Treat customer-controlled placeholders within the SEPA direct debit mandate text as plain text
 * Security: Escape legal checkbox opt-in meta in admin
