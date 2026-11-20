@@ -833,7 +833,7 @@ class WC_GZD_Customer_Helper {
 		 *
 		 * @param int $batch_size The batch size.
 		 *
-		 * @since 4.1.10
+		 * @since 4.2.0
 		 */
 		$batch_size = max( 1, absint( apply_filters( 'woocommerce_gzd_customer_account_cleanup_batch_size', 50 ) ) );
 
@@ -842,7 +842,7 @@ class WC_GZD_Customer_Helper {
 		 *
 		 * @param int $max_batches The max number of batches.
 		 *
-		 * @since 4.1.10
+		 * @since 4.2.0
 		 */
 		$max_batches = max( 1, absint( apply_filters( 'woocommerce_gzd_customer_account_cleanup_max_batches', 10 ) ) );
 		$batch       = 0;

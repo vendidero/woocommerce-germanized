@@ -208,7 +208,7 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
-= 4.1.10 =
+= 4.2.0 =
 * Improvement: Performance improvements, e.g. persistently cache hook priorities (cleared on theme/plugin changes), autoload legal checkbox settings, cache tax rate lookups and use the object term cache to determine manufacturers from product brands
 * Improvement: Process the cleanup of unactivated customer accounts in batches
 * Improvement: Legal checkboxes (e.g. photovoltaic systems VAT exemption) only count values submitted with the current checkout form - default values provided via woocommerce_checkout_get_value (e.g. a checkout form stored by a payment plugin) are ignored. Use woocommerce_gzd_get_checkout_value or woocommerce_gzd_get_posted_checkout_value to provide values programmatically.
@@ -217,6 +217,9 @@ Please report security bugs found in the source code of the Germanized for WooCo
 * Fix: Direct debit export of unpaid orders only in case HPOS is enabled
 * Fix: Keep the checkout visibility of product attributes when updating product attributes
 * Fix: Do not treat shops without published products as shops selling virtual products only
+
+= 4.1.10 =
+* Fix: Empty (mobile) order summary within the checkout block with WooCommerce 11.3+ (incl. multilevel checkout)
 
 = 4.1.9 =
 * Security: Treat customer-controlled placeholders within the SEPA direct debit mandate text as plain text
