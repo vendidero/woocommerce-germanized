@@ -12,7 +12,8 @@ name: Deploy to wordpress.org
 # Asset changes are only committed in case something actually changed.
 #
 # Leave the tag empty (release/tag-only mode) to deploy the latest GitHub release. The run fails in case that
-# release has already been deployed (tags/<version> exists in SVN). assets-only mode always requires a tag/branch.
+# release has already been deployed (tags/<version> exists in SVN). In assets-only mode an empty tag means the branch
+# the workflow is run from ("Use workflow from", usually master).
 #
 # The SVN password is supplied per run (never stored in GitHub). It is read from the event payload and
 # masked before use. Workflow inputs are NOT secrets: they are kept with the run's event payload. Use a
@@ -24,7 +25,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Release tag, e.g. v4.1.8 - leave empty to deploy the latest GitHub release if not deployed yet (assets-only mode: required, any tag or branch to take assets/readme from)'
+        description: 'Release tag, e.g. v4.1.8 - leave empty to deploy the latest GitHub release if not deployed yet (assets-only mode: tag or branch to take assets/readme from, empty = the branch selected above)'
         required: false
         default: ''
         type: string
@@ -59,7 +60,7 @@ on:
 
 # Never reference the password input here or anywhere else in this file via ${{ }} expressions -
 # expressions are expanded into the logged step scripts before masking takes effect.
-run-name: Deploy ${{ inputs.tag || 'latest release' }} to wordpress.org (${{ inputs.mode }}${{ inputs.dry_run && ', dry run' || '' }})
+run-name: Deploy ${{ inputs.tag || (inputs.mode == 'assets-only' && github.ref_name) || 'latest release' }} to wordpress.org (${{ inputs.mode }}${{ inputs.dry_run && ', dry run' || '' }})
 
 concurrency:
   group: wporg-deploy
@@ -118,27 +119,29 @@ jobs:
         run: |
           if [ -z "$TAG" ]; then
             if [ "$MODE" = "assets-only" ]; then
-              echo "::error::assets-only mode requires a tag or branch."
-              exit 1
+              TAG="$GITHUB_REF_NAME"
+              echo "TAG=${TAG}" >> "$GITHUB_ENV"
+              echo "No tag provided, using assets/readme from ${TAG}."
+              echo "### Using assets/readme from ${TAG}" >> "$GITHUB_STEP_SUMMARY"
+            else
+              # Latest published release (drafts and pre-releases are ignored).
+              TAG=$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq '.tagName' 2> /dev/null || true)
+
+              if [ -z "$TAG" ]; then
+                echo "::error::No tag provided and no GitHub release found."
+                exit 1
+              fi
+
+              LATEST_VERSION="${TAG#v}"
+
+              if svn info "${SVN_URL}/tags/${LATEST_VERSION}" > /dev/null 2>&1; then
+                echo "::error::No tag provided and the latest GitHub release ${TAG} has already been deployed to wordpress.org (tags/${LATEST_VERSION} exists)."
+                exit 1
+              fi
+
+              echo "No tag provided, using the latest GitHub release ${TAG}."
+              echo "### Using latest GitHub release ${TAG}" >> "$GITHUB_STEP_SUMMARY"
             fi
-
-            # Latest published release (drafts and pre-releases are ignored).
-            TAG=$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq '.tagName' 2> /dev/null || true)
-
-            if [ -z "$TAG" ]; then
-              echo "::error::No tag provided and no GitHub release found."
-              exit 1
-            fi
-
-            LATEST_VERSION="${TAG#v}"
-
-            if svn info "${SVN_URL}/tags/${LATEST_VERSION}" > /dev/null 2>&1; then
-              echo "::error::No tag provided and the latest GitHub release ${TAG} has already been deployed to wordpress.org (tags/${LATEST_VERSION} exists)."
-              exit 1
-            fi
-
-            echo "No tag provided, using the latest GitHub release ${TAG}."
-            echo "### Using latest GitHub release ${TAG}" >> "$GITHUB_STEP_SUMMARY"
           fi
 
           if [ "$MODE" = "assets-only" ]; then
