@@ -3,21 +3,31 @@ name: Release (GitHub)
 # Builds the plugin and creates a GitHub release (tag v<version> pointing to a build commit which
 # includes vendor/, packages/, build/ and i18n JSON files) with the distributable zip attached.
 # Does NOT touch wordpress.org - use the "Deploy to wordpress.org" workflow afterwards.
+#
+# Leave the version empty to release the current version (plugin header of the branch), in case that version
+# has not been released yet. Use force to replace an existing release/tag of the version - the existing release
+# and tag are only deleted after the new build succeeded.
 
 on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version to release, e.g. 4.1.8 (must match the plugin header). Versions containing "-" are pre-releases.'
-        required: true
+        description: 'Version to release, e.g. 4.1.8 (must match the plugin header) - leave empty to release the current version of the branch. Versions containing "-" are pre-releases.'
+        required: false
+        default: ''
         type: string
       branch:
         description: 'Branch to release from'
         required: true
         default: 'master'
         type: string
+      force:
+        description: 'Replace an existing GitHub release/tag of this version'
+        required: false
+        default: false
+        type: boolean
 
-run-name: Release ${{ inputs.version }} from ${{ inputs.branch }}
+run-name: Release ${{ inputs.version || 'current version' }} from ${{ inputs.branch }}${{ inputs.force && ' (force)' || '' }}
 
 concurrency:
   group: release
@@ -30,19 +40,13 @@ env:
   PLUGIN_SLUG: woocommerce-germanized
   VERSION: ${{ inputs.version }}
   BRANCH: ${{ inputs.branch }}
+  FORCE: ${{ inputs.force }}
   TERM: xterm
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Validate input
-        run: |
-          if ! printf '%s' "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$'; then
-            echo "::error::Invalid version \"$VERSION\"."
-            exit 1
-          fi
-
       - name: Checkout
         uses: actions/checkout@v7
         with:
@@ -52,6 +56,19 @@ jobs:
         run: |
           PLUGIN_VERSION=$(grep -i "^ \* Version:" "${PLUGIN_SLUG}.php" | awk '{print $NF}' | tr -d '\r')
           README_STABLE=$(grep -i "^Stable tag:" readme.txt | awk '{print $NF}' | tr -d '\r')
+
+          if [ -z "$VERSION" ]; then
+            VERSION="$PLUGIN_VERSION"
+            echo "No version provided, using the current version ${VERSION} of ${BRANCH}."
+            echo "### Using current version ${VERSION} of ${BRANCH}" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          if ! printf '%s' "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$'; then
+            echo "::error::Invalid version \"$VERSION\"."
+            exit 1
+          fi
+
+          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
 
           if [ "$PLUGIN_VERSION" != "$VERSION" ]; then
             echo "::error::Version in ${PLUGIN_SLUG}.php is \"${PLUGIN_VERSION}\" but \"${VERSION}\" was requested."
@@ -63,8 +80,17 @@ jobs:
           fi
 
           if git ls-remote --exit-code --tags origin "refs/tags/v${VERSION}" > /dev/null; then
-            echo "::error::Tag v${VERSION} already exists."
-            exit 1
+            if [ "$FORCE" != "true" ]; then
+              echo "::error::Tag v${VERSION} already exists. Use force to replace it."
+              exit 1
+            fi
+
+            echo "::warning::Tag v${VERSION} already exists and will be replaced (force)."
+            echo "REPLACE_EXISTING=true" >> "$GITHUB_ENV"
+
+            if curl -sfI "https://plugins.svn.wordpress.org/${PLUGIN_SLUG}/tags/${VERSION}/" > /dev/null; then
+              echo "::warning::Version ${VERSION} has already been deployed to wordpress.org - the replaced GitHub release will differ from the wordpress.org version."
+            fi
           fi
 
       # Build with the lowest supported PHP version (matches config.platform.php in composer.json) so that
@@ -117,6 +143,8 @@ jobs:
           fi
 
       - name: Create build commit and tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -126,6 +154,16 @@ jobs:
           git add --force i18n/languages/.
           git add .
           git commit -m "Build ${VERSION}: add packages/, build/, vendor/ and i18n JSON files" --no-verify
+
+          # Only remove the existing release/tag (force) now that the new build succeeded.
+          if [ "$REPLACE_EXISTING" = "true" ]; then
+            if gh release view "v${VERSION}" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+              gh release delete "v${VERSION}" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag
+            fi
+            if git ls-remote --exit-code --tags origin "refs/tags/v${VERSION}" > /dev/null; then
+              git push origin --delete "refs/tags/v${VERSION}"
+            fi
+          fi
 
           git tag "v${VERSION}"
           git push origin "refs/tags/v${VERSION}"
