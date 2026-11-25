@@ -11,6 +11,9 @@ name: Deploy to wordpress.org
 #
 # Asset changes are only committed in case something actually changed.
 #
+# Leave the tag empty (release/tag-only mode) to deploy the latest GitHub release. The run fails in case that
+# release has already been deployed (tags/<version> exists in SVN). assets-only mode always requires a tag/branch.
+#
 # The SVN password is supplied per run (never stored in GitHub). It is read from the event payload and
 # masked before use. Workflow inputs are NOT secrets: they are kept with the run's event payload. Use a
 # freshly generated SVN password (wordpress.org profile -> Account & Security) and revoke it after deploying.
@@ -21,8 +24,9 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Release tag, e.g. v4.1.8 (assets-only mode: any tag or branch to take assets/readme from)'
-        required: true
+        description: 'Release tag, e.g. v4.1.8 - leave empty to deploy the latest GitHub release if not deployed yet (assets-only mode: required, any tag or branch to take assets/readme from)'
+        required: false
+        default: ''
         type: string
       mode:
         description: 'What to deploy'
@@ -55,7 +59,7 @@ on:
 
 # Never reference the password input here or anywhere else in this file via ${{ }} expressions -
 # expressions are expanded into the logged step scripts before masking takes effect.
-run-name: Deploy ${{ inputs.tag }} to wordpress.org (${{ inputs.mode }}${{ inputs.dry_run && ', dry run' || '' }})
+run-name: Deploy ${{ inputs.tag || 'latest release' }} to wordpress.org (${{ inputs.mode }}${{ inputs.dry_run && ', dry run' || '' }})
 
 concurrency:
   group: wporg-deploy
@@ -100,8 +104,43 @@ jobs:
             exit 1
           fi
 
-      - name: Validate input
+      - name: Install Subversion
         run: |
+          if ! command -v svn > /dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq subversion
+          fi
+          svn --version --quiet
+
+      - name: Validate input
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -z "$TAG" ]; then
+            if [ "$MODE" = "assets-only" ]; then
+              echo "::error::assets-only mode requires a tag or branch."
+              exit 1
+            fi
+
+            # Latest published release (drafts and pre-releases are ignored).
+            TAG=$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq '.tagName' 2> /dev/null || true)
+
+            if [ -z "$TAG" ]; then
+              echo "::error::No tag provided and no GitHub release found."
+              exit 1
+            fi
+
+            LATEST_VERSION="${TAG#v}"
+
+            if svn info "${SVN_URL}/tags/${LATEST_VERSION}" > /dev/null 2>&1; then
+              echo "::error::No tag provided and the latest GitHub release ${TAG} has already been deployed to wordpress.org (tags/${LATEST_VERSION} exists)."
+              exit 1
+            fi
+
+            echo "No tag provided, using the latest GitHub release ${TAG}."
+            echo "### Using latest GitHub release ${TAG}" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
           if [ "$MODE" = "assets-only" ]; then
             if ! printf '%s' "$TAG" | grep -Eq '^[A-Za-z0-9._/-]+$'; then
               echo "::error::Invalid ref \"$TAG\"."
@@ -116,14 +155,6 @@ jobs:
             echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
             echo "TAG=v${VERSION}" >> "$GITHUB_ENV"
           fi
-
-      - name: Install Subversion
-        run: |
-          if ! command -v svn > /dev/null; then
-            sudo apt-get update -qq
-            sudo apt-get install -y -qq subversion
-          fi
-          svn --version --quiet
 
       - name: Checkout
         uses: actions/checkout@v7
@@ -260,6 +291,8 @@ jobs:
             exit 0
           fi
 
+          ASSET_CHANGES="$(svn status assets)"
+
           SVN_PASSWORD="$(jq -r '.inputs.svn_password // ""' "$GITHUB_EVENT_PATH")"
           svn commit --non-interactive --no-auth-cache \
             --username "$SVN_USERNAME" --password "$SVN_PASSWORD" \
@@ -268,5 +301,13 @@ jobs:
           {
             echo "### Committed to wordpress.org: ${COMMIT_MSG}"
             echo
+            if [ -n "$ASSET_CHANGES" ]; then
+              echo "Updated assets (screenshots, banners, icons):"
+              echo
+              echo '```'
+              echo "$ASSET_CHANGES"
+              echo '```'
+              echo
+            fi
             echo "Revoke the SVN password used for this run (wordpress.org profile -> Account & Security)."
           } >> "$GITHUB_STEP_SUMMARY"
