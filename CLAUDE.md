@@ -50,6 +50,8 @@ Preferred: GitHub Actions (manual `workflow_dispatch`):
 
 Files shipped are defined by `.distignore`.
 
+Readme translations (translate.wordpress.org "Stable Readme"): `bin/readme-i18n.py missing` writes untranslated readme strings (de + de-formal) to `bin/readme-i18n/<locale>.po`, keeping existing msgstr; `bin/readme-i18n.py check` validates msgids against `readme.txt` before importing on translate.wordpress.org.
+
 ## Architecture
 
 ### Two class systems coexist

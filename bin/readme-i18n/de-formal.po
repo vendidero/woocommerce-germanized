@@ -1,0 +1,149 @@
+# German (formal) translations for the woocommerce-germanized Stable Readme, see bin/readme-i18n.py.
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Language: de\n"
+"Project-Id-Version: Plugins - Germanized for WooCommerce - Stable Readme (latest release)\n"
+
+#. Found in description paragraph.
+msgid ""
+"Germanized extends WooCommerce to technically match specific german legal conditions. The objective of this plugin is to adapt WooCommerce to the special requirements of german market.\n"
+"Users of <a href=\"https://vendidero.de/woocommerce-germanized\" title=\"WooCommerce optimized for German Market\">Germanized for WooCommerce Pro</a> benefit from additional features, specifically designed for Germany, such as PDF invoices, B2B with customer groups and tiered prices, model text generators for terms and revocation pages, professional support and more!"
+msgstr ""
+"Germanized erweitert WooCommerce um die technische Voraussetzungen zum Betrieb eines rechtssicheren, deutschen Shops. Ziel dieses Plugins ist es, WooCommerce an die speziellen Gegebenheiten des deutschen Marktes anzupassen.\n"
+"Nutzer von <a href=\"https://vendidero.de/woocommerce-germanized\" title=\"WooCommerce optimized for German Market\">Germanized für WooCommerce Pro</a> profitieren zusätzlich von weiterführenden Features wie PDF Rechnungen, B2B mit Kundengruppen und Staffelpreisen, Generatoren für Mustertexte von AGB und Widerrufsbelehrung, Premium Support und mehr!"
+
+#. Found in description list item.
+msgid "<em>Invoices, E-Invoices &amp; Packing Slips (Pro)</em> - Conveniently create invoices, packing slips, cancellations and commercial invoices via your WooCommerce dashboard. Comes with full e-invoicing support, a DATEV export and many automation settings."
+msgstr "<em>Rechnungen, E-Rechnungen &amp; Lieferscheine (Pro)</em> - Erzeugen Sie bequem Rechnungen, Lieferscheine, Stornierungen und Handelsrechnungen direkt in WooCommerce. Unterstützt E-Rechnungen, enthält einen DATEV-Export und umfangreiche Automatisierungsoptionen."
+
+#. Found in description list item.
+msgid "<em>B2B: Customer Groups &amp; Tiered Prices (Pro)</em> - Turn your WooCommerce store into a B2B or hybrid shop. Offer business customers individual prices, discounts and tiered prices, a separate registration with manual review and net price display."
+msgstr "<em>B2B: Kundengruppen &amp; Staffelpreise (Pro)</em> - Machen Sie Ihren WooCommerce Shop zum B2B- oder Hybrid-Shop. Bieten Sie Geschäftskunden individuelle Preise, Rabatte und Staffelpreise, eine separate Registrierung mit manueller Prüfung und eine Netto-Preisanzeige."
+
+#. Found in description header.
+msgid "Pro: WooCommerce invoices, packing slips, e-invoices and DATEV export"
+msgstr "Pro: WooCommerce Rechnungen, Lieferscheine, E-Rechnungen und DATEV-Export"
+
+#. Found in description paragraph.
+msgid "Either export your documents (CSV, zip) for your tax consultant manually or use our integrations to transmit your documents to your lexware office or sevdesk account. Comes with full support for e-invoices."
+msgstr "Sie können entweder Ihre Dokumente exportieren (CSV, zip) und an Ihren Steuerberater übergeben oder eine unserer Integrationen nutzen, um die Dokumente automatisch an lexware office oder sevdesk zu übertragen. Volle Unterstützung für E-Rechnungen inklusive!"
+
+#. Found in description paragraph.
+msgid "New: Hand over your invoices and cancellations to your tax advisor in DATEV format. Revenue accounts are assigned automatically based on tax rate, country and booking group, customer accounts are created automatically, e.g. on registration, and payments are booked to separate cash accounts per payment method. Learn more about <a href=\"https://vendidero.de/woocommerce-germanized/features#accounting\" title=\"WooCommerce PDF Invoices\">PDF Invoices for WooCommerce</a>"
+msgstr "Neu: Übergeben Sie Ihre Rechnungen und Stornierungen im DATEV-Format an Ihren Steuerberater. Erlöskonten werden automatisch nach Steuersatz, Land und Buchungsgruppe zugeordnet, Debitorenkonten automatisch vergeben, z.B. bei der Registrierung, und Zahlungen je Zahlungsart auf eigene Geldkonten gebucht. Erfahren Sie mehr über <a href=\"https://vendidero.de/woocommerce-germanized/features#accounting\" title=\"WooCommerce PDF Rechnungen\">die PDF Rechnungen für WooCommerce</a>"
+
+#. Found in description header.
+msgid "Pro: B2B for WooCommerce with customer groups and tiered prices"
+msgstr "Pro: B2B für WooCommerce mit Kundengruppen und Staffelpreisen"
+
+#. Found in description paragraph.
+msgid "Sell to business customers - exclusively or alongside your consumers. Germanized Pro lets you create customer groups and offer each group its own prices, discounts and tiered prices. A tier table on the product page shows your customers how much they save when ordering larger quantities."
+msgstr "Verkaufen Sie an Geschäftskunden - ausschließlich oder zusätzlich zu Ihren Endkunden. Mit Germanized Pro legen Sie Kundengruppen an und bieten jeder Gruppe eigene Preise, Rabatte und Staffelpreise. Eine Staffelpreis-Tabelle auf der Produktseite zeigt Ihren Kunden, wie viel sie bei größeren Bestellmengen sparen."
+
+#. Found in description paragraph.
+msgid "Business customers register via a separate B2B registration form including custom fields and document uploads. Review and approve new business accounts manually before they are able to order. Restrict products, categories, payment and shipping methods to certain customer groups, show net prices, define minimum order values and add group-specific legal texts. Learn more about <a href=\"https://vendidero.de/woocommerce-germanized/features#b2b\" title=\"WooCommerce B2B\">B2B for WooCommerce</a>"
+msgstr "Geschäftskunden registrieren sich über ein separates B2B-Registrierungsformular inkl. eigener Felder und Dokumenten-Upload. Prüfen Sie neue Geschäftskonten manuell und schalten Sie sie frei, bevor sie bestellen können. Beschränken Sie Produkte, Kategorien, Zahlungs- und Versandarten auf bestimmte Kundengruppen, zeigen Sie Netto-Preise an, legen Sie Mindestbestellwerte fest und hinterlegen Sie eigene Rechtstexte pro Kundengruppe. Erfahren Sie mehr über <a href=\"https://vendidero.de/woocommerce-germanized/features#b2b\" title=\"WooCommerce B2B\">B2B für WooCommerce</a>"
+
+#. Screenshot description.
+msgid "Checkout block adjustments, e.g. legal checkboxes, delivery times and SEPA direct debit"
+msgstr "Anpassungen im Checkout-Block, z.B. rechtliche Checkboxen, Lieferzeiten und SEPA-Lastschrift"
+
+#. Screenshot description.
+msgid "Multilevel checkout for the checkout block (Pro)"
+msgstr "Mehrstufige Kasse für den Checkout-Block (Pro)"
+
+#. Screenshot description.
+msgid "Create and manage (e-)invoices (Pro) for orders"
+msgstr "(E-)Rechnungen (Pro) zu Bestellungen erstellen und verwalten"
+
+#. Found in changelog list item.
+msgid "New: Checkout block: Automatically replace the WooCommerce terms block with the Germanized legal checkboxes block in case the legal checkboxes block has not been placed manually and at least one legal checkbox is enabled for the checkout. Use the woocommerce_gzd_checkout_block_replace_terms_block filter to disable the replacement."
+msgstr "New: Checkout block: Automatically replace the WooCommerce terms block with the Germanized legal checkboxes block in case the legal checkboxes block has not been placed manually and at least one legal checkbox is enabled for the checkout. Use the woocommerce_gzd_checkout_block_replace_terms_block filter to disable the replacement."
+
+#. Found in changelog list item.
+msgid "Improvement: Performance improvements, e.g. persistently cache hook priorities (cleared on theme/plugin changes), autoload legal checkbox settings, cache tax rate lookups and use the object term cache to determine manufacturers from product brands"
+msgstr "Improvement: Performance improvements, e.g. persistently cache hook priorities (cleared on theme/plugin changes), autoload legal checkbox settings, cache tax rate lookups and use the object term cache to determine manufacturers from product brands"
+
+#. Found in changelog list item.
+msgid "Improvement: Process the cleanup of unactivated customer accounts in batches"
+msgstr "Improvement: Process the cleanup of unactivated customer accounts in batches"
+
+#. Found in changelog list item.
+msgid "Improvement: WC 11.4 compatibility: Support the new WooCommerce core MPN (manufacturer part number) field. The Germanized MPN is used as fallback in case no core MPN exists, the core MPN is preferred otherwise. The Germanized MPN field is only shown in case a Germanized MPN has been set for the product."
+msgstr "Improvement: WC 11.4 compatibility: Support the new WooCommerce core MPN (manufacturer part number) field. The Germanized MPN is used as fallback in case no core MPN exists, the core MPN is preferred otherwise. The Germanized MPN field is only shown in case a Germanized MPN has been set for the product."
+
+#. Found in changelog list item.
+msgid "Improvement: Reworked settings tutorial - a guided tour across the most important settings, e.g. the withdrawal button, EU guarantee labels, double opt-in and Shiptastic"
+msgstr "Improvement: Reworked settings tutorial - a guided tour across the most important settings, e.g. the withdrawal button, EU guarantee labels, double opt-in and Shiptastic"
+
+#. Found in changelog list item.
+msgid "Improvement: Legal checkboxes (e.g. photovoltaic systems VAT exemption) only count values submitted with the current checkout form - default values provided via woocommerce_checkout_get_value (e.g. a checkout form stored by a payment plugin) are ignored. Use woocommerce_gzd_get_checkout_value or woocommerce_gzd_get_posted_checkout_value to provide values programmatically."
+msgstr "Improvement: Legal checkboxes (e.g. photovoltaic systems VAT exemption) only count values submitted with the current checkout form - default values provided via woocommerce_checkout_get_value (e.g. a checkout form stored by a payment plugin) are ignored. Use woocommerce_gzd_get_checkout_value or woocommerce_gzd_get_posted_checkout_value to provide values programmatically."
+
+#. Found in changelog list item.
+msgid "Fix: Order confirmation: Only confirm the express consent to the early performance of the contract for services and digital items in case the customer actually checked the (optional) checkbox. The consent is now logged per order and shown within the order checkbox log."
+msgstr "Fix: Order confirmation: Only confirm the express consent to the early performance of the contract for services and digital items in case the customer actually checked the (optional) checkbox. The consent is now logged per order and shown within the order checkbox log."
+
+#. Found in changelog list item.
+msgid "Fix: Respect the photovoltaic systems VAT exemption within Store API requests during the classic checkout, e.g. PayPal Payments requesting the cart (which led to PayPal orders including VAT)"
+msgstr "Fix: Respect the photovoltaic systems VAT exemption within Store API requests during the classic checkout, e.g. PayPal Payments requesting the cart (which led to PayPal orders including VAT)"
+
+#. Found in changelog list item.
+msgid "Fix: Do not apply the photovoltaic systems VAT exemption (or zero tax classes of photovoltaic systems) to express checkouts and Store API requests without explicit confirmation"
+msgstr "Fix: Do not apply the photovoltaic systems VAT exemption (or zero tax classes of photovoltaic systems) to express checkouts and Store API requests without explicit confirmation"
+
+#. Found in changelog list item.
+msgid "Fix: Product variations without a GTIN or MPN of their own inherit the GTIN and MPN of the parent product (e.g. for structured data, REST API and the EU guarantee label)"
+msgstr "Fix: Product variations without a GTIN or MPN of their own inherit the GTIN and MPN of the parent product (e.g. for structured data, REST API and the EU guarantee label)"
+
+#. Found in changelog list item.
+msgid "Fix: Direct debit export of unpaid orders only in case HPOS is enabled"
+msgstr "Fix: Direct debit export of unpaid orders only in case HPOS is enabled"
+
+#. Found in changelog list item.
+msgid "Fix: Keep the checkout visibility of product attributes when updating product attributes"
+msgstr "Fix: Keep the checkout visibility of product attributes when updating product attributes"
+
+#. Found in changelog list item.
+msgid "Fix: Do not treat shops without published products as shops selling virtual products only"
+msgstr "Fix: Do not treat shops without published products as shops selling virtual products only"
+
+#. Found in changelog list item.
+msgid "Fix: Empty (mobile) order summary within the checkout block with WooCommerce 11.3+ (incl. multilevel checkout)"
+msgstr "Fix: Empty (mobile) order summary within the checkout block with WooCommerce 11.3+ (incl. multilevel checkout)"
+
+#. Found in changelog list item.
+msgid "Security: Treat customer-controlled placeholders within the SEPA direct debit mandate text as plain text"
+msgstr "Security: Treat customer-controlled placeholders within the SEPA direct debit mandate text as plain text"
+
+#. Found in changelog list item.
+msgid "Security: Escape legal checkbox opt-in meta in admin"
+msgstr "Security: Escape legal checkbox opt-in meta in admin"
+
+#. Found in changelog list item.
+msgid "Security: Rescanned codebase for wp_kses usage to prevent html-tag rebuilding"
+msgstr "Security: Rescanned codebase for wp_kses usage to prevent html-tag rebuilding"
+
+#. Found in changelog list item.
+msgid "Security: [Withdrawal button] Cross-Site Scripting via (inherited) billing name in admin withdrawal list table (thanks to Mariusz for disclosing)"
+msgstr "Security: [Withdrawal button] Cross-Site Scripting via (inherited) billing name in admin withdrawal list table (thanks to Mariusz for disclosing)"
+
+#. Found in changelog list item.
+msgid "Security: [Withdrawal button] Strip markup from customer-controlled email placeholders"
+msgstr "Security: [Withdrawal button] Strip markup from customer-controlled email placeholders"
+
+#. Found in changelog list item.
+msgid "Security: [Withdrawal button] Escape withdrawal rejection reason in admin, order notes and emails"
+msgstr "Security: [Withdrawal button] Escape withdrawal rejection reason in admin, order notes and emails"
+
+#. Found in changelog list item.
+msgid "Fix: [Withdrawal button] Restrict props editable via the admin withdrawal save AJAX action"
+msgstr "Fix: [Withdrawal button] Restrict props editable via the admin withdrawal save AJAX action"
+
+#. Found in changelog list item.
+msgid "Fix: [Withdrawal button] Do not include additional information in customer emails for unverified withdrawal requests"
+msgstr "Fix: [Withdrawal button] Do not include additional information in customer emails for unverified withdrawal requests"
