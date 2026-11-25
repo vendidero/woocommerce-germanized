@@ -3,7 +3,7 @@
  * Plugin Name: Germanized for WooCommerce
  * Plugin URI: https://www.vendidero.de/woocommerce-germanized
  * Description: Germanized for WooCommerce extends WooCommerce to become a legally compliant store in the german market.
- * Version: 4.1.9
+ * Version: 4.2.0
  * Author: vendidero
  * Author URI: https://vendidero.de
  * Requires at least: 5.4
@@ -68,7 +68,7 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 *
 		 * @var string
 		 */
-		public $version = '4.1.9';
+		public $version = '4.2.0';
 
 		/**
 		 * @var WooCommerce_Germanized $instance of the plugin
@@ -320,6 +320,8 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 			add_filter( 'woocommerce_structured_data_product', array( $this, 'add_structured_product_data' ), 10, 2 );
 			add_filter( 'woocommerce_product_get_global_unique_id', array( $this, 'add_gtin_fallback' ), 10, 2 );
 			add_filter( 'woocommerce_product_variation_get_global_unique_id', array( $this, 'add_gtin_fallback' ), 10, 2 );
+			add_filter( 'woocommerce_product_get_mpn', array( $this, 'add_mpn_fallback' ), 10, 2 );
+			add_filter( 'woocommerce_product_variation_get_mpn', array( $this, 'add_mpn_fallback' ), 10, 2 );
 
 			/**
 			 * Use the Germanized revocation page as fallback for the Woo refund & returns page
@@ -1552,10 +1554,52 @@ if ( ! class_exists( 'WooCommerce_Germanized' ) ) :
 		 */
 		public function add_gtin_fallback( $gtin, $product ) {
 			if ( empty( $gtin ) ) {
-				$gtin = wc_gzd_get_gzd_product( $product )->get_gtin( 'edit' );
+				$gtin = $this->get_product_identifier_fallback( $product, 'gtin' );
 			}
 
 			return $gtin;
+		}
+
+		/**
+		 * Fall back to the Germanized MPN (_ts_mpn) in case the Woo core MPN (WC 11.4+) is empty.
+		 *
+		 * @param string $mpn
+		 * @param WC_Product $product
+		 *
+		 * @return string
+		 */
+		public function add_mpn_fallback( $mpn, $product ) {
+			if ( empty( $mpn ) ) {
+				$mpn = $this->get_product_identifier_fallback( $product, 'mpn' );
+			}
+
+			return $mpn;
+		}
+
+		/**
+		 * Returns the Germanized identifier (GTIN/MPN) of a product. Variations
+		 * inherit the identifier from their parent in case they don't have their own.
+		 *
+		 * Uses the edit context to prevent an infinite loop, as the view context
+		 * would call the (filtered) Woo core getter again.
+		 *
+		 * @param WC_Product $product
+		 * @param string $type Either gtin or mpn.
+		 *
+		 * @return string
+		 */
+		protected function get_product_identifier_fallback( $product, $type ) {
+			$getter      = "get_{$type}";
+			$gzd_product = wc_gzd_get_gzd_product( $product );
+			$identifier  = $gzd_product->$getter( 'edit' );
+
+			if ( empty( $identifier ) && is_a( $gzd_product, 'WC_GZD_Product_Variation' ) ) {
+				if ( $parent = $gzd_product->get_gzd_parent() ) {
+					$identifier = $parent->$getter( 'edit' );
+				}
+			}
+
+			return $identifier;
 		}
 
 		/**

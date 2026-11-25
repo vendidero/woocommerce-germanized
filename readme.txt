@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 7.2
 WC requires at least: 3.9
 WC tested up to: 11.3
-Stable tag: 4.1.9
+Stable tag: 4.2.0
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -200,20 +200,25 @@ Please report security bugs found in the source code of the Germanized for WooCo
 
 == Screenshots ==
 
-1. Some of the checkout adjustments to comply with the button solution
+1. Checkout block adjustments, e.g. legal checkboxes, delivery times and SEPA direct debit
 2. General settings screen
 3. Germanized for WooCommerce Legal Checkboxes UI
-4. WooCommerce Multistep Checkout (Pro)
-5. Manage shipments and invoices (Pro) for orders
+4. Multilevel checkout for the checkout block (Pro)
+5. Create and manage (e-)invoices (Pro) for orders
 6. Edit pdf documents (Pro)
 
 == Changelog ==
 = 4.2.0 =
+* New: Checkout block: Automatically replace the WooCommerce terms block with the Germanized legal checkboxes block in case the legal checkboxes block has not been placed manually and at least one legal checkbox is enabled for the checkout. Use the woocommerce_gzd_checkout_block_replace_terms_block filter to disable the replacement.
 * Improvement: Performance improvements, e.g. persistently cache hook priorities (cleared on theme/plugin changes), autoload legal checkbox settings, cache tax rate lookups and use the object term cache to determine manufacturers from product brands
 * Improvement: Process the cleanup of unactivated customer accounts in batches
+* Improvement: WC 11.4 compatibility: Support the new WooCommerce core MPN (manufacturer part number) field. The Germanized MPN is used as fallback in case no core MPN exists, the core MPN is preferred otherwise. The Germanized MPN field is only shown in case a Germanized MPN has been set for the product.
+* Improvement: Reworked settings tutorial - a guided tour across the most important settings, e.g. the withdrawal button, EU guarantee labels, double opt-in and Shiptastic
 * Improvement: Legal checkboxes (e.g. photovoltaic systems VAT exemption) only count values submitted with the current checkout form - default values provided via woocommerce_checkout_get_value (e.g. a checkout form stored by a payment plugin) are ignored. Use woocommerce_gzd_get_checkout_value or woocommerce_gzd_get_posted_checkout_value to provide values programmatically.
+* Fix: Order confirmation: Only confirm the express consent to the early performance of the contract for services and digital items in case the customer actually checked the (optional) checkbox. The consent is now logged per order and shown within the order checkbox log.
 * Fix: Respect the photovoltaic systems VAT exemption within Store API requests during the classic checkout, e.g. PayPal Payments requesting the cart (which led to PayPal orders including VAT)
 * Fix: Do not apply the photovoltaic systems VAT exemption (or zero tax classes of photovoltaic systems) to express checkouts and Store API requests without explicit confirmation
+* Fix: Product variations without a GTIN or MPN of their own inherit the GTIN and MPN of the parent product (e.g. for structured data, REST API and the EU guarantee label)
 * Fix: Direct debit export of unpaid orders only in case HPOS is enabled
 * Fix: Keep the checkout visibility of product attributes when updating product attributes
 * Fix: Do not treat shops without published products as shops selling virtual products only

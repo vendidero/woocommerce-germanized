@@ -1423,7 +1423,7 @@ class WC_GZD_Legal_Checkbox_Manager {
 	 * @return string[]
 	 */
 	public function get_loggable_checkboxes( $location ) {
-		$checkboxes = apply_filters( 'woocommerce_gzd_loggable_checkboxes', array( 'parcel_delivery', 'photovoltaic_systems', 'review_reminder' ), $location );
+		$checkboxes = apply_filters( 'woocommerce_gzd_loggable_checkboxes', array( 'parcel_delivery', 'photovoltaic_systems', 'review_reminder', 'download', 'service' ), $location );
 
 		return $checkboxes;
 	}

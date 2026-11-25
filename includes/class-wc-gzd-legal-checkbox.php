@@ -1008,11 +1008,49 @@ class WC_GZD_Legal_Checkbox {
 				$options,
 				array(
 					array(
-						'title' => '',
-						'id'    => 'woocommerce_gzd_checkbox_pro_options',
-						'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-checkbox.png?v=' . WC_germanized()->version,
-						'href'  => 'https://vendidero.de/woocommerce-germanized#upgrade',
-						'type'  => 'image',
+						'id'           => 'woocommerce_gzd_checkbox_pro_options',
+						'type'         => 'gzd_pro_preview',
+						'title'        => __( 'More checkbox options with Germanized Pro', 'woocommerce-germanized' ),
+						'features'     => array(
+							__( 'Add new checkboxes and edit or delete your own, custom checkboxes', 'woocommerce-germanized' ),
+							__( 'Show checkboxes for specific countries, product categories, payment methods or customer groups only', 'woocommerce-germanized' ),
+							__( 'Store the checkbox status within the order', 'woocommerce-germanized' ),
+							__( 'Customize the HTML elements (template, id, name and classes)', 'woocommerce-germanized' ),
+						),
+						'href'         => 'https://vendidero.de/woocommerce-germanized/features#legal',
+						'placeholders' => array(
+							array(
+								'title' => 'Save Status',
+								'type'  => 'toggle',
+								'value' => 'yes',
+								'desc'  => 'Register checkbox value within meta data.',
+							),
+							array(
+								'title' => 'Specific countries only',
+								'type'  => 'select',
+								'value' => 'Germany, Austria',
+							),
+							array(
+								'title' => 'Specific product categories',
+								'type'  => 'select',
+								'value' => 'Food',
+							),
+							array(
+								'title' => 'Specific payment methods',
+								'type'  => 'select',
+								'value' => 'Direct debit',
+							),
+							array(
+								'title' => 'Template',
+								'type'  => 'text',
+								'value' => 'checkboxes/default.php',
+							),
+							array(
+								'title' => 'HTML Id',
+								'type'  => 'text',
+								'value' => 'legal',
+							),
+						),
 					),
 				)
 			);

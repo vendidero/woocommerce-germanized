@@ -46,6 +46,15 @@ function wc_gzd_get_dependencies( $instance = null ) { // phpcs:ignore Generic.C
 	return apply_filters( 'woocommerce_gzd_dependencies_instance', WC_GZD_Dependencies::class );
 }
 
+/**
+ * Whether WooCommerce core ships its own MPN (manufacturer part number) product field (WC 11.4+).
+ *
+ * @return bool
+ */
+function wc_gzd_woocommerce_supports_mpn() {
+	return method_exists( 'WC_Product', 'get_mpn' );
+}
+
 function wc_gzd_post_has_woocommerce_block( $post_content ) {
 	if ( ! function_exists( 'has_blocks' ) ) {
 		return false;

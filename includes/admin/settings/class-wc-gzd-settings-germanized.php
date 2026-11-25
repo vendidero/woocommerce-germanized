@@ -213,6 +213,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-oss.php';
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-contract.php';
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-invoices.php';
+		include_once __DIR__ . '/class-wc-gzd-settings-tab-b2b.php';
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-multistep-checkout.php';
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-terms-generator.php';
 		include_once __DIR__ . '/class-wc-gzd-settings-tab-revocation-generator.php';
@@ -236,6 +237,7 @@ class WC_GZD_Settings_Germanized extends WC_Settings_Page {
 				'shopmarks'                      => 'WC_GZD_Settings_Tab_Shopmarks',
 				'taxes'                          => 'WC_GZD_Settings_Tab_Taxes',
 				'button_solution'                => 'WC_GZD_Settings_Tab_Button_Solution',
+				'b2b'                            => 'WC_GZD_Settings_Tab_B2B',
 				'multistep_checkout'             => 'WC_GZD_Settings_Tab_Multistep_Checkout',
 				'invoices'                       => 'WC_GZD_Settings_Tab_Invoices',
 				'shiptastic'                     => 'WC_GZD_Settings_Tab_Shiptastic',

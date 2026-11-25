@@ -115,6 +115,72 @@ function wc_gzd_order_has_age_verification( $order_id ) {
 	return apply_filters( 'woocommerce_gzd_order_needs_age_verification', $needs_verification, $order_id );
 }
 
+/**
+ * Whether the order contains items which are exempt from the right of withdrawal
+ * for a certain type, e.g. digital items or services.
+ *
+ * @param WC_Order|int $order
+ * @param string $type Either digital or service.
+ *
+ * @return boolean
+ */
+function wc_gzd_order_has_revocation_exempt_items( $order, $type = 'digital' ) {
+	$order       = is_a( $order, 'WC_Order' ) ? $order : wc_get_order( $order );
+	$has_exempts = false;
+
+	if ( $order ) {
+		foreach ( $order->get_items() as $item ) {
+			if ( ! is_callable( array( $item, 'get_product' ) ) || ! ( $product = $item->get_product() ) ) {
+				continue;
+			}
+
+			if ( wc_gzd_is_revocation_exempt( $product, $type, $item ) || apply_filters( 'woocommerce_gzd_product_is_revocation_exception', false, $product, $type, $item ) ) {
+				$has_exempts = true;
+				break;
+			}
+		}
+	}
+
+	return $has_exempts;
+}
+
+/**
+ * Whether the customer has expressly agreed to the early performance of the contract
+ * (and thus to the loss of the right of withdrawal) for digital items (download) or services (service).
+ *
+ * Uses the consent logged while placing the order. Orders placed before the consent was logged
+ * fall back to the checkbox configuration: Only a mandatory checkbox implies consent.
+ *
+ * @param WC_Order $order
+ * @param string $checkbox_id Either download or service.
+ *
+ * @return boolean
+ */
+function wc_gzd_order_has_revocation_exempt_consent( $order, $checkbox_id = 'download' ) {
+	$has_consent = false;
+	$manager     = WC_GZD_Legal_Checkbox_Manager::instance();
+
+	if ( is_a( $order, 'WC_Order' ) && ( $checkbox = $manager->get_checkbox( $checkbox_id ) ) ) {
+		if ( $manager->is_logged( $checkbox_id, $order ) ) {
+			$has_consent = $manager->is_checked( $checkbox_id, $order );
+		} else {
+			$has_consent = $checkbox->is_enabled() && $checkbox->is_shown() && $checkbox->is_mandatory();
+		}
+	}
+
+	/**
+	 * Filter whether the customer has expressly agreed to the early performance of the contract for
+	 * digital items (download) or services (service).
+	 *
+	 * @param boolean $has_consent Whether the customer has agreed or not.
+	 * @param WC_Order $order The order instance.
+	 * @param string $checkbox_id The checkbox id, e.g. download or service.
+	 *
+	 * @since 4.2.0
+	 */
+	return apply_filters( 'woocommerce_gzd_order_has_revocation_exempt_consent', $has_consent, $order, $checkbox_id );
+}
+
 function wc_gzd_order_is_anonymized( $order ) {
 	if ( is_numeric( $order ) ) {
 		$order = wc_get_order( $order );

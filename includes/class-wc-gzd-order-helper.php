@@ -1,5 +1,7 @@
 <?php
 
+use Vendidero\Germanized\Utilities\NumberUtil;
+
 defined( 'ABSPATH' ) || exit;
 
 class WC_GZD_Order_Helper {
@@ -7,6 +9,10 @@ class WC_GZD_Order_Helper {
 	protected static $_instance = null;
 
 	protected $order_item_map = null;
+
+	protected $admin_added_fee_ids = array();
+
+	protected $fees_total_before_calculate_totals = array();
 
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -118,6 +124,12 @@ class WC_GZD_Order_Helper {
 		 */
 		if ( wc_gzd_enable_additional_costs_split_tax_calculation() || wc_gzd_calculate_additional_costs_taxes_based_on_main_service() ) {
 			add_action( 'woocommerce_order_before_calculate_totals', array( $this, 'tmp_store_order_item_copy_before_calculate_totals' ), 500, 2 );
+
+			if ( is_admin() ) {
+				add_filter( 'gettext_woocommerce', array( $this, 'adjust_admin_add_fee_notice' ), 10, 2 );
+				add_action( 'woocommerce_new_order_item', array( $this, 'register_admin_added_fee' ), 10, 2 );
+			}
+
 			add_action(
 				'woocommerce_order_after_calculate_totals',
 				function ( $and_taxes, $order ) {
@@ -170,6 +182,10 @@ class WC_GZD_Order_Helper {
 				},
 				500
 			);
+
+			add_action( 'woocommerce_order_before_calculate_totals', array( $this, 'start_fees_total_tracking' ), 1000, 2 );
+			add_action( 'woocommerce_order_before_calculate_taxes', array( $this, 'store_fees_total_before_calculate_taxes' ), 1000, 2 );
+			add_action( 'woocommerce_order_after_calculate_totals', array( $this, 'maybe_fix_order_total_after_fee_tax_adjustments' ), 1, 2 );
 		} else {
 			add_action( 'woocommerce_order_item_shipping_after_calculate_taxes', array( $this, 'remove_additional_costs_item_meta' ), 10, 2 );
 			add_action( 'woocommerce_order_item_fee_after_calculate_taxes', array( $this, 'remove_additional_costs_item_meta' ), 10, 2 );
@@ -184,6 +200,14 @@ class WC_GZD_Order_Helper {
 	 * @return float
 	 */
 	protected function get_item_total( $item, $old_item = false ) {
+		if ( wc_gzd_additional_costs_include_tax() && $this->is_admin_added_fee( $item ) ) {
+			$percentage_fee_total = $this->get_admin_percentage_fee_total( $item );
+
+			if ( false !== $percentage_fee_total ) {
+				return $percentage_fee_total;
+			}
+		}
+
 		// Let's grab a fresh copy (loaded from DB) to make sure we are not dependent on Woo's calculated taxes in $item.
 		if ( $old_item ) {
 			$item_total         = wc_format_decimal( floatval( $old_item->get_total() ) );
@@ -218,7 +242,258 @@ class WC_GZD_Order_Helper {
 			}
 		}
 
+		return $this->maybe_limit_negative_fee_total( $item, $item_total );
+	}
+
+	/**
+	 * Woo limits negative fees to the order's (net) items, shipping and preceding fees total while calculating totals.
+	 * As Germanized determines the fee total based on a copy of the item before calculating totals (and treats it as gross amount
+	 * in case additional costs include taxes) apply the same limit based on gross amounts to prevent undoing Woo's limit.
+	 *
+	 * @see WC_Abstract_Order::calculate_totals()
+	 *
+	 * @param WC_Order_Item $item
+	 * @param float $item_total
+	 *
+	 * @return float
+	 */
+	protected function maybe_limit_negative_fee_total( $item, $item_total ) {
+		if ( ! is_a( $item, 'WC_Order_Item_Fee' ) || (float) $item_total >= 0 || 'yes' === $item->get_meta( '_is_voucher' ) ) {
+			return $item_total;
+		}
+
+		if ( ! $order = $item->get_order() ) {
+			return $item_total;
+		}
+
+		$max_discount = $this->get_negative_fee_max_discount( $order, $item, wc_gzd_additional_costs_include_tax() );
+
+		if ( 0 > $max_discount && (float) $item_total < $max_discount ) {
+			$item_total = wc_format_decimal( $max_discount );
+		}
+
 		return $item_total;
+	}
+
+	/**
+	 * Mirrors Woo's negative fee limit: items, shipping and preceding fees total (gross in case additional costs include tax).
+	 *
+	 * @param WC_Order $order
+	 * @param WC_Order_Item_Fee $item
+	 * @param bool $include_tax
+	 *
+	 * @return float
+	 */
+	protected function get_negative_fee_max_discount( $order, $item, $include_tax ) {
+		$costs_total = 0.0;
+
+		foreach ( $order->get_items( array( 'line_item', 'shipping' ) ) as $order_item ) {
+			$costs_total += (float) $order_item->get_total() + ( $include_tax ? (float) $order_item->get_total_tax() : 0.0 );
+		}
+
+		foreach ( $order->get_fees() as $fee ) {
+			if ( $fee === $item || ( $item->get_id() > 0 && $fee->get_id() === $item->get_id() ) ) {
+				break;
+			}
+
+			$costs_total += (float) $fee->get_total() + ( $include_tax ? (float) $fee->get_total_tax() : 0.0 );
+		}
+
+		return NumberUtil::round( $costs_total, wc_get_price_decimals() ) * -1;
+	}
+
+	/**
+	 * Germanized treats fees added via the edit order screen as gross amounts in case additional costs include taxes.
+	 *
+	 * @param string $translation
+	 * @param string $text
+	 *
+	 * @return string
+	 */
+	public function adjust_admin_add_fee_notice( $translation, $text ) {
+		if ( 'Amounts are before tax, and percentages apply to the order items after discounts.' === $text && wc_gzd_additional_costs_include_tax() ) {
+			$translation = __( 'Amounts include tax, and percentages apply to the order items after discounts, including tax.', 'woocommerce-germanized' );
+		}
+
+		return $translation;
+	}
+
+	/**
+	 * @param WC_Abstract_Order $order
+	 *
+	 * @return float
+	 */
+	protected function get_order_fees_total( $order ) {
+		$fees_total = 0.0;
+
+		foreach ( $order->get_fees() as $fee ) {
+			$fees_total += (float) $fee->get_total();
+		}
+
+		return $fees_total;
+	}
+
+	/**
+	 * WC_Abstract_Order::calculate_totals() sums up the fee totals before (re-) calculating taxes.
+	 * As the additional costs tax adjustments may change the fee's net total (e.g. a gross fee being split into net + tax,
+	 * a changed tax rate or tax share) store the fees total used by Woo to fix the order total afterward.
+	 *
+	 * @param bool $and_taxes
+	 * @param WC_Abstract_Order $order
+	 *
+	 * @return void
+	 */
+	public function start_fees_total_tracking( $and_taxes, $order ) {
+		if ( ! is_a( $order, 'WC_Order' ) ) {
+			return;
+		}
+
+		if ( $and_taxes ) {
+			$this->fees_total_before_calculate_totals[ spl_object_hash( $order ) ] = null;
+		} elseif ( wc_gzd_additional_costs_include_tax() ) {
+			/**
+			 * Without recalculating taxes, Woo may limit (already gross-limited) negative fees again based on net amounts
+			 * which would leave the fee taxes untouched. Store the fee totals to restore them afterward.
+			 */
+			$negative_fees = array();
+
+			foreach ( $order->get_fees() as $fee_key => $fee ) {
+				if ( (float) $fee->get_total() < 0 && 0.0 !== (float) $fee->get_total_tax() && 'yes' !== $fee->get_meta( '_is_voucher' ) && ! apply_filters( 'woocommerce_gzd_skip_order_item_split_tax_calculation', false, $fee ) ) {
+					$negative_fees[ $fee_key ] = $fee->get_total();
+				}
+			}
+
+			if ( ! empty( $negative_fees ) ) {
+				$this->fees_total_before_calculate_totals[ spl_object_hash( $order ) ] = $negative_fees;
+			}
+		}
+	}
+
+	/**
+	 * Woo has already summed up (and maybe capped negative) fees at this point.
+	 *
+	 * @param array $args
+	 * @param WC_Abstract_Order $order
+	 *
+	 * @return void
+	 */
+	public function store_fees_total_before_calculate_taxes( $args, $order ) {
+		$key = is_object( $order ) ? spl_object_hash( $order ) : '';
+
+		if ( array_key_exists( $key, $this->fees_total_before_calculate_totals ) && is_null( $this->fees_total_before_calculate_totals[ $key ] ) ) {
+			$this->fees_total_before_calculate_totals[ $key ] = $this->get_order_fees_total( $order );
+		}
+	}
+
+	/**
+	 * @param bool $and_taxes
+	 * @param WC_Abstract_Order $order
+	 *
+	 * @return void
+	 */
+	public function maybe_fix_order_total_after_fee_tax_adjustments( $and_taxes, $order ) {
+		$key = is_object( $order ) ? spl_object_hash( $order ) : '';
+
+		if ( ! array_key_exists( $key, $this->fees_total_before_calculate_totals ) ) {
+			return;
+		}
+
+		$fees_total_before = $this->fees_total_before_calculate_totals[ $key ];
+		unset( $this->fees_total_before_calculate_totals[ $key ] );
+
+		if ( is_null( $fees_total_before ) ) {
+			return;
+		}
+
+		if ( is_array( $fees_total_before ) ) {
+			$diff = 0.0;
+
+			foreach ( $order->get_fees() as $fee_key => $fee ) {
+				if ( ! array_key_exists( $fee_key, $fees_total_before ) || (float) $fee->get_total() === (float) $fees_total_before[ $fee_key ] ) {
+					continue;
+				}
+
+				// Only restore the fee in case its gross amount does not exceed the (gross) limit.
+				if ( ( (float) $fees_total_before[ $fee_key ] + (float) $fee->get_total_tax() ) >= ( $this->get_negative_fee_max_discount( $order, $fee, true ) - 0.01 ) ) {
+					$diff += (float) $fees_total_before[ $fee_key ] - (float) $fee->get_total();
+					$fee->set_total( $fees_total_before[ $fee_key ] );
+				}
+			}
+		} else {
+			$diff = $this->get_order_fees_total( $order ) - $fees_total_before;
+		}
+
+		if ( abs( $diff ) > 0.0000001 ) {
+			$order->set_total( NumberUtil::round( (float) $order->get_total( 'edit' ) + $diff, wc_get_price_decimals() ) );
+		}
+	}
+
+	protected function is_adding_admin_fee() {
+		return wp_doing_ajax() && isset( $_POST['action'] ) && 'woocommerce_add_order_fee' === wc_clean( wp_unslash( $_POST['action'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	}
+
+	/**
+	 * Remember fees added via the edit order screen. The new fee may already be persisted
+	 * (e.g. while adjusting taxes of an existing fee) before its own taxes are calculated.
+	 *
+	 * @param integer $item_id
+	 * @param WC_Order_Item $item
+	 *
+	 * @return void
+	 */
+	public function register_admin_added_fee( $item_id, $item ) {
+		if ( is_a( $item, 'WC_Order_Item_Fee' ) && $this->is_adding_admin_fee() ) {
+			$this->admin_added_fee_ids[] = absint( $item_id );
+		}
+	}
+
+	/**
+	 * @param WC_Order_Item $item
+	 *
+	 * @return bool
+	 */
+	protected function is_admin_added_fee( $item ) {
+		if ( ! is_a( $item, 'WC_Order_Item_Fee' ) || ! $this->is_adding_admin_fee() ) {
+			return false;
+		}
+
+		return 0 === $item->get_id() || in_array( $item->get_id(), $this->admin_added_fee_ids, true );
+	}
+
+	/**
+	 * Since WooCommerce 11.4 percentage fees added via the edit order screen are calculated
+	 * based on the order items' net total (after discounts). As Germanized treats fees as gross amounts
+	 * in case additional costs include taxes, use the order items' gross total as base instead.
+	 *
+	 * @see https://github.com/woocommerce/woocommerce/pull/68623
+	 *
+	 * @param WC_Order_Item_Fee $item
+	 *
+	 * @return false|float
+	 */
+	protected function get_admin_percentage_fee_total( $item ) {
+		$amount = isset( $_POST['amount'] ) ? wc_clean( wp_unslash( $_POST['amount'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+		if ( ! is_string( $amount ) || false === strpos( $amount, '%' ) ) {
+			return false;
+		}
+
+		if ( ! defined( 'WC_VERSION' ) || version_compare( WC_VERSION, '11.4.0-dev', '<' ) ) {
+			return false;
+		}
+
+		if ( ! $order = $item->get_order() ) {
+			return false;
+		}
+
+		$percent = floatval( trim( $amount, '%' ) );
+		$gross   = 0.0;
+
+		foreach ( $order->get_items() as $line_item ) {
+			$gross += floatval( $line_item->get_total() ) + floatval( $line_item->get_total_tax() );
+		}
+
+		return wc_format_decimal( NumberUtil::round( $gross * ( $percent / 100 ), wc_get_price_decimals() ) );
 	}
 
 	/**

@@ -66,113 +66,6 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 		return $is_pro;
 	}
 
-	public function get_pointers() {
-		$current  = $this->get_current_section();
-		$pointers = array();
-
-		if ( '' === $current ) {
-			$pointers = array(
-				'pointers' => array(
-					'display' => array(
-						'target'       => 'ul.subsubsub li:nth-of-type(6) a',
-						'next'         => '',
-						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=single_product&tutorial=yes' ),
-						'next_trigger' => array(),
-						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Shopmark Display', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'By adjusting the display settings you might determine where to show or hide your shopmarks e.g. the tax notice on single product pages.', 'woocommerce-germanized' ) . '</p>',
-							'position' => array(
-								'edge'  => 'top',
-								'align' => 'left',
-							),
-						),
-					),
-				),
-			);
-		} elseif ( 'single_product' === $current ) {
-			$pointers = array(
-				'pointers' => array(
-					'location' => array(
-						'target'       => '#select2-woocommerce_gzd_display_single_product_unit_price_filter-container',
-						'next'         => 'priority',
-						'next_url'     => '',
-						'next_trigger' => array(),
-						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Location', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Adjust the location of the shopmark by selecting a location from the list. Some Themes might apply the locations at different positions that\'s why the result may differ from Theme to Theme.', 'woocommerce-germanized' ) . '</p>',
-							'position' => array(
-								'edge'  => 'left',
-								'align' => 'left',
-							),
-						),
-					),
-					'priority' => array(
-						'target'       => '#woocommerce_gzd_display_single_product_unit_price_priority',
-						'next'         => '',
-						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=delivery_times&tutorial=yes' ),
-						'next_trigger' => array(),
-						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Priority', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Many different information may be attached to the location selected. By adjusting the priority you can choose whether the shopmark gets applied earlier (lower) or later (higher).', 'woocommerce-germanized' ) . '</p>',
-							'position' => array(
-								'edge'  => 'left',
-								'align' => 'left',
-							),
-						),
-					),
-				),
-			);
-		} elseif ( 'delivery_times' === $current ) {
-			$pointers = array(
-				'pointers' => array(
-					'default' => array(
-						'target'       => '#select2-woocommerce_gzd_default_delivery_time-container',
-						'next'         => 'format',
-						'next_url'     => '',
-						'next_trigger' => array(),
-						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Default Delivery Time', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Choose a delivery time that serves as fallback in case no delivery time was added to the product.', 'woocommerce-germanized' ) . '</p>',
-							'position' => array(
-								'edge'  => 'left',
-								'align' => 'left',
-							),
-						),
-					),
-					'format'  => array(
-						'target'       => '#woocommerce_gzd_delivery_time_text',
-						'next'         => '',
-						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=price_labels&tutorial=yes' ),
-						'next_trigger' => array(),
-						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Format', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'You may want to adjust the delivery time output format. You might use {delivery_time} to output the current product\'s delivery time.', 'woocommerce-germanized' ) . '</p>',
-							'position' => array(
-								'edge'  => 'left',
-								'align' => 'left',
-							),
-						),
-					),
-				),
-			);
-		} elseif ( 'price_labels' === $current ) {
-			$pointers = array(
-				'pointers' => array(
-					'default' => array(
-						'target'       => '#select2-woocommerce_gzd_default_sale_price_label-container',
-						'next'         => '',
-						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-button_solution&tutorial=yes' ),
-						'next_trigger' => array(),
-						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Default Price Label', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Price labels are added to sale products to inform the customers of the different prices\' meaning. You may add a fallback label in case a product does not contain a label.', 'woocommerce-germanized' ) . '</p>',
-							'position' => array(
-								'edge'  => 'left',
-								'align' => 'left',
-							),
-						),
-					),
-				),
-			);
-		}
-
-		return $pointers;
-	}
-
 	public function get_tab_settings( $current_section = '' ) {
 		$settings         = array();
 		$display_sections = Shopmarks::get_locations();
@@ -693,18 +586,58 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 				'id'   => 'deposit_options',
 			);
 		} else {
-			$food_settings = array(
+			$food_settings = $this->get_pro_preview_settings(
 				array(
-					'title' => '',
-					'type'  => 'title',
-					'id'    => 'food_options',
-					'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more. %1$sUpgrade to %2$spro%3$s%4$s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>',
-				),
-
-				array(
-					'type' => 'sectionend',
-					'id'   => 'food_options',
-				),
+					'id'           => 'food_pro_preview',
+					'title'        => __( 'Sell food with Germanized Pro', 'woocommerce-germanized' ),
+					'desc'         => __( 'Want to sell your food in a legally compliant way? Germanized Pro adds all the information needed to your products.', 'woocommerce-germanized' ),
+					'features'     => array(
+						__( 'Nutrients, allergenes and ingredients', 'woocommerce-germanized' ),
+						__( 'Nutri-Score and alcohol content', 'woocommerce-germanized' ),
+						__( 'Deposits for drinks and reusable packaging', 'woocommerce-germanized' ),
+					),
+					'href'         => 'https://vendidero.de/woocommerce-germanized/features',
+					'placeholders' => array(
+						array(
+							'title' => 'Deposit',
+							'type'  => 'title',
+						),
+						array(
+							'title' => 'Format',
+							'type'  => 'text',
+							'value' => 'plus {amount} deposit',
+						),
+						array(
+							'title' => 'Packaging Format',
+							'type'  => 'text',
+							'value' => '{type}, {packaging_type}',
+						),
+						array(
+							'title' => 'Nutrients',
+							'type'  => 'title',
+						),
+						array(
+							'title' => 'Reference value',
+							'type'  => 'select',
+							'value' => '100 g',
+						),
+						array(
+							'title' => 'Allergenes',
+							'type'  => 'text',
+							'value' => '<strong>{allergen}</strong>',
+						),
+						array(
+							'title' => 'Nutri-Score',
+							'type'  => 'toggle',
+							'value' => 'yes',
+						),
+						array(
+							'title' => 'Alcohol content',
+							'type'  => 'toggle',
+							'value' => 'yes',
+						),
+					),
+				)
 			);
 		}
 

@@ -65,8 +65,28 @@ class WC_GZD_Admin_Welcome {
 					)
 				);
 				add_action( 'admin_print_styles-' . $page, array( $this, 'admin_css' ) );
+				add_action( 'load-' . $page, array( $this, 'hide_notices' ) );
 				break;
 		}
+	}
+
+	/**
+	 * Hide all admin notices on the about page. Notices are removed right before
+	 * they are rendered (in_admin_header) to catch notices registered late, too.
+	 *
+	 * @return void
+	 */
+	public function hide_notices() {
+		add_action(
+			'in_admin_header',
+			function () {
+				remove_all_actions( 'admin_notices' );
+				remove_all_actions( 'all_admin_notices' );
+				remove_all_actions( 'network_admin_notices' );
+				remove_all_actions( 'user_admin_notices' );
+			},
+			9999
+		);
 	}
 
 	/**
@@ -90,237 +110,291 @@ class WC_GZD_Admin_Welcome {
 	}
 
 	/**
-	 * Into text/links shown on all about pages.
+	 * Germanized Pro release highlights, rendered as spotlights.
 	 *
-	 * @access private
-	 * @return void
+	 * @return array
 	 */
-	private function intro() {
-		// Flush after upgrades
-		if ( ! empty( $_GET['wc-gzd-updated'] ) || ! empty( $_GET['wc-gzd-installed'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			flush_rewrite_rules();
+	private function get_pro_release_features() {
+		return array(
+			array(
+				'id'      => 'b2b',
+				'title'   => 'B2B-Shop mit Kundengruppen',
+				'pro'     => true,
+				'icon'    => 'dashicons-groups',
+				'text'    => array(
+					'Mit Germanized Pro 5.0 wird dein WooCommerce Shop zum B2B- oder Hybrid-Shop: Lege Kundengruppen an und biete Geschäftskunden eigene Preise, Rabatte und Konditionen.',
+				),
+				'bullets' => array(
+					'Gruppenpreise, Rabatte und Staffelpreise inkl. Staffelpreis-Tabelle',
+					'Separate B2B-Registrierung mit manueller Prüfung, eigenen Feldern und Dokumenten-Upload',
+					'Produkte, Kategorien, Zahlungs- und Versandarten pro Kundengruppe einschränken',
+					'Netto-Preisanzeige, Mindestbestellwert und eigene Rechtstexte pro Kundengruppe',
+				),
+				'links'   => array(
+					array(
+						'label'    => 'B2B einrichten',
+						'url'      => admin_url( 'admin.php?page=wc-settings&tab=germanized-b2b' ),
+						'primary'  => true,
+						'pro_only' => true,
+					),
+					array(
+						'label' => 'Mehr erfahren',
+						'url'   => 'https://vendidero.de/woocommerce-germanized/features#b2b',
+					),
+				),
+			),
+			array(
+				'id'      => 'datev',
+				'title'   => 'DATEV-Export',
+				'pro'     => true,
+				'icon'    => 'dashicons-media-spreadsheet',
+				'text'    => array(
+					'Übergib deine Rechnungen und Stornierungen im DATEV-Format an deinen Steuerberater - inkl. Erlöskonten, Debitorenkonten und Zahlungsbuchungen.',
+				),
+				'bullets' => array(
+					'Erlöskonten automatisch nach Steuersatz, Land und Buchungsgruppe zuordnen',
+					'Debitorenkonten automatisch vergeben, z.B. bei der Registrierung',
+					'Zahlungen je Zahlungsart auf eigene Geldkonten buchen',
+					'Leistungsdatum, Wirtschaftsjahr sowie Berater- und Mandantennummer',
+				),
+				'links'   => array(
+					array(
+						'label'    => 'DATEV-Export einrichten',
+						'url'      => admin_url( 'admin.php?page=sab-accounting-export&export_type=datev&document_type=invoice' ),
+						'primary'  => true,
+						'pro_only' => true,
+					),
+					array(
+						'label' => 'Mehr erfahren',
+						'url'   => 'https://vendidero.de/woocommerce-germanized/features#accounting',
+					),
+				),
+			),
+		);
+	}
+
+	/**
+	 * Performance improvements of the current core release.
+	 *
+	 * @return array
+	 */
+	private function get_performance_items() {
+		return array(
+			array(
+				'icon'  => 'dashicons-database',
+				'title' => 'Weniger Datenbankabfragen',
+				'text'  => 'Checkbox-Einstellungen werden vorgeladen, Steuersatz-Abfragen zwischengespeichert und Hersteller über den Term-Cache ermittelt.',
+			),
+			array(
+				'icon'  => 'dashicons-performance',
+				'title' => 'Schnellere Ladezeiten',
+				'text'  => 'Hook-Prioritäten werden dauerhaft zwischengespeichert und nur bei Theme- oder Plugin-Änderungen neu ermittelt.',
+			),
+			array(
+				'icon'  => 'dashicons-update',
+				'title' => 'Aufräumen in Etappen',
+				'text'  => 'Nicht aktivierte Kundenkonten werden schrittweise im Hintergrund bereinigt - auch bei sehr vielen Konten.',
+			),
+		);
+	}
+
+	/**
+	 * Highlighted features of the latest versions, newest first.
+	 *
+	 * @return array
+	 */
+	private function get_features() {
+		$image_url = WC_germanized()->plugin_url() . '/assets/images/';
+
+		return array(
+			array(
+				'id'    => 'legal-guarantee',
+				'title' => 'EU Garantie- und Gewährleistungslabel',
+				'wide'  => true,
+				'image' => $image_url . 'legal-guarantee/legal_guarantee_notice-de.png',
+				'text'  => array(
+					'Ab dem 27.09.2026 sind die neuen EU Labels für Gewährleistung (und Garantie) darzustellen. Verpflichtend wird die Darstellung für alle Händler, die physische Produkte B2C, d.h. an Verbraucher, verkaufen.',
+					'Germanized 4.1 bereitet deinen WooCommerce Shop auf diese neuen Richtlinien vor, damit du die Labels vorab ausführlich testen und einbinden kannst. Bitte prüfe deine Einstellungen - das neue EU Gewährleistungslabel wird standardmäßig im Footer und in der Kasse angezeigt.',
+				),
+				'links' => array(
+					array(
+						'label'   => 'Einstellungen anpassen',
+						'url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=guarantee_labels' ),
+						'primary' => true,
+					),
+					array(
+						'label' => 'Mehr erfahren',
+						'url'   => 'https://vendidero.de/eu-gewaehrleistungs-und-garantie-label-fuer-woocommerce',
+					),
+				),
+			),
+			array(
+				'id'    => 'withdrawal-button',
+				'title' => 'Widerrufsbutton für WooCommerce',
+				'wide'  => true,
+				'image' => $image_url . 'order-withdrawal-button.png',
+				'text'  => array(
+					'Ab dem 19.06.2026 gilt EU-weit die Pflicht zur Einführung eines Widerrufsbuttons für Online-Verträge über Waren und Dienstleistungen. Germanized stellt alle benötigten Funktionalitäten zur Erfüllung dieser neuen Vorschriften bereit.',
+					'Die Seite zum Widerruf des Vertrags wurde als Entwurf angelegt - prüfe und veröffentliche sie rechtzeitig und verlinke sie z.B. im Footer deines Shops. Neue E-Mail-Vorlagen informieren dich über neue Widerrufe und bestätigen deinen Kunden den Eingang.',
+				),
+				'links' => array(
+					array(
+						'label'   => 'Einstellungen verwalten',
+						'url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=withdrawal_button' ),
+						'primary' => true,
+					),
+					array(
+						'label' => 'Mehr erfahren',
+						'url'   => 'https://vendidero.de/widerrufsbutton-rechtssicher-in-woocommerce-umsetzen',
+					),
+				),
+			),
+			array(
+				'id'    => 'e-invoice',
+				'title' => 'E-Rechnungen einfach erstellen (lassen)',
+				'pro'   => true,
+				'image' => $image_url . 'e-invoice.png',
+				'text'  => array(
+					'Erstelle E-Rechnungen im ZUGFeRD Format in verschiedenen Profilen (z.B. Comfort, Extended, XRechnung) - voll kompatibel mit der EU-Spezifikation EN16931. Auf Wunsch automatisch und als PDF/A inkl. strukturierter Rechnungsdaten.',
+				),
+				'links' => array(
+					array(
+						'label' => 'Mehr erfahren',
+						'url'   => 'https://vendidero.de/woocommerce-germanized/features#accounting',
+					),
+				),
+			),
+			array(
+				'id'    => 'shiptastic',
+				'title' => 'Goodbye Shipments, hello Shiptastic!',
+				'image' => $image_url . 'shiptastic.png',
+				'text'  => array(
+					'Die Sendungsintegration ist jetzt ein eigenständiges Plugin: <a href="https://wordpress.org/plugins/shiptastic-for-woocommerce" target="_blank">Shiptastic für WooCommerce</a>. Funktional hat sich wenig verändert, technisch wurden Präfixe, Tabellen und Klassen umbenannt. Hast du individuelle Anpassungen vorgenommen, empfehlen wir deine Integration zu aktualisieren.',
+				),
+				'links' => array(
+					array(
+						'label' => 'Zur Migration',
+						'url'   => 'https://vendidero.de/doc/woocommerce-germanized/shipments-zu-shiptastic-migration',
+					),
+				),
+			),
+			array(
+				'id'    => 'multistep-checkout',
+				'title' => 'Block: Mehrstufige Kasse',
+				'pro'   => true,
+				'image' => $image_url . 'multilevel-checkout.png',
+				'text'  => array(
+					'Die mehrstufige Kasse für die block-basierte WooCommerce Kasse - mit Breadcrumb-Navigation, Bestätigungsseite, einer pro Schritt aktualisierten Zusammenfassung und optimiert für mobile Endgeräte.',
+				),
+				'links' => array(
+					array(
+						'label' => 'Mehr erfahren',
+						'url'   => 'https://vendidero.de/woocommerce-germanized/features#multistep-checkout',
+					),
+				),
+			),
+			array(
+				'id'    => 'gpsr',
+				'title' => 'Produktsicherheit (GPSR)',
+				'image' => $image_url . 'gpsr.png',
+				'text'  => array(
+					'Erweitere deine Produktdaten gemäß der Produktsicherheitsverordnung, z.B. um verknüpfte Hersteller samt Adressangaben und sicherheitsrelevante Dokumente. Die Ausgabe erfolgt standardmäßig in einem eigenen Tab und ist über die Preisauszeichnungen anpassbar.',
+				),
+				'links' => array(
+					array(
+						'label' => 'Mehr erfahren',
+						'url'   => 'https://vendidero.de/doc/woocommerce-germanized/allgemeine-produktsicherheit-gpsr',
+					),
+				),
+			),
+			array(
+				'id'    => 'hermes',
+				'title' => 'Hermes Schnittstelle',
+				'pro'   => true,
+				'image' => $image_url . 'hermes-label.png',
+				'text'  => array(
+					'Erstelle Versand- und Retouren-Labels (auch als QR-Code) für Hermes und biete den Versand an Hermes Paketshops über die integrierte Abholstationen-Auswahl im Checkout an.',
+				),
+				'links' => array(
+					array(
+						'label' => 'Mehr erfahren',
+						'url'   => 'https://vendidero.de/doc/woocommerce-germanized/hermes-integration-einrichten',
+					),
+				),
+			),
+		);
+	}
+
+	private function render_feature( $feature, $is_spotlight = false ) {
+		$feature = wp_parse_args(
+			$feature,
+			array(
+				'id'      => '',
+				'title'   => '',
+				'pro'     => false,
+				'wide'    => false,
+				'image'   => '',
+				'icon'    => '',
+				'text'    => array(),
+				'bullets' => array(),
+				'links'   => array(),
+			)
+		);
+
+		$is_pro_locked = $feature['pro'] && ! WC_germanized()->is_pro();
+		$classes       = array( 'wc-gzd-about-feature', 'wc-gzd-about-feature-' . $feature['id'] );
+
+		if ( $is_spotlight ) {
+			$classes[] = 'wc-gzd-about-feature-spotlight';
 		}
 
-		// Drop minor version
-		$major_version = \Vendidero\Germanized\PluginsHelper::get_major_version( WC_germanized()->version );
+		if ( $feature['wide'] && ! $is_spotlight ) {
+			$classes[] = 'wc-gzd-about-feature-wide';
+		}
+
+		if ( $feature['pro'] ) {
+			$classes[] = 'wc-gzd-about-feature-is-pro';
+		}
+
+		if ( empty( $feature['image'] ) && ! empty( $feature['icon'] ) ) {
+			$classes[] = 'wc-gzd-about-feature-has-icon';
+		}
 		?>
-		<style>
-			.wc-gzd-admin-welcome-hide-pro .wc-germanized-welcome-pro, .wc-gzd-admin-welcome-hide-pro .wc-gzd-pro-version {
-				display: none;
-			}
-		</style>
-		<div class="wc-gzd-news <?php echo( WC_germanized()->is_pro() ? 'wc-gzd-admin-welcome-hide-pro' : '' ); ?>">
+		<article class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
+			<div class="wc-gzd-about-feature-media">
+				<?php if ( ! empty( $feature['image'] ) ) : ?>
+					<img src="<?php echo esc_url( $feature['image'] ); ?>" alt="<?php echo esc_attr( $feature['title'] ); ?>" loading="lazy" />
+				<?php elseif ( ! empty( $feature['icon'] ) ) : ?>
+					<span class="dashicons <?php echo esc_attr( $feature['icon'] ); ?>" aria-hidden="true"></span>
+				<?php endif; ?>
+			</div>
+			<div class="wc-gzd-about-feature-body">
+				<h3><?php echo esc_html( $feature['title'] ); ?><?php echo $feature['pro'] ? ' <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span>' : ''; ?></h3>
+				<?php foreach ( $feature['text'] as $paragraph ) : ?>
+					<p><?php echo wp_kses_post( $paragraph ); ?></p>
+				<?php endforeach; ?>
+				<?php if ( ! empty( $feature['bullets'] ) ) : ?>
+					<ul class="wc-gzd-about-feature-bullets">
+						<?php foreach ( $feature['bullets'] as $bullet ) : ?>
+							<li><span class="dashicons dashicons-yes" aria-hidden="true"></span><?php echo wp_kses_post( $bullet ); ?></li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+				<div class="wc-gzd-about-feature-actions">
+					<?php foreach ( $feature['links'] as $link ) : ?>
+						<?php
+						if ( ! empty( $link['pro_only'] ) && $is_pro_locked ) {
+							continue;
+						}
 
-			<h1>Willkommen bei Germanized</h1>
-			<div class="about-logo-wrapper">
-				<a class="wc-gzd-logo" href="https://vendidero.de/woocommerce-germanized" target="_blank"></a>
-				<div class="about-text woocommerce-about-text">
-					<?php
-					if ( ! empty( $_GET['wc-gzd-installed'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-						$message = 'Super, alles erledigt!';
-					} elseif ( ! empty( $_GET['wc-gzd-updated'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-						$message = 'Danke, dass du auf die neueste Version aktualisiert hast!';
-					} else {
-						$message = 'Danke für die Installation!';
-					}
-					echo $message . '<br/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					?>
-					Germanized <?php echo esc_html( $major_version ); ?> erweitert deine WooCommerce Installation um wichtige Funktionen
-					für den deutschen Markt.
+						$is_external = 0 !== strpos( $link['url'], admin_url() );
+						$is_primary  = ! empty( $link['primary'] ) && ! $is_pro_locked;
+						?>
+						<a href="<?php echo esc_url( $link['url'] ); ?>" class="button <?php echo esc_attr( $is_primary ? 'button-primary' : '' ); ?>" <?php echo $is_external ? 'target="_blank"' : ''; ?>><?php echo esc_html( $link['label'] ); ?></a>
+					<?php endforeach; ?>
 				</div>
 			</div>
-
-			<p class="woocommerce-actions wc-gzd-actions">
-				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ); ?>" target="_blank" class="wc-gzd-default-button button button-primary">Einstellungen</a>
-				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized&tutorial=yes' ) ); ?>" target="_blank" class="wc-gzd-default-button button button-primary">Tutorial</a>
-				<a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="button wc-gzd-button wc-germanized-welcome-pro">Upgrade zur <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version</a>
-			</p>
-
-			<div class="changelog new-feature">
-				<h3>EU Garantie- und Gewährleistungslabel</h3>
-
-				<div class="columns two-col">
-					<div class="col">
-						<p>
-							Ab dem 27.09.26 sind die neuen EU Labels für Gewährleistung (und Garantie) darzustellen. Verpflichtend wird die Darstellung für alle Händler die physische Produkte B2C, d.h. an Verbraucher verkaufen.
-							Germanized 4.1 bereitet deinen WooCommerce Shop nun auf diese neuen Richtlinien vor, damit du die Labels vorab ausführlich testen und einbinden kannst. Bitte prüfe deine Einstellungen - das neue EU Gewährleistungslabel wird standardmäßig im Footer und in der Kasse angezeigt.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/eu-gewaehrleistungs-und-garantie-label-fuer-woocommerce" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-							<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-shopmarks&section=guarantee_labels' ) ); ?>" class="wc-gzd-default-button button button-primary">Einstellungen anpassen</a>
-						</div>
-					</div>
-					<div class="col col-center">
-						<img style="max-height: 130px; width: 100%; object-fit:cover; object-position: top left;" src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/legal-guarantee/legal_guarantee_notice-de.png"/>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>Widerrufsbutton für WooCommerce</h3>
-
-				<div class="columns two-col">
-					<div class="col">
-						<p>
-							Ab dem 19.06.2026 gilt EU-weit die Pflicht zur Einführung eines Widerrufsbuttons für Online-Verträge über Waren und Dienstleistungen. Germanized 4.0 stellt alle benötigten Funktionalitäten zur Erfüllung dieser
-							neuen Vorschriften bereit. Die neue Seite um den Vertrag zu widerrufen wurde als Entwurf bei der Installation von Germanized 4.0 angelegt. Diese Seite solltest du prüfen, rechtzeitig veröffentlichen und z.B. im Footer deines Shops verlinken.
-							Auf dieser Seite befindet sich ein Shortcode, der das Formular für die Erklärung des Widerrufs einbindet. Es gibt auch neue E-Mail-Vorlagen, die sowohl dich als Shopbetreiber auf einen neuen Widerruf hinweisen als auch den Eingang des Widerrufs an den Kunden bestätigen.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/widerrufsbutton-rechtssicher-in-woocommerce-umsetzen" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-							<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-general&section=withdrawal_button' ) ); ?>" class="wc-gzd-default-button button button-primary">Einstellungen verwalten</a>
-						</div>
-					</div>
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/order-withdrawal-button.png" style=""/>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>Goodbye Shipments, hello Shiptastic!</h3>
-
-				<div class="columns two-col">
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/shiptastic.png" style=""/>
-					</div>
-					<div class="col">
-						<p>
-							Die Sendungsintegration in Germanized haben wir in den letzten Versionen kontinuierlich erweitert und verbessert. Jetzt ist es soweit, dass aus den Sendungen ein eigenständiges Plugin wird: <a href="https://wordpress.org/plugins/shiptastic-for-woocommerce">Shiptastic für WooCommerce</a>.
-							Dabei handelt es sich um ein Refactoring der Sendungsintegration aus Germanized, d.h. funktional hat sich nicht viel verändert, technisch werden aber Präfixe, Datenbank-Tabellen und Klassen anders benannt. Aus Kompatibilitätsgründen
-							liefert Germanized die alten Klassen noch mit und wendet auch sehr viele beliebte Hooks & Filter an - wir empfehlen dennoch, insofern du individuelle Anpassungen vorgenommen hast, deine Integration zu aktualisieren.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/doc/woocommerce-germanized/shipments-zu-shiptastic-migration" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>Produktsicherheit (GPSR)</h3>
-
-				<div class="columns two-col">
-					<div class="col">
-						<p>
-							Mit der Einführung der Verordnung über die allgemeine Produktsicherheit (GPSR) am 13.12.2024 gehen neue rechtliche Konsequenzen für Shopbetreiber einher, die Produkte an Verbraucher
-							in der EU verkaufen. In Germanized stellen wir schon jetzt Möglichkeiten bereit, mithilfe derer du deine Produktdaten entsprechend erweitern kannst, z.B. über einen verknüpften Hersteller samt Adressangaben
-							und die Hinterlegung spezieller, für die Sicherheit des Produktes relevanter, Dokumente.
-						</p>
-
-						<p>
-							Standardmäßig erfolgt die Ausgabe in einem separaten Tab auf der Produktdetailseite. Wie aus Germanized gewohnt, kannst du diese Darstellung über die Preisauszeichnungen auch bequem anpassen.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/doc/woocommerce-germanized/allgemeine-produktsicherheit-gpsr" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-						</div>
-					</div>
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/gpsr.png" style=""/>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>Hermes Schnittstelle <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
-
-				<div class="columns two-col">
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/hermes-label.png" style=""/>
-					</div>
-					<div class="col">
-						<p>
-							Erstelle mit Germanized Pro bequem Labels für den Versanddienstleister Hermes. Mit unserer neuen Hermes-Schnittstelle
-							kannst du sowohl normale, als auch Retouren-Labels (auch als QR-Code) erzeugen. Zudem haben wir die Möglichkeit des Versands an
-							Hermes Paketshops an die in Germanized integrierte Abholstationen-Auswahl im Checkout angebunden.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/doc/woocommerce-germanized/hermes-integration-einrichten" class="wc-gzd-default-button button button-primary" target="_blank">Mehr erfahren</a>
-							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<p class="price smaller wc-gzd-pro-version">ab 85 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>E-Rechnungen einfach erstellen (lassen) <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
-
-				<div class="columns two-col">
-					<div class="col">
-						<p>
-							Mit Germanized Pro 4.0 erstellst du nun einfach und bequem E-Rechnungen und bist damit schon jetzt auf die <a href="https://www.ihk.de/darmstadt/produktmarken/recht-und-fair-play/steuerinfo/bmf-plant-verpflichtende-erechnung-und-meldesystem-5784882" target="_blank">neuen Anforderungen</a> 2025 bestens vorbereitet.
-							Vorerst unterstützt Germanized Pro das ZUGFeRD Format und ermöglicht es dir E-Rechnungen in verschiedenen Profilen zu erstellen (z.B. Comfort, Extended, XRechnung) und ist damit mit der EU-Spezifikation EN16931 voll kompatibel. Insofern es das Format hergibt, kannst du deine E-Rechnungen natürlich, wie gewohnt, auch
-							automatisch erstellen lassen und, falls möglich, die PDF-Datei direkt in eine PDF/A überführen, die sowohl die PDF-Datei, als auch die strukturierten Rechnungsdaten enthält.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<p class="price smaller wc-gzd-pro-version">ab 85 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
-						</div>
-					</div>
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/e-invoice.png" style=""/>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog new-feature">
-				<h3>Block: Mehrstufige Kasse <span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span></h3>
-
-				<div class="columns two-col">
-					<div class="col col-center">
-						<img src="<?php echo esc_url( WC_germanized()->plugin_url() ); ?>/assets/images/multilevel-checkout.png" style=""/>
-					</div>
-					<div class="col">
-						<p>
-							Nutzer der Pro-Version haben von nun an Zugriff auf die mehrstufige Kasse speziell entwickelt für die neue, block-basierte Kasse von WooCommerce.
-							Neben Highlights wie einer Breadcrumb-Navigation und Bestätigungsseite, glänzt die neue mehrstufige Kasse beim Thema UX mit einer Anzeige der jeweils für den aktuellen Schritt
-							aktualisierten Zusammenfassung der Benutzereingaben. Natürlich ist die Kasse auch für mobile Endgeräte optimiert. Kleine aber feine Verbesserungen, z.B. das Verschieben der Auswahl
-							einer abweichenden Rechnungsadresse in den Schritt "Zahlung", sorgen für einen optimierten Kaufprozess.
-						</p>
-
-						<div class="wc-gzd-actions wc-gzd-actions-right">
-							<a href="https://vendidero.de/woocommerce-germanized" target="_blank" class="wc-gzd-pro-version button button-primary wc-gzd-button"><span class="wc-gzd-pro wc-gzd-pro-outlined">pro</span> Version entdecken</a>
-							<p class="price smaller wc-gzd-pro-version">ab 85 € inkl. MwSt. - inkl. 1 Jahr Updates & Premium Support!</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="changelog">
-				<h3>Weitere Neuigkeiten in Germanized <?php echo esc_html( $major_version ); ?></h3>
-
-				<div class="three-col columns">
-					<div class="col">
-						<h4><span class="dashicons dashicons-button"></span> Widerrufsbutton</h4>
-						<p>
-							Germanized 4.0 fügt umfangreiche Funktionalitäten zur Erfüllung der neuen rechtlichen Rahmenbedingungen des Widerrufsbuttons hinzu. Lasse deine
-							Kunden den Widerruf einfach online erklären und spare Zeit bei der Bearbeitung der Anträge.
-						</p>
-					</div>
-					<div class="col">
-						<h4><span class="dashicons dashicons-archive"></span> Versandtools ausgelagert</h4>
-						<p>
-							Die gesamte Versandfunktionalität (Sendungen, Retouren usw.) wurde mittlerweile in das Plugin Shiptastic für WooCommerce ausgelagert und ist seit 4.0 nicht
-							mehr Teil des Germanized Cores. Nicht jeder Germanized-Nutzer benötigt umfangreiche Versandtools.
-						</p>
-					</div>
-					<div class="col">
-						<h4><span class="dashicons dashicons-block-default"></span> 100% Block-Support</h4>
-						<p>
-							Germanized 4.0 unterstützt vollumfänglich die von WooCommerce bereitgestellten Blöcke, z.B. für Warenkorb, Kasse und Produktseite.
-							Damit wurde ein wichtiger Schritt in Richtung Full-Site-Editing und einem modernen WP Frontend gemacht.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
+		</article>
 		<?php
 	}
 
@@ -330,12 +404,107 @@ class WC_GZD_Admin_Welcome {
 	public function about_screen() {
 		// Delete the redirect transient
 		delete_transient( '_wc_gzd_activation_redirect' );
+
+		// Flush after upgrades
+		if ( ! empty( $_GET['wc-gzd-updated'] ) || ! empty( $_GET['wc-gzd-installed'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			flush_rewrite_rules();
+		}
+
+		$features = $this->get_features();
+
+		if ( ! empty( $_GET['wc-gzd-installed'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$message = 'Super, alles erledigt!';
+		} elseif ( ! empty( $_GET['wc-gzd-updated'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$message = 'Danke, dass du auf die neueste Version aktualisiert hast!';
+		} else {
+			$message = 'Danke für die Installation!';
+		}
 		?>
-		<div class="wrap about-wrap">
-			<?php $this->intro(); ?>
-			<div class="return-to-dashboard">
-				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ); ?>"><?php esc_html_e( 'Go to Germanized Settings', 'woocommerce-germanized' ); ?></a>
-			</div>
+		<div class="wrap wc-gzd-about">
+			<h1 class="screen-reader-text">Willkommen bei Germanized</h1>
+			<hr class="wp-header-end" />
+
+			<section class="wc-gzd-about-hero">
+				<a class="wc-gzd-about-hero-tutorial" href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized&tutorial=yes' ) ); ?>"><span class="dashicons dashicons-welcome-learn-more" aria-hidden="true"></span>Tutorial starten</a>
+				<div class="wc-gzd-about-hero-brand">
+					<a class="wc-gzd-about-logo" href="https://vendidero.de/woocommerce-germanized" target="_blank">Germanized</a>
+				</div>
+				<div class="wc-gzd-about-hero-content">
+					<div class="wc-gzd-about-hero-title">
+						<h2><?php echo esc_html( $message ); ?></h2>
+						<span class="wc-gzd-pro wc-gzd-pro-outlined">Version <?php echo esc_html( WC_germanized()->version ); ?></span>
+					</div>
+					<p class="wc-gzd-about-lead">Germanized 4.2 macht deinen Shop spürbar schneller - und mit Germanized Pro 5.0 kommen B2B-Funktionen und der DATEV-Export dazu. Hier findest du die wichtigsten Neuerungen im Überblick.</p>
+				</div>
+				<div class="wc-gzd-about-hero-actions">
+					<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ); ?>" class="button button-primary">Zu den Einstellungen</a>
+				</div>
+			</section>
+
+			<section class="wc-gzd-about-section">
+				<header class="wc-gzd-about-section-header">
+					<span class="wc-gzd-about-eyebrow">Im Fokus</span>
+					<h2>Neu in Germanized Pro 5.0</h2>
+				</header>
+				<div class="wc-gzd-about-spotlights">
+					<?php foreach ( $this->get_pro_release_features() as $feature ) : ?>
+						<?php $this->render_feature( $feature, true ); ?>
+					<?php endforeach; ?>
+				</div>
+			</section>
+
+			<?php if ( ! WC_germanized()->is_pro() ) : ?>
+				<section class="wc-gzd-about-pro-banner">
+					<div class="wc-gzd-about-pro-banner-content">
+						<span class="wc-gzd-about-eyebrow">Germanized Pro</span>
+						<h2>Mehr Funktionen. Premium Support.</h2>
+						<ul>
+							<li><span class="dashicons dashicons-yes" aria-hidden="true"></span>(E-)Rechnungen, Lieferscheine &amp; DATEV-Export</li>
+							<li><span class="dashicons dashicons-yes" aria-hidden="true"></span>B2B mit Kundengruppen &amp; Staffelpreisen</li>
+							<li><span class="dashicons dashicons-yes" aria-hidden="true"></span>Mehrstufige Kasse</li>
+							<li><span class="dashicons dashicons-yes" aria-hidden="true"></span>Rechtstexte-Generator &amp; USt-ID-Prüfung</li>
+						</ul>
+					</div>
+					<div class="wc-gzd-about-pro-banner-cta">
+						<p class="wc-gzd-about-price"><small>ab</small> 89 €</p>
+						<p class="wc-gzd-about-price-desc">inkl. MwSt. - inkl. 1 Jahr Updates &amp; Premium Support</p>
+						<a href="https://vendidero.de/woocommerce-germanized#upgrade" target="_blank" class="wc-gzd-about-button-light">Jetzt upgraden</a>
+					</div>
+				</section>
+			<?php endif; ?>
+
+			<section class="wc-gzd-about-section">
+				<header class="wc-gzd-about-section-header">
+					<span class="wc-gzd-about-eyebrow">Performance</span>
+					<h2>Schneller mit Germanized 4.2</h2>
+				</header>
+				<div class="wc-gzd-about-mini-grid">
+					<?php foreach ( $this->get_performance_items() as $item ) : ?>
+						<div class="wc-gzd-about-mini">
+							<span class="wc-gzd-about-mini-icon dashicons <?php echo esc_attr( $item['icon'] ); ?>" aria-hidden="true"></span>
+							<h4><?php echo esc_html( $item['title'] ); ?></h4>
+							<p><?php echo esc_html( $item['text'] ); ?></p>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			</section>
+
+			<section class="wc-gzd-about-section">
+				<header class="wc-gzd-about-section-header">
+					<span class="wc-gzd-about-eyebrow">Highlights</span>
+					<h2>Neuerungen der letzten Versionen</h2>
+				</header>
+				<div class="wc-gzd-about-grid">
+					<?php foreach ( $features as $feature ) : ?>
+						<?php $this->render_feature( $feature ); ?>
+					<?php endforeach; ?>
+				</div>
+			</section>
+
+
+			<p class="wc-gzd-about-footer">
+				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized' ) ); ?>"><?php esc_html_e( 'Go to Germanized Settings', 'woocommerce-germanized' ); ?> &rarr;</a>
+			</p>
 		</div>
 		<?php
 	}

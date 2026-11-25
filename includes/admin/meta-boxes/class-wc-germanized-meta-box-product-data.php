@@ -35,6 +35,7 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		add_filter( 'woocommerce_product_data_tabs', array( __CLASS__, 'register_product_tab' ) );
 		add_action( 'woocommerce_product_data_panels', array( __CLASS__, 'food_tab' ) );
+		add_action( 'woocommerce_product_data_panels', array( __CLASS__, 'b2b_tab' ) );
 
 		add_action( 'woocommerce_product_object_updated_props', array( __CLASS__, 'update_terms' ), 10, 1 );
 		add_action( 'woocommerce_before_product_object_save', array( __CLASS__, 'before_save' ), 10, 1 );
@@ -95,16 +96,62 @@ class WC_Germanized_Meta_Box_Product_Data {
 					?>
 				<?php else : ?>
 					<div class="wc-gzd-inner-product-pro-tab-wrapper">
-						<div class="wc-gzd-premium-overlay notice notice-warning inline">
-							<h3><?php esc_html_e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
-							<p><?php esc_html_e( 'Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more with Germanized Pro.', 'woocommerce-germanized' ); ?></p>
-							<p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php esc_html_e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
-						</div>
+						<?php WC_GZD_Admin::render_pro_preview_card( self::get_food_pro_preview_args() ); ?>
 					</div>
 				<?php endif; ?>
 			</div>
 
 			<?php do_action( 'woocommerce_gzd_edit_product_food_panel' ); ?>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Arguments for the food pro preview card (product and variation food tabs).
+	 *
+	 * @return array
+	 */
+	public static function get_food_pro_preview_args() {
+		return array(
+			'title'    => __( 'Sell food with Germanized Pro', 'woocommerce-germanized' ),
+			'desc'     => __( 'Want to sell your food in a legally compliant way? Germanized Pro adds all the information needed to your products.', 'woocommerce-germanized' ),
+			'features' => array(
+				__( 'Nutrients, allergenes and ingredients', 'woocommerce-germanized' ),
+				__( 'Nutri-Score and alcohol content', 'woocommerce-germanized' ),
+				__( 'Deposits for drinks and reusable packaging', 'woocommerce-germanized' ),
+			),
+			'href'     => 'https://vendidero.de/woocommerce-germanized/features',
+		);
+	}
+
+	/**
+	 * Preview of the B2B product options (customer group prices, tiered prices, visibility)
+	 * which are available with Germanized Pro.
+	 */
+	public static function b2b_tab() {
+		if ( WC_germanized()->is_pro() ) {
+			return;
+		}
+		?>
+		<div id="gzd_b2b_product_data" class="panel woocommerce_options_panel hidden">
+			<div class="options_group">
+				<div class="wc-gzd-inner-product-pro-tab-wrapper">
+					<?php
+					WC_GZD_Admin::render_pro_preview_card(
+						array(
+							'title'    => __( 'Sell to business customers with Germanized Pro', 'woocommerce-germanized' ),
+							'desc'     => __( 'Offer business customers their own prices and conditions for this product.', 'woocommerce-germanized' ),
+							'features' => array(
+								__( 'Individual prices and tiered prices per customer group', 'woocommerce-germanized' ),
+								__( 'Restrict this product to certain customer groups', 'woocommerce-germanized' ),
+								__( 'Separate B2B registration with manual review', 'woocommerce-germanized' ),
+							),
+							'href'     => 'https://vendidero.de/woocommerce-germanized/features#b2b',
+						)
+					);
+					?>
+				</div>
+			</div>
 		</div>
 		<?php
 	}
@@ -122,6 +169,19 @@ class WC_Germanized_Meta_Box_Product_Data {
 				'target'   => 'food_product_data',
 				'class'    => $classes,
 				'priority' => 35,
+			);
+		}
+
+		/**
+		 * Show a B2B preview tab in case the pro version is not active.
+		 * Germanized Pro registers its own B2B tab at the same position.
+		 */
+		if ( ! WC_germanized()->is_pro() ) {
+			$tabs['gzd_b2b'] = array(
+				'label'    => __( 'B2B', 'woocommerce-germanized' ),
+				'target'   => 'gzd_b2b_product_data',
+				'class'    => array( 'product_tab_gzd_new' ),
+				'priority' => 25,
 			);
 		}
 
@@ -651,16 +711,24 @@ class WC_Germanized_Meta_Box_Product_Data {
 			endif;
 			?>
 			<?php
-			woocommerce_wp_text_input(
-				array(
-					'id'          => '_mpn',
-					'value'       => $_gzd_product->get_mpn( 'edit' ),
-					'label'       => __( 'MPN', 'woocommerce-germanized' ),
-					'data_type'   => 'text',
-					'desc_tip'    => true,
-					'description' => __( 'Your product\'s Manufacturer Part Number.', 'woocommerce-germanized' ),
-				)
-			);
+			$mpn = $_gzd_product->get_mpn( 'edit' );
+
+			/**
+			 * Woo core (11.4+) ships its own MPN field which uses the `_mpn` input name too.
+			 * Only show the Germanized field (with a non-conflicting name) in case a Germanized MPN exists.
+			 */
+			if ( ! empty( $mpn ) || ! wc_gzd_woocommerce_supports_mpn() ) :
+				woocommerce_wp_text_input(
+					array(
+						'id'          => wc_gzd_woocommerce_supports_mpn() ? '_ts_mpn' : '_mpn',
+						'value'       => $mpn,
+						'label'       => __( 'MPN', 'woocommerce-germanized' ),
+						'data_type'   => 'text',
+						'desc_tip'    => true,
+						'description' => __( 'Your product\'s Manufacturer Part Number.', 'woocommerce-germanized' ),
+					)
+				);
+			endif;
 			?>
 		</div>
 
@@ -1174,6 +1242,13 @@ class WC_Germanized_Meta_Box_Product_Data {
 
 		foreach ( $data as $k => $v ) {
 			$data[ $k ] = self::get_sanitized_field_value( $k, ( isset( $_POST[ $k ] ) ? $_POST[ $k ] : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+		}
+
+		/**
+		 * The `_mpn` input belongs to Woo core (11.4+), the Germanized field is named `_ts_mpn` instead.
+		 */
+		if ( wc_gzd_woocommerce_supports_mpn() ) {
+			$data['_mpn'] = self::get_sanitized_field_value( '_mpn', ( isset( $_POST['_ts_mpn'] ) ? $_POST['_ts_mpn'] : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 		}
 
 		/**

@@ -847,6 +847,8 @@ class WC_GZD_Checkout {
 					}
 				} elseif ( 'photovoltaic_systems' === $checkbox->get_id() ) {
 					$enable_logging = $checkbox->is_enabled() && wc_gzd_cart_contains_photovoltaic_system();
+				} elseif ( in_array( $checkbox->get_id(), array( 'download', 'service' ), true ) ) {
+					$enable_logging = $checkbox->is_enabled() && wc_gzd_order_has_revocation_exempt_items( $order, 'download' === $checkbox->get_id() ? 'digital' : 'service' );
 				}
 
 				$enable_logging = apply_filters( "woocommerce_gzd_checkbox_{$checkbox->get_id()}_enable_logging", $enable_logging, $checkbox );

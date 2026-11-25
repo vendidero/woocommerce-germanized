@@ -1,101 +1,610 @@
-.wc-gzd-news {
+$gzd-dark: #1d2327;
+$gzd-text: #3c434a;
+$gzd-muted: #646970;
+$gzd-border: #e2e4e7;
+$gzd-surface: #f6f7f9;
+$gzd-accent-start: #639aff;
+$gzd-accent-end: #9a4dff;
+$gzd-accent-gradient: linear-gradient(120deg, $gzd-accent-start 0, $gzd-accent-end 100%);
+$gzd-radius: 16px;
+$gzd-shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 8px 24px -12px rgba(16, 24, 40, .12);
+
+.wc-gzd-about {
+  max-width: 1200px;
+  margin: 24px auto 40px;
+  padding-right: 20px;
+  color: $gzd-text;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  h2, h3, h4 {
+    color: $gzd-dark;
+  }
+
   p {
-    line-height: 1.8;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+/* Hide notices injected outside of the admin_notices hooks (e.g. via JS) */
+.dashboard_page_wc-gzd-about {
+  #wpbody-content > .notice,
+  #wpbody-content > .error,
+  #wpbody-content > .updated,
+  #wpbody-content > .update-nag,
+  .wc-gzd-about > .notice,
+  .wc-gzd-about > .error,
+  .wc-gzd-about > .updated,
+  .wc-gzd-about > .update-nag {
+    display: none !important;
+  }
+}
+
+/* Hero */
+.wc-gzd-about-hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  border-radius: $gzd-radius;
+  background: #fff;
+  box-shadow: $gzd-shadow;
+  padding: 24px 32px;
+
+  > * {
+    position: relative;
+  }
+
+  .wc-gzd-about-hero-brand {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .wc-gzd-about-logo {
+    display: block;
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 180px;
+    height: 40px;
+    background: url(../images/germanized.svg) no-repeat left top;
+    background-size: 180px auto;
+  }
+
+  .wc-gzd-about-hero-content {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-left: 32px;
+    border-left: 1px solid $gzd-border;
+  }
+
+  .wc-gzd-about-hero-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin-bottom: 4px;
+  }
+
+  h2 {
+    font-size: 20px;
+    line-height: 1.3;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .wc-gzd-about-lead {
+    font-size: 14px;
+    color: $gzd-muted;
+    margin: 0;
+  }
+
+  .wc-gzd-about-hero-tutorial {
+    position: absolute;
+    top: 16px;
+    right: 32px; // Matches the hero padding to align with the action buttons.
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: $gzd-muted;
+    text-decoration: none;
+
+    .dashicons {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover, &:focus {
+      color: var(--wp-admin-theme-color, #2271b1);
+    }
+  }
+
+  .wc-gzd-about-hero-actions {
+    flex: 0 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .button {
+      margin: 0;
+    }
+  }
+}
+
+/* Sections */
+.wc-gzd-about-section {
+  margin-top: 56px;
+}
+
+.wc-gzd-about-section-header {
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 4px 0 0;
+  }
+}
+
+.wc-gzd-about-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: $gzd-accent-start;
+}
+
+/* Feature cards */
+.wc-gzd-about-feature {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid $gzd-border;
+  border-radius: $gzd-radius;
+  overflow: hidden;
+  box-shadow: $gzd-shadow;
+  transition: transform .2s ease, box-shadow .2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 2px rgba(16, 24, 40, .04), 0 16px 32px -12px rgba(16, 24, 40, .18);
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 1.35;
+    margin: 0 0 8px;
+
+    // Center the pro badge on the title text instead of its baseline.
+    .wc-gzd-pro {
+      top: -2px;
+      vertical-align: middle;
+    }
+  }
+
+  p {
+    margin: 0 0 12px;
+  }
+
+  .wc-gzd-about-feature-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    padding: 24px;
+    background: $gzd-surface;
+    border-bottom: 1px solid $gzd-border;
+
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .dashicons {
+      font-size: 72px;
+      width: 72px;
+      height: 72px;
+      color: $gzd-accent-start;
+    }
+  }
+
+  .wc-gzd-about-feature-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 24px;
+  }
+
+  .wc-gzd-about-feature-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 8px;
+
+    .button {
+      margin: 0;
+    }
+  }
+
+}
+
+.wc-gzd-about-feature-spotlight {
+  flex-direction: row-reverse;
+  position: relative;
+
+  &:hover {
+    transform: none;
+  }
+
+  .wc-gzd-about-feature-media {
+    flex: 0 0 45%;
+    aspect-ratio: auto;
+    border-bottom: none;
+    border-left: 1px solid $gzd-border;
+    padding: 40px;
+    background: $gzd-surface;
+
+    img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      object-position: top center;
+      box-shadow: 0 12px 32px -12px rgba(16, 24, 40, .25);
+    }
+  }
+
+  .wc-gzd-about-feature-body {
+    padding: 40px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  p {
     font-size: 15px;
   }
+}
 
-  .about-logo-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+/* Release spotlights (e.g. Germanized Pro features), shown next to each other */
+.wc-gzd-about-spotlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
 
-    .wc-gzd-logo {
-      display: inline-block !important;
-      text-indent: -9999px;
-      width: 298px;
-      vertical-align: top;
-      margin-top: 2rem;
-      height: 89px;
-      background: url(../images/germanized.svg) no-repeat;
-      background-size: 298px auto;
+  // Higher specificity to override the (icon) spotlight side-panel layout.
+  .wc-gzd-about-feature.wc-gzd-about-feature-spotlight {
+    flex-direction: column;
+
+    .wc-gzd-about-feature-media {
+      flex: 0 0 auto;
+      height: 140px;
+      padding: 24px;
+      border-left: none;
+      border-bottom: 1px solid $gzd-border;
+      border-radius: $gzd-radius $gzd-radius 0 0;
+
+      .dashicons {
+        font-size: 80px;
+        width: 80px;
+        height: 80px;
+      }
     }
 
-    .about-text {
-      display: inline-block;
-      padding: 0;
-      max-width: 50%;
-      width: 50%;
+    .wc-gzd-about-feature-body {
+      padding: 32px;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .wc-gzd-about-spotlights {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Icon-only spotlights: show the icon in the accent color on a light surface */
+.wc-gzd-about-feature-spotlight.wc-gzd-about-feature-has-icon {
+  .wc-gzd-about-feature-media {
+    flex-basis: 32%;
+    background: $gzd-surface;
+
+    .dashicons {
+      font-size: 120px;
+      width: 120px;
+      height: 120px;
+    }
+  }
+}
+
+.wc-gzd-about-feature-bullets {
+  margin: 4px 0 20px;
+  padding: 0;
+  list-style: none;
+
+  // Same list style as the pro preview cards within the settings.
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 0 0 .6em;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .dashicons {
+    flex-shrink: 0;
+    color: $gzd-accent-start;
+  }
+}
+
+.wc-gzd-about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-flow: row dense;
+  gap: 24px;
+}
+
+.wc-gzd-about-feature-wide {
+  grid-column: span 2;
+  flex-direction: row;
+
+  .wc-gzd-about-feature-media {
+    flex: 0 0 45%;
+    aspect-ratio: auto;
+    border-bottom: none;
+    border-right: 1px solid $gzd-border;
+  }
+}
+
+/* Pro banner */
+.wc-gzd-about-pro-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: 56px;
+  padding: 40px 48px;
+  border-radius: $gzd-radius;
+  background: $gzd-accent-gradient;
+  color: #fff;
+  box-shadow: 0 24px 48px -24px rgba($gzd-accent-end, .6);
+
+  h2 {
+    color: #fff;
+    font-size: 26px;
+    margin: 4px 0 16px;
+  }
+
+  .wc-gzd-about-eyebrow {
+    color: rgba(255, 255, 255, .85);
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, auto));
+    gap: 8px 32px;
+    margin: 0;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
       margin: 0;
-      margin-top: 1rem;
-      margin-left: 3%;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .dashicons {
+      flex-shrink: 0;
+      color: #fff;
     }
   }
 
-  .new-feature {
-    img {
-      align-self: center;
+  .wc-gzd-about-pro-banner-cta {
+    text-align: center;
+
+    p {
+      margin: 0;
     }
   }
 
-  p.price {
-    font-size: .8em;
+  .wc-gzd-about-price {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+
+    small {
+      font-size: 16px;
+      font-weight: 400;
+      opacity: .85;
+    }
   }
 
-  .columns {
+  .wc-gzd-about-price-desc {
+    font-size: 12px !important;
+    opacity: .85;
+    margin-bottom: 16px !important;
+  }
+
+  .wc-gzd-about-button-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 24px;
+    border-radius: 2px;
+    background: #fff;
+    color: $gzd-accent-end;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 20px -8px rgba(16, 24, 40, .45);
+    transition: transform .15s ease, box-shadow .15s ease;
+
+    &:hover, &:focus {
+      color: $gzd-accent-end;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px -8px rgba(16, 24, 40, .5);
+    }
+
+    &:focus {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+  }
+}
+
+/* Mini cards */
+.wc-gzd-about-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.wc-gzd-about-mini {
+  background: #fff;
+  border: 1px solid $gzd-border;
+  border-radius: $gzd-radius;
+  padding: 24px;
+
+  h4 {
+    font-size: 15px;
+    margin: 16px 0 6px;
+  }
+
+  p {
+    margin: 0;
+    color: $gzd-muted;
+  }
+
+  .wc-gzd-about-mini-icon {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+    border-radius: 12px;
+    color: $gzd-accent-start;
+    background: rgba($gzd-accent-start, .12);
+  }
+}
+
+.wc-gzd-about-footer {
+  margin-top: 40px;
+  text-align: center;
+
+  a {
+    font-weight: 600;
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .wc-gzd-about-hero {
     flex-wrap: wrap;
-    margin-left: -1em;
-    margin-right: -1em;
 
-    * {
-      box-sizing: border-box;
+    .wc-gzd-about-hero-content {
+      flex-basis: 0;
     }
 
-    .col {
-      margin-right: 0;
-      padding: 0 1em;
-      width: 33.3333%;
-      align-items: center;
-      display: inline-flex;
-      flex-wrap: wrap;
+    .wc-gzd-about-hero-actions {
+      flex-basis: 100%;
+    }
+  }
 
-      h4 {
-        .dashicons {
-          margin-right: 5px;
-        }
-      }
+  .wc-gzd-about-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
-      &.align-center {
-        display: inline-flex;
-        align-self: center;
-      }
+@media screen and (max-width: 960px) {
+  .wc-gzd-about-feature-wide {
+    flex-direction: column;
+
+    .wc-gzd-about-feature-media {
+      flex-basis: auto;
+      aspect-ratio: 16 / 9;
+      border-right: none;
+      border-bottom: 1px solid $gzd-border;
+    }
+  }
+
+  .wc-gzd-about-feature-spotlight {
+    flex-direction: column;
+
+    .wc-gzd-about-feature-media {
+      flex-basis: auto;
+      border-left: none;
+      border-bottom: 1px solid $gzd-border;
+      padding: 24px;
     }
 
-    &.two-col {
-      .col {
-        width: 50%;
-      }
+    .wc-gzd-about-feature-body {
+      padding: 24px;
     }
   }
 }
-.dashboard_page_wc-gzd-about h1 {
-  width: 100%;
-  margin-right: 0;
+
+@media screen and (max-width: 782px) {
+  .wc-gzd-about {
+    padding-right: 10px;
+  }
+
+  .wc-gzd-about-hero {
+    padding: 20px;
+    gap: 16px;
+
+    .wc-gzd-about-hero-content {
+      flex-basis: 100%;
+      padding-left: 0;
+      border-left: none;
+    }
+  }
+
+  .wc-gzd-about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wc-gzd-about-feature-wide {
+    grid-column: auto;
+  }
+
+  .wc-gzd-about-pro-banner {
+    padding: 32px 24px;
+
+    ul {
+      grid-template-columns: 1fr;
+    }
+  }
 }
-.dashboard_page_wc-gzd-about h3 .wc-gzd-pro {
-  font-size: 0.7em;
-  margin-left: 5px;
-  background: transparent;
-  border: 1px solid #000;
-  color: #000;
-}
-.dashboard_page_wc-gzd-about .changelog {
-  margin-top: 3em;
-  border-top: 1px solid #CCC;
-  padding-top: 0;
-}
-.dashboard_page_wc-gzd-about .feature-section {
-  border: none;
+
+@media (prefers-reduced-motion: reduce) {
+  .wc-gzd-about-feature, .wc-gzd-about-pro-banner .wc-gzd-about-button-light {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
 }
 
 .wc-gzd-actions {

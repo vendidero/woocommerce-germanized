@@ -90,6 +90,7 @@ class WC_GZD_Admin {
 		add_action( 'woocommerce_admin_field_gzd_toggle', array( $this, 'toggle_input_field' ), 5 );
 		add_action( 'woocommerce_admin_field_gzd_select_term', array( $this, 'term_field' ), 5 );
 		add_action( 'woocommerce_admin_field_image', array( $this, 'image_field' ), 10, 1 );
+		add_action( 'woocommerce_admin_field_gzd_pro_preview', array( $this, 'pro_preview_field' ), 10, 1 );
 		add_action( 'woocommerce_admin_field_html', array( $this, 'html_field' ), 10, 1 );
 		add_action( 'woocommerce_admin_field_hidden', array( $this, 'hidden_field' ), 10, 1 );
 		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'save_fields' ), 0, 3 );
@@ -307,6 +308,134 @@ class WC_GZD_Admin {
 			<th scope="row" class="titledesc titledesc-image" colspan="2" id="<?php echo esc_attr( $value['id'] ); ?>">
 				<a href="<?php echo esc_url( $value['href'] ); ?>" target="_blank"><img src="<?php echo esc_url( $value['img'] ); ?>"/></a>
 			</th>
+		</tr>
+		<?php
+	}
+
+	/**
+	 * Renders a pro feature preview: A blurred, non-interactive placeholder settings table
+	 * with an upgrade card (title, description and main features) placed on top.
+	 *
+	 * @param array $value The field args.
+	 */
+	public function pro_preview_field( $value ) {
+		$value = wp_parse_args(
+			$value,
+			array(
+				'id'           => '',
+				'title'        => __( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ),
+				'desc'         => '',
+				'features'     => array(),
+				'href'         => '',
+				'upgrade_href' => 'https://vendidero.de/woocommerce-germanized',
+				'placeholders' => array(),
+			)
+		);
+		?>
+		<tr valign="top" class="wc-gzd-pro-preview-row">
+			<td colspan="2" class="wc-gzd-pro-preview-cell" id="<?php echo esc_attr( $value['id'] ); ?>">
+				<div class="wc-gzd-pro-preview">
+					<div class="wc-gzd-pro-preview-placeholder" aria-hidden="true" inert>
+						<table class="form-table">
+							<colgroup><col class="wc-gzd-pro-preview-col-label" /><col /></colgroup>
+							<?php
+							foreach ( $value['placeholders'] as $placeholder ) {
+								$this->render_pro_preview_placeholder( $placeholder );
+							}
+							?>
+						</table>
+					</div>
+					<?php self::render_pro_preview_card( $value ); ?>
+				</div>
+			</td>
+		</tr>
+		<?php
+	}
+
+	/**
+	 * Renders the pro upgrade card (title, description, feature list and actions).
+	 * Used by the blurred settings previews and the pro product data tabs.
+	 *
+	 * @param array $args
+	 */
+	public static function render_pro_preview_card( $args ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'title'        => __( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ),
+				'desc'         => '',
+				'features'     => array(),
+				'href'         => '',
+				'upgrade_href' => 'https://vendidero.de/woocommerce-germanized',
+			)
+		);
+		?>
+		<div class="wc-gzd-pro-preview-card">
+			<h3><?php echo esc_html( $args['title'] ); ?> <span class="wc-gzd-pro">pro</span></h3>
+			<?php if ( ! empty( $args['desc'] ) ) : ?>
+				<p class="wc-gzd-pro-preview-desc"><?php echo wp_kses_post( $args['desc'] ); ?></p>
+			<?php endif; ?>
+			<?php if ( ! empty( $args['features'] ) ) : ?>
+				<ul class="wc-gzd-pro-preview-features">
+					<?php foreach ( $args['features'] as $feature ) : ?>
+						<li><span class="dashicons dashicons-yes"></span><?php echo wp_kses_post( $feature ); ?></li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif; ?>
+			<p class="wc-gzd-pro-preview-actions">
+				<a class="button button-primary wc-gzd-button" href="<?php echo esc_url( $args['upgrade_href'] ); ?>" target="_blank"><?php esc_html_e( 'Upgrade now', 'woocommerce-germanized' ); ?></a>
+				<?php if ( ! empty( $args['href'] ) ) : ?>
+					<a class="button button-secondary" href="<?php echo esc_url( $args['href'] ); ?>" target="_blank"><?php esc_html_e( 'Learn more', 'woocommerce-germanized' ); ?></a>
+				<?php endif; ?>
+			</p>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Renders a single, purely decorative placeholder setting row. Fields have no name
+	 * attribute and are disabled to make sure they are never submitted.
+	 *
+	 * @param array $placeholder
+	 */
+	protected function render_pro_preview_placeholder( $placeholder ) {
+		$placeholder = wp_parse_args(
+			$placeholder,
+			array(
+				'title' => '',
+				'type'  => 'text',
+				'value' => '',
+				'desc'  => '',
+			)
+		);
+
+		if ( 'title' === $placeholder['type'] ) {
+			?>
+			<tr class="wc-gzd-pro-preview-placeholder-title">
+				<th colspan="2"><h2><?php echo esc_html( $placeholder['title'] ); ?></h2></th>
+			</tr>
+			<?php
+			return;
+		}
+		?>
+		<tr valign="top">
+			<th scope="row" class="titledesc"><span class="wc-gzd-label-wrap"><?php echo esc_html( $placeholder['title'] ); ?></span></th>
+			<td class="forminp forminp-<?php echo esc_attr( $placeholder['type'] ); ?>">
+				<?php if ( 'toggle' === $placeholder['type'] ) : ?>
+					<span class="woocommerce-input-toggle woocommerce-input-toggle--<?php echo esc_attr( wc_string_to_bool( $placeholder['value'] ) ? 'enabled' : 'disabled' ); ?>"></span>
+				<?php elseif ( 'select' === $placeholder['type'] ) : ?>
+					<select disabled tabindex="-1"><option><?php echo esc_html( $placeholder['value'] ); ?></option></select>
+				<?php elseif ( 'textarea' === $placeholder['type'] ) : ?>
+					<textarea disabled tabindex="-1" rows="3"><?php echo esc_textarea( $placeholder['value'] ); ?></textarea>
+				<?php elseif ( 'checkbox' === $placeholder['type'] ) : ?>
+					<label><input type="checkbox" disabled tabindex="-1" <?php checked( true ); ?> /> <?php echo esc_html( $placeholder['value'] ); ?></label>
+				<?php else : ?>
+					<input type="text" disabled tabindex="-1" value="<?php echo esc_attr( $placeholder['value'] ); ?>" />
+				<?php endif; ?>
+				<?php if ( ! empty( $placeholder['desc'] ) ) : ?>
+					<p class="description"><?php echo esc_html( $placeholder['desc'] ); ?></p>
+				<?php endif; ?>
+			</td>
 		</tr>
 		<?php
 	}

@@ -44,18 +44,45 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		return '';
 	}
 
+	/**
+	 * Legacy upgrade notice shown above the settings of pro tabs. Pro tabs now
+	 * render a blurred settings preview instead (see get_pro_preview_settings()).
+	 *
+	 * @return string
+	 */
 	protected function get_pro_content_html() {
-		ob_start();
-		?>
-		<div class="wc-gzd-premium-overlay notice notice-warning inline">
-			<h3><?php esc_html_e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
-			<p><?php esc_html_e( 'Enjoy access to even more professional features such as (e-)invoices, delivery notes, an interface to generate legal texts, a multi-level checkout, VAT ID verification, and, of course, professional support!', 'woocommerce-germanized' ); ?></p>
-			<p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php esc_html_e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
-		</div>
-		<?php
-		$html = ob_get_clean();
+		return '';
+	}
 
-		return $html;
+	/**
+	 * Returns a settings array containing a blurred pro feature preview.
+	 *
+	 * @param array $args Field args, see WC_GZD_Admin::pro_preview_field().
+	 *
+	 * @return array
+	 */
+	protected function get_pro_preview_settings( $args ) {
+		$id = isset( $args['id'] ) ? $args['id'] : $this->get_name() . '_pro_preview';
+
+		return array(
+			array(
+				'title' => '',
+				'type'  => 'title',
+				'id'    => $id . '_options',
+				'desc'  => '',
+			),
+			array_merge(
+				$args,
+				array(
+					'id'   => $id,
+					'type' => 'gzd_pro_preview',
+				)
+			),
+			array(
+				'type' => 'sectionend',
+				'id'   => $id . '_options',
+			),
+		);
 	}
 
 	public function get_section_title( $section = '' ) {
@@ -80,8 +107,8 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 
 		$this->output_description();
 
-		if ( $this->is_pro() && ! WC_germanized()->is_pro() ) {
-			echo wp_kses_post( $this->get_pro_content_html() );
+		if ( $this->is_pro() && ! WC_germanized()->is_pro() && ( $pro_content = $this->get_pro_content_html() ) ) {
+			echo wp_kses_post( $pro_content );
 		}
 	}
 
@@ -286,8 +313,16 @@ abstract class WC_GZD_Settings_Tab extends WC_Settings_Page {
 		return ! empty( $pointers ) ? true : false;
 	}
 
+	/**
+	 * Tutorial pointers for the current tab (and section). The tutorial tour is
+	 * defined centrally within WC_GZD_Settings_Pointers::get_tour().
+	 *
+	 * @return array
+	 */
 	public function get_pointers() {
-		return array();
+		$section = $this->get_current_section();
+
+		return WC_GZD_Settings_Pointers::get_pointers_for_page( $this->get_name(), $section ? $section : '' );
 	}
 
 	protected function is_saveable() {

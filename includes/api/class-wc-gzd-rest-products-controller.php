@@ -750,6 +750,13 @@ class WC_GZD_REST_Products_Controller {
 			),
 		);
 
+		/**
+		 * Woo core (11.4+) registers its own mpn property. Merging (recursively) would break the schema.
+		 */
+		if ( wc_gzd_woocommerce_supports_mpn() ) {
+			unset( $schema_properties['mpn'], $schema_properties['variations']['items']['properties']['mpn'] );
+		}
+
 		return $schema_properties;
 	}
 
@@ -1030,7 +1037,10 @@ class WC_GZD_REST_Products_Controller {
 			$data['_gtin'] = wc_clean( $request['gtin'] );
 		}
 
-		if ( isset( $request['mpn'] ) ) {
+		/**
+		 * Woo core (11.4+) handles the mpn param itself.
+		 */
+		if ( isset( $request['mpn'] ) && ! wc_gzd_woocommerce_supports_mpn() ) {
 			$data['_mpn'] = wc_clean( $request['mpn'] );
 		}
 
@@ -1287,7 +1297,13 @@ class WC_GZD_REST_Products_Controller {
 
 		// GTIN + MPN
 		$data['gtin'] = $gzd_product->get_gtin( $context );
-		$data['mpn']  = $gzd_product->get_mpn( $context );
+
+		/**
+		 * Woo core (11.4+) adds the mpn itself (with a fallback to the Germanized MPN in view context).
+		 */
+		if ( ! wc_gzd_woocommerce_supports_mpn() ) {
+			$data['mpn'] = $gzd_product->get_mpn( $context );
+		}
 
 		// Sale Labels
 		$data['sale_price_label']         = $this->prepare_term( WC_germanized()->price_labels->get_term_object( $gzd_product->get_sale_price_label( $context ) ) );

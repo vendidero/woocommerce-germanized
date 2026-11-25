@@ -30,26 +30,35 @@ class WC_GZD_Settings_Tab_Contract extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_tab_settings( $current_section = '' ) {
-		return array(
+		return $this->get_pro_preview_settings(
 			array(
-				'title' => '',
-				'desc'  => '',
-				'type'  => 'title',
-				'id'    => 'manual_contract_options',
-			),
-
-			array(
-				'title' => '',
-				'id'    => 'woocommerce_gzdp_contract_after_confirmation',
-				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-contract.png?v=' . WC_germanized()->version,
-				'href'  => 'https://vendidero.de/woocommerce-germanized/features#legal',
-				'type'  => 'image',
-			),
-
-			array(
-				'type' => 'sectionend',
-				'id'   => 'manual_contract_options',
-			),
+				'title'        => __( 'Manual contract conclusion with Germanized Pro', 'woocommerce-germanized' ),
+				'desc'         => __( 'Review incoming orders within your backend before closing the contract with your customer.', 'woocommerce-germanized' ),
+				'features'     => array(
+					__( 'Manually review and confirm orders before closing the contract', 'woocommerce-germanized' ),
+					__( 'The first email only confirms the receipt of the offer', 'woocommerce-germanized' ),
+					__( 'Payment information is provided only after you have confirmed the order', 'woocommerce-germanized' ),
+				),
+				'href'         => 'https://vendidero.de/woocommerce-germanized/features#legal',
+				'placeholders' => array(
+					array(
+						'title' => 'Conclusion of Contract',
+						'type'  => 'toggle',
+						'value' => 'yes',
+						'desc'  => 'Manually review and confirm an order before closing contract.',
+					),
+					array(
+						'title' => 'Order status',
+						'type'  => 'select',
+						'value' => 'On hold',
+					),
+					array(
+						'title' => 'Confirmation email',
+						'type'  => 'select',
+						'value' => 'Order confirmation',
+					),
+				),
+			)
 		);
 	}
 

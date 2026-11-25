@@ -30,26 +30,53 @@ class WC_GZD_Settings_Tab_Revocation_Generator extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_tab_settings( $current_section = '' ) {
-		return array(
+		return $this->get_pro_preview_settings(
 			array(
-				'title' => '',
-				'type'  => 'title',
-				'id'    => 'revocation_generator_options',
-				'desc'  => '',
-			),
-
-			array(
-				'title' => '',
-				'id'    => 'woocommerce_gzdp_terms_generator',
-				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-widerruf.png?v=' . WC_germanized()->version,
-				'href'  => 'https://vendidero.de/woocommerce-germanized/features#accounting',
-				'type'  => 'image',
-			),
-
-			array(
-				'type' => 'sectionend',
-				'id'   => 'revocation_generator_options',
-			),
+				'title'        => __( 'Revocation terms generator with Germanized Pro', 'woocommerce-germanized' ),
+				'desc'         => __( 'Answer a few questions about your products and let our API generate your revocation terms.', 'woocommerce-germanized' ),
+				'features'     => array(
+					__( 'Revocation terms tailored to the products you sell', 'woocommerce-germanized' ),
+					__( 'Includes the model withdrawal form', 'woocommerce-germanized' ),
+					__( 'Insert the generated text directly into your revocation page', 'woocommerce-germanized' ),
+				),
+				'href'         => 'https://vendidero.de/woocommerce-germanized/features#legal',
+				'placeholders' => array(
+					array(
+						'title' => 'Products',
+						'type'  => 'title',
+					),
+					array(
+						'title' => 'Product types',
+						'type'  => 'checkbox',
+						'value' => 'Goods, Digital content, Services',
+					),
+					array(
+						'title' => 'Multiple deliveries',
+						'type'  => 'toggle',
+						'value' => 'no',
+					),
+					array(
+						'title' => 'Return costs',
+						'type'  => 'select',
+						'value' => 'Customer bears return costs',
+					),
+					array(
+						'title' => 'Non-parcel goods',
+						'type'  => 'toggle',
+						'value' => 'no',
+					),
+					array(
+						'title' => 'Withdrawal form',
+						'type'  => 'toggle',
+						'value' => 'yes',
+					),
+					array(
+						'title' => 'Revocation page',
+						'type'  => 'select',
+						'value' => 'Revocation',
+					),
+				),
+			)
 		);
 	}
 

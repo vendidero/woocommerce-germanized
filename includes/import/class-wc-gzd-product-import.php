@@ -290,6 +290,13 @@ class WC_GZD_Product_Import {
 			)
 		);
 
+		/**
+		 * Woo core (11.4+) imports the mpn column itself.
+		 */
+		if ( wc_gzd_woocommerce_supports_mpn() ) {
+			unset( $column_names['mpn'] );
+		}
+
 		foreach ( array_keys( $column_names ) as $column_name ) {
 			if ( isset( $data[ $column_name ] ) ) {
 				$value = $data[ $column_name ];

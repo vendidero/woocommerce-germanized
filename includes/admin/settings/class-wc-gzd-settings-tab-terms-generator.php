@@ -30,26 +30,58 @@ class WC_GZD_Settings_Tab_Terms_Generator extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_tab_settings( $current_section = '' ) {
-		return array(
+		return $this->get_pro_preview_settings(
 			array(
-				'title' => '',
-				'type'  => 'title',
-				'id'    => 'terms_generator_options',
-				'desc'  => '',
-			),
-
-			array(
-				'title' => '',
-				'id'    => 'woocommerce_gzdp_terms_generator',
-				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-agb.png?v=' . WC_germanized()->version,
-				'href'  => 'https://vendidero.de/woocommerce-germanized/features#accounting',
-				'type'  => 'image',
-			),
-
-			array(
-				'type' => 'sectionend',
-				'id'   => 'terms_generator_options',
-			),
+				'title'        => __( 'Terms & conditions generator with Germanized Pro', 'woocommerce-germanized' ),
+				'desc'         => __( 'Answer a few questions about your shop and let our API generate your terms & conditions.', 'woocommerce-germanized' ),
+				'features'     => array(
+					__( 'Terms & conditions tailored to your shop via a simple questionnaire', 'woocommerce-germanized' ),
+					__( 'Insert the generated text directly into your terms page', 'woocommerce-germanized' ),
+					__( 'Regenerate your terms at any time', 'woocommerce-germanized' ),
+				),
+				'href'         => 'https://vendidero.de/woocommerce-germanized/features#legal',
+				'placeholders' => array(
+					array(
+						'title' => 'Shop',
+						'type'  => 'title',
+					),
+					array(
+						'title' => 'Shop name',
+						'type'  => 'text',
+						'value' => 'My Shop',
+					),
+					array(
+						'title' => 'Legal form',
+						'type'  => 'select',
+						'value' => 'GmbH',
+					),
+					array(
+						'title' => 'Customers',
+						'type'  => 'select',
+						'value' => 'Consumers and businesses',
+					),
+					array(
+						'title' => 'Delivery countries',
+						'type'  => 'select',
+						'value' => 'Germany, Austria',
+					),
+					array(
+						'title' => 'Payment methods',
+						'type'  => 'checkbox',
+						'value' => 'PayPal, Invoice, Direct debit',
+					),
+					array(
+						'title' => 'Retention of title',
+						'type'  => 'toggle',
+						'value' => 'yes',
+					),
+					array(
+						'title' => 'Terms page',
+						'type'  => 'select',
+						'value' => 'Terms and Conditions',
+					),
+				),
+			)
 		);
 	}
 

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $checkbox_id = $checkbox->get_id()
 ?>
 
-<div class="wc-gzd-admin-settings wc-gzd-admin-settings-checkboxes <?php echo( ! WC_germanized()->is_pro() ? 'wc-gzd-admin-settings-has-sidebar' : '' ); ?>">
+<div class="wc-gzd-admin-settings wc-gzd-admin-settings-checkboxes">
 	<div class="wc-gzd-admin-settings-fields">
 		<?php
 
@@ -42,9 +42,4 @@ $checkbox_id = $checkbox->get_id()
 		?>
 	</div>
 
-	<?php if ( ! WC_germanized()->is_pro() ) : ?>
-		<div class="wc-gzd-admin-settings-sidebar">
-			<?php include_once 'html-admin-page-checkbox-sidebar.php'; ?>
-		</div>
-	<?php endif; ?>
 </div>

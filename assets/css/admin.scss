@@ -213,24 +213,62 @@ a.wc-gzd-pro:not(.wc-gzd-pro-outlined) {
   font-weight: normal;
 }
 
+#woocommerce-product-data ul.wc-tabs li.gzd_b2b_options a::before {
+  content: "\f307"; // Dashicons: users
+}
+
 .product_tab_gzd_pro {
   a {
     &::after {
       margin-left: 0;
-      color: #2271b1;
-      border-color: #2271b1;
+      color: var(--wp-admin-theme-color, #2271b1);
+      border-color: var(--wp-admin-theme-color, #2271b1);
       content: "pro";
     }
 
     &:hover::after {
-      border-color: #135e96;
-      color: #135e96;
+      border-color: var(--wp-admin-theme-color-darker-10, #135e96);
+      color: var(--wp-admin-theme-color-darker-10, #135e96);
     }
   }
 
   &.active a::after {
     border-color: #555;
     color: #555;
+  }
+}
+
+/**
+ * "New" highlight badge, e.g. for settings tabs (.wc-gzd-new) or product data tabs (.product_tab_gzd_new).
+ */
+.wc-gzd-new, .product_tab_gzd_new a::after {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 9px;
+  line-height: 9px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  position: relative;
+  top: -1px;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 600;
+  color: #fff;
+  background: var(--wp-admin-theme-color, #2271b1);
+  text-decoration: none;
+}
+
+.product_tab_gzd_new {
+  a::after {
+    content: "new";
+  }
+
+  a:hover::after {
+    background: var(--wp-admin-theme-color-darker-10, #135e96);
+  }
+
+  a span {
+    margin-right: 0;
   }
 }
 
@@ -771,4 +809,75 @@ table.wc-gzd-tax-example tr th:first-child, table.wc-gzd-tax-example tr td:first
   tr.wc-gzd-setting-invisible, .wc-gzd-setting-invisible {
     display: none;
   }
+}
+
+/**
+ * Pro upgrade card, e.g. on top of blurred settings previews or within pro product data tabs.
+ */
+.wc-gzd-pro-preview-card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 560px;
+  padding: 1.5em 2em;
+  background: #fff;
+  border: 1px solid #dcdcde;
+  border-top: 3px solid #639aff;
+  border-radius: 4px;
+
+  h3 {
+    margin: 0 0 .5em;
+    padding: 0;
+    font-size: 1.3em;
+    line-height: 1.4;
+
+    .wc-gzd-pro {
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+  }
+
+  .wc-gzd-pro-preview-desc {
+    margin: 0 0 1em;
+    padding: 0;
+    font-size: 13px;
+    color: #50575e;
+  }
+
+  ul.wc-gzd-pro-preview-features {
+    margin: 0 0 1.5em;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: .6em;
+      font-size: 13px;
+      line-height: 20px;
+
+      .dashicons {
+        flex-shrink: 0;
+        color: #639aff;
+      }
+    }
+  }
+
+  .wc-gzd-pro-preview-actions {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+// Within product data panels the card is shown plain, without its container styles.
+.woocommerce_options_panel .wc-gzd-inner-product-pro-tab-wrapper .wc-gzd-pro-preview-card {
+  max-width: none;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }

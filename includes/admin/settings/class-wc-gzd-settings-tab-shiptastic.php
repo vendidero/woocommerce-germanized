@@ -90,10 +90,6 @@ class WC_GZD_Settings_Tab_Shiptastic extends WC_GZD_Settings_Tab {
 		return array();
 	}
 
-	public function get_pointers() {
-		return array();
-	}
-
 	public function get_tab_settings( $current_section = '' ) {
 		return array();
 	}

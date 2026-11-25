@@ -43,47 +43,6 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 		return $is_pro;
 	}
 
-	public function get_pointers() {
-		$current  = $this->get_current_section();
-		$pointers = array();
-
-		if ( '' === $current ) {
-			$pointers = array(
-				'pointers' => array(
-					'default' => array(
-						'target'       => '.ui-sortable td.forminp-multiselect:first .select2-container:nth-of-type(1)',
-						'next'         => 'pdf',
-						'next_url'     => '',
-						'next_trigger' => array(),
-						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'Email attachments', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Choose which of your email templates (e.g. order confirmation) should contain your legal page content e.g. terms and conditions within it\'s footer.', 'woocommerce-germanized' ) . '</p>',
-							'position' => array(
-								'edge'  => 'left',
-								'align' => 'left',
-							),
-						),
-					),
-					'pdf'     => array(
-						'target'       => '.subsubsub li:nth-of-type(3) a',
-						'next'         => '',
-						'next_url'     => admin_url( 'admin.php?page=wc-settings&tab=germanized-checkboxes&tutorial=yes' ),
-						'next_trigger' => array(),
-						'pro'          => true,
-						'options'      => array(
-							'content'  => '<h3>' . esc_html__( 'PDF Attachments', 'woocommerce-germanized' ) . '</h3><p>' . esc_html__( 'Customers of our pro version may attach PDF files instead of plain text content to emails.', 'woocommerce-germanized' ) . '</p>',
-							'position' => array(
-								'edge'  => 'top',
-								'align' => 'left',
-							),
-						),
-					),
-				),
-			);
-		}
-
-		return $pointers;
-	}
-
 	public function get_section_description( $section ) {
 		if ( '' === $section ) {
 			return __( 'Use drag & drop to customize attachment order. Don\'t forget to save your changes.', 'woocommerce-germanized' );
@@ -120,50 +79,69 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 	}
 
 	protected function get_attachment_pdf_settings() {
-		return array(
-			array(
-				'title' => '',
-				'type'  => 'title',
-				'id'    => 'email_pdf_options',
-				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %1$sUpgrade to %2$spro%3$s%4$s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>',
-			),
-
-			array(
-				'title' => '',
-				'id'    => 'woocommerce_gzdp_legal_page_terms_enabled',
-				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-pdf.png?v=' . WC_germanized()->version,
-				'href'  => 'https://vendidero.de/woocommerce-germanized/features#legal',
-				'type'  => 'image',
-			),
-
-			array(
-				'type' => 'sectionend',
-				'id'   => 'email_pdf_options',
-			),
-		);
+		return $this->get_attachment_settings();
 	}
 
 	protected function get_attachment_settings() {
-		return array(
+		return $this->get_pro_preview_settings(
 			array(
-				'title' => '',
-				'type'  => 'title',
-				'id'    => 'email_attachment_options',
-				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( 'Want to attach automatically generated PDF files to emails instead of plain text? %1$sUpgrade to %2$spro%3$s%4$s', 'woocommerce-germanized' ), '<a style="margin-left: 1em" href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>',
-			),
-
-			array(
-				'title' => '',
-				'id'    => 'woocommerce_gzdp_legal_page_terms_enabled',
-				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-emails.png?v=' . WC_germanized()->version,
-				'href'  => 'https://vendidero.de/woocommerce-germanized/features#legal',
-				'type'  => 'image',
-			),
-
-			array(
-				'type' => 'sectionend',
-				'id'   => 'email_attachment_options',
-			),
+				'id'           => 'email_attachments_pro_preview',
+				'title'        => __( 'PDF email attachments with Germanized Pro', 'woocommerce-germanized' ),
+				'desc'         => __( 'Attach automatically generated PDF files of your legal pages to emails instead of plain text.', 'woocommerce-germanized' ),
+				'features'     => array(
+					__( 'Generate PDF files from your legal pages automatically', 'woocommerce-germanized' ),
+					__( 'Or upload your own, custom PDF files', 'woocommerce-germanized' ),
+					__( 'Customize the layout of generated PDF files', 'woocommerce-germanized' ),
+				),
+				'href'         => 'https://vendidero.de/woocommerce-germanized/features#legal',
+				'placeholders' => array(
+					array(
+						'title' => 'Terms & Conditions',
+						'type'  => 'title',
+					),
+					array(
+						'title' => 'Enable',
+						'type'  => 'toggle',
+						'value' => 'yes',
+						'desc'  => 'Attach PDF instead of plain text.',
+					),
+					array(
+						'title' => 'PDF',
+						'type'  => 'select',
+						'value' => 'Generate automatically',
+					),
+					array(
+						'title' => 'Cancellation Policy',
+						'type'  => 'title',
+					),
+					array(
+						'title' => 'Enable',
+						'type'  => 'toggle',
+						'value' => 'yes',
+						'desc'  => 'Attach PDF instead of plain text.',
+					),
+					array(
+						'title' => 'PDF',
+						'type'  => 'select',
+						'value' => 'Generate automatically',
+					),
+					array(
+						'title' => 'Privacy Policy',
+						'type'  => 'title',
+					),
+					array(
+						'title' => 'Enable',
+						'type'  => 'toggle',
+						'value' => 'no',
+						'desc'  => 'Attach PDF instead of plain text.',
+					),
+					array(
+						'title' => 'PDF',
+						'type'  => 'select',
+						'value' => 'Custom upload',
+					),
+				),
+			)
 		);
 	}
 

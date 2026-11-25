@@ -545,19 +545,29 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				);
 			endif;
 
-			woocommerce_wp_text_input(
-				array(
-					'wrapper_class' => 'form-row ' . ( $gtin_is_visible ? 'form-row-last' : 'form-row-full' ),
-					'id'            => "variable_mpn_{$loop}",
-					'name'          => "variable_mpn[{$loop}]",
-					'label'         => __( 'MPN', 'woocommerce-germanized' ),
-					'data_type'     => 'text',
-					'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_mpn( 'edit' ) : '',
-					'value'         => $gzd_product->get_mpn( 'edit' ),
-					'desc_tip'      => true,
-					'description'   => __( 'Your product\'s Manufacturer Part Number.', 'woocommerce-germanized' ),
-				)
-			);
+			$mpn = $gzd_product->get_mpn( 'edit' );
+
+			/**
+			 * Woo core (11.4+) ships its own MPN field which uses the `variable_mpn` input name too.
+			 * Only show the Germanized field (with a non-conflicting name) in case a Germanized MPN exists.
+			 */
+			if ( ! empty( $mpn ) || ! wc_gzd_woocommerce_supports_mpn() ) :
+				$mpn_input_name = wc_gzd_woocommerce_supports_mpn() ? 'variable_ts_mpn' : 'variable_mpn';
+
+				woocommerce_wp_text_input(
+					array(
+						'wrapper_class' => 'form-row ' . ( $gtin_is_visible ? 'form-row-last' : 'form-row-full' ),
+						'id'            => "{$mpn_input_name}_{$loop}",
+						'name'          => "{$mpn_input_name}[{$loop}]",
+						'label'         => __( 'MPN', 'woocommerce-germanized' ),
+						'data_type'     => 'text',
+						'placeholder'   => $gzd_parent_product ? $gzd_parent_product->get_mpn( 'edit' ) : '',
+						'value'         => $mpn,
+						'desc_tip'      => true,
+						'description'   => __( 'Your product\'s Manufacturer Part Number.', 'woocommerce-germanized' ),
+					)
+				);
+			endif;
 			?>
 
 			<div class="variable_cart_mini_desc">
@@ -615,11 +625,7 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 				?>
 			<?php else : ?>
 				<div class="wc-gzd-inner-product-pro-tab-wrapper">
-					<div class="wc-gzd-premium-overlay notice notice-warning inline">
-						<h3><?php esc_html_e( 'Get Germanized Pro to unlock', 'woocommerce-germanized' ); ?></h3>
-						<p><?php esc_html_e( 'Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more with Germanized Pro.', 'woocommerce-germanized' ); ?></p>
-						<p><a class="button button-primary wc-gzd-button" href="https://vendidero.de/woocommerce-germanized" target="_blank"><?php esc_html_e( 'Upgrade now', 'woocommerce-germanized' ); ?></a></p>
-					</div>
+					<?php WC_GZD_Admin::render_pro_preview_card( WC_Germanized_Meta_Box_Product_Data::get_food_pro_preview_args() ); ?>
 				</div>
 			<?php endif; ?>
 
@@ -676,6 +682,13 @@ class WC_Germanized_Meta_Box_Product_Data_Variable {
 		foreach ( $data as $k => $v ) {
 			$data_k     = 'variable' . ( substr( $k, 0, 1 ) === '_' ? '' : '_' ) . $k;
 			$data[ $k ] = WC_Germanized_Meta_Box_Product_Data::get_sanitized_field_value( $k, ( isset( $_POST[ $data_k ][ $i ] ) ? $_POST[ $data_k ][ $i ] : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+		}
+
+		/**
+		 * The `variable_mpn` input belongs to Woo core (11.4+), the Germanized field is named `variable_ts_mpn` instead.
+		 */
+		if ( wc_gzd_woocommerce_supports_mpn() ) {
+			$data['_mpn'] = WC_Germanized_Meta_Box_Product_Data::get_sanitized_field_value( '_mpn', ( isset( $_POST['variable_ts_mpn'][ $i ] ) ? $_POST['variable_ts_mpn'][ $i ] : null ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 		}
 
 		if ( $product = wc_get_product( $variation_id ) ) {

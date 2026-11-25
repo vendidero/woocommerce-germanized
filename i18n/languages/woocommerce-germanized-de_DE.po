@@ -12022,6 +12022,120 @@ msgstr "Dein Konto wurde erstellt und wartet auf deine Aktivierung. Bitte prüfe
 msgid "Your account has been created and is waiting for your activation. Please check your e-mails and activate your account by clicking on the activation link."
 msgstr "Dein Konto wurde erstellt und wartet auf deine Aktivierung. Bitte prüfe deine E-Mails und aktiviere dein Kundenkonto, indem du auf den Aktivierungslink klickst."
 
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Germanized settings are grouped into tabs. Click a tab to manage the options of a certain feature. This tutorial guides you through the most important settings."
+msgstr "Die Germanized Einstellungen sind in Tabs gegliedert. Klicke auf einen Tab, um die Optionen einer bestimmten Funktion zu verwalten. Dieses Tutorial führt dich durch die wichtigsten Einstellungen."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php
+msgid "Starting June 19, 2026 consumers must be able to withdraw from a contract by using a withdrawal button. Choose the page containing the withdrawal form, publish it and link it e.g. within your footer."
+msgstr "Ab dem 19.06.2026 müssen Verbraucher Verträge über einen Widerrufsbutton widerrufen können. Wähle die Seite mit dem Widerrufsformular aus, veröffentliche sie und verlinke sie z.B. im Footer deines Shops."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php
+msgid "Adjust the withdrawal period. Withdrawals received are listed within the Withdrawals screen and confirmed to your customers by email."
+msgstr "Passe die Widerrufsfrist an. Eingegangene Widerrufe findest du in der Übersicht unter Widerrufe. Deine Kunden erhalten eine Eingangsbestätigung per E-Mail."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php
+msgid "EU legal guarantee label"
+msgstr "EU Gewährleistungslabel"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php
+msgid "Starting September 27, 2026 shops selling physical goods to consumers must inform about the legal guarantee by using the harmonised EU label. Choose where to display the label, e.g. within your footer and checkout."
+msgstr "Ab dem 27.09.2026 müssen Shops, die physische Waren an Verbraucher verkaufen, mit dem harmonisierten EU Label über die gesetzliche Gewährleistung informieren. Wähle aus, wo das Label angezeigt werden soll, z.B. im Footer und in der Kasse."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php
+msgid "GARAN label"
+msgstr "GARAN-Label"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php
+msgid "The GARAN label is shown on a per-product basis for products offering a guarantee of more than 24 months. Make sure these products have a manufacturer linked and a valid model id (GTIN, MPN or SKU)."
+msgstr "Das GARAN-Label wird pro Produkt für Produkte mit einer Garantie von mehr als 24 Monaten angezeigt. Stelle sicher, dass diesen Produkten ein Hersteller und eine gültige Modellkennung (GTIN, MPN oder SKU) zugeordnet ist."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php
+msgid "Make sure that new customer accounts are confirmed via email before customers are able to log in. Unconfirmed accounts may be deleted automatically after a certain time."
+msgstr "Stelle sicher, dass neue Kundenkonten per E-Mail bestätigt werden, bevor sich Kunden anmelden können. Nicht bestätigte Konten können nach einer bestimmten Zeit automatisch gelöscht werden."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php
+msgid "All set"
+msgstr "Alles erledigt"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php
+msgid "You now know the most important settings. Use the settings overview to explore further features, e.g. taxes, the One Stop Shop or Shiptastic for shipping."
+msgstr "Du kennst jetzt die wichtigsten Einstellungen. In der Übersicht findest du weitere Funktionen, z.B. Steuern, den One Stop Shop oder Shiptastic für den Versand."
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Legal text generator"
+msgstr "Rechtstexte-Generator"
+
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Generate terms and conditions and revocation terms tailored to your shop by answering a few questions - and insert them into your legal pages with a single click. Available with Germanized Pro."
+msgstr "Generiere AGB und Widerrufsbelehrung passend zu deinem Shop, indem du ein paar Fragen beantwortest - und füge sie mit einem Klick in deine rechtlich relevanten Seiten ein. Verfügbar mit Germanized Pro."
+
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Split your checkout into clear steps, e.g. address, payment and order confirmation - including a summary of the customer's input. Optimized for mobile devices and the block-based checkout. Available with Germanized Pro."
+msgstr "Teile deine Kasse in übersichtliche Schritte auf, z.B. Adresse, Zahlung und Bestellbestätigung - inklusive einer Zusammenfassung der Kundeneingaben. Optimiert für mobile Endgeräte und die block-basierte Kasse. Verfügbar mit Germanized Pro."
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "B2B"
+msgstr "B2B"
+
+
+
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Sell to business customers: customer groups with individual and tiered prices, a separate B2B registration with manual review, payment and shipping restrictions per group and more. Available with Germanized Pro."
+msgstr "Verkaufe an Geschäftskunden: Kundengruppen mit individuellen Preisen und Staffelpreisen, eine separate B2B-Registrierung mit manueller Prüfung, Zahlungs- und Versandeinschränkungen pro Gruppe und vieles mehr. Verfügbar mit Germanized Pro."
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "VAT ID check"
+msgstr "USt.-ID-Prüfung"
+
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Validate the VAT IDs of your business customers during checkout and sell tax-exempt within the EU (reverse charge). Available with Germanized Pro."
+msgstr "Validiere die USt.-IDs deiner Geschäftskunden in der Kasse und verkaufe innerhalb der EU steuerfrei (Reverse Charge). Verfügbar mit Germanized Pro."
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Choose how taxes for shipping costs and fees are calculated, e.g. split based on the tax rates of the products within the cart."
+msgstr "Lege fest, wie die Steuern für Versandkosten und Gebühren berechnet werden, z.B. aufgeteilt anhand der Steuersätze der Produkte im Warenkorb."
+
+
+
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Invoices & e-invoices"
+msgstr "Rechnungen & E-Rechnungen"
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Create invoices, cancellations and packing slips automatically, design them with the block editor and create e-invoices (ZUGFeRD, XRechnung) compliant with EN16931. Available with Germanized Pro."
+msgstr "Erstelle Rechnungen, Stornierungen und Lieferscheine automatisch, gestalte sie mit dem Block-Editor und erzeuge E-Rechnungen (ZUGFeRD, XRechnung) konform zu EN16931. Verfügbar mit Germanized Pro."
+
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Manage shipments, returns, packaging and shipping service providers within the Shiptastic settings."
+msgstr "Verwalte Sendungen, Retouren, Verpackungen und Versanddienstleister in den Shiptastic-Einstellungen."
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Shipments & returns with Shiptastic"
+msgstr "Sendungen & Retouren mit Shiptastic"
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Create shipments and returns for your orders, manage packaging and create labels via integrations, e.g. for DHL, DPD, GLS, Hermes or UPS. Shiptastic is free and can be installed with a single click."
+msgstr "Erstelle Sendungen und Retouren zu deinen Bestellungen, verwalte Verpackungen und erzeuge Labels über Integrationen, z.B. für DHL, DPD, GLS, Hermes oder UPS. Shiptastic ist kostenlos und mit einem Klick installiert."
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Germanized Pro"
+msgstr "Germanized Pro"
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Upgrade to Germanized Pro to unlock accounting incl. e-invoices & DATEV, B2B, the multistep checkout, legal text generators, the VAT ID check and professional support."
+msgstr "Mit Germanized Pro schaltest du die Buchhaltung inkl. E-Rechnungen & DATEV, B2B, die mehrstufige Kasse, Rechtstexte-Generatoren, die USt.-ID-Prüfung und professionellen Support frei."
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php
+msgid "Want to sell to business customers? Set individual prices and tiered prices per customer group, restrict products to certain customer groups and offer a separate B2B registration with Germanized Pro."
+msgstr "Du möchtest an Geschäftskunden verkaufen? Lege mit Germanized Pro individuelle Preise und Staffelpreise pro Kundengruppe fest, beschränke Produkte auf bestimmte Kundengruppen und biete eine separate B2B-Registrierung an."
+
 #~ msgid "Attention: New Regulations"
 #~ msgstr "Achtung: Neue Regulierungen"
 
@@ -23747,3 +23861,239 @@ msgstr "Dein Konto wurde erstellt und wartet auf deine Aktivierung. Bitte prüfe
 #~ "&#167;19 (1) UStG."
 #~ msgstr ""
 #~ "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach &#167;19 (1) UStG."
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php includes/admin/settings/class-wc-gzd-settings-tab-invoices.php
+msgid "Accounting"
+msgstr "Buchhaltung"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php
+msgid "Accounting with Germanized Pro"
+msgstr "Buchhaltung mit Germanized Pro"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php
+msgid "Create (e-)invoices and connect lexware office, sevdesk & DATEV."
+msgstr "Erstelle (E-)Rechnungen und verbinde lexware office, sevdesk & DATEV."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php
+msgid "Create invoices and cancellations automatically and transfer them to your accounting software or tax advisor."
+msgstr "Erstelle Rechnungen und Stornierungen automatisch und übertrage sie an deine Buchhaltungssoftware oder deinen Steuerberater."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php
+msgid "Create invoices and cancellations automatically, e.g. based on order status or payment method"
+msgstr "Rechnungen und Stornierungen automatisch erstellen, z.B. abhängig vom Bestellstatus oder der Zahlungsart"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php
+msgid "E-invoices in ZUGFeRD, XRechnung and Peppol BIS 3.0 format"
+msgstr "E-Rechnungen im ZUGFeRD-, XRechnung- und Peppol BIS 3.0-Format"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php
+msgid "DATEV export for your tax advisor"
+msgstr "DATEV-Export für deinen Steuerberater"
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php
+msgid "Create invoices, cancellations and e-invoices (ZUGFeRD, XRechnung) automatically and transfer them to lexware office, sevdesk or DATEV. Available with Germanized Pro."
+msgstr "Erstelle Rechnungen, Stornierungen und E-Rechnungen (ZUGFeRD, XRechnung) automatisch und übertrage sie an lexware office, sevdesk oder DATEV. Verfügbar mit Germanized Pro."
+
+#: includes/class-wc-gzd-legal-checkbox.php
+msgid "Add new checkboxes and edit or delete your own, custom checkboxes"
+msgstr "Neue Checkboxen hinzufügen sowie eigene Checkboxen bearbeiten oder löschen"
+
+#: includes/class-wc-gzd-legal-checkbox.php
+msgid "Show checkboxes for specific countries, product categories, payment methods or customer groups only"
+msgstr "Checkboxen nur für bestimmte Länder, Produktkategorien, Zahlungsarten oder Kundengruppen anzeigen"
+
+#: includes/class-wc-gzd-legal-checkbox.php
+msgid "Store the checkbox status within the order"
+msgstr "Den Status der Checkbox in der Bestellung speichern"
+
+#: includes/class-wc-gzd-legal-checkbox.php
+msgid "Customize the HTML elements (template, id, name and classes)"
+msgstr "HTML-Elemente anpassen (Template, ID, Name und Klassen)"
+
+#: includes/class-wc-gzd-legal-checkbox.php
+msgid "More checkbox options with Germanized Pro"
+msgstr "Mehr Checkbox-Optionen mit Germanized Pro"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php
+msgid "Answer a few questions about your products and let our API generate your revocation terms."
+msgstr "Beantworte ein paar Fragen zu deinen Produkten und lass unsere API deine Widerrufsbelehrung erstellen."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php
+msgid "Answer a few questions about your shop and let our API generate your terms & conditions."
+msgstr "Beantworte ein paar Fragen zu deinem Shop und lass unsere API deine AGB erstellen."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php
+msgid "Revocation terms generator with Germanized Pro"
+msgstr "Widerrufsbelehrung Generator mit Germanized Pro"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php
+msgid "Revocation terms tailored to the products you sell"
+msgstr "Widerrufsbelehrung passend zu den Produkten, die du verkaufst"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php
+msgid "Includes the model withdrawal form"
+msgstr "Inklusive Muster-Widerrufsformular"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php
+msgid "Insert the generated text directly into your revocation page"
+msgstr "Den erstellten Text direkt in deine Widerrufsseite einfügen"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php
+msgid "Terms & conditions generator with Germanized Pro"
+msgstr "AGB Generator mit Germanized Pro"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php
+msgid "Terms & conditions tailored to your shop via a simple questionnaire"
+msgstr "AGB passend zu deinem Shop über einen einfachen Fragebogen"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php
+msgid "Insert the generated text directly into your terms page"
+msgstr "Den erstellten Text direkt in deine AGB-Seite einfügen"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php
+msgid "Regenerate your terms at any time"
+msgstr "AGB jederzeit neu erstellen"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php
+msgid "PDF email attachments with Germanized Pro"
+msgstr "PDF-Anhänge für E-Mails mit Germanized Pro"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php
+msgid "Attach automatically generated PDF files of your legal pages to emails instead of plain text."
+msgstr "Hänge automatisch erstellte PDF-Dateien deiner rechtlich relevanten Seiten an E-Mails an, statt reinen Text zu verwenden."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php
+msgid "Generate PDF files from your legal pages automatically"
+msgstr "PDF-Dateien automatisch aus deinen rechtlich relevanten Seiten erstellen"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php
+msgid "Or upload your own, custom PDF files"
+msgstr "Oder eigene PDF-Dateien hochladen"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php
+msgid "Customize the layout of generated PDF files"
+msgstr "Layout der erstellten PDF-Dateien anpassen"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php
+msgid "VAT ID check with Germanized Pro"
+msgstr "USt.-ID-Prüfung mit Germanized Pro"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php
+msgid "Let business customers enter their VAT ID within the checkout and verify it automatically."
+msgstr "Lass Geschäftskunden ihre USt.-ID in der Kasse eingeben und prüfe sie automatisch."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php
+msgid "Automatic VAT ID validation via the VIES interface"
+msgstr "Automatische Prüfung der USt.-ID über die VIES-Schnittstelle"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php
+msgid "Tax-free intra-community deliveries (reverse charge) for valid VAT IDs"
+msgstr "Steuerfreie innergemeinschaftliche Lieferungen (Reverse Charge) bei gültiger USt.-ID"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php
+msgid "VAT ID field within the checkout, registration and customer account"
+msgstr "USt.-ID-Feld in der Kasse, bei der Registrierung und im Kundenkonto"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php
+msgid "Multistep checkout with Germanized Pro"
+msgstr "Mehrstufige Kasse mit Germanized Pro"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php
+msgid "Split your checkout into clearly arranged steps and guide your customers through the order process."
+msgstr "Teile deine Kasse in übersichtliche Schritte auf und führe deine Kunden durch den Bestellprozess."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php
+msgid "Separate steps for personal data, payment and order confirmation"
+msgstr "Separate Schritte für persönliche Daten, Zahlung und Bestellbestätigung"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php
+msgid "Available for the classic checkout and the checkout block"
+msgstr "Verfügbar für die klassische Kasse und den Kassen-Block"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php
+msgid "Optional step navigation including a link back to the cart"
+msgstr "Optionale Schritt-Navigation inkl. Link zurück zum Warenkorb"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php
+msgid "Manual contract conclusion with Germanized Pro"
+msgstr "Verspäteter Vertragsschluss mit Germanized Pro"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php
+msgid "Review incoming orders within your backend before closing the contract with your customer."
+msgstr "Prüfe eingehende Bestellungen in deinem Backend, bevor du den Vertrag mit deinem Kunden schließt."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php
+msgid "Manually review and confirm orders before closing the contract"
+msgstr "Bestellungen vor dem Vertragsschluss manuell prüfen und bestätigen"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php
+msgid "The first email only confirms the receipt of the offer"
+msgstr "Die erste E-Mail bestätigt nur den Eingang des Angebots"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php
+msgid "Payment information is provided only after you have confirmed the order"
+msgstr "Zahlungsinformationen werden erst nach deiner Bestätigung der Bestellung bereitgestellt"
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php
+msgid "Sell food with Germanized Pro"
+msgstr "Lebensmittel verkaufen mit Germanized Pro"
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php
+msgid "Want to sell your food in a legally compliant way? Germanized Pro adds all the information needed to your products."
+msgstr "Du möchtest deine Lebensmittel rechtssicher verkaufen? Germanized Pro ergänzt deine Produkte um alle nötigen Angaben."
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php
+msgid "Nutrients, allergenes and ingredients"
+msgstr "Nährwerte, Allergene und Zutaten"
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php
+msgid "Nutri-Score and alcohol content"
+msgstr "Nutri-Score und Alkoholgehalt"
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php
+msgid "Deposits for drinks and reusable packaging"
+msgstr "Pfand für Getränke und Mehrwegverpackungen"
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php includes/admin/settings/class-wc-gzd-settings-tab-b2b.php
+msgid "Sell to business customers with Germanized Pro"
+msgstr "An Geschäftskunden verkaufen mit Germanized Pro"
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php
+msgid "Offer business customers their own prices and conditions for this product."
+msgstr "Biete Geschäftskunden eigene Preise und Konditionen für dieses Produkt an."
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php
+msgid "Individual prices and tiered prices per customer group"
+msgstr "Individuelle Preise und Staffelpreise pro Kundengruppe"
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php
+msgid "Restrict this product to certain customer groups"
+msgstr "Dieses Produkt auf bestimmte Kundengruppen beschränken"
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php includes/admin/settings/class-wc-gzd-settings-tab-b2b.php
+msgid "Separate B2B registration with manual review"
+msgstr "Separate B2B-Registrierung mit manueller Prüfung"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php
+msgid "Sell B2B: customer group & tiered prices, a separate registration with manual review and more."
+msgstr "Verkaufe B2B: Kundengruppen- & Staffelpreise, eine separate Registrierung mit manueller Prüfung und mehr."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php
+msgid "new"
+msgstr "neu"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php
+msgid "Turn your shop into a B2B or hybrid shop and offer business customers their own prices and conditions."
+msgstr "Mach deinen Shop zum B2B- oder Hybrid-Shop und biete Geschäftskunden eigene Preise und Konditionen an."
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php
+msgid "Customer groups with individual prices, discounts and tiered prices"
+msgstr "Kundengruppen mit individuellen Preisen, Rabatten und Staffelpreisen"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php
+msgid "Restrict products, payment and shipping methods to certain customer groups"
+msgstr "Produkte, Zahlungs- und Versandarten auf bestimmte Kundengruppen beschränken"
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php
+msgid "Net price display and minimum order values per customer group"
+msgstr "Nettopreis-Anzeige und Mindestbestellwerte pro Kundengruppe"

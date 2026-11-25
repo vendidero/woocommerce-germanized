@@ -122,6 +122,16 @@
           color: #000 !important;
         }
 
+        // Badges (e.g. pro/new) within breadcrumb links should match the link color instead of the admin theme color
+        .wc-gzd-pro-outlined {
+          color: currentColor;
+          border-color: currentColor;
+
+          &:hover {
+            color: currentColor;
+          }
+        }
+
         &::after {
           font-family: Dashicons;
           font-weight: 400;
@@ -355,17 +365,6 @@
     margin-bottom: 1em;
   }
 
-  &.wc-gzd-admin-settings-germanized-emails-attachments,
-  &.wc-gzd-admin-settings-contract,
-  &.wc-gzd-admin-settings-invoices,
-  &.wc-gzd-admin-settings-multistep_checkout,
-  &.wc-gzd-admin-settings-terms_generator,
-  &.wc-gzd-admin-settings-revocation_generator {
-    th.titledesc-image {
-      padding-top: 0;
-    }
-  }
-
   .wc-gzd-premium img, .titledesc-image img {
     max-width: 100%;
     height: auto;
@@ -532,6 +531,83 @@ table.wc-gzd-legal-checkboxes {
 
 .wc-gzd-premium-overlay {
   border-left-color: #639aff !important;
+}
+
+/**
+ * Pro feature preview: blurred placeholder settings with an upgrade card on top.
+ */
+table.form-table tr.wc-gzd-pro-preview-row > td.wc-gzd-pro-preview-cell {
+  padding: 0;
+}
+
+.wc-gzd-pro-preview {
+  display: grid;
+  position: relative;
+  min-height: 420px;
+
+  > .wc-gzd-pro-preview-placeholder,
+  > .wc-gzd-pro-preview-card {
+    grid-area: 1 / 1;
+  }
+
+  .wc-gzd-pro-preview-placeholder {
+    filter: blur(3px);
+    opacity: .75;
+    // Extend the layer beyond the content box so the blur is not cut off at the container edges.
+    margin: 0 -20px;
+    padding: 0 20px;
+    pointer-events: none;
+    user-select: none;
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%), linear-gradient(to right, #000 80%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%), linear-gradient(to right, #000 80%, transparent 100%);
+    mask-composite: intersect;
+
+    table.form-table {
+      margin: 0;
+      width: 100%;
+      table-layout: fixed;
+
+      col.wc-gzd-pro-preview-col-label {
+        width: 220px;
+      }
+
+      th, td, td.forminp {
+        display: table-cell;
+      }
+
+      th {
+        padding-left: 0;
+      }
+
+      tr.wc-gzd-pro-preview-placeholder-title th {
+        width: auto;
+      }
+
+      h2 {
+        margin: 1em 0 0;
+      }
+
+      input[type="text"], select, textarea {
+        width: 100%;
+        max-width: none;
+      }
+
+      .woocommerce-input-toggle {
+        display: inline-block;
+      }
+    }
+  }
+
+  // Card look is defined within admin.scss - only position it on top of the placeholder here.
+  .wc-gzd-pro-preview-card {
+    position: relative;
+    z-index: 1;
+    align-self: start;
+    justify-self: center;
+    margin: 2.5em 1em;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+  }
 }
 
 .wc-gzd-admin-settings-sidebar {

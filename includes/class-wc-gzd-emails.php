@@ -1423,7 +1423,7 @@ class WC_GZD_Emails {
 			}
 
 			if ( $this->is_order_confirmation_email( $type->id ) ) {
-				if ( $is_downloadable && ( ( $checkbox = wc_gzd_get_legal_checkbox( 'download' ) ) && $checkbox->is_shown() ) && $text = wc_gzd_get_legal_text_digital_email_notice() ) {
+				if ( $is_downloadable && wc_gzd_order_has_revocation_exempt_consent( $order, 'download' ) && $text = wc_gzd_get_legal_text_digital_email_notice() ) {
 					/**
 					 * Filters the order confirmation digital notice text.
 					 *
@@ -1435,7 +1435,7 @@ class WC_GZD_Emails {
 					echo wp_kses_post( apply_filters( 'woocommerce_gzd_order_confirmation_digital_notice', '<div class="gzd-digital-notice-text">' . wpautop( $text ) . '</div>', $order ) );
 				}
 
-				if ( $is_service && ( ( $checkbox = wc_gzd_get_legal_checkbox( 'service' ) ) && $checkbox->is_shown() ) && $text = wc_gzd_get_legal_text_service_email_notice() ) {
+				if ( $is_service && wc_gzd_order_has_revocation_exempt_consent( $order, 'service' ) && $text = wc_gzd_get_legal_text_service_email_notice() ) {
 					/**
 					 * Filters the order confirmation service notice text.
 					 *

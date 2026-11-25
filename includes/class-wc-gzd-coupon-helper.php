@@ -183,8 +183,10 @@ class WC_GZD_Coupon_Helper {
 	 * @return mixed
 	 */
 	public function on_recalculate_order_coupons( $coupon ) {
-		remove_filter( 'woocommerce_order_recalculate_coupons_coupon_object', array( $this, 'on_recalculate_order_coupons' ), 10 );
-
+		/**
+		 * Do not remove this filter as multiple orders (or multiple coupons) may be (re-) calculated
+		 * within the same request, e.g. REST API, CLI or (renewal) batch processing.
+		 */
 		if ( ! has_action( 'woocommerce_order_after_calculate_totals', array( $this, 'observer_order_voucher_refresh' ) ) ) {
 			add_action( 'woocommerce_order_after_calculate_totals', array( $this, 'observer_order_voucher_refresh' ), 10, 2 );
 		}
@@ -269,14 +271,18 @@ class WC_GZD_Coupon_Helper {
 	 * @return void
 	 */
 	public function observer_order_voucher_refresh( $and_taxes, $order ) {
+		/**
+		 * The observer is registered for the current coupon recalculation only. Prevent infinite loops
+		 * and make sure it does not leak into other orders being calculated within the same request.
+		 */
+		remove_action( 'woocommerce_order_after_calculate_totals', array( $this, 'observer_order_voucher_refresh' ), 10 );
+
 		$updated = $this->refresh_order_vouchers( $order );
 
 		/**
 		 * Need to recalculate order totals again to include the newly created and/or updated voucher fees.
-		 * Prevent infinite loops by removing the action.
 		 */
 		if ( $updated ) {
-			remove_action( 'woocommerce_order_after_calculate_totals', array( $this, 'observer_order_voucher_refresh' ), 10 );
 			$order->calculate_totals( $and_taxes );
 		}
 	}
@@ -529,8 +535,12 @@ class WC_GZD_Coupon_Helper {
 		if ( $voucher_item_updated ) {
 			$fees_diff = NumberUtil::round( $fees_total_before - $fees_total, wc_get_price_decimals() );
 
-			if ( $fees_diff > 0 ) {
-				$order->set_total( $order->get_total() - $fees_diff );
+			/**
+			 * Adjust the order total in both directions: Vouchers may exceed Woo's (net) limit
+			 * or may need to be reduced further, e.g. in case the order is already fully discounted.
+			 */
+			if ( 0.0 !== $fees_diff ) {
+				$order->set_total( NumberUtil::round( (float) $order->get_total() - $fees_diff, wc_get_price_decimals() ) );
 				$order->save();
 			}
 

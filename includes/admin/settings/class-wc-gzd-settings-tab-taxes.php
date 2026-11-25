@@ -100,16 +100,53 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 				'title' => __( 'VAT ID', 'woocommerce-germanized' ),
 				'type'  => 'title',
 				'id'    => 'vat_id_options',
-				'desc'  => '<div class="notice inline notice-warning wc-gzd-premium-overlay"><p>' . sprintf( __( '%1$sUpgrade to %2$spro%3$s%4$s to unlock this feature and enjoy professional support.', 'woocommerce-germanized' ), '<a href="https://vendidero.de/woocommerce-germanized" class="button button-primary wc-gzd-button">', '<span class="wc-gzd-pro">', '</span>', '</a>' ) . '</p></div>',
+				'desc'  => '',
 			),
 			array(
-				'title' => '',
-				'id'    => 'woocommerce_gzdp_enable_vat_check',
-				'img'   => WC_Germanized()->plugin_url() . '/assets/images/pro/settings-inline-vat.png?v=' . WC_germanized()->version,
-				'href'  => 'https://vendidero.de/woocommerce-germanized/features#b2b',
-				'type'  => 'image',
+				'id'           => 'woocommerce_gzdp_enable_vat_check',
+				'type'         => 'gzd_pro_preview',
+				'title'        => __( 'VAT ID check with Germanized Pro', 'woocommerce-germanized' ),
+				'desc'         => __( 'Let business customers enter their VAT ID within the checkout and verify it automatically.', 'woocommerce-germanized' ),
+				'features'     => array(
+					__( 'Automatic VAT ID validation via the VIES interface', 'woocommerce-germanized' ),
+					__( 'Tax-free intra-community deliveries (reverse charge) for valid VAT IDs', 'woocommerce-germanized' ),
+					__( 'VAT ID field within the checkout, registration and customer account', 'woocommerce-germanized' ),
+				),
+				'href'         => 'https://vendidero.de/woocommerce-germanized/features#b2b',
+				'placeholders' => array(
+					array(
+						'title' => 'Check',
+						'type'  => 'toggle',
+						'value' => 'yes',
+						'desc'  => 'Validate VAT ID against the VIES database.',
+					),
+					array(
+						'title' => 'Mandatory',
+						'type'  => 'toggle',
+						'value' => 'no',
+					),
+					array(
+						'title' => 'Additional check',
+						'type'  => 'select',
+						'value' => 'Company name, Address',
+					),
+					array(
+						'title' => 'Company field',
+						'type'  => 'toggle',
+						'value' => 'yes',
+					),
+					array(
+						'title' => 'Cache',
+						'type'  => 'text',
+						'value' => '7',
+					),
+					array(
+						'title' => 'Registration',
+						'type'  => 'toggle',
+						'value' => 'yes',
+					),
+				),
 			),
-
 			array(
 				'type' => 'sectionend',
 				'id'   => 'vat_id_options',

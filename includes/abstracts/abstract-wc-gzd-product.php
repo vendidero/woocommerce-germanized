@@ -152,7 +152,20 @@ class WC_GZD_Product {
 	}
 
 	public function get_mpn( $context = 'view' ) {
-		return $this->get_prop( 'ts_mpn', $context );
+		$mpn = $this->get_prop( 'ts_mpn', $context );
+
+		/**
+		 * Prefer using the newly introduced MPN option from the Woo Core.
+		 */
+		if ( 'view' === $context && is_callable( array( $this->child, 'get_mpn' ) ) ) {
+			$wc_core_mpn = $this->child->get_mpn();
+
+			if ( ! empty( $wc_core_mpn ) ) {
+				$mpn = $wc_core_mpn;
+			}
+		}
+
+		return $mpn;
 	}
 
 	public function get_nutrient_ids( $context = 'view' ) {

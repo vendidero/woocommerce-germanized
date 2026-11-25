@@ -174,6 +174,8 @@ final class Checkout {
 						}
 					}
 
+					$content = $this->maybe_replace_terms_block( $content );
+
 					$legal_guarantee_locations = wc_gzd_get_legal_guarantee_global_locations();
 
 					if ( in_array( 'checkout', $legal_guarantee_locations, true ) && ! strstr( $content, 'woocommerce-germanized/checkout-legal-guarantee' ) && class_exists( 'WP_Block_Type_Registry' ) ) {
@@ -209,6 +211,53 @@ final class Checkout {
 			},
 			1000,
 			2
+		);
+	}
+
+	/**
+	 * Replace the WooCommerce terms block with the Germanized legal checkboxes block in case
+	 * the legal checkboxes block has not been placed manually and at least one legal checkbox
+	 * is enabled for the checkout.
+	 *
+	 * @param string $content The rendered checkout block content.
+	 *
+	 * @return string
+	 */
+	private function maybe_replace_terms_block( $content ) {
+		if ( strstr( $content, 'data-block-name="woocommerce-germanized/checkout-checkboxes"' ) || ! strstr( $content, 'data-block-name="woocommerce/checkout-terms-block"' ) ) {
+			return $content;
+		}
+
+		$has_checkout_checkboxes = false;
+
+		if ( class_exists( 'WC_GZD_Legal_Checkbox_Manager' ) ) {
+			$checkboxes = \WC_GZD_Legal_Checkbox_Manager::instance()->get_checkboxes(
+				array(
+					'locations'  => 'checkout',
+					'is_enabled' => true,
+				)
+			);
+
+			$has_checkout_checkboxes = ! empty( $checkboxes );
+		}
+
+		/**
+		 * Filter whether to replace the WooCommerce terms block with the Germanized legal checkboxes block
+		 * within the checkout block in case the legal checkboxes block was not placed manually.
+		 *
+		 * @param boolean $replace Whether to replace the terms block or not.
+		 *
+		 * @since 4.2.0
+		 */
+		if ( ! apply_filters( 'woocommerce_gzd_checkout_block_replace_terms_block', $has_checkout_checkboxes ) ) {
+			return $content;
+		}
+
+		return preg_replace(
+			'/<div[^>]*?data-block-name="woocommerce\/checkout-terms-block"[^>]*>\s*<\/div>/',
+			'<div data-block-name="woocommerce-germanized/checkout-checkboxes" class="wp-block-woocommerce-germanized-checkout-checkboxes"></div>',
+			$content,
+			1
 		);
 	}
 
