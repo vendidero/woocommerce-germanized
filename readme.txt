@@ -15,7 +15,7 @@ Germanized extends WooCommerce to become a legally compliant shop for the german
 == Description ==
 
 Germanized extends WooCommerce to technically match specific german legal conditions. The objective of this plugin is to adapt WooCommerce to the special requirements of german market.
-Users of [Germanized for WooCommerce Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimized for German Market") benefit from additional features, specifically designed for Germany, such as PDF invoices, model text generators for terms and revocation pages, professional support and more!
+Users of [Germanized for WooCommerce Pro](https://vendidero.de/woocommerce-germanized "WooCommerce optimized for German Market") benefit from additional features, specifically designed for Germany, such as PDF invoices, B2B with customer groups and tiered prices, model text generators for terms and revocation pages, professional support and more!
 
 = Legal certainty for WooCommerce =
 Germanized extends WooCommerce with typical german shop functionality: Delivery times, base prices, shipping costs and tax notices, options to attach legally relevant pages (e.g. terms, revocation page, privacy policy etc.) - even in emails, small business regulation notices and many more. Furthermore, we customized the WooCommerce checkout to make your store meet the button solution. See a list of our features for further details:
@@ -47,22 +47,30 @@ Germanized extends WooCommerce with typical german shop functionality: Delivery 
 * *REST API Support* - Data added by Germanized is adjustable via the WooCommerce REST API
 * *Product CSV Import/Export* - We've extended the WooCommerce product CSV import and export to support our custom fields (e.g. unit price, delivery time etc.)
 * *GDPR export/delete* - We do support the export/delete features of WordPress 4.6 and WooCommerce 3.4 and added new checkboxes to checkout and register form.
-* *Invoices, E-Invoices & Packing Slips (Pro)* - Conveniently create invoices, packing slips, cancellations and commercial invoices via your WooCommerce dashboard. Comes with full e-invoicing support and many automation settings.
+* *Invoices, E-Invoices & Packing Slips (Pro)* - Conveniently create invoices, packing slips, cancellations and commercial invoices via your WooCommerce dashboard. Comes with full e-invoicing support, a DATEV export and many automation settings.
 * *Legal PDF attachments (Pro)* - Attach PDFs to certain email templates instead of plain text. Optionally let Germanized generate your PDFs automatically by parsing your page content.
 * *Delayed conclusion of contract (Pro)* - By default a contract is concluded right after submitting the WooCommerce checkout. Germanized offers you to delay that contract and manually check the order before concluding the contract.
 * *VAT ID check for WooCommerce (Pro)* - Provide additional fields within checkout, customer account and registration form to automatically validate the VAT ID based on the EU API.
+* *B2B: Customer Groups & Tiered Prices (Pro)* - Turn your WooCommerce store into a B2B or hybrid shop. Offer business customers individual prices, discounts and tiered prices, a separate registration with manual review and net price display.
 * *Multistep Checkout (Pro)* - Transforms the single-page-checkout within WooCommerce into a multistep checkout. Support both the classic checkout and the block-based checkout.
 * *GPSR compliance* - Add manufacturer information and safety documents to your products
 
 = Germanized for WooCommerce is certified by Trusted Shops =
 Germanized has been approved by Trusted Shops and therefor offers best technical conditions to operate a legally binding WooCommerce Shop in Germany. Trusted Shops certifies Shops after selected and weighted criteria and has carefully examined our WooCommerce Plugin. Of course Trusted Shops customers may embed their quality seals or further Trusted Shops Products as genuine Seller and Product Reviews by adapting just a few options within Germanized for WooCommerce.
 
-= Pro: WooCommerce invoices, packing slips and e-invoices =
+= Pro: WooCommerce invoices, packing slips, e-invoices and DATEV export =
 As a Pro User of Germanized you may automatically or manually create invoices to orders and packing slips and commercial invoices to shipments. Adjust your document layout by using the built-in visual document editor.
 
-Either export your documents (CSV, zip) for your tax consultant manually or use our integrations to transmit your documents to your lexware office or sevdesk account. Comes with full support for e-invoices. Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce-germanized/features#accounting "WooCommerce PDF Invoices")
+Either export your documents (CSV, zip) for your tax consultant manually or use our integrations to transmit your documents to your lexware office or sevdesk account. Comes with full support for e-invoices.
+
+New: Hand over your invoices and cancellations to your tax advisor in DATEV format. Revenue accounts are assigned automatically based on tax rate, country and booking group, customer accounts are created automatically, e.g. on registration, and payments are booked to separate cash accounts per payment method. Learn more about [PDF Invoices for WooCommerce](https://vendidero.de/woocommerce-germanized/features#accounting "WooCommerce PDF Invoices")
 
 Furthermore you may attach legally relevant pages (e.g. Terms & Conditions) as PDF documents to specific WooCommerce emails instead of using plain text.
+
+= Pro: B2B for WooCommerce with customer groups and tiered prices =
+Sell to business customers - exclusively or alongside your consumers. Germanized Pro lets you create customer groups and offer each group its own prices, discounts and tiered prices. A tier table on the product page shows your customers how much they save when ordering larger quantities.
+
+Business customers register via a separate B2B registration form including custom fields and document uploads. Review and approve new business accounts manually before they are able to order. Restrict products, categories, payment and shipping methods to certain customer groups, show net prices, define minimum order values and add group-specific legal texts. Learn more about [B2B for WooCommerce](https://vendidero.de/woocommerce-germanized/features#b2b "WooCommerce B2B")
 
 = Professional shipping, returns and fulfillment solution for WooCommerce =
 Install our plugin [Shiptastic for WooCommerce](https://wordpress.org/plugins/shiptastic-for-woocommerce/) to improve shipping, returns and fulfillments in WooCommerce. Manage your shipments and it's statuses independently of your orders. Let your customers receive a notification email as soon as a shipment has been marked as shipped including tracking information from a built-in or manually added shipping provider.
