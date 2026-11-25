@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 	<?php esc_html_e( 'Germanized', 'woocommerce-germanized' ); ?>
 
 	<?php if ( ! WC_germanized()->is_pro() ) : ?>
-		<a class="page-title-action" href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-license' ) ); ?>"><?php printf( esc_html__( 'Upgrade to %s', 'woocommerce-germanized' ), '<span class="wc-gzd-pro">pro</span>' ); ?></a>
+		<a class="page-title-action wc-gzd-upgrade-pro-action" href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=germanized-license' ) ); ?>"><?php printf( esc_html__( 'Upgrade to %s', 'woocommerce-germanized' ), '<span class="wc-gzd-pro">pro</span>' ); ?></a>
 		<?php
 	elseif ( function_exists( 'VD' ) ) :
 		$license_status = 'not-registered invalid';

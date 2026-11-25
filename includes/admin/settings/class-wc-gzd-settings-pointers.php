@@ -436,7 +436,7 @@ class WC_GZD_Settings_Pointers {
 
 		if ( ! $is_pro ) {
 			$tour['finish']['steps']['pro'] = array(
-				'target'  => '.wc-gzd-setting-header .page-title-action',
+				'target'  => '.wc-gzd-setting-header .wc-gzd-upgrade-pro-action',
 				'title'   => __( 'Germanized Pro', 'woocommerce-germanized' ),
 				'content' => __( 'Upgrade to Germanized Pro to unlock accounting incl. e-invoices & DATEV, B2B, the multistep checkout, legal text generators, the VAT ID check and professional support.', 'woocommerce-germanized' ),
 				'edge'    => 'top',
@@ -637,7 +637,10 @@ class WC_GZD_Settings_Pointers {
 					 * Skip steps whose target is not available (e.g. a disabled feature)
 					 * instead of breaking the tutorial chain.
 					 */
-					if ( ! $( pointer.target ).filter( ':visible' ).length ) {
+					// Attach the pointer to the first visible target only - selectors matching multiple elements would open multiple pointers at once.
+					var target = $( pointer.target ).filter( ':visible' ).first();
+
+					if ( ! target.length ) {
 						if ( pointer.next ) {
 							show_wc_pointer( pointer.next );
 						} else if ( pointer.next_url ) {
@@ -704,7 +707,7 @@ class WC_GZD_Settings_Pointers {
 							return wrapper;
 						},
 					} );
-					var this_pointer = $( pointer.target ).pointer( options );
+					var this_pointer = target.pointer( options );
 					this_pointer.pointer( 'open' );
 
 					if ( pointer.next_trigger ) {

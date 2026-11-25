@@ -2,20 +2,20 @@
 # This file is distributed under the same license as the Germanized for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Germanized for WooCommerce 4.1.8\n"
+"Project-Id-Version: Germanized for WooCommerce 4.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-germanized\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-17T12:37:26+00:00\n"
+"POT-Creation-Date: 2026-11-25T10:33:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
 #. Plugin Name of the plugin
 #: eu-order-withdrawal-button-for-woocommerce.php
-#: includes/admin/class-wc-gzd-admin.php:382
+#: includes/admin/class-wc-gzd-admin.php:511
 msgid "EU Order Withdrawal Button for WooCommerce"
 msgstr ""
 
@@ -444,10 +444,10 @@ msgstr ""
 
 #: src/Admin/Admin.php:197
 #: src/Admin/Admin.php:678
-#: src/Admin/WithdrawalTable.php:944
+#: src/Admin/WithdrawalTable.php:946
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:197
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:678
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:944
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:946
 msgctxt "owb"
 msgid "Reason"
 msgstr ""
@@ -563,28 +563,28 @@ msgstr ""
 
 #: src/Admin/Admin.php:634
 #: src/Admin/Admin.php:673
-#: src/Admin/WithdrawalTable.php:916
+#: src/Admin/WithdrawalTable.php:918
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:634
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:673
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:916
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:918
 msgctxt "owb"
 msgid "Confirm withdrawal request"
 msgstr ""
 
 #: src/Admin/Admin.php:640
 #: src/Admin/Admin.php:686
-#: src/Admin/WithdrawalTable.php:923
+#: src/Admin/WithdrawalTable.php:925
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:640
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:686
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:923
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:925
 msgctxt "owb"
 msgid "Reject withdrawal request"
 msgstr ""
 
 #: src/Admin/Admin.php:646
-#: src/Admin/WithdrawalTable.php:929
+#: src/Admin/WithdrawalTable.php:931
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:646
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:929
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:931
 msgctxt "owb"
 msgid "Delete withdrawal request"
 msgstr ""
@@ -655,12 +655,12 @@ msgid "Personal data within withdrawal %s has been retained."
 msgstr ""
 
 #: src/Admin/Privacy.php:121
-#: src/Admin/WithdrawalTable.php:1020
+#: src/Admin/WithdrawalTable.php:1022
 #: src/Settings.php:115
 #: templates/emails/email-withdrawal-details.php:42
 #: templates/emails/plain/email-withdrawal-details.php:30
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:121
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1020
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1022
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Settings.php:115
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:42
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:30
@@ -693,13 +693,13 @@ msgid "Last name"
 msgstr ""
 
 #: src/Admin/Privacy.php:124
-#: src/Admin/WithdrawalTable.php:1012
+#: src/Admin/WithdrawalTable.php:1014
 #: templates/emails/email-withdrawal-details.php:44
 #: templates/emails/plain/email-withdrawal-details.php:32
 #: templates/forms/order-withdrawal-request.php:56
 #: templates/forms/order-withdrawal-request.php:212
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:124
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1012
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1014
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:44
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:32
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:56
@@ -903,10 +903,10 @@ msgid "Search for an order"
 msgstr ""
 
 #: src/Admin/WithdrawalTable.php:818
-#: src/Ajax.php:180
+#: src/Ajax.php:195
 #: src/WithdrawalOrder.php:115
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:818
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:180
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:195
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:115
 #, php-format
 msgctxt "owb"
@@ -928,60 +928,60 @@ msgid "Full %s"
 msgstr ""
 
 #. translators: %s: human-readable time difference
-#: src/Admin/WithdrawalTable.php:970
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:970
+#: src/Admin/WithdrawalTable.php:972
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:972
 #, php-format
 msgctxt "owb-human-readable-time-diff"
 msgid "%s ago"
 msgstr ""
 
 #. translators: %s: withdrawal ID
-#: src/Admin/WithdrawalTable.php:994
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:994
+#: src/Admin/WithdrawalTable.php:996
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:996
 #, php-format
 msgctxt "owb"
 msgid "Withdrawal %s"
 msgstr ""
 
-#: src/Admin/WithdrawalTable.php:996
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:996
+#: src/Admin/WithdrawalTable.php:998
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:998
 msgctxt "owb"
 msgid "Close modal panel"
 msgstr ""
 
-#: src/Admin/WithdrawalTable.php:1004
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1004
+#: src/Admin/WithdrawalTable.php:1006
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1006
 msgctxt "owb"
 msgid "Contact Details"
 msgstr ""
 
-#: src/Admin/WithdrawalTable.php:1007
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1007
+#: src/Admin/WithdrawalTable.php:1009
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1009
 msgctxt "owb"
 msgid "Name"
 msgstr ""
 
-#: src/Admin/WithdrawalTable.php:1017
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1017
+#: src/Admin/WithdrawalTable.php:1019
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1019
 msgctxt "owb"
 msgid "Withdrawal Details"
 msgstr ""
 
-#: src/Admin/WithdrawalTable.php:1025
+#: src/Admin/WithdrawalTable.php:1027
 #: templates/emails/email-withdrawal-details.php:47
 #: templates/emails/plain/email-withdrawal-details.php:36
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1025
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1027
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:47
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:36
 msgctxt "owb"
 msgid "Verification code"
 msgstr ""
 
-#: src/Admin/WithdrawalTable.php:1030
+#: src/Admin/WithdrawalTable.php:1032
 #: templates/emails/email-withdrawal-details.php:58
 #: templates/emails/plain/email-withdrawal-details.php:46
 #: templates/emails/plain/email-withdrawal-details.php:48
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1030
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1032
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:58
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:46
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:48
@@ -989,137 +989,137 @@ msgctxt "owb"
 msgid "Additional Information"
 msgstr ""
 
-#: src/Admin/WithdrawalTable.php:1039
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1039
+#: src/Admin/WithdrawalTable.php:1041
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1041
 msgctxt "owb"
 msgid "Logs"
 msgstr ""
 
-#: src/Admin/WithdrawalTable.php:1073
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1073
+#: src/Admin/WithdrawalTable.php:1075
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1075
 #, php-format
 msgctxt "owb"
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: src/Admin/WithdrawalTable.php:1111
+#: src/Admin/WithdrawalTable.php:1113
 #: templates/emails/email-withdrawal-details.php:76
 #: templates/forms/order-withdrawal-request-item-select.php:66
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1111
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1113
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:76
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request-item-select.php:66
 msgctxt "owb"
 msgid "Product"
 msgstr ""
 
-#: src/Admin/WithdrawalTable.php:1112
+#: src/Admin/WithdrawalTable.php:1114
 #: templates/emails/email-withdrawal-details.php:77
 #: templates/forms/order-withdrawal-request-item-select.php:67
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1112
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1114
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:77
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request-item-select.php:67
 msgctxt "owb"
 msgid "Quantity"
 msgstr ""
 
-#: src/Ajax.php:257
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:257
+#: src/Ajax.php:272
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:272
 msgctxt "owb"
 msgid "Sorry, no permission to view that order."
 msgstr ""
 
-#: src/Ajax.php:321
-#: src/Ajax.php:604
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:321
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:604
+#: src/Ajax.php:336
+#: src/Ajax.php:619
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:336
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:619
 msgctxt "owb"
 msgid "Thank you. We've received your withdrawal request. You'll receive a confirmation of your request by email."
 msgstr ""
 
-#: src/Ajax.php:328
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:328
+#: src/Ajax.php:343
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:343
 msgctxt "owb"
 msgid "Please wait a little longer before submitting. We’re running a quick security check."
 msgstr ""
 
-#: src/Ajax.php:333
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:333
+#: src/Ajax.php:348
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:348
 msgctxt "owb"
 msgid "Please enter your first name."
 msgstr ""
 
-#: src/Ajax.php:337
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:337
+#: src/Ajax.php:352
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:352
 msgctxt "owb"
 msgid "Please enter your last name."
 msgstr ""
 
-#: src/Ajax.php:341
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:341
+#: src/Ajax.php:356
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:356
 msgctxt "owb"
 msgid "Please check your email address."
 msgstr ""
 
-#: src/Ajax.php:354
-#: src/Ajax.php:450
-#: src/Ajax.php:466
-#: src/Ajax.php:492
-#: src/Ajax.php:498
-#: src/Ajax.php:504
-#: src/Ajax.php:533
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:354
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:450
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:466
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:492
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:498
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:504
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:533
+#: src/Ajax.php:369
+#: src/Ajax.php:465
+#: src/Ajax.php:481
+#: src/Ajax.php:507
+#: src/Ajax.php:513
+#: src/Ajax.php:519
+#: src/Ajax.php:548
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:369
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:465
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:481
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:507
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:513
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:519
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:548
 #, php-format
 msgctxt "owb"
 msgid "Sorry, we were unable to find an order based on the information you provided. Please try again - if the issue persists, please <a href=\"%s\">contact support</a> for help."
 msgstr ""
 
-#: src/Ajax.php:376
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:376
+#: src/Ajax.php:391
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:391
 msgctxt "owb"
 msgid "Please select one or more items to withdraw."
 msgstr ""
 
-#: src/Ajax.php:389
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:389
+#: src/Ajax.php:404
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:404
 msgctxt "owb"
 msgid "One ore more of the item(s) you've selected cannot be withdrawn. Please try again."
 msgstr ""
 
-#: src/Ajax.php:422
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:422
+#: src/Ajax.php:437
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:437
 msgctxt "owb"
 msgid "Please provide information to identify the contract."
 msgstr ""
 
-#: src/Ajax.php:426
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:426
+#: src/Ajax.php:441
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:441
 msgctxt "owb"
 msgid "Please enter additional information."
 msgstr ""
 
-#: src/Ajax.php:538
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:538
+#: src/Ajax.php:553
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:553
 #, php-format
 msgctxt "owb"
 msgid "Sorry, but this order cannot be withdrawn. <a href=\"%s\">Contact support</a> for help."
 msgstr ""
 
-#: src/Ajax.php:565
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:565
+#: src/Ajax.php:580
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:580
 msgctxt "owb"
 msgid "You've already submitted an identical withdrawal request for this order."
 msgstr ""
 
-#: src/Ajax.php:639
-#: src/Ajax.php:662
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:639
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:662
+#: src/Ajax.php:654
+#: src/Ajax.php:677
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:654
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:677
 #, php-format
 msgctxt "owb"
 msgid "You've submitted too many different unverified withdrawal requests. <a href=\"%s\">Contact support</a> for help."
@@ -1173,11 +1173,11 @@ msgid "Withdraw"
 msgstr ""
 
 #: src/Package.php:152
-#: src/Package.php:1054
-#: src/Package.php:1105
+#: src/Package.php:1056
+#: src/Package.php:1107
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:152
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1054
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1105
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1056
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1107
 msgctxt "owb"
 msgid "Withdrawn"
 msgstr ""
@@ -1214,25 +1214,25 @@ msgid "An example rejection reason."
 msgstr ""
 
 #: src/Package.php:605
-#: src/Package.php:1066
+#: src/Package.php:1068
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:605
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1066
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1068
 msgctxt "owb"
 msgid "Requested"
 msgstr ""
 
 #: src/Package.php:606
-#: src/Package.php:1078
+#: src/Package.php:1080
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:606
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1078
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1080
 msgctxt "owb"
 msgid "Confirmed"
 msgstr ""
 
 #: src/Package.php:607
-#: src/Package.php:1090
+#: src/Package.php:1092
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:607
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1090
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1092
 msgctxt "owb"
 msgid "Rejected"
 msgstr ""
@@ -1250,16 +1250,16 @@ msgctxt "owb"
 msgid "Settings"
 msgstr ""
 
-#: src/Package.php:1042
-#: src/Package.php:1104
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1042
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1104
+#: src/Package.php:1044
+#: src/Package.php:1106
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1044
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1106
 msgctxt "owb"
 msgid "Pending withdrawal"
 msgstr ""
 
-#: src/Package.php:1047
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1047
+#: src/Package.php:1049
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1049
 #, php-format
 msgctxt "owb"
 msgid "Pending withdrawal (%s)"
@@ -1267,8 +1267,8 @@ msgid_plural "Pending withdrawals (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Package.php:1059
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1059
+#: src/Package.php:1061
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1061
 #, php-format
 msgctxt "owb"
 msgid "Withdrawn (%s)"
@@ -1276,8 +1276,8 @@ msgid_plural "Withdrawn (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Package.php:1071
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1071
+#: src/Package.php:1073
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1073
 #, php-format
 msgctxt "owb"
 msgid "Requested (%s)"
@@ -1285,8 +1285,8 @@ msgid_plural "Requested (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Package.php:1083
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1083
+#: src/Package.php:1085
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1085
 #, php-format
 msgctxt "owb"
 msgid "Confirmed (%s)"
@@ -1294,8 +1294,8 @@ msgid_plural "Confirmed (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Package.php:1095
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1095
+#: src/Package.php:1097
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Package.php:1097
 #, php-format
 msgctxt "owb"
 msgid "Rejected (%s)"
@@ -1914,7 +1914,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: woocommerce-germanized.php
-#: includes/admin/class-wc-gzd-admin.php:371
+#: includes/admin/class-wc-gzd-admin.php:500
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:136
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:165
 msgid "Germanized for WooCommerce"
@@ -2003,19 +2003,19 @@ msgstr ""
 msgid "kJ"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:196
+#: includes/abstracts/abstract-wc-gzd-product.php:216
 #, php-format
 msgid "Contains: %1$s"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:229
+#: includes/abstracts/abstract-wc-gzd-product.php:249
 #, php-format
 msgid "Nutri-Score %1$s"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1703
-#: includes/abstracts/abstract-wc-gzd-product.php:1713
-#: includes/wc-gzd-core-functions.php:640
+#: includes/abstracts/abstract-wc-gzd-product.php:1749
+#: includes/abstracts/abstract-wc-gzd-product.php:1759
+#: includes/wc-gzd-core-functions.php:649
 #: includes/wc-gzd-template-functions.php:1262
 #: includes/wc-gzd-template-functions.php:1269
 #: src/Blocks/Integrations/Cart.php:51
@@ -2029,7 +2029,7 @@ msgstr ""
 msgid "incl. VAT"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1703
+#: includes/abstracts/abstract-wc-gzd-product.php:1749
 #: src/Blocks/MiniCart.php:64
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:1
 #: build/mini-cart-blocks/mini-cart-notices-style.js:1
@@ -2038,24 +2038,24 @@ msgstr ""
 msgid "excl. VAT"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1705
-#: includes/wc-gzd-core-functions.php:640
+#: includes/abstracts/abstract-wc-gzd-product.php:1751
+#: includes/wc-gzd-core-functions.php:649
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1705
+#: includes/abstracts/abstract-wc-gzd-product.php:1751
 #, php-format
 msgid "excl. %s%% VAT"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1843
-#: includes/wc-gzd-core-functions.php:1431
+#: includes/abstracts/abstract-wc-gzd-product.php:1889
+#: includes/wc-gzd-core-functions.php:1440
 #, php-format
 msgid "%1$s-Year guarantee from %2$s for model %3$s"
 msgstr ""
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1849
+#: includes/abstracts/abstract-wc-gzd-product.php:1895
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-garan-label.php:10
 #: build/wc-gzd-blocks-product-elements.js:1
 #: build/wc-gzd-blocks-product-elements-style.js:1080
@@ -2064,14 +2064,14 @@ msgid "EU GARAN label"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-customer.php:44
-#: includes/admin/class-wc-gzd-admin.php:525
+#: includes/admin/class-wc-gzd-admin.php:654
 #: includes/admin/settings/views/html-admin-settings-tabs.php:79
 #: includes/admin/settings/views/html-admin-settings-tabs.php:98
 msgid "Yes"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-customer.php:46
-#: includes/admin/class-wc-gzd-admin.php:525
+#: includes/admin/class-wc-gzd-admin.php:654
 #: includes/admin/settings/views/html-admin-settings-tabs.php:79
 #: includes/admin/settings/views/html-admin-settings-tabs.php:98
 msgid "No"
@@ -2116,11 +2116,11 @@ msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-deposit-types.php:119
 #: includes/admin/class-wc-gzd-admin-deposit-types.php:208
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:582
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:68
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:263
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:335
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:659
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:592
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:69
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:156
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:228
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:552
 msgid "Deposit"
 msgstr ""
 
@@ -2158,14 +2158,14 @@ msgid "Downloadable Product"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-legal-checkboxes.php:78
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:535
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:428
 msgid "Virtual Product"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-legal-checkboxes.php:79
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:178
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:455
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:536
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:515
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:429
 #: includes/class-wc-gzd-legal-checkbox-manager.php:249
 #: src/OrderWithdrawalButton.php:13
 msgid "Service"
@@ -2224,9 +2224,9 @@ msgstr ""
 #: includes/admin/class-wc-gzd-admin-manufacturers.php:111
 #: includes/admin/class-wc-gzd-admin-manufacturers.php:132
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:429
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:219
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:342
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:729
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:279
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:402
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:797
 #: includes/api/class-wc-gzd-rest-products-controller.php:157
 #: includes/api/class-wc-gzd-rest-products-controller.php:603
 #: includes/class-wc-gzd-post-types.php:159
@@ -2263,8 +2263,8 @@ msgid "Same as Parent"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-product-categories.php:82
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:545
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:833
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:438
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:766
 msgid "None"
 msgstr ""
 
@@ -2289,7 +2289,7 @@ msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:71
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:170
-#: woocommerce-germanized.php:979
+#: woocommerce-germanized.php:981
 msgid "Settings"
 msgstr ""
 
@@ -2319,6 +2319,7 @@ msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:106
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:112
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:426
 #: includes/admin/views/setup/shiptastic.php:47
 #: src/PluginsHelper.php:639
 #: src/PluginsHelper.php:741
@@ -2404,6 +2405,7 @@ msgid "Enable this option if you have chosen to apply to <a href=\"%s\" target=\
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:213
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:410
 #: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:21
 msgid "Double Opt In"
 msgstr ""
@@ -2451,8 +2453,8 @@ msgid "Germanized &rsaquo; Setup Wizard"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:368
-#: includes/admin/class-wc-gzd-admin.php:727
-#: includes/admin/settings/abstract-wc-gzd-settings-tab.php:169
+#: includes/admin/class-wc-gzd-admin.php:856
+#: includes/admin/settings/abstract-wc-gzd-settings-tab.php:196
 #: includes/admin/settings/class-wc-gzd-settings-germanized.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-shiptastic.php:29
 #: includes/admin/settings/views/html-admin-settings-tabs.php:9
@@ -2471,32 +2473,32 @@ msgstr ""
 #: includes/admin/class-wc-gzd-admin-status.php:45
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:94
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:229
-#: includes/wc-gzd-core-functions.php:411
+#: includes/wc-gzd-core-functions.php:420
 msgid "Terms & Conditions"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-status.php:46
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:107
-#: includes/wc-gzd-core-functions.php:412
+#: includes/wc-gzd-core-functions.php:421
 msgid "Cancellation Policy"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-status.php:47
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:131
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:229
-#: includes/wc-gzd-core-functions.php:413
+#: includes/wc-gzd-core-functions.php:422
 msgid "Imprint"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-status.php:48
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:144
-#: includes/wc-gzd-core-functions.php:414
+#: includes/wc-gzd-core-functions.php:423
 msgid "Privacy Policy"
 msgstr ""
 
 #: includes/admin/class-wc-gzd-admin-status.php:49
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:157
-#: includes/wc-gzd-core-functions.php:418
+#: includes/wc-gzd-core-functions.php:427
 msgid "Payment Methods"
 msgstr ""
 
@@ -2508,7 +2510,7 @@ msgstr ""
 msgid "Welcome to Germanized"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin-welcome.php:337
+#: includes/admin/class-wc-gzd-admin-welcome.php:506
 msgid "Go to Germanized Settings"
 msgstr ""
 
@@ -2524,8 +2526,8 @@ msgstr ""
 #: includes/class-wc-gzd-deprecated-product-attribute-helper.php:41
 #: includes/class-wc-gzd-hook-priorities.php:37
 #: includes/class-wc-gzd-hook-priorities.php:46
-#: includes/class-wc-gzd-order-helper.php:25
-#: includes/class-wc-gzd-order-helper.php:34
+#: includes/class-wc-gzd-order-helper.php:31
+#: includes/class-wc-gzd-order-helper.php:40
 #: includes/class-wc-gzd-product-attribute-helper.php:27
 #: includes/class-wc-gzd-product-attribute-helper.php:36
 #: includes/export/class-wc-gzd-product-export.php:27
@@ -2537,68 +2539,92 @@ msgstr ""
 msgid "Cheating huh?"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:563
+#: includes/admin/class-wc-gzd-admin.php:326
+#: includes/admin/class-wc-gzd-admin.php:365
+msgid "Get Germanized Pro to unlock"
+msgstr ""
+
+#: includes/admin/class-wc-gzd-admin.php:386
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:703
+#: includes/admin/views/setup/first-steps.php:35
+#: includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:69
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:100
+msgid "Upgrade now"
+msgstr ""
+
+#: includes/admin/class-wc-gzd-admin.php:388
+#: includes/admin/notes/class-wc-gzd-admin-note-encryption.php:50
+#: includes/admin/notes/class-wc-gzd-admin-note-shipping-excl-tax.php:45
+#: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:37
+#: includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:41
+#: includes/admin/settings/abstract-wc-gzd-settings-tab.php:237
+#: includes/admin/settings/abstract-wc-gzd-settings-tab.php:241
+#: includes/admin/views/html-page-status-germanized.php:345
+msgid "Learn more"
+msgstr ""
+
+#: includes/admin/class-wc-gzd-admin.php:692
 msgid "Search for a term&hellip;"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:676
+#: includes/admin/class-wc-gzd-admin.php:805
 msgid "Paid for order notification manually sent to customer."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:696
+#: includes/admin/class-wc-gzd-admin.php:825
 msgid "Order confirmation manually sent to customer."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:716
+#: includes/admin/class-wc-gzd-admin.php:845
 msgid "Resend order confirmation"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:717
+#: includes/admin/class-wc-gzd-admin.php:846
 msgid "Send paid for order notification"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:780
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:876
+#: includes/admin/class-wc-gzd-admin.php:909
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:944
 msgid "Remove"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:788
+#: includes/admin/class-wc-gzd-admin.php:917
 msgid "Insert delivery time name, slug or id."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:789
+#: includes/admin/class-wc-gzd-admin.php:918
 msgid "Insert product units amount."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:856
+#: includes/admin/class-wc-gzd-admin.php:985
 msgid "Optional Email Content"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:862
+#: includes/admin/class-wc-gzd-admin.php:991
 msgid "Add content which will be replacing default page content within emails."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:886
+#: includes/admin/class-wc-gzd-admin.php:1015
 msgid "Cart description"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:899
+#: includes/admin/class-wc-gzd-admin.php:1028
 #: includes/api/class-wc-gzd-rest-products-controller.php:665
 msgid "Defect description"
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:927
+#: includes/admin/class-wc-gzd-admin.php:1056
 msgid "This content will be shown as short product description within checkout and emails."
 msgstr ""
 
-#: includes/admin/class-wc-gzd-admin.php:941
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:572
+#: includes/admin/class-wc-gzd-admin.php:1070
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:582
 msgid "Inform your customers about product defects. This description will be shown on top of your product description and during cart/checkout."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:151
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:241
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:295
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:134
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:188
 #: includes/api/class-wc-gzd-rest-products-controller.php:203
 #: includes/api/class-wc-gzd-rest-products-controller.php:709
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-unit-price.php:10
@@ -2619,10 +2645,10 @@ msgstr ""
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:157
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:303
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:308
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:205
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:312
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:935
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:940
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:265
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:372
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1003
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1008
 #: includes/api/class-wc-gzd-rest-products-controller.php:43
 #: includes/api/class-wc-gzd-rest-products-controller.php:528
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-delivery-time.php:10
@@ -2637,7 +2663,7 @@ msgid "Set delivery time"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:160
-#: includes/admin/settings/class-wc-gzd-settings-pointers.php:91
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:143
 #: includes/class-wc-gzd-legal-checkbox.php:903
 msgid "Status"
 msgstr ""
@@ -2659,39 +2685,39 @@ msgid "Toggle &quot;Photovoltaic System&quot;"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:181
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:463
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:523
 #: src/OrderWithdrawalButton.php:16
 msgid "Used Good"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:181
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:464
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:524
 msgid "Product is a used good."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:184
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:471
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:531
 #: src/OrderWithdrawalButton.php:15
 msgid "Defective Copy"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:184
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:472
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:532
 msgid "Product has defects."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:187
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:505
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:565
 msgid "Photovoltaic System"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:187
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:506
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:566
 msgid "Photovoltaic system for which the zero tax rate is available."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:216
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:522
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:582
 msgid "Price Labeling"
 msgstr ""
 
@@ -2700,41 +2726,41 @@ msgstr ""
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:388
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:425
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:469
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:583
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:69
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:523
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:670
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:725
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:771
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:936
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:593
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:70
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:583
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:738
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:793
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:839
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1004
 msgid "Help"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:226
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:529
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:589
 msgid "Strike Price Label"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:237
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:541
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:601
 msgid "Sale Price Label"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:252
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:563
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:248
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:303
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:623
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:141
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:196
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-units.php:10
 msgid "Product Units"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:257
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:566
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:626
 msgid "Number of units included per default product price. Example: 1000 ml."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:266
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:587
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:647
 msgid "Calculation"
 msgstr ""
 
@@ -2743,12 +2769,12 @@ msgid "Calculate unit prices automatically"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:280
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:596
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:656
 msgid "Regular Unit Price"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:291
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:605
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:665
 msgid "Sale Unit Price"
 msgstr ""
 
@@ -2770,74 +2796,74 @@ msgid "Same as parent"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:328
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1016
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1084
 #, php-format
 msgid "Delivery Time (%s)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:341
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:378
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1028
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1065
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1096
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1133
 msgid "remove"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:354
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1040
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1108
 msgid "Add country specific delivery time"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:361
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1048
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1116
 msgid "Select country"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:373
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:902
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:945
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1060
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:970
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1013
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1128
 msgid "Search for a delivery time&hellip;"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:387
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:479
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:669
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:539
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:737
 msgid "Electronic device (wireless)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:399
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:688
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:756
 msgid "Minimum power (Watt)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:402
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:692
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:760
 #: includes/api/class-wc-gzd-rest-products-controller.php:343
 #: includes/api/class-wc-gzd-rest-products-controller.php:626
 msgid "Minimum power for charging the device."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:413
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:702
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:770
 msgid "Maximum power (Watt)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:416
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:706
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:774
 #: includes/api/class-wc-gzd-rest-products-controller.php:348
 #: includes/api/class-wc-gzd-rest-products-controller.php:631
 msgid "Power necessary to reach the maximum charging speed of the device."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:424
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:724
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:792
 #: includes/wc-gzd-template-functions.php:102
 #: templates/single-product/product-safety.php:22
 msgid "Product safety"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:444
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:734
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:802
 #: includes/api/class-wc-gzd-rest-products-controller.php:271
 #: includes/api/class-wc-gzd-rest-products-controller.php:678
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-safety-instructions.php:10
@@ -2850,35 +2876,35 @@ msgid "Safety instructions"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:449
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:752
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:820
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-safety-attachments.php:10
 msgid "Safety documents"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:468
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:770
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:838
 msgid "Guarantee"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:478
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:780
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:848
 #: includes/api/class-wc-gzd-rest-products-controller.php:289
 #: includes/api/class-wc-gzd-rest-products-controller.php:694
 msgid "Guarantee length (months)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:483
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:784
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:852
 msgid "The number of months (divisible by 6) of the durability guarantee. This field is used to determine whether to show a EU GARAN label for the product (> 24 months)."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:489
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:791
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:859
 msgid "Warranty (PDF)"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:499
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:800
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:868
 msgid "Select warranty file"
 msgstr ""
 
@@ -2887,49 +2913,49 @@ msgid "Additional Fields"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:518
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:630
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:690
 msgid "Minimum Age"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:521
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:632
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:692
 msgid "Adds an age verification checkbox while purchasing this product."
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:538
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:645
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:705
 #: includes/api/class-wc-gzd-rest-products-controller.php:295
 #: includes/api/class-wc-gzd-rest-products-controller.php:699
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:147
-#: includes/wc-gzd-core-functions.php:1160
+#: includes/wc-gzd-core-functions.php:1169
 msgid "GTIN"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:543
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:648
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:708
 msgid "Your product's Global Trade Item Number that allows your products to be identified worldwide."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:553
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:658
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:562
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:725
 #: includes/api/class-wc-gzd-rest-products-controller.php:301
 #: includes/api/class-wc-gzd-rest-products-controller.php:704
 #: includes/compatibility/class-wc-gzd-compatibility-google-for-woocommerce.php:156
-#: includes/wc-gzd-core-functions.php:1161
+#: includes/wc-gzd-core-functions.php:1170
 msgid "MPN"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:558
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:661
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:567
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:728
 msgid "Your product's Manufacturer Part Number."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:565
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:575
 msgid "Optional Mini Description"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:572
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:327
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:582
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:220
 #: includes/api/class-wc-gzd-rest-products-controller.php:252
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-defect-description.php:10
 #: build/wc-gzd-blocks-product-elements.js:1
@@ -2938,157 +2964,185 @@ msgstr ""
 msgid "Defect Description"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:584
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:70
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:594
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:71
 msgid "Manage deposit types"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:593
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:77
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:603
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:78
 #: includes/api/class-wc-gzd-rest-products-controller.php:378
 msgid "Deposit Type"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:594
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:78
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:604
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:79
 msgid "Select Deposit Type"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:597
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:80
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:607
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:81
 msgid "In case this product is reusable and has deposits, select the deposit type."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:606
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:87
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:616
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:88
 msgid "Deposit Quantity"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:611
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:92
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:621
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:93
 msgid "Number of units included for deposit purposes, e.g. 6 bottles."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:619
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:99
-#: includes/admin/settings/abstract-wc-gzd-settings-tab.php:51
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:60
-#: includes/admin/views/html-settings-pro.php:23
-msgid "Get Germanized Pro to unlock"
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:116
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:592
+msgid "Sell food with Germanized Pro"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:620
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:100
-msgid "Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more with Germanized Pro."
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:117
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:593
+msgid "Want to sell your food in a legally compliant way? Germanized Pro adds all the information needed to your products."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data-variable.php:621
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:101
-#: includes/admin/settings/abstract-wc-gzd-settings-tab.php:53
-#: includes/admin/settings/class-wc-gzd-settings-pointers.php:176
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:70
-#: includes/admin/views/html-settings-pro.php:25
-#: includes/admin/views/setup/first-steps.php:35
-#: includes/compatibility/elementor/widgets/abstact-class-wc-gzd-elementor-widget.php:69
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:100
-msgid "Upgrade now"
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:119
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:595
+msgid "Nutrients, allergenes and ingredients"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:120
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:596
+msgid "Nutri-Score and alcohol content"
 msgstr ""
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:121
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:496
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:597
+msgid "Deposits for drinks and reusable packaging"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:142
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:35
+msgid "Sell to business customers with Germanized Pro"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:143
+msgid "Offer business customers their own prices and conditions for this product."
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:145
+msgid "Individual prices and tiered prices per customer group"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:146
+msgid "Restrict this product to certain customer groups"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:147
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:39
+msgid "Separate B2B registration with manual review"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:168
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:556
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:40
 #: src/OrderWithdrawalButton.php:14
 msgid "Food"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:233
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:371
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:552
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:181
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:341
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:21
+msgid "B2B"
+msgstr ""
+
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:293
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:431
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:612
 #: includes/api/class-wc-gzd-rest-products-controller.php:180
 #: includes/class-wc-gzd-post-types.php:108
 msgid "Unit"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:236
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:375
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:296
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:435
 msgid "No unit"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:317
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:333
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:347
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:363
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:374
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:377
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:393
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:407
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:423
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:434
 msgid "— No change —"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:318
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:348
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:378
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:408
 msgid "Change to:"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:319
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:379
 msgid "No delivery time"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:349
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:409
 msgid "No manufacturer"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:456
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:516
 msgid "Service products do not sell physical products."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:480
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:540
 msgid "Wireless electronic device (e.g. tablet) requiring power supply unit labeling."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:487
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:547
 msgid "Differential taxed"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:488
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:548
 msgid "Product applies to differential taxation based on §25a UStG."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:497
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:557
 msgid "This product is a food product."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:530
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:542
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:590
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:602
 msgid "Select Price Label"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:532
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:592
 msgid "If the product is on sale you may want to show a price label right before outputting the old price to inform the customer."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:544
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:604
 msgid "If the product is on sale you may want to show a price label right before outputting the new price to inform the customer."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:553
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:613
 msgid "Select unit"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:555
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:615
 msgid "Needed if selling on a per unit basis"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:574
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:634
 msgid "Unit Price Units"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:577
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:637
 msgid "Unit price units. Example unit price: 0,99 € / 100 ml. Insert 100 as unit price unit amount."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:588
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:648
 msgid "Calculate unit prices automatically."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:677
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:745
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-power-supply.php:10
 #: build/wc-gzd-blocks-product-elements.js:1
 #: build/wc-gzd-blocks-product-elements-style.js:1632
@@ -3096,53 +3150,53 @@ msgstr ""
 msgid "Power supply"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:678
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:746
 msgid "Charger included in the scope of delivery."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:715
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:783
 #: templates/global/power-supply.php:48
 msgid "USB PD"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:716
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:784
 msgid "This device supports the fast charging protocol USB Power Delivery."
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:814
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:882
 msgid "Search for a manufacturer&hellip;"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:848
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:849
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:916
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:917
 msgid "Choose file"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:850
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:918
 msgid "Select file"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:858
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:926
 msgid "Not available"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:958
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1026
 msgid "Free shipping?"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:959
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1027
 msgid "This option disables the \"plus shipping costs\" notice on product page"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:973
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1041
 msgid "EU-wide"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:977
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1045
 msgid "Non-EU-wide"
 msgstr ""
 
-#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1021
+#: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:1089
 msgid "Same as default"
 msgstr ""
 
@@ -3208,17 +3262,6 @@ msgstr ""
 
 #: includes/admin/notes/class-wc-gzd-admin-note-encryption.php:33
 msgid "Encryption key is missing"
-msgstr ""
-
-#: includes/admin/notes/class-wc-gzd-admin-note-encryption.php:50
-#: includes/admin/notes/class-wc-gzd-admin-note-shipping-excl-tax.php:45
-#: includes/admin/notes/class-wc-gzd-admin-note-shiptastic-migration.php:37
-#: includes/admin/notes/class-wc-gzd-admin-note-virtual-vat.php:41
-#: includes/admin/settings/abstract-wc-gzd-settings-tab.php:210
-#: includes/admin/settings/abstract-wc-gzd-settings-tab.php:214
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:69
-#: includes/admin/views/html-page-status-germanized.php:345
-msgid "Learn more"
 msgstr ""
 
 #: includes/admin/notes/class-wc-gzd-admin-note-encryption.php:59
@@ -3435,34 +3478,296 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
-#: includes/admin/settings/abstract-wc-gzd-settings-tab.php:52
-#: includes/admin/views/html-settings-pro.php:24
-#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:98
-msgid "Enjoy access to even more professional features such as (e-)invoices, delivery notes, an interface to generate legal texts, a multi-level checkout, VAT ID verification, and, of course, professional support!"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-pointers.php:78
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:137
 msgid "Setting tabs"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-pointers.php:78
-msgid "To make it more comfortable for you, we've splitted the settings into multiple tabs."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-pointers.php:91
-msgid "Some features can be switched on or off explicitly by toggling the input."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-pointers.php:143
-msgid "Dismiss"
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:138
+msgid "Germanized settings are grouped into tabs. Click a tab to manage the options of a certain feature. This tutorial guides you through the most important settings."
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-pointers.php:144
+msgid "Some features can be switched on or off explicitly by toggling the input."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:155
+msgid "Overview"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:156
+msgid "You can always return to the settings overview by navigating through the breadcrumb navigation."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:161
+msgid "Sections"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:162
+msgid "Each setting tab might have sub sections containing more specific options."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:167
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:30
+#: includes/admin/views/html-page-status-germanized.php:217
+msgid "Legal Pages"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:168
+msgid "Adjust legal pages e.g. terms and conditions. These pages are used to add links within checkboxes and text attachments to emails."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:179
+msgid "Legal text generator"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:180
+msgid "Generate terms and conditions and revocation terms tailored to your shop by answering a few questions - and insert them into your legal pages with a single click. Available with Germanized Pro."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:194
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:45
+msgid "Withdrawal Button"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:195
+msgid "Starting June 19, 2026 consumers must be able to withdraw from a contract by using a withdrawal button. Choose the page containing the withdrawal form, publish it and link it e.g. within your footer."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:199
+msgid "Withdrawal period"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:200
+msgid "Adjust the withdrawal period. Withdrawals received are listed within the Withdrawals screen and confirmed to your customers by email."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:211
+msgid "Shopmark Display"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:212
+msgid "By adjusting the display settings you might determine where to show or hide your shopmarks e.g. the tax notice on single product pages."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:224
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:293
+msgid "Location"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:225
+msgid "Adjust the location of the shopmark by selecting a location from the list. Some Themes might apply the locations at different positions that's why the result may differ from Theme to Theme."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:229
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:308
+msgid "Priority"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:230
+msgid "Many different information may be attached to the location selected. By adjusting the priority you can choose whether the shopmark gets applied earlier (lower) or later (higher)."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:241
+msgid "EU legal guarantee label"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:242
+msgid "Starting September 27, 2026 shops selling physical goods to consumers must inform about the legal guarantee by using the harmonised EU label. Choose where to display the label, e.g. within your footer and checkout."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:246
+msgid "GARAN label"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:247
+msgid "The GARAN label is shown on a per-product basis for products offering a guarantee of more than 24 months. Make sure these products have a manufacturer linked and a valid model id (GTIN, MPN or SKU)."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:258
+#: includes/admin/views/html-page-status-germanized.php:61
+msgid "Default Delivery Time"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:259
+msgid "Choose a delivery time that serves as fallback in case no delivery time was added to the product."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:263
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:520
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:532
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:489
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:560
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:655
+msgid "Format"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:264
+msgid "You may want to adjust the delivery time output format. You might use {delivery_time} to output the current product's delivery time."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:275
+msgid "Default Price Label"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:276
+msgid "Price labels are added to sale products to inform the customers of the different prices' meaning. You may add a fallback label in case a product does not contain a label."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:286
+msgid "Edit checkbox"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:287
+msgid "Legal checkboxes help you obtain consent from your customers. You might edit a checkbox' label and other options by clicking on the link."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:300
+#: includes/class-wc-gzd-legal-checkbox.php:935
+msgid "Label"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:301
+msgid "Adjust the label of your checkbox which will be shown within your shop (e.g. checkout). Use placeholders to add links to your legal pages."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:312
+msgid "Buy now button"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:313
+msgid "These settings help you comply to the button solution. The buy now button text is forced and static so that no payment gateway might override it."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:317
+msgid "Product table background"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:318
+msgid "The product table within your checkout should be noticeable for your customers. You might want to choose a different background color for it."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:329
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:21
+msgid "Multistep checkout"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:330
+msgid "Split your checkout into clear steps, e.g. address, payment and order confirmation - including a summary of the customer's input. Optimized for mobile devices and the block-based checkout. Available with Germanized Pro."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:342
+msgid "Sell to business customers: customer groups with individual and tiered prices, a separate B2B registration with manual review, payment and shipping restrictions per group and more. Available with Germanized Pro."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:357
+msgid "VAT ID check"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:358
+msgid "Validate the VAT IDs of your business customers during checkout and sell tax-exempt within the EU (reverse charge). Available with Germanized Pro."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:365
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:31
+msgid "Additional Costs"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:366
+msgid "Choose how taxes for shipping costs and fees are calculated, e.g. split based on the tax rates of the products within the cart."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:376
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:36
+msgid "Accounting"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:377
+msgid "Create invoices, cancellations and e-invoices (ZUGFeRD, XRechnung) automatically and transfer them to lexware office, sevdesk or DATEV. Available with Germanized Pro."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:389
+msgid "Email attachments"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:390
+msgid "Choose which of your email templates (e.g. order confirmation) should contain your legal page content e.g. terms and conditions within it's footer."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:398
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:32
+msgid "PDF Attachments"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:399
+msgid "Customers of our pro version may attach PDF files instead of plain text content to emails."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:411
+msgid "Make sure that new customer accounts are confirmed via email before customers are able to log in. Unconfirmed accounts may be deleted automatically after a certain time."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:427
+msgid "Manage shipments, returns, packaging and shipping service providers within the Shiptastic settings."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:432
+msgid "Shipments & returns with Shiptastic"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:433
+msgid "Create shipments and returns for your orders, manage packaging and create labels via integrations, e.g. for DHL, DPD, GLS, Hermes or UPS. Shiptastic is free and can be installed with a single click."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:440
+msgid "Germanized Pro"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:441
+msgid "Upgrade to Germanized Pro to unlock accounting incl. e-invoices & DATEV, B2B, the multistep checkout, legal text generators, the VAT ID check and professional support."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:449
+msgid "All set"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:450
+msgid "You now know the most important settings. Use the settings overview to explore further features, e.g. taxes, the One Stop Shop or Shiptastic for shipping."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:666
+msgid "Dismiss"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:679
 msgid "Next"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-pointers.php:151
+#: includes/admin/settings/class-wc-gzd-settings-pointers.php:685
 msgid "Let's go"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:17
+msgid "Sell B2B: customer group & tiered prices, a separate registration with manual review and more."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:21
+msgid "new"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:36
+msgid "Turn your shop into a B2B or hybrid shop and offer business customers their own prices and conditions."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:38
+msgid "Customer groups with individual prices, discounts and tiered prices"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:40
+msgid "Restrict products, payment and shipping methods to certain customer groups"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:41
+msgid "Net price display and minimum order values per customer group"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:17
@@ -3473,31 +3778,15 @@ msgstr ""
 msgid "Button Solution"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:45
-msgid "Buy now button"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:45
-msgid "These settings help you comply to the button solution. The buy now button text is forced and static so that no payment gateway might override it."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:58
-msgid "Product table background"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:58
-msgid "The product table within your checkout should be noticeable for your customers. You might want to choose a different background color for it."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:80
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:40
 msgid "Button Text"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:81
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:41
 msgid "This text serves as Button text for the Order Submit Button."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:85
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:45
 #: includes/class-wc-gzd-payment-gateways.php:124
 #: includes/compatibility/class-wc-gzd-compatibility-woocommerce-subscriptions.php:81
 #: includes/wc-gzd-template-functions.php:898
@@ -3505,116 +3794,116 @@ msgstr ""
 msgid "Buy Now"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:88
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:48
 msgid "Product attributes"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:89
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:49
 msgid "List all product attributes during cart and checkout."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:93
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:53
 msgid "This option forces WooCommerce to output a list of all product attributes during cart and checkout."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:96
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:56
 msgid "Back to cart"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:97
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:57
 msgid "Add a back to cart button to the checkout table."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:97
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:57
 msgid "This button may let your customer edit their order before submitting. Some people state that this button should be hidden to avoid legal problems."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:103
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:63
 msgid "Edit data notice"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:104
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:64
 msgid "Display an edit-your-data notice within checkout."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:108
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:68
 msgid "This notice will be added right before the order comments field."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:111
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:71
 msgid "Product Table Color"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:113
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:73
 msgid "Choose the color of your checkout product table. This table should be highlighted within your checkout page."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:118
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:78
 msgid "Thumbnails"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:119
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:79
 msgid "Show product thumbnails within checkout table."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:123
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:83
 msgid "Uncheck if you don't want to show your product thumbnails within checkout table."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:126
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:86
 msgid "Hide Shipping Select"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:127
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:87
 msgid "Hide shipping rate selection from checkout."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:131
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:91
 msgid "This option will hide shipping rate selection from checkout. By then customers will only be able to change their shipping rate on cart page."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:134
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:94
 msgid "Estimated taxes"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:135
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:95
 msgid "Hide the \"taxes and shipping estimated\" text from the cart."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:139
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:99
 msgid "By default WooCommerce adds a \"taxes and shipping estimated\" text to your cart. This might puzzle your customers and may not meet german law."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:142
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:102
 #: includes/admin/views/html-page-status-germanized.php:74
 msgid "Fallback Mode"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:143
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:103
 msgid "Force default WooCommerce checkout template."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:143
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:103
 msgid "If you are facing problems within your checkout e.g. legally relevant data is not showing (terms, delivery time, unit price etc.) your theme seems to be incompatible (not using default WooCommerce hooks and filters). As a workaround you may use this fallback which ensures default review-order.php and form-checkout.php is used."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:154
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:114
 msgid "Thankyou Page"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:160
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:120
 msgid "Information"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:161
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:121
 msgid "Hide product table and customer data on order thankyou page."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:167
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:127
 msgid "Order Success Text"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:168
+#: includes/admin/settings/class-wc-gzd-settings-tab-button-solution.php:128
 msgid "Choose a custom text to display on order success page."
 msgstr ""
 
@@ -3626,48 +3915,31 @@ msgstr ""
 msgid "Legal Checkboxes"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:41
-msgid "Edit checkbox"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:41
-msgid "Legal checkboxes help you obtain consent from your customers. You might edit a checkbox' label and other options by clicking on the link."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:61
-#: includes/class-wc-gzd-legal-checkbox.php:935
-msgid "Label"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:61
-msgid "Adjust the label of your checkbox which will be shown within your shop (e.g. checkout). Use placeholders to add links to your legal pages."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:102
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:55
 msgid "New checkbox"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:128
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:81
 msgid "Add checkbox"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:171
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:124
 msgid "Edit failed. Please try again."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:204
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:157
 msgid "Sorry, but this checkbox does not exist."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:233
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:186
 msgid "Your changed data will be lost if you leave this page without saving."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:234
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:187
 msgid "Are you sure you want to delete this checkbox? This action cannot be undone."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:235
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:188
 msgid "Your changes were not saved. Please retry."
 msgstr ""
 
@@ -3680,12 +3952,32 @@ msgid "Manual contract"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:21
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:21
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:41
 #: includes/admin/settings/class-wc-gzd-settings-tab-license.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:21
 msgid "pro"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:35
+msgid "Manual contract conclusion with Germanized Pro"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:36
+msgid "Review incoming orders within your backend before closing the contract with your customer."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:38
+msgid "Manually review and confirm orders before closing the contract"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:39
+msgid "The first email only confirms the receipt of the offer"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:40
+msgid "Payment information is provided only after you have confirmed the order"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:17
@@ -3749,112 +4041,103 @@ msgstr ""
 msgid "Visibility"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:32
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:73
-msgid "PDF Attachments"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:59
-msgid "Email attachments"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:59
-msgid "Choose which of your email templates (e.g. order confirmation) should contain your legal page content e.g. terms and conditions within it's footer."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:73
-msgid "Customers of our pro version may attach PDF files instead of plain text content to emails."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:89
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:48
 msgid "Use drag & drop to customize attachment order. Don't forget to save your changes."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:128
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:152
-#, php-format
-msgid "Want to attach automatically generated PDF files to emails instead of plain text? %1$sUpgrade to %2$spro%3$s%4$s"
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:89
+msgid "PDF email attachments with Germanized Pro"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:182
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:90
+msgid "Attach automatically generated PDF files of your legal pages to emails instead of plain text."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:92
+msgid "Generate PDF files from your legal pages automatically"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:93
+msgid "Or upload your own, custom PDF files"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:94
+msgid "Customize the layout of generated PDF files"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:160
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:345
 #: includes/api/class-wc-gzd-rest-customers-controller.php:138
 #: includes/api/class-wc-gzd-rest-customers-controller.php:151
 #: includes/api/class-wc-gzd-rest-orders-controller.php:142
 #: includes/api/class-wc-gzd-rest-orders-controller.php:155
-#: includes/class-wc-gzd-checkout.php:1002
-#: includes/class-wc-gzd-checkout.php:1016
+#: includes/class-wc-gzd-checkout.php:1146
+#: includes/class-wc-gzd-checkout.php:1160
 #: includes/class-wc-gzd-customer-helper.php:504
 #: includes/class-wc-gzd-customer-helper.php:512
 msgid "Title"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:183
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:161
 msgid "Adjust the title to be used within emails. Use {first_name}, {last_name} and {title} as placeholders."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:185
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:163
 msgid "Hi {first_name},"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:190
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:168
 msgid "Hide Username"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:191
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:169
 msgid "Hide username from email content if password or password reset link is embedded."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:191
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:169
 msgid "Trusted Shops advises to not show the username together with an account password or password reset link. This option hides (or masks) the username in those specific cases."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:198
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:176
 msgid "Pay now Button"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:199
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:177
 msgid "Add a pay now button to emails and order success page."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:200
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:178
 msgid "Add a pay now button to order confirmation email and order success page if the order awaits payment (PayPal etc)."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:206
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:184
 msgid "Disabled for"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:207
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:185
 msgid "You may want to disable the pay now button for certain payment methods."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:259
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:237
 msgid "Customer"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:259
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:237
 msgid "Admin"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:282
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:260
 #, php-format
 msgid "Attach %s"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:283
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:261
 #, php-format
 msgid "Attach %s to the following email templates"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:17
 msgid "Adjust general options e.g. legal pages, withdrawal button, small business regulation."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:30
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:672
-#: includes/admin/views/html-page-status-germanized.php:217
-msgid "Legal Pages"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:31
@@ -3867,8 +4150,8 @@ msgid "Small Businesses"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:33
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:784
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1000
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:717
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1003
 #: src/Shopmarks.php:609
 msgid "Checkout"
 msgstr ""
@@ -3880,10 +4163,6 @@ msgstr ""
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:39
 #: includes/class-wc-gzd-legal-checkbox-manager.php:424
 msgid "Photovoltaic Systems"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:45
-msgid "Withdrawal Button"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:67
@@ -3949,7 +4228,7 @@ msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:183
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:494
-#: includes/wc-gzd-core-functions.php:420
+#: includes/wc-gzd-core-functions.php:429
 msgid "Review Authenticity"
 msgstr ""
 
@@ -4019,8 +4298,8 @@ msgid "Append it now"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:314
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:467
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:225
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:360
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:262
 msgid "Notice Text"
 msgstr ""
 
@@ -4029,7 +4308,7 @@ msgid "You may want to adjust the small buisness notice text to meet your criter
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:322
-#: includes/wc-gzd-core-functions.php:507
+#: includes/wc-gzd-core-functions.php:516
 msgid "Value added tax is not collected, as small businesses according to §19 (1) UStG."
 msgstr ""
 
@@ -4176,15 +4455,6 @@ msgstr ""
 msgid "Whether your current product ratings are verified, e.g. only verified owners were able to submit reviews."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:520
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:532
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:144
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:596
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:667
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:722
-msgid "Format"
-msgstr ""
-
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:522
 #: includes/wc-gzd-product-functions.php:425
 msgid "{link}Verified overall ratings{/link}"
@@ -4262,59 +4532,51 @@ msgstr ""
 msgid "Automatically charge the product's net price in case the customer is eligible for the zero tax rate."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:646
-msgid "Overview"
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:28
+msgid "Create (e-)invoices and connect lexware office, sevdesk & DATEV."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:646
-msgid "You can always return to the settings overview by navigating through the breadcrumb navigation."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:659
-msgid "Sections"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:659
-msgid "Each setting tab might have sub sections containing more specific options."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:672
-msgid "Adjust legal pages e.g. terms and conditions. These pages are used to add links within checkboxes and text attachments to emails."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:17
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:31
 msgid "Create invoices, e-invoices, packing slips & commercial invoices conveniently."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:17
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:31
 msgid "Create invoices and e-invoices conveniently."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:21
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:38
 msgid "Invoices & Packing Slips"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:21
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:38
 msgid "Invoices"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:61
-msgid "Generate custom and professional invoices, cancellations, packing slips and commercial invoices automatically with Germanized Pro."
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:55
+msgid "Accounting with Germanized Pro"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:63
-msgid "Customize your documents with the built-in document editor"
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:56
+msgid "Create invoices and cancellations automatically and transfer them to your accounting software or tax advisor."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:64
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:58
+msgid "Create invoices and cancellations automatically, e.g. based on order status or payment method"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:59
+msgid "E-invoices in ZUGFeRD, XRechnung and Peppol BIS 3.0 format"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:60
 msgid "Transfer your documents to your lexware office and/or sevdesk account"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:65
-msgid "Conveniently create e-invoices in different formats"
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:61
+msgid "DATEV export for your tax advisor"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:66
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:62
 msgid "Export your documents as CSV and ZIP"
 msgstr ""
 
@@ -4336,8 +4598,24 @@ msgstr ""
 msgid "Transform your checkout into a multistep checkout process."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:21
-msgid "Multistep checkout"
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:35
+msgid "Multistep checkout with Germanized Pro"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:36
+msgid "Split your checkout into clearly arranged steps and guide your customers through the order process."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:38
+msgid "Separate steps for personal data, payment and order confirmation"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:39
+msgid "Available for the classic checkout and the checkout block"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:40
+msgid "Optional step navigation including a link back to the cart"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-oss.php:25
@@ -4350,6 +4628,26 @@ msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:21
 msgid "Revocation Terms Generator"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:35
+msgid "Revocation terms generator with Germanized Pro"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:36
+msgid "Answer a few questions about your products and let our API generate your revocation terms."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:38
+msgid "Revocation terms tailored to the products you sell"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:39
+msgid "Includes the model withdrawal form"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:40
+msgid "Insert the generated text directly into your revocation page"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-shiptastic.php:37
@@ -4395,405 +4693,353 @@ msgid "Widgets"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:52
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:294
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:187
 msgid "E-Mails"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:82
-msgid "Shopmark Display"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:82
-msgid "By adjusting the display settings you might determine where to show or hide your shopmarks e.g. the tax notice on single product pages."
-msgstr ""
-
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:100
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:400
-msgid "Location"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:100
-msgid "Adjust the location of the shopmark by selecting a location from the list. Some Themes might apply the locations at different positions that's why the result may differ from Theme to Theme."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:113
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:415
-msgid "Priority"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:113
-msgid "Many different information may be attached to the location selected. By adjusting the priority you can choose whether the shopmark gets applied earlier (lower) or later (higher)."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:131
-#: includes/admin/views/html-page-status-germanized.php:61
-msgid "Default Delivery Time"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:131
-msgid "Choose a delivery time that serves as fallback in case no delivery time was added to the product."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:144
-msgid "You may want to adjust the delivery time output format. You might use {delivery_time} to output the current product's delivery time."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:162
-msgid "Default Price Label"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:162
-msgid "Price labels are added to sale products to inform the customers of the different prices' meaning. You may add a fallback label in case a product does not contain a label."
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:207
 msgid "Adjust Product Widgets & Blocks visibility options."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:211
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:104
 #, php-format
 msgid "Adjust %s visibility options and choose which shopmarks to be displayed at which locations."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:226
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:119
 msgid "Widgets & Blocks"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:227
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:120
 msgid "Shipping Costs notice"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:234
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:127
 msgid "Tax Info"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:255
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:311
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:148
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:204
 msgid "Delivery Time Notice"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:271
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:343
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:164
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:236
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-deposit-packaging-type.php:10
 msgid "Deposit Packaging Type"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:319
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:212
 msgid "Short Description"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:373
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:266
 #, php-format
 msgid "Show %s shopmark"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:381
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:274
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
 msgid "Tax"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:382
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:275
 msgid "Show Tax shopmark"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:390
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:461
-#: includes/wc-gzd-core-functions.php:419
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:283
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:354
+#: includes/wc-gzd-core-functions.php:428
 msgid "Shipping Costs"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:391
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:284
 msgid "Show Shipping Costs shopmark"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:401
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:294
 msgid "Choose a location for the shopmark. Locations are mapped to specific WooCommerce hooks and may differ from Theme to Theme."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:416
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:309
 #, php-format
 msgid "Choose a priority by which the shopmark should be attached to the location. The higher the priority, the later the shopmark will be attached. Defaults to %d."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:441
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:334
 msgid "Price Ranges"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:447
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:340
 msgid "Price Range Format"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:448
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:341
 msgid "Adjust the price range format e.g. for variable products. Use {min_price} as placeholder for the minimum price. Use {max_price} as placeholder for the maximum price."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:452
-#: includes/wc-gzd-core-functions.php:1133
-#: includes/wc-gzd-core-functions.php:1137
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:345
+#: includes/wc-gzd-core-functions.php:1142
+#: includes/wc-gzd-core-functions.php:1146
 msgid "{min_price} &ndash; {max_price}"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:468
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:361
 msgid "This text will be used to inform the customer about shipping costs. Use {link}{/link} to insert link to shipping costs page."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:473
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:366
 msgid "plus {link}Shipping Costs{/link}"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:476
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:369
 msgid "Free Shipping Text"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:477
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:370
 msgid "This text will be used to inform the customer about free shipping. Leave empty to disable notice. Use {link}{/link} to insert link to shipping costs page."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:485
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:625
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:378
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:518
 msgid "Hide Notice"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:486
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:379
 msgid "Select product types for which you might want to disable the shipping costs notice."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:501
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:783
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:394
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:716
 msgid "Footer"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:507
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:400
 msgid "Notice"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:508
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:401
 msgid "Attach a global VAT notice to your footer."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:515
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:408
 msgid "Attach a global sale price notice to your footer."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:546
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:439
 msgid "Same as global fallback"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:563
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:456
 msgid "Fallback"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:564
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:457
 msgid "This delivery time will be added to every product if no delivery time has been chosen individually"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:571
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:582
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:593
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:464
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:475
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:486
 msgid "Manage Delivery Times"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:574
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:467
 msgid "Fallback EU Countries"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:575
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:468
 msgid "This delivery time will serve as a fallback for EU countries other than your base country."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:585
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:478
 msgid "Fallback Third Countries"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:586
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:479
 msgid "This delivery time will serve as a fallback for third countries other than your base country."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:597
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:490
 msgid "This text will be used to indicate delivery time for products. Use {delivery_time} as placeholder. Use {stock_status} to output the current stock status."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:601
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:494
 msgid "Delivery time: {delivery_time}"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:604
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:497
 msgid "Digital text"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:608
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:501
 msgid "Enter a text which will be shown as digital delivery time text (replacement for default digital time on digital products)."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:611
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:504
 msgid "Backorder"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:612
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:505
 msgid "Hide delivery time if a product is on backorder."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:618
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:511
 msgid "Not in Stock"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:619
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:512
 msgid "Hide delivery time if a product is not in stock."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:626
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:519
 msgid "Select product types for which you might want to disable the delivery time notice."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:668
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:561
 msgid "This text will be used to display the deposit notice. Use {amount} to insert the deposit amount. {type} for the deposit type name, {amount_per_unit} for the deposit amount per unit, {packaging_type} for the packaging type and {quantity} for the deposit quantity."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:672
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:565
 msgid "plus {amount} deposit"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:675
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:568
 msgid "Packaging Font Size"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:676
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:569
 #, php-format
 msgid "Adjust the packaging type title font size which must <a href=\"%s\" target=\"_blank\">at least correspond to the price labeling</a> for the respective product."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:701
-#, php-format
-msgid "Want to sell your food in a legally compliant way? Include nutrients, allergenes, ingredients, the Nutri-Score, deposits and more. %1$sUpgrade to %2$spro%3$s%4$s"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:723
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:656
 msgid "This text will be used to display the unit price. Use {price} to insert the price. If you want to specifically format unit price output use {base}, {unit} and {unit_price} as placeholders."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:727
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:660
 msgid "{price}"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:730
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:663
 msgid "Product units format"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:731
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:664
 msgid "This text will be used to display the product units. Use {product_units} to insert the amount of product units. Use {unit} to insert the unit. Optionally display the formatted unit price with {unit_price}."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:735
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:668
 msgid "Product contains: {product_units} {unit}"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:738
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:671
 msgid "Variable Unit Price"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:739
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:672
 msgid "Enable price range unit prices for variable products."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:770
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:703
 msgid "Enable legal guarantee"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:771
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:704
 msgid "Enable the EU legal guarantee label."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:771
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:704
 msgid "Disable this option if your shop does not need to show the label at all, e.g. virtual products/b2b only."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:777
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:710
 msgid "Global display"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:778
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:711
 msgid "Choose location(s) where the harmonised notice on the legal guarantee of conformity should be displayed. Disable the default display options if you want to place the label manually, e.g. via shortcode, block, price label or custom code."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:785
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:718
 #: src/Shopmarks.php:607
 msgid "Cart"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:786
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:719
 msgid "Product description (after)"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:792
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:808
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:725
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:741
 msgid "Display variant"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:793
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:726
 msgid "Choose a default display variant for the legal guarantee label. Both preview and link options open a popover containing a larger version of the label on user interaction. Please note that, from a legal standpoint, the link option is not currently recommended."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:801
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:734
 msgid "Enable GARAN label"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:802
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:735
 msgid "Enable the EU GARAN label."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:802
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:735
 msgid "This label shows on a per-product basis. Make sure that any product applicable has a legal guarantee of > 24 months set, a manufacturer linked and a valid model id (GTIN, MPN or SKU). Disable this option if your shop does not need to show the label at all, e.g. virtual products/b2b only."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:809
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:742
 msgid "Choose a default display variant for the GARAN label. The nested option shows a preview version of the full label and opens a popover containing the full label on user interaction."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:817
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:750
 msgid "Model id"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:818
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:751
 msgid "Choose a default property that is being used to determine the GARAN label model id. If no valid model id is found, a fallback value is determined based on the GTIN, MPN, and SKU (in that order)."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:842
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:775
 msgid "Fallback Strike Price Label"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:849
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:859
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:782
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:792
 msgid "Manage Price Labels"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:849
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:782
 msgid "Choose whether you would like to have a default strike price label to inform the customer about the regular price (e.g. Recommended Retail Price)."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:852
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:785
 msgid "Fallback Sale Price Label"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:859
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:792
 msgid "Choose whether you would like to have a default sale price label to inform the customer about the sale price (e.g. New Price)."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:863
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:796
 #: src/Shopmarks.php:603
 msgid "Single Product"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:864
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:797
 msgid "Show price labels on single product page."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:871
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:804
 msgid "Loop"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:872
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:805
 msgid "Show price labels in product loops."
 msgstr ""
 
@@ -4807,12 +5053,8 @@ msgid "Taxes"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:30
-#: includes/wc-gzd-core-functions.php:642
+#: includes/wc-gzd-core-functions.php:651
 msgid "VAT"
-msgstr ""
-
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:31
-msgid "Additional Costs"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:32
@@ -4864,160 +5106,175 @@ msgstr ""
 msgid "VAT ID"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:103
-#, php-format
-msgid "%1$sUpgrade to %2$spro%3$s%4$s to unlock this feature and enjoy professional support."
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:108
+msgid "VAT ID check with Germanized Pro"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:109
+msgid "Let business customers enter their VAT ID within the checkout and verify it automatically."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:111
+msgid "Automatic VAT ID validation via the VIES interface"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:112
+msgid "Tax-free intra-community deliveries (reverse charge) for valid VAT IDs"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:113
+msgid "VAT ID field within the checkout, registration and customer account"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
 #, php-format
 msgid "By choosing this option shipping cost and fee taxes will be calculated based on the tax rates included within the cart. The tax share is calculated based on net prices. Further information can be found <a href=\"%1$s\" target=\"_blank\">here</a>. %2$s"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
 msgid "Product"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
 msgid "Price"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
 msgid "Price (net)"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
 msgid "Tax rate"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
 msgid "Share"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
 msgid "Book"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
 msgid "DVD"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
 msgid "Shipping"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
 #, php-format
 msgid "By choosing this option shipping cost and fee taxes will be calculated based on the tax class of the detected main service. %1$s Further information can be found <a href=\"%2$s\" target=\"_blank\">here</a>. %3$s"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
 msgid "The main service is detected by choosing the line item with the highest total net amount."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
 msgid "The main service is detected by choosing the line item with the highest tax rate."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:133
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
 msgid "Tax calculation mode"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:134
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:171
 msgid "Select the tax calculation mode for your additional costs (shipping, fees)."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:140
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:177
 msgid "WooCommerce default"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:141
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:178
 msgid "Proportionate"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:142
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:179
 msgid "Based on main service"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:147
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:184
 msgid "Detect Main Service by"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:148
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:185
 msgid "Choose how to detect the main service."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:157
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:194
 msgid "Highest net amount"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:195
 msgid "Highest tax rate"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:163
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:173
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:184
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:200
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:210
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:221
 msgid "Example"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:211
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:248
 msgid "Taxation Notice"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:212
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:249
 msgid "Enable differential taxation text notice beneath product price."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:212
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:249
 msgid "If you have disabled this option, a normal VAT notice will be displayed, which is sufficient as Trusted Shops states. To further inform your customers you may enable this notice."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:218
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:255
 msgid "Mixed carts"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:219
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:256
 msgid "Disallow buying normal and differential taxed products at the same time."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:219
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:256
 #, php-format
 msgid "Shipping costs for differential taxed products may not be taxed (compare %s) or must be taxed separately which is impossible within a single order. This option will prevent your customers from buying normal products and differential taxed products at the same time to prevent taxation problems."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:219
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:256
 msgid "HK Hamburg"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:226
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:263
 msgid "This text will be shown as a further notice for the customer to inform him about differential taxation."
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:231
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:268
 msgid "incl. VAT (differential taxation according to §25a UStG.)"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:235
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:272
 msgid "Checkout & E-Mails"
 msgstr ""
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:236
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:273
 msgid "Enable differential taxation notice during checkout and in emails."
 msgstr ""
 
@@ -5027,6 +5284,26 @@ msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:21
 msgid "TOS Generator"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:35
+msgid "Terms & conditions generator with Germanized Pro"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:36
+msgid "Answer a few questions about your shop and let our API generate your terms & conditions."
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:38
+msgid "Terms & conditions tailored to your shop via a simple questionnaire"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:39
+msgid "Insert the generated text directly into your terms page"
+msgstr ""
+
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:40
+msgid "Regenerate your terms at any time"
 msgstr ""
 
 #: includes/admin/settings/class-wc-gzd-settings-tab-trusted-shops.php:25
@@ -5056,7 +5333,7 @@ msgstr ""
 #: includes/admin/settings/views/html-admin-page-checkboxes.php:12
 #: includes/admin/settings/views/html-admin-settings-tabs.php:55
 #: includes/class-wc-gzd-legal-checkbox.php:927
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1026
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1061
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:133
 msgid "Description"
 msgstr ""
@@ -5644,7 +5921,7 @@ msgstr ""
 #: includes/api/class-wc-gzd-rest-customers-controller.php:173
 #: includes/api/class-wc-gzd-rest-orders-controller.php:175
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:67
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1022
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1057
 #: includes/gateways/direct-debit/views/html-export.php:30
 msgid "Direct Debit"
 msgstr ""
@@ -5655,10 +5932,10 @@ msgstr ""
 #: includes/class-wc-gzd-privacy.php:134
 #: includes/class-wc-gzd-privacy.php:187
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:139
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:694
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1048
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1177
-#: src/Blocks/Checkout.php:535
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:717
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1083
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1212
+#: src/Blocks/Checkout.php:584
 msgid "Account Holder"
 msgstr ""
 
@@ -5668,11 +5945,11 @@ msgstr ""
 #: includes/class-wc-gzd-privacy.php:135
 #: includes/class-wc-gzd-privacy.php:188
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:146
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:695
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1056
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1181
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1307
-#: src/Blocks/Checkout.php:541
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:718
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1091
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1216
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1342
+#: src/Blocks/Checkout.php:590
 #: build/wc-gzd-payment-method-direct-debit.js:1
 #: build/wc-gzd-payment-method-direct-debit.js:1483
 msgid "IBAN"
@@ -5684,10 +5961,10 @@ msgstr ""
 #: includes/class-wc-gzd-privacy.php:136
 #: includes/class-wc-gzd-privacy.php:189
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:153
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:696
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1185
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1308
-#: src/Blocks/Checkout.php:547
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:719
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1220
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1343
+#: src/Blocks/Checkout.php:596
 #: build/wc-gzd-payment-method-direct-debit.js:1
 #: build/wc-gzd-payment-method-direct-debit.js:1492
 msgid "BIC/SWIFT"
@@ -5731,7 +6008,7 @@ msgstr ""
 
 #: includes/api/class-wc-gzd-rest-orders-controller.php:195
 #: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:160
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:700
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:723
 msgid "Mandate Reference ID"
 msgstr ""
 
@@ -6079,7 +6356,7 @@ msgstr ""
 msgid "Ingredients"
 msgstr ""
 
-#: includes/api/class-wc-gzd-rest-products-controller.php:771
+#: includes/api/class-wc-gzd-rest-products-controller.php:778
 msgid "Define if the attribute is visible during cart/checkout."
 msgstr ""
 
@@ -6093,39 +6370,39 @@ msgstr ""
 msgid "%s [new]"
 msgstr ""
 
-#: includes/class-wc-gzd-checkout.php:512
-#: includes/class-wc-gzd-checkout.php:518
-#: src/Blocks/Checkout.php:349
+#: includes/class-wc-gzd-checkout.php:654
+#: includes/class-wc-gzd-checkout.php:660
+#: src/Blocks/Checkout.php:398
 msgid "Please check the street field and make sure to provide a valid street number."
 msgstr ""
 
-#: includes/class-wc-gzd-checkout.php:647
+#: includes/class-wc-gzd-checkout.php:789
 msgid "Sorry, but differential taxed products cannot be purchased with normal products at the same time."
 msgstr ""
 
-#: includes/class-wc-gzd-checkout.php:652
+#: includes/class-wc-gzd-checkout.php:794
 msgid "Sorry, but normal products cannot be purchased together with differential taxed products at the same time."
 msgstr ""
 
-#: includes/class-wc-gzd-checkout.php:762
+#: includes/class-wc-gzd-checkout.php:906
 msgid "The customer has opted-in to the parcel delivery checkbox."
 msgstr ""
 
-#: includes/class-wc-gzd-checkout.php:766
+#: includes/class-wc-gzd-checkout.php:910
 msgid "This order applies for a photovoltaic systems VAT exemption."
 msgstr ""
 
-#: includes/class-wc-gzd-checkout.php:770
+#: includes/class-wc-gzd-checkout.php:914
 #, php-format
 msgid "A minimum age of %s years is required for this order."
 msgstr ""
 
-#: includes/class-wc-gzd-checkout.php:1559
-#: includes/wc-gzd-core-functions.php:805
+#: includes/class-wc-gzd-checkout.php:1703
+#: includes/wc-gzd-core-functions.php:814
 msgid "Mr."
 msgstr ""
 
-#: includes/class-wc-gzd-checkout.php:1560
+#: includes/class-wc-gzd-checkout.php:1704
 msgctxt "customer-title-male-address"
 msgid "Mr."
 msgstr ""
@@ -6152,17 +6429,17 @@ msgstr ""
 msgid "%1$d update functions completed. Database version is %2$s"
 msgstr ""
 
-#: includes/class-wc-gzd-coupon-helper.php:784
-#: woocommerce-germanized.php:1359
+#: includes/class-wc-gzd-coupon-helper.php:794
+#: woocommerce-germanized.php:1361
 #, php-format
 msgid "Voucher: %1$s"
 msgstr ""
 
-#: includes/class-wc-gzd-coupon-helper.php:1071
+#: includes/class-wc-gzd-coupon-helper.php:1081
 msgid "Is voucher?"
 msgstr ""
 
-#: includes/class-wc-gzd-coupon-helper.php:1072
+#: includes/class-wc-gzd-coupon-helper.php:1082
 #, php-format
 msgid "Whether or not this coupon is a voucher which has been sold to a customer without VAT and needs to be taxed as soon as the customer redeems the voucher. Find more information <a href=\"%s\" target=\"_blank\">here</a>."
 msgstr ""
@@ -6225,13 +6502,13 @@ msgstr ""
 msgid "Thank you. You have successfully activated your account."
 msgstr ""
 
-#: includes/class-wc-gzd-customer-helper.php:1014
-#: includes/class-wc-gzd-customer-helper.php:1038
-#: includes/class-wc-gzd-customer-helper.php:1152
+#: includes/class-wc-gzd-customer-helper.php:1066
+#: includes/class-wc-gzd-customer-helper.php:1090
+#: includes/class-wc-gzd-customer-helper.php:1204
 msgid "Invalid activation key"
 msgstr ""
 
-#: includes/class-wc-gzd-customer-helper.php:1147
+#: includes/class-wc-gzd-customer-helper.php:1199
 msgid "Expired activation key"
 msgstr ""
 
@@ -6261,7 +6538,7 @@ msgctxt "deposit-tax-status"
 msgid "None"
 msgstr ""
 
-#: includes/class-wc-gzd-deprecated-product-attribute-helper.php:129
+#: includes/class-wc-gzd-deprecated-product-attribute-helper.php:136
 #: includes/class-wc-gzd-product-attribute-helper.php:126
 msgid "Visible during checkout"
 msgstr ""
@@ -6398,97 +6675,97 @@ msgstr ""
 msgid "Other Vitamins & Minerals"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:442
+#: includes/class-wc-gzd-install.php:443
 #, php-format
 msgctxt "shipments-migration"
 msgid "Error while querying %1$s: %2$s"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:468
+#: includes/class-wc-gzd-install.php:469
 #, php-format
 msgctxt "shipments-migration"
 msgid "Error while running additional query on %1$s: %2$s"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:515
+#: includes/class-wc-gzd-install.php:516
 #, php-format
 msgctxt "shipments-migration"
 msgid "Could not rename %1$s to %2$s."
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:552
+#: includes/class-wc-gzd-install.php:553
 msgid "Please install WooCommerce before installing WooCommerce Germanized. Thank you!"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1004
-#: includes/class-wc-gzd-install.php:1056
+#: includes/class-wc-gzd-install.php:1005
+#: includes/class-wc-gzd-install.php:1057
 msgctxt "Page slug"
 msgid "data-security"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1005
-#: includes/class-wc-gzd-install.php:1058
+#: includes/class-wc-gzd-install.php:1006
+#: includes/class-wc-gzd-install.php:1059
 msgctxt "Page title"
 msgid "Privacy Policy"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1009
+#: includes/class-wc-gzd-install.php:1010
 msgctxt "Page slug"
 msgid "imprint"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1010
+#: includes/class-wc-gzd-install.php:1011
 msgctxt "Page title"
 msgid "Imprint"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1014
+#: includes/class-wc-gzd-install.php:1015
 msgctxt "Page slug"
 msgid "terms"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1015
+#: includes/class-wc-gzd-install.php:1016
 msgctxt "Page title"
 msgid "Terms & Conditions"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1019
+#: includes/class-wc-gzd-install.php:1020
 msgctxt "Page slug"
 msgid "revocation"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1020
+#: includes/class-wc-gzd-install.php:1021
 msgctxt "Page title"
 msgid "Cancellation Policy"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1024
+#: includes/class-wc-gzd-install.php:1025
 msgctxt "Page slug"
 msgid "shipping-methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1025
+#: includes/class-wc-gzd-install.php:1026
 msgctxt "Page title"
 msgid "Shipping Methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1029
+#: includes/class-wc-gzd-install.php:1030
 msgctxt "Page slug"
 msgid "payment-methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1030
+#: includes/class-wc-gzd-install.php:1031
 msgctxt "Page title"
 msgid "Payment Methods"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1034
+#: includes/class-wc-gzd-install.php:1035
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:15
 msgctxt "Page slug"
 msgid "review-authenticity"
 msgstr ""
 
-#: includes/class-wc-gzd-install.php:1035
+#: includes/class-wc-gzd-install.php:1036
 #: includes/updates/woocommerce-gzd-update-3.9.3.php:16
 msgctxt "Page title"
 msgid "Review Authenticity"
@@ -6676,34 +6953,34 @@ msgstr ""
 msgid "Obtain customers' consent to receive a review invitation."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1001
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1004
 msgid "Register form"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1002
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1005
 msgid "Pay for order"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1003
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1006
 msgid "Reviews"
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1090
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1093
 #, php-format
 msgid "Checkbox location %s does not exist."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1122
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1125
 #, php-format
 msgid "Please make sure to check %s checkbox."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1127
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1130
 #, php-format
 msgid "Checkbox with name %s does already exist."
 msgstr ""
 
-#: includes/class-wc-gzd-legal-checkbox-manager.php:1480
+#: includes/class-wc-gzd-legal-checkbox-manager.php:1483
 #, php-format
 msgid "Opted in on %1$s @ %2$s from %3$s"
 msgstr ""
@@ -6781,6 +7058,26 @@ msgstr ""
 msgid "Optionally, include a note within the email notification if the customer has given their consent."
 msgstr ""
 
+#: includes/class-wc-gzd-legal-checkbox.php:1013
+msgid "More checkbox options with Germanized Pro"
+msgstr ""
+
+#: includes/class-wc-gzd-legal-checkbox.php:1015
+msgid "Add new checkboxes and edit or delete your own, custom checkboxes"
+msgstr ""
+
+#: includes/class-wc-gzd-legal-checkbox.php:1016
+msgid "Show checkboxes for specific countries, product categories, payment methods or customer groups only"
+msgstr ""
+
+#: includes/class-wc-gzd-legal-checkbox.php:1017
+msgid "Store the checkbox status within the order"
+msgstr ""
+
+#: includes/class-wc-gzd-legal-checkbox.php:1018
+msgid "Customize the HTML elements (template, id, name and classes)"
+msgstr ""
+
 #: includes/class-wc-gzd-manufacturer.php:103
 #: build/product-defect-description-frontend.js:1
 #: build/product-delivery-time-frontend.js:1
@@ -6818,11 +7115,15 @@ msgstr ""
 msgid "Person responsible for the EU"
 msgstr ""
 
-#: includes/class-wc-gzd-order-helper.php:629
+#: includes/class-wc-gzd-order-helper.php:315
+msgid "Amounts include tax, and percentages apply to the order items after discounts, including tax."
+msgstr ""
+
+#: includes/class-wc-gzd-order-helper.php:904
 msgid "Order fully refunded."
 msgstr ""
 
-#: includes/class-wc-gzd-order-helper.php:635
+#: includes/class-wc-gzd-order-helper.php:910
 msgid "Order status set to refunded. To return funds to the customer you will need to issue a refund through your payment gateway."
 msgstr ""
 
@@ -7230,7 +7531,7 @@ msgid "Available placeholders: %s"
 msgstr ""
 
 #: includes/emails/class-wc-gzd-email-customer-cancelled-order.php:208
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1013
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1048
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:120
 msgid "Enable/Disable"
 msgstr ""
@@ -7650,202 +7951,202 @@ msgstr ""
 msgid "SEPA XML Export"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:589
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:612
 #, php-format
 msgid "Order %s"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:623
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:646
 msgid "Will be notified separately"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:715
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:738
 #, php-format
 msgid "We will debit %1$s from your account by direct debit on or shortly after %2$s."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:909
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:958
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:990
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:932
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:981
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1013
 msgid "a single payment"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1015
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1050
 msgid "Enable Direct Debit Payment"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1019
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1054
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:126
 msgctxt "gateway"
 msgid "Title"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1021
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1056
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:128
 msgid "This controls the title which the user sees during checkout."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1028
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1063
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:135
 msgid "Payment method description that the customer will see on your checkout."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1029
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1064
 msgid "The order amount will be debited directly from your bank account."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1033
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1068
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:140
 msgid "Instructions"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1035
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1070
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:142
 msgid "Instructions that will be added to the thank you page and emails."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1040
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1075
 msgid "Debtee"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1042
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1077
 msgid "Insert your company information."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1044
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1079
 msgid "Company Inc, John Doe Street, New York"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1050
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1085
 msgid "Insert the bank account holder name."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1052
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1087
 msgid "Company Inc"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1058
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1093
 msgid "Insert the bank account IBAN."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1063
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1098
 msgid "BIC"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1065
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1100
 msgid "Insert the bank account BIC."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1070
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1105
 msgid "Debtee identification number"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1072
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1107
 #, php-format
 msgid "Insert your debtee indentification number. More information can be found <a href=\"%s\">here</a>."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1076
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1111
 msgid "Generate Mandate ID"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1078
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1113
 msgid "Automatically generate Mandate ID."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1079
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1114
 msgid "Automatically generate Mandate ID after order completion (based on Order ID)."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1083
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1118
 msgid "XML Pain Format"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1085
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1120
 msgid "You may adjust the XML Export Pain Schema to your banks needs. Some banks may require pain.001.003.03 or the older pain.008.001.02 format."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1089
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1124
 msgid "Mandate ID Format"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1091
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1126
 msgid "You may extend the Mandate ID format by adding a prefix and/or suffix. Use {id} as placeholder to insert the automatically generated ID."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1095
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1130
 msgid "Mandate Text"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1097
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1132
 msgid "This text will be populated with live order/checkout data. Will be used as preview direct debit mandate and as email template text."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1103
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1138
 msgid "Enable pre-notification"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1104
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1139
 msgid "Insert pre-notification text within the order confirmation email."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1106
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1141
 msgid "This option inserts a standard text containing a pre-notification for the customer."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1110
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1145
 msgid "Debit days"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1112
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1147
 msgid "This option is used to calculate the debit date and is added to the order date."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1116
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1151
 msgid "Mask IBAN"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1117
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1152
 msgid "Mask the IBAN within emails."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1119
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1154
 msgid "This will lead to masked IBANs within emails (replaced by *). All but last 4 digits will be masked."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1129
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1164
 msgid "Remember"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1130
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1165
 msgid "Remember account data for returning customers."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1132
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1167
 msgid "Save account data as user meta if user has/creates a customer account."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1239
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1274
 msgid "Please insert your SEPA account data."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1260
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1295
 msgid "Your IBAN seems to be invalid."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1262
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1297
 msgid "Your IBAN's country code doesn’t match with your billing country."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1267
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1302
 msgid "Your BIC seems to be invalid."
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1309
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1344
 msgid "is invalid"
 msgstr ""
 
-#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1379
+#: includes/gateways/direct-debit/class-wc-gzd-gateway-direct-debit.php:1414
 msgid "Awaiting Direct Debit Payment"
 msgstr ""
 
@@ -7878,6 +8179,10 @@ msgstr ""
 
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:97
 msgid "Automatically generate invoices for this gateway?"
+msgstr ""
+
+#: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:98
+msgid "Enjoy access to even more professional features such as (e-)invoices, delivery notes, an interface to generate legal texts, a multi-level checkout, VAT ID verification, and, of course, professional support!"
 msgstr ""
 
 #: includes/gateways/invoice/class-wc-gzd-gateway-invoice.php:101
@@ -7932,110 +8237,110 @@ msgstr ""
 msgid "To finish the order you have to accept to our {term_link}Terms and Conditions{/term_link}, {revocation_link}Right of Recission{/revocation_link} and our {data_security_link}Privacy Policy{/data_security_link}."
 msgstr ""
 
-#: includes/wc-gzd-cart-functions.php:784
+#: includes/wc-gzd-cart-functions.php:800
 msgid "For physical products: Please mind the following notice on your legal guarantee rights:"
 msgstr ""
 
-#: includes/wc-gzd-cart-functions.php:787
+#: includes/wc-gzd-cart-functions.php:803
 msgid "For physical products:"
 msgstr ""
 
-#: includes/wc-gzd-cart-functions.php:798
+#: includes/wc-gzd-cart-functions.php:814
 msgid "§12 paragraph 3 UStG"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:266
+#: includes/wc-gzd-core-functions.php:275
 msgid ">= 12 years"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:267
+#: includes/wc-gzd-core-functions.php:276
 msgid ">= 16 years"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:268
+#: includes/wc-gzd-core-functions.php:277
 msgid ">= 18 years"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:269
+#: includes/wc-gzd-core-functions.php:278
 msgid ">= 21 years"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:270
+#: includes/wc-gzd-core-functions.php:279
 msgid ">= 25 years"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:276
+#: includes/wc-gzd-core-functions.php:285
 msgctxt "age"
 msgid "None"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:447
+#: includes/wc-gzd-core-functions.php:456
 msgid "Product Warranties"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:450
+#: includes/wc-gzd-core-functions.php:459
 msgid "EU Guarantee Labels"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:642
+#: includes/wc-gzd-core-functions.php:651
 #, php-format
 msgid "%s%% VAT"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:804
-#: includes/wc-gzd-core-functions.php:832
+#: includes/wc-gzd-core-functions.php:813
+#: includes/wc-gzd-core-functions.php:841
 msgctxt "title-option"
 msgid "None"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:806
-#: includes/wc-gzd-core-functions.php:826
+#: includes/wc-gzd-core-functions.php:815
+#: includes/wc-gzd-core-functions.php:835
 msgid "Ms."
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:807
-#: includes/wc-gzd-core-functions.php:832
+#: includes/wc-gzd-core-functions.php:816
+#: includes/wc-gzd-core-functions.php:841
 msgid "Mx"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:1086
+#: includes/wc-gzd-core-functions.php:1095
 msgid "More variants available"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:1150
-#: includes/wc-gzd-core-functions.php:1169
+#: includes/wc-gzd-core-functions.php:1159
+#: includes/wc-gzd-core-functions.php:1178
 msgctxt "eu-label-variant"
 msgid "Full"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:1151
+#: includes/wc-gzd-core-functions.php:1160
 msgctxt "eu-label-variant"
 msgid "Preview"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:1152
+#: includes/wc-gzd-core-functions.php:1161
 msgctxt "eu-label-variant"
 msgid "Link"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:1162
+#: includes/wc-gzd-core-functions.php:1171
 msgid "SKU"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:1170
+#: includes/wc-gzd-core-functions.php:1179
 msgctxt "eu-label-variant"
 msgid "Nested"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:1308
+#: includes/wc-gzd-core-functions.php:1317
 msgid "Your legal guarantee rights: Minimum two-year legal guarantee protection for goods sold in the European Union."
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:1315
 #: includes/wc-gzd-core-functions.php:1324
-#: includes/wc-gzd-core-functions.php:1327
-#: includes/wc-gzd-core-functions.php:1337
-#: includes/wc-gzd-core-functions.php:1340
+#: includes/wc-gzd-core-functions.php:1333
+#: includes/wc-gzd-core-functions.php:1336
+#: includes/wc-gzd-core-functions.php:1346
+#: includes/wc-gzd-core-functions.php:1349
 #: build/cart.js:1
 #: build/checkout.js:1
 #: build/product-defect-description-frontend.js:1
@@ -8078,7 +8383,7 @@ msgstr ""
 msgid "Your legal guarantee rights"
 msgstr ""
 
-#: includes/wc-gzd-core-functions.php:1838
+#: includes/wc-gzd-core-functions.php:1847
 #, php-format
 msgctxt "defect-descriptions"
 msgid "%1$s (%2$s)"
@@ -8163,86 +8468,86 @@ msgstr ""
 msgid "Your installation of Germanized is incomplete. If you installed Germanized from GitHub, %1$splease refer to this document%2$s to set up your development environment."
 msgstr ""
 
-#: src/Blocks/Checkout.php:408
+#: src/Blocks/Checkout.php:457
 msgid "Whether the cart applies for a photovoltaic system vat exempt or not."
 msgstr ""
 
-#: src/Blocks/Checkout.php:414
+#: src/Blocks/Checkout.php:463
 msgid "The current cart's photovoltaic system law details."
 msgstr ""
 
-#: src/Blocks/Checkout.php:420
+#: src/Blocks/Checkout.php:469
 msgid "The actual law, e.g. paragraph."
 msgstr ""
 
-#: src/Blocks/Checkout.php:426
+#: src/Blocks/Checkout.php:475
 msgid "The URL to the law."
 msgstr ""
 
-#: src/Blocks/Checkout.php:434
+#: src/Blocks/Checkout.php:483
 msgid "Whether the cart needs a EU legal guarantee label or not."
 msgstr ""
 
-#: src/Blocks/Checkout.php:440
+#: src/Blocks/Checkout.php:489
 msgid "Cart shipping costs notice."
 msgstr ""
 
-#: src/Blocks/Checkout.php:446
-#: src/Blocks/Checkout.php:603
+#: src/Blocks/Checkout.php:495
+#: src/Blocks/Checkout.php:652
 msgid "List of cart checkboxes."
 msgstr ""
 
-#: src/Blocks/Checkout.php:454
-#: src/Blocks/Checkout.php:610
+#: src/Blocks/Checkout.php:503
+#: src/Blocks/Checkout.php:659
 msgid "Unique identifier for the checkbox within the cart."
 msgstr ""
 
-#: src/Blocks/Checkout.php:460
+#: src/Blocks/Checkout.php:509
 msgid "Checkbox name."
 msgstr ""
 
-#: src/Blocks/Checkout.php:466
+#: src/Blocks/Checkout.php:515
 msgid "Checkbox label."
 msgstr ""
 
-#: src/Blocks/Checkout.php:472
-#: src/Blocks/Checkout.php:616
+#: src/Blocks/Checkout.php:521
+#: src/Blocks/Checkout.php:665
 msgid "Checkbox checked status."
 msgstr ""
 
-#: src/Blocks/Checkout.php:478
+#: src/Blocks/Checkout.php:527
 msgid "Checkbox hidden by default."
 msgstr ""
 
-#: src/Blocks/Checkout.php:484
+#: src/Blocks/Checkout.php:533
 msgid "Checkbox error message."
 msgstr ""
 
-#: src/Blocks/Checkout.php:490
+#: src/Blocks/Checkout.php:539
 msgid "Show for specific payment methods only."
 msgstr ""
 
-#: src/Blocks/Checkout.php:496
+#: src/Blocks/Checkout.php:545
 msgid "Wrapper classes."
 msgstr ""
 
-#: src/Blocks/Checkout.php:502
+#: src/Blocks/Checkout.php:551
 msgid "Custom styles."
 msgstr ""
 
-#: src/Blocks/Checkout.php:508
+#: src/Blocks/Checkout.php:557
 msgid "HTML field id."
 msgstr ""
 
-#: src/Blocks/Checkout.php:514
+#: src/Blocks/Checkout.php:563
 msgid "Whether to show a checkbox field or not."
 msgstr ""
 
-#: src/Blocks/Checkout.php:520
+#: src/Blocks/Checkout.php:569
 msgid "Whether the checkbox is required or not."
 msgstr ""
 
-#: src/Blocks/Checkout.php:529
+#: src/Blocks/Checkout.php:578
 msgid "Direct debit customer data."
 msgstr ""
 
@@ -8909,12 +9214,12 @@ msgstr ""
 msgid "upgrade"
 msgstr ""
 
-#: woocommerce-germanized.php:379
+#: woocommerce-germanized.php:381
 #, php-format
 msgid "This version of the Corona Helper Plugin includes a bug which could lead to tax rates being added multiple times. Please <a href=\"%1$s\">deactivate</a> the plugin and check our <a href=\"%2$s\" target=\"_blank\">blog post</a>."
 msgstr ""
 
-#: woocommerce-germanized.php:1342
+#: woocommerce-germanized.php:1344
 msgid "Please wait while we are trying to redirect you to the payment provider."
 msgstr ""
 
