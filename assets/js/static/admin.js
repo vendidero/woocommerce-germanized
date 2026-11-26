@@ -18,6 +18,7 @@ window.germanized = window.germanized || {};
                 .on( 'change gzd_show_or_hide_fields', '.wc-gzd-admin-settings :input', this.onChangeInput );
 
             $( '.wc-gzd-admin-settings :input' ).trigger( 'gzd_show_or_hide_fields' );
+            self.updateSectionVisibility();
         },
 
         onInputToogleClick: function() {
@@ -109,6 +110,50 @@ window.germanized = window.germanized || {};
                 } else {
                     $field.addClass( 'wc-gzd-setting-invisible' );
                 }
+            } );
+
+            if ( $dependentFields.length > 0 ) {
+                self.updateSectionVisibility();
+            }
+        },
+
+        /**
+         * Hide section titles (and descriptions) in case none of the settings
+         * of the section is visible, e.g. because they depend on a disabled option.
+         */
+        updateSectionVisibility: function() {
+            $( '.wc-gzd-admin-settings table.form-table' ).each( function() {
+                var $table = $( this ),
+                    $rows  = $table.find( '> tbody > tr' );
+
+                if ( $rows.length === 0 ) {
+                    return;
+                }
+
+                var hasVisibleRows = $rows.filter( function() {
+                    return ! $( this ).hasClass( 'wc-gzd-setting-invisible' );
+                } ).length > 0;
+
+                /**
+                 * Find the section title and description belonging to the table:
+                 * the previous siblings up to (and including) the next h2.
+                 */
+                var $sectionHeader = $();
+                var $prev          = $table.prev();
+
+                while ( $prev.length > 0 && ! $prev.is( 'table' ) ) {
+                    if ( $prev.is( 'h2, p' ) || $prev.is( '[id$="-description"]' ) ) {
+                        $sectionHeader = $sectionHeader.add( $prev );
+                    }
+
+                    if ( $prev.is( 'h2' ) ) {
+                        break;
+                    }
+
+                    $prev = $prev.prev();
+                }
+
+                $sectionHeader.toggleClass( 'wc-gzd-setting-section-invisible', ! hasVisibleRows );
             } );
         },
 
