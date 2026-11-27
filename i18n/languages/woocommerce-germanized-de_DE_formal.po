@@ -2659,7 +2659,7 @@ msgid ""
 msgstr ""
 "Aktivieren Sie diese Einstellung falls Sie NICHT an Verbraucher verkaufen. "
 "Wenn Sie diese Einstellung aktivieren, werden die EU Gewährleistungslabels "
-"und der Widerrrufsbutton vorerst deaktiviert."
+"und der Widerrufsbutton vorerst deaktiviert."
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:227
@@ -2742,7 +2742,7 @@ msgstr "Datenschutz"
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:157
 #: includes/wc-gzd-core-functions.php:427
 msgid "Payment Methods"
-msgstr "Zahlungarten"
+msgstr "Zahlungsarten"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-welcome.php:52
@@ -5118,10 +5118,7 @@ msgstr "Sie haben noch keine AGB? <a href=\"%s\">Jetzt generieren</a>!"
 msgid ""
 "This page should contain information regarding your customer's Right of "
 "Withdrawal."
-msgstr ""
-"Diese Seite sollte Ihre Widerrufsbelehrung enthalten. Nutzen Sie folgenden "
-"Shortcode um ein Widerrufsformular in die Seite einzubinden: "
-"[revocation_form]"
+msgstr "Diese Seite sollte Ihre Widerrufsbelehrung enthalten."
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:117
