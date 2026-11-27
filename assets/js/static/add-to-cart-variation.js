@@ -100,8 +100,18 @@
         var form     = event.data.GermanizedvariationForm,
             $wrapper = form.$wrapper;
 
+        /**
+         * Only reset elements which were actually modified by Germanized (tracked via jQuery data store)
+         * to prevent restoring (arbitrary) markup from elements which just carry the class name (e.g. post content).
+         */
         $wrapper.find( '.variation_gzd_modified' ).each( function() {
-            $( this ).wc_gzd_reset_content();
+            var $el = $( this );
+
+            if ( $el.hasClass( 'wc-gzd-additional-info-loop' ) || ! $.data( this, 'wc_gzd_has_o_content' ) ) {
+                return;
+            }
+
+            $el.wc_gzd_reset_content();
         } );
 
         $wrapper.find( '.variation_gzd_modified' ).remove();
@@ -209,9 +219,18 @@
         var $this = this.not( '.wc-gzd-additional-info-loop' );
         content = undefined === content ? '' : content;
 
-        if ( undefined === $this.attr( 'data-o_content' ) ) {
-            $this.attr( 'data-o_content', $this.html() );
-        }
+        /**
+         * Store the original content within the internal jQuery data store (jQuery.data(), which, contrary to $.fn.data(), never reads data-* attributes) instead of a DOM attribute
+         * to prevent (stored) markup from being injected via data attributes, e.g. from post content.
+         */
+        $this.each( function() {
+            var $el = $( this );
+
+            if ( ! $.data( this, 'wc_gzd_has_o_content' ) ) {
+                $.data( this, 'wc_gzd_o_content', $el.html() );
+                $.data( this, 'wc_gzd_has_o_content', true );
+            }
+        } );
 
         $this.html( content );
         $this.addClass( 'variation_modified variation_gzd_modified' ).attr( 'aria-hidden', 'false' ).removeClass( 'wc-gzd-additional-info-placeholder' ).show();
@@ -243,11 +262,16 @@
     $.fn.wc_gzd_reset_content = function() {
         var $this = this.not( '.wc-gzd-additional-info-loop' );
 
-        if ( undefined !== $this.attr( 'data-o_content' ) ) {
-            $this.html( $this.attr( 'data-o_content' ) );
+        $this.each( function() {
+            var $el = $( this );
 
-            $this.removeClass( 'variation_modified variation_gzd_modified' ).show();
-        }
+            if ( $.data( this, 'wc_gzd_has_o_content' ) ) {
+                $el.html( $.data( this, 'wc_gzd_o_content' ) );
+                $.removeData( this, 'wc_gzd_o_content' );
+                $.removeData( this, 'wc_gzd_has_o_content' );
+                $el.removeClass( 'variation_modified variation_gzd_modified' ).show();
+            }
+        } );
 
         if ( $this.is( ':empty' ) ) {
             $this.addClass( 'wc-gzd-additional-info-placeholder' ).attr( 'aria-hidden', 'true' ).hide();

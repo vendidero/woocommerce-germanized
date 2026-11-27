@@ -471,6 +471,19 @@
     GermanizedUnitPriceObserver.prototype.setUnitPriceLoading = function( self, $unit_price ) {
         var unitPriceOrg = $unit_price.html();
 
+        /**
+         * Store the original markup per element within the internal jQuery data store (jQuery.data(), which,
+         * contrary to $.fn.data(), never reads data-* attributes) - never restore markup from DOM attributes
+         * as these may be planted, e.g. via post content.
+         */
+        $unit_price.each( function() {
+            var $el = $( this );
+
+            if ( ! $el.hasClass( 'wc-gzd-loading' ) && undefined === $.data( this, 'wc_gzd_org_html' ) ) {
+                $.data( this, 'wc_gzd_org_html', $el.html() );
+            }
+        } );
+
         if ( ! $unit_price.hasClass( 'wc-gzd-loading' ) ) {
             if ( $unit_price.find( '.wc-gzd-placeholder-loading' ).length <= 0 ) {
                 var textWidth  = self.getTextWidth( $unit_price ),
@@ -484,22 +497,36 @@
             $unit_price.addClass( 'wc-gzd-loading' );
         }
 
-        $unit_price.data( 'org-html', unitPriceOrg );
-
         return unitPriceOrg;
     };
 
     GermanizedUnitPriceObserver.prototype.unsetUnitPriceLoading = function( self, $unit_price, newHtml ) {
-        newHtml = newHtml || $unit_price.data( 'org-html' );
+        if ( newHtml ) {
+            $unit_price.html( newHtml );
 
-        $unit_price.html( newHtml );
+            if ( typeof newHtml === "string" && newHtml.length > 0 ) {
+                $unit_price.show();
+            }
+        } else {
+            $unit_price.each( function() {
+                var orgHtml = $.data( this, 'wc_gzd_org_html' );
+
+                if ( undefined !== orgHtml ) {
+                    $( this ).html( orgHtml );
+
+                    if ( typeof orgHtml === "string" && orgHtml.length > 0 ) {
+                        $( this ).show();
+                    }
+                }
+            } );
+        }
+
+        $unit_price.each( function() {
+            $.removeData( this, 'wc_gzd_org_html' );
+        } );
 
         if ( $unit_price.hasClass( 'wc-gzd-loading' ) ) {
             $unit_price.removeClass( 'wc-gzd-loading' );
-        }
-
-        if ( typeof newHtml === "string" && newHtml.length > 0 ) {
-            $unit_price.show();
         }
     };
 
