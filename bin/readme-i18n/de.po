@@ -9,89 +9,25 @@ msgstr ""
 "Project-Id-Version: Plugins - Germanized for WooCommerce - Stable Readme (latest release)\n"
 
 #. Found in changelog list item.
-msgid "New: Checkout block: Automatically replace the WooCommerce terms block with the Germanized legal checkboxes block in case the legal checkboxes block has not been placed manually and at least one legal checkbox is enabled for the checkout. Use the woocommerce_gzd_checkout_block_replace_terms_block filter to disable the replacement."
-msgstr "New: Checkout block: Automatically replace the WooCommerce terms block with the Germanized legal checkboxes block in case the legal checkboxes block has not been placed manually and at least one legal checkbox is enabled for the checkout. Use the woocommerce_gzd_checkout_block_replace_terms_block filter to disable the replacement."
+msgid "Security: Potential Cross Site Scripting (XSS) through data-attribute in variation form - thanks to AndrewN for disclosing"
+msgstr "Security: Potential Cross Site Scripting (XSS) through data-attribute in variation form - thanks to AndrewN for disclosing"
 
 #. Found in changelog list item.
-msgid "Improvement: Performance improvements, e.g. persistently cache hook priorities (cleared on theme/plugin changes), autoload legal checkbox settings, cache tax rate lookups and use the object term cache to determine manufacturers from product brands"
-msgstr "Improvement: Performance improvements, e.g. persistently cache hook priorities (cleared on theme/plugin changes), autoload legal checkbox settings, cache tax rate lookups and use the object term cache to determine manufacturers from product brands"
+msgid "Security: [Withdrawal button] Do not attach guest withdrawal requests to an order (and do not add order notes) in case the email submitted does not match the order email. The suspected order is shown in the admin email and preselected for manual assignment instead."
+msgstr "Security: [Withdrawal button] Do not attach guest withdrawal requests to an order (and do not add order notes) in case the email submitted does not match the order email. The suspected order is shown in the admin email and preselected for manual assignment instead."
 
 #. Found in changelog list item.
-msgid "Improvement: Process the cleanup of unactivated customer accounts in batches"
-msgstr "Improvement: Process the cleanup of unactivated customer accounts in batches"
+msgid "Improvement: [Withdrawal button] Prefer the order matching the submitted email in case multiple orders match the contract identification"
+msgstr "Improvement: [Withdrawal button] Prefer the order matching the submitted email in case multiple orders match the contract identification"
 
 #. Found in changelog list item.
-msgid "Improvement: WC 11.4 compatibility: Support the new WooCommerce core MPN (manufacturer part number) field. The Germanized MPN is used as fallback in case no core MPN exists, the core MPN is preferred otherwise. The Germanized MPN field is only shown in case a Germanized MPN has been set for the product."
-msgstr "Improvement: WC 11.4 compatibility: Support the new WooCommerce core MPN (manufacturer part number) field. The Germanized MPN is used as fallback in case no core MPN exists, the core MPN is preferred otherwise. The Germanized MPN field is only shown in case a Germanized MPN has been set for the product."
+msgid "Improvement: Performance: cache the empty price check for shopmarks within the current request instead of rendering the product price for each shopmark, e.g. within product loops, variation data and Store API responses. Use the woocommerce_gzd_shopmarks_empty_price_html_check_cache_enabled filter to disable the cache."
+msgstr "Improvement: Performance: cache the empty price check for shopmarks within the current request instead of rendering the product price for each shopmark, e.g. within product loops, variation data and Store API responses. Use the woocommerce_gzd_shopmarks_empty_price_html_check_cache_enabled filter to disable the cache."
 
 #. Found in changelog list item.
-msgid "Improvement: Reworked settings tutorial - a guided tour across the most important settings, e.g. the withdrawal button, EU guarantee labels, double opt-in and Shiptastic"
-msgstr "Improvement: Reworked settings tutorial - a guided tour across the most important settings, e.g. the withdrawal button, EU guarantee labels, double opt-in and Shiptastic"
+msgid "Fix: [Withdrawal button] Fall back to the country-specific default instead of \"none\" for unknown guest validation option values"
+msgstr "Fix: [Withdrawal button] Fall back to the country-specific default instead of \"none\" for unknown guest validation option values"
 
 #. Found in changelog list item.
-msgid "Improvement: Legal checkboxes (e.g. photovoltaic systems VAT exemption) only count values submitted with the current checkout form - default values provided via woocommerce_checkout_get_value (e.g. a checkout form stored by a payment plugin) are ignored. Use woocommerce_gzd_get_checkout_value or woocommerce_gzd_get_posted_checkout_value to provide values programmatically."
-msgstr "Improvement: Legal checkboxes (e.g. photovoltaic systems VAT exemption) only count values submitted with the current checkout form - default values provided via woocommerce_checkout_get_value (e.g. a checkout form stored by a payment plugin) are ignored. Use woocommerce_gzd_get_checkout_value or woocommerce_gzd_get_posted_checkout_value to provide values programmatically."
-
-#. Found in changelog list item.
-msgid "Fix: Order confirmation: Only confirm the express consent to the early performance of the contract for services and digital items in case the customer actually checked the (optional) checkbox. The consent is now logged per order and shown within the order checkbox log."
-msgstr "Fix: Order confirmation: Only confirm the express consent to the early performance of the contract for services and digital items in case the customer actually checked the (optional) checkbox. The consent is now logged per order and shown within the order checkbox log."
-
-#. Found in changelog list item.
-msgid "Fix: Respect the photovoltaic systems VAT exemption within Store API requests during the classic checkout, e.g. PayPal Payments requesting the cart (which led to PayPal orders including VAT)"
-msgstr "Fix: Respect the photovoltaic systems VAT exemption within Store API requests during the classic checkout, e.g. PayPal Payments requesting the cart (which led to PayPal orders including VAT)"
-
-#. Found in changelog list item.
-msgid "Fix: Do not apply the photovoltaic systems VAT exemption (or zero tax classes of photovoltaic systems) to express checkouts and Store API requests without explicit confirmation"
-msgstr "Fix: Do not apply the photovoltaic systems VAT exemption (or zero tax classes of photovoltaic systems) to express checkouts and Store API requests without explicit confirmation"
-
-#. Found in changelog list item.
-msgid "Fix: Product variations without a GTIN or MPN of their own inherit the GTIN and MPN of the parent product (e.g. for structured data, REST API and the EU guarantee label)"
-msgstr "Fix: Product variations without a GTIN or MPN of their own inherit the GTIN and MPN of the parent product (e.g. for structured data, REST API and the EU guarantee label)"
-
-#. Found in changelog list item.
-msgid "Fix: Direct debit export of unpaid orders only in case HPOS is enabled"
-msgstr "Fix: Direct debit export of unpaid orders only in case HPOS is enabled"
-
-#. Found in changelog list item.
-msgid "Fix: Keep the checkout visibility of product attributes when updating product attributes"
-msgstr "Fix: Keep the checkout visibility of product attributes when updating product attributes"
-
-#. Found in changelog list item.
-msgid "Fix: Do not treat shops without published products as shops selling virtual products only"
-msgstr "Fix: Do not treat shops without published products as shops selling virtual products only"
-
-#. Found in changelog list item.
-msgid "Fix: Empty (mobile) order summary within the checkout block with WooCommerce 11.3+ (incl. multilevel checkout)"
-msgstr "Fix: Empty (mobile) order summary within the checkout block with WooCommerce 11.3+ (incl. multilevel checkout)"
-
-#. Found in changelog list item.
-msgid "Security: Treat customer-controlled placeholders within the SEPA direct debit mandate text as plain text"
-msgstr "Security: Treat customer-controlled placeholders within the SEPA direct debit mandate text as plain text"
-
-#. Found in changelog list item.
-msgid "Security: Escape legal checkbox opt-in meta in admin"
-msgstr "Security: Escape legal checkbox opt-in meta in admin"
-
-#. Found in changelog list item.
-msgid "Security: Rescanned codebase for wp_kses usage to prevent html-tag rebuilding"
-msgstr "Security: Rescanned codebase for wp_kses usage to prevent html-tag rebuilding"
-
-#. Found in changelog list item.
-msgid "Security: [Withdrawal button] Cross-Site Scripting via (inherited) billing name in admin withdrawal list table (thanks to Mariusz for disclosing)"
-msgstr "Security: [Withdrawal button] Cross-Site Scripting via (inherited) billing name in admin withdrawal list table (thanks to Mariusz for disclosing)"
-
-#. Found in changelog list item.
-msgid "Security: [Withdrawal button] Strip markup from customer-controlled email placeholders"
-msgstr "Security: [Withdrawal button] Strip markup from customer-controlled email placeholders"
-
-#. Found in changelog list item.
-msgid "Security: [Withdrawal button] Escape withdrawal rejection reason in admin, order notes and emails"
-msgstr "Security: [Withdrawal button] Escape withdrawal rejection reason in admin, order notes and emails"
-
-#. Found in changelog list item.
-msgid "Fix: [Withdrawal button] Restrict props editable via the admin withdrawal save AJAX action"
-msgstr "Fix: [Withdrawal button] Restrict props editable via the admin withdrawal save AJAX action"
-
-#. Found in changelog list item.
-msgid "Fix: [Withdrawal button] Do not include additional information in customer emails for unverified withdrawal requests"
-msgstr "Fix: [Withdrawal button] Do not include additional information in customer emails for unverified withdrawal requests"
+msgid "Fix: Admin settings: hide section titles and descriptions in case none of the settings of the section is visible (e.g. depending on a disabled option)"
+msgstr "Fix: Admin settings: hide section titles and descriptions in case none of the settings of the section is visible (e.g. depending on a disabled option)"

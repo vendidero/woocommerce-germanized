@@ -6,7 +6,7 @@ msgstr ""
 "Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-"
 "germanized\n"
-"POT-Creation-Date: 2026-11-25T10:33:38+00:00\n"
+"POT-Creation-Date: 2026-11-27T13:28:07+00:00\n"
 "PO-Revision-Date: 2026-11-09 11:46+0100\n"
 "Last-Translator: Dennis Nissle <info@vendidero.de>\n"
 "Language-Team: \n"
@@ -345,8 +345,8 @@ msgctxt "owb"
 msgid "Withdraw from contract"
 msgstr "Vertrag widerrufen"
 
-#: includes/eu-owb-core-functions.php:978
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:978
+#: includes/eu-owb-core-functions.php:997
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:997
 #, php-format
 msgctxt "owb"
 msgid "Customer requested an update to the original withdrawal: %1$s"
@@ -354,53 +354,53 @@ msgstr ""
 "Der Kunde hat eine Aktualisierung des ursprünglichen Widerrufs vorgenommen. "
 "Ursprünglicher Widerruf: %1$s"
 
-#: includes/eu-owb-core-functions.php:1023
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1023
+#: includes/eu-owb-core-functions.php:1042
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1042
 msgctxt "owb"
 msgid "Error while saving the withdrawal request."
 msgstr "Fehler beim Speichern des Widerrufsantrags."
 
-#: includes/eu-owb-core-functions.php:1033
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1033
+#: includes/eu-owb-core-functions.php:1052
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1052
 #, php-format
 msgctxt "owb"
 msgid "A new %1$s has been submitted to this order"
 msgstr "Ein neuer %1$s wurde zu dieser Bestellung angelegt"
 
-#: includes/eu-owb-core-functions.php:1033 src/Admin/Admin.php:668
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1033
+#: includes/eu-owb-core-functions.php:1052 src/Admin/Admin.php:668
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1052
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:668
 msgctxt "owb"
 msgid "Partial withdrawal request"
 msgstr "Teilwiderruf"
 
-#: includes/eu-owb-core-functions.php:1033 src/Admin/Admin.php:668
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1033
+#: includes/eu-owb-core-functions.php:1052 src/Admin/Admin.php:668
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1052
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:668
 msgctxt "owb"
 msgid "Full withdrawal request"
 msgstr "Vollständiger Widerruf"
 
-#: includes/eu-owb-core-functions.php:1085
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1085
+#: includes/eu-owb-core-functions.php:1104
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1104
 msgctxt "owb"
 msgid "A withdrawal request has been confirmed."
 msgstr "Ein Widerruf wurde bestätigt."
 
-#: includes/eu-owb-core-functions.php:1161
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1161
+#: includes/eu-owb-core-functions.php:1180
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1180
 msgctxt "owb"
 msgid "A withdrawal request has been deleted."
 msgstr "Ein Widerrufsantrag wurde gelöscht."
 
-#: includes/eu-owb-core-functions.php:1164
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1164
+#: includes/eu-owb-core-functions.php:1183
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1183
 msgctxt "owb"
 msgid "A withdrawal request has been deleted by the customer."
 msgstr "Ein Widerrufsantrag wurde vom Kunden gelöscht."
 
-#: includes/eu-owb-core-functions.php:1210
-#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1210
+#: includes/eu-owb-core-functions.php:1229
+#: packages/eu-order-withdrawal-button-for-woocommerce/includes/eu-owb-core-functions.php:1229
 #, php-format
 msgctxt "owb"
 msgid "A withdrawal request has been rejected: %1$s"
@@ -463,17 +463,17 @@ msgid "Outdated templates"
 msgstr "Veraltete Templates"
 
 #: src/Admin/Admin.php:197 src/Admin/Admin.php:678
-#: src/Admin/WithdrawalTable.php:946
+#: src/Admin/WithdrawalTable.php:948
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:197
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:678
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:946
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:948
 msgctxt "owb"
 msgid "Reason"
 msgstr "Grund"
 
 #: src/Admin/Admin.php:378 src/Admin/Admin.php:744 src/Admin/Privacy.php:172
 #: src/Package.php:686 src/Package.php:822 src/Settings.php:21
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:58
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:74
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:378
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:744
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:172
@@ -577,26 +577,26 @@ msgid "Delete withdrawal requests"
 msgstr "Widerrufsanträge löschen"
 
 #: src/Admin/Admin.php:634 src/Admin/Admin.php:673
-#: src/Admin/WithdrawalTable.php:918
+#: src/Admin/WithdrawalTable.php:920
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:634
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:673
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:918
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:920
 msgctxt "owb"
 msgid "Confirm withdrawal request"
 msgstr "Widerruf bestätigen"
 
 #: src/Admin/Admin.php:640 src/Admin/Admin.php:686
-#: src/Admin/WithdrawalTable.php:925
+#: src/Admin/WithdrawalTable.php:927
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:640
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:686
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:925
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:927
 msgctxt "owb"
 msgid "Reject withdrawal request"
 msgstr "Widerruf ablehnen"
 
-#: src/Admin/Admin.php:646 src/Admin/WithdrawalTable.php:931
+#: src/Admin/Admin.php:646 src/Admin/WithdrawalTable.php:933
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Admin.php:646
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:931
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:933
 msgctxt "owb"
 msgid "Delete withdrawal request"
 msgstr "Widerrufsantrag löschen"
@@ -666,11 +666,11 @@ msgctxt "owb"
 msgid "Personal data within withdrawal %s has been retained."
 msgstr "Persönliche Daten zum Widerruf %s bleiben erhalten."
 
-#: src/Admin/Privacy.php:121 src/Admin/WithdrawalTable.php:1022
+#: src/Admin/Privacy.php:121 src/Admin/WithdrawalTable.php:1024
 #: src/Settings.php:115 templates/emails/email-withdrawal-details.php:42
 #: templates/emails/plain/email-withdrawal-details.php:30
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:121
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1022
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1024
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Settings.php:115
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:42
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:30
@@ -700,13 +700,13 @@ msgctxt "owb"
 msgid "Last name"
 msgstr "Nachname"
 
-#: src/Admin/Privacy.php:124 src/Admin/WithdrawalTable.php:1014
+#: src/Admin/Privacy.php:124 src/Admin/WithdrawalTable.php:1016
 #: templates/emails/email-withdrawal-details.php:44
 #: templates/emails/plain/email-withdrawal-details.php:32
 #: templates/forms/order-withdrawal-request.php:56
 #: templates/forms/order-withdrawal-request.php:212
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/Privacy.php:124
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1014
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1016
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:44
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:32
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request.php:56
@@ -906,120 +906,125 @@ msgctxt "owb"
 msgid "Search for an order"
 msgstr "Nach einer Bestellung suchen"
 
-#: src/Admin/WithdrawalTable.php:818 src/Ajax.php:195
-#: src/WithdrawalOrder.php:115
+#: src/Admin/WithdrawalTable.php:818 src/Admin/WithdrawalTable.php:824
+#: src/Ajax.php:195 src/WithdrawalOrder.php:115
+#: templates/emails/email-withdrawal-details.php:46
+#: templates/emails/plain/email-withdrawal-details.php:35
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:818
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:824
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:195
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:115
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:46
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:35
 #, php-format
 msgctxt "owb"
 msgid "Order #%s"
 msgstr "Bestellung #%s"
 
-#: src/Admin/WithdrawalTable.php:862
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:862
+#: src/Admin/WithdrawalTable.php:864
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:864
 #, php-format
 msgctxt "owb"
 msgid "Partial %s"
 msgstr "Teilweise %s"
 
-#: src/Admin/WithdrawalTable.php:862
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:862
+#: src/Admin/WithdrawalTable.php:864
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:864
 #, php-format
 msgctxt "owb"
 msgid "Full %s"
 msgstr "Vollständig %s"
 
 #. translators: %s: human-readable time difference
-#: src/Admin/WithdrawalTable.php:972
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:972
+#: src/Admin/WithdrawalTable.php:974
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:974
 #, php-format
 msgctxt "owb-human-readable-time-diff"
 msgid "%s ago"
 msgstr "vor %s"
 
 #. translators: %s: withdrawal ID
-#: src/Admin/WithdrawalTable.php:996
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:996
+#: src/Admin/WithdrawalTable.php:998
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:998
 #, php-format
 msgctxt "owb"
 msgid "Withdrawal %s"
 msgstr "Widerruf %s"
 
-#: src/Admin/WithdrawalTable.php:998
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:998
+#: src/Admin/WithdrawalTable.php:1000
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1000
 msgctxt "owb"
 msgid "Close modal panel"
 msgstr "Fenster schließen"
 
-#: src/Admin/WithdrawalTable.php:1006
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1006
+#: src/Admin/WithdrawalTable.php:1008
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1008
 msgctxt "owb"
 msgid "Contact Details"
 msgstr "Kontaktdetails"
 
-#: src/Admin/WithdrawalTable.php:1009
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1009
+#: src/Admin/WithdrawalTable.php:1011
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1011
 msgctxt "owb"
 msgid "Name"
 msgstr "Name"
 
-#: src/Admin/WithdrawalTable.php:1019
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1019
+#: src/Admin/WithdrawalTable.php:1021
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1021
 msgctxt "owb"
 msgid "Withdrawal Details"
 msgstr "Widerrufdetails"
 
-#: src/Admin/WithdrawalTable.php:1027
-#: templates/emails/email-withdrawal-details.php:47
-#: templates/emails/plain/email-withdrawal-details.php:36
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1027
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:47
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:36
+#: src/Admin/WithdrawalTable.php:1029
+#: templates/emails/email-withdrawal-details.php:50
+#: templates/emails/plain/email-withdrawal-details.php:42
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1029
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:50
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:42
 msgctxt "owb"
 msgid "Verification code"
 msgstr "Verifizierungscode"
 
-#: src/Admin/WithdrawalTable.php:1032
-#: templates/emails/email-withdrawal-details.php:58
-#: templates/emails/plain/email-withdrawal-details.php:46
-#: templates/emails/plain/email-withdrawal-details.php:48
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1032
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:58
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:46
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:48
+#: src/Admin/WithdrawalTable.php:1034
+#: templates/emails/email-withdrawal-details.php:61
+#: templates/emails/plain/email-withdrawal-details.php:52
+#: templates/emails/plain/email-withdrawal-details.php:54
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1034
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:61
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:52
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:54
 msgctxt "owb"
 msgid "Additional Information"
 msgstr "Zusätzliche Informationen"
 
-#: src/Admin/WithdrawalTable.php:1041
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1041
+#: src/Admin/WithdrawalTable.php:1043
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1043
 msgctxt "owb"
 msgid "Logs"
 msgstr "Protokolle"
 
-#: src/Admin/WithdrawalTable.php:1075
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1075
+#: src/Admin/WithdrawalTable.php:1077
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1077
 #, php-format
 msgctxt "owb"
 msgid "%1$s at %2$s"
 msgstr "%1$s um %2$s"
 
-#: src/Admin/WithdrawalTable.php:1113
-#: templates/emails/email-withdrawal-details.php:76
+#: src/Admin/WithdrawalTable.php:1115
+#: templates/emails/email-withdrawal-details.php:79
 #: templates/forms/order-withdrawal-request-item-select.php:66
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1113
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:76
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1115
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:79
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request-item-select.php:66
 msgctxt "owb"
 msgid "Product"
 msgstr "Produkt"
 
-#: src/Admin/WithdrawalTable.php:1114
-#: templates/emails/email-withdrawal-details.php:77
+#: src/Admin/WithdrawalTable.php:1116
+#: templates/emails/email-withdrawal-details.php:80
 #: templates/forms/order-withdrawal-request-item-select.php:67
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1114
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:77
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Admin/WithdrawalTable.php:1116
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:80
 #: packages/eu-order-withdrawal-button-for-woocommerce/templates/forms/order-withdrawal-request-item-select.php:67
 msgctxt "owb"
 msgid "Quantity"
@@ -1031,9 +1036,9 @@ msgctxt "owb"
 msgid "Sorry, no permission to view that order."
 msgstr "Sorry, diese Ressource kannst du nicht abrufen."
 
-#: src/Ajax.php:336 src/Ajax.php:619
+#: src/Ajax.php:336 src/Ajax.php:641
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:336
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:619
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:641
 msgctxt "owb"
 msgid ""
 "Thank you. We've received your withdrawal request. You'll receive a "
@@ -1070,15 +1075,15 @@ msgctxt "owb"
 msgid "Please check your email address."
 msgstr "Bitte überprüfe deine E-Mail-Adresse."
 
-#: src/Ajax.php:369 src/Ajax.php:465 src/Ajax.php:481 src/Ajax.php:507
-#: src/Ajax.php:513 src/Ajax.php:519 src/Ajax.php:548
+#: src/Ajax.php:369 src/Ajax.php:465 src/Ajax.php:491 src/Ajax.php:517
+#: src/Ajax.php:523 src/Ajax.php:529 src/Ajax.php:570
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:369
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:465
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:481
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:507
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:513
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:519
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:548
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:491
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:517
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:523
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:529
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:570
 #, php-format
 msgctxt "owb"
 msgid ""
@@ -1118,8 +1123,8 @@ msgctxt "owb"
 msgid "Please enter additional information."
 msgstr "Bitte gib zusätzliche Informationen an."
 
-#: src/Ajax.php:553
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:553
+#: src/Ajax.php:575
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:575
 #, php-format
 msgctxt "owb"
 msgid ""
@@ -1129,17 +1134,17 @@ msgstr ""
 "Leider kann diese Bestellung nicht widerrufen werden. <a "
 "href=\"%s\">Kontaktiere</a> unseren Support, falls du Fragen hast."
 
-#: src/Ajax.php:580
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:580
+#: src/Ajax.php:602
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:602
 msgctxt "owb"
 msgid ""
 "You've already submitted an identical withdrawal request for this order."
 msgstr ""
 "Du hast zu dieser Bestellung bereits einen identischen Widerruf erstellt."
 
-#: src/Ajax.php:654 src/Ajax.php:677
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:654
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:677
+#: src/Ajax.php:676 src/Ajax.php:699
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:676
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/Ajax.php:699
 #, php-format
 msgctxt "owb"
 msgid ""
@@ -1150,10 +1155,10 @@ msgstr ""
 "href=\"%s\">Kontaktiere den Support</a> um Hilfe zu erhalten."
 
 #: src/DataStores/WithdrawalOrder.php:142
-#: src/DataStores/WithdrawalOrderCPT.php:95 src/WithdrawalOrder.php:1005
+#: src/DataStores/WithdrawalOrderCPT.php:95 src/WithdrawalOrder.php:1006
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrder.php:142
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/DataStores/WithdrawalOrderCPT.php:95
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:1005
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:1006
 #, php-format
 msgctxt "owb"
 msgid "Withdrawal status changed from %1$s to %2$s."
@@ -1345,14 +1350,14 @@ msgstr ""
 "hast Fragen?</a>"
 
 #: src/Settings.php:46
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:196
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:212
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Settings.php:46
 msgctxt "owb"
 msgid "Withdrawal page"
 msgstr "Widerrufsseite"
 
 #: src/Settings.php:50
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:200
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:216
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/Settings.php:50
 msgctxt "owb"
 msgid "This page should contain your withdrawal form shortcode."
@@ -1672,23 +1677,23 @@ msgctxt "owb-order-number"
 msgid "Not specified"
 msgstr "Nicht angegeben"
 
-#: src/WithdrawalOrder.php:796 src/WithdrawalOrder.php:797
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:796
+#: src/WithdrawalOrder.php:797 src/WithdrawalOrder.php:798
 #: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:797
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:798
 msgctxt "owb"
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
-#: src/WithdrawalOrder.php:976
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:976
+#: src/WithdrawalOrder.php:977
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:977
 #, php-format
 msgctxt "owb"
 msgid "Parent order changed from %1$s to %2$s."
 msgstr "Eltern-Bestellung wurde von %1$s zu %2$s geändert."
 
 #. translators: %s: new order status
-#: src/WithdrawalOrder.php:1008
-#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:1008
+#: src/WithdrawalOrder.php:1009
+#: packages/eu-order-withdrawal-button-for-woocommerce/src/WithdrawalOrder.php:1009
 #, php-format
 msgctxt "owb"
 msgid "Withdrawal status set to %s."
@@ -1827,18 +1832,26 @@ msgctxt "owb-datetime"
 msgid "%1$s at %2$s"
 msgstr "%1$s um %2$s"
 
-#: templates/emails/email-withdrawal-details.php:45
-#: templates/emails/plain/email-withdrawal-details.php:33
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:45
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:33
+#: templates/emails/email-withdrawal-details.php:46
+#: templates/emails/plain/email-withdrawal-details.php:35
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:46
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:35
+msgctxt "owb"
+msgid "Suspected order"
+msgstr "Vermutete Bestellung"
+
+#: templates/emails/email-withdrawal-details.php:48
+#: templates/emails/plain/email-withdrawal-details.php:39
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:48
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:39
 msgctxt "owb"
 msgid "Full name"
 msgstr "Vollständiger Name"
 
-#: templates/emails/email-withdrawal-details.php:66
-#: templates/emails/plain/email-withdrawal-details.php:53
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:66
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:53
+#: templates/emails/email-withdrawal-details.php:69
+#: templates/emails/plain/email-withdrawal-details.php:59
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:69
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:59
 #, php-format
 msgctxt "owb"
 msgid ""
@@ -1847,10 +1860,10 @@ msgstr ""
 "Wie von dir gewünscht, haben wir deinen ursprünglichen Widerruf zu %1$s "
 "gelöscht."
 
-#: templates/emails/email-withdrawal-details.php:68
-#: templates/emails/plain/email-withdrawal-details.php:55
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:68
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:55
+#: templates/emails/email-withdrawal-details.php:71
+#: templates/emails/plain/email-withdrawal-details.php:61
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/email-withdrawal-details.php:71
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:61
 msgctxt "owb"
 msgid "As you requested, we have edited your original withdrawal request."
 msgstr "Wir haben deinen ursprünglichen Widerruf wie gewünscht aktualisiert."
@@ -1918,8 +1931,8 @@ msgstr ""
 "Bestellung auszuwählen."
 
 #. translators: %s: Order link.
-#: templates/emails/plain/email-withdrawal-details.php:78
-#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:78
+#: templates/emails/plain/email-withdrawal-details.php:84
+#: packages/eu-order-withdrawal-button-for-woocommerce/templates/emails/plain/email-withdrawal-details.php:84
 #, php-format
 msgctxt "owb"
 msgid "View order: %s"
@@ -2133,19 +2146,19 @@ msgid "kJ"
 msgstr "kJ"
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:216
+#: includes/abstracts/abstract-wc-gzd-product.php:223
 #, php-format
 msgid "Contains: %1$s"
 msgstr "Enthält: %1$s"
 
-#: includes/abstracts/abstract-wc-gzd-product.php:249
+#: includes/abstracts/abstract-wc-gzd-product.php:256
 #, php-format
 msgid "Nutri-Score %1$s"
 msgstr "Nutri-Score %1$s"
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1749
-#: includes/abstracts/abstract-wc-gzd-product.php:1759
+#: includes/abstracts/abstract-wc-gzd-product.php:1793
+#: includes/abstracts/abstract-wc-gzd-product.php:1803
 #: includes/wc-gzd-core-functions.php:649
 #: includes/wc-gzd-template-functions.php:1262
 #: includes/wc-gzd-template-functions.php:1269
@@ -2159,7 +2172,7 @@ msgid "incl. VAT"
 msgstr "inkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1749
+#: includes/abstracts/abstract-wc-gzd-product.php:1793
 #: src/Blocks/MiniCart.php:64
 #: build/mini-cart-blocks/mini-cart-notices-frontend.js:1
 #: build/mini-cart-blocks/mini-cart-notices-style.js:1
@@ -2169,25 +2182,25 @@ msgid "excl. VAT"
 msgstr "exkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1751
+#: includes/abstracts/abstract-wc-gzd-product.php:1795
 #: includes/wc-gzd-core-functions.php:649
 #, php-format
 msgid "incl. %s%% VAT"
 msgstr "inkl. %s %% MwSt."
 
 # @ woocommerce-germanized
-#: includes/abstracts/abstract-wc-gzd-product.php:1751
+#: includes/abstracts/abstract-wc-gzd-product.php:1795
 #, php-format
 msgid "excl. %s%% VAT"
 msgstr "exkl. %s %% MwSt."
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1889
+#: includes/abstracts/abstract-wc-gzd-product.php:1933
 #: includes/wc-gzd-core-functions.php:1440
 #, php-format
 msgid "%1$s-Year guarantee from %2$s for model %3$s"
 msgstr "%1$s Jahre Garantie von %2$s für das Modell %3$s"
 
-#: includes/abstracts/abstract-wc-gzd-product.php:1895
+#: includes/abstracts/abstract-wc-gzd-product.php:1939
 #: includes/compatibility/elementor/widgets/class-wc-gzd-elementor-widget-product-garan-label.php:10
 #: build/wc-gzd-blocks-product-elements.js:1
 #: build/wc-gzd-blocks-product-elements-style.js:1080
@@ -2360,7 +2373,7 @@ msgstr "Immer anzeigen."
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-legal-checkboxes.php:122
 #: includes/admin/class-wc-gzd-admin-status.php:50
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:170
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:186
 msgid "Shipping Methods"
 msgstr "Versandarten"
 
@@ -2438,7 +2451,7 @@ msgstr "Gleiche wie übergeordnet"
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-product-categories.php:82
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:438
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:766
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:770
 msgid "None"
 msgstr "Keine"
 
@@ -2592,20 +2605,20 @@ msgstr "Lasse Germanized EU-Steuersätze importieren."
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:206
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:307
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:323
 #: includes/admin/views/html-page-status-germanized.php:51
 msgid "Small-Enterprise-Regulation"
 msgstr "Kleinunternehmerregelung"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:207
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:308
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:324
 msgid "VAT based on &#167;19 UStG"
 msgstr "Umsatzsteuerbefreit nach &#167;19 UStG"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:207
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:308
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:324
 #, php-format
 msgid ""
 "Enable this option if you have chosen to apply to <a href=\"%s\" "
@@ -2624,7 +2637,7 @@ msgstr "Double-Opt-In"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-setup-wizard.php:214
-#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:42
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:46
 msgid "Enable customer double opt in during registration."
 msgstr "Double-Opt-In Verfahren für Kundenkonten aktivieren."
 
@@ -2708,36 +2721,36 @@ msgstr "Zurück zu WP Admin"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-status.php:45
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:94
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:229
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:110
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:245
 #: includes/wc-gzd-core-functions.php:420
 msgid "Terms & Conditions"
 msgstr "AGB"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-status.php:46
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:107
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:123
 #: includes/wc-gzd-core-functions.php:421
 msgid "Cancellation Policy"
 msgstr "Widerrufsbelehrung"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-status.php:47
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:131
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:229
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:147
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:245
 #: includes/wc-gzd-core-functions.php:422
 msgid "Imprint"
 msgstr "Impressum"
 
 #: includes/admin/class-wc-gzd-admin-status.php:48
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:144
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:160
 #: includes/wc-gzd-core-functions.php:423
 msgid "Privacy Policy"
 msgstr "Datenschutz"
 
 # @ woocommerce-germanized
 #: includes/admin/class-wc-gzd-admin-status.php:49
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:157
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:173
 #: includes/wc-gzd-core-functions.php:427
 msgid "Payment Methods"
 msgstr "Zahlungsarten"
@@ -3335,7 +3348,7 @@ msgid "Deposits for drinks and reusable packaging"
 msgstr "Pfand für Getränke und Mehrwegverpackungen"
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:142
-#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:35
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:39
 msgid "Sell to business customers with Germanized Pro"
 msgstr "An Geschäftskunden verkaufen mit Germanized Pro"
 
@@ -3354,7 +3367,7 @@ msgid "Restrict this product to certain customer groups"
 msgstr "Dieses Produkt auf bestimmte Kundengruppen beschränken"
 
 #: includes/admin/meta-boxes/class-wc-germanized-meta-box-product-data.php:147
-#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:39
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:43
 msgid "Separate B2B registration with manual review"
 msgstr "Separate B2B-Registrierung mit manueller Prüfung"
 
@@ -4063,7 +4076,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-pointers.php:167
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:30
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:46
 #: includes/admin/views/html-page-status-germanized.php:217
 msgid "Legal Pages"
 msgstr "Rechtlich relevante Seiten"
@@ -4091,7 +4104,7 @@ msgstr ""
 "relevanten Seiten ein. Verfügbar mit Germanized Pro."
 
 #: includes/admin/settings/class-wc-gzd-settings-pointers.php:194
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:45
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:61
 msgid "Withdrawal Button"
 msgstr "Widerrufsbutton"
 
@@ -4209,8 +4222,8 @@ msgstr ""
 "Lieferzeit zugeordnet wurde."
 
 #: includes/admin/settings/class-wc-gzd-settings-pointers.php:263
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:520
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:532
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:536
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:548
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:489
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:560
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:655
@@ -4380,7 +4393,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-pointers.php:398
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:32
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:44
 msgid "PDF Attachments"
 msgstr "PDF-Anhänge"
 
@@ -4476,7 +4489,7 @@ msgstr ""
 msgid "new"
 msgstr "neu"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:36
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:40
 msgid ""
 "Turn your shop into a B2B or hybrid shop and offer business customers their "
 "own prices and conditions."
@@ -4484,17 +4497,17 @@ msgstr ""
 "Mach deinen Shop zum B2B- oder Hybrid-Shop und biete Geschäftskunden eigene "
 "Preise und Konditionen an."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:38
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:42
 msgid "Customer groups with individual prices, discounts and tiered prices"
 msgstr "Kundengruppen mit individuellen Preisen, Rabatten und Staffelpreisen"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:40
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:44
 msgid ""
 "Restrict products, payment and shipping methods to certain customer groups"
 msgstr ""
 "Produkte, Zahlungs- und Versandarten auf bestimmte Kundengruppen beschränken"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:41
+#: includes/admin/settings/class-wc-gzd-settings-tab-b2b.php:45
 msgid "Net price display and minimum order values per customer group"
 msgstr "Nettopreis-Anzeige und Mindestbestellwerte pro Kundengruppe"
 
@@ -4722,38 +4735,38 @@ msgid "Legal Checkboxes"
 msgstr "Checkboxen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:55
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:59
 msgid "New checkbox"
 msgstr "Neue Checkbox"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:81
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:85
 msgid "Add checkbox"
 msgstr "Checkbox hinzufügen"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:124
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:128
 msgid "Edit failed. Please try again."
 msgstr "Bearbeitung fehlgeschlagen. Bitte erneut versuchen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:157
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:161
 msgid "Sorry, but this checkbox does not exist."
 msgstr "Sorry, diese Checkbox existiert leider nicht."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:186
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:190
 msgid "Your changed data will be lost if you leave this page without saving."
 msgstr ""
 "Deine Anpassungen gehen verloren, wenn du diese Seite ohne speichern "
 "verlässt."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:187
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:191
 msgid ""
 "Are you sure you want to delete this checkbox? This action cannot be undone."
 msgstr ""
 "Bist du sicher, dass du diese Checkbox löschen möchtest? Die Checkbox kann "
 "nicht wiederhergestellt werden."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:188
+#: includes/admin/settings/class-wc-gzd-settings-tab-checkboxes.php:192
 msgid "Your changes were not saved. Please retry."
 msgstr ""
 "Deine Einstellungen konnten nicht gespeichert werden, bitte versuche es "
@@ -4777,11 +4790,11 @@ msgstr "Verspäteter Vertragsschluss"
 msgid "pro"
 msgstr "Pro"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:35
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:39
 msgid "Manual contract conclusion with Germanized Pro"
 msgstr "Verspäteter Vertragsschluss mit Germanized Pro"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:36
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:40
 msgid ""
 "Review incoming orders within your backend before closing the contract with "
 "your customer."
@@ -4789,15 +4802,15 @@ msgstr ""
 "Prüfe eingehende Bestellungen in deinem Backend, bevor du den Vertrag mit "
 "deinem Kunden schließt."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:38
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:42
 msgid "Manually review and confirm orders before closing the contract"
 msgstr "Bestellungen vor dem Vertragsschluss manuell prüfen und bestätigen"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:39
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:43
 msgid "The first email only confirms the receipt of the offer"
 msgstr "Die erste E-Mail bestätigt nur den Eingang des Angebots"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:40
+#: includes/admin/settings/class-wc-gzd-settings-tab-contract.php:44
 msgid "Payment information is provided only after you have confirmed the order"
 msgstr ""
 "Zahlungsinformationen werden erst nach deiner Bestätigung der Bestellung "
@@ -4807,7 +4820,7 @@ msgstr ""
 msgid "Extend the WooCommerce registration process with a double opt in."
 msgstr "Erweitere die WooCommerce Registrierung um einen Double-Opt-In."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:29
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:33
 #, php-format
 msgid ""
 "Caution: New customers that register within your store and do not activate "
@@ -4818,12 +4831,12 @@ msgstr ""
 "aktivieren, werden nach %d Tagen gelöscht. Das kannst du in den Double-Opt-"
 "In-Einstellungen anpassen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:41
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:45
 msgid "Enable"
 msgstr "Aktivieren"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:42
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:46
 msgid ""
 "If customer chooses to create a customer account an email with an activation "
 "link will be sent by mail. Customer account will be marked as activated if "
@@ -4834,15 +4847,15 @@ msgstr ""
 "Bestätigungslink anklickt, wird das Konto als bestätigt markiert."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:48
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:52
 msgid "Disable"
 msgstr "Deaktivieren"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:49
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:53
 msgid "Disable login for unactivated customers."
 msgstr "Deaktiviere den Login für inaktive Kunden."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:50
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:54
 msgid ""
 "Customers that did not click on the activation link will not be able to "
 "login to their account."
@@ -4851,12 +4864,12 @@ msgstr ""
 "einloggen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:59
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:63
 msgid "Delete unactivated after"
 msgstr "Unaktivierte löschen nach"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:60
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:64
 msgid ""
 "This will make sure unactivated customer accounts will be deleted after X "
 "days. Set to 0 if you don't want to automatically delete unactivated "
@@ -4867,7 +4880,7 @@ msgstr ""
 "setze den Wert auf 0."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:61
+#: includes/admin/settings/class-wc-gzd-settings-tab-doi.php:65
 msgid "days"
 msgstr "Tagen"
 
@@ -4884,7 +4897,7 @@ msgid "Emails"
 msgstr "E-Mails"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:30
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:42
 #: includes/admin/settings/class-wc-gzd-settings-tab-general.php:21
 #: includes/admin/settings/class-wc-gzd-settings-tab-oss.php:45
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:36
@@ -4893,12 +4906,12 @@ msgid "General"
 msgstr "Allgemein"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:31
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:43
 msgid "Visibility"
 msgstr "Darstellung"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:48
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:60
 msgid ""
 "Use drag & drop to customize attachment order. Don't forget to save your "
 "changes."
@@ -4906,11 +4919,11 @@ msgstr ""
 "Verwende Drag & Drop um die Reihenfolge der Texte in den E-Mails zu "
 "beeinflussen und speichere anschließend deine Änderungen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:89
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:101
 msgid "PDF email attachments with Germanized Pro"
 msgstr "PDF-Anhänge für E-Mails mit Germanized Pro"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:90
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:102
 msgid ""
 "Attach automatically generated PDF files of your legal pages to emails "
 "instead of plain text."
@@ -4918,23 +4931,23 @@ msgstr ""
 "Hänge automatisch erstellte PDF-Dateien deiner rechtlich relevanten Seiten "
 "an E-Mails an, statt reinen Text zu verwenden."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:92
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:104
 msgid "Generate PDF files from your legal pages automatically"
 msgstr ""
 "PDF-Dateien automatisch aus deinen rechtlich relevanten Seiten erstellen"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:93
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:105
 msgid "Or upload your own, custom PDF files"
 msgstr "Oder eigene PDF-Dateien hochladen"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:94
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:106
 msgid "Customize the layout of generated PDF files"
 msgstr "Layout der erstellten PDF-Dateien anpassen"
 
 # @ woocommerce-germanized
 # @ woocommerce
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:160
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:345
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:172
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:361
 #: includes/api/class-wc-gzd-rest-customers-controller.php:138
 #: includes/api/class-wc-gzd-rest-customers-controller.php:151
 #: includes/api/class-wc-gzd-rest-orders-controller.php:142
@@ -4947,7 +4960,7 @@ msgid "Title"
 msgstr "Anrede"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:161
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:173
 msgid ""
 "Adjust the title to be used within emails. Use {first_name}, {last_name} and "
 "{title} as placeholders."
@@ -4956,21 +4969,21 @@ msgstr ""
 "{title} als Platzhalter."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:163
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:175
 msgid "Hi {first_name},"
 msgstr "Hallo {first_name},"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:168
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:180
 msgid "Hide Username"
 msgstr "Nutzernamen verstecken"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:169
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:181
 msgid ""
 "Hide username from email content if password or password reset link is "
 "embedded."
 msgstr "Nutzernamen nicht zusammen mit einem Passwort versenden."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:169
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:181
 msgid ""
 "Trusted Shops advises to not show the username together with an account "
 "password or password reset link. This option hides (or masks) the username "
@@ -4981,19 +4994,19 @@ msgstr ""
 "Trusted Shops Mitglied bist, solltest du diese Option aktivieren."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:176
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:188
 msgid "Pay now Button"
 msgstr "Jetzt bezahlen Button"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:177
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:189
 msgid "Add a pay now button to emails and order success page."
 msgstr ""
 "Füge einen jetzt bezahlen - Button zur E-Mail und der Bestätigungs-Seite "
 "hinzu."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:178
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:190
 msgid ""
 "Add a pay now button to order confirmation email and order success page if "
 "the order awaits payment (PayPal etc)."
@@ -5003,33 +5016,33 @@ msgstr ""
 "benötigt (z.B. per PayPal)."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:184
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:196
 msgid "Disabled for"
 msgstr "Deaktiviert für"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:185
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:197
 msgid "You may want to disable the pay now button for certain payment methods."
 msgstr ""
 "Du kannst den jetzt bezahlen Button hier bei Bedarf für bestimmte "
 "Zahlungsarten deaktivieren."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:237
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:249
 msgid "Customer"
 msgstr "Kunde"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:237
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:249
 msgid "Admin"
 msgstr "Admin"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:260
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:272
 #, php-format
 msgid "Attach %s"
 msgstr "%s"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:261
+#: includes/admin/settings/class-wc-gzd-settings-tab-emails.php:273
 #, php-format
 msgid "Attach %s to the following email templates"
 msgstr "%s an die folgenden E-Mail Templates anfügen"
@@ -5042,34 +5055,34 @@ msgstr ""
 "Passe z.B. rechtlich relevanten Seiten, Kleinunternehmer-Regelung, "
 "Widerrufsbutton und mehr an."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:31
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:243
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:47
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:259
 msgid "Dispute Resolution"
 msgstr "Streitbeilegung"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:32
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:48
 msgid "Small Businesses"
 msgstr "Kleinunternehmer"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:33
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:717
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:49
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:721
 #: includes/class-wc-gzd-legal-checkbox-manager.php:1003 src/Shopmarks.php:609
 msgid "Checkout"
 msgstr "Kasse"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:34
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:50
 msgid "Shop"
 msgstr "Shop"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:39
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:55
 #: includes/class-wc-gzd-legal-checkbox-manager.php:424
 msgid "Photovoltaic Systems"
 msgstr "Photovoltaikanlagen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:67
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:83
 #, php-format
 msgid ""
 "Since Feb. 1 2017 regulations regarding alternative dispute resolution take "
@@ -5080,7 +5093,7 @@ msgstr ""
 "Kraft. Weiterführende Informationen zu deinen Informationspflichten findest "
 "du <a href=\"%s\" target=\"_blank\">hier</a>."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:69
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:85
 #, php-format
 msgid ""
 "Learn more about the <a href=\"%s\" target=\"_blank\">sale of photovoltaic "
@@ -5089,7 +5102,7 @@ msgstr ""
 "Erfahre mehr über den <a href=\"%s\" target=\"_blank\">Verkauf von "
 "Photovoltaikanlagen</a> gemäß §12 Absatz 3 UStG."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:71
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:87
 #, php-format
 msgid ""
 "Learn more about the <a href=\"%s\" target=\"_blank\">withdrawal button</a>."
@@ -5097,36 +5110,36 @@ msgstr ""
 "Erfahre mehr über den <a href=\"%s\" target=\"_blank\">Widerrufsbutton</a>."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:95
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:111
 msgid "This page should contain your terms & conditions."
 msgstr "Diese Seite sollte deine Allgemeinen Geschäftsbedingungen enthalten."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:104
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:120
 #, php-format
 msgid "Don't have terms & conditions yet? <a href=\"%s\">Generate now</a>!"
 msgstr "Du hast noch keine AGB? <a href=\"%s\">Jetzt generieren</a>!"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:108
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:124
 msgid ""
 "This page should contain information regarding your customer's Right of "
 "Withdrawal."
 msgstr "Diese Seite sollte deine Widerrufsbelehrung enthalten."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:117
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:133
 #, php-format
 msgid "Don't have a revocation page yet? <a href=\"%s\">Generate now</a>!"
 msgstr ""
 "Du hast noch keine Widerrufsbelehrung? <a href=\"%s\">Jetzt generieren</a>!"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:121
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:137
 msgid "Send withdrawal to"
 msgstr "Widerruf richten an"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:122
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:138
 msgid ""
 "Type in an address, telephone/telefax number, email address which is to be "
 "used as the recipient address of the withdrawal."
@@ -5135,18 +5148,18 @@ msgstr ""
 "die deine Kunden ihren Widerruf richten sollen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:132
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:148
 msgid "This page should contain an imprint with your company's information."
 msgstr ""
 "Diese Seite sollte das Impressum d.h. die Informationen (gemäß TMG) zu "
 "deinem Unternehmen enthalten."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:145
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:161
 msgid "This page should contain information regarding your privacy policy."
 msgstr "Diese Seite sollte deine Datenschutzerklärung enthalten."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:153
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:169
 msgid ""
 "Please make sure to place your privacy policy to be directly accessible to "
 "the user on the website, e.g. as a link within your footer."
@@ -5155,7 +5168,7 @@ msgstr ""
 "unmittelbar erreichbar ist (z.B. Verlinkt im Footer)."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:174
 msgid ""
 "This page should contain information regarding the Payment Methods that are "
 "chooseable during checkout."
@@ -5165,7 +5178,7 @@ msgstr ""
 "[payment_methods_info]"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:171
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:187
 msgid ""
 "This page should contain information regarding shipping methods that are "
 "chooseable during checkout."
@@ -5173,14 +5186,14 @@ msgstr ""
 "Diese Seite sollte Informationen zu den von dir zur Verfügung gestellten "
 "Versandarten bereitstellen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:183
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:494
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:199
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:510
 #: includes/wc-gzd-core-functions.php:429
 msgid "Review Authenticity"
 msgstr "Echtheit von Bewertungen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:184
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:200
 msgid ""
 "This page should contain information about the authenticity of customer "
 "reviews."
@@ -5188,7 +5201,7 @@ msgstr ""
 "Diese Seite sollte Informationen über die Echtheit von Kundenbewertungen "
 "enthalten."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:233
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:249
 msgid ""
 "This status indicates whether your terms & conditions contain the "
 "[gzd_complaints] shortcode which outputs the complaints options chosen from "
@@ -5200,7 +5213,7 @@ msgstr ""
 "ausgibt oder nicht. Wenn du den Text manuell hinzugefügt hast, kannst du "
 "diesen Status ignorieren."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:244
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:260
 msgid ""
 "You may select whether you are willing, obliged or not willing to "
 "participate in dispute settlement proceeedings before a consumer arbitration "
@@ -5214,27 +5227,27 @@ msgstr ""
 "deinem Impressum platzieren solltest. Trusted Shops rät dazu den Text auch "
 "in deine AGB einzufügen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:250
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:266
 msgid "Not obliged, not willing"
 msgstr "Nicht verpflichtet, nicht bereit"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:251
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:267
 msgid "Not obliged, willing"
 msgstr "Nicht verpflichtet, bereit"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:252
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:268
 msgid "Obliged"
 msgstr "Verpflichtet"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:256
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:265
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:274
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:272
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:281
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:290
 msgid "Resolution Text"
 msgstr "Streitbeilegung Text"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:257
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:266
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:275
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:273
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:282
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:291
 msgid ""
 "Adapt this example text regarding alternative dispute resolution to your "
 "needs. Text will be added to the [gzd_complaints] Shortcode. You may as well "
@@ -5245,7 +5258,7 @@ msgstr ""
 "noch in deinen AGB integrieren."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:259
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:275
 msgid ""
 "We are not obliged nor willing to participate in dispute settlement "
 "proceedings before a consumer arbitration board."
@@ -5253,7 +5266,7 @@ msgstr ""
 "Zur Teilnahme an einem Streitbeilegungsverfahren vor einer "
 "Verbraucherschlichtungsstelle sind wir nicht verpflichtet und nicht bereit."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:268
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:284
 msgid ""
 "We are in principle prepared to participate in an extrajudicial arbitration "
 "proceeding."
@@ -5262,7 +5275,7 @@ msgstr ""
 "teilzunehmen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:277
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:293
 msgid ""
 "Consumers may contact [Name, Address, Website of arbitration board] for the "
 "settlements of their disputes. We are obliged to participate in arbitration "
@@ -5274,38 +5287,38 @@ msgstr ""
 "Stelle teilzunehmen. Wir werden an einem solchen Verfahren teilnehmen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:283
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:299
 msgid "Shortcode Status"
 msgstr "Shortcode Status"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:287
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:303
 msgid "Found"
 msgstr "Eingebunden"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:287
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:303
 #, php-format
 msgid "Not found within %s"
 msgstr "Nicht gefunden in: %s"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:287
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:303
 msgid "Append it now"
 msgstr "Jetzt hinzufügen"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:314
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:330
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:360
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:262
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:272
 msgid "Notice Text"
 msgstr "Hinweistext"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:315
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:331
 msgid ""
 "You may want to adjust the small buisness notice text to meet your criteria."
 msgstr "Passe hier, falls notwending, den Kleinunternehmer Hinweistext an."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:322
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:338
 #: includes/wc-gzd-core-functions.php:516
 msgid ""
 "Value added tax is not collected, as small businesses according to §19 (1) "
@@ -5313,47 +5326,47 @@ msgid ""
 msgstr "Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:346
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:362
 msgid "Add a title field to the address within checkout."
 msgstr "Lasse Kunden eine Anrede auswählen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:358
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:374
 msgid "Validate street number"
 msgstr "Hausnummer validieren"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:359
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:375
 msgid "Force the existence of a street number within the first address field."
 msgstr "Hausnummer im ersten Adressfeld verpflichtend abfragen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:364
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:380
 msgid "Never"
 msgstr "Nie"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:365
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:381
 msgid "Always"
 msgstr "Immer"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:366
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:382
 msgid "Base country only"
 msgstr "Nur Basisland"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:367
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:383
 msgid "EU countries only"
 msgstr "Nur EU-Länder"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:378
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:394
 msgid "Disallow cancellations"
 msgstr "Stornierungen verhindern"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:379
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:395
 msgid "Don't allow customers to manually cancel orders."
 msgstr "Stornierung von Bestellungen durch den Kunden verhindern."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:379
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:395
 msgid ""
 "By default payment methods like PayPal allow order cancellation by clicking "
 "the abort link. This option will stop customers from manually cancel orders."
@@ -5362,17 +5375,17 @@ msgstr ""
 "Kunden den Abbrechen-Link verwendet. Diese Option verhindert den manuellen "
 "Abbruch einer Bestellung durch den Kunden."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:385
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:401
 msgid "Disallow gateway choosing"
 msgstr "Wechsel der Zahlungsart"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:386
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:402
 msgid "Don't allow customers to change the payment gateway after ordering."
 msgstr ""
 "Wechsel der Zahlungsart nach der Bestellung durch den Kunden verhindern."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:386
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:402
 msgid ""
 "Customers paying through a gateway which allows later payment (e.g. PayPal) "
 "will find a link within their customer account which redirects them to a pay "
@@ -5391,17 +5404,17 @@ msgstr ""
 "PayPal weiter."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:392
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:408
 msgid "Free shipping"
 msgstr "Kostenloser Versand"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:393
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:409
 msgid "Force free shipping method if available."
 msgstr "Erzwinge kostenlosen Versand wenn die Methode zur Verfügung steht."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:393
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:409
 msgid ""
 "By default WooCommerce will let customers choose other shipping methods than "
 "free shipping (if available). This option will force free shipping if "
@@ -5412,11 +5425,11 @@ msgstr ""
 "Versand, sobald dieser verfügbar ist."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:400
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:416
 msgid "Exclude Methods"
 msgstr "Deaktivierte Methoden"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:409
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:425
 msgid ""
 "Optionally choose methods which should be excluded from hiding when free "
 "shipping is available (e.g. express shipping options)."
@@ -5424,19 +5437,19 @@ msgstr ""
 "Wähle optional Versandmethoden aus, die nicht versteckt werden sollen, wenn "
 "kostenloser Versand verfügbar ist (z.B. Express-Versandmethoden)."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:419
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:435
 #, php-format
 msgid "COD fee (%s)"
 msgstr "Nachnahme Gebühr (%s)"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:427
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:443
 #, php-format
 msgid "COD forwarding fee (%s)"
 msgstr "Nachnahme Übermittlungsentgelt (%s)"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:430
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:446
 msgid ""
 "Forwarding fee will be charged by the transport agent in addition to the "
 "cash of delivery fee e.g. DHL - tax free."
@@ -5445,17 +5458,17 @@ msgstr ""
 "kassiert - z.B. DHL (steuerfrei)."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:461
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:477
 msgid "Add to Cart"
 msgstr "Zum Warenkorb Button"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:462
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:478
 msgid "Show add to cart button on listings."
 msgstr "Zeige den „zum Warenkorb“ Button in Produktlisten an."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:466
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:482
 msgid ""
 "unset this option if you don't want to show the add to cart button within "
 "the product listings"
@@ -5463,19 +5476,19 @@ msgstr ""
 "Deaktiviere diese Option, wenn du den zum Warenkorb Button nicht innerhalb "
 "von Produktauflistungen darstellen möchten"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:469
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:485
 msgid "Link"
 msgstr "Verlinkung"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:470
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:486
 msgid "Link to product details page instead of add to cart within listings."
 msgstr ""
 "Ersetze den „zum Warenkorb“ Link durch einen Link zur Produktseite in "
 "Produktlisten."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:474
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:490
 msgid ""
 "Decide whether you like to link to your product's details page instead of "
 "displaying an add to cart button within product listings."
@@ -5485,17 +5498,17 @@ msgstr ""
 "diese Option."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:477
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:493
 msgid "Product Details Text"
 msgstr "Produktdetails Text"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:479
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:495
 msgid "Details"
 msgstr "Details"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:484
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:500
 msgid ""
 "If you have chosen to link to product details page instead of add to cart "
 "URL you may want to change the button text."
@@ -5504,7 +5517,7 @@ msgstr ""
 "verlinken anstatt den zum Warenkorb Button einzublenden, kannst du hier "
 "einen Button-Text vergeben."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:496
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:512
 #, php-format
 msgid ""
 "Provide information on the authenticity of customer reviews. Learn more "
@@ -5514,19 +5527,19 @@ msgstr ""
 "über die <a href=\"%1$s\">Omnibus-Richtlinie</a>."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:501
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:517
 msgid "Overall notice"
 msgstr "Gesamt-Hinweis"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:502
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:518
 msgid "Notify customers about the authenticity of overall product ratings."
 msgstr "Informiere Kunden über die Echtheit von Produkt-Gesamtbewertungen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:509
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:525
 msgid "Verified?"
 msgstr "Verifiziert?"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:510
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:526
 msgid ""
 "Whether your current product ratings are verified, e.g. only verified owners "
 "were able to submit reviews."
@@ -5534,13 +5547,13 @@ msgstr ""
 "Ob deine aktuellen Produktbewertungen verifiziert sind, d.h. z.B. nur echte "
 "Kunden Produkte bewerten können oder nicht."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:522
-#: includes/wc-gzd-product-functions.php:425
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:538
+#: includes/wc-gzd-product-functions.php:430
 msgid "{link}Verified overall ratings{/link}"
 msgstr "{link}geprüfte Gesamtbewertungen{/link}"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:528
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:540
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:544
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:556
 #, php-format
 msgid ""
 "Customize the format used to notify customers about the authenticity of the "
@@ -5551,32 +5564,32 @@ msgstr ""
 "Bewertungen zu informieren. Nutze {link}{/link} als Platzhalter um deine <a "
 "href=\"%1$s\">Informationsseite über Bewertungen</a> zu verlinken."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:534
-#: includes/wc-gzd-product-functions.php:425
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:550
+#: includes/wc-gzd-product-functions.php:430
 msgid "{link}Unverified overall ratings{/link}"
 msgstr "{link}Ungeprüfte Gesamtbewertungen{/link}"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:544
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:560
 msgid "Review notice"
 msgstr "Bewertung-Hinweis"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:545
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:561
 msgid "Display an authenticity notice on a per-review basis."
 msgstr "Zeige einen Hinweis zur Echtheit der jeweiligen Bewertung an."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:552
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:568
 msgid "Verified Format"
 msgstr "Format geprüft"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:554
-#: includes/wc-gzd-product-functions.php:450
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:570
+#: includes/wc-gzd-product-functions.php:455
 msgid "Verified purchase. {link}Find out more{/link}"
 msgstr "Verifizierter Kauf. {link}Mehr Informationen{/link}"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:559
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:570
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:575
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:586
 #, php-format
 msgid ""
 "Customize the format used to notify customers about the authenticity of the "
@@ -5587,21 +5600,21 @@ msgstr ""
 "Bewertung zu informieren. Nutze {link}{/link} als Platzhalter um deine <a "
 "href=\"%1$s\">Informationsseite über Bewertungen</a> zu verlinken."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:563
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:579
 msgid "Unverified Format"
 msgstr "Format ungeprüft"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:565
-#: includes/wc-gzd-product-functions.php:450
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:581
+#: includes/wc-gzd-product-functions.php:455
 msgid "Purchase not verified. {link}Find out more{/link}"
 msgstr "Nicht verifizierter Kauf. {link}Mehr Informationen{/link}"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:590
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:606
 msgid "Checkout notice"
 msgstr "Hinweis Kasse"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:591
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:607
 msgid ""
 "Show a checkout notice in case the current cart contains photovoltaic "
 "systems."
@@ -5609,7 +5622,7 @@ msgstr ""
 "Zeige einen Hinweis in der Kasse an insofern Photovoltaikanlagen im "
 "Warenkorb enthalten sind."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:591
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:607
 msgid ""
 "This note is only displayed if the zero tax rate is available, i.e. a "
 "delivery is made within Germany and a photovoltaic system exists in the "
@@ -5619,11 +5632,11 @@ msgstr ""
 "Photovoltaikanlagen verfügbar ist, d.h. eine Lieferung innerhalb "
 "Deutschlands erfolgt."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:598
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:614
 msgid "Zero tax class"
 msgstr "Nullsteuerklasse"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:599
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:615
 #, php-format
 msgid ""
 "Choose your zero tax class to be applied for photovoltaic systems in case "
@@ -5635,11 +5648,11 @@ msgstr ""
 "Absatz 3 UStG aktiviert hat."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:612
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:628
 msgid "Net price"
 msgstr "Nettopreis"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:613
+#: includes/admin/settings/class-wc-gzd-settings-tab-general.php:629
 msgid ""
 "Automatically charge the product's net price in case the customer is "
 "eligible for the zero tax rate."
@@ -5672,11 +5685,11 @@ msgstr "Rechnungen & Lieferscheine"
 msgid "Invoices"
 msgstr "Rechnungen"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:55
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:59
 msgid "Accounting with Germanized Pro"
 msgstr "Buchhaltung mit Germanized Pro"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:56
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:60
 msgid ""
 "Create invoices and cancellations automatically and transfer them to your "
 "accounting software or tax advisor."
@@ -5684,7 +5697,7 @@ msgstr ""
 "Erstelle Rechnungen und Stornierungen automatisch und übertrage sie an deine "
 "Buchhaltungssoftware oder deinen Steuerberater."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:58
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:62
 msgid ""
 "Create invoices and cancellations automatically, e.g. based on order status "
 "or payment method"
@@ -5692,19 +5705,19 @@ msgstr ""
 "Rechnungen und Stornierungen automatisch erstellen, z.B. abhängig vom "
 "Bestellstatus oder der Zahlungsart"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:59
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:63
 msgid "E-invoices in ZUGFeRD, XRechnung and Peppol BIS 3.0 format"
 msgstr "E-Rechnungen im ZUGFeRD-, XRechnung- und Peppol BIS 3.0-Format"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:60
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:64
 msgid "Transfer your documents to your lexware office and/or sevdesk account"
 msgstr "Übertrage deine Belege an lexware office und/oder sevdesk"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:61
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:65
 msgid "DATEV export for your tax advisor"
 msgstr "DATEV-Export für deinen Steuerberater"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:62
+#: includes/admin/settings/class-wc-gzd-settings-tab-invoices.php:66
 msgid "Export your documents as CSV and ZIP"
 msgstr "Exportiere deine Dokumente als CSV und ZIP Datei"
 
@@ -5727,11 +5740,11 @@ msgstr "Upgrade zu %s"
 msgid "Transform your checkout into a multistep checkout process."
 msgstr "Verwandle deine Kasse in einen mehrstufigen Kaufprozess."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:35
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:39
 msgid "Multistep checkout with Germanized Pro"
 msgstr "Mehrstufige Kasse mit Germanized Pro"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:36
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:40
 msgid ""
 "Split your checkout into clearly arranged steps and guide your customers "
 "through the order process."
@@ -5739,16 +5752,16 @@ msgstr ""
 "Teile deine Kasse in übersichtliche Schritte auf und führe deine Kunden "
 "durch den Bestellprozess."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:38
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:42
 msgid "Separate steps for personal data, payment and order confirmation"
 msgstr ""
 "Separate Schritte für persönliche Daten, Zahlung und Bestellbestätigung"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:39
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:43
 msgid "Available for the classic checkout and the checkout block"
 msgstr "Verfügbar für die klassische Kasse und den Kassen-Block"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:40
+#: includes/admin/settings/class-wc-gzd-settings-tab-multistep-checkout.php:44
 msgid "Optional step navigation including a link back to the cart"
 msgstr "Optionale Schritt-Navigation inkl. Link zurück zum Warenkorb"
 
@@ -5766,11 +5779,11 @@ msgstr "Erstelle deine individuelle Widerrufsbelehrung über unsere API."
 msgid "Revocation Terms Generator"
 msgstr "Widerrufsbelehrung Generator"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:35
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:39
 msgid "Revocation terms generator with Germanized Pro"
 msgstr "Widerrufsbelehrung Generator mit Germanized Pro"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:36
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:40
 msgid ""
 "Answer a few questions about your products and let our API generate your "
 "revocation terms."
@@ -5778,15 +5791,15 @@ msgstr ""
 "Beantworte ein paar Fragen zu deinen Produkten und lass unsere API deine "
 "Widerrufsbelehrung erstellen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:38
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:42
 msgid "Revocation terms tailored to the products you sell"
 msgstr "Widerrufsbelehrung passend zu den Produkten, die du verkaufst"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:39
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:43
 msgid "Includes the model withdrawal form"
 msgstr "Inklusive Muster-Widerrufsformular"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:40
+#: includes/admin/settings/class-wc-gzd-settings-tab-revocation-generator.php:44
 msgid "Insert the generated text directly into your revocation page"
 msgstr "Den erstellten Text direkt in deine Widerrufsseite einfügen"
 
@@ -5897,9 +5910,9 @@ msgstr "Preisauszeichnung „%s“ anzeigen"
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:274
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:168
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:169
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
 msgid "Tax"
 msgstr "Steuer"
 
@@ -6011,7 +6024,7 @@ msgstr ""
 
 # @ woocommerce-germanized
 #: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:394
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:716
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:720
 msgid "Footer"
 msgstr "Footer"
 
@@ -6216,16 +6229,16 @@ msgstr "Variabler Grundpreis"
 msgid "Enable price range unit prices for variable products."
 msgstr "Aktiviere von-bis-Grundpreise für variable Produkte."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:703
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:707
 msgid "Enable legal guarantee"
 msgstr "Gewährleistungslabel"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:704
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:708
 msgid "Enable the EU legal guarantee label."
 msgstr "Aktiviere das EU Gewährleistungslabel."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:704
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:708
 msgid ""
 "Disable this option if your shop does not need to show the label at all, "
 "e.g. virtual products/b2b only."
@@ -6233,11 +6246,11 @@ msgstr ""
 "Deaktiviere diese Option, wenn Dein Shop das Label überhaupt nicht anzeigen "
 "muss, z.B. bei rein virtuellen Produkten oder B2B."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:710
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:714
 msgid "Global display"
 msgstr "Globale Anzeige"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:711
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:715
 msgid ""
 "Choose location(s) where the harmonised notice on the legal guarantee of "
 "conformity should be displayed. Disable the default display options if you "
@@ -6249,23 +6262,23 @@ msgstr ""
 "wenn das Label manuell platziert werden soll, z.B. über einen Shortcode, "
 "einen Block, eine Preisauszeichnung oder benutzerdefinierten Code."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:718
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:722
 #: src/Shopmarks.php:607
 msgid "Cart"
 msgstr "Warenkorb"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:719
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:723
 msgid "Product description (after)"
 msgstr "Produktbeschreibung (nachher)"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:725
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:741
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:729
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:745
 msgid "Display variant"
 msgstr "Anzeigevariante"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:726
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:730
 msgid ""
 "Choose a default display variant for the legal guarantee label. Both preview "
 "and link options open a popover containing a larger version of the label on "
@@ -6277,15 +6290,15 @@ msgstr ""
 "Popover mit einer vergrößerten Version des Labels. Bitte beachte, dass die "
 "Link-Option aus rechtlicher Sicht derzeit nicht empfohlen wird."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:734
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:738
 msgid "Enable GARAN label"
 msgstr "GARAN-Label aktivieren"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:735
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:739
 msgid "Enable the EU GARAN label."
 msgstr "Aktiviere das EU-GARAN-Label."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:735
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:739
 msgid ""
 "This label shows on a per-product basis. Make sure that any product "
 "applicable has a legal guarantee of > 24 months set, a manufacturer linked "
@@ -6299,7 +6312,7 @@ msgstr ""
 "Label überhaupt nicht anzeigen muss, z. B. beim Verkauf von virtuellen "
 "Produkten oder B2B."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:742
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:746
 msgid ""
 "Choose a default display variant for the GARAN label. The nested option "
 "shows a preview version of the full label and opens a popover containing the "
@@ -6309,11 +6322,11 @@ msgstr ""
 "Option zeigt eine Vorschau des Labels an und öffnet bei einer Benutzeraktion "
 "ein Popover mit dem vollständigen Label."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:750
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:754
 msgid "Model id"
 msgstr "Modelnummer"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:751
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:755
 msgid ""
 "Choose a default property that is being used to determine the GARAN label "
 "model id. If no valid model id is found, a fallback value is determined "
@@ -6325,16 +6338,16 @@ msgstr ""
 "Reihenfolge) ermittelt."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:775
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:779
 msgid "Fallback Strike Price Label"
 msgstr "Standard-Streichpreis"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:782
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:792
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:786
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:796
 msgid "Manage Price Labels"
 msgstr "Preishinweise verwalten"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:782
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:786
 msgid ""
 "Choose whether you would like to have a default strike price label to inform "
 "the customer about the regular price (e.g. Recommended Retail Price)."
@@ -6344,11 +6357,11 @@ msgstr ""
 "Streichpreis) hinweist (z.B. UVP)."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:785
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:789
 msgid "Fallback Sale Price Label"
 msgstr "Standard-Angebotspreis"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:792
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:796
 msgid ""
 "Choose whether you would like to have a default sale price label to inform "
 "the customer about the sale price (e.g. New Price)."
@@ -6358,21 +6371,21 @@ msgstr ""
 "hinweist (z.B. Unser neuer Preis)."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:796
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:800
 #: src/Shopmarks.php:603
 msgid "Single Product"
 msgstr "Produktseite"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:797
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:801
 msgid "Show price labels on single product page."
 msgstr "Zeige Preishinweise auf der Produktseite."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:804
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:808
 msgid "Loop"
 msgstr "Produktlisten"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:805
+#: includes/admin/settings/class-wc-gzd-settings-tab-shopmarks.php:809
 msgid "Show price labels in product loops."
 msgstr "Zeige Preishinweise in Produktlisten."
 
@@ -6401,12 +6414,12 @@ msgid "Differential Taxation"
 msgstr "Differenzbesteuerung"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:50
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:60
 msgid "Virtual VAT"
 msgstr "USt. Änderung 2015"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:51
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:61
 msgid ""
 "Enable if you want to charge your customer's countries' VAT for virtual "
 "products."
@@ -6414,7 +6427,7 @@ msgstr ""
 "Für virtuelle Produkte den USt.-Satz des Dienstleistungsempfängers berechnen."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:51
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:61
 #, php-format
 msgid ""
 "New EU VAT rule applies on 01.01.2015. Make sure that every digital or "
@@ -6437,15 +6450,15 @@ msgstr ""
 "dazu findest du <a href=\"%s\" target=\"_blank\">hier</a>."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:68
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:78
 msgid "Tax Rate"
 msgstr "Steuersatz"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:69
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:79
 msgid "Hide specific tax rate within shop pages."
 msgstr "Entferne die Anzeige des konkreten Steuersatzes im Shop."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:73
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:83
 msgid ""
 "This option will make sure that within shop pages no specific tax rates are "
 "shown. Instead only incl. tax or excl. tax notice is shown."
@@ -6455,35 +6468,35 @@ msgstr ""
 "bzw. exkl. MwSt."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:77
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:87
 msgid "Tax totals"
 msgstr "Steuer-Gesamtbeträge"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:82
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:92
 msgid "Before total amount"
 msgstr "Vor dem Gesamtbetrag"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:83
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:93
 msgid "After total amount"
 msgstr "Nach dem Gesamtbetrag"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:85
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:95
 msgid "Decide whether to show tax totals before or after total amount."
 msgstr ""
 "Wähle aus, ob die Mehrwertsteuer vor oder nach dem Gesamtbetrag ausgeben "
 "werden soll."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:100
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:110
 msgid "VAT ID"
 msgstr "Umsatzsteuer-ID"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:108
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:118
 msgid "VAT ID check with Germanized Pro"
 msgstr "USt.-ID-Prüfung mit Germanized Pro"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:109
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:119
 msgid ""
 "Let business customers enter their VAT ID within the checkout and verify it "
 "automatically."
@@ -6491,22 +6504,22 @@ msgstr ""
 "Lass Geschäftskunden ihre USt.-ID in der Kasse eingeben und prüfe sie "
 "automatisch."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:111
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:121
 msgid "Automatic VAT ID validation via the VIES interface"
 msgstr "Automatische Prüfung der USt.-ID über die VIES-Schnittstelle"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:112
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:122
 msgid "Tax-free intra-community deliveries (reverse charge) for valid VAT IDs"
 msgstr ""
 "Steuerfreie innergemeinschaftliche Lieferungen (Reverse Charge) bei gültiger "
 "USt.-ID"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:113
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:123
 msgid "VAT ID field within the checkout, registration and customer account"
 msgstr "USt.-ID-Feld in der Kasse, bei der Registrierung und im Kundenkonto"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:168
 #, php-format
 msgid ""
 "By choosing this option shipping cost and fee taxes will be calculated based "
@@ -6520,57 +6533,57 @@ msgstr ""
 "target=\"_blank\">hier</a>. %2$s"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:168
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:169
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
 msgid "Product"
 msgstr "Produkt"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:168
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:169
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
 msgid "Price"
 msgstr "Preis"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:168
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:169
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
 msgid "Price (net)"
 msgstr "Preis (netto)"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:168
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:169
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
 msgid "Tax rate"
 msgstr "Steuersatz"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:168
 msgid "Share"
 msgstr "Anteil"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:168
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:169
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
 msgid "Book"
 msgstr "Buch"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:168
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:169
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
 msgid "DVD"
 msgstr "DVD"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:158
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:168
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:169
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
 msgid "Shipping"
 msgstr "Versand"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:169
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
 #, php-format
 msgid ""
 "By choosing this option shipping cost and fee taxes will be calculated based "
@@ -6582,7 +6595,7 @@ msgstr ""
 "Weitere Informationen findest du <a href=\"%2$s\" target=\"_blank\">hier</"
 "a>. %3$s"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:159
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:169
 msgid ""
 "The main service is detected by choosing the line item with the highest "
 "total net amount."
@@ -6590,7 +6603,7 @@ msgstr ""
 "Die Hauptleistung wird anhand des Artikels mit dem höchsten "
 "Nettogesamtbetrag bestimmt."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:160
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
 msgid ""
 "The main service is detected by choosing the line item with the highest tax "
 "rate."
@@ -6599,12 +6612,12 @@ msgstr ""
 "bestimmt."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:170
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:180
 msgid "Tax calculation mode"
 msgstr "Steuerberechnung"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:171
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:181
 msgid ""
 "Select the tax calculation mode for your additional costs (shipping, fees)."
 msgstr ""
@@ -6612,53 +6625,53 @@ msgstr ""
 "aus."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:177
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:187
 msgid "WooCommerce default"
 msgstr "WooCommerce Standard"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:178
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:188
 msgid "Proportionate"
 msgstr "Anteilig"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:179
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:189
 msgid "Based on main service"
 msgstr "Auf Basis der Hauptleistung"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:184
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:194
 msgid "Detect Main Service by"
 msgstr "Hauptleistung bestimmen"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:185
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:195
 msgid "Choose how to detect the main service."
 msgstr "Wähle aus, wie die Hauptleistung bestimmt werden soll."
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:194
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:204
 msgid "Highest net amount"
 msgstr "Höchster Nettogesamtbetrag"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:195
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:205
 msgid "Highest tax rate"
 msgstr "Höchster Steuersatz"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:200
 #: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:210
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:221
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:220
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:231
 msgid "Example"
 msgstr "Beispiel"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:248
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:258
 msgid "Taxation Notice"
 msgstr "Steuerhinweis"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:249
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:259
 msgid "Enable differential taxation text notice beneath product price."
 msgstr ""
 "Aktiviere den Hinweis zur Differenzbesteuerung unterhalb des Produktpreises."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:249
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:259
 msgid ""
 "If you have disabled this option, a normal VAT notice will be displayed, "
 "which is sufficient as Trusted Shops states. To further inform your "
@@ -6668,17 +6681,17 @@ msgstr ""
 "angezeigt. Der Standard-Hinweis ist laut Trusted Shops bereits ausreichend. "
 "Du kannst diesen Hinweis nutzen um deine Kunden besser zu informieren."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:255
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:265
 msgid "Mixed carts"
 msgstr "Gemischte Warenkörbe"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:256
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:266
 msgid ""
 "Disallow buying normal and differential taxed products at the same time."
 msgstr ""
 "Verbiete gleichzeitig normale und differenzbesteuerte Produkte zu kaufen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:256
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:266
 #, php-format
 msgid ""
 "Shipping costs for differential taxed products may not be taxed (compare %s) "
@@ -6692,11 +6705,11 @@ msgstr ""
 "verhindert, dass Kunden normale und differenzbesteuerte Produkte "
 "gleichzeitig kaufen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:256
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:266
 msgid "HK Hamburg"
 msgstr "HK Hamburg"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:263
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:273
 msgid ""
 "This text will be shown as a further notice for the customer to inform him "
 "about differential taxation."
@@ -6704,16 +6717,16 @@ msgstr ""
 "Dieser Text dient zur weiterführenden Information deiner Kunden bzgl. der "
 "Differenzbesteuerung."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:268
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:278
 msgid "incl. VAT (differential taxation according to §25a UStG.)"
 msgstr "inkl. MwSt. (differenzbesteuert nach §25a UStG.)"
 
 # @ woocommerce-germanized
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:272
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:282
 msgid "Checkout & E-Mails"
 msgstr "Kasse & E-Mails"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:273
+#: includes/admin/settings/class-wc-gzd-settings-tab-taxes.php:283
 msgid "Enable differential taxation notice during checkout and in emails."
 msgstr ""
 "Aktiviere den Hinweis zur Differenzbesteuerung im Checkout und in E-Mails."
@@ -6730,11 +6743,11 @@ msgstr ""
 msgid "TOS Generator"
 msgstr "AGB Generator"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:35
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:39
 msgid "Terms & conditions generator with Germanized Pro"
 msgstr "AGB Generator mit Germanized Pro"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:36
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:40
 msgid ""
 "Answer a few questions about your shop and let our API generate your terms & "
 "conditions."
@@ -6742,15 +6755,15 @@ msgstr ""
 "Beantworte ein paar Fragen zu deinem Shop und lass unsere API deine AGB "
 "erstellen."
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:38
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:42
 msgid "Terms & conditions tailored to your shop via a simple questionnaire"
 msgstr "AGB passend zu deinem Shop über einen einfachen Fragebogen"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:39
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:43
 msgid "Insert the generated text directly into your terms page"
 msgstr "Den erstellten Text direkt in deine AGB-Seite einfügen"
 
-#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:40
+#: includes/admin/settings/class-wc-gzd-settings-tab-terms-generator.php:44
 msgid "Regenerate your terms at any time"
 msgstr "AGB jederzeit neu erstellen"
 
