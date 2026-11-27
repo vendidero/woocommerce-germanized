@@ -31,7 +31,7 @@ window.germanized = window.germanized || {};
             this.initMailSortable();
 
             $( document.body ).on( 'init_tooltips', function() {
-                self.initTipTips();
+                self.initTipTip();
             });
 
             self.initTipTip();
