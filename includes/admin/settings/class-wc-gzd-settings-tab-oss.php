@@ -34,7 +34,7 @@ class WC_GZD_Settings_Tab_OSS extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_help_link() {
-		return 'https://vendidero.github.io/one-stop-shop-woocommerce';
+		return 'https://vendidero.de/doc/allgemein/one-stop-shop-oss-einrichten';
 	}
 
 	public function get_sections() {

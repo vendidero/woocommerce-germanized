@@ -24,7 +24,7 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_help_link() {
-		return 'https://vendidero.de/dokumentation/woocommerce-germanized/preisauszeichnung';
+		return 'https://vendidero.de/doc/woocommerce-germanized/preisauszeichnungen-anpassen';
 	}
 
 	public function get_name() {
@@ -682,11 +682,15 @@ class WC_GZD_Settings_Tab_Shopmarks extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_section_help_link( $section ) {
-		if ( 'guarantee_labels' === $section ) {
-			return 'https://vendidero.de/eu-gewaehrleistungs-und-garantie-label-fuer-woocommerce';
-		} else {
-			return parent::get_section_help_link( $section );
-		}
+		$links = array(
+			'delivery_times'   => 'https://vendidero.de/doc/woocommerce-germanized/lieferzeiten-verwalten',
+			'unit_prices'      => 'https://vendidero.de/doc/woocommerce-germanized/grundpreise-hinterlegen',
+			'guarantee_labels' => 'https://vendidero.de/doc/allgemein/eu-gewaehrleistungslabel-und-garan-label',
+			'food'             => 'https://vendidero.de/doc/woocommerce-germanized/lebensmittel-auszeichnen',
+			'price_labels'     => 'https://vendidero.de/doc/woocommerce-germanized/preisauszeichnungen-anpassen',
+		);
+
+		return array_key_exists( $section, $links ) ? $links[ $section ] : parent::get_section_help_link( $section );
 	}
 
 	protected function get_guarantee_labels_settings() {

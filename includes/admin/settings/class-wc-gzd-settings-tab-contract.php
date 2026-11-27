@@ -25,6 +25,10 @@ class WC_GZD_Settings_Tab_Contract extends WC_GZD_Settings_Tab {
 		return 'contract';
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de/doc/allgemein/verspaeteter-vertragsschluss';
+	}
+
 	public function is_pro() {
 		return true;
 	}

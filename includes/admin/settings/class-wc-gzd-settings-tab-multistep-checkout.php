@@ -25,6 +25,10 @@ class WC_GZD_Settings_Tab_Multistep_Checkout extends WC_GZD_Settings_Tab {
 		return 'multistep_checkout';
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de/doc/allgemein/mehrstufige-kasse-einrichten';
+	}
+
 	public function is_pro() {
 		return true;
 	}

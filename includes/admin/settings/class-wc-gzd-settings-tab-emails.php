@@ -25,6 +25,18 @@ class WC_GZD_Settings_Tab_Emails extends WC_GZD_Settings_Tab {
 		return 'emails';
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de/doc/allgemein/e-mail-einstellungen';
+	}
+
+	public function get_section_help_link( $section ) {
+		$links = array(
+			'attachments' => 'https://vendidero.de/doc/allgemein/rechtstexte-hinterlegen-und-an-e-mails-anhaengen',
+		);
+
+		return array_key_exists( $section, $links ) ? $links[ $section ] : parent::get_section_help_link( $section );
+	}
+
 	public function get_sections() {
 		return array(
 			''            => __( 'General', 'woocommerce-germanized' ),

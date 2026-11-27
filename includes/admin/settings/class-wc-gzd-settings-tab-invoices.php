@@ -45,6 +45,10 @@ class WC_GZD_Settings_Tab_Invoices extends WC_GZD_Settings_Tab {
 		return 'invoices';
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de/doc/allgemein/buchhaltung-im-ueberblick';
+	}
+
 	public function is_pro() {
 		return true;
 	}

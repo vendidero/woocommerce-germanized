@@ -25,6 +25,10 @@ class WC_GZD_Settings_Tab_B2B extends WC_GZD_Settings_Tab {
 		return 'b2b';
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de/doc/woocommerce-germanized/b2b-einrichten';
+	}
+
 	public function is_pro() {
 		return true;
 	}

@@ -25,6 +25,10 @@ class WC_GZD_Settings_Tab_Revocation_Generator extends WC_GZD_Settings_Tab {
 		return 'revocation_generator';
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de/doc/allgemein/agb-und-widerrufsbelehrung-mit-dem-generator-erstellen';
+	}
+
 	public function is_pro() {
 		return true;
 	}

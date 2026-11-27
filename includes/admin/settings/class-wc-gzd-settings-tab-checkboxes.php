@@ -25,6 +25,10 @@ class WC_GZD_Settings_Tab_Checkboxes extends WC_GZD_Settings_Tab {
 		return 'checkboxes';
 	}
 
+	public function get_help_link() {
+		return 'https://vendidero.de/doc/allgemein/checkboxen-im-ueberblick';
+	}
+
 	public function get_current_section() {
 		return $this->get_current_checkbox_id();
 	}

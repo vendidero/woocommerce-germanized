@@ -42,7 +42,17 @@ class WC_GZD_Settings_Tab_Taxes extends WC_GZD_Settings_Tab {
 	}
 
 	public function get_help_link() {
-		return 'https://vendidero.de/doc/woocommerce-germanized/steuerberechnung-fuer-versandkosten-und-gebuehren';
+		return 'https://vendidero.de/doc/allgemein/steuern-im-ueberblick';
+	}
+
+	public function get_section_help_link( $section ) {
+		$links = array(
+			'additional_costs'      => 'https://vendidero.de/doc/woocommerce-germanized/steuerberechnung-fuer-versandkosten-und-gebuehren',
+			'differential_taxation' => 'https://vendidero.de/doc/allgemein/differenzbesteuerung',
+			'oss'                   => 'https://vendidero.de/doc/allgemein/one-stop-shop-oss-einrichten',
+		);
+
+		return array_key_exists( $section, $links ) ? $links[ $section ] : parent::get_section_help_link( $section );
 	}
 
 	protected function get_vat_settings() {
