@@ -166,4 +166,82 @@ class WC_GZD_Tests_GZD_Product extends WC_GZD_Unit_Test_Case {
 
 		$this->assertEquals( '10-12-days', $gzd_product->get_delivery_time_by_country( 'BE' )->slug );
 	}
+
+	protected $price_html_calls = 0;
+
+	public function count_price_html_calls( $html ) {
+		$this->price_html_calls++;
+
+		return $html;
+	}
+
+	function test_empty_price_html_check_is_cached_per_request() {
+		WC_GZD_Product::clear_empty_price_html_cache();
+		$product = WC_Helper_Product::create_simple_product();
+
+		$this->price_html_calls = 0;
+		add_filter( 'woocommerce_get_price_html', array( $this, 'count_price_html_calls' ), 9999 );
+
+		// Separate decorator instances, e.g. Store API response and block rendering of the same product.
+		foreach ( array( wc_get_product( $product->get_id() ), wc_get_product( $product->get_id() ) ) as $wc_product ) {
+			$gzd_product = wc_gzd_get_product( $wc_product );
+
+			$this->assertFalse( $gzd_product->hide_shopmarks_due_to_missing_price() );
+			$gzd_product->get_tax_info();
+			$gzd_product->get_unit_price_html();
+			$gzd_product->get_delivery_time_html();
+		}
+
+		remove_filter( 'woocommerce_get_price_html', array( $this, 'count_price_html_calls' ), 9999 );
+
+		$this->assertEquals( 1, $this->price_html_calls );
+	}
+
+	function test_empty_price_html_check_hides_shopmarks_and_clears_cache_on_save() {
+		WC_GZD_Product::clear_empty_price_html_cache();
+		$product = WC_Helper_Product::create_simple_product();
+
+		add_filter( 'woocommerce_get_price_html', '__return_empty_string', 9999 );
+
+		$this->assertTrue( wc_gzd_get_product( wc_get_product( $product->get_id() ) )->hide_shopmarks_due_to_missing_price() );
+		$this->assertFalse( wc_gzd_get_product( wc_get_product( $product->get_id() ) )->get_tax_info() );
+
+		remove_filter( 'woocommerce_get_price_html', '__return_empty_string', 9999 );
+
+		// Still cached within the same request.
+		$this->assertTrue( wc_gzd_get_product( wc_get_product( $product->get_id() ) )->hide_shopmarks_due_to_missing_price() );
+
+		// Saving a product clears the cache.
+		$product->save();
+
+		$this->assertFalse( wc_gzd_get_product( wc_get_product( $product->get_id() ) )->hide_shopmarks_due_to_missing_price() );
+
+		// A price change leads to a new cache entry.
+		add_filter( 'woocommerce_get_price_html', '__return_empty_string', 9999 );
+		$changed = wc_get_product( $product->get_id() );
+		$changed->set_price( 99 );
+
+		$this->assertTrue( wc_gzd_get_product( $changed )->hide_shopmarks_due_to_missing_price() );
+
+		remove_filter( 'woocommerce_get_price_html', '__return_empty_string', 9999 );
+	}
+
+	function test_empty_price_html_check_cache_can_be_disabled() {
+		WC_GZD_Product::clear_empty_price_html_cache();
+		$product = WC_Helper_Product::create_simple_product();
+
+		add_filter( 'woocommerce_gzd_shopmarks_empty_price_html_check_cache_enabled', '__return_false' );
+
+		$this->price_html_calls = 0;
+		add_filter( 'woocommerce_get_price_html', array( $this, 'count_price_html_calls' ), 9999 );
+
+		$gzd_product = wc_gzd_get_product( wc_get_product( $product->get_id() ) );
+		$gzd_product->hide_shopmarks_due_to_missing_price();
+		$gzd_product->hide_shopmarks_due_to_missing_price();
+
+		remove_filter( 'woocommerce_get_price_html', array( $this, 'count_price_html_calls' ), 9999 );
+		remove_filter( 'woocommerce_gzd_shopmarks_empty_price_html_check_cache_enabled', '__return_false' );
+
+		$this->assertEquals( 2, $this->price_html_calls );
+	}
 }

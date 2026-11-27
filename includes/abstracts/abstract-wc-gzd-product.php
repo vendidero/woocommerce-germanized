@@ -24,6 +24,13 @@ class WC_GZD_Product {
 	protected $child;
 
 	/**
+	 * Per-request cache of empty price HTML checks, keyed by product id and price.
+	 *
+	 * @var bool[]
+	 */
+	protected static $empty_price_html_cache = array();
+
+	/**
 	 * @var null|WP_Term[]
 	 */
 	protected $delivery_times = null;
@@ -1687,6 +1694,43 @@ class WC_GZD_Product {
 		return apply_filters( 'woocommerce_gzd_product_is_doing_price_html_action', doing_action( 'woocommerce_get_price_html' ), $this );
 	}
 
+	/**
+	 * Whether the product's price HTML is empty, e.g. as an extension hides the price.
+	 * As this check is performed for each shopmark (and product data, e.g. variation data or Store API responses)
+	 * the (expensive) result is cached per product and price for the current request.
+	 *
+	 * @return bool
+	 */
+	protected function has_empty_price_html() {
+		/**
+		 * Filter to disable caching the empty price HTML check within the current request,
+		 * e.g. in case the price HTML visibility may change during the request.
+		 *
+		 * @param boolean $enable_cache Whether to cache the check.
+		 * @param WC_GZD_Product $product The product instance.
+		 *
+		 * @since 4.2.1
+		 */
+		if ( ! apply_filters( 'woocommerce_gzd_shopmarks_empty_price_html_check_cache_enabled', true, $this ) ) {
+			return '' === $this->child->get_price_html();
+		}
+
+		$cache_key = $this->child->get_id() . '|' . $this->child->get_price();
+
+		if ( ! array_key_exists( $cache_key, self::$empty_price_html_cache ) ) {
+			self::$empty_price_html_cache[ $cache_key ] = '' === $this->child->get_price_html();
+		}
+
+		return self::$empty_price_html_cache[ $cache_key ];
+	}
+
+	/**
+	 * Clear the request cache of empty price HTML checks.
+	 */
+	public static function clear_empty_price_html_cache() {
+		self::$empty_price_html_cache = array();
+	}
+
 	public function hide_shopmarks_due_to_missing_price() {
 		$has_empty_price = '' === $this->child->get_price();
 
@@ -1715,7 +1759,7 @@ class WC_GZD_Product {
 					}
 				}
 			} else {
-				$has_empty_price = '' === $this->child->get_price_html();
+				$has_empty_price = $this->has_empty_price_html();
 			}
 		}
 

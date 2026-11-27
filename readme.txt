@@ -220,6 +220,7 @@ Please report security bugs found in the source code of the Germanized for WooCo
 * Security: Potential Cross Site Scripting (XSS) through data-attribute in variation form - thanks to AndrewN for disclosing
 * Security: [Withdrawal button] Do not attach guest withdrawal requests to an order (and do not add order notes) in case the email submitted does not match the order email. The suspected order is shown in the admin email and preselected for manual assignment instead.
 * Improvement: [Withdrawal button] Prefer the order matching the submitted email in case multiple orders match the contract identification
+* Improvement: Performance: cache the empty price check for shopmarks within the current request instead of rendering the product price for each shopmark, e.g. within product loops, variation data and Store API responses. Use the woocommerce_gzd_shopmarks_empty_price_html_check_cache_enabled filter to disable the cache.
 * Fix: [Withdrawal button] Fall back to the country-specific default instead of "none" for unknown guest validation option values
 * Fix: Admin settings: hide section titles and descriptions in case none of the settings of the section is visible (e.g. depending on a disabled option)
 

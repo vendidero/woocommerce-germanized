@@ -41,6 +41,11 @@ function wc_gzd_register_scheduled_unit_sales( $product_ids ) {
 }
 
 add_action( 'wc_before_products_starting_sales', 'wc_gzd_register_scheduled_unit_sales', 10, 1 );
+
+/**
+ * Clear the (request) cache of empty price HTML checks as product data, e.g. the price visibility, may have changed.
+ */
+add_action( 'woocommerce_after_product_object_save', array( 'WC_GZD_Product', 'clear_empty_price_html_cache' ), 10 );
 remove_action( 'wc_after_products_starting_sales', 'wc_gzd_register_scheduled_unit_sales', 10 );
 
 add_action( 'wc_before_products_ending_sales', 'wc_gzd_register_scheduled_unit_sales', 10, 1 );
