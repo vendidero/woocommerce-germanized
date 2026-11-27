@@ -102,6 +102,20 @@ jobs:
           tools: composer, wp-cli
           coverage: none
 
+      # setup-php only warns in case a tool could not be installed - make sure WP-CLI (needed to generate the
+      # i18n JSON files) is available, otherwise install the official build (checksum verified).
+      - name: Setup WP-CLI
+        run: |
+          if ! command -v wp > /dev/null; then
+            echo "::warning::WP-CLI not available after setup-php, installing the official build."
+            curl -sSfL -o "${RUNNER_TEMP}/wp-cli.phar" https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+            EXPECTED=$(curl -sSfL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar.sha512 | awk '{print $1}')
+            echo "${EXPECTED}  ${RUNNER_TEMP}/wp-cli.phar" | sha512sum -c -
+            chmod +x "${RUNNER_TEMP}/wp-cli.phar"
+            sudo mv "${RUNNER_TEMP}/wp-cli.phar" /usr/local/bin/wp
+          fi
+          wp --info
+
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
