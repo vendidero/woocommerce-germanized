@@ -37,7 +37,7 @@ class WC_GZD_Admin_Note_DHL_Importer extends WC_GZD_Admin_Note {
 		$content = '<p>' . _x( 'It seems like you are currently using the DHL for WooCommerce plugin. Our plugin Shiptastic for WooCommerce does now fully integrate DHL services and switching is as simple as can be. Check your advantages by using the DHL integration in Shiptastic and let Shiptastic import your current settings for you.', 'dhl', 'woocommerce-germanized' ) . '</p>
 		    <ul>
 		        <li>' . _x( 'Perfectly integrated with Germanized any many other plugins', 'dhl', 'woocommerce-germanized' ) . '</li>
-		        <li>' . sprintf( _x( 'Many improved features such as automation, services per shipping method and %s', 'dhl', 'woocommerce-germanized' ), '<a href="https://vendidero.de/doc/woocommerce-germanized/dhl-labels-zu-sendungen-erstellen" target="_blank">' . _x( 'many more', 'dhl', 'woocommerce-germanized' ) . '</a>' ) . '</li>
+		        <li>' . sprintf( _x( 'Many improved features such as automation, services per shipping method and %s', 'dhl', 'woocommerce-germanized' ), '<a href="https://vendidero.de/doc/shiptastic/dhl-integration-einrichten#labels-erstellen" target="_blank">' . _x( 'many more', 'dhl', 'woocommerce-germanized' ) . '</a>' ) . '</li>
 		        <li>' . _x( 'Allow your customers to select Packstation or Postfiliale delivery conveniently from within your checkout', 'dhl', 'woocommerce-germanized' ) . '</li>
 		    </ul>';
 
@@ -64,7 +64,7 @@ class WC_GZD_Admin_Note_DHL_Importer extends WC_GZD_Admin_Note {
 				'nonce_action' => 'wc-gzd-check-install_shiptastic',
 			),
 			array(
-				'url'        => 'https://vendidero.de/doc/woocommerce-germanized/dhl-labels-zu-sendungen-erstellen',
+				'url'        => 'https://vendidero.de/doc/shiptastic/dhl-integration-einrichten#labels-erstellen',
 				'title'      => _x( 'Learn more', 'dhl', 'woocommerce-germanized' ),
 				'target'     => '_blank',
 				'is_primary' => false,

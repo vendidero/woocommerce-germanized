@@ -318,7 +318,7 @@ class WC_GZD_Admin_Welcome {
 				'links' => array(
 					array(
 						'label' => 'Mehr erfahren',
-						'url'   => 'https://vendidero.de/doc/woocommerce-germanized/hermes-integration-einrichten',
+						'url'   => 'https://vendidero.de/doc/shiptastic/hermes-integration-einrichten',
 					),
 				),
 			),
