@@ -1,0 +1,20 @@
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	// The require scope
+/******/ 	const __webpack_require__ = {};
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = (exports) => {
+/******/ 		Object.defineProperties(exports, { [Symbol.toStringTag]: { value: 'Module' }, __esModule: { value: true } });
+/******/ 	};
+/******/ 	
+/************************************************************************/
+let __webpack_exports__ = {};
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+((window.germanized = window.germanized || {})["static"] = window.germanized["static"] || {})["admin-settings-styles"] = __webpack_exports__;
+/******/ })()
+;
