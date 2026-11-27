@@ -218,6 +218,9 @@ Please report security bugs found in the source code of the Germanized for WooCo
 == Changelog ==
 = 4.2.1 =
 * Security: Potential Cross Site Scripting (XSS) through data-attribute in variation form - thanks to AndrewN for disclosing
+* Security: [Withdrawal button] Do not attach guest withdrawal requests to an order (and do not add order notes) in case the email submitted does not match the order email. The suspected order is shown in the admin email and preselected for manual assignment instead.
+* Improvement: [Withdrawal button] Prefer the order matching the submitted email in case multiple orders match the contract identification
+* Fix: [Withdrawal button] Fall back to the country-specific default instead of "none" for unknown guest validation option values
 * Fix: Admin settings: hide section titles and descriptions in case none of the settings of the section is visible (e.g. depending on a disabled option)
 
 = 4.2.0 =
