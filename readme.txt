@@ -5,7 +5,7 @@ Requires at least: 5.4
 Tested up to: 7.2
 WC requires at least: 3.9
 WC tested up to: 11.3
-Stable tag: 4.2.0
+Stable tag: 4.2.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -153,7 +153,7 @@ Outputs mini cart description for a product.
 
 = General Shortcodes =
 
-`[order_withdrawal_request_form]`
+`[eu_owb_order_withdrawal_request_form]`
 Place a withdrawal request form to allow your customers to conveniently submit order withdrawal requests.
 
 `[payment_methods_info]`
@@ -216,6 +216,10 @@ Please report security bugs found in the source code of the Germanized for WooCo
 6. Edit pdf documents (Pro)
 
 == Changelog ==
+= 4.2.1 =
+* Security: Potential Cross Site Scripting (XSS) through data-attribute in variation form - thanks to AndrewN for disclosing
+* Fix: Admin settings: hide section titles and descriptions in case none of the settings of the section is visible (e.g. depending on a disabled option)
+
 = 4.2.0 =
 * New: Checkout block: Automatically replace the WooCommerce terms block with the Germanized legal checkboxes block in case the legal checkboxes block has not been placed manually and at least one legal checkbox is enabled for the checkout. Use the woocommerce_gzd_checkout_block_replace_terms_block filter to disable the replacement.
 * Improvement: Performance improvements, e.g. persistently cache hook priorities (cleared on theme/plugin changes), autoload legal checkbox settings, cache tax rate lookups and use the object term cache to determine manufacturers from product brands
